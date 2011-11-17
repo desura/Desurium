@@ -1,0 +1,44 @@
+Index: algparam.h
+===================================================================
+--- algparam.h	(revision 529)
++++ algparam.h	(working copy)
+@@ -319,7 +319,7 @@
+ 
+ 	void MoveInto(void *buffer) const
+ 	{
+-		AlgorithmParametersTemplate<T>* p = new(buffer) AlgorithmParametersTemplate<T>(*this);
++		new(buffer) AlgorithmParametersTemplate<T>(*this);
+ 	}
+ 
+ protected:
+Index: misc.h
+===================================================================
+--- misc.h	(revision 529)
++++ misc.h	(working copy)
+@@ -55,7 +55,7 @@
+ #if defined(CRYPTOPP_EXPORTS) || defined(CRYPTOPP_IMPORTS)
+ #define CRYPTOPP_COMPILE_ASSERT_INSTANCE(assertion, instance)
+ #else
+-#define CRYPTOPP_COMPILE_ASSERT_INSTANCE(assertion, instance) static CompileAssert<(assertion)> CRYPTOPP_ASSERT_JOIN(cryptopp_assert_, instance)
++#define CRYPTOPP_COMPILE_ASSERT_INSTANCE(assertion, instance)
+ #endif
+ #define CRYPTOPP_ASSERT_JOIN(X, Y) CRYPTOPP_DO_ASSERT_JOIN(X, Y)
+ #define CRYPTOPP_DO_ASSERT_JOIN(X, Y) X##Y
+@@ -544,6 +544,7 @@
+ 		SecureWipeBuffer((byte *)buf, n * sizeof(T));
+ }
+ 
++#if 0
+ // this function uses wcstombs(), which assumes that setlocale() has been called
+ static std::string StringNarrow(const wchar_t *str, bool throwOnError = true)
+ {
+@@ -566,7 +567,9 @@
+ #pragma warning(pop)
+ #endif
+ }
++#endif
+ 
++
+ #if CRYPTOPP_BOOL_ALIGN16_ENABLED
+ CRYPTOPP_DLL void * CRYPTOPP_API AlignedAllocate(size_t size);
+ CRYPTOPP_DLL void CRYPTOPP_API AlignedDeallocate(void *p);

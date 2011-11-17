@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Thread">
+      <UniqueIdentifier>{20ad57fe-db73-44a0-bbe0-7f994f428938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Thread\Mcf Threads">
+      <UniqueIdentifier>{e12be18a-c71c-45da-8a55-2e0f067fffbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Thread\App Threads">
+      <UniqueIdentifier>{5128e89b-6f00-4623-a900-5204d2e10ab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Upload Manager">
+      <UniqueIdentifier>{a430e2f3-aa69-458c-a26a-262b4af3a29d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Task">
+      <UniqueIdentifier>{9d2ec72a-09e9-455d-af3b-4c459251595f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\User">
+      <UniqueIdentifier>{5df25834-3ac6-416f-bb98-7faea15452b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item Manager">
+      <UniqueIdentifier>{3e2fb8ec-accd-4552-8c87-993c36d85a98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Mcf Manager">
+      <UniqueIdentifier>{54548d72-d90a-41b7-a9d4-9f1f3755a6c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Prec Header">
+      <UniqueIdentifier>{6acfb730-ccb0-41a7-8d35-64ae45722303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item Manager\Info">
+      <UniqueIdentifier>{2e720e29-8ee3-4272-9eaa-cdd05399f2a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item Manager\Handle">
+      <UniqueIdentifier>{ca06d2dd-72e0-4f0f-b1c4-e3b59f2d5cdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item Manager\Handle\Tasks">
+      <UniqueIdentifier>{551f118f-bd53-47a7-a02c-9dbdad689cbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item Manager\Handle\Services">
+      <UniqueIdentifier>{f7a94b09-7840-4888-ad91-6ae05820ee6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item Manager\Handle\Services\IPC">
+      <UniqueIdentifier>{dec6b734-df50-4aa2-ba93-3a56962114ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item Manager\Handle\Services\Uninstall">
+      <UniqueIdentifier>{7dab9524-d39c-4e3b-92a4-37bdd8a69db0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item Manager\Handle\Tasks\Verify">
+      <UniqueIdentifier>{5fddbe6e-8a84-4994-925d-cc0a41d29e90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tool Manager">
+      <UniqueIdentifier>{d1b766ce-b21a-46fe-b9c3-2f5b0af9637b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tool Manager\IPC">
+      <UniqueIdentifier>{19c817c3-9dda-4e4c-bff0-c72118821716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameExplorer">
+      <UniqueIdentifier>{76108496-5881-4e14-801d-49c75e10155d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\BannerDownloadManager">
+      <UniqueIdentifier>{e0ae4bac-d628-4aa0-bcfc-c3bebcd2f65c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CDKeyManager">
+      <UniqueIdentifier>{db748bb0-ff9d-43fe-b65b-992154150214}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item Manager\Handle\Misc">
+      <UniqueIdentifier>{59ff66cf-5714-4981-8b04-89b8b88b2960}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CIP Manager">
+      <UniqueIdentifier>{10c73e42-e899-40b3-89bf-7426c25b6e76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\log">
+      <UniqueIdentifier>{7d42c5cd-6da2-4e7e-a5fa-c78ad087bf7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Task\Misc">
+      <UniqueIdentifier>{a1d555e7-3b47-4aef-ae76-b63a93e53f90}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="code\UserCoreMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\log.cpp">
+      <Filter>Source Files\log</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UserThreadManager.cpp">
+      <Filter>Source Files\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CreateMCFThread.cpp">
+      <Filter>Source Files\Thread\Mcf Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="code\InstalledWizardThread.cpp">
+      <Filter>Source Files\Thread\Mcf Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UploadPrepThread.cpp">
+      <Filter>Source Files\Thread\Mcf Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UploadResumeThread.cpp">
+      <Filter>Source Files\Thread\Mcf Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UploadThread.cpp">
+      <Filter>Source Files\Thread\Mcf Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="code\GetItemListThread.cpp">
+      <Filter>Source Files\Thread\App Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UpdateThread.cpp">
+      <Filter>Source Files\Thread\App Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UploadInfoThread.cpp">
+      <Filter>Source Files\Upload Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UploadManager.cpp">
+      <Filter>Source Files\Upload Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\InstallInfo.cpp">
+      <Filter>Source Files\Task\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DownloadUpdateTask.cpp">
+      <Filter>Source Files\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UserTask.cpp">
+      <Filter>Source Files\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UserTasks.cpp">
+      <Filter>Source Files\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCComplexLaunch.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCInstallMcf.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCServiceMain.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCUninstallMcf.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCUpdateApp.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\User.cpp">
+      <Filter>Source Files\User</Filter>
+    </ClCompile>
+    <ClCompile Include="code\User_Login.cpp">
+      <Filter>Source Files\User</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UserIPCPipeClient.cpp">
+      <Filter>Source Files\User</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ItemManager.cpp">
+      <Filter>Source Files\Item Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\McfManager.cpp">
+      <Filter>Source Files\Mcf Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ItemHandle.cpp">
+      <Filter>Source Files\Item Manager\Handle</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BranchInfo.cpp">
+      <Filter>Source Files\Item Manager\Info</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ItemInfo.cpp">
+      <Filter>Source Files\Item Manager\Info</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DownloadTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BaseItemTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="code\GatherInfoTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="code\InstallServiceTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BaseItemServiceTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ComplexLaunchServiceTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="code\GatherInfoThread.cpp">
+      <Filter>Source Files\Thread\App Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="code\InstallCheckTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UIServiceTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services\Uninstall</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UIBranchServiceTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services\Uninstall</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UIComplexModServiceTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services\Uninstall</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UIBaseServiceTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services\Uninstall</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UIPatchServiceTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services\Uninstall</Filter>
+    </ClCompile>
+    <ClCompile Include="code\VSCheckMcf.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClCompile>
+    <ClCompile Include="code\VSCheckInstall.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClCompile>
+    <ClCompile Include="code\VSDownloadMissing.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClCompile>
+    <ClCompile Include="code\VSInstallMissing.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClCompile>
+    <ClCompile Include="code\VSBaseTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClCompile>
+    <ClCompile Include="code\VerifyServiceTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ToolManager.cpp">
+      <Filter>Source Files\Tool Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\tool_pipe\IPCToolMain.cpp">
+      <Filter>Source Files\Tool Manager\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ToolInfo.cpp">
+      <Filter>Source Files\Tool Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DownloadToolTask.cpp">
+      <Filter>Source Files\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="code\InstallToolTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DownloadToolItemTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ToolIPCPipeClient.cpp">
+      <Filter>Source Files\Tool Manager\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ToolInstallThread.cpp">
+      <Filter>Source Files\Tool Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ToolTransaction.cpp">
+      <Filter>Source Files\Tool Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BDManager.cpp">
+      <Filter>Source Files\BannerDownloadManager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CDKeyManager.cpp">
+      <Filter>Source Files\CDKeyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ValidateTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="code\VSCheckMcfDownload.cpp">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UpdateThread_Old.cpp">
+      <Filter>Source Files\Thread\App Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ItemHandleEvents.cpp">
+      <Filter>Source Files\Item Manager\Handle\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ItemTaskGroup.cpp">
+      <Filter>Source Files\Item Manager\Handle\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ItemThread.cpp">
+      <Filter>Source Files\Item Manager\Handle\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CIPManager.cpp">
+      <Filter>Source Files\CIP Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\GameExplorerManager_win.cpp">
+      <Filter>Source Files\GameExplorer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\GameExplorerInfo_win.cpp">
+      <Filter>Source Files\GameExplorer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ToolManager_Script.cpp">
+      <Filter>Source Files\Tool Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\User_win.cpp">
+      <Filter>Source Files\User</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ToolInstallThread_win.cpp">
+      <Filter>Source Files\Tool Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ToolManager_win.cpp">
+      <Filter>Source Files\Tool Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ItemHandle_win.cpp">
+      <Filter>Source Files\Item Manager\Handle</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UIUpdateServiceTask.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services\Uninstall</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCUninstallBranch.cpp">
+      <Filter>Source Files\Item Manager\Handle\Services\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\gcJSBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\Common.cpp">
+      <Filter>Prec Header</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="code\log.h">
+      <Filter>Source Files\log</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BaseUserThread.h">
+      <Filter>Source Files\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MCFThread.h">
+      <Filter>Source Files\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UserThreadManager.h">
+      <Filter>Source Files\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CreateMCFThread.h">
+      <Filter>Source Files\Thread\Mcf Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="code\InstalledWizardThread.h">
+      <Filter>Source Files\Thread\Mcf Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UploadPrepThread.h">
+      <Filter>Source Files\Thread\Mcf Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UploadResumeThread.h">
+      <Filter>Source Files\Thread\Mcf Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UploadThread.h">
+      <Filter>Source Files\Thread\Mcf Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="code\GetItemListThread.h">
+      <Filter>Source Files\Thread\App Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UpdateThread.h">
+      <Filter>Source Files\Thread\App Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UploadInfoThread.h">
+      <Filter>Source Files\Upload Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UploadManager.h">
+      <Filter>Source Files\Upload Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="code\InstallInfo.h">
+      <Filter>Source Files\Task\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DownloadUpdateTask.h">
+      <Filter>Source Files\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UserTask.h">
+      <Filter>Source Files\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UserTasks.h">
+      <Filter>Source Files\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\service_pipe\IPCComplexLaunch.h">
+      <Filter>Source Files\Item Manager\Handle\Services\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\service_pipe\IPCInstallMcf.h">
+      <Filter>Source Files\Item Manager\Handle\Services\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\service_pipe\IPCServiceMain.h">
+      <Filter>Source Files\Item Manager\Handle\Services\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\service_pipe\IPCUninstallMcf.h">
+      <Filter>Source Files\Item Manager\Handle\Services\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\service_pipe\IPCUpdateApp.h">
+      <Filter>Source Files\Item Manager\Handle\Services\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\User.h">
+      <Filter>Source Files\User</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UserIPCPipeClient.h">
+      <Filter>Source Files\User</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ItemManager.h">
+      <Filter>Source Files\Item Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="code\McfManager.h">
+      <Filter>Source Files\Mcf Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ItemHandle.h">
+      <Filter>Source Files\Item Manager\Handle</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ItemInfo.h">
+      <Filter>Source Files\Item Manager\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BranchInfo.h">
+      <Filter>Source Files\Item Manager\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DownloadTask.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BaseItemTask.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="code\GatherInfoTask.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="code\InstallServiceTask.h">
+      <Filter>Source Files\Item Manager\Handle\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BaseItemServiceTask.h">
+      <Filter>Source Files\Item Manager\Handle\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ComplexLaunchServiceTask.h">
+      <Filter>Source Files\Item Manager\Handle\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="code\GatherInfoThread.h">
+      <Filter>Source Files\Thread\App Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="code\InstallCheckTask.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\service_pipe\IPCUninstallBranch.h">
+      <Filter>Source Files\Item Manager\Handle\Services\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UIServiceTask.h">
+      <Filter>Source Files\Item Manager\Handle\Services\Uninstall</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UIBranchServiceTask.h">
+      <Filter>Source Files\Item Manager\Handle\Services\Uninstall</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UIComplexModServiceTask.h">
+      <Filter>Source Files\Item Manager\Handle\Services\Uninstall</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UIBaseServiceTask.h">
+      <Filter>Source Files\Item Manager\Handle\Services\Uninstall</Filter>
+    </ClInclude>
+    <ClInclude Include="code\VSCheckMcf.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClInclude>
+    <ClInclude Include="code\VSCheckInstall.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClInclude>
+    <ClInclude Include="code\VSDownloadMissing.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClInclude>
+    <ClInclude Include="code\VSInstallMissing.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClInclude>
+    <ClInclude Include="code\VSBaseTask.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClInclude>
+    <ClInclude Include="code\VerifyServiceTask.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LaunchTask.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ToolManager.h">
+      <Filter>Source Files\Tool Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\tool_pipe\IPCToolMain.h">
+      <Filter>Source Files\Tool Manager\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ToolInfo.h">
+      <Filter>Source Files\Tool Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DownloadToolTask.h">
+      <Filter>Source Files\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\usercore\ToolManagerI.h">
+      <Filter>Source Files\Tool Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="code\InstallToolTask.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DownloadToolItemTask.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ToolIPCPipeClient.h">
+      <Filter>Source Files\Tool Manager\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ToolInstallThread.h">
+      <Filter>Source Files\Tool Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ToolTransaction.h">
+      <Filter>Source Files\Tool Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="code\GameExplorerManager.h">
+      <Filter>Source Files\GameExplorer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sql\GameExplorerSql.h">
+      <Filter>Source Files\GameExplorer</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BDManager.h">
+      <Filter>Source Files\BannerDownloadManager</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CDKeyManager.h">
+      <Filter>Source Files\CDKeyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\usercore\CDKeyManagerI.h">
+      <Filter>Source Files\CDKeyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ValidateTask.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="code\VSCheckMcfDownload.h">
+      <Filter>Source Files\Item Manager\Handle\Tasks\Verify</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UpdateThread_Old.h">
+      <Filter>Source Files\Thread\App Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ItemThread.h">
+      <Filter>Source Files\Item Manager\Handle\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ItemHandleEvents.h">
+      <Filter>Source Files\Item Manager\Handle\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\usercore\ItemHandleI.h">
+      <Filter>Source Files\Item Manager\Handle\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\usercore\ItemHelpersI.h">
+      <Filter>Source Files\Item Manager\Handle\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ItemTaskGroup.h">
+      <Filter>Source Files\Item Manager\Handle\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CIPManager.h">
+      <Filter>Source Files\CIP Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\usercore\CIPManagerI.h">
+      <Filter>Source Files\CIP Manager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RES\usercore_dll.rc" />
+  </ItemGroup>
+</Project>

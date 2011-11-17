@@ -1,0 +1,48 @@
+Index: crc.cc
+===================================================================
+--- crc.cc	(revision 74933)
++++ crc.cc	(working copy)
+@@ -13,6 +13,9 @@
+ namespace courgette {
+ 
+ uint32 CalculateCrc(const uint8* buffer, size_t size) {
++  if (!buffer)
++	  return 0;
++
+   CrcGenerateTable();
+   uint32 crc = 0xffffffffL;
+   crc = ~CrcCalc(buffer, size);
+Index: streams.h
+===================================================================
+--- streams.h	(revision 74933)
++++ streams.h	(working copy)
+@@ -118,7 +118,7 @@
+   ~SinkStream() {}
+ 
+   // Appends |byte_count| bytes from |data| to the stream.
+-  void Write(const void* data, size_t byte_count);
++  virtual void Write(const void* data, size_t byte_count);
+ 
+   // Appends the 'varint32' encoding of |value| to the stream.
+   void WriteVarint32(uint32 value);
+@@ -135,17 +135,17 @@
+   void Append(SinkStream* other);
+ 
+   // Returns the number of bytes in this SinkStream
+-  size_t Length() const { return buffer_.size(); }
++  virtual size_t Length() const { return buffer_.size(); }
+ 
+   // Returns a pointer to contiguously allocated Length() bytes in the stream.
+   // Writing to the stream invalidates the pointer.  The SinkStream continues to
+   // own the memory.
+-  const uint8* Buffer() const {
++  virtual const uint8* Buffer() const {
+     return reinterpret_cast<const uint8*>(buffer_.c_str());
+   }
+ 
+   // Hints that the stream will grow by an additional |length| bytes.
+-  void Reserve(size_t length) { buffer_.reserve(length + buffer_.length()); }
++  virtual void Reserve(size_t length) { buffer_.reserve(length + buffer_.length()); }
+ 
+  private:
+   std::string buffer_;  // Use a string to manage the stream's memory.

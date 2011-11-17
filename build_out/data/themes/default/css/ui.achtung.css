@@ -1,0 +1,102 @@
+/* IE 6 doesn't support position: fixed */
+* html #achtung-overlay {
+	position:absolute;
+}
+
+/* IE6 includes padding in width */
+* html .achtung {
+    width: 280px;
+}
+
+#achtung-overlay {
+    overflow: hidden;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    width: 280px;
+    z-index: 105;
+}
+
+.achtung {
+    display:none;
+    margin-bottom: 8px;
+	padding: 15px;
+	background-color: #000;
+	color: #fff;
+	width: 250px;
+	font-weight: bold;
+	position:relative;
+	overflow: hidden;
+	text-align:left;
+    -moz-box-shadow: #000 1px 1px 2px; -webkit-box-shadow: #000 1px 1px 2px; box-shadow: #000 1px 1px 2px;  
+    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+    /* Note that if using show/hide animations, IE will lose
+       this setting */
+    opacity: .85;
+    filter:Alpha(Opacity=85);
+}
+
+.achtung a {
+	color: #fff;
+}
+
+/**
+ * This section from jQuery UI CSS framework
+ * Copyright (c) 2009 AUTHORS.txt (http://jqueryui.com/about)
+ * Can (and should) be removed if you are already loading the jQuery UI CSS
+ * to reduce payload size.
+ */
+.ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+.ui-icon { width: 16px; height: 16px; background-image: url(../images/html/ui/ui-icons_000000_256x240.png); }
+.ui-icon-alert { background-position: 0 -144px; }
+.ui-icon-check { background-position: -64px -144px; }
+.ui-icon-close { background-position: -80px -128px; }
+
+.achtung .achtung-message-icon {
+	margin-top: 0px;
+	margin-left: -.5em;
+	margin-right: .5em;
+    float: left;
+	zoom: 1;
+}
+
+.achtung .ui-icon.achtung-close-button {
+    background-image: url(../images/html/ui/ui-icons_ffffff_256x240.png);
+	overflow: hidden;
+    float: right;
+    position: relative;
+    top: -8px;
+    right: -8px;
+    cursor: pointer;
+}
+
+.achtung .ui-icon.achtung-close-button-hover {
+    background-image: url(../images/html/ui/ui-icons_000000_256x240.png);
+}
+
+/* Slightly darker for these colors (readability) */
+.achtungSuccess, .achtungFail, .achtungWait {
+    /* Note that if using show/hide animations, IE will lose
+       this setting */
+    opacity: .93; filter:Alpha(Opacity=93);
+}
+
+.achtungSuccess {
+	background-color: #9c3;
+}
+
+.achtungFail {
+	background-color: #c33;
+}
+
+.achtungWait {
+	background-color: #1480cd;
+}
+
+.achtung .wait-icon {
+    background-image: url(../images/html/ui/wait.gif);
+}
+
+.achtung .achtung-message {
+    display: inline;
+}

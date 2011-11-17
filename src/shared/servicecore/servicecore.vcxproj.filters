@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{dec87746-efc7-49df-afc4-ae94cdcc315d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{a97115e8-ff12-40f9-9310-059c100c9aa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\IPC">
+      <UniqueIdentifier>{277d9ad7-0b65-4d90-a7c5-18d59483524a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\MCF">
+      <UniqueIdentifier>{44a21355-8140-4108-8b93-cf3c9ffd4823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Processes">
+      <UniqueIdentifier>{dac78064-b8e0-4bd4-a21f-e7ed8dd2d242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Misc">
+      <UniqueIdentifier>{2ccd7289-aff5-4322-9b2d-6bc87c5d6da2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prec Header">
+      <UniqueIdentifier>{8fba479d-a31b-4732-9a17-4a8b27c81215}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="code\ServiceCoreMain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="code\McfInit.cpp">
+      <Filter>Source\MCF</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ComplexLaunchProcess.cpp">
+      <Filter>Source\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="code\InstallProcess.cpp">
+      <Filter>Source\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UnInstallBranchProcess.cpp">
+      <Filter>Source\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UnInstallProcess.cpp">
+      <Filter>Source\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UpdateProcess.cpp">
+      <Filter>Source\Processes</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Log.cpp">
+      <Filter>Source\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UnInstallRegKey.cpp">
+      <Filter>Source\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UpdateShortcuts.cpp">
+      <Filter>Source\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\WindowsGameExplorer.cpp">
+      <Filter>Source\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ServiceMainThread.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ServiceCore.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\Common.cpp">
+      <Filter>Prec Header</Filter>
+    </ClCompile>
+    <ClCompile Include="code\InstallScriptRunTime.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCComplexLaunch.cpp">
+      <Filter>Source\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCInstallMcf.cpp">
+      <Filter>Source\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCServiceMain.cpp">
+      <Filter>Source\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCUninstallBranch.cpp">
+      <Filter>Source\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCUninstallMcf.cpp">
+      <Filter>Source\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCUpdateApp.cpp">
+      <Filter>Source\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\gcJSBase.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RES\servicecore.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="code\McfInit.h">
+      <Filter>Source\MCF</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ComplexLaunchProcess.h">
+      <Filter>Source\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="code\InstallProcess.h">
+      <Filter>Source\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UnInstallBranchProcess.h">
+      <Filter>Source\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UnInstallProcess.h">
+      <Filter>Source\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UpdateProcess.h">
+      <Filter>Source\Processes</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Log.h">
+      <Filter>Source\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ServiceMainThread.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ServiceCore.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ServiceCoreI.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\Common.h">
+      <Filter>Prec Header</Filter>
+    </ClInclude>
+    <ClInclude Include="code\InstallScriptRunTime.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\service_pipe\IPCUpdateApp.h">
+      <Filter>Source\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\service_pipe\IPCComplexLaunch.h">
+      <Filter>Source\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\service_pipe\IPCInstallMcf.h">
+      <Filter>Source\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\service_pipe\IPCServiceMain.h">
+      <Filter>Source\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\service_pipe\IPCUninstallBranch.h">
+      <Filter>Source\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\service_pipe\IPCUninstallMcf.h">
+      <Filter>Source\IPC</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

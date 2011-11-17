@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="code\BZip2.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UtilCoreEntry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UtilCoreMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CrashDumpForm.cpp">
+      <Filter>Source Files\Forms\CrashDump</Filter>
+    </ClCompile>
+    <ClCompile Include="code\McfViewerForm.cpp">
+      <Filter>Source Files\Forms\McfViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ControlerForm.cpp">
+      <Filter>Source Files\Forms</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BrowserTest.cpp">
+      <Filter>Source Files\Forms\BrowserTest</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Browser.cpp">
+      <Filter>Source Files\Forms\BrowserTest</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CDOverView.cpp">
+      <Filter>Source Files\Forms\CrashDump</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CDProcess.cpp">
+      <Filter>Source Files\Forms\CrashDump</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MiniDumpGenerator_Extern.cpp">
+      <Filter>Source Files\DumpGen</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CrashDumpThread.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CrashDumpUploadThread.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ToolInstallForm.cpp">
+      <Filter>Source Files\Forms\ToolInstall</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ToolInstallThread.cpp">
+      <Filter>Source Files\Forms\ToolInstall\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ChangeDirForm.cpp">
+      <Filter>Source Files\Forms\ChangeDir</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ChangeDirThread.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UninstallDesuraForm.cpp">
+      <Filter>Source Files\Forms\Uninstall</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UDFSettingsPanel.cpp">
+      <Filter>Source Files\Forms\Uninstall</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UDFProgressPanel.cpp">
+      <Filter>Source Files\Forms\Uninstall</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UninstallAllThread.cpp">
+      <Filter>Source Files\Forms\Uninstall</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FlashDebug.cpp">
+      <Filter>Source Files\Forms\FlashDebug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\tool_pipe\IPCToolMain.cpp" />
+    <ClCompile Include="..\..\common\Common.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="code\log.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CrashDumpForm.h">
+      <Filter>Source Files\Forms\CrashDump</Filter>
+    </ClInclude>
+    <ClInclude Include="code\McfViewerForm.h">
+      <Filter>Source Files\Forms\McfViewer</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ControlerForm.h">
+      <Filter>Source Files\Forms</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BrowserTest.h">
+      <Filter>Source Files\Forms\BrowserTest</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Browser.h">
+      <Filter>Source Files\Forms\BrowserTest</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CDOverView.h">
+      <Filter>Source Files\Forms\CrashDump</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CDProcess.h">
+      <Filter>Source Files\Forms\CrashDump</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MiniDumpGenerator_Extern.h">
+      <Filter>Source Files\DumpGen</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CrashDumpThread.h">
+      <Filter>Source Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CrashDumpUploadThread.h">
+      <Filter>Source Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ToolInstallForm.h">
+      <Filter>Source Files\Forms\ToolInstall</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ToolInstallThread.h">
+      <Filter>Source Files\Forms\ToolInstall\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ChangeDirForm.h">
+      <Filter>Source Files\Forms\ChangeDir</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ChangeDirThread.h">
+      <Filter>Source Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UninstallDesuraForm.h">
+      <Filter>Source Files\Forms\Uninstall</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UDFSettingsPanel.h">
+      <Filter>Source Files\Forms\Uninstall</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UDFProgressPanel.h">
+      <Filter>Source Files\Forms\Uninstall</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UninstallAllThread.h">
+      <Filter>Source Files\Forms\Uninstall</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FlashDebug.h">
+      <Filter>Source Files\Forms\FlashDebug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\tool_pipe\IPCToolMain.h" />
+    <ClInclude Include="..\..\common\Common.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5a0cc21e-0281-4605-8a69-b9e2b4831a04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms">
+      <UniqueIdentifier>{686101d6-45ab-46ab-a3d5-25bc70814034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{5dbcdcb2-816f-4b0a-ba29-d9c2932cd6ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\CrashDump">
+      <UniqueIdentifier>{be895371-15be-4ff1-aae4-8666330bb35c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\McfViewer">
+      <UniqueIdentifier>{18e1d826-c05f-4fb0-8eba-02dc24c9e6d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\BrowserTest">
+      <UniqueIdentifier>{a73edb89-ffb9-4993-aa92-9bfa29e79b24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DumpGen">
+      <UniqueIdentifier>{dec853a3-9639-4ae0-b55d-a4b1ab890d71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\ToolInstall">
+      <UniqueIdentifier>{57e7c298-0ea2-4146-a1ba-537709df7274}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\ToolInstall\IPC">
+      <UniqueIdentifier>{272187ab-f22c-4a15-bc6a-eaff1687b15e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\ChangeDir">
+      <UniqueIdentifier>{697c558b-c5c8-47fa-a68e-8b713ccc42db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\Uninstall">
+      <UniqueIdentifier>{e0fbb60c-7bbd-4667-99ef-6f88d63e1b04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\FlashDebug">
+      <UniqueIdentifier>{4041f4cb-9146-48ac-af02-fc3ac5bd583c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

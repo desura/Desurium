@@ -1,0 +1,13 @@
+Index: base/message_loop.h
+===================================================================
+--- base/message_loop.h	(revision 91424)
++++ base/message_loop.h	(working copy)
+@@ -650,7 +650,7 @@
+   // Returns the MessageLoopForIO of the current thread.
+   static MessageLoopForIO* current() {
+     MessageLoop* loop = MessageLoop::current();
+-    DCHECK_EQ(MessageLoop::TYPE_IO, loop->type());
++    //DCHECK_EQ(MessageLoop::TYPE_IO, loop->type());
+     return static_cast<MessageLoopForIO*>(loop);
+   }
+ 

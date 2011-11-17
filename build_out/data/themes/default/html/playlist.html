@@ -1,0 +1,748 @@
+<!--
+/*
+Desura is the leading indie game distribution platform
+Copyright (C) 2011 Mark Chandler (Desura Net Pty Ltd)
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Play</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/reset.css" />
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/screen.css" />
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/scrollbar.css" />
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/ui.achtung.css" />
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/jquery.template.js"></script>
+	<script type="text/javascript" src="../js/jquery.ui.achtung.js"></script>
+	<script type="text/javascript" src="../js/play.setup.js"></script>
+	<script type="text/javascript" src="../js/play.menu.js"></script>
+	<script type="text/javascript" src="../js/play.items.js"></script>
+	<script type="text/javascript" src="../js/play.list.js"></script>
+	
+	<script type="text/javascript">
+	gameList = function() {
+		rel = $("tbody tr.on").attr("rel");
+
+		$("#gamelist").html(parseTemplate($("#t_gamelist").html(), {}));
+
+		if (rel) {
+			$("tbody tr[rel="+rel+"]:first").addClass("on");
+		}
+
+		$("tbody.mods").each(function(){
+			if($(this).find("tr:visible").length > 0) {
+				$(this).prev("tbody").find("tr").show();
+			}
+		});
+	};
+
+	letterList = function(key, position) {
+		$("tbody:visible tr.spacing:visible"+(position>=0?":gt("+position+")" : "")).filter(function(index) {
+			if(keepon && $("td.colname", this).text().toLowerCase().trim().charAt(0) == key) {
+				keepon = false;
+				return true;
+			} else {
+				return false;
+			}
+		}).addClass("on");
+
+		if(!keepon) {
+			scrollList($("tbody:visible tr.on:visible"), 10, 44);
+		}
+	};
+
+	$(document).keydown(function(e) {
+		if(overlayProperties) {
+			switch(e.which) {
+				case 27: // escape
+					$("#overlay,#overlayproperties").remove();
+					overlayProperties = false;
+					break;
+			}
+
+			return true;
+		} else if(overlayPlay) {
+			active = $("#overlayplaylist .on");
+			position = $("#overlayplaylist div").index(active);
+
+			switch(e.which) {
+				case 27: // escape
+					$("#overlay,#overlayplaylist").remove();
+					overlayPlay = false;
+					break;
+				case 38: // up
+					active.removeClass("on");
+					if(position > 0) {
+						$("#overlayplaylist div:visible:eq("+(position-1)+")").addClass("on");
+					} else {
+						$("#overlayplaylist div:first").addClass("on");
+					}
+					break;
+				case 40: // down
+					if(position < ($("#overlayplaylist div").length-1)) {
+						active.removeClass("on");
+						$("#overlayplaylist div:eq("+(position+1)+")").addClass("on");
+					} else if(active.length == 0) {
+						$("#overlayplaylist div:first").addClass("on");
+					}
+					break;
+				case 36: // home
+					active.removeClass("on");
+					$("#overlayplaylist div:first").addClass("on");
+					break;
+				case 35: // end
+					active.removeClass("on");
+					$("#overlayplaylist div:last").addClass("on");
+					break;
+				case 13: // enter
+					active.click();
+					break;
+			}
+		} else {
+			active = $("tbody:visible tr.on:visible");
+			position = $("tbody:visible tr.spacing:visible").index(active);
+
+			if(e.which == 9) { // tab
+				if(e.shiftKey) {
+					e.which = 38;
+				} else {
+					e.which = 40;
+				}
+			}
+
+			switch(e.which) {
+				case 37: // left
+				case 39: // right
+					expand = active.find(".colexpand").length ? active.find(".colexpand") : active.parents("tbody.expand").prev("tbody").find(".colexpand");
+
+					if(active.length && expand.length) {
+						if((e.which == 37 && expand.hasClass("colexpandon")) || (e.which == 39 && !expand.hasClass("colexpandon"))) {
+							 expand.click();
+						}
+					}
+					break;
+				case 38: // up
+					active.removeClass("on");
+					if(active.length && position > 0) {
+						$("tbody:visible tr.spacing:visible:eq("+(position-1)+")").addClass("on");
+					} else {
+						$("tbody:visible tr.spacing:visible:first").addClass("on");
+					}
+
+					scrollList($("tbody:visible tr.on:visible"), 10, 44);
+					break;
+				case 40: // down
+					if(active.length && position < ($("tbody:visible tr.spacing:visible").length-1)) {
+						active.removeClass("on");
+						$("tbody:visible tr.spacing:visible:eq("+(position+1)+")").addClass("on");
+					} else if(active.length == 0) {
+						$("tbody:visible tr.spacing:visible:first").addClass("on");
+					}
+
+					scrollList($("tbody:visible tr.on:visible"), 10, 44);
+					break;
+				case 36: // home
+					active.removeClass("on");
+					$("tbody:visible tr.spacing:visible:first").addClass("on");
+					scrollList($("tbody:visible tr.on:visible"), 10, 44);
+					break;
+				case 35: // end
+					active.removeClass("on");
+					$("tbody:visible tr.spacing:visible:last").addClass("on");
+					scrollList($("tbody:visible tr.on:visible"), 10, 44);
+					break;
+				case 10: // enter
+				case 13: // enter
+					if(active.length) {
+						active.dblclick();
+					}
+					break;
+				default:
+					if(!e.ctrlKey && !e.altKey) {
+						keepon = true;
+						key = String.fromCharCode(e.keyCode).toLowerCase();
+						if(/[a-z0-9]/.test(key)) {
+							active.removeClass("on");
+							letterList(key, position);
+
+							// try again from the beginning
+							if(keepon && position>=0) {
+								letterList(key, -1);
+							}
+						}
+					}
+					return true;
+					break;
+			}
+		}
+
+		return false;
+	});
+
+	onUpdatePoll = function() {
+		$.achtung({message: desura.utils.getLocalString("#PLAY_UPDATE_POLL"), className: "achtungSuccess", timeout:5});
+	};
+	
+	onNewItem = function(info) {
+		var item = desura.items.getItemFromId(info.itemId);
+	
+		if (item == null || typeof(item) == "undefined" || !item.isValid()) {
+			return null;
+		}
+	
+		if ((item.getStatus() & desura.items.status.DELETED) == 0 && info.alert) {
+		
+			var name = item.getName();
+			var type = ( item.getType() == desura.items.type.MOD)?"mod":"game";
+			
+			$.achtung({message: desura.utils.getLocalString("#PLAY_ADD_GAME", type, name), className: "achtungSuccess", timeout:5});
+		}
+		
+		gameList();
+	};
+	
+	onFavUpdate = function(id){
+	
+		if (tabCache == "fav")
+			gameList();
+		else
+			onItemUpdate({id:id});
+	};
+	
+	onRecentUpdate = function(id){
+		if (tabCache == "fav")
+			gameList();	
+	};
+	
+	onItemUpdate = function(info){
+		var item = desura.items.getItemFromId(info.id);
+	
+		if (item == null || item.isValid() == false)
+			return;
+	
+		var template = '#t_gameheader';
+		var hasMods = false;
+		
+		if (item.getType() == desura.items.type.MOD || tabCache != "game")
+			template = '#t_listitem_content';
+		else
+			hasMods = (desura.items.getMods(item).length > 0);
+		
+		rel = $("tbody tr.on").attr("rel");
+		
+		$('#item_' + item.getId()).html(parseTemplate($(template).html(), {hasMods: hasMods, iteminfo: item, game: item}));
+		
+		if (rel)
+			$("tbody tr[rel="+rel+"]:first").addClass("on");
+	};
+	
+	onShowAlert = function(info){
+		$.achtung({message: info.text, className: "achtungFail", timeout: info.time});
+	};
+	
+	delayLoadNotification = null;
+	
+	onDelayLoad = function(){
+		delayLoadNotification = $.achtung({message: desura.utils.getLocalString("#PLAY_DELAY_LOADING"), className: "achtungWait", icon: "wait-icon", timeout: 0});
+	};
+	
+	onDelayLoadDone = function(){
+		if (delayLoadNotification == null)
+			return;
+	
+		delayLoadNotification.achtung("close");
+		delayLoadNotification = null;
+	};	
+	
+	$(document).ready(function() {
+		$("td.colexpand").live('click', function() {
+			tbody = $(this).parents().next("tbody");
+
+			if(tbody.is(":visible")) {
+				expandCache[$(this).attr("rel")] = true;
+
+				jsonStr = JSON.stringify(expandCache);
+				desura.utils.setCacheValue('LastActiveExpand', jsonStr, jsonStr.length);
+
+				tbody.hide();
+				$(this).removeClass("colexpandon");
+			} else {
+				delete expandCache[$(this).attr("rel")];
+				jsonStr = JSON.stringify(expandCache);
+				desura.utils.setCacheValue('LastActiveExpand', jsonStr, jsonStr.length);
+
+				tbody.show();
+				$(this).addClass("colexpandon");
+			}
+
+			return false;
+		});
+
+		$("th").live('click', function() {
+			if($(this).attr("rel")) {
+				sortFieldCache = $(this).attr("rel");
+				sortDirCache = ($(this).hasClass("asc") || $(this).hasClass("descfirst") ? "desc" : "asc");
+
+				gameList();
+			}
+
+			return false;
+		});
+
+		$("td.colname a.demo").live('click', function() {
+			 desura.links.internalLink($(this).parents("tr").attr("rel"), desura.links.action.PROFILE);
+
+			 return false;
+		});
+
+		$("td.colname a.update").live('click', function() {
+			 desura.links.internalLink($(this).parents("tr").attr("rel"), desura.links.action.SHOWUPDATE);
+			 $(this).remove();
+
+			 return false;
+		});
+		
+		$("td.colname a.preorder").live('click', function() {
+			var itemId = $(this).parents("tr").attr("rel");
+			var branchId = $(this).attr("rel");
+		
+			desura.links.internalLink(itemId, desura.links.action.INSTALL, "branch=" + branchId);
+
+			return false;
+		});		
+		
+		$("td.coldev a").live('click', function() {
+			desura.links.internalLink($(this).parents("tr").attr("rel"), desura.links.action.DEVPROFILE);
+			
+			return false;
+		});
+
+		$("td.colfav a").live('click', function() {
+			if($(this).hasClass("on")) {
+				desura.items.getItemFromId($(this).parents("tr").attr("rel")).setFavorite(false);
+				$(this).removeClass("on");
+
+				if(tabCache == "fav")
+					gameList();
+					
+			} else {
+				desura.items.getItemFromId($(this).parents("tr").attr("rel")).setFavorite(true);
+				$(this).addClass("on");
+			}
+			
+			return false;
+		});
+
+		$("tbody tr").live('click', function() {
+			event.stopPropagation();
+			$("tbody tr.on").removeClass("on");
+			$(this).addClass("on");
+
+			return false;
+		});
+
+		$("tr.launch").live('dblclick', function() {
+			return launchItem(desura.items.getItemFromId($(this).attr("rel")));
+		});
+
+		$("tr.upload").live('dblclick', function() {
+			var uid = $(this).attr("rel");
+			var upload = desura.uploads.getUploadFromId(uid);
+
+			if (upload == null)
+				return false;
+
+			desura.links.internalLink(upload.getItemId(), desura.links.action.RESUPLOAD, "key="+uid);
+			return false;
+		});		
+	
+		$("tr.launch").live("contextmenu", function(event) {
+			$("tbody tr.on").removeClass("on");
+			$(this).addClass("on");
+
+			return onItemContextMenu(event, $(this).attr("rel"));
+		});
+
+		$("tr.upload").live("contextmenu", function(event) {
+			$("tbody tr.on").removeClass("on");
+			$(this).addClass("on");
+
+			return onUploadContextMenu(event, desura.uploads.getUploadFromId($(this).attr("rel")));
+		});
+
+		$("#gamelist").live("contextmenu", function(event) {
+			var ret = desura.utils.getCVarValue("gc_browserdebug", "false");
+
+			return ret === "true" || ret === "1";
+		});	
+
+		desura.events.main.onContractEvent.register(function() {
+			$("td.colexpand").each(function() {
+				expandCache[$(this).attr("rel")] = true;
+			});
+			jsonStr = JSON.stringify(expandCache);
+			desura.utils.setCacheValue('LastActiveExpand', jsonStr, jsonStr.length);
+
+			$("td.colexpand").removeClass("colexpandon");
+			$("tbody.expand").hide();
+		});
+
+		desura.events.main.onExpandEvent.register(function() {
+			desura.utils.setCacheValue('LastActiveExpand', "{}", 2);
+			$("td.colexpand").addClass("colexpandon");
+			$("tbody.expand").show();
+		});
+
+		desura.events.main.onSearchEvent.register(searchList, "all");
+		desura.events.main.onTabClickedEvent.register(tabList, "all");
+		desura.events.items.onFavoriteUpdateEvent.register(onFavUpdate, "all");
+		desura.events.items.onRecentUpdateEvent.register(onRecentUpdate, "all");
+		desura.events.items.onItemUpdateEvent.register(onItemUpdate, "all");
+		desura.events.items.onItemListUpdatedEvent.register(gameList, "all");
+		desura.events.uploads.onUpdateEvent.register(gameListUpload, "all");
+		desura.events.uploads.onProgressEvent.register(gameListUpload, "all");
+		desura.events.main.onUpdatePollEvent.register(onUpdatePoll, "all");
+		desura.events.items.onNewItemAddedEvent.register(onNewItem, "all");
+		desura.events.items.onShowAlertEvent.register(onShowAlert, "all");
+		
+		desura.events.items.onDelayLoadEvent.register(onDelayLoad, "all");
+		desura.events.items.onDelayLoadDoneEvent.register(onDelayLoadDone, "all");	
+		
+		gameList();
+	});
+	</script>
+</head>
+<body>
+
+<div id="gamelist"></div>
+
+<script id="t_gamelist" type="text/html">
+	<# 
+		var list = desura.items.getGames().concat(desura.items.getLinks());
+		games=sortList(list);
+		if (games.length == 0) { #>
+		<#= parseTemplate($("#t_nogames").html(), {}) #>
+	<# } else { #>
+		<#= parseTemplate($("#t_listheader").html(), {}) #>
+		<table class="gameslist" cellpadding="0" cellspacing="0">
+			<# if (tabCache == "game" || tabCache == "dev") { #>
+				<#= parseTemplate($("#t_gameslist").html(), {games: games}) #>
+			<# } if (tabCache == "dev") { #>
+				<#= parseTemplate($("#t_devlist").html(), {}) #>
+			<# } if (tabCache == "fav") { #>
+				<#= parseTemplate($("#t_favlist").html(), {}) #>
+			<# } #>
+		</table>
+	<# } #>
+</script>
+
+<script id="t_nogames" type="text/html">
+	<div id="middle" style="bottom: 0; height: 140px; left: 0; margin: auto; position: absolute; right: 0; top: 0; width: 470px;">
+		<img src="../images/html/default/logo.png" alt="Desura" width="80" height="63" style="float: left; margin-right: 10px;" />
+		<span style="float: left; width: 380px; padding-top: 8px;">
+			<#= desura.utils.getLocalString("#PLAY_EMPTY", "</a>", "<a href='#' onClick='desura.links.switchTab(desura.links.tab.GAMES)'>", "<a href='#' onClick='desura.links.switchTab(desura.links.tab.MODS)'>", "<a href='#' onClick='desura.links.internalLink(0, desura.links.action.INSTALLEDW)'>") #>
+		</span>
+	</div>
+</script>
+
+<script id="t_listheader" type="text/html">
+	<div class="gameslisthead">
+		<table class="gameslist" cellpadding="0" cellspacing="0">
+			<thead>
+				<tr>
+					<th class="colexpand"></th>
+					<th class="colicon"></th>
+					<th class="colname <#= sortFieldCache == "getName" ? sortDirCache : '' #>" rel="getName"><span><#= desura.utils.getLocalString("#HEAD_NAME") #></span></th>
+					<th class="colstatus <#= sortFieldCache == "getStatusStr" ? sortDirCache : '' #>" rel="getStatusStr"><span><#= desura.utils.getLocalString("#HEAD_STATUS") #></span></th>
+					<th class="colrating <#= sortFieldCache == "getRating" ? sortDirCache : 'descfirst' #>" rel="getRating"><span><#= desura.utils.getLocalString("#HEAD_RATING") #></span></th>
+					<th class="coldev <#= sortFieldCache == "getDev" ? sortDirCache : '' #>" rel="getDev"><span><#= desura.utils.getLocalString("#HEAD_DEV") #></span></th>
+					<th class="colfav <#= sortFieldCache == "isFavorite" ? sortDirCache : '' #>" rel="isFavorite"><span><#= desura.utils.getLocalString("#HEAD_FAV") #></span></th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</script>
+
+<script id="t_gameslist" type="text/html">
+	<# for(game in games) { game = games[game]; mods = sortList(desura.items.getMods(game)); #>
+		<tbody class="games" id="item_<#= game.getId() #>">
+			<#= parseTemplate($("#t_gameheader").html(), {game: game, hasMods: (mods.length > 0)}) #>
+		</tbody>
+		<# if (mods.length > 0) { #>
+			<tbody class="mods expand"<#= expandCache[game.getId()] ? ' style="display: none;"' : "" #>>
+			<# count=0; for (mod in mods) { count++; #>
+					<#= parseTemplate($("#t_listitem").html(), {count: count, iteminfo: mods[mod], ignoretab: false}) #>
+			<# } #>
+			</tbody>
+		<# } #>
+	<# } #>
+</script>
+
+<script id="t_gameheader" type="text/html">
+	<tr class="heading launch spacing" rel="<#= game.getId() #>"<#= searchMatch(searchCache, game.getName().toLowerCase()+" "+game.getDev().toLowerCase()) && tabMatch(tabCache, game) ? "" : ' style="display: none;"' #>>
+		<# if (hasMods) { #>
+			<td class="colexpand<#= expandCache[game.getId()] ? "" : " colexpandon" #>" rel="<#= game.getId() #>"><a href="#"></a></td>
+		<# } else { #>
+			<td></td>
+		<# } #>
+		<td class="colicon"><img src="<#= getItemIcon(game) #>" alt="Icon" /></td>
+		<td class="colname">
+			<# preload = isPreload(game); #>
+			<#= preload && isPreloadAvailable(game) ? "<a href='#' class='preorder' title='"+desura.utils.getLocalString("#PLAY_UPDATE_PRELOAD")+"' rel='" + preload.getBranchId() + "'></a>" : "" #>
+			<#= isItemDemo(game) && !isItemOwnFull(game) ? "<a href='#' class='demo' title='"+desura.utils.getLocalString("#PLAY_UPDATE_DEMO")+"'></a>" : "" #>
+			<#= game.getStatus() & desura.items.status.UPDATEAVAL ? "<a href='#' class='update' title='"+desura.utils.getLocalString("#PLAY_UPDATE_AVAILABLE")+"'></a>" : "" #>
+			<#= getItemName(game) #>
+		</td>
+		<td class="colstatus"><#= game.getStatusStr() #></td>
+		<td class="colrating"><#= game.getRating() #></td>
+		<td class="coldev"><a href="#"><#= game.getDev() #></a></td>
+		<td class="colfav"><a href="#"<#= game.isFavorite() ? ' class="on"' : '' #> title="<#= desura.utils.getLocalString("#PLAY_EDIT_FAV") #>"></a></td>
+	</tr>
+</script>
+
+<script id="t_favlist" type="text/html">
+<#
+	favorites = sortList(desura.items.getFavorites());
+	newItems = sortList(desura.items.getNewItems());
+	recents = sortList(desura.items.getRecent()); 
+	
+	fData = {
+		hasChildren: (favorites.length > 0), 
+		expandName: "favoritesexpand", 
+		rel: "favorites", 
+		icon: "icon_fav.png", 
+		name: "#PLAY_FAVORITES",
+		items: favorites
+	};
+	
+	rData = {
+		hasChildren: (recents.length > 0), 
+		expandName: "recentexpand", 
+		rel: "recents", 
+		icon: "icon_recent.png", 
+		name: "#PLAY_RECENT",
+		items: recents
+	};
+	
+	nData = {
+		hasChildren: (newItems.length > 0), 
+		expandName: "newitemsexpand", 
+		rel: "newitems", 
+		icon: "icon_new.png", 
+		name: "#PLAY_NEWITEMS",
+		items: newItems
+	};
+	
+	dat = [fData, nData, rData];
+
+	for (d in dat) {  d = dat[d];
+#>
+	<#= parseTemplate($("#t_mischeader").html(), d) #>
+	<# if (d.items.length > 0) { #>
+		<#= parseTemplate($("#t_miscitems").html(), d) #>
+	<# } #>
+<# } #>
+</script>
+
+<script id="t_devlist" type="text/html">
+<#
+	uploads = desura.items.getUploads(); 
+	devItems = sortList(desura.items.getDevItems());
+	
+	uData = {
+		hasChildren: (uploads.length > 0), 
+		expandName: "uploadexpand", 
+		rel: "uploads", 
+		icon: "icon_upload.png", 
+		name: "#PLAY_UPLOAD",
+		items: uploads,
+		template: "#t_uploaditems"
+	};
+
+	dat = [uData];
+
+	for (d in dat) {  d = dat[d];
+#>
+	<#= parseTemplate($("#t_mischeader").html(), d) #>
+	<# if (d.items.length > 0) { #>
+		<#= parseTemplate($(d.template).html(), d) #>
+	<# } #>
+<# } #>
+</script>
+
+<script id="t_miscitems" type="text/html">
+	<tbody class="recents expand"<#= expandCache[expandName] ? ' style="display: none;"' : "" #>>
+		<# count=0; for(item in items) { count++; #>
+			<#= parseTemplate($("#t_listitem").html(), {count: count, iteminfo: items[item], ignoretab: true}) #>
+		<# } #>
+	</tbody>
+</script>
+
+<script id="t_uploaditems" type="text/html">
+	<tbody class="recents expand"<#= expandCache[expandName] ? ' style="display: none;"' : "" #>>
+		<# count=0; for(item in items) { count++; #>
+			<#= parseTemplate($("#t_uploaditem").html(), {count: count, upload: items[item], ignoretab: true}) #>
+		<# } #>
+	</tbody>
+</script>
+
+<script id="t_mischeader" type="text/html">
+	<tbody class="recent">
+		<tr class="heading spacing" rel="<#= rel #>">
+			<# if (hasChildren) { #>
+				<td class="colexpand<#= expandCache[expandName] ? "" : " colexpandon" #>" rel="<#= expandName #>"><a href="#"></a></td>
+			<# } else { #>
+				<td></td>
+			<# } #>
+			<td class="colicon"><img src="../images/html/icons/<#= icon #>" alt="Icon" /></td>
+			<td class="colname"><#= desura.utils.getLocalString(name) #></td>
+			<td class="colstatus"></td>
+			<td class="colrating"></td>
+			<td class="coldev"></td>
+			<td class="colfav"></td>
+		</tr>
+	</tbody>
+</script>
+
+<script id="t_listitem" type="text/html">
+	<tr id="item_<#= iteminfo.getId() #>" class="<#= count%2 ? "row" : "rowalt" #> launch spacing" rel="<#= iteminfo.getId() #>"<#= searchMatch(searchCache, iteminfo.getName().toLowerCase()+" "+iteminfo.getDev().toLowerCase()) && (ignoretab || tabMatch(tabCache, iteminfo)) ? "" : ' style="display: none;"' #>>
+		<#= parseTemplate($("#t_listitem_content").html(), {iteminfo: iteminfo}) #>
+	</tr>
+</script>
+
+<script id="t_listitem_content" type="text/html">
+	<td></td>
+	<td class="colicon"><img src="<#= getItemIcon(iteminfo) #>" alt="Icon" /></td>
+	<td class="colname">
+		<# preload = isPreload(iteminfo); #>
+		<#= preload && isPreloadAvailable(iteminfo) ? "<a href='#' class='preorder' title='"+desura.utils.getLocalString("#PLAY_UPDATE_PRELOAD")+"' rel='" + preload.getBranchId() + "'></a>" : "" #>
+		<#= isItemDemo(iteminfo) && !isItemOwnFull(iteminfo) ? "<a href='#' class='demo' title='"+desura.utils.getLocalString("#PLAY_UPDATE_DEMO")+"'></a>" : "" #>
+		<#= iteminfo.getStatus() & desura.items.status.UPDATEAVAL ? "<a href='#' class='update' title='"+desura.utils.getLocalString("#PLAY_UPDATE_AVAILABLE")+"'></a>" : "" #>
+		<#= getItemName(iteminfo) #>
+	</td>
+	<td class="colstatus"><#= iteminfo.getStatusStr() #></td>
+	<td class="colrating"><#= iteminfo.getRating() #></td>
+	<td class="coldev"><a href="#"><#= iteminfo.getDev() #></a></td>
+	<td class="colfav"><a href="#"<#= iteminfo.isFavorite() ? ' class="on"' : '' #> title="<#= desura.utils.getLocalString("#PLAY_EDIT_FAV") #>"></a></td>
+</script>
+
+<script id="t_uploaditem" type="text/html">
+	<tr class="<#= count%2 ? "row" : "rowalt" #> upload spacing" rel="<#= upload.getuid() #>">
+		<td></td>
+		<td class="colicon"><img src="<#=  getUploadIcon(upload) #>" alt="Icon" /></td>
+		<td class="colname"><#= getUploadName(upload) #></td>
+		<td class="colstatus"><#= getUploadStatus(upload) #></td>
+		<td class="colrating"></td>
+		<td class="coldev"></td>
+		<td class="colfav"></td>
+	</tr>
+</script>
+
+<script id="branchlist" type="text/html">
+<div id="overlay"></div>
+<div id="overlayplaylist">
+	<div class="content">
+		<# 
+		first=true; 
+		var cb = iteminfo.getCurrentBranch(); 
+		var prePlay = desura.utils.getLocalString("#PLAY"); 
+		var preIns = desura.utils.getLocalString("#INSTALL");
+		
+		var isInstalled = (iteminfo.getStatus() & desura.items.status.INSTALLED);
+		
+		var playItems = [];
+		var insItems = [];
+
+		for(x in branches) { 
+			var bi = branches[x];
+
+			var branchName = (bi.getFlags() & desura.items.branch.flags.DISPLAY_NAME) ? " " + bi.getName() : "";
+			var preText = preIns;
+			var arr = insItems;
+
+			if (isInstalled && cb != null && bi.getBranchId() == cb.getBranchId()) {
+				preText = prePlay;
+				arr = playItems;
+			}
+			
+			var label = preText + ": " + iteminfo.getName() + getBranchOsName(x, branches) + branchName;
+			arr.push({id: bi.getBranchId(), label: label});
+		}
+
+		var sortFunct = function(a, b){
+			if (a.label > b.label)
+				return 1;
+			if (a.label < b.label)
+				return -1;
+			return 0;			
+		};
+		for(x in playItems) { 
+			var bi = playItems[x];		
+		#>
+			<div class="item<#= first ? " on" : "" #>" rel="<#= bi.id #>" >
+				<#= bi.label #>
+			</div>
+		<# first=false; }
+		for(x in insItems) { 
+			var bi = insItems[x];		
+		#>
+			<div class="item<#= first ? " on" : "" #>" rel="<#= bi.id #>" >
+				<#= bi.label #>
+			</div>
+		<# first=false; } #>
+	</div>
+	<label><input type="checkbox" /> <#= desura.utils.getLocalString("#PLAY_BRANCH_AUTO") #></label>
+</div>
+</script>
+
+<script id="gameproperties" type="text/html">
+<div id="overlay"></div>
+<div id="overlayproperties">
+	<div class="title">
+		<#= getItemName(iteminfo, true) #>: <#= desura.utils.getLocalString("#P_TITLE") #>
+	</div>
+	<div class="content">
+		<p><#= desura.utils.getLocalString("#P_VERSION") #>: <#= getItemVersion(iteminfo) #></p>
+
+		<# for(x in exeList) { #>
+		<div style="clear: both;"><br /></div>
+		<#= exeList.length > 1 ? "<p class=\"heading\">"+exeList[x]['name']+"</p><div style=\"clear: both;\"></div>" : "" #>
+		<input type="text" size="50" name="exe<#= x #>" value="<#= exeList[x]['exe'].replace(/"/g, '&quot;') #>" title="<#= exeList[x]['exe'].replace(/"/g, '&quot;')  #>" id="exe<#= x #>" class="text" disabled="disabled" />
+		<label for="exe<#= x #>"><#= desura.utils.getLocalString("#P_EXE") #></label>
+		<div style="clear: both;"></div>
+		<input type="text" size="50" name="exeargs<#= x #>" value="<#= exeList[x]['exeargs'].replace(/"/g, '&quot;')  #>" title="<#= exeList[x]['exeargs'].replace(/"/g, '&quot;')  #>" id="exeargs<#= x #>" class="text" disabled="disabled" />
+		<label for="exeargs<#= x #>"><#= desura.utils.getLocalString("#P_FIXEDLO") #></label>
+		<div style="clear: both;"></div>
+		<input type="text" size="50" name="userargs<#= x #>" value="<#= exeList[x]['userargs'].replace(/"/g, '&quot;')  #>" id="userargs<#= x #>" class="text" />
+		<label for="userargs<#= x #>"><#= desura.utils.getLocalString("#P_USERLO") #></label>
+		<# } #>
+
+		<div style="clear: both;"></div>
+	</div>
+	<div class="buttons">
+		<label><input type="checkbox" class="checkbox" id="prop_prompt" <#= reminder==true?'checked':'' #> /><#= desura.utils.getLocalString("#P_URLABEL") #></label>
+		<input type="button" value="<#= desura.utils.getLocalString("#SAVE") #>" class="minimal btnsave" />
+		<input type="button" value="<#= desura.utils.getLocalString("#CLOSE") #>" class="minimal btnclose" />
+	</div>
+</div>
+</script>
+
+</body>
+</html>

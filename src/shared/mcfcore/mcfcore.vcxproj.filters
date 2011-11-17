@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Thread">
+      <UniqueIdentifier>{143df4c1-7fa0-41ba-bee5-ccd0ebc77b90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Thread\Get Web">
+      <UniqueIdentifier>{cf99b63e-a831-4e9e-ba96-d00137eeef49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Thread\Save Files">
+      <UniqueIdentifier>{5816ddd2-daa7-4dc3-841f-af12092671f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Thread\Save Mcf">
+      <UniqueIdentifier>{926c03e4-9c8f-444a-a166-884561f5f978}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\logging">
+      <UniqueIdentifier>{8c7908c8-1d8c-42f2-9371-f896b0fe6a43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{669ecd4e-b2b5-4c32-afb9-cef17de155fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MCFCore">
+      <UniqueIdentifier>{580c9dcf-8387-410d-a399-945943101caa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MCFCore\MCFHeader">
+      <UniqueIdentifier>{855c4dc7-b2dd-4062-b689-426c4d136f64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MCFCore\MCFFile">
+      <UniqueIdentifier>{c9983bf6-88f7-4f12-9fce-d7f4ac1946f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MCFCore\MCF">
+      <UniqueIdentifier>{f9b2db5d-98cf-40fb-b67f-d5e236d2077a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{33993f11-8149-454c-b69f-1e5437bcc35c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prec Header">
+      <UniqueIdentifier>{98d524c9-074f-4795-8b70-18ba60eefb0b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="code\MCFMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\thread\BaseMCFThread.cpp">
+      <Filter>Source Files\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="code\thread\UpdateThread.cpp">
+      <Filter>Source Files\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="code\thread\HGTController.cpp">
+      <Filter>Source Files\Thread\Get Web</Filter>
+    </ClCompile>
+    <ClCompile Include="code\thread\WGTController.cpp">
+      <Filter>Source Files\Thread\Get Web</Filter>
+    </ClCompile>
+    <ClCompile Include="code\thread\WGTWorker.cpp">
+      <Filter>Source Files\Thread\Get Web</Filter>
+    </ClCompile>
+    <ClCompile Include="code\thread\SFTController.cpp">
+      <Filter>Source Files\Thread\Save Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\thread\SFTWorker.cpp">
+      <Filter>Source Files\Thread\Save Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\thread\SMTController.cpp">
+      <Filter>Source Files\Thread\Save Mcf</Filter>
+    </ClCompile>
+    <ClCompile Include="code\thread\SMTWorker.cpp">
+      <Filter>Source Files\Thread\Save Mcf</Filter>
+    </ClCompile>
+    <ClCompile Include="code\log.cpp">
+      <Filter>Source Files\logging</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ProgressiveCRC.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ProviderManager.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\thread\MCFServerCon.cpp">
+      <Filter>Source Files\MCFCore</Filter>
+    </ClCompile>
+    <ClCompile Include="code\mcf\MCFHeader.cpp">
+      <Filter>Source Files\MCFCore\MCFHeader</Filter>
+    </ClCompile>
+    <ClCompile Include="code\mcf\MCFFile.cpp">
+      <Filter>Source Files\MCFCore\MCFFile</Filter>
+    </ClCompile>
+    <ClCompile Include="code\mcf\MCF.cpp">
+      <Filter>Source Files\MCFCore\MCF</Filter>
+    </ClCompile>
+    <ClCompile Include="code\mcf\MCF_Http.cpp">
+      <Filter>Source Files\MCFCore\MCF</Filter>
+    </ClCompile>
+    <ClCompile Include="code\mcf\MCF_Patch.cpp">
+      <Filter>Source Files\MCFCore\MCF</Filter>
+    </ClCompile>
+    <ClCompile Include="code\mcf\MCF_Save.cpp">
+      <Filter>Source Files\MCFCore\MCF</Filter>
+    </ClCompile>
+    <ClCompile Include="code\XMLSaveAndCompress.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Courgette.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MCFDPReporter.cpp">
+      <Filter>Source Files\MCFCore\MCFHeader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\Common.cpp">
+      <Filter>Prec Header</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\mcfcore\MCFMain.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\thread\BaseMCFThread.h">
+      <Filter>Source Files\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="code\thread\UpdateThread.h">
+      <Filter>Source Files\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="code\thread\HGTController.h">
+      <Filter>Source Files\Thread\Get Web</Filter>
+    </ClInclude>
+    <ClInclude Include="code\thread\SFTController.h">
+      <Filter>Source Files\Thread\Save Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\thread\SFTWorker.h">
+      <Filter>Source Files\Thread\Save Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\thread\SMTController.h">
+      <Filter>Source Files\Thread\Save Mcf</Filter>
+    </ClInclude>
+    <ClInclude Include="code\thread\SMTWorker.h">
+      <Filter>Source Files\Thread\Save Mcf</Filter>
+    </ClInclude>
+    <ClInclude Include="code\log.h">
+      <Filter>Source Files\logging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\mcfcore\DownloadProvider.h">
+      <Filter>Source Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\mcfcore\ProgressInfo.h">
+      <Filter>Source Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ProgressiveCRC.h">
+      <Filter>Source Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ProviderManager.h">
+      <Filter>Source Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\mcfcore\UserCookies.h">
+      <Filter>Source Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\thread\MCFServerCon.h">
+      <Filter>Source Files\MCFCore</Filter>
+    </ClInclude>
+    <ClInclude Include="code\mcf\MCFHeader.h">
+      <Filter>Source Files\MCFCore\MCFHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\mcfcore\MCFHeaderI.h">
+      <Filter>Source Files\MCFCore\MCFHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="code\mcf\MCFFile.h">
+      <Filter>Source Files\MCFCore\MCFFile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\mcfcore\MCFFileI.h">
+      <Filter>Source Files\MCFCore\MCFFile</Filter>
+    </ClInclude>
+    <ClInclude Include="code\mcf\MCF.h">
+      <Filter>Source Files\MCFCore\MCF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\mcfcore\MCFI.h">
+      <Filter>Source Files\MCFCore\MCF</Filter>
+    </ClInclude>
+    <ClInclude Include="RES\resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MCFDPReporter.h">
+      <Filter>Source Files\MCFCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\mcfcore\MCFDPReporterI.h">
+      <Filter>Source Files\MCFCore</Filter>
+    </ClInclude>
+    <ClInclude Include="code\XMLSaveAndCompress.h">
+      <Filter>Source Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Courgette.h">
+      <Filter>Source Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="code\thread\WGTControllerI.h">
+      <Filter>Source Files\Thread\Get Web</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\Common.h">
+      <Filter>Prec Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RES\mcf_core.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="code\thread\WGTController.h">
+      <Filter>Source Files\Thread\Get Web</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="code\thread\WGTExtras.h">
+      <Filter>Source Files\Thread\Get Web</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="code\thread\WGTWorker.h">
+      <Filter>Source Files\Thread\Get Web</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,12 @@
+We are always looking for people to translate Desura into as many Languages as possible.
+
+If you want to translate please follow these steps:
+ - Copy english.xml and english_utility.xml renaming them to the target language (i.e. [language].xml [language]_utility.xml)
+ - Use a text editor like notepad++ (or one that supports utf8)
+ - Translate the strings in the file
+ - Update the author to include your moddb/desura username and profile url (this is not used atm but might be later)
+ - Update the language name (the name attribute as part of the lang node)
+ - Make sure the utf8 header is included "<?xml version="1.0" encoding="UTF-8"?>" (with out the quotes) on the first line
+ - Make sure you save the file as utf8
+
+Once done email dev@desura.com and it will be included in the next build.

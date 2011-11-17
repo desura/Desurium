@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<lang name="Suomi (Finnish)" skip="true">
+	<author>
+		<username>Mischa_Silden</username>
+		<profile>http://www.desura.com/members/mischa-silden</profile>
+	</author>
+	<strings>
+		<str name="#CRASH_TITLE">Desura: Kaatumisvedos työkalu</str>
+		<str name="#CRASH_UPLOADINFO">Lähetetään kaatumisvedosta ...</str>
+		<str name="#CRASH_GENERATEINFO">Luodaan kaatumisvedosta ...</str>
+		<str name="#CRASH_ERROR">Vedoksen käsittely epäonnistui.</str>
+		
+		<str name="#CRASH_BUTGENERATE">Luo kaatumisvedos</str>
+		<str name="#CRASH_BUTUPLOAD">Lähetä kaatumisvedos</str>
+		
+		<str name="#CRASH_LABGENERATE">Kun Desura ei vastaa tai tekee jotain odottamatonta, tämä raportoi ohjelman sen hetkisen tilan kehittäjille joka auttaa heitä korjaamaan vian.</str>
+		<str name="#CRASH_LABUPLOAD">Raportoi olemassa olevat kaatumisvedokset. Esim. Kaatumisvedokset jotka tapahtuvat ennen Desuran käynnistymistä.</str>
+		
+		
+		<str name="#CLEANUP_LABTOTAL">Yhteensä:</str>
+		<str name="#CLEANUP_LABCURRENT">Tämänhetkinen osa:</str>	
+		
+		
+		<str name="#CLEANUP_TITLE">Desura: Puhdistustyökalu</str>
+		
+		<str name="#CLEANUP_SELECTALL">Valitse kaikki</str>
+		<str name="#CLEANUP_SELECTNONE">Älä valitse mitään</str>
+		<str name="#CLEANUP_LABEL">Valitse pelit ja modit jotka haluat poistaa Desuran yhteydessä.</str>
+	</strings>
+</lang>

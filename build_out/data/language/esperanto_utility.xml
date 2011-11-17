@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<lang name="Esperanto" skip="true">
+	<author>
+		<username>LuaPineapple</username>
+		<profile>http://luapineapple.com</profile>
+	</author>
+	<strings>
+		<str name="#CRASH_TITLE">Desuro: Nekropsa Ilo</str>
+		<str name="#CRASH_UPLOADINFO">Alŝutas nekropsaj raportoj ...</str>
+		<str name="#CRASH_GENERATEINFO">Faras nekropsaj raprotoj ...</str>
+		<str name="#CRASH_ERROR">Fiaskas fareco nekropsaj raportoj.</str>
+		
+		<str name="#CRASH_BUTGENERATE">Faru Nekropsaj Raprotoj</str>
+		<str name="#CRASH_BUTUPLOAD">Alŝutu Nekropsaj Raportoj</str>
+		
+		<str name="#CRASH_LABGENERATE">Kiam Desuro ne respondas, aŭ faras io malatendada, ĉi tiu raprotos la stato de Desuro por asisti laj firoj riparas la problemo.</str>
+		<str name="#CRASH_LABUPLOAD">Raportu ekzistas nekropasj raportoj. t.o. Nekropsaj raportoj farita antaŭ Desuro komencis.</str>
+		
+		
+		<str name="#CLEANUP_LABTOTAL">Totala:</str>
+		<str name="#CLEANUP_LABCURRENT">Aktuala Ero:</str>	
+		
+		
+		<str name="#CLEANUP_TITLE">Desuro: Purigas Ilo</str>
+		
+		<str name="#CLEANUP_SELECTALL">Elektas Ĉio</str>
+		<str name="#CLEANUP_SELECTNONE">Elektas Nenio</str>
+		<str name="#CLEANUP_LABEL">Bonvole elektas la ludoj kaj ŝanĝoj tioj vi deziras malinstalu kun Desuro.</str>
+	</strings>
+</lang>

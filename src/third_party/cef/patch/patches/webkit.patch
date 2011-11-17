@@ -1,0 +1,138 @@
+Index: bindings/v8/custom/V8DOMWindowCustom.cpp
+===================================================================
+--- bindings/v8/custom/V8DOMWindowCustom.cpp	(revision 90274)
++++ bindings/v8/custom/V8DOMWindowCustom.cpp	(working copy)
+@@ -450,7 +450,12 @@
+ 
+     // FIXME: Handle exceptions properly.
+     String urlString = toWebCoreStringWithNullOrUndefinedCheck(args[0]);
++#if 0 //DESURA
+     AtomicString frameName = (args[1]->IsUndefined() || args[1]->IsNull()) ? "_blank" : AtomicString(toWebCoreString(args[1]));
++#else
++	AtomicString frameName = (args[1]->IsUndefined() || args[1]->IsNull()) ? "_self" : AtomicString(toWebCoreString(args[1]));
++#endif
++
+     String windowFeaturesString = toWebCoreStringWithNullOrUndefinedCheck(args[2]);
+ 
+     RefPtr<DOMWindow> openedWindow = impl->open(urlString, frameName, windowFeaturesString, activeWindow, firstWindow);
+Index: html/HTMLAnchorElement.cpp
+===================================================================
+--- html/HTMLAnchorElement.cpp	(revision 90274)
++++ html/HTMLAnchorElement.cpp	(working copy)
+@@ -149,7 +149,11 @@
+         if (isLinkClick(event) && treatLinkAsLiveForEventType(eventType(event))) {
+             String url = stripLeadingAndTrailingHTMLSpaces(getAttribute(hrefAttr));
+             appendServerMapMousePosition(url, event);
++#if 0
+             handleLinkClick(event, document(), url, getAttribute(targetAttr), hasRel(RelationNoReferrer));
++#else
++			handleLinkClick(event, document(), url, target(), hasRel(RelationNoReferrer));
++#endif
+             sendPings(document()->completeURL(url));
+             return;
+         }
+@@ -298,7 +302,16 @@
+ 
+ String HTMLAnchorElement::target() const
+ {
+-    return getAttribute(targetAttr);
++#if 0 //Desura
++     return getAttribute(targetAttr);
++#else
++	String res = getAttribute(targetAttr); 
++
++	if (res == "_blank")
++		res = "_self";
++
++	return res;
++#endif
+ }
+ 
+ String HTMLAnchorElement::hash() const
+Index: html/HTMLViewSourceDocument.cpp
+===================================================================
+--- html/HTMLViewSourceDocument.cpp	(revision 90274)
++++ html/HTMLViewSourceDocument.cpp	(working copy)
+@@ -317,9 +317,20 @@
+         classValue = "webkit-html-attribute-value webkit-html-external-link";
+     else
+         classValue = "webkit-html-attribute-value webkit-html-resource-link";
++#if 0 //DESURA
+     attrs->addAttribute(Attribute::createMapped(classAttr, classValue));
+     attrs->addAttribute(Attribute::createMapped(targetAttr, "_blank"));
+     attrs->addAttribute(Attribute::createMapped(hrefAttr, url));
++#else
++	PassRefPtr<Attribute> att = Attribute::createMapped(targetAttr, "_self");
++
++	if (att->value() == "_blank")
++		att->setValue("_self");
++
++	attrs->addAttribute(Attribute::createMapped(classAttr, classValue));
++	attrs->addAttribute(att);
++    attrs->addAttribute(Attribute::createMapped(hrefAttr, url));
++#endif
+     anchor->setAttributeMap(attrs.release());
+     m_current->parserAddChild(anchor);
+     anchor->attach();
+Index: page/ContextMenuController.cpp
+===================================================================
+--- page/ContextMenuController.cpp	(revision 90274)
++++ page/ContextMenuController.cpp	(working copy)
+@@ -150,7 +150,8 @@
+     m_contextMenu = m_client->customizeMenu(m_contextMenu.release());
+ #else
+     PlatformMenuDescription customMenu = m_client->getCustomMenuFromDefaultItems(m_contextMenu.get());
+-    m_contextMenu->setPlatformDescription(customMenu);
++	if (m_contextMenu.get())
++        m_contextMenu->setPlatformDescription(customMenu);
+ #endif
+     event->setDefaultHandled();
+ }
+Index: platform/ScrollbarThemeComposite.cpp
+===================================================================
+--- platform/ScrollbarThemeComposite.cpp	(revision 90274)
++++ platform/ScrollbarThemeComposite.cpp	(working copy)
+@@ -269,7 +269,19 @@
+ int ScrollbarThemeComposite::thumbPosition(Scrollbar* scrollbar)
+ {
+     if (scrollbar->enabled())
+-        return max(0.0f, scrollbar->currentPos()) * (trackLength(scrollbar) - thumbLength(scrollbar)) / (usedTotalSize(scrollbar) - scrollbar->visibleSize());
++#if 0 //DESURA: Fixes issue with 0/x
++		return max(0.0f, scrollbar->currentPos()) * (trackLength(scrollbar) - thumbLength(scrollbar)) / (usedTotalSize(scrollbar) - scrollbar->visibleSize());
++#else
++	{
++		int length = trackLength(scrollbar) - thumbLength(scrollbar);
++
++		if (length == 0)
++			return 0;
++
++        return scrollbar->currentPos() * length / scrollbar->maximum();
++	}
++#endif
++
+     return 0;
+ }
+ 
+Index: svg/SVGAElement.cpp
+===================================================================
+--- svg/SVGAElement.cpp	(revision 90274)
++++ svg/SVGAElement.cpp	(working copy)
+@@ -220,6 +220,7 @@
+             }
+ #endif
+ 
++#if 0 //Desura
+             // FIXME: Why does the SVG anchor element have this special logic
+             // for middle click that the HTML anchor element does not have?
+             // Making a middle click open a link in a new window or tab is
+@@ -231,7 +232,9 @@
+             // helpful.
+             if (target.isEmpty())
+                 target = (fastGetAttribute(XLinkNames::showAttr) == "new") ? "_blank" : "_self";
+-
++#else
++			String target = "_self";
++#endif
+             handleLinkClick(event, document(), url, target);
+             return;
+         }

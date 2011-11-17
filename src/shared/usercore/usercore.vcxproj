@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Static|Win32">
+      <Configuration>Release_Static</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{514CCFE4-4377-45CD-8335-BDD50054418B}</ProjectGuid>
+    <RootNamespace>usercore</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(SolutionDir)\vis_property.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(SolutionDir)\vis_property.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(SolutionDir)\vis_property.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\build\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">build\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\build\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">$(ProjectDir)\build\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">build\$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">build\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'" />
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)-d</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\code;.\RES;..\..\common\service_pipe;..\..\static\ipc_pipe\code;..\..\common\tool_pipe;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;MODCORE_LOG;SVENHACK;DESURA_CLIENT;DESURA_DIABLO2_HACK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(OutDir)/$(Configuration)_$(ProjectName).pch</PrecompiledHeaderOutputFile>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/NODEFAULTLIB:libcmtd.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>tinyxml-d.lib;util-d.lib;util_thread-d.lib;mcfcore-d.lib;webcore-d.lib;ipc_pipe-d.lib;crypto-d.lib;util_fs-d.lib;sqlite-d.lib;sqlite3x-d.lib;bzip2-d.lib;managers-d.lib;crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Message>Copy Files</Message>
+      <Command>$(SolutionDir)\copy_bin.bat $(Configuration) $(TargetName) $(TargetExt)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\code;.\RES;..\..\common\service_pipe;..\..\static\ipc_pipe\code;..\..\common\tool_pipe;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;SVENHACK;DESURA_CLIENT;DESURA_DIABLO2_HACK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(OutDir)/$(Configuration)_$(ProjectName).pch</PrecompiledHeaderOutputFile>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/NODEFAULTLIB:libcmt.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>tinyxml.lib;util.lib;util_thread.lib;mcfcore.lib;webcore.lib;ipc_pipe.lib;crypto.lib;util_fs.lib;sqlite.lib;sqlite3x.lib;bzip2.lib;managers.lib;crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Message>Copy Files</Message>
+      <Command>$(SolutionDir)\copy_bin.bat $(Configuration) $(TargetName) $(TargetExt)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\code;.\RES;..\..\common\service_pipe;..\..\static\ipc_pipe\code;..\..\common\tool_pipe;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;SVENHACK;DESURA_CLIENT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(OutDir)/$(Configuration)_$(ProjectName).pch</PrecompiledHeaderOutputFile>
+      <ProgramDataBaseFileName>$(IntDir)$(ProjectName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/NODEFAULTLIB:libcmt.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Message>Copy Files</Message>
+      <Command>$(SolutionDir)\copy_bin.bat $(Configuration) $(TargetName) $(TargetExt)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\common\gcJSBase.cpp" />
+    <ClCompile Include="..\..\common\service_pipe\IPCUninstallBranch.cpp" />
+    <ClCompile Include="..\..\common\tool_pipe\IPCToolMain.cpp" />
+    <ClCompile Include="code\BaseItemServiceTask.cpp" />
+    <ClCompile Include="code\BaseItemTask.cpp" />
+    <ClCompile Include="code\BDManager.cpp" />
+    <ClCompile Include="code\CDKeyManager.cpp" />
+    <ClCompile Include="code\CIPManager.cpp" />
+    <ClCompile Include="code\DownloadToolItemTask.cpp" />
+    <ClCompile Include="code\DownloadToolTask.cpp" />
+    <ClCompile Include="code\GameExplorerInfo_win.cpp" />
+    <ClCompile Include="code\GameExplorerManager_win.cpp" />
+    <ClCompile Include="code\GatherInfoThread.cpp" />
+    <ClCompile Include="code\InstallToolTask.cpp" />
+    <ClCompile Include="code\ItemHandle.cpp" />
+    <ClCompile Include="code\ItemHandleEvents.cpp" />
+    <ClCompile Include="code\ItemHandle_win.cpp" />
+    <ClCompile Include="code\ItemTaskGroup.cpp" />
+    <ClCompile Include="code\ItemThread.cpp" />
+    <ClCompile Include="code\ToolInfo.cpp" />
+    <ClCompile Include="code\ToolInstallThread.cpp" />
+    <ClCompile Include="code\ToolInstallThread_win.cpp" />
+    <ClCompile Include="code\ToolIPCPipeClient.cpp" />
+    <ClCompile Include="code\ToolManager.cpp" />
+    <ClCompile Include="code\ToolManager_Script.cpp" />
+    <ClCompile Include="code\ToolManager_win.cpp" />
+    <ClCompile Include="code\ToolTransaction.cpp" />
+    <ClCompile Include="code\UIBaseServiceTask.cpp" />
+    <ClCompile Include="code\UIComplexModServiceTask.cpp" />
+    <ClCompile Include="code\UIBranchServiceTask.cpp" />
+    <ClCompile Include="code\UIPatchServiceTask.cpp" />
+    <ClCompile Include="code\UIUpdateServiceTask.cpp" />
+    <ClCompile Include="code\UpdateThread_Old.cpp" />
+    <ClCompile Include="code\UserCoreMain.cpp" />
+    <ClCompile Include="code\Log.cpp" />
+    <ClCompile Include="code\UserThreadManager.cpp" />
+    <ClCompile Include="code\CreateMCFThread.cpp" />
+    <ClCompile Include="code\DownloadTask.cpp" />
+    <ClCompile Include="code\GatherInfoTask.cpp" />
+    <ClCompile Include="code\InstalledWizardThread.cpp" />
+    <ClCompile Include="code\UploadPrepThread.cpp" />
+    <ClCompile Include="code\UploadResumeThread.cpp" />
+    <ClCompile Include="code\UploadThread.cpp" />
+    <ClCompile Include="code\GetItemListThread.cpp" />
+    <ClCompile Include="code\InstallCheckTask.cpp" />
+    <ClCompile Include="code\UpdateThread.cpp" />
+    <ClCompile Include="code\UploadInfoThread.cpp" />
+    <ClCompile Include="code\UploadManager.cpp" />
+    <ClCompile Include="code\BranchInfo.cpp" />
+    <ClCompile Include="code\InstallInfo.cpp" />
+    <ClCompile Include="code\ItemInfo.cpp" />
+    <ClCompile Include="code\DownloadUpdateTask.cpp" />
+    <ClCompile Include="code\UserTask.cpp" />
+    <ClCompile Include="code\UserTasks.cpp" />
+    <ClCompile Include="code\ComplexLaunchServiceTask.cpp" />
+    <ClCompile Include="code\InstallServiceTask.cpp" />
+    <ClCompile Include="code\UIServiceTask.cpp" />
+    <ClCompile Include="code\User_win.cpp" />
+    <ClCompile Include="code\ValidateTask.cpp" />
+    <ClCompile Include="code\VerifyServiceTask.cpp" />
+    <ClCompile Include="..\..\common\service_pipe\IPCComplexLaunch.cpp" />
+    <ClCompile Include="..\..\common\service_pipe\IPCInstallMcf.cpp" />
+    <ClCompile Include="..\..\common\service_pipe\IPCServiceMain.cpp" />
+    <ClCompile Include="..\..\common\service_pipe\IPCUninstallMcf.cpp" />
+    <ClCompile Include="..\..\common\service_pipe\IPCUpdateApp.cpp" />
+    <ClCompile Include="code\User.cpp" />
+    <ClCompile Include="code\User_Login.cpp" />
+    <ClCompile Include="code\UserIPCPipeClient.cpp" />
+    <ClCompile Include="code\ItemManager.cpp" />
+    <ClCompile Include="code\McfManager.cpp" />
+    <ClCompile Include="..\..\common\Common.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="code\VSBaseTask.cpp" />
+    <ClCompile Include="code\VSCheckMcfDownload.cpp" />
+    <ClCompile Include="code\VSDownloadMissing.cpp" />
+    <ClCompile Include="code\VSInstallMissing.cpp" />
+    <ClCompile Include="code\VSCheckInstall.cpp" />
+    <ClCompile Include="code\VSCheckMcf.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\sql\GameExplorerSql.h" />
+    <ClInclude Include="..\..\include\usercore\CDKeyManagerI.h" />
+    <ClInclude Include="..\..\include\usercore\CIPManagerI.h" />
+    <ClInclude Include="..\..\include\usercore\ItemHandleI.h" />
+    <ClInclude Include="..\..\include\usercore\ItemHelpersI.h" />
+    <ClInclude Include="..\..\include\usercore\ToolManagerI.h" />
+    <ClInclude Include="..\..\common\service_pipe\IPCUninstallBranch.h" />
+    <ClInclude Include="..\..\common\tool_pipe\IPCToolMain.h" />
+    <ClInclude Include="code\BaseItemServiceTask.h" />
+    <ClInclude Include="code\BaseItemTask.h" />
+    <ClInclude Include="code\BDManager.h" />
+    <ClInclude Include="code\CDKeyManager.h" />
+    <ClInclude Include="code\CIPManager.h" />
+    <ClInclude Include="code\DownloadToolItemTask.h" />
+    <ClInclude Include="code\DownloadToolTask.h" />
+    <ClInclude Include="code\GameExplorerManager.h" />
+    <ClInclude Include="code\GatherInfoThread.h" />
+    <ClInclude Include="code\InstallToolTask.h" />
+    <ClInclude Include="code\ItemHandle.h" />
+    <ClInclude Include="code\ItemHandleEvents.h" />
+    <ClInclude Include="code\ItemTaskGroup.h" />
+    <ClInclude Include="code\ItemThread.h" />
+    <ClInclude Include="code\LaunchTask.h" />
+    <ClInclude Include="code\Log.h" />
+    <ClInclude Include="code\BaseUserThread.h" />
+    <ClInclude Include="code\MCFThread.h" />
+    <ClInclude Include="code\ToolInfo.h" />
+    <ClInclude Include="code\ToolInstallThread.h" />
+    <ClInclude Include="code\ToolIPCPipeClient.h" />
+    <ClInclude Include="code\ToolManager.h" />
+    <ClInclude Include="code\ToolTransaction.h" />
+    <ClInclude Include="code\UIBaseServiceTask.h" />
+    <ClInclude Include="code\UIComplexModServiceTask.h" />
+    <ClInclude Include="code\UIBranchServiceTask.h" />
+    <ClInclude Include="code\UpdateThread_Old.h" />
+    <ClInclude Include="code\UserThreadManager.h" />
+    <ClInclude Include="code\CreateMCFThread.h" />
+    <ClInclude Include="code\DownloadTask.h" />
+    <ClInclude Include="code\GatherInfoTask.h" />
+    <ClInclude Include="code\InstalledWizardThread.h" />
+    <ClInclude Include="code\UploadPrepThread.h" />
+    <ClInclude Include="code\UploadResumeThread.h" />
+    <ClInclude Include="code\UploadThread.h" />
+    <ClInclude Include="code\GetItemListThread.h" />
+    <ClInclude Include="code\InstallCheckTask.h" />
+    <ClInclude Include="code\UpdateThread.h" />
+    <ClInclude Include="code\UploadInfoThread.h" />
+    <ClInclude Include="code\UploadManager.h" />
+    <ClInclude Include="code\BranchInfo.h" />
+    <ClInclude Include="code\InstallInfo.h" />
+    <ClInclude Include="code\ItemInfo.h" />
+    <ClInclude Include="code\DownloadUpdateTask.h" />
+    <ClInclude Include="code\UserTask.h" />
+    <ClInclude Include="code\UserTasks.h" />
+    <ClInclude Include="code\ComplexLaunchServiceTask.h" />
+    <ClInclude Include="code\InstallServiceTask.h" />
+    <ClInclude Include="code\UIServiceTask.h" />
+    <ClInclude Include="code\ValidateTask.h" />
+    <ClInclude Include="code\VerifyServiceTask.h" />
+    <ClInclude Include="..\..\common\service_pipe\IPCComplexLaunch.h" />
+    <ClInclude Include="..\..\common\service_pipe\IPCInstallMcf.h" />
+    <ClInclude Include="..\..\common\service_pipe\IPCServiceMain.h" />
+    <ClInclude Include="..\..\common\service_pipe\IPCUninstallMcf.h" />
+    <ClInclude Include="..\..\common\service_pipe\IPCUpdateApp.h" />
+    <ClInclude Include="code\User.h" />
+    <ClInclude Include="code\UserIPCPipeClient.h" />
+    <ClInclude Include="code\ItemManager.h" />
+    <ClInclude Include="code\McfManager.h" />
+    <ClInclude Include="code\VSBaseTask.h" />
+    <ClInclude Include="code\VSCheckInstall.h" />
+    <ClInclude Include="code\VSCheckMcf.h" />
+    <ClInclude Include="code\VSCheckMcfDownload.h" />
+    <ClInclude Include="code\VSDownloadMissing.h" />
+    <ClInclude Include="code\VSInstallMissing.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RES\usercore_dll.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

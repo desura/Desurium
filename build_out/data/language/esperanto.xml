@@ -1,0 +1,684 @@
+<?xml versio="1.0" encoding="UTF-8"?>
+<!-- Comments which are directed to the maintainer of the translation/localisation of Desura are prefixed by: \note -->
+<lang name="Esperanto">
+    <!-- \note Please mark any translation string (henceforth referred to as xstr) that isn't in use! (If any...) -->
+    <!-- \note AFAIK Esperanto doesn't have a subword/prefix for 'mod' (in the sense of a game mod), so I've used 'ludŝanĝo'
+               as the compound word for 'mod'. Technically it means 'game-change', or perhaps 'gameplay-change' depending
+               on how you interpret it. Hopefully 'ludŝanĝo' will become the de facto standard for 'game mod'.
+    <!-- \note Saves us from having to hunt them down or digging our brains out trying to figure the usage context... -->
+    <!-- \note *Important* Some strings in the english version do not follow the Windows Guidelines. Please refer to the following pages:
+         User Interface Text: http://msdn.microsoft.com/en-us/library/aa974176.aspx
+         Messages:            http://msdn.microsoft.com/en-us/library/dd535525.aspx
+         
+         Also though the current style/tone is already 90% correct, the error messages could use some polishing in tone. (Also see Messages; and check for proper capitalisation.)
+         Please refer to the following for additional directions:
+         Style and Tone:      http://msdn.microsoft.com/en-us/library/aa974175.aspx
+      -->
+    <!-- \note I verified and found that product names are not subject to being change to Esperanto style naming.
+               That said, I've left it as Desuro, because Desura has the unfortunate happenstance to be in adjective form.
+               (i.e. Ends with an 'a'.) -->
+    <!-- \note La komputeko has an entry for 'developer', but it literally means 'programmer'. This pretty much
+               excludes all the mappers, models, texture artists, etc, so I've settled on using 'faristo'
+               (one-who-makes/creator/maker) in this translation. It also doesn't have an entry for 'development',
+               so I'm using 'farado' (making/creating) for that.
+               In addition I am using 'versieto' ('mini/small-version') for 'build'. -->
+    <!-- \note There is a whole load of 'process-name' and 'process-name error', each with a 'shit hit the fan and the process was stopped' err xstr.
+               These seem somewhat redundent... Perhaps there could be a way to reduce the number of them... -->
+    <author>
+        <username>LuaPineapple</username>
+        <profile>http://luapineapple.com</profile>
+        <!-- I'm thankful for the Computer Terminology Collection (http://komputeko.net/), who single handedly saved my sanity! (Mostly....) -->
+        <!-- Mi danka pro la Komputeko, kiu antaŭgardis mia de freneziĝis! (http://komputeko.net/) -->
+    </author>
+	<linux>
+	<!-- havnt been translated
+		<str name="#IF_WINDOWS_LAUNCH_WARNING">WARNING: You are attempting to launch a Windows program. This relies on your system recognising the format and launching the appropriate tools (eg: WINE). If you do not, the application/game may not launch correctly or at all.&#xA;&#xA;This warning can be disabled in Settings.</str>
+		<str name="#IF_SHOWFILES">Show Files</str>
+		<str name="#MF_ERROR_NO32LIBS">The item you tried to launch is 32 bit but it appears that you do not have 32 bit libs Installed.&#xA;&#xA;Please see http://www.desura.com/groups/desura/linux for more information.</str>
+	
+		<str name="#PLAY_EMPTY">You have no Linux {1}games{0} in your account.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
+	
+	<!-- havnt been translated
+		<str name="#SET_CV_LIN_DIS_WIN_WRN">Disable Windows executable warning.</str>
+		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Doesn't warn you every time you launch a Windows executable.</str>
+		<str name="#SET_CV_ALLOW_WM_POS">Use window manager positioning.</str>
+		<str name="#SET_CV_ALLOW_WM_POS_TOOLTIP">Allows the system window manager to position the main form as opposed to Desura saving and restoring position and size.</str>
+	-->
+	</linux>
+	<windows>
+		<str name="#IF_SHOWFILES">Montru Dosieroj en Explorer</str>
+        <str name="#PLAY_EMPTY">Vi ne havas iu ajn {1}ludoj{0} aŭ {2}ludŝanĝoj{0} en via konto. Vi devas rulu la {3}instalita asistanto{0} kio serĉos via komputilo por ludoj kio Desuro subtenata.</str>
+        <!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
+		
+	<!-- havnt been translated
+		<str name="#SET_CV_DISABLE_FS_PERMS">Make all install folders writable by normal users</str>
+		<str name="#SET_CV_DISABLE_FS_PERMS_TOOLTIP">Due to game developers not being able to follow windows standards many games write to the install folder and crash if they cant. Warning: Disabling this might make some games not work</str>
+		
+		<str name="#IF_LOWSPACE_SYS">The system harddisk ({0}:\\) is low on free space and Desura will start having performance issues. &lt;a href=&quot;desura://settings/cache&quot;&gt;You can move your Desura cache folder to a new disk to free up space.&lt;/a&gt;</str>
+		<str name="#IF_LOWSPACE_CACHE">The harddisk that Desura cache saves to ({0}:\\) is low on free space. It is recommended that you free up space for Desura to perfom correctly.</str>
+	-->
+	</windows>		
+    <strings>
+        <str name="#DESURA_UPDATE">Ĝisdatigo por Desuro havebla kaj estas preta instali.</str>
+        
+        <!-- Update Item -->
+        <str name="#UI_LABEL">Ĝisdatigo estas havebla. Ĉu vi desiras instali?</str>
+        <!-- \note Original intent was slightly unclear, but that was very minor. -->
+        <str name="#UI_NO_REMINDER">Ne rememorigu mi ĉirkaŭ ĝisdatigoj kiam lanĉeca</str>
+        <str name="#UI_TITLE">Ĝisdatigo Havebla por</str>
+        
+        <!-- Launch item -->
+        <!-- \note This xstr needs to use the {0} format notation. -->
+        <str name="#LI_LABEL">jam estas instalada. Ĉu vi diseras lanĉi ĝi?</str>
+        
+        <!-- Login Form -->
+        <str name="#LF_TITLE">Desuro - Ensaluto</str>
+        <str name="#LF_USER">Salutnomo aŭ Retpoŝta Adreso</str>
+        <str name="#LF_PASS">Pasvorto</str>
+        <str name="#LF_AUTO">Aŭtomate</str>
+        <str name="#LF_AUTO_TOOLTIP">Aŭtomate Ensalutu Desuro sekvanta ekiros</str>
+        <str name="#LF_LOSTPASS">Maltrova Pasvorto</str>
+        <str name="#LF_NEWACCOUNT">Nova Konto</str>
+        <str name="#LF_OFFLINE">Senkonekta Modo</str>
+        
+        <str name="#LF_ERRTITLE">Desura Enolutada Eraro</str>
+        <str name="#LF_ERROR">Ensalutado fiaskis</str>
+        <str name="#LF_VALDERROR">Eraro dum ensolutado:</str> <!-- Translates back to 'Error while logging in:', which is more succinct. -->
+        <str name="#LF_ERRBLANKNAME">Via Salutnomo estas malplena</str>
+        <str name="#LF_ERRPASSWORD">Via Pasvorto estas malplena</str>
+        <str name="#LF_ERRPLEASE">Plenigu tioj kio estas malplena kaj penu reensaluti.</str> <!-- Translates to 'Fill those who are empty and try to re-login.' -->
+        
+        <!-- Main Paĝo -->
+        <str name="#MP_PLAY">Miaj Ludoj</str>
+        <str name="#MP_GAMES">Ludoj</str>
+        <str name="#MP_MODS">Ludŝanĝoj</str>
+        <str name="#MP_COMMUNITY">Komunumaro</str>
+        <str name="#MP_DEVELOPMENT">Farado</str>
+        <str name="#MP_SUPPORT">Tekniksubteno</str> <!-- 'Technical Support', else might be interpreted as upholding or supporting (a weight). -->
+        <str name="#MP_TITLE_OFFLINE">Desuro Senkonekta</str>
+        
+        <!-- News Form -->
+        <str name="#NF_JUMPTO">Iru al: </str>
+        <str name="#NF_PREV">Antaŭa &lt;&lt;</str>
+        <str name="#NF_NEXT">Sekvanta &gt;&gt;</str>
+        <str name="#NF_TITLE">Novaĵoj de Desuro</str>
+        <str name="#NF_LOADING">Ŝargado ...</str>
+        <str name="#NF_LOADING_UNKNOWN">Ŝargadas Nekonata Paĝo ...</str>
+        <str name="#GF_TITLE">Desuro Donacoj:</str>
+        
+        <!-- Properties -->
+        <str name="#P_VERIFY">Leĝiĝu Dosieroj</str>
+        <str name="#P_UNINSTALL">Malinstalu</str>
+        <str name="#P_UPDATEREMINDER">Ĝisdatiga Rememorigo:</str> <!-- \note Is this 'updates reminder' or 'reminder for updates'? -->
+        <str name="#P_URLABEL">Ne rememorigu min kiam lanĉadu</str>
+        <str name="#P_FIXEDLO">Fiksanĉaj Elektoj:</str>
+        <str name="#P_USERLO">Uzulanĉaj Elektoj:</str>
+        <str name="#P_VERSION">Instalita Versio</str>
+        <str name="#P_RETAIL">Podetala</str> <!-- \note Need to know what 'Retail' is supposed to be! (adj/verb/noun?)-->
+        
+        <!-- Uninstall Form -->
+        <str name="#UNF_REMOVEFILES">Forigu Desuran Dosierojn</str>
+        <!-- \note The original english xstr just plain BAD. -->
+        <str name="#UNF_REMOVEFILES_TOOLTIP">Forigu MCF kaj dosierojn de tio ĉi ero kio Desuro utilas</str> <!-- \note 'Remove MCF and files from (that belong to) this item which are used by Desura' Bad source text gives bad translations. :( -->
+        <str name="#UNF_REMOVEACCOUNT">Forigu De Konto</str>
+        <str name="#UNF_REMOVEACCOUNT_TOOLTIP">Forigas tio ĉi ero de la aktuala konto</str>
+        <str name="#UNF_ERRTITLE">Malinstalada Eraro</str>
+        <str name="#UNF_ERROR">Tie estas eraro dum malinstalado kaj malinstalado haltis.</str>
+        <!-- {0} repersents item name -->
+        <str name="#UNF_CONFIRM">Vi estas certas vi diseras malinstali {0} de via komputilo? Foje la procedo komencas vi ne povas nuligi ĝin.</str>
+        
+        <!-- ALL ones above here are checked to be used en desura -->
+        
+        <!-- Upload form -->
+        <!-- \note Some of these xstr seem redundent? -->
+        <str name="#UDF_PROMPT">Elektas la MCF dosiero kio vi diseras suprenŝarĝi.</str>
+        <str name="#UDF_ERROR_VALIDATION">Validada eraro la dosiero tio vi diseras suprenŝarĝi</str>
+        <str name="#UDF_ERRTITLE">MCF Suprenŝarĝa Eraro</str>
+        <str name="#UDF_NOFILE">Malpovadas trovi la dosiero bezona por reprenas la suprenŝarĝiĵon.</str>
+        <str name="#UDF_RESUME_ERRTITLE">Suprenŝarĝadreprena Eraro</str>
+        <str name="#UDF_NONMATCHING_FILE">Dosiero ne sama kiel la suprenŝarĝade dosiero. Elektu la korekta dosiero aŭ rekomencu.</str>
+        <str name="#UDF_UPLOAD_ERRTITLE">Dosiero Suprenŝarĝa Eraro</str>
+        <str name="#UDF_ERROR">Tie estas eraro dum la MCF suprenŝarĝado prilaboro, kaj ĝi haltis.</str>
+        <str name="#UDF_ERROR_LABEL">Suprenŝarĝada Eraro</str>
+        <str name="#UDF_ETIME">Estima Resta Tempo:</str>
+        <str name="#UDF_NOTSTARTED">Suprenŝarĝiĵo estas ne komenca.</str>
+        <str name="#UDF_DELETE">Forigu MCF kiam suprenŝarĝiĵo finiĝas</str>
+        <str name="#UDF_DELETE_TOOLTIP">Forigu dosiero kiam suprenŝarĝiĵo finiĝas</str>
+        <str name="#UDF_COMPLETE">Suprenŝarĝiĵo finas</str>
+        <str name="#UDF_UNKNOWNPAUSE">Paŭzas</str> <!-- \note What tense/form is Pause? It it 'upload status paused', or is it a command, or is it something else entirely? -->
+        <str name="#UDF_REMINDER">Ne rememorigu mi</str> <!-- \note Clarification required, of what are we not to remind them? (Assume this is related to following xstr...) -->
+        <str name="#UDF_PROMPTINFO">Vi ĉiam povas reprenu tio suprenŝarĝiĵo je la langeto noma 'Ludoj', kio listigas ĉiom projektoj vi firantas kaj via kurenta suprenŝarĝaĵoj.&#xA;</str> <!-- \note Is this really on the games tab? Shouldn't it be on the dev tab? -->
+        <str name="#UDF_RESUMEDIR">Serĉanta por MCF ...</str>
+        
+        <!-- Create Form -->
+        <str name="#CF_PROMPT">Elektu la dosierujo kun kio fari la MCF.</str> <!-- Eewwww, this is almost certainly wrong! -->
+        <str name="#CF_DIRPROMPT">Elektu la dosierujo kio enhavas la dosieroj por la MCF arkivo.</str>
+        <str name="#CF_VIEWFILES">Vidu Dosieroj</str>
+        <str name="#CF_PROG">Progreso: </str>
+        <str name="#CF_NOTSTARTED">Initiĝanta ...</str>
+        <str name="#CF_ERROR">Tie estis eraro dum MCF fariĝis kaj ĝi haltis.</str>
+        <str name="#CF_ERRTITLE">MCF Farada Eraro</str>
+        
+        <!-- note the {0} will be replaced with the item name! -->
+        <str name="#CF_COMPLETE">Farita MCF por {0}.</str> 
+        
+        <!-- Item Form -->
+        <str name="#IF_PREPARE_INFO">Preparadanta {0} {1}</str> <!-- \note What's {0} and {1}? -->
+        <str name="#IF_PREPARE_INFO_NOITEM">Preparadanta...</str>
+        
+        <str name="#IF_TITLE">Preparadanta:</str>
+        <str name="#IF_VERIFY">Validanta:</str>
+        <str name="#IF_DOWNLOAD">Subenŝarĝanta:</str>
+        <str name="#IF_INSTALL">Instalanta:</str>
+        <str name="#IF_UPDATE">Ĝisdatiganta:</str>    
+        <str name="#IF_UNINSTALL">Malinstalanta: </str>
+        <str name="#IF_UNINSTALL_BRANCH">Foriganta Maljunaj Dosieroj: </str>
+        <str name="#IF_UNINSTALL_PATCH">Foriganta Maljunaj Dosieroj: </str>
+        <str name="#IF_UNINSTALL_COMPLEX">Malinstalanta Malsimpla Ŝanĝo</str>
+        <str name="#IF_INSTALL_CHECK">Instala Validanta</str> <!-- \note Is this an action in progress 'CHECKING installation' or a command? (Do check installation)-->
+        
+        <!-- \note This is silly, there are THREE cases of an xstr being just 'Uninstalling'!
+                   Perhaps you should consider making generic xstrs like 'Installing...', 'Validing...', etc... -->
+        <str name="#IF_UNINSTALL_LABEL">Malinstalanta ...</str>
+        <str name="#IF_UNINSTALL_BRANCH_LABEL">Foriganta Maljunaj Dosieroj ... </str>
+        <str name="#IF_UNINSTALL_PATCH_LABEL">Foriganta Maljunaj Dosieroj ... </str>
+        <str name="#IF_UNINSTALL_COMPLEX_LABEL">Malinstalanta Malsimpla Ludŝanĝo ... </str>    
+        
+        <!-- Install check -->
+        <str name="#IC_ERRTITLE">Instalvalido Eraro</str>
+        <!-- \note Why is this commented out? -->
+        <!-- <str name="#IC_LABEL">Checking Install for:</str> -->
+        <str name="#IC_ERROR">Tie estis uno eraro dum instala validado kaj ĝi estis malekiris.</str>
+        <!-- \note Next two xstr need to use the {0} formatting system. -->
+        <str name="#IC_FOUND">estis trovis kaj pretas ludi.</str>
+        <str name="#IC_NOTFOUND">ne trovis sur via komputilo. Cenzuru ĝi estas instalas, kaj vi havis lanĉis ĝi almenaŭ unu fojon, tiam reatencu. Alie vi povas klaki sur la kutima instala dosierujvojo butono kaj diras ni kie ĝi estas instalas.</str>
+        <str name="#IC_CHECK">Desuro Instala Validado</str>
+        <str name="#IC_CIP">Kutima Instalo</str> <!-- custom install path -->    
+        
+        <!-- Install form -->
+        <str name="#IF_BRANCHTITLE">Ludu {0}</str>
+        <str name="#IF_BRANCHINFO">{0} ne estas instala. Elektas la versio vi diseras ludi.</str>
+        <str name="#IF_PARENTTITLE">Ne havas patro por {0}</str><!-- \note The original comment associated with this xstr makes little sense, was it meant for the line below it? (Or applies to both this one and the next?) -->
+        <str name="#IF_NOTFOUND">{0} estas ludŝanĝo por la ludo {1}. Vi devas havas la ludo instala antaŭ vi povas ludi ĝi.</str>
+        <str name="#IF_INSTALL_REMOVE">Instalu kaj forigu malparencaj dosieroj (rekomendita)</str>
+        <str name="#IF_INSTALL_LEAVE">Instalu kaj restigu malparencaj dosieroj</str>
+        <str name="#IF_INSTALL_VERIFY">Validu instalis dosieroj kaj instalu mankade dosieroj</str>
+        <str name="#IF_EXISTINGFILES">Jam tie dosieroj kie {0} instaladas. Kio desiras vi fari?</str>
+        <str name="#IF_ETIME">Taska Tempo Restanta:</str>
+        <str name="#IF_INITDOWNLOAD">Initanta Subenŝarĝado</str>
+        <str name="#IF_PROVIDEDBY">Provizas per:</str>
+        <str name="#IF_DLERROR">Tie estis oni eraro dum la MCF subenŝarĝanta procedo kaj ĝi estis haltita.</str>
+        <str name="#IF_DLERRTITLE">MCF Subenŝarĝanta Eraro</str>
+        <str name="#IF_GATHERINFO">Deduktanta Informaĵo ...</str>
+        <str name="#IF_GERROR">Eraro okazita dum deduktanta informaĵo procedo kaj ĝi estis haltita.</str>
+        <str name="#IF_GERRTITLE">Deduktanta Informaĵo Eraro</str>
+        <str name="#IF_GERROR_LABEL">Eraro okazita. Procedo haltis.</str> <!-- \note Umm, doesn't IF_GERROR provide the xstr for this anyways? -->
+        <str name="#IF_CHECKINGIR">Kontrolanta Instalo Postuloj ...</str>
+        <str name="#IF_INITINSTALL">Initanta Instalo</str>
+        <str name="#IF_IERROR">Tie estis oni eraro dum la MCF instalanta procedo kaj ĝi estis haltita.</str>
+        <str name="#IF_IERRTITLE">MCF Instalado Eraro</str>
+        <str name="#IF_DEVELOPER">Faristo</str>
+        <str name="#IF_VERSION">Versio</str>
+        <str name="#IF_TYPE">Ludo</str>
+        <str name="#IF_DOWNLOADSIZE">Subenŝarĝo</str>
+        <str name="#IF_INSTALLSIZE">Instala Grandeco</str>
+        <str name="#IF_INSTALLPATH">Instala Vojo</str>
+        <str name="#IF_IIPARENT">La patro ludo por tio ĉi ero ne estas instalita aŭ ne trovis. Bonvole kontrolas ĝi estas instalita kaj repenu.</str>
+        <str name="#IF_IIPATH">Ne trovis la vojo por tio ĉi ero.</str>
+        <str name="#IF_IIFREESPACE">Ne havas sufiĉan spacon por instalado tio ĉi ero.</str>
+        <str name="#IF_IIUNKNOWN">Nekonata Eraro Okazita.</str>
+        <str name="#IF_IIERRTITLE">Instalado Eraro</str>
+        <str name="#IF_IINOBRANCHES">Neniom eldono estas disponebla por vi ludi.</str>
+        <str name="#IF_VERIFYLABEL">Validanta ...</str>
+        <str name="#IF_VERIFYCOMPLETE">Validado Finita</str>
+        <str name="#IF_VERROR">Tie estis oni eraro dum la instalvalidanta procedo kaj ĝi estis haltita.</str>
+        <str name="#IF_VERRTITLE">Instalvalidanta Eraro</str>
+        
+        <str name="#IF_VERIFYMCF">Validanta MCF ...</str>
+        <str name="#IF_VERIFYINSTALL">Validanta Instalo ...</str>
+        <str name="#IF_VERIFYDOWNLOADF">Subenŝarĝanta Foresta Dosieroj ...</str>
+        <str name="#IF_VERIFYINSTALLF">Instalanta Foresta Dosieroj ...</str>    
+        <str name="#IF_VERIFYBRANCH">Ŝanĝanta branĉo ...</str>    
+        
+        <str name="#IF_IIBADINFO">Eraro okazita dum akiris informaĵo por tio ĉi ero</str>
+        <str name="#IF_INVALIDBRANCH">La elekte branĉo de tio ĉi ero estas ne valida</str>
+        
+        <str name="#IF_FREESPACE_DL">Ne havas sufiĉan spacon por subenŝarĝado.</str>
+        <str name="#IF_FREESPACE_IN">Ne havas sufiĉan spacon por instalado.</str>
+        <str name="#IF_PATHERR">Ne trovis la vojo specifita.</str> <!-- \note Translated the spanish version of this xstr to esperanto, since it mapped more nicely. -->
+        <str name="#IF_FILEERR">Dosieroj ekista jam en tio ĉi loko.</str>
+        <str name="#IF_NOTINSTALLED">Tio ĉi ero ne instalitas</str>
+        <str name="#IF_IHASHFAIL">Iuj dosieroj fiaskis la komparo de MD5 haketo. Desiras vi validontas la instalo?</str>
+        
+        <str name="#IF_CONFLICT">Desuro detektas tio {0} estas jam instalita. {0} postulas malsimplan instalon, oni rekomendu tio vi malinstalu {0} antaŭa dum la Desuro instalo por eviti problemoj kun enhavo konfliktoj.</str>
+        <str name="#IF_CONFLICTTITLE">Malsimpla Instalata Konflikto</str>
+        
+        <str name="#IF_COMPLETEPREORDER">Antaŭŝarĝado Finita</str>
+        <str name="#IF_PRELOADLAUNCH">{0} estas antaŭŝarĝa kaj ne povas lanĉi ankoraŭ. Bonvole ĝisatendu por la eldondato.</str>
+        <str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
+        
+        <str name="#IF_COMPLEXREMOVE">Forigu Maljunaj Dosieroj</str>
+        <str name="#IF_COMPLEXBACKUP">Backing up Ludo Dosieroj</str>
+        <str name="#IF_COMPLEXINSTALL">Instalanta Dosieroj</str>    
+        <str name="#IF_COMPLEXLABEL">{0}...</str>
+        <str name="#IF_COMPLEXLABEL_INIT">{0} (Initanta)</str>
+        
+        <str name="#IF_DOWNLOADTOOL">Subenŝarĝanta Dependaĵoj:</str>
+        <str name="#IF_DOWNLOADTOOL_LABEL">Subenŝarĝanta...</str>
+        
+        <str name="#IF_INSTALLTOOL">Instalanta Iloj:</str> <!-- {0}: tool name -->
+        <str name="#IF_INTOOL_WAIT_OTHER">Atendanta por Alian Instalon finis...</str>
+        <str name="#IF_INTOOL_WAIT_HELPER">Atendanta por Instalasistanton...</str>
+        <str name="#IF_INTOOL_LABEL">Instalanta Ilo: {0}</str> <!-- {0}: tool name -->
+        
+        <!-- Installed Wizard -->
+        <str name="#MW_TITLE">Trovu Ludos Instalita</str>
+        <str name="#MW_PROMPT">Tio ĉi asistanto trovos ludoj kaj ludŝanĝoj instalita sur tio ĉi komputilo kio subtenatita per Desuro. Bonvole Notu: Tio ĉi ĝisdatigo ĉiu trovita ero al la plej lasta versio sur Desuro.</str>
+        <str name="#MW_ERROR">Tie estis oni eraro dum la instalita asistanto procedo kaj ĝi estis haltita.</str>
+        <str name="#MW_ERRTITLE">Instalita Asistanto Eraro</str>
+        <str name="#MW_ADDACCOUNT">Aldonu torva eroj al konto</str>
+        <str name="#MW_FINISH">La instalita asistanto finita kaj ĉiu trovita ludoj kaj ludŝanĝoj kio subtenatita per Desuro aldonita al vi konto. &#xA;&#xA;Si Desuro ne trovita oni ludoj, vi povas aldonu ĝi per klakanta la butono nomita 'Propra Instalo' malsupra.</str>
+        <str name="#MW_CUSTOM">Propra Instalo</str>
+        
+        <!-- Main Form -->
+        <str name="#MF_OFFLINE">Vi estas certa tio vi desiras iri en senkonkta modo?</str>
+        <str name="#MF_OFFLINE_TITLE">Senkonkta Modo</str> <!-- \note Duplicate string? -->
+        <str name="#MF_OFFLINEWARN">Desuro estas en senkonkta modo kaj ne povas procedu ligiloj. Bonvole ensalutu.</str>
+        <str name="#MF_IPERMISSION_ERROR">Vi ne havas permeso de instalu malrajtiga MCF</str>
+        <str name="#MF_PERMISSION_ERRTITLE">Malkorekta Permeso </str>
+        <str name="#MF_IBADBUILD">Malbona Versieto Numero por Ero Rajtig Instalo</str>
+        <str name="#MF_IBADBRANCH">Malbona Branĉo Numero por Ero Rajtig Instalo</str>
+        <str name="#MF_IMIDDLEINSTALL">Ero estas faranta alia procedo (ne povas instalu rajtig ero). Bonvole finas tio procedo antaŭ.</str>
+        <str name="#MF_UPERMISSION_ERROR">Vi ne havas permeso de subenŝarĝado MCF por tio ĉi ero.</str>
+        <str name="#MF_CPERMISSION_ERROR">Vi ne havas permeso de farado MCF por tio ĉi ero.</str>
+        <str name="#MF_UPDATELOG_ITEMERROR">Cannot display change log. The item cannot be found on your account.</str>
+        <str name="#MF_ERRTITLE">Desuro Eraro</str>
+        <str name="#MF_ERROR">Lanĉis ero fiaskas.</str> <!-- Review this one. I don't like it. -->
+        <str name="#MF_NONDEV_ERROR">Vi ne estas faristo de tio ĉi ero. Vi ne havas permeso de faris eroj por ĝi.</str> <!-- Again, don't like it... -->
+        <str name="#MF_NAMERESOLVE">Fiaskis akiri ero nomo de ID nombro.</str> <!-- Again, review. -->
+        <str name="#MF_BADLINK">Malkonata Desuro Ligilo</str>
+        <str name="#MF_OLNOTINSTALLED">Desuro estas en senkonkta modo kaj tio ĉi ero estas ne instalita kaj tio ĉi devas instalita por lanĉi.</str> <!-- Don't like this one. Review -->
+        <!-- \note *Important* This whole next xstr is wrong, if the user can't do anything about it then there's no point in displaying it. In this case a better msg would be 'Are you sure you wish to uninstall?', which is what I translated here... -->
+        <str name="#MF_UNINSTALLPROMPT">Vi estas certa vi desiras malinstali {0}?</str>
+        <str name="#MF_UNINSTALLTITLE">Desuro {0} Malinstalo</str>
+        <str name="#MF_LUANCH_ERROR_VERIFY_TOOLTIP">Validanta dosieroj instalita</str>
+        
+        <!-- Buttons -->
+        <!-- \note I assume these are all commands, so all of these are in command form (for the most part) -->
+        <str name="#RESTART_NOW">Rekomencu Tuj</str>
+        <str name="#RESTART_LATER">Rekomencu Pliposte</str>
+        <str name="#DOWNLOAD">Subenŝarĝu</str>
+        <str name="#VERIFY">Validu</str>
+        <str name="#START">Komencu</str>
+        <str name="#STOP">Haltu</str>
+        <str name="#UPLOAD">Suprenŝarĝu</str>
+        <str name="#CANCEL">Nuligu</str>
+        <!-- \note I really have no idea how to translate this one. (Will this do?)-->
+        <str name="#OK">Bone</str>
+        <str name="#CLOSE">Fermu</str>
+        <str name="#UPDATE">Ĝisdatigu</str>
+        <str name="#LAUNCH">Lanĉu</str>
+        <str name="#LOGIN">Ensalutu</str>
+        <str name="#PAUSE">Paŭzu</str>
+        <str name="#RESUME">Rekomencu</str>
+        <str name="#APPLY">Apliku</str>
+        <!-- \note Need wayyy more context info to translate this next one correctly. What do you mean by 'Unknown'? -->
+        <str name="#UNKNOWN">Nekonita</str>
+        <str name="#ACCEPT">Apliku</str>
+        <str name="#BACK">Antaŭa</str>
+        <str name="#AGREE">Mi akceptu</str>
+        <str name="#SEND">Sendu</str>
+        <str name="#BROWSE">Foliumu</str>
+        <str name="#MOREINFO">Pli Informaĵo</str>
+        <str name="#YES">Jes</str>
+        <str name="#NO">Ne</str>
+        <str name="#SUBMIT">Transendu</str> <!-- La Komputeko says 'transsendi', but you're not allowed to repeat letters in esperanto. -->
+        <str name="#ADD">Aldonu</str>
+        <str name="#CONTINUE">Kontinuu</str>
+        <str name="#PLAY">Ludu</str>
+        <str name="#PURCHASE">Aldonu al Ĉareto</str>
+        <!-- \note What are these following two? -->
+        <str name="#TBA">TBA</str> <!-- to be advertised -->
+        <str name="#TRYAGAIN">Penu Denove</str> <!-- to be advertised -->    
+        <str name="#LINK">Ligu</str>
+        <str name="#PREORDER">Antaŭmendu</str>
+        <str name="#HIDE">Malmontru</str>
+        
+        <!-- Misc -->
+        <str name="#NAME">Nomo</str>
+        <str name="#SIZE">Grandeco</str>
+        <str name="#PATH">Vojo</str>
+        <str name="#FINALIZING">Netigada</str>
+        <str name="#COMPLTETED">Kompleta</str>
+        <str name="#SEARCH">Serĉiĝanta ...</str>
+        <str name="#LOADINGPAGE">Ŝarĝiĝanta Paĝo ...</str>
+        <str name="#CONFIRM">Konfirmaciĝanta ...</str>
+        <str name="#CONFIRM_PROMPT">Se vi fermus tio ĉe formularo ĝi haltigus la kurenta procezo. Vi estas certa?</str>
+        <str name="#INITIALIZING">Initanta ...</str>
+        <str name="#PROCESSING">Traktanta:</str>
+        <!-- The very last part of the following xstr, I'm not sure I translated it very well. This needs to be reviewed... -->
+        <str name="#STEAMWARN">Por instalu kelka eroj, Desuro devas koni kio Steam-konto vi utilas. &#xA;&#xA;Vi povas ŝanĝiga en la opcioj formularo kiam ajn vi desiras.&#xA;&#xA;Bonvole Notu: Neniu de Desuro demandos vi por via Steam-pasvorto. </str>
+        <str name="#GAMES">Ludoj</str>
+        <str name="#MODS">Ludŝanĝoj</str>
+        <str name="#UPDATEAVL">Ĝisdatigo Disponebla</str>
+        <str name="#UNINSTALL">Malinstalu</str>
+        <str name="#INSTALL">Instalu</str>
+        <str name="#UNINSTALLING">Malinstalanta ...</str>
+        
+        <!-- Main Menu -->
+        <str name="#MENU_OFFLINE">Senkonektigu</str>
+        <str name="#MENU_OFFLINE_TOOLTIP">Iras senkonkta modo (no interreto aliro)</str>
+        <str name="#MENU_LOGOUT">Adiaŭ</str>
+        <str name="#MENU_LOGOUT_TOOLTIP">Adiaŭ de Desuro</str>
+        <str name="#MENU_SETTINGS">Agordoj</str>
+        <str name="#MENU_SETTINGS_TOOLTIP">Montru la agordoj formularo</str>
+        <str name="#MENU_CONSOLE">Konzolo</str>
+        <str name="#MENU_WIZZARD">Instita Asistanto</str>
+        <str name="#MENU_WIZZARD_TOOLTIP">Asistanto por trovi ludoj kaj ludŝanĝoj instalita sur tio ĉi komputilo</str> <!-- Trovi? Trovas? ?? -->
+        <str name="#MENU_CHANGELOG">Desuro Ŝanĝlisto</str>
+        <str name="#MENU_CHANGELOG_TOOLTIP">Montru la ŝanĝlisto por Desuro</str>
+        <str name="#MENU_ABOUT">Koncerna</str> <!-- \note What is the sentence part for 'About'? (n/v/adj/adv?) -->
+        <str name="#MENU_EXIT_TOOLTIP">Ĉesu Desuro</str>
+        <str name="#MENU_TOOLS">Iloj</str>
+        <str name="#MENU_HISTORY">Historio</str>
+        <str name="#MENU_HELP">Helpo</str>
+        <str name="#MENU_ONLINE">Iri Konektite</str> <!-- Doesn't feel right... -->
+        <str name="#MENU_INSTALLPATH">Propra Instalvojo</str>
+        <str name="#MENU_INSTALLPATH_TOOLTIP">Agordu propra instalvojo por ludoj</str>
+        <str name="#MENU_ACTIVATEGAME">Aktivigu Ludo</str>
+        <str name="#MENU_ACTIVATEGAME_TOOLTIP">Enigu KD klavo aŭ donackodo por aktiviga ludo sur via konto</str>    
+        <str name="#MENU_VERSION">Versio</str>
+        <str name="#MENU_EXIT">Ĉesu</str>
+        
+        <str name="#MENU_DOWNLOADREPORT">Kapacito Monitoro</str>
+        <str name="#MENU_DOWNLOADREPORT_TOOLTIP">Vidiga la kapacito monitoro</str>    
+        
+        <str name="#MENU_CART">Butika Ĉareto</str>
+        <str name="#MENU_CART_TOOLTIP">Vidu eroj en via butika ĉareto</str>
+        <str name="#MENU_PURCHASE">Aĉeta Historio</str>
+        <str name="#MENU_PURCHASE_TOOLTIP">Vidu eroj kio vi havis aĉetita</str>
+        <str name="#MENU_GIFTS">Donaca Historio</str>
+        <str name="#MENU_GIFTS_TOOLTIP">Vidu eroj kio havas donacita al vi</str>
+        
+        <!-- Headers -->
+        <str name="#HEAD_NAME">Nomo</str>
+        <str name="#HEAD_STATUS">Stato</str>
+        <str name="#HEAD_GENRE">Ĝenro</str>
+        <str name="#HEAD_THEME">Temo</str>
+        <str name="#HEAD_RATING">Rango</str>
+        <str name="#HEAD_DEV">Faristo</str>
+        <str name="#HEAD_FAV">Ŝato</str>
+        
+        <!-- Play paĝo -->
+        <str name="#PLAY_UPDATE_AVAILABLE">Ĝisdatigo estas havebla</str>
+        <str name="#PLAY_UPDATE_DEMO">Promocu provversio al plena versio</str>
+        <str name="#PLAY_EDIT_FAV">Redaktu ŝatoj</str>
+        <str name="#PLAY_UPLOAD">Kurenta Suprenŝarĝo</str>
+        <str name="#PLAY_RECENT">Lasta Luditaj</str>
+        <str name="#PLAY_TOOL">Iloj</str>
+        <str name="#PLAY_INVALID_UPLOAD">Malvalida Suprenŝarĝiĵo</str>
+        <str name="#PLAY_INVALID_ITEM">Malvalida Ero</str>
+        <str name="#PLAY_BRANCH_AUTO">aute ludu tio ĉi versio sekva tempo?</str> <!-- \note Needs {0}? -->
+        <str name="#PLAY_UPDATE_POLL">Kontrolu ludlisto por ĝisdatioj...</str>
+        <!-- \note The following had better substitute an xstr for {0}! Else you're gonna get: "Aligu game UltraGore XXIV"  -->
+        <str name="#PLAY_ADD_GAME">Aligu {0} {1}</str><!-- {0} = mod or game {1} = name -->
+        <str name="#PLAY_PREORDER">Antaŭmendo</str> <!-- \note Is this a command or a status? -->
+        
+        <!-- Pop up menu -->
+        <str name="#PM_VIEWPROFILE">Vidu Profilo</str>
+        <str name="#PM_MODLIST">Vidu Ludŝanĝlistoj</str>
+        <str name="#PM_UPDATELOG">Vidu Ŝanĝprotokolo</str>
+        <str name="#PM_REMOVEACCOUNT">Forigu de Konto</str>
+        <str name="#PM_DESURAPAGE">Desuro Paĝo</str>
+        <str name="#PM_CREATEMCF">Faru MCF</str>
+        <str name="#PM_UPLOADMCF">Suprenŝarĝu MCF</str>
+        <str name="#PM_ADDACCOUNT">Aldonu al Konto</str>
+        <str name="#PM_INSTALLCHECK">Instalkontrolu</str>
+        <str name="#PM_INSTALLCHECK_TOOLTIP">Vidu si tio ĉi ero instalita sur tio ĉi komputilo.</str>
+        <str name="#PM_PROPERTIES">Ecoj</str>
+        <str name="#PM_FAVORITE">Ŝatigu</str>
+        <str name="#PM_DEVPROFILE">Farado Profilo</str> <!-- \note Need more context/clarification on this one... -->
+        <str name="#PM_DELMCF">Forigu MCF</str>
+        <str name="#PM_SHOWMCF">Montru MCF</str>
+        <str name="#PM_REVERTCOMPLEX">Malfaru Ludosieroj Ŝangoj</str>
+        <str name="#PM_SHOWCDKEY">Vidu KD Klavo</str>
+        
+        <!-- Settings -->
+        <str name="#SET_TITLE">Desuro Agordoj</str>
+        <str name="#SET_BETA_LABEL">Partoprenu en Desuro Publika Beta</str>
+        <!-- La komputeko says a translation of feature is 'elbo', but this word means 'a possibility'.
+             I've decided to use the word 'trajto' (trait, characteristic, feature) instead. -->
+        <!-- \note The translated back the disclaimer says:
+            Before each new version of Desura, a new version is release for testing new features and fixes.
+            You can choose to participate in the public beta to test new features, help develope new fixes,
+            and provide feedback.
+            
+            If you participate and a crash occurs, your autopsy report will be uploaded and we might contact
+            you by email to help assist with debugging the problem.
+            
+            Please Note: Public betas can contain bugs that might cause loss of data or application crashes.
+            We (abstract) recommend that only advanced users participate.
+            
+            * I particularly like the Esperanto word for crash dump.
+            -->
+        <str name="#SET_BETA_INFO">Antaŭa ĉiu nova versio de Desuro, liberigos betan version por testanta novajn trajtojn kaj fiksojn. Vi povas elekti de partoprenanta en la publika Beta por testanta novajn trajton, asistanta en fari novajn fiksojn, kaj provizanta rimarkojn. &#xA;&#xA;Si vi partoprentus kaj oni kolapsoj okazus, via nekropsio suprenŝarĝintos kaj vi eble kontaktos par retpoŝto por asisti en sencimigas la problemo. &#xA;&#xA;Bonvole Notu: Publikaj Betaj eble havas cimojn kio eble kaŭzas la datumoj perdanta aŭ aplikaĵoj kolapsanta. Oni rekomendas tio nur specialj uzantoj partoprente.&#xA;</str>
+        <str name="#SET_NOTE">Bonvole Notu: Si vi elektas nova temo, vi devas rekomendu Desuro por aktivigata ĝi.</str>
+        <str name="#SET_THEME_VERSION">Versio:</str>
+        <str name="#SET_THEME_AUTHOR">Verkisto:</str>
+        <str name="#SET_THEME">Temo:</str>
+        <str name="#SET_CV_THEME">Temo</str>
+        <str name="#SET_CV_BETA">Beta Partopreno</str>
+        <str name="#SET_CV_LANG">Lingvo</str>
+        <str name="#SET_CV_LANG_TOOLTIP">Elektu la lingvo vi desiras utili</str>
+        <str name="#SET_CV_STEAM">Steam salutnomo</str>
+        <str name="#SET_CV_STEAM_TOOLTIP">Kurenta Steam salutnomo (por instalo de ludŝanĝo)</str>
+        <str name="#SET_CV_AUTOLOGIN">Aŭtomate ensalutas kiam komencas</str> <!-- Review -->
+        <str name="#SET_CV_AUTOLOGIN_TOOLTIP">Save via ensaluta informaĵo kaj aute ensaluta kiam Desuro komencas</str>
+        <str name="#SET_CV_AUTOSTART">Aŭtomate komencas Desuro</str> <!-- Review -->
+        <str name="#SET_CV_AUTOSTART_TOOLTIP">Komencu Desuro kun Windows</str>
+        <str name="#SET_CV_CRASH">Aŭtomate suprenŝarĝas kolapsaj raportoj</str>
+        <str name="#SET_CV_CRASH_TOOLTIP">Aŭtomate suprenŝarĝas kolapsaj raportoj kiam Desuro komencas (utilas por sencimiganta)</str>
+        <str name="#SET_CV_MCFCLEAN">Purigata MCF antaŭa utilas</str>
+        <str name="#SET_CV_MCFCLEAN_TOOLTIP">Forigu ne bezona datumoj de MCF. Tio ĉi savas fiksitdiska spaco, sed pli datumoj subenŝarĝintos.</str>
+        <str name="#SET_CV_USER">Savu via salutnomo kiam ensalutanta</str>
+        <str name="#SET_CV_USER_TOOLTIP">Savu via salutnomo por estonta ensalutoj</str>
+        <str name="#SET_CV_CONSOLE">Montru konzolo kiam eraro okazata</str>
+        <str name="#SET_CV_CONSOLE_TOOLTIP"></str> <!-- \note In this case I don't need a popup because the label is explicit enough. Can I leave a blank string to disable? -->
+        <str name="#SET_CV_WORKER">Laboraj Fadenoj</str>
+        <str name="#SET_CV_WORKER_TOOLTIP">Tio ĉi estas la numero de fadenoj utilita por fari fonaj taskoj.</str>
+        <str name="#SET_CV_DESTMAIN">Malŝarĝu precipa formularo kiam fermiĝa</str>
+        <str name="#SET_CV_DESTMAIN_TOOLTIP">Tio ĉi savu memoro, sed kostanta rapido kaj historio.</str>
+        <str name="#SET_CV_NOTAB">Ne aute ŝarĝu foliumilo paĝoj kiam ensalutanta</str>
+        <str name="#SET_CV_NOTAB_TOOLTIP">Ne ŝarĝu foliumilo paĝoj kiam ensalutanta, savigas memoro sed kaŭzigas malrapida ŝarĝtempo.</str>
+        <str name="#SET_LAB_GENERAL">Ĝeneralaj Agordoj</str>
+        <str name="#SET_LAB_PERFORMANCE">Rendimento</str>
+        <str name="#SET_LAB_THEME">Temo</str>
+        <str name="#SET_LAB_BETA">Beta Partopreno</str>
+        <str name="#SET_WARNING">Kelkaj agordoj kio ŝanĝita postulas Desuro rekomencu por ili prenas efekton.</str>
+        
+        <str name="#SET_CV_SILENTLAUNCH">Silenta Aŭtomatensaluteco</str>
+        <str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Ne montru ĉefa fenestro kie aŭtomatensaluteco</str>    
+        
+        <!-- Browser controls -->
+        <str name="#BC_HOME">Malfermu hejmpaĝo</str>
+        <str name="#BC_STOP">Haltu ŝarĝade kurenta paĝo</str>
+        <str name="#BC_REFRESH">Aktualigu kurenta paĝo</str>
+        <str name="#BC_BACK">Iri malantaŭen al lasta paĝo</str>
+        <str name="#BC_FORWARD">Iri antaŭen al antaŭa paĝo</str>
+        <str name="#BC_BREAK">Ŝarĝu en defaŭlta foliumilo</str>
+        
+        <!-- Button Strip -->
+        <!-- \note Is this capitalisation correct? -->
+        <str name="#BS_MAIN">Malfermu ĉefa menuo</str>
+        <str name="#BS_UPDATE">Ĝisdatigoj</str>
+        <str name="#BS_PLUS">Fadena Spekto</str>
+        <str name="#BS_CART">Ĉareto Eroj</str>
+        <str name="#BS_PMESSAGE">Privataj Mesaĝoj</str>
+        
+        <!-- New Account -->
+        <str name="#NA_TITLE">Desura Nova Konto</str>
+        <str name="#NA_VALDERROR">Eraro okazis dum validigu vian informaĵon:</str>
+        <str name="#NA_ERRBLANKNAME">Via salutnomo estas blanka</str>
+        <str name="#NA_ERRPASSWORD">Via pasvorto ne estas sama</str>
+        <str name="#NA_ERREMAIL">Via retpoŝtadreso estas blanka aŭ ne valida</str>
+        <str name="#NA_ERRNAME">Via nomo estas blanka</str>
+        <str name="#NA_ERRBIRTHDATE">Via naskiĝtago estas tro juna</str>
+        <str name="#NA_ERRPLEASE">Riparu tioj kaj repenu.</str>
+        <str name="#NA_ERRTITLE">Desuro Nova Konta Eraro</str>
+        <str name="#NA_ERROR">Eraro okazis dum penu fari vian konton.</str>
+        <str name="#NA_GENDER">Genro:</str>
+        <str name="#NA_DOB">Naskiĝtago:</str>
+        <str name="#NA_CONFIRM">Konfirmacu Pasvorto:</str>
+        <str name="#NA_PASS">Pasvorto:</str>
+        <str name="#NA_NAME">Via Nomo:</str>
+        <str name="#NA_EMAIL">Retpoŝto:</str>
+        <str name="#NA_USER">Salutnomo:</str>
+        <str name="#NA_FIN">Ni sendis retpoŝto por valida vian konton. Vi devas riceve la repoŝto en iuj minutoj. Kiam vi ricevos ĝi, agu laŭ instrukcioj en la retpoŝto por elfari vian registradon kaj ensalutu en Desuro.&#xA;&#xA;Ne Recevas la Repoŝto? &#xA; - Paciencu, kelkfoja repoŝto estas malrapida por alveni.&#xA; - Asekuru retpoŝtoj de support@desura.com ne blokas&#xA; - Kontrolu via spamfiltrila kesto&#xA; - Penu reregistre kun Desuro aŭ kun www.desura.com&#xA; - Kontaktu ni al support@desura.com se vi havas problemoj</str>
+        <str name="#NA_INFOPROMPT">Entajpu via registra detaloj, kaj klaku 'Akceptu' por daŭrigu. Via retpoŝtadreso uzita por aktiva vian konton. Se vi havas iu MODDB aŭ iu INDIEDB konto vi ne devu registri, vi povas ensalute kun ĝi.</str>
+        
+        <str name="#PR_TITLE">Desuro Pasvorto Rememorigo</str>
+        <str name="#PR_PROMPT">Entajpu la retpoŝtadreso tio vi utilis por registrado, kaj vi ricevus retpoŝto tio vi pove utilos por reŝarĝi vian pasvorton.</str>
+        <str name="#PR_EMAIL">Retpoŝto: </str>
+        <str name="#PR_SENT">Rememorigo ekspedis. Vidu vin retpoŝta enirkesto por instrukcioj koncerna kio fari poste.</str>
+        <str name="#PR_ERRTITLE">Desura Pasvorto Rememorigo Eraro</str>
+        <!-- \note Fix this! What does this error msg mean? It's unclear as to who is responsible/what/why... -->
+        <str name="#PR_ERROR">Eraro okazis dum la pasvorto rememorigo.</str>
+        <str name="#PR_VALIDEMAIL">Entajpu vi retpoŝtadreso.</str>
+        
+        <!-- Items menu -->
+        <!-- \note Esperanto doesn't need the word 'items' in this phrase.
+                   Ironically makes it more comprehensible than the original xstr...-->
+        <str name="#DM_EXPAND">Etendu ĉio</str>
+        <str name="#DM_CONTRACT">Maletendu ĉio</str>
+        
+        <!-- Item status -->
+        <str name="#IS_INSTALLED">Instalita</str>
+        <str name="#IS_NOTINSTALLED">Ne Instalita</str>
+        <str name="#IS_READY">Preta</str>
+        <str name="#IS_VERIFY">Validanta...</str>
+        <str name="#IS_UPDATING">Ĝisdatiganta...</str>
+        <str name="#IS_DOWNLOADING">Subenŝarĝanta...</str>
+        <str name="#IS_INSTALLING">Instalanta...</str>
+        <str name="#IS_DEVSTUB">Faristo Stub</str>
+        <str name="#IS_NOTAVAIL">Ne Preta</str>
+        <str name="#IS_PAUSED">Paŭza</str>
+        <str name="#IS_PREORDER_STATUS">Antaŭmendo</str>
+        
+        <str name="#IS_PREORDER">Havabliĝota en {0}</str>
+        <!-- \note For english/esperanto/french it's frowned upon but accepted to
+                   say "1 hours", in other languages it's totally unacceptable.
+                   Ideally you should add a seperate case for a when the number is 1,
+                   but this may/may not be practical. -->
+        <str name="#IS_PREORDER_DAYS">{0} tagoj {1} horoj</str>
+        <str name="#IS_PREORDER_HOURS">{0} horoj</str>
+        <str name="#IS_PREORDER_MINS">Malpli ol unu horo</str>
+        
+        <!-- \note Why was this using abbreviations? -->
+        <str name="#IS_LAUNCHING">Lanĉanta...</str>
+        <str name="#IS_DOWNLOADINGTOOL">Subenŝarĝado Iloj</str>
+        <str name="#IS_INSTALLINGTOOL">Instalado Iloj</str>        
+        
+        <!-- This was a tough one to translate, not only do you use a boatload of adjectives for a single noun,
+             you also use colloquial expressions ('at your fingertips') which is very hard to translate in some
+             cases and retain it's original meaning... -->
+        <str name="#AB_ABOUTINFO">Desuro estas komunuma kondukista cifereca distribua servo por ludaj uzantoj, ejado plej bona ludoj, ludaj ŝanĝoj, kaj subenŝarĝebla enhavo de programistoj tia vin fingroj, preta aĉetakiri kaj ludi.</str>
+        <str name="#AB_CREDITS">Akreditoj</str>
+        <str name="#AB_ABOUT">Pri Desuro</str>
+        
+        <str name="#UF_TITLE">Desura Ĝisdatigo Disponeblis</str>
+        <str name="#CL_TITLE">Desura Ŝanĝoprotokolo</str>
+        <str name="#CS_TITLE">Desura Konzolo</str>
+        
+        <str name="#DL_LOADING">Ŝarĝanta ...</str>
+        
+        <str name="#CIP_TITLE">Propra Instala Vojo</str>
+        <str name="#CIP_GETLIST">Ĝisdatigu Luda Listo</str>
+        <str name="#CIP_ERRTITLE">Propra Instala Voja Eraro</str>
+        <str name="#CIP_ERROR">Fiaskis akire la luda listo</str>
+        <str name="#CIP_HELP">Se Desuro estas malkapable de trovi aŭtomate ludoj instalita sur vi komputilo, vi povas elekte la dosierujo kie tio instalas.</str>
+        <str name="#CIP_BROWSE">Elektu la radika dosierujo de la ludo</str>
+        
+        <str name="#CL_LABEL">Lanĉanta...</str>
+        <str name="#CL_REMOVING">Forigas malnovaj dosieroj</str>
+        <str name="#CL_BACKUP">Faras sekurkopion de luda dosieroj</str>
+        <str name="#CL_INSTALL">Instalanta novajn dosierojn</str>
+        <str name="#CL_ERRTITLE">Malsimpla Lanĉeca Eraro</str>
+        <str name="#CL_ERROR">Ludo lanĉeca fiaskis</str>
+        
+        <str name="#CR_TITLE">Restaŭras luda dosieroj</str>
+        <str name="#CR_ERRTITLE">Malsimpla Restaŭreca Eraro</str>
+        <str name="#CR_ERROR">Luda dosieroj restaŭreca fiaskis.</str>
+        
+        <!-- \note What is the Desura 'taskbar menu'? -->
+        <!-- \note Are these even all in use? -->
+        <!-- Taskbar menu -->
+        <str name="#TB_WINDOWS">Fenestroj</str>
+        <str name="#TB_NOWINDOWS">Neniom malfermita fenestroj</str>
+        <str name="#TB_NOITEMS">Neniom eroj</str>
+        <!-- \note Since this is a menu I assume 'Exit' is meant in command form... (?) -->
+        <str name="#TB_EXIT">Eliru</str>    
+        <str name="#TB_STATUS">Stato</str>
+        
+        <!-- Why a mini-cart? No idea, but the Komputeko says it is so... -->
+        <str name="#TB_CART">Ĉareto Eroj</str>
+        <str name="#TB_MESSAGE">Mesaĝoj</str>
+        <str name="#TB_UPDATES">Ĝisdatigoj</str>
+        <str name="#TB_GAMES">Ludoj</str>    
+        <str name="#TB_MODS">Ŝanĝoj</str>    
+        
+        <str name="#TB_TITLE">Desuro Ludo Ĝisdatigoj Disponeblaj</str>
+        <!-- \note Technically it isn't the right translation of 'You have been
+                   gifted a new item!' but it's closer to the intended meaning. -->
+        <!-- \note Assuming the intended meaning was 'You've received a gift!' -->
+        <str name="#TB_GIFTTITLE">Vi havas riceve donaco!</str>
+        <!-- \note In this case because 'Desuro' describes a noun ('Ĝisdatigo')
+                   it must be adjective-ified, which gives us 'Desura'. -->
+        <str name="#TB_APPUPDATE_TITLE">Desura Ĝisdatigo</str>
+        <str name="#TB_APPUPDATE">Subenŝarĝas Desura ĝisdatigo (Eldono {0}).</str>
+        
+        <!-- \note These two are redundent, ideally you should have the main 'desura service failed', followed
+                   by another xstr for 'attempting reconnect' and then another for 'failed to reconnect' -->
+        <str name="#DS_ERROR">Desuro Servo malkonektis neatendite.&#xA;&#xA;Penanta rekonekti...</str>
+        <str name="#DS_ERRORFAILED">Desura Servo malkonektis neatendite.&#xA;&#xA;Rekonektata fiaskis:</str>
+        
+        <str name="#DR_TITLE">Kapacito Monitoro</str>
+        
+        <str name="#EULA_LABEL">Antaŭ vi luda, vi devas akcepte la uzanto permesilo.</str>
+        <str name="#EULA_TITLE">Uzanto Permesilo: {0}</str>
+        
+        <!-- Browser menu -->
+        <str name="#CHROME_UNDO">Malfaru</str>
+        <str name="#CHROME_REDO">Refaru</str>
+        <str name="#CHROME_CUT">Eltondu</str>
+        <str name="#CHROME_COPY">Kopiu</str>
+        <str name="#CHROME_PASTE">Algluu</str>
+        <str name="#CHROME_DELETE">Forigu</str>
+        <str name="#CHROME_SELECTALL">Elektu Ĉiom</str>
+        <str name="#CHROME_BACK">Iru Antaŭa Paĝio</str>
+        <str name="#CHROME_FORWARD">Iru Sekva Paĝio</str>
+        <str name="#CHROME_RELOAD">Reŝargu</str>
+        <str name="#CHROME_ZOOMIN">Zomu</str>
+        <str name="#CHROME_ZOOMOUT">Malzomu</str>
+        <str name="#CHROME_ZOOMNORMAL">Rekomencu Zomo</str>
+        <str name="#CHROME_PRINT">Printu</str>
+        <str name="#CHROME_VIEWSOURCE">Vidu Fontkodo</str>
+        <str name="#CHROME_VIEWPAGE">Vidu Paĝio en Foliumilo</str>
+        <str name="#CHROME_VIEWLINK">Vidu Ligilo en Foliumilo</str>
+        <str name="#CHROME_VIEWIMAGE">Vidu Bildo en Foliumilo</str>
+        <str name="#CHROME_INSPECTELEMENT">Inspektu Elemento</str>
+        <!-- \note No clue what is 'Normal Menu'. -->
+        <str name="#CHROME_NORMALMENU">Normala Menuo</str>    
+        
+        <!-- CD Key form -->
+        <str name="#CDK_ERRTITLE">Fiaskita Akiri K-Disko Klavo</str>
+        <str name="#CDK_ERROR">Desuro fiaskita trovi k-disko klavo</str>
+        
+        <str name="#CDK_PROGRESSINFO">Kolektadas k-disko klavo ...</str>
+        <str name="#CDK_COPYALL">Kopiu Ĉio</str>
+        <str name="#CDK_COPYPART">Kopiu Parto</str>
+        <str name="#CDK_COPYPART_X">Kopiu Parto {0}</str> <!-- \note {0} must be replaced by a Hindu numeral! Spelled numbers arn't really translatable (without a great deal of pain)... -->
+        <str name="#CDK_INFO">Vi devas enigu tio ĉi KD klavo por ludi:</str>
+        <str name="#CDK_COUNTDOWN">Lanĉanta en {0}</str>
+        <str name="#CDK_LAUNCHNOW">Lanĉu Tuj</str>
+    </strings>
+</lang>

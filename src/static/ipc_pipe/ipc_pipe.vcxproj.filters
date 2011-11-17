@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Server Client">
+      <UniqueIdentifier>{7df569ce-d99b-4188-a9ac-9a1552f23be3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Network stuff">
+      <UniqueIdentifier>{90d9be64-ba56-497e-b8bb-33581fe9b0b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prec Header">
+      <UniqueIdentifier>{5d929477-15a1-40f3-94be-d1f2dc70eed6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="code\IPCPipeAuth.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IPCPipeBase.h">
+      <Filter>Source Files\Server Client</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IPCPipeClient.h">
+      <Filter>Source Files\Server Client</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IPCPipeHelper.h">
+      <Filter>Source Files\Server Client</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IPCPipeServer.h">
+      <Filter>Source Files\Server Client</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IPCClass.h">
+      <Filter>Source Files\Network stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IPCLockable.h">
+      <Filter>Source Files\Network stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IPCManager.h">
+      <Filter>Source Files\Network stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IPCMessage.h">
+      <Filter>Source Files\Network stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IPCParameter.h">
+      <Filter>Source Files\Network stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IPCParameterI.h">
+      <Filter>Source Files\Network stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\Common.h">
+      <Filter>Prec Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="code\IPCPipeBase.cpp">
+      <Filter>Source Files\Server Client</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IPCPipeClient.cpp">
+      <Filter>Source Files\Server Client</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IPCPipeServer.cpp">
+      <Filter>Source Files\Server Client</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IPCClass.cpp">
+      <Filter>Source Files\Network stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IPCManager.cpp">
+      <Filter>Source Files\Network stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="code\IPCParameter.cpp">
+      <Filter>Source Files\Network stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\Common.cpp">
+      <Filter>Prec Header</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

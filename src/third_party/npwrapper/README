@@ -1,0 +1,131 @@
+
+  nspluginwrapper
+  A cross-platform NPAPI plugin viewer
+
+  Copyright (C) 2005-2009 Gwenole Beauchesne
+  Copyright (C) 2011 David Benjamin
+
+  http://nspluginwrapper.davidben.net/
+
+License
+-------
+
+nspluginwrapper is available under the terms of the GNU General Public License.
+See the file "COPYING" that is included in the distribution for details.
+
+nspluginwrapper is a trademark of Gwenole Beauchesne.
+
+
+Overview
+--------
+
+nspluginwrapper consists in a proxy plugin and a viewer for NPAPI
+compatible plugins. It makes it possible to use 32-bit x86 plugins
+like Adobe Flash Player on other platforms like Linux/x86_64, *BSD and
+even Linux/ppc.
+
+nspluginwrapper also provides a standalone plugins player. This
+program makes it possible to execute plugins without an actual
+browser.
+
+
+Quick build notes
+-----------------
+
+To simplify the build of the 32-bit viewer, a minimal subset of LSB
+Desktop 3.1 is included in this distribution. Hence, you only have
+to proceed as follows:
+
+$ ./configure
+$ make
+# make install
+
+Or, if you prefer from a source package:
+$ rpm --rebuild nspluginwrapper.src.rpm
+
+NOTE: if you are building the Linux viewer for use on a non-Linux
+system (e.g. NetBSD, FreeBSD), you will have to configure the Linux
+build with the --enable-generic option. That way, named sockets will
+be used and work under the Linux emulation layer on those operating
+systems.
+
+
+Requirements and Installation
+-----------------------------
+
+An NPAPI-supporting browser built with GTK 2 support is currently
+required for proper operation. An alternative is Konqueror but it does
+not yet support the npruntime scripting API.
+
+On package installation, 32-bit plugins are automatically recognized
+provided they are available in the /usr/lib/mozilla/plugins directory.
+
+You can manually install/remove/update plugins with "nspluginwrapper".
+
+   usage: nspluginwrapper [flags] [command [plugin(s)]]
+
+   -h --help               print this message
+   -v --verbose            flag: set verbose mode
+   -a --auto               flag: set automatic mode for plugins discovery
+   -n --native             flag: allow native plugin(s) to be wrapped
+   -l --list               list plugins currently installed
+   -u --update [FILE(S)]   update plugin(s) currently installed
+   -i --install [FILE(S)]  install plugin(s)
+   -r --remove [FILE(S)]   remove plugin(s)
+
+[plugin(s)] are full paths to actual plugin binaries (e.g. nppdf.so
+for Acrobat Reader, libflashplayer.so for Flash).
+
+
+Compatibility List
+------------------
+
+Please bear in mind this is *BETA* software.
+
+The following plugins work reasonnably well:
+- Acrobat Reader      5.0.9
+- Acrobat Reader      7.0.1
+- Acrobat Reader      8.1.2
+- Acrobat Reader      9.4.2
+- DejaVu Libre        3.5.14
+- Flash Player        7.0
+- Flash Player        9.0.124
+- Flash Player        10.0.12.36
+- Flash Player        10.2.153
+- Flash Player        10.3.181
+- Linux J2K           0.0.2
+- Mplayerplug-in      2.80
+- Mplayerplug-in      3.25
+- Real Player         8.0
+- Real Player         10.0.5
+- Tcl plugin          3.1
+- Squeak VM plugin    3.7
+- Citrix ICA Client   10.0
+- 3DMLW               1.0.3
+
+Broken or partially working:
+- Real Player         8.0
+- Adobe SVG           3.01x88
+
+
+History
+-------
+
+This project's history is maintained in a git repository hosted by
+Github:
+
+https://github.com/davidben/nspluginwrapper
+
+Please consult the file "NEWS" for the release history.
+A "ChangeLog.pre-1-4" file is also available in this distribution from before
+git.
+
+
+Author
+------
+
+Gwenole Beauchesne,
+<gb.public@free.fr>
+
+David Benjamin,
+<davidben@mit.edu>

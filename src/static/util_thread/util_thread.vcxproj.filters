@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{a9ccc2c1-d84c-4c97-b036-c58b8f08f5d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{19df9376-37f2-4eee-af0c-1786bbb3e327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PC Header">
+      <UniqueIdentifier>{ef648e98-c2df-408d-a1a0-514f0af77b2b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="code\BaseThread.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ThreadPool.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ThreadPoolThread.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\Common.cpp">
+      <Filter>PC Header</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="code\ThreadPoolThread.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\Common.h">
+      <Filter>PC Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\util_thread\ThreadPool.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\util_thread\BaseThread.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\util_thread\ReadWriteMutex.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

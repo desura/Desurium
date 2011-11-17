@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{2d716b27-1fc6-4f73-b111-797ad6bfe474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{8b271b77-c21a-4023-ab44-b007ca8bf6b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PC Header">
+      <UniqueIdentifier>{f79ee820-5538-4560-ac01-e601f2a936ca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="code\MiniDumpGenerator_win.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\Common.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\MiniDumpGenerator.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\Common.h" />
+  </ItemGroup>
+</Project>

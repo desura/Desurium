@@ -1,0 +1,418 @@
+<theme>
+	<name>Default Desura Theme</name>
+	<creator>Josh Collie</creator>
+	<version>1.0.0</version>
+	<preview>preview.jpg</preview>
+	
+	<!-- internal webpages -->
+	<web>
+		<page name="loading">loading.html</page>
+		<page name="playlist">playlist.html</page>
+		<page name="error">error.html</page>
+		<page name="chat">chat.html</page>
+		<page name="settings">settings.html</page>
+		<page name="cip">cip.html</page>
+	</web>
+	
+	<!-- Colors can be in the format '#RRGGBBAA' or 'RRR GGG BBB AAA'-->
+	<controls>
+		<control name="default">
+			<color id="bg">255 255 255 255</color>
+			<color id="fg">0 0 0 0</color>
+		</control>
+		
+		<control name="headerbottomborder">
+			<color id="bg">44 44 44 255</color>
+		</control>
+		
+		<control name="countbubble">
+			<color id="fg">197 197 197 255</color>
+			<color id="hov-fg">255 255 255 255</color>
+		</control>
+		
+		<control name="abouttext">
+			<color id="bg">102 102 102 255</color>
+			<color id="fg">160 160 160 255</color>
+		</control>
+
+		<!-- controls -->
+		<control name="formdefault">
+			<color id="bg">11 11 11 255</color>
+			<color id="fg">255 255 255 255</color>
+		</control>
+		
+		<control name="formlogin">
+			<color id="bg">30 30 30 255</color>
+			<color id="fg">160 160 160 255</color>
+			<color id="tb-fg">0 0 0 255</color>
+			<color id="tb-default-fg">160 160 160 255</color><!-- color used when "Password" or "Username" entered into textbox -->
+			<color id="link-fg">160 160 160 255</color>
+			<color id="link-hov-fg">0 137 213 255</color>
+		</control>		
+		
+		<control name="formsettings">
+			<color id="bg">44 44 44 255</color>
+			<color id="fg">255 255 255 255</color>
+		</control>
+		
+		<control name="tabbutton">
+			<color id="selected-bg">44 44 44 255</color>
+			<color id="bg">33 33 33 255</color>
+		</control>
+		
+		<control name="label">
+			<color id="bg">11 11 11 0</color>				<!-- bg -->
+			<color id="fg">255 255 255 255</color>			<!-- normal fg -->
+			<color id="na-fg">160 160 160 255</color>		<!-- nonactive fg -->
+			<color id="err-fg">166 0 4 255</color>			<!-- error fg -->
+		</control>
+
+		<control name="button">
+			<color id="bg">66 66 66 255</color>
+			<color id="fg">255 255 255 255</color>
+		</control>
+		
+		<control name="textbox">
+			<color id="bg">255 255 255 255</color>
+			<color id="fg">0 0 0 255</color>
+		</control>
+		
+		<control name="combobox">
+			<color id="bg">255 255 255 255</color>
+			<color id="fg">0 0 0 255</color>
+		</control>
+		
+		<control name="choicebox">
+			<color id="bg">255 255 255 255</color>
+			<color id="fg">0 0 0 255</color>
+		</control>
+		
+		<control name="checkbox">
+			<color id="bg">255 255 255 255</color>
+			<color id="fg">255 255 255 255</color>
+			<color id="focus-fg">102 102 102 255</color>
+		</control>
+	
+		<!-- hyperlinks -->
+		<control name="hyperlink">							<!-- item link -->
+			<color id="visted-fg">200 200 200 255</color>
+			<color id="hov-fg">255 255 255 255</color>
+		</control>
+		
+		<control name="hyperlinkmenu">						<!-- menu button strip -->
+			<color id="fg">200 200 200 255</color>
+			<color id="hov-fg">255 255 255 255</color>
+		</control>
+		
+		<control name="hyperlinkbreadcrumb">
+			<color id="fg">197 197 197 255</color>
+			<color id="hov-fg">255 255 255 255</color>
+		</control>
+		
+		<control name="itemToolBar">
+			<color id="hov-fg">255 255 255 255</color> 		<!-- hover -->
+			<color id="fg">177 177 177 255</color> 				<!-- normal -->
+			<color id="na-fg">177 177 177 255</color> 			<!-- nonactive -->
+		</control>
+
+		<control name="menu">
+			<color id="focus-bg">51 51 51 255</color>
+			<color id="bg">30 30 30 255</color>
+			<color id="focus-fg">255 255 255 255</color>
+			<color id="fg">128 128 128 255</color>
+			<color id="na-fg">60 60 60 255</color>
+			<color id="border">0 0 0 255</color>
+			<color id="spacer">70 70 70 255</color>
+		</control>
+		
+		<control name="searchBox">
+			<color id="bg">87 87 87 255</color>
+			<color id="fg">87 87 87 255</color>
+			<color id="sb-bg">44 44 44 255</color> 			<!-- hover -->
+			<color id="sb-fg">255 255 255 255</color> 		<!-- normal -->
+		</control>
+		
+		<control name="tabpage">
+			<color id="bg">11 11 11 255</color>
+		</control>		
+	</controls>
+	<images>
+		<image name="icon_default">icon_default.png</image>
+		<image name="icon_avatar">icon_avatar.png</image>
+		<image name="icon_download">icon_download.png</image>
+
+		<!-- message box icons -->
+		<image name="icon_hand">icon_hand.png</image>
+		<image name="icon_information">icon_information.png</image>
+		<image name="icon_question">icon_question.png</image>
+		<image name="icon_warning">icon_warning.png</image>
+		
+		<image name="menu_bg">menu_bg.png</image>
+		<image name="menu_bg_nonactive">menu_bg_nonactive.png</image>
+		<image name="menu_overlay">menu_overlay.png</image>
+		<image name="menu_separator">menu_separator.png</image>
+		<image name="menu_separator_nonactive">menu_separator_nonactive.png</image>
+		<image name="menu_separator_selected_left">menu_separator_selected_left.png</image>
+		<image name="menu_separator_selected_right">menu_separator_selected_right.png</image>
+		
+		<image name="menu_button">menu_button.png</image>
+		<image name="menu_button_hover">menu_button_hover.png</image>
+		<image name="menu_button_nonactive">menu_button_nonactive.png</image>
+
+		<image name="search_button">search_button.png</image>
+		<image name="search_button_hover">search_button_hover.png</image>
+		<image name="search_button_nonactive">search_button_nonactive.png</image>
+		
+		<image name="header_bg">header_bg.png</image>
+		<image name="header_separator">header_separator.png</image>
+		<image name="header_button_mail">header_button_mail.png</image>
+		<image name="header_button_mail_hover">header_button_mail_hover.png</image>
+		<image name="header_button_message">header_button_message.png</image>
+		<image name="header_button_message_hover">header_button_message_hover.png</image>
+		<image name="header_button_plus">header_button_plus.png</image>
+		<image name="header_button_plus_hover">header_button_plus_hover.png</image>
+		<image name="header_button_cart">header_button_cart.png</image>
+		<image name="header_button_cart_hover">header_button_cart_hover.png</image>
+		
+		<image name="breadcrumb_start">breadcrumb_start.png</image>
+		<image name="breadcrumb_bg">breadcrumb_bg.png</image>
+		<image name="breadcrumb_separator">breadcrumb_separator.png</image>
+
+		<image name="browser_stop">browser_stop.png</image>
+		<image name="browser_forward">browser_forward.png</image>
+		<image name="browser_back">browser_back.png</image>
+		<image name="browser_home">browser_home.png</image>
+		<image name="browser_refresh">browser_refresh.png</image>
+		<image name="browser_break">browser_break.png</image>
+
+		<image name="browser_stop_nonactive">browser_stop_nonactive.png</image>
+		<image name="browser_forward_nonactive">browser_forward_nonactive.png</image>
+		<image name="browser_back_nonactive">browser_back_nonactive.png</image>
+		<image name="browser_home_nonactive">browser_home_nonactive.png</image>
+		<image name="browser_refresh_nonactive">browser_refresh_nonactive.png</image>
+		<image name="browser_break_nonactive">browser_break_nonactive.png</image>	
+
+		<image name="browser_stop_hover">browser_stop_hover.png</image>
+		<image name="browser_forward_hover">browser_forward_hover.png</image>
+		<image name="browser_back_hover">browser_back_hover.png</image>
+		<image name="browser_home_hover">browser_home_hover.png</image>
+		<image name="browser_refresh_hover">browser_refresh_hover.png</image>
+		<image name="browser_break_hover">browser_break_hover.png</image>
+		<image name="browser_loading">browser_loading.png</image>
+		<image name="browser_loading_spinner">browser_loading_spinner.gif</image>
+				
+		<image name="items_expand">items_expand.png</image>
+		<image name="items_contract">items_contract.png</image>
+		<image name="items_expand_hover">items_expand_hover.png</image>
+		<image name="items_contract_hover">items_contract_hover.png</image>
+		<image name="items_expand_nonactive">items_expand_nonactive.png</image>
+		<image name="items_contract_nonactive">items_contract_nonactive.png</image>
+
+		<image name="count_background">count_background.png</image>
+		<image name="count_background_hover">count_background_hover.png</image>
+
+		<image name="about_logo">about_logo.png</image>
+		<image name="horizontal_rule">horizontal_rule.png</image>
+		<image name="progressbar">progressbar.png</image>
+		<image name="spinningbar">spinningbar.png</image>
+		
+		<image name="button_normal">button_normal.png</image>
+		<image name="button_hover">button_hover.png</image>
+		<image name="button_depressed">button_depressed.png</image>
+		<image name="button_disable">button_disabled.png</image>
+		<image name="button_toggle_up">button_toggle_up.png</image>
+		<image name="button_toggle_down">button_toggle_down.png</image>
+		<image name="button_focus">button_focus.png</image>
+		
+		<image name="main_border_nonactive">main_border_nonactive.png</image>
+		<image name="main_border">main_border.png</image>
+		<image name="main_header_border">main_header_border.png</image>
+		<image name="main_header_border_nonactive">main_header_border_nonactive.png</image>
+		
+		<image name="main_close">main_close.png</image>
+		<image name="main_close_nonactive">main_close_nonactive.png</image>
+		<image name="main_max">main_max.png</image>
+		<image name="main_max_nonactive">main_max_nonactive.png</image>
+		<image name="main_min">main_min.png</image>	
+		<image name="main_min_nonactive">main_min_nonactive.png</image>
+		<image name="main_restore">main_restore.png</image>	
+		<image name="main_restore_nonactive">main_restore_nonactive.png</image>
+		
+		<image name="playlist_button_normal">playlist_button_normal.png</image>
+		<image name="playlist_button_hover">playlist_button_hover.png</image>
+		<image name="playlist_button_focus">playlist_button_focus.png</image>
+		<image name="playlist_button_nonactive">playlist_button_nonactive.png</image>
+
+		<image name="button_copy">button_copy.png</image>
+		<image name="button_copy_hover">button_copy_hover.png</image>	
+		<image name="button_copy_focus">button_copy_focus.png</image>
+		<image name="button_copy_nonactive">button_copy_nonactive.png</image>		
+	
+		<image name="button_copy_part">button_copy_part.png</image>
+		<image name="button_copy_part_hover">button_copy_part_hover.png</image>	
+		<image name="button_copy_part_focus">button_copy_part_focus.png</image>
+		<image name="button_copy_part_nonactive">button_copy_part_nonactive.png</image>	
+		
+		<image name="menu_checked">menu_checked.png</image>
+		<image name="menu_checked_focus">menu_checked_focus.png</image>
+		
+		<image name="login_logo">signin_banner.png</image>
+		<image name="login_default_avatar">default_login_avatar.png</image>	
+		
+		
+		<image name="chat_add_friend">chat_add_friend.png</image>
+		<image name="chat_add_friend_hover">chat_add_friend_hover.png</image>
+		<image name="chat_add_friend_nonactive">chat_add_friend_nonactive.png</image>
+		
+		<image name="chat_breakout">chat_breakout.png</image>
+		<image name="chat_breakout_hover">chat_breakout_hover.png</image>
+		<image name="chat_breakout_nonactive">chat_breakout_nonactive.png</image>	
+
+		<image name="chat_offline_hide">chat_offline_hide.png</image>
+		<image name="chat_offline_hide_hover">chat_offline_hide_hover.png</image>
+		<image name="chat_offline_hide_nonactive">chat_offline_hide_nonactive.png</image>
+		
+		<image name="chat_offline_show">chat_offline_show.png</image>
+		<image name="chat_offline_show_hover">chat_offline_show_hover.png</image>
+		<image name="chat_offline_show_nonactive">chat_offline_show_nonactive.png</image>
+		
+		<image name="chat_profile">chat_profile.png</image>
+		<image name="chat_profile_hover">chat_profile_hover.png</image>
+		<image name="chat_profile_nonactive">chat_profile_nonactive.png</image>			
+	</images>
+	
+	<!-- sprites are lots of images stored together as one image -->
+	<sprites>
+		<sprite name="playlist_button">
+			<rect name="left">
+				<pos x="0" y="0" />
+				<size w="4" h="19" />
+			</rect>
+			<rect name="fill">
+				<pos x="4" y="0" />
+				<size w="4" h="19" />
+			</rect>	
+			<rect name="seperator">
+				<pos x="8" y="0" />
+				<size w="4" h="19" />
+			</rect>	
+			<rect name="right">
+				<pos x="12" y="0" />
+				<size w="4" h="19" />
+			</rect>
+		</sprite>			
+	
+		<sprite name="main_button">
+			<rect name="normal">
+				<pos x="0" y="0" />
+				<size w="500" h="22" />
+			</rect>
+			<rect name="disabled">
+				<pos x="0" y="22" />
+				<size w="500" h="22" />
+			</rect>
+			<rect name="focus">
+				<pos x="0" y="44" />
+				<size w="500" h="22" />
+			</rect>
+			<rect name="hover">
+				<pos x="0" y="66" />
+				<size w="500" h="22" />
+			</rect>
+		</sprite>
+	
+		<sprite name="main_border">
+			<rect name="north">
+				<pos x="6" y="0" />
+				<size w="10" h="6" />
+			</rect>
+			<rect name="south">
+				<pos x="6" y="16" />
+				<size w="10" h="6" />
+			</rect>	
+			<rect name="east">
+				<pos x="16" y="6" />
+				<size w="6" h="10" />
+			</rect>	
+			<rect name="west">
+				<pos x="0" y="6" />
+				<size w="6" h="10" />
+			</rect>
+			<rect name="nwest">
+				<pos x="0" y="0" />
+				<size w="6" h="6" />
+			</rect>	
+			<rect name="neast">
+				<pos x="16" y="0" />
+				<size w="6" h="6" />
+			</rect>	
+			<rect name="swest">
+				<pos x="0" y="16" />
+				<size w="6" h="6" />
+			</rect>	
+			<rect name="seast">
+				<pos x="16" y="16" />
+				<size w="6" h="6" />
+			</rect>	
+			<rect name="fill">
+				<pos x="7" y="7" />
+				<size w="8" h="8" />
+			</rect>		
+		</sprite>
+	
+		<sprite name="horizontal_rule">
+			<rect name="Left">
+				<pos x="0" y="0" />
+				<size w="5" h="-1" />
+			</rect>
+			<rect name="Center">
+				<pos x="5" y="0" />
+				<size w="5" h="-1" />
+			</rect>	
+			<rect name="Right">
+				<pos x="10" y="0" />
+				<size w="5" h="-1" />
+			</rect>				
+		</sprite>		
+		
+		<sprite name="button">
+			<rect name="Left">
+				<pos x="0" y="0" />
+				<size w="7" h="-1" />
+			</rect>
+			<rect name="Center">
+				<pos x="7" y="0" />
+				<size w="6" h="-1" />
+			</rect>	
+			<rect name="Right">
+				<pos x="14" y="0" />
+				<size w="7" h="-1" />
+			</rect>				
+		</sprite>
+		
+		<sprite name="progressbar">
+			<rect name="Norm">
+				<pos x="0" y="0" />
+				<size w="4" h="-1" />
+			</rect>
+			<rect name="NormEdge">
+				<pos x="4" y="0" />
+				<size w="4" h="-1" />
+			</rect>	
+			<rect name="Empty">
+				<pos x="16" y="0" />
+				<size w="4" h="-1" />
+			</rect>	
+		
+			<!-- red secton for upload -->
+			<rect name="Error">
+				<pos x="8" y="0" />
+				<size w="4" h="-1" />
+			</rect>
+			<rect name="ErrorEdge">
+				<pos x="12" y="0" />
+				<size w="4" h="-1" />
+			</rect>	
+		</sprite>	
+	</sprites>
+</theme>

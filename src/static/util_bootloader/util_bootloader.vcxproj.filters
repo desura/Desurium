@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{ac812a51-2102-4046-9e0d-6006209c1c96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\third_party">
+      <UniqueIdentifier>{b114c09c-ac0d-476a-8e7f-9220cad1f201}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="code\UtilBootloader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CreateProcess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UtilMiscStub.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\third_party\PEImage.cpp">
+      <Filter>Source Files\third_party</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\UtilBootloader.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\third_party\PEImage.h">
+      <Filter>Source Files\third_party</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

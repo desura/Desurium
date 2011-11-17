@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{959bc375-c68c-4a5d-8866-59dc6e43c152}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prec Header">
+      <UniqueIdentifier>{9cec196b-ed00-4eaa-ad83-250c54b3fdc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gcControls">
+      <UniqueIdentifier>{83fb4650-28ce-420a-8710-bdef2da260ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\wxContorls">
+      <UniqueIdentifier>{73705bf8-3c7c-4467-8d0c-21d0d3d65ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\custom frame">
+      <UniqueIdentifier>{6d6a1986-d9cf-4945-ac77-fd88cbd09675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{42353b46-cff6-429f-ab29-2c531df17e1e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include=".\code\guiDelegate.cpp" />
+    <ClCompile Include=".\code\gcButton.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcCheckBox.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcChoice.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcCombo.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcDialog.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcFrame.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcHyperlinkCtrl.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcImage.cpp">
+      <Filter>Source Files\gcControls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcImageButton.cpp">
+      <Filter>Source Files\gcControls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcImageControl.cpp">
+      <Filter>Source Files\gcControls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcImgButtonCount.cpp">
+      <Filter>Source Files\gcControls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcPanel.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcProgressBar.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcRadioButton.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcScrolledWindow.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcStaticLine.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcStaticText.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcTaskBar.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcTextCtrl.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcMessageBox.cpp">
+      <Filter>Source Files\gcControls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcToggleButton.cpp">
+      <Filter>Source Files\gcControls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcUpProgBar.cpp">
+      <Filter>Source Files\gcControls</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcThemeManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcManagers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcImageHandle.cpp">
+      <Filter>Source Files\gcControls</Filter>
+    </ClCompile>
+    <ClCompile Include=".\code\gcCustomFrameImpl.cpp">
+      <Filter>Source Files\custom frame</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcCustomFrameButtons.cpp">
+      <Filter>Source Files\custom frame</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcCustomFrameResize.cpp">
+      <Filter>Source Files\custom frame</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcCustomFrameMove.cpp">
+      <Filter>Source Files\custom frame</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcTipWindow.cpp">
+      <Filter>Source Files\gcControls</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcCustomMenu.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcSpinningBar.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcSpinnerProgBar.cpp">
+      <Filter>Source Files\gcControls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\Common.cpp">
+      <Filter>Prec Header</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcGrid.cpp">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\wx_controls\guiDelegate.h" />
+    <ClInclude Include="..\..\include\wx_controls\wxEventDelegate.h" />
+    <ClInclude Include="..\..\include\wx_controls\gcButton.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcCheckBox.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcChoice.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcCombo.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcControls.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcDialog.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcFlickerFreePaint.h">
+      <Filter>Source Files\gcControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcFrame.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcHyperlinkCtrl.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcImgButtonCount.h">
+      <Filter>Source Files\gcControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcImage.h">
+      <Filter>Source Files\gcControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcImageButton.h">
+      <Filter>Source Files\gcControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcImageControl.h">
+      <Filter>Source Files\gcControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcImageHandle.h">
+      <Filter>Source Files\gcControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcPanel.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcProgressBar.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcRadioButton.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcScrolledWindow.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcStaticLine.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcStaticText.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcTaskBar.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcTextCtrl.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcUpProgBar.h">
+      <Filter>Source Files\gcControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcMessageBox.h">
+      <Filter>Source Files\gcControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcToggleButton.h">
+      <Filter>Source Files\gcControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcManagers.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcThemeManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcCustomFrameImpl.h">
+      <Filter>Source Files\custom frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcCustomFrame.h">
+      <Filter>Source Files\custom frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcCustomFrameButtons.h">
+      <Filter>Source Files\custom frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcCustomFrameMove.h">
+      <Filter>Source Files\custom frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcCustomFrameResize.h">
+      <Filter>Source Files\custom frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcTipWindow.h">
+      <Filter>Source Files\gcControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcCustomMenu.h">
+      <Filter>Source Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcSpinningBar.h">
+      <Filter>Source Files\wxContorls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\wx_controls\gcSpinnerProgBar.h">
+      <Filter>Source Files\gcControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\Common.h">
+      <Filter>Prec Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

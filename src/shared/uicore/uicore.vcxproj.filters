@@ -1,0 +1,838 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Dialogs">
+      <UniqueIdentifier>{33313922-01c1-4e21-9fe2-7cc70261a373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Dialogs\new account">
+      <UniqueIdentifier>{89890623-3fb1-4d0d-b372-85dec1f4f14c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Dialogs\new account\pages">
+      <UniqueIdentifier>{4a81999b-d3ab-4f91-8251-16b1fbf75d52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Dialogs\about">
+      <UniqueIdentifier>{b0016fb7-90a7-4185-8add-283a19c75892}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms">
+      <UniqueIdentifier>{5dee7de2-bc20-4502-afcf-50f725e58ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage">
+      <UniqueIdentifier>{df6db9ac-a6a7-43d2-a3d9-127c640fbb38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\create">
+      <UniqueIdentifier>{67f137fc-fe3f-47b6-9f4b-87069fc34de0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\create\pages">
+      <UniqueIdentifier>{6f5df53a-b97e-4d7d-9d51-e4d5efebd54c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\install">
+      <UniqueIdentifier>{de1bbe2d-fa89-448c-8f73-dd0d7a516552}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\install\pages">
+      <UniqueIdentifier>{672f3269-4c21-4476-8b48-3c4d1aa62fb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\install\dialogs">
+      <UniqueIdentifier>{1500a411-c279-490f-ac4c-8e8f5ad930b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\upload">
+      <UniqueIdentifier>{712c9b3d-9ba6-43de-ae84-8276df77b447}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\upload\pages">
+      <UniqueIdentifier>{079be670-a1ed-4b39-8a24-f0babdf6a25c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\modWizard">
+      <UniqueIdentifier>{ca701c35-3524-4d65-9ad3-cf8f4303b276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\modWizard\pages">
+      <UniqueIdentifier>{91ccac74-a120-4990-af41-fa79d379370a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\normal">
+      <UniqueIdentifier>{2fc57022-87ec-4ebc-a0a6-8c1d2fefa61a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\normal\app">
+      <UniqueIdentifier>{69f96bcb-e46b-4588-938d-c97dfadb0051}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\normal\mcf">
+      <UniqueIdentifier>{a2c83484-a284-4b75-94c1-ee9130e21e7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Logging">
+      <UniqueIdentifier>{6e40e813-3abe-4600-a817-168d78231e52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\managers">
+      <UniqueIdentifier>{89972689-9ae5-4b8e-a81b-c94bf19bf511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Main Form">
+      <UniqueIdentifier>{eae7489a-13cc-4e74-8608-89b9fe27bdd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main Form\desura main">
+      <UniqueIdentifier>{edff3298-089a-4274-ad1f-8fc14b76cbff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main Form\desura main\pages">
+      <UniqueIdentifier>{6679e2d2-ffc5-4327-9ab7-950ac376e26f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main Form\desura main\pages\ToolBar Control">
+      <UniqueIdentifier>{1ee2d927-f191-4fb9-8bc1-ad463a5d284a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main Form\menu">
+      <UniqueIdentifier>{e1067bcb-566f-4296-a564-7c61078e02df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main App">
+      <UniqueIdentifier>{58030d88-9803-46ff-8797-411b602b5fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\install\pages\Install Check">
+      <UniqueIdentifier>{96f56747-4b56-4044-a10f-bc1a352110fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\install\pages\Install">
+      <UniqueIdentifier>{8f650f4e-a4bb-4acd-8c27-1803ea4a9e94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\install\pages\Uninstall">
+      <UniqueIdentifier>{45becc22-12ff-4165-bef7-52808b502656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controls">
+      <UniqueIdentifier>{9ea96fdd-2da6-4818-84ef-a692f69dc22b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TaskBarIcon">
+      <UniqueIdentifier>{d2ea3bc9-2e41-4b35-b421-19c40a302fa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TaskBarIcon\Menu">
+      <UniqueIdentifier>{ba4a7959-2521-44fd-8321-de50675acdc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InternalLink">
+      <UniqueIdentifier>{c33159da-f2bc-478d-9797-5783134da4fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\cdkey">
+      <UniqueIdentifier>{d1090386-af6e-41c7-81c4-e407370570dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Forms\MultiPage\cdkey\pages">
+      <UniqueIdentifier>{b4d1b4c9-f8ac-4cbd-bfaa-fa03b24fee25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prec Header">
+      <UniqueIdentifier>{345e8cd2-63f7-4654-aecc-676fc208ce11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Browser">
+      <UniqueIdentifier>{bf95cdf8-6631-41b3-85bb-1e71c25bebab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Browser\Cef Internal">
+      <UniqueIdentifier>{087b8a4d-7d87-4217-9ff4-fa45be3d3cb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Browser\Cef Internal\exstensions">
+      <UniqueIdentifier>{3ebc96bc-9b14-4c74-ba1c-89efd305d420}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Browser\Cef Internal\exstensions\JS Bindings">
+      <UniqueIdentifier>{08acf825-62b8-4987-b548-1c6fd17539a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Browser\Cef Internal\exstensions\Schemes">
+      <UniqueIdentifier>{38b2ec95-f8ec-4c8c-a4fd-4fe9a7fab9e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Browser\Cef Host">
+      <UniqueIdentifier>{ac6f2654-6ebd-49a3-82f6-33456980c257}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Browser\Cef Host\IPC">
+      <UniqueIdentifier>{0c9c3c43-9554-4f2c-a40a-11e896532104}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="code\DesuraServiceError.h">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="code\steamUser.h">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="code\newAccount.h">
+      <Filter>Source Files\Dialogs\new account</Filter>
+    </ClInclude>
+    <ClInclude Include="code\newAccountInfo.h">
+      <Filter>Source Files\Dialogs\new account\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\newAccountTOS.h">
+      <Filter>Source Files\Dialogs\new account\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BasePage.h">
+      <Filter>Source Files\Forms\MultiPage</Filter>
+    </ClInclude>
+    <ClInclude Include="code\createForm.h">
+      <Filter>Source Files\Forms\MultiPage\create</Filter>
+    </ClInclude>
+    <ClInclude Include="code\createInfoPage.h">
+      <Filter>Source Files\Forms\MultiPage\create\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\createOVPage.h">
+      <Filter>Source Files\Forms\MultiPage\create\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\createProgPage.h">
+      <Filter>Source Files\Forms\MultiPage\create\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ComplexPrompt.h">
+      <Filter>Source Files\Forms\MultiPage\install\dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="code\InstallBranch.h">
+      <Filter>Source Files\Forms\MultiPage\install\dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="code\installPrompt.h">
+      <Filter>Source Files\Forms\MultiPage\install\dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="code\uploadForm.h">
+      <Filter>Source Files\Forms\MultiPage\upload</Filter>
+    </ClInclude>
+    <ClInclude Include="code\uploadPrompt.h">
+      <Filter>Source Files\Forms\MultiPage\upload</Filter>
+    </ClInclude>
+    <ClInclude Include="code\uploadInfoPage.h">
+      <Filter>Source Files\Forms\MultiPage\upload\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\uploadProgPage.h">
+      <Filter>Source Files\Forms\MultiPage\upload\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\modWizard.h">
+      <Filter>Source Files\Forms\MultiPage\modWizard</Filter>
+    </ClInclude>
+    <ClInclude Include="code\changeLogForm.h">
+      <Filter>Source Files\Forms\normal\app</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcUpdateForm.h">
+      <Filter>Source Files\Forms\normal\app</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LoginForm.h">
+      <Filter>Source Files\Forms\normal\app</Filter>
+    </ClInclude>
+    <ClInclude Include="code\newsForm.h">
+      <Filter>Source Files\Forms\normal\app</Filter>
+    </ClInclude>
+    <ClInclude Include="code\itemUpdateForm.h">
+      <Filter>Source Files\Forms\normal\mcf</Filter>
+    </ClInclude>
+    <ClInclude Include="code\LaunchPrompt.h">
+      <Filter>Source Files\Forms\normal\mcf</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Console.h">
+      <Filter>Source Files\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="code\log.h">
+      <Filter>Source Files\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="code\buttonStrip.h">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClInclude>
+    <ClInclude Include="code\desuraControl.h">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClInclude>
+    <ClInclude Include="code\mainMenuButton.h">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClInclude>
+    <ClInclude Include="code\menuStrip.h">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClInclude>
+    <ClInclude Include="code\usernameBox.h">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClInclude>
+    <ClInclude Include="code\baseTabPage.h">
+      <Filter>Source Files\Main Form\desura main\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\baseMenuButton.h">
+      <Filter>Source Files\Main Form\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\menuFiller.h">
+      <Filter>Source Files\Main Form\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\menuSeperator.h">
+      <Filter>Source Files\Main Form\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\stripMenuButton.h">
+      <Filter>Source Files\Main Form\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\InternalLink.h">
+      <Filter>Source Files\InternalLink</Filter>
+    </ClInclude>
+    <ClInclude Include="code\managers.h">
+      <Filter>Source Files\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MainForm.h">
+      <Filter>Source Files\Main Form</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MainFormCustomFrame.h">
+      <Filter>Source Files\Main Form</Filter>
+    </ClInclude>
+    <ClInclude Include="code\MainFormLeftBorder.h">
+      <Filter>Source Files\Main Form</Filter>
+    </ClInclude>
+    <ClInclude Include="code\FrameButtons.h">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClInclude>
+    <ClInclude Include="code\EulaForm.h">
+      <Filter>Source Files\Forms\normal\mcf</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DispLoading.h">
+      <Filter>Source Files\Main Form\desura main\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BaseToolBarControl.h">
+      <Filter>Source Files\Main Form\desura main\pages\ToolBar Control</Filter>
+    </ClInclude>
+    <ClInclude Include="code\HtmlToolBarControl.h">
+      <Filter>Source Files\Main Form\desura main\pages\ToolBar Control</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ItemToolBarControl.h">
+      <Filter>Source Files\Main Form\desura main\pages\ToolBar Control</Filter>
+    </ClInclude>
+    <ClInclude Include="code\HtmlTabPage.h">
+      <Filter>Source Files\Main Form\desura main\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ItemTabPage.h">
+      <Filter>Source Files\Main Form\desura main\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ItemForm.h">
+      <Filter>Source Files\Forms\MultiPage\install</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ICheckProgressPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install Check</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ICheckFinishPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install Check</Filter>
+    </ClInclude>
+    <ClInclude Include="code\installVIPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClInclude>
+    <ClInclude Include="code\installBannerPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClInclude>
+    <ClInclude Include="code\installDLPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClInclude>
+    <ClInclude Include="code\installGIPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClInclude>
+    <ClInclude Include="code\installINPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UninstallProgressPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Uninstall</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UninstallInfoPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Uninstall</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BaseInstallPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcSchemeBase.h">
+      <Filter>Source Files\Browser\Cef Internal\exstensions</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcJSBinding.h">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcJSBranchInfo.h">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcJSEvents.h">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcJSItemInfo.h">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcJSUserInfo.h">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcImgLoader.h">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\Schemes</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcThemeLoader.h">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\Schemes</Filter>
+    </ClInclude>
+    <ClInclude Include="code\breadCrumb.h">
+      <Filter>Source Files\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="code\tabButton.h">
+      <Filter>Source Files\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="code\tabControl.h">
+      <Filter>Source Files\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="code\PasswordReminder.h">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DStripMenuControls.h">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClInclude>
+    <ClInclude Include="code\TaskBarIcon.h">
+      <Filter>Source Files\TaskBarIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="code\TBI_BaseMenu.h">
+      <Filter>Source Files\TaskBarIcon\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\TBI_WindowMenu.h">
+      <Filter>Source Files\TaskBarIcon\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\TBI_GameMenu.h">
+      <Filter>Source Files\TaskBarIcon\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\TBI_ModMenu.h">
+      <Filter>Source Files\TaskBarIcon\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\TBI_UpdateMenu.h">
+      <Filter>Source Files\TaskBarIcon\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CDKeyForm.h">
+      <Filter>Source Files\Forms\MultiPage\cdkey</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CDKProgress.h">
+      <Filter>Source Files\Forms\MultiPage\cdkey\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CDKInfo.h">
+      <Filter>Source Files\Forms\MultiPage\cdkey\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcJSUploads.h">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="code\installINCPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcJSLinks.h">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="code\installDLToolPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClInclude>
+    <ClInclude Include="code\installINToolPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClInclude>
+    <ClInclude Include="code\PreloadPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ExeSelectForm.h">
+      <Filter>Source Files\Forms\normal\app</Filter>
+    </ClInclude>
+    <ClInclude Include="code\installDVPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcJSSettings.h">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="code\installWaitPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClInclude>
+    <ClInclude Include="code\GameDiscForm.h">
+      <Filter>Source Files\Forms\normal\app</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SearchControl.h">
+      <Filter>Source Files\Main Form\desura main\pages\ToolBar Control</Filter>
+    </ClInclude>
+    <ClInclude Include="code\installVInfoPage.h">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcWebControl.h">
+      <Filter>Source Files\Browser\Cef Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcWebHost.h">
+      <Filter>Source Files\Browser\Cef Host</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcWCEvents.h">
+      <Filter>Source Files\Browser</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcWebControlI.h">
+      <Filter>Source Files\Browser</Filter>
+    </ClInclude>
+    <ClInclude Include="code\CefIPCPipeClient.h">
+      <Filter>Source Files\Browser\Cef Host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\browser_pipe\IPCBrowser.h">
+      <Filter>Source Files\Browser\Cef Host\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ChromiumMenuInfoFromMem.h">
+      <Filter>Source Files\Browser\Cef Host</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcMiscWebControl.h">
+      <Filter>Source Files\Browser</Filter>
+    </ClInclude>
+    <ClInclude Include="code\gcWebFakeBrowser.h">
+      <Filter>Source Files\Browser\Cef Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="code\AboutPageDev.h">
+      <Filter>Source Files\Dialogs\about</Filter>
+    </ClInclude>
+    <ClInclude Include="code\AboutPageMain.h">
+      <Filter>Source Files\Dialogs\about</Filter>
+    </ClInclude>
+    <ClInclude Include="code\ModWizardFinPage.h">
+      <Filter>Source Files\Forms\MultiPage\modWizard\pages</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="code\DesuraServiceError.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="code\steamUser.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="code\newAccount.cpp">
+      <Filter>Source Files\Dialogs\new account</Filter>
+    </ClCompile>
+    <ClCompile Include="code\newAccountInfo.cpp">
+      <Filter>Source Files\Dialogs\new account\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\newAccountTOS.cpp">
+      <Filter>Source Files\Dialogs\new account\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BasePage.cpp">
+      <Filter>Source Files\Forms\MultiPage</Filter>
+    </ClCompile>
+    <ClCompile Include="code\createForm.cpp">
+      <Filter>Source Files\Forms\MultiPage\create</Filter>
+    </ClCompile>
+    <ClCompile Include="code\createInfoPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\create\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\createOVPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\create\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\createProgPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\create\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ComplexPrompt.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="code\InstallBranch.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="code\installPrompt.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="code\uploadForm.cpp">
+      <Filter>Source Files\Forms\MultiPage\upload</Filter>
+    </ClCompile>
+    <ClCompile Include="code\uploadPrompt.cpp">
+      <Filter>Source Files\Forms\MultiPage\upload</Filter>
+    </ClCompile>
+    <ClCompile Include="code\uploadInfoPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\upload\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\uploadProgPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\upload\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\modWizard.cpp">
+      <Filter>Source Files\Forms\MultiPage\modWizard</Filter>
+    </ClCompile>
+    <ClCompile Include="code\changeLogForm.cpp">
+      <Filter>Source Files\Forms\normal\app</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcUpdateForm.cpp">
+      <Filter>Source Files\Forms\normal\app</Filter>
+    </ClCompile>
+    <ClCompile Include="code\LoginForm.cpp">
+      <Filter>Source Files\Forms\normal\app</Filter>
+    </ClCompile>
+    <ClCompile Include="code\newsForm.cpp">
+      <Filter>Source Files\Forms\normal\app</Filter>
+    </ClCompile>
+    <ClCompile Include="code\itemUpdateForm.cpp">
+      <Filter>Source Files\Forms\normal\mcf</Filter>
+    </ClCompile>
+    <ClCompile Include="code\LaunchPrompt.cpp">
+      <Filter>Source Files\Forms\normal\mcf</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Console.cpp">
+      <Filter>Source Files\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="code\log.cpp">
+      <Filter>Source Files\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="code\buttonStrip.cpp">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClCompile>
+    <ClCompile Include="code\desuraControl.cpp">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClCompile>
+    <ClCompile Include="code\mainMenuButton.cpp">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClCompile>
+    <ClCompile Include="code\menuStrip.cpp">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClCompile>
+    <ClCompile Include="code\usernameBox.cpp">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClCompile>
+    <ClCompile Include="code\baseTabPage.cpp">
+      <Filter>Source Files\Main Form\desura main\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\baseMenuButton.cpp">
+      <Filter>Source Files\Main Form\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\menuFiller.cpp">
+      <Filter>Source Files\Main Form\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\menuSeperator.cpp">
+      <Filter>Source Files\Main Form\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\stripMenuButton.cpp">
+      <Filter>Source Files\Main Form\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\InternalLink.cpp">
+      <Filter>Source Files\InternalLink</Filter>
+    </ClCompile>
+    <ClCompile Include="code\managers.cpp">
+      <Filter>Source Files\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MainForm.cpp">
+      <Filter>Source Files\Main Form</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MainFormLeftBorder.cpp">
+      <Filter>Source Files\Main Form</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MainFormCustomFrame.cpp">
+      <Filter>Source Files\Main Form</Filter>
+    </ClCompile>
+    <ClCompile Include="code\FrameButtons.cpp">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClCompile>
+    <ClCompile Include="code\EulaForm.cpp">
+      <Filter>Source Files\Forms\normal\mcf</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DispLoading.cpp">
+      <Filter>Source Files\Main Form\desura main\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BaseToolBarControl.cpp">
+      <Filter>Source Files\Main Form\desura main\pages\ToolBar Control</Filter>
+    </ClCompile>
+    <ClCompile Include="code\HtmlToolBarControl.cpp">
+      <Filter>Source Files\Main Form\desura main\pages\ToolBar Control</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ItemToolBarControl.cpp">
+      <Filter>Source Files\Main Form\desura main\pages\ToolBar Control</Filter>
+    </ClCompile>
+    <ClCompile Include="code\HtmlTabPage.cpp">
+      <Filter>Source Files\Main Form\desura main\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ItemTabPage.cpp">
+      <Filter>Source Files\Main Form\desura main\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ItemForm.cpp">
+      <Filter>Source Files\Forms\MultiPage\install</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ICheckFinishPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install Check</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ICheckProgressPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install Check</Filter>
+    </ClCompile>
+    <ClCompile Include="code\installBannerPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClCompile>
+    <ClCompile Include="code\installDLPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClCompile>
+    <ClCompile Include="code\installGIPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClCompile>
+    <ClCompile Include="code\installINPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClCompile>
+    <ClCompile Include="code\installVIPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UninstallInfoPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Uninstall</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UninstallProgressPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Uninstall</Filter>
+    </ClCompile>
+    <ClCompile Include="code\BaseInstallPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcSchemeBase.cpp">
+      <Filter>Source Files\Browser\Cef Internal\exstensions</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcJSBinding.cpp">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcJSBranchInfo.cpp">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcJSEvents.cpp">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcJSItemInfo.cpp">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcJSUserInfo.cpp">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcImgLoader.cpp">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\Schemes</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcThemeLoader.cpp">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\Schemes</Filter>
+    </ClCompile>
+    <ClCompile Include="code\breadCrumb.cpp">
+      <Filter>Source Files\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="code\tabButton.cpp">
+      <Filter>Source Files\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="code\tabControl.cpp">
+      <Filter>Source Files\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="code\PasswordReminder.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DStripMenuControls.cpp">
+      <Filter>Source Files\Main Form\desura main</Filter>
+    </ClCompile>
+    <ClCompile Include="code\TBI_GameMenu.cpp">
+      <Filter>Source Files\TaskBarIcon\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\TBI_ModMenu.cpp">
+      <Filter>Source Files\TaskBarIcon\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\TBI_WindowMenu.cpp">
+      <Filter>Source Files\TaskBarIcon\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\TBI_UpdateMenu.cpp">
+      <Filter>Source Files\TaskBarIcon\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\TBI_BaseMenu.cpp">
+      <Filter>Source Files\TaskBarIcon\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="code\TaskBarIcon_Ballon.cpp">
+      <Filter>Source Files\TaskBarIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="code\TaskBarIcon_Icon.cpp">
+      <Filter>Source Files\TaskBarIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CDKeyForm.cpp">
+      <Filter>Source Files\Forms\MultiPage\cdkey</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CDKProgress.cpp">
+      <Filter>Source Files\Forms\MultiPage\cdkey\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CDKInfo.cpp">
+      <Filter>Source Files\Forms\MultiPage\cdkey\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcJSUploads.cpp">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClCompile>
+    <ClCompile Include="code\installINCPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClCompile>
+    <ClCompile Include="code\TaskBarIcon.cpp">
+      <Filter>Source Files\TaskBarIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcJSLinks.cpp">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClCompile>
+    <ClCompile Include="code\installDLToolPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClCompile>
+    <ClCompile Include="code\installINToolPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClCompile>
+    <ClCompile Include="code\PreloadPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ExeSelectForm.cpp">
+      <Filter>Source Files\Forms\normal\app</Filter>
+    </ClCompile>
+    <ClCompile Include="code\installDVPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcJSSettings.cpp">
+      <Filter>Source Files\Browser\Cef Internal\exstensions\JS Bindings</Filter>
+    </ClCompile>
+    <ClCompile Include="code\installWaitPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClCompile>
+    <ClCompile Include="code\GameDiscForm.cpp">
+      <Filter>Source Files\Forms\normal\app</Filter>
+    </ClCompile>
+    <ClCompile Include="code\SearchControl.cpp">
+      <Filter>Source Files\Main Form\desura main\pages\ToolBar Control</Filter>
+    </ClCompile>
+    <ClCompile Include="code\installVInfoPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\install\pages\Install</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcWebControl.cpp">
+      <Filter>Source Files\Browser\Cef Internal</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcWebHost.cpp">
+      <Filter>Source Files\Browser\Cef Host</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcWCEvents.cpp">
+      <Filter>Source Files\Browser</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcWCEvents_js.cpp">
+      <Filter>Source Files\Browser</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcWCEvents_win.cpp">
+      <Filter>Source Files\Browser</Filter>
+    </ClCompile>
+    <ClCompile Include="code\CefIPCPipeClient.cpp">
+      <Filter>Source Files\Browser\Cef Host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\browser_pipe\IPCBrowser.cpp">
+      <Filter>Source Files\Browser\Cef Host\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ChromiumMenuInfoFromMem.cpp">
+      <Filter>Source Files\Browser\Cef Host</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcMiscWebControl.cpp">
+      <Filter>Source Files\Browser</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcWebFakeBrowser.cpp">
+      <Filter>Source Files\Browser\Cef Internal</Filter>
+    </ClCompile>
+    <ClCompile Include="code\gcWCUtil.cpp">
+      <Filter>Source Files\Browser</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UICoreMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UICoreEntry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MainApp.cpp">
+      <Filter>Source Files\Main App</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MainApp_wildcards.cpp">
+      <Filter>Source Files\Main App</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MainApp_cvar.cpp">
+      <Filter>Source Files\Main App</Filter>
+    </ClCompile>
+    <ClCompile Include="code\MainApp_internal.cpp">
+      <Filter>Source Files\Main App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\Common.cpp">
+      <Filter>Prec Header</Filter>
+    </ClCompile>
+    <ClCompile Include="code\AboutForm.cpp">
+      <Filter>Source Files\Dialogs\about</Filter>
+    </ClCompile>
+    <ClCompile Include="code\AboutPageDev.cpp">
+      <Filter>Source Files\Dialogs\about</Filter>
+    </ClCompile>
+    <ClCompile Include="code\AboutPageMain.cpp">
+      <Filter>Source Files\Dialogs\about</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ModWizardProgPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\modWizard\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ModWizardInfoPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\modWizard\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="code\ModWizardFinPage.cpp">
+      <Filter>Source Files\Forms\MultiPage\modWizard\pages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\gcJSBase.cpp">
+      <Filter>Source Files\Browser</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RES\uicore.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

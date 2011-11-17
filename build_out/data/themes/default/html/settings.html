@@ -1,0 +1,280 @@
+<!--
+/*
+Desura is the leading indie game distribution platform
+Copyright (C) 2011 Mark Chandler (Desura Net Pty Ltd)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Settings</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/tipsy.css" />
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/reset.css" />
+
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/screen.css" />
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/scrollbar.css" />
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/ui.achtung.css" />
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/jquery.template.js"></script>
+	<script type="text/javascript" src="../js/jquery.ui.achtung.js"></script>
+	<script type="text/javascript" src="../js/jquery.tipsy.js"></script>
+
+	<script type="text/javascript" src="../js/settings.js"></script>
+	
+	<script type="text/javascript" src="../js/functions.js"></script>
+</head>
+<body>
+
+<div id="content"></div>
+
+<script id="settings_tabs" type="text/html">
+	<div id="gamesettings">
+		<ul class="tabs clear">
+			<# for (var i=0; i<settings_tabs.length; i++) { tab = settings_tabs[i]; #>
+				<li><a href="#<#= tab.hashTag #>"><#= desura.utils.getLocalString(tab.displayName) #></a></li>
+			<# } #>
+		</ul>
+		<# for (var i=0; i<settings_tabs.length; i++) { tab = settings_tabs[i]; #>
+			<div id="<#= tab.hashTag #>"><#= parseTemplate($(tab.template).html(), {items: tab.items}) #></div>
+		<# } #>		
+	</div>
+	<div id="gamesettingbuttons" class="buttons">
+		<input type="button" value="<#= desura.utils.getLocalString("#SAVE") #>" class="minimal btnsave" disabled="disabled" />
+		<input type="button" value="<#= desura.utils.getLocalString("#CANCEL") #>" class="minimal btnclose" />
+	</div>
+</script>
+
+<script id="settings" type="text/html">
+	<table class="gamesettings" cellpadding="0" cellspacing="0">
+		<# for (var i=0; i<items.length; i++) { #> 
+		<#= parseTemplate($("#setting_" + items[i].type).html(), {item: items[i]}) #>
+		<# } #>
+	</table>
+</script>
+
+<script id="settings_theme" type="text/html">
+	<# 	var curI = 0; 
+		var curTheme = desura.settings.getValue('gc_theme');
+		for (var x=0; x<themes.length; x++) {
+			if (themes[x].name == curTheme) {
+				curI = x;
+				break;
+			}
+		}
+	#>
+	<table class="gamesettings" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				<img src="<#= themes[curI].image #>" id="theme_big_img" class="theme_big_img" title="<#= themes[curI].tooltip #>" />
+				<br />
+				<div style="padding: 10px 0;">
+					<span id="theme_name"><#= themes[curI].displayName #></span> <#= desura.utils.getLocalString("#SET_THEME_VERSION") #> <span id="theme_version"><#= themes[curI].version #></span> <#= desura.utils.getLocalString("#SET_THEME_AUTHOR") #> <span id="theme_author"><#= themes[curI].author #></span>
+					<br />
+					<span class="note"><#= desura.utils.getLocalString("#SET_NOTE") #></span>
+				</div>
+
+				<# for (var x=0; x<themes.length; x++) { #>
+				<#= parseTemplate($("#setting_theme_subimage").html(), {theme: themes[x], index: x, current: x==curI}) #>
+				<# } #>
+			</td>
+		</tr>
+	</table>
+</script>
+
+<script id="setting_theme_subimage" type="text/html">
+	<img class="theme_subimage<#= current ? " theme_subimageon" : "" #>" src="<#= theme.image #>" width="120" height="90" title="<#= theme.tooltip #>" rel="<#= index #>" />
+</script>
+
+<script id="settings_beta" type="text/html">
+	<table class="gamesettings" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				<#= desura.utils.getLocalString("#SET_BETA_INFO") #>
+				<# var curValue=desura.settings.getValue("gc_beta"); #>
+				<br /><br />
+				<label><input class="setting_cvar" rel="gc_beta" type=checkbox name="gc_beta" <#= (curValue =="1" || curValue=="true")? "checked":"" #> /> <#= desura.utils.getLocalString("#SET_BETA_LABEL") #></label>
+			</td>
+		</tr>
+	</table>
+</script>
+
+<script id="settings_games" type="text/html">
+	<table class="gamesettings" cellpadding="0" cellspacing="0">
+		<tr>
+			<td colspan="2">
+				<#= desura.utils.getLocalString("#SET_CIP_INFO", "</a>", "<a href='https://secure.desura.com/cart/gifts'>") #>
+				<br /><br />
+			</td>
+		</tr>
+		<tr>
+			<th><label for="txtactivate"><#= desura.utils.getLocalString("#SET_CIP_CDKEY") #></label></th>
+			<td>
+				<form action="http://www.desura.com/cart/gift/accept" method="post" id="activate">
+					<input type="hidden" name="b" value="x" /> 
+					<input type="text" name="h" class="text show_tooltip" id="txtactivate" title="<#= desura.utils.getLocalString("#SET_CIP_CDKEY_INFO", "<br />") #>" />
+					<input type="submit" name="cart" value="<#= desura.utils.getLocalString("#SET_CIP_BUT_ACTIVATE") #>" id="btnactivate" disabled="disabled" class="minimal" />
+				</form>
+			</td>
+		</tr>
+		<# if (desura.utils.isWindows()) { #>
+		<#= parseTemplate($("#settings_games_win").html(), {}) #>
+		<# } #>
+		<#= parseTemplate($("#settings_games_links").html(), {}) #>
+	</table>
+</script>
+
+<script id="settings_games_win" type="text/html">
+	<tr>
+		<td colspan="2">
+			<br />
+			<#= desura.utils.getLocalString("#SET_CIP_INFO_ADD", "</a>", "<a href='#' onClick='desura.links.internalLink(0, desura.links.action.INSTALLEDW)'>") #>
+			<br /><br />
+		</td>
+	</tr>
+	<# for(x in games) { item = games[x]; #>
+	<#= parseTemplate($("#settings_games_path").html(), {}) #>
+	<# } #>
+	<tr id="gameselectadd">
+		<th><label for="gameselect"><#= desura.utils.getLocalString("#SET_CIP_MANUAL") #></label></th>
+		<td>
+			<select id="gameselect" style="width: 197px;"></select>
+			<input id="gameselectpath" type="text" value="" class="text" style="width: 300px;" />
+			<input id="gameselectbrowse" type="button" value="<#= desura.utils.getLocalString("#SET_CIP_BUT_BROWSE") #>" class="minimal" />
+			<input id="gameselectrefresh" type="button" value="<#= desura.utils.getLocalString("#SET_CIP_BUT_REFRESH") #>" class="minimal" />
+		</td>
+	</tr>
+</script>
+
+<script id="settings_games_links" type="text/html">
+	<tr>
+		<td colspan="2">
+			<br />
+			<#= desura.utils.getLocalString("#SET_CIP_LINK") #>
+			<br /><br />
+		</td>
+	</tr>
+	<tr>
+		<th><label for="linkname"><#= desura.utils.getLocalString("#SET_CIP_LINK_NAME") #></label></th>
+		<td>
+			<input id="linkname" type="text" value="" class="text" style="width: 100px;" />
+		</td>
+	</tr>
+	<tr>
+		<th><label for="linkexe"><#= desura.utils.getLocalString("#SET_CIP_LINK_EXE") #></label></th>
+		<td>
+			<input id="linkexe" type="text" value="" class="text" style="width: 500px;" />
+			<input id="linkbrowse" type="button" value="<#= desura.utils.getLocalString("#SET_CIP_BUT_BROWSE") #>" class="minimal" />
+			<input id="linkadd" type="button" value="<#= desura.utils.getLocalString("#ADD") #>" class="minimal" disabled="disabled" />
+		</td>
+	</tr>	
+</script>
+
+<script id="settings_games_path" type="text/html">
+		<tr id="gamepathrow<#= item.id #>">
+			<th><label for="gamepath<#= item.id #>"><#= item.name #></label></th>
+			<td rel="<#= item.id #>">
+				<input type="text" id="gamepath<#= item.id #>" name="<#= item.id #>" value="<#= item.path #>" class="text txtpath" />
+				<input type="button" value="<#= desura.utils.getLocalString("#SET_CIP_BUT_BROWSE") #>" class="minimal btnbrowse" />
+				<input type="button" value="<#= desura.utils.getLocalString("#SET_CIP_BUT_DELETE") #>" class="minimal btndelete" />
+			</td>
+		</tr>
+</script>
+
+<script id="settings_games_select" type="text/html">
+				<# for(x in allgames) { item = allgames[x]; #>
+					<option value="<#= item.id #>"><#= item.name #></option>
+				<# } #>
+</script>
+
+<script id="setting_TEXTBOX" type="text/html">
+	<tr>
+		<th><label for="select<#= item.name #>"><#= desura.utils.getLocalString(item.displayName) #></label></th>
+		<td>
+			<label>
+				<# var curValue=desura.settings.getValue(item.name); #>
+				<input class="setting_cvar" rel="<#= item.name #>" type=text name="<#= item.name #>" value="<#= curValue #>" title="<#= desura.utils.getLocalString(item.help) #>" size=50 />
+			</label>
+		</td>
+	</tr>
+</script>
+
+<script id="setting_CHECKBOX" type="text/html">
+	<tr>
+		<th></th>
+		<td>
+			<label>
+				<# var curValue=desura.settings.getValue(item.name); #>
+				<input class="setting_cvar" rel="<#= item.name #>" type=checkbox name="<#= item.name #>" <#= (curValue =="1" || curValue=="true")? "checked":"" #> />
+				<span class="show_tooltip" title="<#= desura.utils.getLocalString(item.help) #>"><#= desura.utils.getLocalString(item.displayName) #></span>
+			</label>
+		</td>
+	</tr>
+</script>
+
+<script id="setting_CB_LANGUAGE" type="text/html">
+	<tr>
+		<th><label for="select<#= item.name #>"><#= desura.utils.getLocalString(item.displayName) #></label></th>
+		<td>
+			<select class="setting_cvar" rel="<#= item.name #>" id="select<#= item.name #>" title="<#= desura.utils.getLocalString(item.help) #>">
+			<# 	var curLang = desura.settings.getValue(item.name);
+				var langs = desura.settings.getLanguages();
+			
+				for (var i=0; i<langs.length; i++) { #>
+					<option <#= curLang == langs[i].file? "selected":"" #> value="<#= langs[i].file #>"><#= langs[i].name #></option>
+				<# } #>
+			</select>
+		</td>
+	</tr>
+</script>
+
+<script id="setting_CB_STEAMUSER" type="text/html">
+	<tr>
+		<th><label for="select<#= item.name #>"><#= desura.utils.getLocalString(item.displayName) #></label></th>
+		<td>
+			<select class="setting_cvar" rel="<#= item.name #>" id="select<#= item.name #>" title="<#= desura.utils.getLocalString(item.help) #>">
+			<# 	var curSteam = desura.settings.getValue(item.name); 
+				var steamList = desura.settings.getSteamNames();
+
+				for (var i=0; i<steamList.length; i++) { #>
+					<option <#= curSteam == steamList[i] ? "selected":"" #> value="<#= steamList[i] #>"><#= steamList[i] #></option>
+				<# } #>
+			</select>
+		</td>
+	</tr>
+</script>
+
+<script id="setting_CB_CORECOUNT" type="text/html">
+	<tr>
+		<th><label for="select<#= item.name #>"><#= desura.utils.getLocalString(item.displayName) #></label></th>
+		<td>
+			<select class="setting_cvar" rel="<#= item.name #>" id="select<#= item.name #>" title="<#= desura.utils.getLocalString(item.help) #>">
+				<# for (var i=0; i<desura.settings.getCoreCount(); i++) { #>
+					<option <#= desura.settings.getValue(item.name) == i+1? "selected":"" #> value="<#= i+1 #>"><#= i+1 #></option>
+				<# } #>
+			</select>
+		</td>
+	</tr>
+</script>
+
+</body>
+</html>

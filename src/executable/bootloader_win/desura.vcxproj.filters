@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\IPC">
+      <UniqueIdentifier>{39621739-b38a-4d33-a524-9a97cd553eb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source Files\desura">
+      <UniqueIdentifier>{37d8137d-c12b-4703-8d20-8a2f40f1e213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UMcfEx">
+      <UniqueIdentifier>{cc2b9ecf-ab42-4f21-9af3-c8ffadb14767}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="code\stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\AppUpdateInstall.cpp">
+      <Filter>Source Files\IPC</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DesuraProgress.cpp">
+      <Filter>Source Files\desura</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UpdateMFCForm.cpp">
+      <Filter>Source Files\desura</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UpdateFunctions.cpp">
+      <Filter>Source Files\desura</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\InstallFiles.cpp">
+      <Filter>Source Files\desura</Filter>
+    </ClCompile>
+    <ClCompile Include="code\DesuraMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="code\UMcfEx.cpp">
+      <Filter>Source Files\UMcfEx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\service_pipe\IPCUpdateApp.cpp">
+      <Filter>Source Files\IPC</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="code\UMcfEx.h">
+      <Filter>Source Files\UMcfEx</Filter>
+    </ClInclude>
+    <ClInclude Include="code\AppUpdateInstall.h">
+      <Filter>Source Files\IPC</Filter>
+    </ClInclude>
+    <ClInclude Include="code\DesuraProgress.h">
+      <Filter>Source Files\desura</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UpdateMFCForm.h">
+      <Filter>Source Files\desura</Filter>
+    </ClInclude>
+    <ClInclude Include="code\UpdateFunctions.h">
+      <Filter>Source Files\desura</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RES\desura.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\desura_16.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\loadingbar.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\rt_manif.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\spash.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\desura_16_1.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\desura_16_2.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\desura_16_3.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\desura_16_4.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\desura_16_5.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\desura_16_6.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\desura_16_7.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\desura_16_8.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\desura_16_9.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\desura_16_plus.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RES\desura_exe.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

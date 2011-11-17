@@ -1,0 +1,111 @@
+Desura
+===================
+
+Desura is a gaming client that allows a user to one click download and install games and game modification.
+See here for more information: http://www.moddb.com/groups/desura/forum/thread/open-sourcing-desura
+
+
+
+Build Desura Windows
+===================
+
+To build Desura you will need Visual Studio 2008 and also Visual Studio 2010
+
+Download and install:
+ * TortiseSvn http://tortoisesvn.net/downloads.html. Make sure to install command line tools
+ * TortiseGit http://code.google.com/p/tortoisegit/downloads/list
+ * Windows Sdk 7.1 http://www.microsoft.com/download/en/details.aspx?id=8279
+ * Python 2.7 http://www.python.org/getit/
+ * SCons http://www.scons.org/download.php
+
+Check Out git repo
+Launch visual studio 2010 command prompt and cd into the desura/src/third_party
+Run SVNCheckOut.bat
+Run BuildAll.bat
+Copy branding_default in desura/src to desura/src/branding
+
+
+This should now allow you to open the desura solution in desura/build_win/desura.sln and build the desura client but you still need to build Cef
+
+Once built, open console to the desura/build_out and run "copy_data.bat [dest]" with dest being debug_win or release_win
+
+Build Cef Windows
+===================
+
+This requires visual studio 2008. You can cheat and copy the cef dll's from a current Desura install instead of this step.
+
+Have a look at desura/src/third_party/cef/CHROMIUM_BUILD_COMPATIBILITY.txt and note the last svn repo (at time of writing its 91424)
+
+Create a dir called chromium in the desura/src/third_party folder
+Launch command prompt and cd into the desura/src/third_party/chromium
+Run these commands (where SVN VERSION is the number found above):
+ set PATH=%PATH%:../depot_tools
+ gclient config http://src.chromium.org/svn/trunk/src
+ gclient sync --revision src@[SVN VERSION]
+
+Once complete copy desura/src/third_party/cef to desura/src/third_party/chromium/src/cef
+Run cef_create_projects.bat in desura/src/third_party/chromium/src/cef
+And then you should be able to build cef using visual studio 2008 solution file.
+You will need to copy the output dll's into the desura/build_out/[mode]_win/bin folder (where mode is debug or release)
+
+
+
+Build Desura Linux
+===================
+
+Need to have gcc 4.5 installed and these deps:
+ * git-core   
+ * subversion
+ * m4
+ * build-essential
+ * binutils
+ * automake
+ * autoconf
+ * libtool
+ * libgtk2.0-dev 
+ * libnss3-dev 
+ * libgconf2-dev 
+ * libgnome-keyring-dev 
+ * libdbus-glib-1-dev 
+ * gperf 
+ * bison 
+ * libcups2-dev 
+ * flex 
+ * libjpeg-dev 
+ * libasound2-dev 
+ * libbz2-dev 
+ * libxpm-dev 
+ * libx11-dev 
+ * libssl-dev scons
+
+Check out repo
+Copy branding_default in src to src/branding
+
+#!/bin/bash
+# Run from root repo dir
+# Build desura
+./src/third_party/SVNCheckOut.sh
+./src/third_party/BuildAll.sh
+cd build_lin
+./build.sh
+
+
+Build Cef Linux
+===================
+
+You can cheat and copy the cef so's from a current Desura install instead of this step.
+
+#!/bin/bash
+# Run from root repo dir
+# Checkout Chromium
+export PATH=$PATH:$PWD/src/third_party/depot_tools
+mkdir src/third_party/chromium
+cd src/third_party/chromium
+gclient config http://src.chromium.org/svn/trunk/src
+gclient sync --revision src@74933
+mv ../cef src/
+cd ..
+ln -s chromium/src/cef cef
+chmod a+x cef/*.sh
+cd build_lin
+./BuildCef.sh

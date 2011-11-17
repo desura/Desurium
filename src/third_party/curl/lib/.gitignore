@@ -1,0 +1,12 @@
+curl_config.h
+curl_config.h.in
+stamp-h1
+*.orig
+*.rej
+TAGS
+Makefile.vc8.dist
+Makefile.vc9.dist
+libcurl.plist.dist
+libcurl.vcproj
+vc6libcurl.dsp
+Makefile.vc10.dist
