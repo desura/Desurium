@@ -84,10 +84,9 @@ Copy branding_default in src to src/branding
 #!/bin/bash
 # Run from root repo dir
 # Build desura
-cd ./src/third_party
-./SvnCheckOut.sh
-./BuildAll.sh
-cd ../../build_lin
+./src/third_party/SVNCheckOut.sh
+./src/third_party/BuildAll.sh
+cd build_lin
 ./build.sh
 
 
@@ -95,6 +94,8 @@ Build Cef Linux
 ===================
 
 You can cheat and copy the cef so's from a current Desura install instead of this step.
+Have a look at desura/src/third_party/cef/CHROMIUM_BUILD_COMPATIBILITY.txt and note the last svn repo (at time of writing its 91424). Make sure you replace [CEF SVN VERSION]
+
 
 #!/bin/bash
 # Run from root repo dir
@@ -103,7 +104,7 @@ export PATH=$PATH:$PWD/src/third_party/depot_tools
 mkdir src/third_party/chromium
 cd src/third_party/chromium
 gclient config http://src.chromium.org/svn/trunk/src
-gclient sync --revision src@74933
+gclient sync --revision src@[CEF SVN VERSION] #from above
 mv ../cef src/
 cd ..
 ln -s chromium/src/cef cef
