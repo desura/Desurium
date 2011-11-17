@@ -85,6 +85,8 @@ Copy branding_default in src to src/branding
 # Run from root repo dir
 # Build desura
 cd ./src/third_party
+source python_env.sh # Only run if your Python 2 executable is 'python2'!
+                     # And with that, run it each time before build.sh!
 ./SvnCheckOut.sh
 ./BuildAll.sh
 cd ../../build_lin
@@ -101,7 +103,7 @@ You can cheat and copy the cef so's from a current Desura install instead of thi
 # Checkout Chromium
 cd src/third_party/
 patches/depot_tools_python3.sh # Only run if your Python 2 executable is 'python2'!
-source patches/python_env.sh # Only run if your Python 2 executable is 'python2'!
+source python_env.sh # Only run if your Python 2 executable is 'python2'!
 mkdir chromium
 cd chromium
 gclient config http://src.chromium.org/svn/trunk/src
@@ -121,7 +123,7 @@ Only do this after you have the Chromium repo checked out.
 # Run from root repo dir
 cd src/third_party/
 patches/depot_tools_python3.sh # Only run if your Python 2 executable is 'python2'!
-source patches/python_env.sh # Only run if your Python 2 executable is 'python2'!
+source python_env.sh # Only run if your Python 2 executable is 'python2'!
 cp -r courgette/* chromium/src/courgette
 cd build_lin
 ./BuildCourgette.sh
