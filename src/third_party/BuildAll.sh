@@ -28,7 +28,9 @@ if [ "$1" == "--cleanlogs" ]; then
 	exit
 fi
 
-./build_lin/BuildBoost.sh $EXTRAARGS
+cd build_lin
+
+./BuildBoost.sh $EXTRAARGS
 boostReturn=$?
 if [ $boostReturn -ne 0 ]; then
 	if [ "$exitFirstFail" == "true" ]; then
@@ -36,7 +38,7 @@ if [ $boostReturn -ne 0 ]; then
 	fi
 fi
 
-./build_lin/BuildBreakpad.sh $EXTRAARGS
+./BuildBreakpad.sh $EXTRAARGS
 breakpadReturn=$?
 if [ $breakpadReturn -ne 0 ]; then
 	if [ "$exitFirstFail" == "true" ]; then
@@ -44,7 +46,7 @@ if [ $breakpadReturn -ne 0 ]; then
 	fi
 fi
 
-./build_lin/BuildCurl.sh $EXTRAARGS
+./BuildCurl.sh $EXTRAARGS
 curlReturn=$?
 if [ $curlReturn -ne 0 ]; then
 	if [ "$exitFirstFail" == "true" ]; then
@@ -52,7 +54,7 @@ if [ $curlReturn -ne 0 ]; then
 	fi
 fi
 
-./build_lin/BuildV8.sh $EXTRAARGS
+./BuildV8.sh $EXTRAARGS
 v8Return=$?
 if [ $v8Return -ne 0 ]; then
 	if [ "$exitFirstFail" == "true" ]; then
@@ -60,7 +62,7 @@ if [ $v8Return -ne 0 ]; then
 	fi
 fi
 
-./build_lin/BuildWxWidgets.sh $EXTRAARGS
+./BuildWxWidgets.sh $EXTRAARGS
 wxReturn=$?
 if [ $wxReturn -ne 0 ]; then
 	if [ "$exitFirstFail" == "true" ]; then
@@ -68,13 +70,15 @@ if [ $wxReturn -ne 0 ]; then
 	fi
 fi
 
-./build_lin/BuildCef.sh $EXTRAARGS
+./BuildCef.sh $EXTRAARGS
 cefReturn=$?
 if [ $cefReturn -ne 0 ]; then
 	if [ "$exitFirstFail" == "true" ]; then
 		exit 1
 	fi
 fi
+
+cd ..
 
 function colourOutput()
 {
@@ -94,4 +98,5 @@ echo -ne "\tV8:\t\t"; colourOutput $v8Return
 echo -ne "\twx:\t\t"; colourOutput $wxReturn
 echo -ne "\tCef:\t\t"; colourOutput $cefReturn
 echo -e " ----------------------------------------- "
+
 
