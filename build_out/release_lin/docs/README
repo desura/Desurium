@@ -1,0 +1,51 @@
+Desura Linux - README
+Website: http://www.desura.com
+
+Installation:
+	Extract the 'desura' binary to any location where your user has write
+	permissions, and run. It will download the rest of the components required
+	and install itself into a folder called 'desura', unless it's already in one.
+
+Uninstallation:
+	Delete 'desura' folder the contains the program contents. To remove the menu
+	icon, first run "xdg/xdg-desktop-menu uninstall --mode user desura.desktop"
+	from inside the Desura installation directory (without quotes).
+	
+Reset installation:
+	Simply delete the 'settings', 'cache' and 'common' folders to reset Desura
+	to its original state. Also deleting the desura_appfiles.xml force Desura
+	to reinstall itself.
+
+Updating:
+	If for any reason Desura will not update itself, or you can not get to a
+	point where it would update itself (eg: can't login), running "./desura -f"
+	from the installation directory (without quotes)will force it to download
+	the latest available update and restart.
+
+Bugs:
+	All bug reports can be posted in the forums at 
+		http://desura.com/groups/desura/forum
+	
+	Email support is also available by contacting support@desura.com
+
+	Updated beta information is being currently being maintained at 
+		http://www.desura.com/news/desura-linux-beta-launch
+
+	All Desura Linux related help information will be kept at 
+		http://www.desura.com/groups/desura/linux
+		
+Contributing:
+	Any and all help is welcomed. We are constantly looking for ways to improve
+	the service we provide, and all feedback is helpful.
+	
+	When testing Desura and reporting bugs, including console output is always
+	useful. Even better, running Desura with gdb and providing the output
+	and a 'backtrace' helps us greatly.
+	
+	Information about using gdb can be found at
+		http://www.cprogramming.com/gdbtutorial.html (Introduction)
+		http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gnat_ugn_unw/Introduction-to-GDB-Commands.html (Command listing)
+		http://www.unknownroad.com/rtfm/gdbtut/gdbuse.html (FAQ)
+		http://gcc.gnu.org/bugs/segfault.html (Segfault investigating)
+		http://sourceware.org/gdb/current/onlinedocs/gdb/ (Complete manual)
+
