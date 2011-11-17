@@ -340,8 +340,7 @@ function copyFiles()
 	copyLib "/usr/lib/libssl3.so.1d"
 
 	copyLib "/usr/lib/libgconf-2.so.4"
-	copyLib "/usr/lib/nss/libsoftokn3.so"
-	
+
 	echo -e "\tDone"
 
 	echo -ne "\tCreating data dir:\t-\t" 
