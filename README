@@ -99,7 +99,9 @@ You can cheat and copy the cef so's from a current Desura install instead of thi
 #!/bin/bash
 # Run from root repo dir
 # Checkout Chromium
-export PATH=$PATH:$PWD/src/third_party/depot_tools
+cd src/third_party/
+./FixPython.sh
+export PATH="$PWD/python2-path:$PATH:$PWD/depot_tools"
 mkdir src/third_party/chromium
 cd src/third_party/chromium
 gclient config http://src.chromium.org/svn/trunk/src
