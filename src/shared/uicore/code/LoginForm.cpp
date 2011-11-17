@@ -29,9 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "../../../branding/branding.h"
 
 #ifdef DESURA_NONGPL_BUILD
-	#include "NewAccount.h"
+	extern bool ShowNewAccountForm(wxWindow* parent, gcString &user, gcString &pass);
 #endif
-
 
 bool validateUsernameChange(const CVar*, const char*);
 
@@ -642,13 +641,13 @@ void LoginForm::onLinkClick(wxCommandEvent& event)
 	if (event.GetId() == m_linkNewAccount->GetId())
 	{
 #ifdef DESURA_NONGPL_BUILD
-		NewAccount naf(this);
-		int32 res = naf.ShowModal();
+		gcString userName;
+		gcString pass;
 
-		if (res == 1)
+		if (ShowNewAccountForm(this, userName, pass))
 		{
-			m_tbUsername->SetValue(naf.getUserName());
-			m_tbPassword->SetValue(naf.getPassword());
+			m_tbUsername->SetValue(userName);
+			m_tbPassword->SetValue(pass);
 
 			m_tbPasswordDisp->Show(false);
 			m_tbPassword->Show();

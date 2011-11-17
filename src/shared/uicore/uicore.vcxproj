@@ -94,7 +94,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/NODEFAULTLIB:libcmtd.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>tinyxml-d.lib;util-d.lib;mcfcore-d.lib;webcore-d.lib;usercore-d.lib;managers-d.lib;util_thread-d.lib;util_fs-d.lib;wx_controls-d.lib;sqlite-d.lib;sqlite3x-d.lib;wxmsw29ud.lib;ipc_pipe-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml-d.lib;util-d.lib;mcfcore-d.lib;webcore-d.lib;usercore-d.lib;managers-d.lib;util_thread-d.lib;util_fs-d.lib;wx_controls-d.lib;sqlite-d.lib;sqlite3x-d.lib;wxmsw29ud.lib;ipc_pipe-d.lib;uicore_nongpl-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -122,7 +122,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/NODEFAULTLIB:libcmt.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>tinyxml.lib;util.lib;util_fs.lib;mcfcore.lib;usercore.lib;webcore.lib;managers.lib;util_thread.lib;wx_controls.lib;sqlite.lib;sqlite3x.lib;wxmsw29u.lib;ipc_pipe.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml.lib;util.lib;util_fs.lib;mcfcore.lib;usercore.lib;webcore.lib;managers.lib;util_thread.lib;wx_controls.lib;sqlite.lib;sqlite3x.lib;wxmsw29u.lib;ipc_pipe.lib;uicore_nongpl.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
