@@ -100,15 +100,28 @@ You can cheat and copy the cef so's from a current Desura install instead of thi
 # Run from root repo dir
 # Checkout Chromium
 cd src/third_party/
-patches/depot_tools_python3.sh
-export PATH="$PWD/python2-path:$PATH:$PWD/depot_tools"
-mkdir src/third_party/chromium
-cd src/third_party/chromium
+patches/depot_tools_python3.sh # Only run if your Python 2 executable is 'python2'!
+source patches/python_env.sh # Only run if your Python 2 executable is 'python2'!
+mkdir chromium
+cd chromium
 gclient config http://src.chromium.org/svn/trunk/src
 gclient sync --revision src@74933
 mv ../cef src/
 cd ..
-ln -s chromium/src/cef cef
-chmod a+x cef/*.sh
+ln -s chromium/src/cef .
 cd build_lin
 ./BuildCef.sh
+
+Build Courgette Linux
+===================
+
+Only do this after you have the Chromium repo checked out.
+
+#!/bin/bash
+# Run from root repo dir
+cd src/third_party/
+patches/depot_tools_python3.sh # Only run if your Python 2 executable is 'python2'!
+source patches/python_env.sh # Only run if your Python 2 executable is 'python2'!
+cp -r courgette/* chromium/src/courgette
+cd build_lin
+./BuildCourgette.sh
