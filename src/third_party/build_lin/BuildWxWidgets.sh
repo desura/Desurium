@@ -19,7 +19,7 @@ cw='\e[01;37m'	#color bold white
 
 #need to disable threads as it causes hangs in copy/paste with cef
 #joystick needs threads so disable that to
-CONFIG_OPTIONS="--enable-shared --enable-unicode --enable-monolithic --with-flavour=desura --disable-threads --disable-joystick"
+CONFIG_OPTIONS="--enable-shared --enable-unicode --enable-monolithic --with-flavour=desura --disable-threads --disable-joystick --disable-mediactrl"
 
 # If it's not globally defined (length 0)
 if [ ${#MAKE_CONCURRENCY} -eq 0 ]; then

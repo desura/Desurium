@@ -198,6 +198,12 @@ if [ $? = 0 ]; then
 	fi
 fi
 
+REALLIB_LOC=`./bin/findlib.sh libsoftokn3.so $BIT`
+
+if [ -e "$REALLIB_LOC" ]; then
+	ln -snf "$REALLIB_LOC" "lib/libsoftokn3.so"
+fi
+
 cd ./lib_extra
 	#copy extra's if missing
 	for LIB in *.so*; do

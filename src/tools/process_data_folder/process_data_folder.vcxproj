@@ -69,7 +69,8 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>copyfiles_release.bat $(ConfigurationName)</Command>
+      <Command>cd
+copyfiles_release.bat $(ConfigurationName)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

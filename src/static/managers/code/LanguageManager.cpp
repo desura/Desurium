@@ -110,9 +110,11 @@ bool LanguageManager::loadFromFile(const char* file)
 			if (x+1 != res.size())
 				out += PRODUCT_NAME;
 		}
-#endif
 
 		temp->ustr = out;
+#endif
+
+		temp->ustr = val;
 	};
 
 	XML::for_each_child("str", cNode->FirstChild("strings"), parseString);

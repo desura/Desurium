@@ -146,15 +146,6 @@
     <ClInclude Include="code\steamUser.h">
       <Filter>Source Files\Dialogs</Filter>
     </ClInclude>
-    <ClInclude Include="code\newAccount.h">
-      <Filter>Source Files\Dialogs\new account</Filter>
-    </ClInclude>
-    <ClInclude Include="code\newAccountInfo.h">
-      <Filter>Source Files\Dialogs\new account\pages</Filter>
-    </ClInclude>
-    <ClInclude Include="code\newAccountTOS.h">
-      <Filter>Source Files\Dialogs\new account\pages</Filter>
-    </ClInclude>
     <ClInclude Include="code\BasePage.h">
       <Filter>Source Files\Forms\MultiPage</Filter>
     </ClInclude>
@@ -468,15 +459,6 @@
     </ClCompile>
     <ClCompile Include="code\steamUser.cpp">
       <Filter>Source Files\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="code\newAccount.cpp">
-      <Filter>Source Files\Dialogs\new account</Filter>
-    </ClCompile>
-    <ClCompile Include="code\newAccountInfo.cpp">
-      <Filter>Source Files\Dialogs\new account\pages</Filter>
-    </ClCompile>
-    <ClCompile Include="code\newAccountTOS.cpp">
-      <Filter>Source Files\Dialogs\new account\pages</Filter>
     </ClCompile>
     <ClCompile Include="code\BasePage.cpp">
       <Filter>Source Files\Forms\MultiPage</Filter>
