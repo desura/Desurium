@@ -84,7 +84,7 @@ Copy branding_default in src to src/branding
 #!/bin/bash
 # Run from root repo dir
 # Build desura
-./src/third_party/SVNCheckOut.sh
+./src/third_party/SvnCheckOut.sh
 ./src/third_party/BuildAll.sh
 cd build_lin
 ./build.sh
