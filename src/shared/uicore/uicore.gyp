@@ -1,6 +1,6 @@
 {
 	'includes': [
-		 '../../common.gypi',
+		 '../../../build_lin/common.gypi',
 	],
 	'targets': [
 	{
@@ -131,7 +131,7 @@
 			'code/TaskBarIcon_Ballon.cpp',
 			'code/TaskBarIcon_Icon.cpp',
 			'code/TBI_BaseMenu.cpp',
-			'code/TBI_GameMenu.cpp',
+			'code/TBIq_GameMenu.cpp',
 			'code/TBI_UpdateMenu.cpp',
 			'code/TBI_WindowMenu.cpp',
 			'code/UICoreEntry.cpp',
@@ -142,6 +142,13 @@
 			'code/UploadProgPage.cpp',
 			'code/UploadPrompt.cpp',
 			'code/UsernameBox.cpp',
+		],
+		'conditions' : [
+			['desura_nongpl==1',{
+				'dependencies' : [
+					'<(desura_nongpl_dir)/shared/uicore/uicore.gyp:uicore_nongpl',
+				]
+			}]
 		],
 	}],
 }

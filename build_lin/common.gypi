@@ -6,6 +6,9 @@
 		'shared_dir': 'shared',
 		'common_dir': 'common',
 		'include_dir': 'include',
+
+		'desura_nongpl%': 0,
+		'desura_nongpl_dir%': 'NO_COMERCIAL_CODE_ALLOWED',
 	},
 	'target_defaults' : {
 		'variables': {
