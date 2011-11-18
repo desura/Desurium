@@ -70,14 +70,6 @@ if [ $wxReturn -ne 0 ]; then
 	fi
 fi
 
-./BuildCef.sh $EXTRAARGS
-cefReturn=$?
-if [ $cefReturn -ne 0 ]; then
-	if [ "$exitFirstFail" == "true" ]; then
-		exit 1
-	fi
-fi
-
 cd ..
 
 function colourOutput()
@@ -96,7 +88,6 @@ echo -ne "\tBreakpad:\t"; colourOutput $breakpadReturn
 echo -ne "\tCurl:\t\t"; colourOutput $curlReturn
 echo -ne "\tV8:\t\t"; colourOutput $v8Return
 echo -ne "\twx:\t\t"; colourOutput $wxReturn
-echo -ne "\tCef:\t\t"; colourOutput $cefReturn
 echo -e " ----------------------------------------- "
 
 

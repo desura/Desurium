@@ -1,6 +1,6 @@
 {
 	'includes': [
-		 '../../common.gypi',
+		 '../../../build_lin/common.gypi',
 	],
 	'targets': [
 	{
@@ -25,6 +25,13 @@
 			'code/WebCoreMain.cpp',
 			'code/Log.cpp',
 			'code/WebCore_Internal.cpp',
+		],
+		'conditions' : [
+			['desura_nongpl==1',{
+				'dependencies' : [
+					'<(desura_nongpl_dir)/shared/webcore/webcore.gyp:webcore_nongpl',
+				]
+			}]
 		],
 	}],
 }
