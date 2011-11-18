@@ -131,7 +131,7 @@
 			'code/TaskBarIcon_Ballon.cpp',
 			'code/TaskBarIcon_Icon.cpp',
 			'code/TBI_BaseMenu.cpp',
-			'code/TBIq_GameMenu.cpp',
+			'code/TBI_GameMenu.cpp',
 			'code/TBI_UpdateMenu.cpp',
 			'code/TBI_WindowMenu.cpp',
 			'code/UICoreEntry.cpp',
