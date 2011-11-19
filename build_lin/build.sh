@@ -169,12 +169,6 @@ fi
 mkdir -p $logDir
 echo > $logFile
 
-# Check for common include file
-if [ ! -e ../src/common.gypi ]; then
-	echo "Missing common.gypi. Can't continue"
-	exit 1
-fi
-
 # Check for gyp
 if [ ! -e $gypApp ]; then
 	echo "Missing third_party/gyp/gyp. Can't continue"
