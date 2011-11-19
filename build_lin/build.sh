@@ -25,7 +25,6 @@ cleanTarget="false"							# Clean build folder
 
 if [ -n "$MAKE_CONCURRENCY" ]; then
 	makeConcurrency="-j $MAKE_CONCURRENCY"
-	echo "test"
 fi
 
 ce='\e[00m'		#color end
