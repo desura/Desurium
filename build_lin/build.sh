@@ -23,7 +23,7 @@ release="false"								# Release build
 color="true"								# Enable color
 cleanTarget="false"							# Clean build folder
 
-if [ -n $MAKE_CONCURRENCY ]; then
+if [ -n "$MAKE_CONCURRENCY" ]; then
 	makeConcurrency="-j $MAKE_CONCURRENCY"
 fi
 
