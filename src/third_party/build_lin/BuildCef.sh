@@ -1,7 +1,7 @@
 #!/bin/bash
 
 target=chromium/src/cef
-logFile=$PWD/$target.log
+logFile=$PWD/`basename $target`.log
 origDir=$PWD # should be third_party
 cd ../$target
 
