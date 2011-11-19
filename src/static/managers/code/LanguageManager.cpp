@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <string.h>
 #include "XMLMacros.h"
 
-#include "../../../branding_default/branding.h"
+#include "../../../branding/branding.h"
 
 
 LanguageManager::LanguageManager(const char* defaultLangFile) : BaseManager( true )
