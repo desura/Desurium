@@ -1,7 +1,7 @@
 #!/bin/bash
 
-target=chromium/src/courgette_desura
-logFile=$PWD/$target.log
+target=chromium/src/courgette
+logFile=$PWD/`basename $target`.log
 origDir=$PWD # should be third_party
 cd ../$target
 
