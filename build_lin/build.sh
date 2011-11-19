@@ -23,8 +23,9 @@ release="false"								# Release build
 color="true"								# Enable color
 cleanTarget="false"							# Clean build folder
 
-if [ -n $MAKE_CONCURRENCY ]; then
+if [ -n "$MAKE_CONCURRENCY" ]; then
 	makeConcurrency="-j $MAKE_CONCURRENCY"
+	echo "test"
 fi
 
 ce='\e[00m'		#color end
@@ -168,12 +169,6 @@ fi
 
 mkdir -p $logDir
 echo > $logFile
-
-# Check for common include file
-if [ ! -e ../src/common.gypi ]; then
-	echo "Missing common.gypi. Can't continue"
-	exit 1
-fi
 
 # Check for gyp
 if [ ! -e $gypApp ]; then

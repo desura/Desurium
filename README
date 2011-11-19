@@ -90,7 +90,7 @@ source python_env.sh # Only run if your Python 2 executable is 'python2'!
 ./SvnCheckOut.sh
 ./BuildAll.sh
 cd ../../build_lin
-/build.sh
+./build.sh
 
 
 Build Cef Linux
