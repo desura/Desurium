@@ -1,23 +1,23 @@
 {
 	'variables': {
-		'third_party_dir': 'third_party',
+		'third_party_dir': '../src/third_party',
 		'third_party_lib_dir': 'src/third_party',
-		'static_dir': 'static',
-		'shared_dir': 'shared',
-		'common_dir': 'common',
-		'include_dir': 'include',
+		'static_dir': '../src/static',
+		'shared_dir': '../src/shared',
+		'common_dir': '../src/common',
+		'include_dir': '../src/include',
 
 		'desura_nongpl%': 0,
 		'desura_nongpl_dir%': 'NO_COMERCIAL_CODE_ALLOWED',
 	},
 	'target_defaults' : {
 		'variables': {
-			'third_party_dir%': 'third_party',
+			'third_party_dir%': '../src/third_party',
 			'third_party_lib_dir%': 'src/third_party',
-			'static_dir%': 'static',
-			'shared_dir%': 'shared',
-			'common_dir%': 'common',
-			'include_dir%': 'include',
+			'static_dir%': '../src/static',
+			'shared_dir%': '../src/shared',
+			'common_dir%': '../src/common',
+			'include_dir%': '../src/include',
 		},
 		'default_configuration': 'Debug',
 		'configurations' : {
