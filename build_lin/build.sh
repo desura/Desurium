@@ -12,7 +12,7 @@ errorCount=0								# Error count
 warningCount=0								# Warning count
 lineCount=0									# Number of lines
 fileCount=0									# Number of files
-makeConcurrency="-j $MAKE_CONCURRENCY"		# Command to pass to make for concurrency
+makeConcurrency=""							# Command to pass to make for concurrency
 noPause="false"								# Whether or not to pause
 makeReturn=0								# Return value of make
 projectCount=0								# Project number reference
@@ -23,6 +23,9 @@ release="false"								# Release build
 color="true"								# Enable color
 cleanTarget="false"							# Clean build folder
 
+if [ -n $MAKE_CONCURRENCY ]; then
+	makeConcurrency="-j $MAKE_CONCURRENCY"
+fi
 
 ce='\e[00m'		#color end
 cgr='\e[01;30m'	#color bold grey
