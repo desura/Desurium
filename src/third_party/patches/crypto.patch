@@ -1,8 +1,8 @@
-Index: algparam.h
-===================================================================
---- algparam.h	(revision 529)
-+++ algparam.h	(working copy)
-@@ -319,7 +319,7 @@
+diff --git algparam.h algparam.h
+index ea5129c..ec2a175 100644
+--- algparam.h
++++ algparam.h
+@@ -319,7 +319,7 @@ public:
  
  	void MoveInto(void *buffer) const
  	{
@@ -11,11 +11,11 @@ Index: algparam.h
  	}
  
  protected:
-Index: misc.h
-===================================================================
---- misc.h	(revision 529)
-+++ misc.h	(working copy)
-@@ -55,7 +55,7 @@
+diff --git misc.h misc.h
+index 8425c53..3bd99b5 100644
+--- misc.h
++++ misc.h
+@@ -55,7 +55,7 @@ struct CompileAssert
  #if defined(CRYPTOPP_EXPORTS) || defined(CRYPTOPP_IMPORTS)
  #define CRYPTOPP_COMPILE_ASSERT_INSTANCE(assertion, instance)
  #else
@@ -24,21 +24,16 @@ Index: misc.h
  #endif
  #define CRYPTOPP_ASSERT_JOIN(X, Y) CRYPTOPP_DO_ASSERT_JOIN(X, Y)
  #define CRYPTOPP_DO_ASSERT_JOIN(X, Y) X##Y
-@@ -544,6 +544,7 @@
- 		SecureWipeBuffer((byte *)buf, n * sizeof(T));
- }
+diff --git secblock.h secblock.h
+index 24b9fc0..6fed9de 100644
+--- secblock.h
++++ secblock.h
+@@ -29,7 +29,7 @@ public:
  
-+#if 0
- // this function uses wcstombs(), which assumes that setlocale() has been called
- static std::string StringNarrow(const wchar_t *str, bool throwOnError = true)
- {
-@@ -566,7 +567,9 @@
- #pragma warning(pop)
- #endif
- }
-+#endif
+ 	pointer address(reference r) const {return (&r);}
+ 	const_pointer address(const_reference r) const {return (&r); }
+-	void construct(pointer p, const T& val) {new (p) T(val);}
++	void construct(pointer p, const T& val = T()) {new (p) T(val);}
+ 	void destroy(pointer p) {p->~T();}
+ 	size_type max_size() const {return ~size_type(0)/sizeof(T);}	// switch to std::numeric_limits<T>::max later
  
-+
- #if CRYPTOPP_BOOL_ALIGN16_ENABLED
- CRYPTOPP_DLL void * CRYPTOPP_API AlignedAllocate(size_t size);
- CRYPTOPP_DLL void CRYPTOPP_API AlignedDeallocate(void *p);
