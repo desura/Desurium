@@ -70,7 +70,7 @@ function configureCares()
 	fi
 
 	if [ ! -e Makefile ]; then
-		./configure --disable-debug --enable-shared=yes --enable-static=no --disable-curldebug --enable-symbol-hiding --enable-optimize=-O2 2>>$logFile 1>>$logFile
+		./configure --without-librtmp --disable-debug --enable-shared=yes --enable-static=no --disable-curldebug --enable-symbol-hiding --enable-optimize=-O2 2>>$logFile 1>>$logFile
 		configureReturn=$?
 		if [ $configureReturn -ne 0 ]; then
 			exitFailed "configure cares"
@@ -133,7 +133,7 @@ function configureCurlShared()
 
 	if [ ! -e Makefile ]; then
 		chmod +x configure
-		./configure --disable-ldap --disable-debug --disable-curldebug --without-zlib --disable-rtsp --disable-manual --enable-static=no --enable-shared=yes --disable-pop3 --disable-imap --disable-dict --disable-gopher --disable-verbose --disable-smtp --disable-telnet --disable-tftp --disable-file --without-libidn --without-gnutls --without-nss --without-cyassl --without-axtls --without-libssh2 --enable-hidden-symbols --enable-cookies --without-sspi --disable-manual --enable-optimize=-O2 --enable-ares 2>>$logFile 1>>$logFile
+		./configure --without-librtmp --disable-ldap --disable-debug --disable-curldebug --without-zlib --disable-rtsp --disable-manual --enable-static=no --enable-shared=yes --disable-pop3 --disable-imap --disable-dict --disable-gopher --disable-verbose --disable-smtp --disable-telnet --disable-tftp --disable-file --without-libidn --without-gnutls --without-nss --without-cyassl --without-axtls --without-libssh2 --enable-hidden-symbols --enable-cookies --without-sspi --disable-manual --enable-optimize=-O2 --enable-ares 2>>$logFile 1>>$logFile
 		configureReturn=$?
 		if [ $configureReturn -ne 0 ]; then
 			exitFailed "configure curl shared"
@@ -170,7 +170,7 @@ function configureCurlStatic()
 
 	if [ ! -e Makefile ]; then
 		chmod +x configure
-		.//configure --disable-ldap --disable-debug --disable-curldebug --without-zlib --disable-rtsp --disable-manual --enable-static=yes --enable-shared=no --disable-pop3 --disable-imap --disable-dict --disable-gopher --disable-verbose --disable-smtp --disable-telnet --disable-tftp --disable-file --without-libidn --without-gnutls --without-nss --without-cyassl --without-ssl --without-axtls --without-libssh2 --enable-hidden-symbols --enable-cookies --without-sspi --disable-manual --enable-optimize=-O2 2>>$logFile 1>>$logFile
+		.//configure --without-librtmp --disable-ldap --disable-debug --disable-curldebug --without-zlib --disable-rtsp --disable-manual --enable-static=yes --enable-shared=no --disable-pop3 --disable-imap --disable-dict --disable-gopher --disable-verbose --disable-smtp --disable-telnet --disable-tftp --disable-file --without-libidn --without-gnutls --without-nss --without-cyassl --without-ssl --without-axtls --without-libssh2 --enable-hidden-symbols --enable-cookies --without-sspi --disable-manual --enable-optimize=-O2 2>>$logFile 1>>$logFile
 		configureReturn=$?
 		if [ $configureReturn -ne 0 ]; then
 			exitFailed "configure curl static"
