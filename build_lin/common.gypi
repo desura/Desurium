@@ -1,7 +1,7 @@
 {
 	'variables': {
 		'third_party_dir': '../src/third_party',
-		'third_party_lib_dir': '../src/third_party',
+		'third_party_lib_dir': 'src/third_party',
 		'static_dir': '../src/static',
 		'shared_dir': '../src/shared',
 		'common_dir': '../src/common',
@@ -13,7 +13,7 @@
 	'target_defaults' : {
 		'variables': {
 			'third_party_dir%': '../src/third_party',
-			'third_party_lib_dir%': '../src/third_party',
+			'third_party_lib_dir%': 'src/third_party',
 			'static_dir%': '../src/static',
 			'shared_dir%': '../src/shared',
 			'common_dir%': '../src/common',
