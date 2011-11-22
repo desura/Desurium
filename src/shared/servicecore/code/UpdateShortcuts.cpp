@@ -57,11 +57,13 @@ void UpdateShortCuts()
 		UTIL::WIN::createShortCut(gcWString(spOne).c_str(), exe.c_str(), wd.c_str(), "", false);
 	}
 
+#ifdef DESURA_NONGPL_BUILD
 	if (UTIL::FS::isValidFile(spTwo) || force)
 	{
 		UTIL::FS::delFile(spTwo);
 		UTIL::WIN::createShortCut(gcWString(spTwo).c_str(), exe.c_str(), wd.c_str(), "-forceupdate", true);
 	}
+#endif
 }
 #else
 

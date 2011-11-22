@@ -41,6 +41,7 @@ const char* g_UpdateReasons[] =
 	NULL
 };
 
+#ifdef DESURA_NONGPL_BUILD
 bool CheckForUpdates()
 {
 	ERROR_OUTPUT(__func__);
@@ -157,6 +158,31 @@ bool CheckInstall()
 	
 	return updateMcf.checkFiles();
 }
+
+#else
+
+bool CheckForUpdates()
+{
+	return false;
+}
+
+int NeedUpdate()
+{
+	return UPDATE_NONE;
+}
+
+bool CheckUpdate(const char* path)
+{
+	return false;
+}
+
+bool CheckInstall()
+{
+	return true;
+}
+
+#endif
+
 
 int FullUpdate()
 {

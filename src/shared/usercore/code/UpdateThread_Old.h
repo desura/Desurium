@@ -52,6 +52,7 @@ protected:
 #endif
 
 	void loadLoginItems();
+	void checkAppUpdate(TiXmlNode* uNode);
 
 private:
 	HttpHandle m_hHttpHandle;

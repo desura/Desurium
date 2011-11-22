@@ -63,9 +63,9 @@ void UpdateThreadOld::onStop()
 
 void UpdateThreadOld::init()
 {
+	m_iAppId = 999;
 	m_iAppVersion = 0;
-	m_iAppId = 0;
-
+	
 	m_uiLastAppId = 0;
 	m_uiLastVersion = 0;
 }
@@ -134,25 +134,6 @@ void UpdateThreadOld::doRun()
 	}
 }
 
-void UpdateThreadOld::updateBuildVer()
-{
-	std::string szAppid = UTIL::OS::getConfigValue(APPID);
-	std::string szAppBuild = UTIL::OS::getConfigValue(APPBUILD);
-
-	if (szAppid.size() > 0)
-		m_iAppId = atoi(szAppid.c_str());
-
-	if (szAppBuild.size() > 0)
-		m_iAppVersion = atoi(szAppBuild.c_str());
-
-	//if admin, give them internal build
-	if (m_pUser->isAdmin() && m_iAppId != BUILDID_INTERNAL)
-	{
-		m_iAppId = BUILDID_INTERNAL;
-		m_iAppVersion = 0;
-	}
-}
-
 void UpdateThreadOld::onForcePoll()
 {
 	Msg("\t-- Forcing update poll\n");
@@ -169,8 +150,10 @@ bool UpdateThreadOld::pollUpdates()
 
 	std::map<std::string, std::string> post;
 
+#ifdef DESURA_NONGPL_BUILD
 	post["appid"] = gcString("{0}", m_iAppId);
 	post["build"] = gcString("{0}", m_iAppVersion);
+#endif
 
 	for (uint32 x=0; x< m_pUser->getItemManager()->getCount(); x++)
 	{
@@ -295,24 +278,7 @@ void UpdateThreadOld::parseXML(TiXmlDocument &doc)
 		pUser->setCounts(pm, up, th, cc);
 	}
 
-	TiXmlElement* appEl = uNode->FirstChildElement("app");
-	if (appEl)
-	{
-		uint32 mcfversion = 0;
-		uint32 appid = 0;
-
-		const char* id = appEl->Attribute("id");
-		const char* ver = appEl->GetText();
-
-		if (id)
-			appid = atoi(id);
-		
-		if (ver)
-			mcfversion = atoi(ver);
-
-		if (appid != 0 && mcfversion != 0 && !(appid == m_iAppId && mcfversion <= m_iAppVersion ) && !(appid == m_uiLastAppId && m_uiLastAppId >= mcfversion))
-			pUser->appNeedUpdate(appid, mcfversion);
-	}
+	checkAppUpdate(uNode);
 
 	if (version == 1)
 	{
@@ -373,5 +339,66 @@ void UpdateThreadOld::loadLoginItems()
 	im->enableSave();
 	m_pUser->getLoginItemsLoadedEvent()->operator()();
 }
+
+
+#ifdef DESURA_NONGPL_BUILD
+
+void UpdateThreadOld::checkAppUpdate(TiXmlNode* uNode)
+{
+	TiXmlElement* appEl = uNode->FirstChildElement("app");
+	if (appEl)
+	{
+		uint32 mcfversion = 0;
+		uint32 appid = 0;
+
+		const char* id = appEl->Attribute("id");
+		const char* ver = appEl->GetText();
+
+		if (id)
+			appid = atoi(id);
+		
+		if (ver)
+			mcfversion = atoi(ver);
+
+		if (appid != 0 && mcfversion != 0 && !(appid == m_iAppId && mcfversion <= m_iAppVersion ) && !(appid == m_uiLastAppId && m_uiLastAppId >= mcfversion))
+			pUser->appNeedUpdate(appid, mcfversion);
+	}
+}
+
+void UpdateThreadOld::updateBuildVer()
+{
+	std::string szAppid = UTIL::OS::getConfigValue(APPID);
+	std::string szAppBuild = UTIL::OS::getConfigValue(APPBUILD);
+
+	if (szAppid.size() > 0)
+		m_iAppId = atoi(szAppid.c_str());
+
+	if (szAppBuild.size() > 0)
+		m_iAppVersion = atoi(szAppBuild.c_str());
+
+	//if admin, give them internal build
+	if (m_pUser->isAdmin() && m_iAppId != BUILDID_INTERNAL)
+	{
+		m_iAppId = BUILDID_INTERNAL;
+		m_iAppVersion = 0;
+	}
+}
+
+#else
+
+void UpdateThreadOld::checkAppUpdate(TiXmlNode* uNode)
+{
+}
+
+void UpdateThreadOld::updateBuildVer()
+{
+	UTIL::OS::setConfigValue(APPID, 999);
+	UTIL::OS::setConfigValue(APPBUILD, 0);
+}
+
+#endif
+
+
+
 
 }
