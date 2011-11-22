@@ -162,7 +162,6 @@
     <ClCompile Include="code\MD5Progressive.cpp" />
     <ClCompile Include="code\MD5Wrapper.cpp" />
     <ClCompile Include="code\UtilBZip2.cpp" />
-    <ClCompile Include="code\UtilCrypto.cpp" />
     <ClCompile Include="code\UtilFsPath.cpp" />
     <ClCompile Include="code\UtilMisc.cpp" />
     <ClCompile Include="code\UtilMisc_ico.cpp" />

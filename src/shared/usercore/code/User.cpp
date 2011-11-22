@@ -23,7 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <shlobj.h>
 #endif
 
-#include "util/UtilCrypto.h"
 #include "UpdateThread.h"
 
 #include "../../branding/usercore_version.h"
