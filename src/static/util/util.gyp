@@ -28,7 +28,6 @@
 		'dependencies' : [
 			'<(third_party_dir)/sqlite3x/sqlite3x.gyp:sqlite3x',
 			'<(third_party_dir)/libs.gyp:boost',
-			'<(third_party_dir)/libs.gyp:crypto',
 			'<(third_party_dir)/bzip2/bzip2.gyp:bzip2'
 		],		
 		'sources': [
