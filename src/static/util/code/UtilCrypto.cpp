@@ -20,17 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 
 //aes headers
-#include "aes.h"
-#include "modes.h" // xxx_Mode< >
-#include "filters.h"
-#include "default.h"
-#include "osrng.h"
-#include "hex.h"
-#include "base64.h"
-
-using namespace std;
-using namespace CryptoPP;
-//aes
 
 #ifdef WIN32
 #include <wincon.h>
@@ -44,41 +33,11 @@ namespace CRYPTO
 //this will encrypet a string using aes
 void ciphertext(char** dest, const char* str, const char* key)
 {
-	string plaintext = string(str);
-	string ciphertext;
-
-	StringSource se(plaintext, true, new DefaultEncryptorWithMAC(key, new Base64Encoder(new StringSink(ciphertext))));
-
-	size_t len = ciphertext.size();
-
-	safe_delete(*dest);
-	*dest = new char[len+1];
-	Safe::strncpy(*dest, len+1, ciphertext.c_str(), len);
-	(*dest)[len]='\0';
 }
 
 //this will decrypet a string using aes
 void deCiphertext(char** dest, const char* str, const char* key)
 {
-	string ciphertext = string(str);
-	string restext;
-
-	try
-	{
-		StringSource sd(ciphertext, true, new Base64Decoder(new DefaultDecryptorWithMAC(key, new StringSink(restext))));
-	}
-	catch (InvalidArgument &)
-	{
-		Debug("Exception happened in CRYPTO deciphertext\n");
-		return;
-	}
-	
-	size_t len = strlen(restext.c_str());
-
-	safe_delete(*dest);
-	*dest = new char[len+1];
-	Safe::strncpy(*dest, len+1, restext.c_str(), len);
-	(*dest)[len]='\0';
 }
 
 #ifdef WIN32
