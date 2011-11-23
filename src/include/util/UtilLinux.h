@@ -131,6 +131,12 @@ namespace LIN
 	bool is64OS();
 	
 	std::string sanitiseFileName(const char* name);
+	
+	//! Sets up XDG environmental variables.
+	//!
+	//! @return True if an error occured.
+	//!
+	bool setupXDGVars(void);
 }
 }
 

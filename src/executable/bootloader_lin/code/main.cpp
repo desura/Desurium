@@ -114,6 +114,8 @@ bool RestartBootloader(const char* args)
 
 int main(int argc, char** argv)
 {
+	UTIL::LIN::setupXDGVars();
+
 	MainApp app(argc, argv);
 	g_pMainApp = &app;
 	
@@ -180,7 +182,9 @@ int MainApp::run()
 		return DownloadFilesForTest();
 
 #ifndef DEBUG
-	if (!FileExists("~/.desura_lock")) // if desura isn't already running - simple check
+	std::string lockPath = UTIL::LIN::expandPath("$XDG_RUNTIME_DIR/desura/lock");
+
+	if (!FileExists(lockPath)) // if desura isn't already running - simple check
 	{
 		if (forceUpdate)
 		{
@@ -215,7 +219,7 @@ int MainApp::run()
 	ERROR_OUTPUT("Skipping update check due to debug compile!");
 #endif
 
-	UpdateIcons();
+	//UpdateIcons();
 
 	if (!loadUICore())
 	{

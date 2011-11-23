@@ -214,7 +214,7 @@ int FullUpdate()
 	if (FileExists(UPDATEFILE))
 		DeleteFile(UPDATEFILE);
 	
-	UpdateIcons(true);
+	//UpdateIcons(true);
 
 	return res;
 }

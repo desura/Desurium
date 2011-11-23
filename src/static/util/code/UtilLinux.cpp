@@ -28,7 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include <sqlite3x.hpp>
 
-
+#include <cstdlib>
+#include <sys/types.h>
+#include <pwd.h>
 
 #define CONFIG_DB ".settings/linux_registry.sqlite"
 
@@ -195,6 +197,8 @@ namespace UTIL
 {
 namespace LIN
 {
+#include <cstdio>
+
 // This is copied here due to bootloader not having util::fs (due to boost dep)
 std::string expandPath(const char* file)
 {
@@ -782,6 +786,82 @@ std::string sanitiseFileName(const char* name)
 	return out;
 }
 
+bool setupXDGVars(void)
+{
+	const char* homeDir = getenv("HOME");
+	
+	if(homeDir == 0)
+	{
+		// Below we just use 'falling back' and don't note we're setting it,
+		// but as $HOME is referenced later on it might confuse anybody reading the
+		// logs.
+		std::cerr << "$HOME not set, temporarily setting it to the user's " <<
+			"password file entry." << std::endl;
+		
+		struct passwd* pass = getpwuid(getuid());
+		homeDir = pass->pw_dir;
+		
+		if(setenv("HOME", homeDir, 0) == -1)
+		{
+			std::cerr << "Failed to setenv $HOME." << std::endl;
+			// No need to return from this one as we're using homeDir from here on.
+		}
+		
+		// If homeDir is still blank, there's bigger problems for them than Desura.
+	}
+	
+	if(getenv("XDG_CONFIG_HOME") == 0)
+	{
+		std::cerr << "$XDG_CONFIG_HOME not set, falling " <<
+			"back to $HOME/.config." << std::endl;
+		
+		std::string fullDir("/.config");
+		fullDir.insert(0, homeDir);
+		
+		if(setenv("XDG_CONFIG_HOME", fullDir.c_str(), 0) == -1)
+		{
+			std::cerr << "Failed to setenv $XDG_CONFIG_HOME." << std::endl;
+			return true;
+		}
+	}
+	
+	// To avoid calling getenv later and risking that failing, store it here.
+	const char* cacheDir = getenv("XDG_CACHE_HOME");
+	std::string cacheDirString(cacheDir);
+	
+	if(cacheDir == 0)
+	{
+		std::cerr << "$XDG_CACHE_HOME not set, falling " <<
+			"back to $HOME/.cache." << std::endl;
+		
+		std::string fullDir("/.cache");
+		fullDir.insert(0, homeDir);
+		
+		if(setenv("XDG_CACHE_HOME", fullDir.c_str(), 0) == -1)
+		{
+			std::cerr << "Failed to setenv $XDG_CACHE_HOME." << std::endl;
+			return true;
+		}
+		
+		cacheDirString = fullDir;
+	}
+	
+	if(getenv("XDG_RUNTIME_DIR") == 0)
+	{
+		std::cerr << "$XDG_RUNTIME_DIR not set, falling " <<
+			"back to $XDG_CACHE_HOME." << std::endl;
+		
+		std::string fullDir(cacheDirString);
+		
+		if(setenv("XDG_RUNTIME_DIR", fullDir.c_str(), 0) == -1)
+		{
+			std::cerr << "Failed to setenv $XDG_CONFIG_HOME." << std::endl;
+			return true;
+		}
+	}
+	
+	return false;
+}
 
 }
 }

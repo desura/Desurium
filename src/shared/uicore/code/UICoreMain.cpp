@@ -80,7 +80,7 @@ public:
 			return;
 		}
 
-		UTIL::FS::recMakeFolder(UTIL::LIN::expandPath("~/.desura").c_str());
+		UTIL::FS::recMakeFolder(UTIL::LIN::expandPath("$XDG_CONFIG_HOME/desura").c_str());
 
 		socketLocal.sun_family = AF_UNIX;
 		strcpy(socketLocal.sun_path, UTIL::LIN::expandPath(SOCK_PATH).c_str());
@@ -481,6 +481,9 @@ public:
 		UTIL::FS::delFile(UTIL::LIN::expandPath("~/.desura_lock").c_str());
 		UTIL::FS::delFile(UTIL::LIN::expandPath("~/.desura_socket").c_str());
 		UTIL::FS::delFile(UTIL::LIN::expandPath("~/.desura_autologin").c_str());
+		UTIL::FS::delFile(UTIL::LIN::expandPath("~/.desura/.socket").c_str());
+		UTIL::FS::delFile(UTIL::LIN::expandPath("~/.desura/.autologin").c_str());
+		UTIL::FS::delFolder(UTIL::LIN::expandPath("~/.desura").c_str());
 #endif
 
 		if (link.size() > 0)
@@ -512,6 +515,10 @@ public:
 		
 		wxWindow::MSWUnregisterMessageHandler(WM_ENDSESSION, &WindowsShutdown);
 		wxWindow::MSWUnregisterMessageHandler(WM_QUERYENDSESSION, &WindowsShutdown);
+#endif
+
+#ifdef NIX
+		UTIL::FS::delFolder(UTIL::LIN::expandPath("$XDG_RUNTIME_DIR/desura").c_str());
 #endif
 		g_pMainApp = NULL;
 
