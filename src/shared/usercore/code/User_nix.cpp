@@ -48,7 +48,7 @@ void User::saveLoginInfo()
 	buff[0]=username.size();
 	buff[1]=passhash.size();
 
-	gcString path = UTIL::LIN::expandPath("~/.desura/.autologin");
+	gcString path = UTIL::LIN::expandPath("$XDG_CONFIG_HOME/desura/autologin");
 	UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(path.c_str()));
 
 	try
@@ -72,12 +72,19 @@ void User::saveLoginInfo()
 void User::getLoginInfo(char** username, char** passhash)
 {
 	gcString oldPath = UTIL::LIN::expandPath("~/.desura_autologin");
-	gcString path = UTIL::LIN::expandPath("~/.desura/.autologin");
+	gcString oldPath2 = UTIL::LIN::expandPath("~/.desura/.autologin");
+	gcString path = UTIL::LIN::expandPath("$XDG_CONFIG_HOME/desura/autologin");
 	
 	if (UTIL::FS::isValidFile(oldPath.c_str()))
 	{
 		UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(path.c_str()));
 		UTIL::FS::moveFile(oldPath.c_str(), path.c_str());
+	}
+	
+	if (UTIL::FS::isValidFile(oldPath2.c_str()))
+	{
+		UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(path.c_str()));
+		UTIL::FS::moveFile(oldPath2.c_str(), path.c_str());
 	}
 	
 	if (!UTIL::FS::isValidFile(path.c_str()))

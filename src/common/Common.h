@@ -145,7 +145,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #endif
 
 #ifdef NIX // LINUX 
-	#define SOCK_PATH "~/.desura/.socket"
+	#define SOCK_PATH "$XDG_RUNTIME_DIR/desura/socket"
 
 	#define _LARGEFILE_SOURCE 1
 	#define _LARGEFILE64_SOURCE 1

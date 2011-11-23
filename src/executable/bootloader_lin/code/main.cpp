@@ -117,6 +117,8 @@ bool RestartBootloader(const char* args)
 
 int main(int argc, char** argv)
 {
+	UTIL::LIN::setupXDGVars();
+
 	ERROR_OUTPUT(__func__);
 
 	MainApp app(argc, argv);
@@ -197,7 +199,9 @@ int MainApp::run()
 		return DownloadFilesForTest();
 
 #ifndef DEBUG
-	if (!FileExists("~/.desura_lock")) // if desura isn't already running - simple check
+	std::string lockPath = UTIL::LIN::expandPath("$XDG_RUNTIME_DIR/desura/lock");
+
+	if (!FileExists(lockPath)) // if desura isn't already running - simple check
 	{
 		if (forceUpdate)
 		{
