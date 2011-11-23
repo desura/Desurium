@@ -1222,57 +1222,62 @@ void ItemInfo::migrateStandalone(MCFBranch branch, MCFBuild build)
 
 void ItemInfo::setLinkInfo(const char* exe, const char* args)
 {
-//	if (getId().getType() != DesuraId::TYPE_LINK)
-//		return;
-//
-//	UTIL::FS::Path path = UTIL::FS::PathWithFile(exe);
-//
-//	setPath(path.getFolderPath().c_str());
-//	setInsCheck(exe);
-//
-//	if (m_vExeList.size() == 0)
-//		m_vExeList.push_back(new ExeInfo("Link"));
-//
-//	ExeInfo* info = m_vExeList[0];
-//
-//	info->setExe(exe);
-//	info->setUserArgs(args);
-//
-//
-//	if (m_vBranchList.size() == 0)
-//		m_vBranchList.push_back(new UserCore::Item::BranchInfo(MCFBranch::BranchFromInt(0), getId()));
-//
-//
-//	UserCore::Item::BranchInfo* bi = m_vBranchList[0];
-//	bi->setLinkInfo(getName());
-//
-//	m_iStatus = STATUS_LINK|STATUS_NONDOWNLOADABLE|STATUS_READY|STATUS_ONCOMPUTER|STATUS_INSTALLED;
-//
-//
-//#ifdef WIN32
-//	gcString savePathIco = UTIL::OS::getAppDataPath(gcWString(getId().getFolderPathExtension("icon.ico")).c_str());
-//	gcString savePathPng = UTIL::OS::getAppDataPath(gcWString(getId().getFolderPathExtension("icon.png")).c_str());
-//
-//	try
-//	{
-//		UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(savePathIco));
-//		UTIL::FS::FileHandle fh(savePathIco.c_str(), UTIL::FS::FILE_WRITE);
-//
-//		UTIL::WIN::extractIcon(exe, [&fh](const unsigned char* buff, uint32 size) -> bool
-//		{
-//			fh.write((char*)buff, size);
-//			return true;
-//		});
-//
-//		fh.close();
-//
-//		UTIL::MISC::convertToPng(savePathIco, savePathPng);
-//		setIcon(savePathPng.c_str());
-//	}
-//	catch (...)
-//	{
-//	}
-//#endif
+	if (getId().getType() != DesuraId::TYPE_LINK)
+		return;
+
+	UTIL::FS::Path path = UTIL::FS::PathWithFile(exe);
+
+#ifdef WIN32
+	uint32 platform = 100;
+#else
+#ifdef NIX64
+	uint32 platform = 120;
+#else
+	uint32 platform = 110;
+#endif
+#endif
+
+	if (m_mBranchInstallInfo.size() == 0)
+		m_mBranchInstallInfo[platform] = new UserCore::Item::BranchInstallInfo(platform, this);
+
+	BranchInstallInfo *bii = m_mBranchInstallInfo[platform];
+
+	if (m_vBranchList.size() == 0)
+		m_vBranchList.push_back(new UserCore::Item::BranchInfo(MCFBranch::BranchFromInt(0), getId(), bii));
+
+	UserCore::Item::BranchInfo* bi = m_vBranchList[0];
+
+	bii->setPath(path.getFolderPath().c_str());
+	bii->setInsCheck(exe);
+	bii->setLinkInfo(exe, args);
+	bi->setLinkInfo(getName());
+
+	m_iStatus = STATUS_LINK|STATUS_NONDOWNLOADABLE|STATUS_READY|STATUS_ONCOMPUTER|STATUS_INSTALLED;
+
+#ifdef WIN32
+	gcString savePathIco = UTIL::OS::getAppDataPath(gcWString(getId().getFolderPathExtension("icon.ico")).c_str());
+	gcString savePathPng = UTIL::OS::getAppDataPath(gcWString(getId().getFolderPathExtension("icon.png")).c_str());
+
+	try
+	{
+		UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(savePathIco));
+		UTIL::FS::FileHandle fh(savePathIco.c_str(), UTIL::FS::FILE_WRITE);
+
+		UTIL::WIN::extractIcon(exe, [&fh](const unsigned char* buff, uint32 size) -> bool
+		{
+			fh.write((char*)buff, size);
+			return true;
+		});
+
+		fh.close();
+
+		UTIL::MISC::convertToPng(savePathIco, savePathPng);
+		setIcon(savePathPng.c_str());
+	}
+	catch (...)
+	{
+	}
+#endif
 }
 
 MCFBranch ItemInfo::getBestBranch(MCFBranch branch)

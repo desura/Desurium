@@ -600,5 +600,16 @@ bool BranchInstallInfo::processUpdateXml(TiXmlNode* branch)
 	return (m_NextBuild > m_INBuild);
 }
 
+void BranchInstallInfo::setLinkInfo(const char* exe, const char* args)
+{
+	if (m_vExeList.size() == 0)
+		m_vExeList.push_back(new ExeInfo("Link"));
+
+	ExeInfo* info = m_vExeList[0];
+
+	info->setExe(exe);
+	info->setUserArgs(args);
+}
+
 }
 }

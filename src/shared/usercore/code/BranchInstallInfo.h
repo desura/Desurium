@@ -178,6 +178,9 @@ public:
 
 	uint32 getBiId();
 
+
+	void setLinkInfo(const char* exe, const char* args);
+
 protected:
 	void launchExeHack();
 	void processExes(TiXmlNode* setNode, WildcardManager* pWildCard, bool useCip);
