@@ -176,7 +176,6 @@ if [ ${branding_desura} == "true" ]; then
 else
 	ln -s ../src/branding_default ../src/branding
 fi
-exit
 
 mkdir -p $logDir
 echo > $logFile
