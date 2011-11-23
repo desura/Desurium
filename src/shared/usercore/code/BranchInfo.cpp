@@ -22,13 +22,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "sqlite3x.hpp"
 #include "XMLMacros.h"
 
+#include "BranchInstallInfo.h"
+
 namespace UserCore
 {
 namespace Item
 {
 
-BranchInfo::BranchInfo(MCFBranch branchId, DesuraId itemId, uint32 platformId)
+BranchInfo::BranchInfo(MCFBranch branchId, DesuraId itemId, BranchInstallInfo* bii, uint32 platformId)
 {
+	m_InstallInfo = bii;
 	m_ItemId = itemId;
 	m_uiBranchId = branchId;
 	m_uiFlags = 0;
@@ -153,7 +156,7 @@ void BranchInfo::saveDb(sqlite3x::sqlite3_connection* db)
 void BranchInfo::saveDbFull(sqlite3x::sqlite3_connection* db)
 {
 	{
-		sqlite3x::sqlite3_command cmd(*db, "REPLACE INTO branchinfo VALUES (?,?,?,?,?, ?,?,?,?,?, ?);");
+		sqlite3x::sqlite3_command cmd(*db, "REPLACE INTO branchinfo VALUES (?,?,?,?,?, ?,?,?,?,?, ?,?);");
 
 		cmd.bind(1, (int)m_uiBranchId);
 		cmd.bind(2, (long long int)m_ItemId.toInt64());
@@ -168,6 +171,7 @@ void BranchInfo::saveDbFull(sqlite3x::sqlite3_connection* db)
 		cmd.bind(10, (int)m_uiInstallScriptCRC);
 		
 		cmd.bind(11, (int)m_uiGlobalId);
+		cmd.bind(12, (int)m_InstallInfo->getBiId());
 
 		cmd.executenonquery();
 	}
@@ -195,7 +199,7 @@ void BranchInfo::loadDb(sqlite3x::sqlite3_connection* db)
 	if (!db)
 		return;
 
-	sqlite3x::sqlite3_command cmd(*db, "SELECT name, flags, eula, euladate, preorderdate, cdkey, installscript, installscriptCRC, globalid FROM branchinfo WHERE branchid=? AND internalid=?;");
+	sqlite3x::sqlite3_command cmd(*db, "SELECT * FROM branchinfo WHERE branchid=? AND internalid=?;");
 	cmd.bind(1, (int)m_uiBranchId);
 	cmd.bind(2, (long long int)m_ItemId.toInt64());
 
@@ -203,15 +207,15 @@ void BranchInfo::loadDb(sqlite3x::sqlite3_connection* db)
 	
 	reader.read();
 
-	m_szName		= gcString(reader.getstring(0));		//name
-	m_uiFlags		= reader.getint(1);						//flags
-	m_szEulaUrl		= reader.getstring(2);
-	m_szEulaDate	= reader.getstring(3);
-	m_szPreOrderDate = reader.getstring(4);
-	decodeCDKey(reader.getstring(5));
-	m_szInstallScript = UTIL::OS::getAbsPath(reader.getstring(6));
-	m_uiInstallScriptCRC = reader.getint(7);
-	m_uiGlobalId = MCFBranch::BranchFromInt(reader.getint(8), true);
+	m_szName		= gcString(reader.getstring(2));		//name
+	m_uiFlags		= reader.getint(3);						//flags
+	m_szEulaUrl		= reader.getstring(4);
+	m_szEulaDate	= reader.getstring(5);
+	m_szPreOrderDate = reader.getstring(6);
+	decodeCDKey(reader.getstring(7));
+	m_szInstallScript = UTIL::OS::getAbsPath(reader.getstring(8));
+	m_uiInstallScriptCRC = reader.getint(9);
+	m_uiGlobalId = MCFBranch::BranchFromInt(reader.getint(10), true);
 
 	m_uiFlags &= ~BF_ONACCOUNT;
 
@@ -499,6 +503,11 @@ void BranchInfo::setLinkInfo(const char* name)
 #else
 	m_uiFlags |= BF_LINUX_32|BF_LINUX_64;
 #endif
+}
+
+BranchInstallInfo* BranchInfo::getInstallInfo()
+{
+	return m_InstallInfo;
 }
 
 }

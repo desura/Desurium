@@ -149,9 +149,10 @@ public:
 
 	//! Get the currently installed mod (for complex installs)
 	//!
+	//! @param branch Branch to get installed modid for or 0 for current
 	//! @return Mod id
 	//!
-	virtual DesuraId getInstalledModId()=0;
+	virtual DesuraId getInstalledModId(MCFBranch branch = MCFBranch())=0;
 
 	//! Get items changed flags
 	//!
@@ -307,15 +308,17 @@ public:
 
 	//! Gets the items install path
 	//!
+	//! @branch Branch to get path for or 0 for current
 	//! @return Install path
 	//!
-	virtual const char* getPath()=0;
+	virtual const char* getPath(MCFBranch branch = MCFBranch())=0;
 
 	//! Gets the items primary install path
 	//!
+	//! @branch Branch to get primary install path for or 0 for current
 	//! @return Primary install path
 	//!
-	virtual const char* getInsPrimary()=0;
+	virtual const char* getInsPrimary(MCFBranch branch = MCFBranch())=0;
 
 	//! Gets the items icon (local file path)
 	//!
@@ -427,14 +430,59 @@ public:
 	//!
 	virtual BranchInfoI* getBranchById(uint32 id)=0;
 
-	virtual uint64 getInstallSize()=0;
-	virtual uint64 getDownloadSize()=0;
-	virtual MCFBuild getLastInstalledBuild()=0;
-	virtual MCFBuild getInstalledBuild()=0;
-	virtual MCFBuild getNextUpdateBuild()=0;
+	//! Gets the install size
+	//!
+	//! @param branch to get or 0 for current
+	//! @return Install size
+	//!
+	virtual uint64 getInstallSize(MCFBranch branch = MCFBranch())=0;
+
+	//! Gets the download size
+	//!
+	//! @param branch to get or 0 for current
+	//! @return Download size
+	//!
+	virtual uint64 getDownloadSize(MCFBranch branch = MCFBranch())=0;
+
+	//! Gets the last installed build version
+	//!
+	//! @param branch to get or 0 for current
+	//! @return Last build version
+	//!
+	virtual MCFBuild getLastInstalledBuild(MCFBranch branch = MCFBranch())=0;
+
+	//! Gets the current build version
+	//!
+	//! @param branch to get or 0 for current
+	//! @return Version string
+	//!
+	virtual MCFBuild getInstalledBuild(MCFBranch branch = MCFBranch())=0;
+
+	//! Gets the next build number of the next version
+	//!
+	//! @param branch to get or 0 for current
+	//! @return Next mcf build
+	//!
+	virtual MCFBuild getNextUpdateBuild(MCFBranch branch = MCFBranch())=0;
+
+	//! Gets the currently installed branch id
+	//!
+	//! @return Current installed branch id
+	//!
 	virtual MCFBranch getInstalledBranch()=0;
+
+	//! Gets the last installed branch id
+	//!
+	//! @return Last installed branch id
+	//!
 	virtual MCFBranch getLastInstalledBranch()=0;
-	virtual const char* getInstalledVersion()=0;
+
+	//! Gets the installed version string
+	//!
+	//! @param branch to get the installed version for or 0 for current
+	//! @return Version string
+	//!
+	virtual const char* getInstalledVersion(MCFBranch branch = MCFBranch())=0;
 
 
 	//! Sets the current installed branch and build. 
@@ -457,28 +505,29 @@ public:
 
 	//! Gets the number of exe's for this item
 	//!
+	//! @param setActive If there is only one exe set it to be the active one
 	//! @return Exe count
 	//!
-	virtual uint32 getExeCount(bool setActive = false)=0;
+	virtual uint32 getExeCount(bool setActive = false, MCFBranch branch = MCFBranch())=0;
 
 	//! Gets the list of exe info for this item
 	//!
 	//! @param list List to store results in
 	//!
-	virtual void getExeList(std::vector<UserCore::Item::Misc::ExeInfoI*> &list)=0;
+	virtual void getExeList(std::vector<UserCore::Item::Misc::ExeInfoI*> &list, MCFBranch branch = MCFBranch())=0;
 
 
 	//! gets the active exe info
 	//!
 	//! @return active exe info
 	//!
-	virtual UserCore::Item::Misc::ExeInfoI* getActiveExe()=0;
+	virtual UserCore::Item::Misc::ExeInfoI* getActiveExe(MCFBranch branch = MCFBranch())=0;
 
 	//! Sets the active exe used for launching
 	//!
 	//! @param name Exe name
 	//!
-	virtual void setActiveExe(const char* name)=0;
+	virtual void setActiveExe(const char* name, MCFBranch branch = MCFBranch())=0;
 };
 
 

@@ -56,7 +56,6 @@ buildDirs=(
 			"crashuploader"
 			"scriptcore"
 			"bootloader_lin"
-			"bittest_lin"
 			"crashdlg_lin"
 			"process_data_folder"
 			)
@@ -268,12 +267,6 @@ function copyFiles()
 		echo "Done"
 	fi
 
-	if [ x"$(uname -m)" != x"x86_64" -a -e out/$outTarget/bittest ]; then # 64 bit
-		echo -ne "\tbittest\t\t-\t"
-		cp out/$outTarget/bittest build_out/$outDest/bin/
-		echo "Done"
-	fi
-
 	if [ -e out/$outTarget/crashdlg ]; then	
 		echo -ne "\tcrashdlg\t-\t"
 		cp out/$outTarget/crashdlg build_out/$outDest/bin/
@@ -479,8 +472,7 @@ else
 
 	# Iterate through build targets
 	for currentTarget in ${buildDirs[@]}; do
-		if [ x"$currentTarget" == x"bittest_lin" -a x"$(uname -m)" == x"x86_64" ]; then continue; fi
-
+	
 		if [ $projectNum -ne -1 ]; then
 			if [ $projectCount -ne $projectNum ]; then
 				projectCount=$((projectCount + 1))

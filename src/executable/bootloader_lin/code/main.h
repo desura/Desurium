@@ -80,7 +80,8 @@ protected:
 	
 	bool rootTest();
 	bool permTest();
-	
+	bool utf8Test();
+
 private:
 	int m_Argc;
 	char** m_Argv;

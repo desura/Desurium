@@ -131,13 +131,6 @@
 		]
 	},
 	{
-		'target_name' : 'bittest_lin',
-		'type' : 'none',
-		'dependencies' : [
-			'../src/executable/bittest_lin/bittest_lin.gyp:*',
-		]
-	},
-	{
 		'target_name' : 'process_data_folder',
 		'type' : 'none',
 		'dependencies' : [

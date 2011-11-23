@@ -65,7 +65,16 @@ void InstallProcess::run()
 
 #ifdef WIN32
 	if (m_bMakeWriteable)
-		UTIL::WIN::changeFolderPermissions(gcWString(m_szIPath).c_str());
+	{
+		try
+		{
+			UTIL::WIN::changeFolderPermissions(gcWString(m_szIPath).c_str());
+		}
+		catch (gcException &e)
+		{
+			Warning(gcString("Failed to set path as writable for install: {0}\n", e));
+		}
+	}
 #endif
 
 	MCFCore::MCFI *mcfHandle = mcfFactory();

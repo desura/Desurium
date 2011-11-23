@@ -68,7 +68,7 @@ ItemManager::ItemManager(User* user) : BaseManager(true)
 	m_szAppPath = user->getAppDataPath();
 
 	createItemInfoDbTables(m_szAppPath.c_str());
-	gcString oldPath("{0}{1}iteminfo_b.sqlite", m_szAppPath, DIRS_STR);
+	gcString oldPath("{0}{1}iteminfo_c.sqlite", m_szAppPath, DIRS_STR);
 
 	if (UTIL::FS::isValidFile(oldPath))
 	{
@@ -99,46 +99,28 @@ ItemManager::~ItemManager()
 
 void ItemManager::migrateOldItemInfo(const char* olddb, const char* newdb)
 {
+#ifdef WIN32
+	uint32 biid = 100;
+#else
+#ifdef NIX64
+	uint32 biid = 120;
+#else
+	uint32 biid = 110;
+#endif
+#endif
+
 	sqlite3x::sqlite3_connection db(olddb);
 	sqlite3x::sqlite3_connection ndb(newdb);
 
-	trycatch(db, "ALTER TABLE iteminfo ADD eula TEXT;");
-	trycatch(db, "ALTER TABLE iteminfo ADD lastbuild INTEGER;");
-	trycatch(db, "ALTER TABLE iteminfo ADD lastbranch INTEGER;");
-	trycatch(db, "ALTER TABLE iteminfo ADD publisher TEXT;");
-	trycatch(db, "ALTER TABLE iteminfo ADD pubprofile TEXT;");
-
-	trycatch(db, "ALTER TABLE branchinfo ADD eula TEXT;");
-	trycatch(db, "ALTER TABLE branchinfo ADD euladate TEXT;");
-	trycatch(db, "ALTER TABLE branchinfo ADD preorderdate TEXT;");
-	trycatch(db, "ALTER TABLE branchinfo ADD cdkey TEXT;");
 	trycatch(db, "ALTER TABLE branchinfo ADD installscript TEXT;");
 	trycatch(db, "ALTER TABLE branchinfo ADD installscriptCRC INTEGER;");
+	trycatch(db, "ALTER TABLE exe ADD rank INTEGER;");
+	trycatch(db, "ALTER TABLE branchinfo ADD globalid INTEGER;");
 
-	trycatch(db, "INSERT INTO exe (itemid, name, exe, exeargs, userargs) SELECT internalid, \"Play\", exe, exeargs, userargs FROM iteminfo;");
+	sqlite3x::sqlite3_transaction trans(ndb);
 
-	sqlite3x::sqlite3_transaction trans(db);
 
-	{
-		sqlite3x::sqlite3_command cmd(db, "SELECT * FROM branchinfo;");
-		sqlite3x::sqlite3_reader reader = cmd.executereader();trycatch(db, "ALTER TABLE branchinfo ADD installscriptCRC INTEGER;");
 
-		while (reader.read())
-		{
-			sqlite3x::sqlite3_command cmd(ndb, "INSERT IGNORE INTO branchinfo VALUES (?,?,?,?,?,?,?,?);");
-
-			cmd.bind(1, reader.getstring(0));
-			cmd.bind(2, reader.getstring(1));
-			cmd.bind(3, reader.getstring(2));
-			cmd.bind(4, reader.getstring(3));
-			cmd.bind(5, reader.getstring(4));
-			cmd.bind(6, reader.getstring(5));
-			cmd.bind(7, reader.getstring(6));
-			cmd.bind(8, reader.getstring(7));
-
-			cmd.executenonquery();
-		}
-	}
 
 	{
 		sqlite3x::sqlite3_command cmd(db, "SELECT * FROM recent;");
@@ -146,7 +128,7 @@ void ItemManager::migrateOldItemInfo(const char* olddb, const char* newdb)
 
 		while (reader.read())
 		{
-			sqlite3x::sqlite3_command cmd(ndb, "INSERT IGNORE INTO recent VALUES (?,?,?);");
+			sqlite3x::sqlite3_command cmd(ndb, "INSERT OR IGNORE INTO recent VALUES (?,?,?);");
 
 			cmd.bind(1, reader.getstring(0));
 			cmd.bind(2, reader.getstring(1));
@@ -162,11 +144,26 @@ void ItemManager::migrateOldItemInfo(const char* olddb, const char* newdb)
 
 		while (reader.read())
 		{
-			sqlite3x::sqlite3_command cmd(ndb, "INSERT IGNORE INTO favorite VALUES (?,?);");
+			sqlite3x::sqlite3_command cmd(ndb, "INSERT OR IGNORE INTO favorite VALUES (?,?);");
 
 			cmd.bind(1, reader.getstring(0));
 			cmd.bind(2, reader.getstring(1));
 
+			cmd.executenonquery();
+		}
+	}
+
+	{
+		sqlite3x::sqlite3_command cmd(db, "SELECT * FROM newItems;");
+		sqlite3x::sqlite3_reader reader = cmd.executereader();
+
+		while (reader.read())
+		{
+			sqlite3x::sqlite3_command cmd(ndb, "INSERT OR IGNORE INTO newItems VALUES (?,?,?);");
+
+			cmd.bind(1, reader.getstring(0));
+			cmd.bind(2, reader.getstring(1));
+			cmd.bind(3, reader.getstring(2));
 			cmd.executenonquery();
 		}
 	}
@@ -177,10 +174,92 @@ void ItemManager::migrateOldItemInfo(const char* olddb, const char* newdb)
 
 		while (reader.read())
 		{
-			sqlite3x::sqlite3_command cmd(ndb, "INSERT IGNORE INTO tools VALUES (?,?);");
+			sqlite3x::sqlite3_command cmd(ndb, "INSERT OR IGNORE INTO tools VALUES (?,?);");
 
 			cmd.bind(1, reader.getstring(0));
 			cmd.bind(2, reader.getstring(1));
+
+			cmd.executenonquery();
+		}
+	}
+
+
+	{
+		sqlite3x::sqlite3_command cmd(db, "SELECT internalid, parentid, percent, statusflags, rating, developer, name, shortname, profile, devprofile, icon, iconurl, logo, logourl,"
+			"installpath, installcheck, iprimpath, imod, ibranch, ibuild, eula, lastbuild, lastbranch, publisher, pubprofile FROM iteminfo;");
+
+		sqlite3x::sqlite3_reader reader = cmd.executereader();
+
+		while (reader.read())
+		{
+			{
+				sqlite3x::sqlite3_command cmd(ndb, "INSERT OR IGNORE INTO iteminfo VALUES (?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?);");
+
+				cmd.bind(1, reader.getstring(0));
+				cmd.bind(2, reader.getstring(1));
+				cmd.bind(3, reader.getstring(2));
+				cmd.bind(4, reader.getstring(3));
+				cmd.bind(5, reader.getstring(4));
+
+				cmd.bind(6, reader.getstring(5));
+				cmd.bind(7, reader.getstring(6));
+				cmd.bind(8, reader.getstring(7));
+				cmd.bind(9, reader.getstring(8));
+				cmd.bind(10, reader.getstring(9));
+
+				cmd.bind(11, reader.getstring(10));
+				cmd.bind(12, reader.getstring(11));
+				cmd.bind(13, reader.getstring(12));
+				cmd.bind(14, reader.getstring(13));
+
+				cmd.bind(15, reader.getstring(23));
+				cmd.bind(16, reader.getstring(24));
+
+				cmd.bind(17, reader.getstring(18));
+				cmd.bind(18, reader.getstring(22));
+
+				cmd.executenonquery();
+			}
+
+			{
+				sqlite3x::sqlite3_command cmd(ndb, "INSERT OR IGNORE INTO installinfo VALUES (?,?,?,?,?, ?,?,?);");
+
+				cmd.bind(1, reader.getstring(0));
+				cmd.bind(2, (int)biid);
+
+				cmd.bind(3, reader.getstring(14));
+				cmd.bind(4, reader.getstring(15));
+				cmd.bind(5, reader.getstring(16));
+
+				cmd.bind(6, reader.getstring(17));
+				cmd.bind(7, reader.getstring(19));
+				cmd.bind(8, reader.getstring(21));
+
+				cmd.executenonquery();
+			}
+		}
+	}
+
+	{
+		sqlite3x::sqlite3_command cmd(db, "SELECT * FROM branchinfo;");
+		sqlite3x::sqlite3_reader reader = cmd.executereader();trycatch(db, "ALTER TABLE branchinfo ADD installscriptCRC INTEGER;");
+
+		while (reader.read())
+		{
+			sqlite3x::sqlite3_command cmd(ndb, "INSERT OR IGNORE INTO branchinfo VALUES (?,?,?,?,?, ?,?,?,?,?, ?,?);");
+
+			cmd.bind(1, reader.getstring(0));
+			cmd.bind(2, reader.getstring(1));
+			cmd.bind(3, reader.getstring(2));
+			cmd.bind(4, reader.getstring(3));
+			cmd.bind(5, reader.getstring(4));
+			cmd.bind(6, reader.getstring(5));
+			cmd.bind(7, reader.getstring(6));
+			cmd.bind(8, reader.getstring(7));
+			cmd.bind(9, reader.getstring(8));
+			cmd.bind(10, reader.getstring(9));
+			cmd.bind(11, reader.getstring(10));
+			cmd.bind(12, (int)biid);
 
 			cmd.executenonquery();
 		}
@@ -192,55 +271,15 @@ void ItemManager::migrateOldItemInfo(const char* olddb, const char* newdb)
 
 		while (reader.read())
 		{
-			sqlite3x::sqlite3_command cmd(ndb, "INSERT IGNORE INTO exe VALUES (?,?,?,?,?);");
+			sqlite3x::sqlite3_command cmd(ndb, "INSERT OR IGNORE INTO exe VALUES (?,?,?,?,?, ?,?);");
 
 			cmd.bind(1, reader.getstring(0));
-			cmd.bind(2, reader.getstring(1));
-			cmd.bind(3, reader.getstring(2));
-			cmd.bind(4, reader.getstring(3));
-			cmd.bind(5, reader.getstring(4));
-
-			cmd.executenonquery();
-		}
-	}
-
-	{
-		sqlite3x::sqlite3_command cmd(db, "SELECT internalid, parentid, percent, statusflags, rating, developer, name, shortname, profile, devprofile, icon, iconurl, logo, logourl, installpath, installcheck, iprimpath, imod, ibranch, ibuild, eula, lastbuild, lastbranch, publisher, pubprofile FROM iteminfo;");
-		sqlite3x::sqlite3_reader reader = cmd.executereader();
-
-		while (reader.read())
-		{
-			sqlite3x::sqlite3_command cmd(ndb, "INSERT IGNORE INTO iteminfo VALUES (?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?);");
-
-			cmd.bind(1, reader.getstring(0));
-			cmd.bind(2, reader.getstring(1));
-			cmd.bind(3, reader.getstring(2));
-			cmd.bind(4, reader.getstring(3));
-			cmd.bind(5, reader.getstring(4));
-
-			cmd.bind(6, reader.getstring(5));
-			cmd.bind(7, reader.getstring(6));
-			cmd.bind(8, reader.getstring(7));
-			cmd.bind(9, reader.getstring(8));
-			cmd.bind(10, reader.getstring(9));
-
-			cmd.bind(11, reader.getstring(10));
-			cmd.bind(12, reader.getstring(11));
-			cmd.bind(13, reader.getstring(12));
-			cmd.bind(14, reader.getstring(13));
-			cmd.bind(15, reader.getstring(14));
-
-			cmd.bind(16, reader.getstring(15));
-			cmd.bind(17, reader.getstring(16));
-			cmd.bind(18, reader.getstring(17));
-			cmd.bind(19, reader.getstring(18));
-			cmd.bind(20, reader.getstring(19));
-
-			cmd.bind(21, reader.getstring(20));
-			cmd.bind(22, reader.getstring(21));
-			cmd.bind(23, reader.getstring(22));
-			cmd.bind(24, reader.getstring(23));
-			cmd.bind(25, reader.getstring(24));
+			cmd.bind(2, (int)biid);
+			cmd.bind(3, reader.getstring(1));
+			cmd.bind(4, reader.getstring(2));
+			cmd.bind(5, reader.getstring(3));
+			cmd.bind(6, reader.getstring(4));
+			cmd.bind(7, reader.getstring(5));
 
 			cmd.executenonquery();
 		}
@@ -617,12 +656,13 @@ void ItemManager::retrieveItemInfo(DesuraId id, uint32 statusOveride, WildcardMa
 
 		XML::for_each_child("platform", uNode->FirstChildElement("platforms"), [&](TiXmlElement* platform)
 		{
-			if (!m_pUser->platformFilter(platform, PT_Tool))
+			if (!m_pUser->platformFilter(platform, PlatformType::PT_Tool))
 				m_pUser->getToolManager()->parseXml(platform->FirstChild("toolinfo"));
 
+			XML::GetAtt("id", pi.platform, platform);
 			parseKnownBranches(platform->FirstChildElement("games"));
 
-			if (m_pUser->platformFilter(platform, PT_Item))
+			if (m_pUser->platformFilter(platform, PlatformType::PT_Item))
 				return;
 
 			pi.rootNode = platform->FirstChildElement("games");
@@ -791,8 +831,9 @@ void ItemManager::loadDbItems()
 		}
 
 	}
-	catch (std::exception &)
+	catch (std::exception &e)
 	{
+		Warning(gcString("Failed to load items from db: {0}\n", e.what()));
 	}
 
 	loadFavList();
@@ -854,7 +895,7 @@ void ItemManager::itemsNeedUpdate2(TiXmlNode* platformsNode)
 
 	XML::for_each_child("platform", platformsNode, [this](TiXmlElement* platform)
 	{
-		if (!m_pUser->platformFilter(platform, PT_Item))
+		if (!m_pUser->platformFilter(platform, PlatformType::PT_Item))
 		{
 			parseItemUpdateXml("mod", platform);
 			parseItemUpdateXml("game", platform);
@@ -957,9 +998,9 @@ UserCore::Item::ItemInfo* ItemManager::createNewItem(DesuraId pid, DesuraId id, 
 	try
 	{
 		if (pi.infoNode)
-			temp->loadXmlData(pi.infoNode, pi.statusOverride, pi.pWildCard, pi.reset);
+			temp->loadXmlData(pi.platform, pi.infoNode, pi.statusOverride, pi.pWildCard, pi.reset);
 
-		temp->loadXmlData(pi.rootNode, pi.statusOverride, pi.pWildCard, pi.reset);
+		temp->loadXmlData(pi.platform, pi.rootNode, pi.statusOverride, pi.pWildCard, pi.reset);
 		m_pUser->getToolManager()->findJSTools(temp);
 
 		addItem(id.toInt64(), handle);
@@ -981,9 +1022,9 @@ void ItemManager::updateItem(UserCore::Item::ItemInfo* itemInfo, ParseInfo& pi)
 	uint32 newSO = pi.statusOverride&~(UM::ItemInfoI::STATUS_DELETED);
 
 	if (pi.infoNode)
-		itemInfo->loadXmlData(pi.infoNode, newSO, pi.pWildCard, pi.reset);
+		itemInfo->loadXmlData(pi.platform, pi.infoNode, newSO, pi.pWildCard, pi.reset);
 
-	itemInfo->loadXmlData(pi.rootNode, newSO, pi.pWildCard, pi.reset);
+	itemInfo->loadXmlData(pi.platform, pi.rootNode, newSO, pi.pWildCard, pi.reset);
 	itemInfo->processUpdateXml(pi.rootNode);
 
 	itemInfo->delSFlag(UM::ItemInfoI::STATUS_STUB);
@@ -1028,9 +1069,10 @@ void ItemManager::parseLoginXml2(TiXmlElement* gamesNode, TiXmlElement* platform
 
 	XML::for_each_child("platform", platformNodes, [this, &pi](TiXmlElement* platform)
 	{
+		XML::GetAtt("id", pi.platform, platform);
 		pi.rootNode = platform->FirstChildElement("games");
 
-		if (!m_pUser->platformFilter(platform, PT_Item))
+		if (!m_pUser->platformFilter(platform, PlatformType::PT_Item))
 			parseGamesXml(pi);
 
 		parseKnownBranches(platform->FirstChildElement("games"));

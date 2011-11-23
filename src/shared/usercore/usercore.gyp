@@ -32,6 +32,7 @@
 			'code/BaseItemTask.cpp',
 			'code/BDManager.cpp',
 			'code/BranchInfo.cpp',
+			'code/BranchInstallInfo.cpp',
 			'code/CDKeyManager.cpp',
 			'code/CIPManager.cpp',
 			'code/ComplexLaunchServiceTask.cpp',
