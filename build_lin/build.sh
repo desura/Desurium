@@ -22,6 +22,7 @@ useClang="false"							# Use clang
 release="false"								# Release build
 color="true"								# Enable color
 cleanTarget="false"							# Clean build folder
+branding_desura="false"						# Use Desura branding
 
 if [ -n "$MAKE_CONCURRENCY" ]; then
 	makeConcurrency="-j $MAKE_CONCURRENCY"
@@ -125,6 +126,7 @@ while [ $# -gt 0 ]; do
 		echo -e "\t-nc or --nocolor\t-\tDont output color"
 		echo -e "\t-nc or --nocolour\t-\tLike above but British"
 		echo -e "\t-co or --cleanout\t-\tClean the desura files from the out dir"
+		echo -e "\t-db or --branding-desura\t-\tUse Desura branding instead of default"
 		exit 0
 	elif [ "$1" == "--nopause" -o "$1" == "-np" ]; then
 		noPause="true"
@@ -151,6 +153,9 @@ while [ $# -gt 0 ]; do
 	elif [ "$1" == "--cleanout" -o "$1" == "-co"  ]; then
 		cleanTarget="true"
 		shift
+	elif [ "$1" == "--branding-desura" -o "$1" == "-bd"  ]; then
+		branding_desura="true"
+		shift
 	else
 		echo "Unknown argument \"$1\". Please run \"$0 --help\" for more information"
 		exit 2
@@ -164,6 +169,14 @@ if [ "$color" == "false" ]; then
 	cp=""	#color pink
 	cl=""	#color lime
 fi
+
+rm -f ../src/branding
+if [ ${branding_desura} == "true" ]; then
+	ln -s ../src/branding_desura ../src/branding
+else
+	ln -s ../src/branding_default ../src/branding
+fi
+exit
 
 mkdir -p $logDir
 echo > $logFile
