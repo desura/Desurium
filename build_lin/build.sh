@@ -126,7 +126,7 @@ while [ $# -gt 0 ]; do
 		echo -e "\t-nc or --nocolor\t-\tDont output color"
 		echo -e "\t-nc or --nocolour\t-\tLike above but British"
 		echo -e "\t-co or --cleanout\t-\tClean the desura files from the out dir"
-		echo -e "\t-db or --branding-desura\t-\tUse Desura branding instead of default"
+		echo -e "\t-bd or --branding-desura-\tUse Desura branding instead of default"
 		exit 0
 	elif [ "$1" == "--nopause" -o "$1" == "-np" ]; then
 		noPause="true"
