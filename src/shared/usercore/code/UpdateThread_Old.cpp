@@ -346,23 +346,29 @@ void UpdateThreadOld::loadLoginItems()
 void UpdateThreadOld::checkAppUpdate(TiXmlNode* uNode)
 {
 	TiXmlElement* appEl = uNode->FirstChildElement("app");
-	if (appEl)
-	{
-		uint32 mcfversion = 0;
-		uint32 appid = 0;
 
-		const char* id = appEl->Attribute("id");
-		const char* ver = appEl->GetText();
+	if (!appEl)
+		return;
 
-		if (id)
-			appid = atoi(id);
+	UserCore::User *pUser = dynamic_cast<UserCore::User*>(m_pUser);
+
+	if (!pUser)
+		return;
+
+	uint32 mcfversion = 0;
+	uint32 appid = 0;
+
+	const char* id = appEl->Attribute("id");
+	const char* ver = appEl->GetText();
+
+	if (id)
+		appid = atoi(id);
 		
-		if (ver)
-			mcfversion = atoi(ver);
+	if (ver)
+		mcfversion = atoi(ver);
 
-		if (appid != 0 && mcfversion != 0 && !(appid == m_iAppId && mcfversion <= m_iAppVersion ) && !(appid == m_uiLastAppId && m_uiLastAppId >= mcfversion))
-			pUser->appNeedUpdate(appid, mcfversion);
-	}
+	if (appid != 0 && mcfversion != 0 && !(appid == m_iAppId && mcfversion <= m_iAppVersion ) && !(appid == m_uiLastAppId && m_uiLastAppId >= mcfversion))
+		pUser->appNeedUpdate(appid, mcfversion);
 }
 
 void UpdateThreadOld::updateBuildVer()
