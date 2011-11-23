@@ -31,6 +31,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "McfManager.h"
 
+#include "BranchInfo.h"
+#include "BranchInstallInfo.h"
+
 namespace UM = UserCore::Item;
 
 
@@ -40,18 +43,6 @@ namespace UserCore
 namespace Item
 {
 
-class InsCheck
-{
-public:
-	InsCheck(const char *c, const char *p)
-	{
-		check = gcString(c);
-		path = gcString(p);
-	}
-
-	gcString check;
-	gcString path;
-};
 
 ItemInfo::ItemInfo(UserCore::User *user, DesuraId id)
 {
@@ -80,15 +71,11 @@ void ItemInfo::initVars()
 	m_iChangedFlags = 0;
 
 	m_bPauseCallBack = false;
-
-	m_uiInstallSize = 0;
-	m_uiDownloadSize = 0;
 	m_INBranchIndex = -1;
 }
 
 ItemInfo::~ItemInfo()
 {
-	safe_delete(m_vExeList);
 	safe_delete(m_vBranchList);
 }
 
@@ -109,6 +96,11 @@ void ItemInfo::deleteFromDb(sqlite3x::sqlite3_connection* db)
 	{
 		m_vBranchList[x]->deleteFromDb(db);
 	}
+
+	std::for_each(m_mBranchInstallInfo.begin(), m_mBranchInstallInfo.end(), [&db](std::pair<uint32, BranchInstallInfo*> p)
+	{
+		p.second->deleteFromDb(db);
+	});
 
 	try
 	{
@@ -166,11 +158,7 @@ void ItemInfo::saveDb(sqlite3x::sqlite3_connection* db)
 											"logo=?,"
 											"iconurl=?,"
 											"logourl=?,"
-											"iprimpath=?,"
-											"imod=?,"
 											"ibranch=?,"
-											"ibuild=?,"
-											"lastbuild=?,"
 											"lastbranch=? WHERE internalid=?;");
 		
 		uint32 status = m_iStatus&(~UM::ItemInfoI::STATUS_DEVELOPER);
@@ -183,40 +171,21 @@ void ItemInfo::saveDb(sqlite3x::sqlite3_connection* db)
 		cmd.bind(5, m_szIconUrl); //icon
 		cmd.bind(6, m_szLogoUrl); //logo
 
-		cmd.bind(7, m_szInsPrim);		//
-		cmd.bind(8, (long long int)m_iInstalledMod.toInt64());
-		cmd.bind(9, (int)m_INBranch);
-		cmd.bind(10, (int)m_INBuild);
+		cmd.bind(7, (int)m_INBranch);
+		cmd.bind(8, (int)m_LastBranch);
 
-		cmd.bind(11, (int)m_LastBuild);
-		cmd.bind(12, (int)m_LastBranch);
-
-		cmd.bind(13, (long long int)m_iId.toInt64()); //internal id
-
-
+		cmd.bind(9, (long long int)m_iId.toInt64()); //internal id
 		cmd.executenonquery();
-
 
 		for (size_t x=0; x<m_vBranchList.size(); x++)
 		{
 			m_vBranchList[x]->saveDb(db);
 		}
 
-		for (size_t x=0; x<m_vExeList.size(); x++)
+		std::for_each(m_mBranchInstallInfo.begin(), m_mBranchInstallInfo.end(), [&db](std::pair<uint32, BranchInstallInfo*> p)
 		{
-			ExeInfo *ei = m_vExeList[x];
-
-			sqlite3x::sqlite3_command cmd(*db, "REPLACE INTO exe VALUES (?,?,?,?,?,?);");
-
-			cmd.bind(1, (long long int)m_iId.toInt64());
-			cmd.bind(2, ei->m_szName);
-			cmd.bind(3, UTIL::OS::getRelativePath(ei->m_szExe));
-			cmd.bind(4, ei->m_szExeArgs);
-			cmd.bind(5, ei->m_szUserArgs);
-			cmd.bind(6, (int)ei->m_uiRank);
-
-			cmd.executenonquery();
-		}
+			p.second->saveDb(db);
+		});
 	}
 }
 
@@ -230,39 +199,29 @@ void ItemInfo::saveDbFull(sqlite3x::sqlite3_connection* db)
 
 	uint32 status = m_iStatus&(~UM::ItemInfoI::STATUS_DEVELOPER);
 
-	sqlite3x::sqlite3_command cmd(*db, "REPLACE INTO iteminfo VALUES (?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?);");
+	sqlite3x::sqlite3_command cmd(*db, "REPLACE INTO iteminfo VALUES (?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?, ?,?,?);");
 
 	cmd.bind(1, (long long int)m_iId.toInt64());		// id
 	cmd.bind(2, (long long int)m_iParentId.toInt64());	// parent id
-
 	cmd.bind(3, (int)m_iPercent);	//
-	cmd.bind(4, (int)status);	//
+	cmd.bind(4, (int)status);		//
 	cmd.bind(5, m_szRating);		//
+
 	cmd.bind(6, m_szDev);			//
 	cmd.bind(7, m_szName);			//
-
-	cmd.bind(8, m_szShortName);	//
+	cmd.bind(8, m_szShortName);		//
 	cmd.bind(9, m_szProfile);		//
 	cmd.bind(10, m_szDevProfile);	//
+
 	cmd.bind(11, UTIL::OS::getRelativePath(m_szIcon));			//
 	cmd.bind(12, m_szIconUrl);		//
 	cmd.bind(13, UTIL::OS::getRelativePath(m_szLogo));			//
 	cmd.bind(14, m_szLogoUrl);		//
+	cmd.bind(15, m_szPublisher);
 
-	cmd.bind(15, UTIL::OS::getRelativePath(m_szPath));			//
-	cmd.bind(16, UTIL::OS::getRelativePath(m_szInsCheck));		//
-
-
-	cmd.bind(17, UTIL::OS::getRelativePath(m_szInsPrim));		//
-	cmd.bind(18, (long long int)m_iInstalledMod.toInt64());
-	cmd.bind(19, (int)m_INBranch);
-	cmd.bind(20, (int)m_INBuild);
-	cmd.bind(21, m_szEULAUrl);
-
-	cmd.bind(22, (int)m_LastBuild);
-	cmd.bind(23, (int)m_LastBranch);
-	cmd.bind(24, m_szPublisher);
-	cmd.bind(25, m_szPublisherProfile);
+	cmd.bind(16, m_szPublisherProfile);
+	cmd.bind(17, (int)m_INBranch);
+	cmd.bind(18, (int)m_LastBranch);
 
 	cmd.executenonquery();
 
@@ -271,21 +230,10 @@ void ItemInfo::saveDbFull(sqlite3x::sqlite3_connection* db)
 		m_vBranchList[x]->saveDbFull(db);
 	}
 
-	for (size_t x=0; x<m_vExeList.size(); x++)
+	std::for_each(m_mBranchInstallInfo.begin(), m_mBranchInstallInfo.end(), [&db](std::pair<uint32, BranchInstallInfo*> p)
 	{
-		ExeInfo *ei = m_vExeList[x];
-
-		sqlite3x::sqlite3_command cmd(*db, "REPLACE INTO exe VALUES (?,?,?,?,?,?);");
-
-		cmd.bind(1, (long long int)m_iId.toInt64());
-		cmd.bind(2, ei->m_szName);
-		cmd.bind(3, UTIL::OS::getRelativePath(ei->m_szExe));
-		cmd.bind(4, ei->m_szExeArgs);
-		cmd.bind(5, ei->m_szUserArgs);
-		cmd.bind(6, (int)ei->m_uiRank);
-
-		cmd.executenonquery();
-	}
+		p.second->saveDb(db);
+	});
 }
 
 void ItemInfo::loadDb(sqlite3x::sqlite3_connection* db)
@@ -316,19 +264,12 @@ void ItemInfo::loadDb(sqlite3x::sqlite3_connection* db)
 	m_szIconUrl		= gcString(reader.getstring(11)); //icon url
 	m_szLogo		= UTIL::OS::getAbsPath(reader.getstring(12)); //logo
 	m_szLogoUrl		= gcString(reader.getstring(13)); //logo url
-	m_szPath		= UTIL::OS::getAbsPath(reader.getstring(14)); //install path
 
-	m_szInsCheck	= UTIL::OS::getAbsPath(reader.getstring(15)); //install check
-	m_szInsPrim		= UTIL::OS::getAbsPath(reader.getstring(16)); //install primary
-	m_iInstalledMod = DesuraId(reader.getint64(17));
-	m_INBranch		= MCFBranch::BranchFromInt(reader.getint(18));
-	m_INBuild		= MCFBuild::BuildFromInt(reader.getint(19));
+	m_szPublisher	= reader.getstring(14);
+	m_szPublisherProfile = reader.getstring(15);
 
-	m_szEULAUrl		= gcString(reader.getstring(20)); 
-	m_LastBuild		= MCFBuild::BuildFromInt(reader.getint(21));
-	m_LastBranch	= MCFBranch::BranchFromInt(reader.getint(22));
-	m_szPublisher	= reader.getstring(23);
-	m_szPublisherProfile = reader.getstring(24);
+	m_INBranch		= MCFBranch::BranchFromInt(reader.getint(16));
+	m_LastBranch	= MCFBranch::BranchFromInt(reader.getint(17));
 
 
 	if (HasAnyFlags(m_iStatus, UserCore::Item::ItemInfoI::STATUS_ONACCOUNT))
@@ -337,50 +278,12 @@ void ItemInfo::loadDb(sqlite3x::sqlite3_connection* db)
 		m_iStatus &= ~UserCore::Item::ItemInfoI::STATUS_ONACCOUNT;
 	}
 
-	{
-		sqlite3x::sqlite3_command cmd(*db, "SELECT * FROM exe WHERE itemid=?;");
-		cmd.bind(1, (long long int)m_iId.toInt64());
-		sqlite3x::sqlite3_reader reader = cmd.executereader();
-	
-		while (reader.read())
-		{
-			gcString name = reader.getstring(1);
-			gcString exe = UTIL::OS::getAbsPath(reader.getstring(2));
-			gcString exeargs = reader.getstring(3);
-			gcString userargs = reader.getstring(4);
-			uint32 rank = reader.getint(5);
-
-			ExeInfo *ei = NULL;
-
-			for (size_t x=0; x<m_vExeList.size(); x++)
-			{
-				if (m_vExeList[x]->m_szName == name)
-				{
-					ei = m_vExeList[x];
-					break;
-				}
-			}
-
-			if (!ei)
-			{
-				ei = new ExeInfo(name.c_str());
-				m_vExeList.push_back(ei);
-			}
-
-			ei->m_szExe = exe;
-			ei->m_szExeArgs = exeargs;
-			ei->m_szUserArgs = userargs;
-			ei->m_uiRank = rank;
-		}
-	}
-
-
 	delSFlag(UM::ItemInfoI::STATUS_UPDATEAVAL);
 
 	{
 		std::vector<uint32> vIdList;
 
-		sqlite3x::sqlite3_command cmd(*db, "SELECT branchid FROM branchinfo WHERE internalid=?;");
+		sqlite3x::sqlite3_command cmd(*db, "SELECT biid FROM installinfo WHERE itemid=?;");
 		cmd.bind(1, (long long int)m_iId.toInt64());
 		sqlite3x::sqlite3_reader reader = cmd.executereader();
 	
@@ -391,7 +294,42 @@ void ItemInfo::loadDb(sqlite3x::sqlite3_connection* db)
 
 		for (size_t x=0; x<vIdList.size(); x++)
 		{
-			BranchInfo* bi = new BranchInfo(MCFBranch::BranchFromInt(vIdList[x]), m_iId);
+			BranchInstallInfo* bii = new BranchInstallInfo(MCFBranch::BranchFromInt(vIdList[x]), this);
+
+			try
+			{
+				bii->loadDb(db);
+			}
+			catch (std::exception &)
+			{
+				safe_delete(bii);
+				continue;
+			}
+
+			m_mBranchInstallInfo[vIdList[x]] = bii;
+		}
+	}
+
+	{
+		std::vector<std::pair<uint32,uint32> > vIdList;
+
+		sqlite3x::sqlite3_command cmd(*db, "SELECT branchid, biid FROM branchinfo WHERE internalid=?;");
+		cmd.bind(1, (long long int)m_iId.toInt64());
+		sqlite3x::sqlite3_reader reader = cmd.executereader();
+	
+		while (reader.read())
+		{
+			vIdList.push_back(std::pair<uint32, uint32>(reader.getint(0), reader.getint(1)));
+		}
+
+		for (size_t x=0; x<vIdList.size(); x++)
+		{
+			auto it = m_mBranchInstallInfo.find(vIdList[x].second);
+
+			if (it == m_mBranchInstallInfo.end())
+				m_mBranchInstallInfo[vIdList[x].second] = new BranchInstallInfo(vIdList[x].second, this);
+
+			BranchInfo* bi = new BranchInfo(MCFBranch::BranchFromInt(vIdList[x].first), m_iId, m_mBranchInstallInfo[vIdList[x].second]);
 			bi->onBranchInfoChangedEvent += delegate(this, &ItemInfo::onBranchInfoChanged);
 
 			try
@@ -404,7 +342,7 @@ void ItemInfo::loadDb(sqlite3x::sqlite3_connection* db)
 				continue;
 			}
 
-			if (vIdList[x] == m_INBranch)
+			if (vIdList[x].first == m_INBranch)
 				m_INBranchIndex = x;
 
 			m_vBranchList.push_back(bi);
@@ -438,7 +376,9 @@ void ItemInfo::loadDb(sqlite3x::sqlite3_connection* db)
 		}
 		else
 		{
-			if (UTIL::FS::isValidFile(UTIL::FS::PathWithFile(m_szInsCheck)) )
+			BranchInfo* bi = getCurrentBranchFull();
+
+			if (bi && UTIL::FS::isValidFile(UTIL::FS::PathWithFile(bi->getInstallInfo()->getInstallCheck())) )
 			{
 				if (!isDownloadable())
 					addSFlag(UM::ItemInfoI::STATUS_INSTALLED);
@@ -485,7 +425,12 @@ void ItemInfo::loadBranchXmlData(TiXmlElement* branch)
 		uint32 platformId = 100;
 		XML::GetAtt("platformid", platformId, branch);
 
-		bi = new BranchInfo(MCFBranch::BranchFromInt(id), m_iId, platformId);
+		auto it = m_mBranchInstallInfo.find(platformId);
+
+		if (it == m_mBranchInstallInfo.end())
+			m_mBranchInstallInfo[platformId] = new BranchInstallInfo(platformId, this);
+
+		bi = new BranchInfo(MCFBranch::BranchFromInt(id), m_iId, m_mBranchInstallInfo[platformId], platformId);
 		bi->onBranchInfoChangedEvent += delegate(this, &ItemInfo::onBranchInfoChanged);
 	}
 
@@ -501,7 +446,7 @@ void ItemInfo::loadBranchXmlData(TiXmlElement* branch)
 	}
 }
 
-void ItemInfo::loadXmlData(TiXmlNode *xmlNode, uint16 statusOveride, WildcardManager* pWildCard, bool reset)
+void ItemInfo::loadXmlData(uint32 platform, TiXmlNode *xmlNode, uint16 statusOveride, WildcardManager* pWildCard, bool reset)
 {
 	if (!xmlNode)
 		throw gcException(ERR_BADXML);
@@ -548,9 +493,14 @@ void ItemInfo::loadXmlData(TiXmlNode *xmlNode, uint16 statusOveride, WildcardMan
 	//the only time settings should be present if the xml came from the api
 	TiXmlNode* setNode = xmlNode->FirstChild("settings");
 	if (setNode && !isInstalled() && pWildCard)
-		processSettings(setNode, pWildCard, reset);
+		processSettings(platform, setNode, pWildCard, reset);
 
-	gcString installCheckFile = m_szInsCheck;
+	gcString installCheckFile;
+
+	BranchInfo* bi = getCurrentBranchFull();
+
+	if (bi)
+		installCheckFile = bi->getInstallInfo()->getInstallCheck();
 
 	if (getStatus() & UM::ItemInfoI::STATUS_INSTALLCOMPLEX)
 	{
@@ -594,7 +544,7 @@ void ItemInfo::loadXmlData(TiXmlNode *xmlNode, uint16 statusOveride, WildcardMan
 		{
 			m_INBranchIndex = vBranchList[0];
 			m_INBranch = m_vBranchList[m_INBranchIndex]->getBranchId();
-			m_INBuild = m_vBranchList[m_INBranchIndex]->getLatestBuild();
+			m_vBranchList[m_INBranchIndex]->getInstallInfo()->setInstalledMcf(m_vBranchList[m_INBranchIndex]->getLatestBuild());
 		}
 		else
 		{
@@ -663,9 +613,9 @@ void ItemInfo::processInfo(TiXmlNode* xmlEl)
 			setIcon(icon);
 	}
 
-	//app only
-	XML::GetChild("installdir", this, &ItemInfo::setPath, xmlEl);
-	XML::GetChild("installcheck", this, &ItemInfo::setInsCheck, xmlEl);
+	//add support for install info here;
+
+
 
 	bool downloadable = false;
 	if (XML::GetChild("downloadable", downloadable, xmlEl))
@@ -700,8 +650,11 @@ void ItemInfo::processInfo(TiXmlNode* xmlEl)
 	}
 }
 
-void ItemInfo::processSettings(TiXmlNode* setNode, WildcardManager* pWildCard, bool reset)
+void ItemInfo::processSettings(uint32 platform, TiXmlNode* setNode, WildcardManager* pWildCard, bool reset)
 {
+	if (platform == -1)
+		int a=1;
+
 	bool hasBroughtItem = false;
 
 	for (size_t x=0; x<m_vBranchList.size(); x++)
@@ -715,282 +668,48 @@ void ItemInfo::processSettings(TiXmlNode* setNode, WildcardManager* pWildCard, b
 		}
 	}
 
-	TiXmlNode* icsNode = setNode->FirstChild("installlocations");
+	bool installComplex = false;
+	XML::GetChild("installcomplex", installComplex, setNode);
+
+	if (installComplex)
+		addSFlag(UM::ItemInfoI::STATUS_INSTALLCOMPLEX);
 	
-	if (icsNode)
+	auto it = m_mBranchInstallInfo.find(platform);
+
+	if (it == m_mBranchInstallInfo.end() && !isDownloadable())
 	{
-		std::vector<InsCheck*> insCheck;
-		TiXmlNode* icNode = icsNode->FirstChild("installlocation");
-		while (icNode)
-		{
-			gcString iCheck;
-			gcString iPath;
+		//this item is not downloadable thus has no branches. Create a install info for it.
+		m_mBranchInstallInfo[platform] = new BranchInstallInfo(platform, this);
+		it = m_mBranchInstallInfo.find(platform);
+	}
 
-			XML::GetChild("check", iCheck, icNode);
-			XML::GetChild("path", iPath, icNode);
-
-			if (iCheck.size() > 0 && iPath.size() > 0)
-			{
-				insCheck.push_back(new InsCheck(iCheck.c_str(), iPath.c_str()));
-
-				if (hasBroughtItem)
-					break;
-			}
-
-			icNode = icNode->NextSibling();
-		}
-
-		bool found = false;
+	if (it != m_mBranchInstallInfo.end())
+	{
 		uint32 flags = 0;
-		size_t size = insCheck.size();
+		char* cip = NULL;
 
-		if (reset && size)
-			size = 1;
+		getUserCore()->getItemManager()->getCIP(m_iId, &cip);
 
-		for (size_t x=0; x<size; x++)
+		ProcessResult pr = it->second->processSettings(setNode, pWildCard, reset, hasBroughtItem, cip);
+
+		safe_delete(cip);
+
+		if (pr.useCip || pr.found)
 		{
-			char* CheckRes = NULL;
-			try
-			{
-				pWildCard->constructPath(insCheck[x]->check.c_str(), &CheckRes);
+			flags = UM::ItemInfoI::STATUS_ONCOMPUTER;
 
-				if (CheckRes && UTIL::FS::isValidFile(UTIL::FS::PathWithFile(CheckRes)))
-				{
-					setInsCheck(CheckRes);
-					pWildCard->updateInstallWildcard("INSTALL_PATH", insCheck[x]->path.c_str());
+			if (!isDownloadable() && UTIL::FS::isValidFile(UTIL::FS::PathWithFile(pr.insCheck)))
+				flags |= UM::ItemInfoI::STATUS_INSTALLED;
 
-					flags = UM::ItemInfoI::STATUS_ONCOMPUTER;
+			if (pr.notFirst)
+				flags |= UM::ItemInfoI::STATUS_LINK;
 
-					if (!isDownloadable())
-						flags |= UM::ItemInfoI::STATUS_INSTALLED|UM::ItemInfoI::STATUS_LINK;
-					else if (x != 0)
-						flags |= UM::ItemInfoI::STATUS_LINK;
-						
-					found = true;
-
-					safe_delete(CheckRes);
-					break;
-				}
-			}
-			catch (gcException)
-			{
-			}
-
-			safe_delete(CheckRes);
-		}
-
-		bool useCip = false;
-
-		if (!found && insCheck.size()>0)
-		{
-			char* cip = NULL;
-			getUserCore()->getItemManager()->getCIP(m_iId, &cip);
-
-			if (cip)
-			{
-				pWildCard->updateInstallWildcard("INSTALL_PATH", cip);
-				useCip = true;
-				safe_delete(cip);
-
-				flags = UM::ItemInfoI::STATUS_ONCOMPUTER;
-
-				if (!isDownloadable())
-					flags |= UM::ItemInfoI::STATUS_INSTALLED;
-			}
-			else
-			{
-				char* CheckRes = NULL;
-				try
-				{
-					pWildCard->constructPath(insCheck[0]->check.c_str(), &CheckRes);
-
-					setInsCheck(CheckRes);
-					pWildCard->updateInstallWildcard("INSTALL_PATH", insCheck[0]->path.c_str());
-				}
-				catch (gcException)
-				{
-				}
-
-				safe_delete(CheckRes);
-			}
-		}
-
-		safe_delete(insCheck);
-
-		bool installComplex = false;
-		XML::GetChild("installcomplex", installComplex, setNode);
-
-		if (installComplex)
-			addSFlag(UM::ItemInfoI::STATUS_INSTALLCOMPLEX);
-
-
-		char *iPathRes = NULL;
-		char* insPrim = NULL;
-		char* insPrimRes = NULL;
-		
-		XML::GetChild("installprimary", insPrim, setNode);
-
-		try
-		{
-			pWildCard->constructPath("%INSTALL_PATH%", &iPathRes);
-			if (iPathRes)
-				setPath(iPathRes);
-			else
-				Warning(gcString("ItemInfo: Install path for {0} is NULL.\n", m_szName));
-		}
-		catch (gcException &)
-		{
-		}
-
-		try
-		{
-			pWildCard->constructPath(insPrim, &insPrimRes);
-			if (insPrimRes)
-				setInsPrimary(insPrimRes);
-			else
-				setInsPrimary("");
-		}
-		catch (gcException &)
-		{
-			setInsPrimary("");
-		}
-
-		safe_delete(iPathRes);
-		safe_delete(insPrim);
-		safe_delete(insPrimRes);
-
-		processExes(setNode, pWildCard, useCip, flags);
-		launchExeHack();
-
-		//need to do this down here otherwise we will get erros saving paths and such
-		if (flags)
 			addSFlag(flags);
-	}
-}
-
-void ItemInfo::processExes(TiXmlNode* setNode, WildcardManager* pWildCard, bool useCip, uint32 &flags)
-{
-	uint32 rank = 0;
-
-	XML::for_each_child("execute", setNode->FirstChild("executes"), [&](TiXmlElement* exe)
-	{
-		gcString ePath;
-		gcString args;
-		gcString name;
-
-		XML::GetChild("name", name, exe);
-		XML::GetChild("exe", ePath, exe);
-		XML::GetChild("args", args, exe);
-
-		if (ePath.size() == 0)
-			return;
-
-		if (name.size() == 0)
-			name = "Play";
-
-		char* ePathRes = NULL;
-		char* argsRes = NULL;
-
-		ExeInfo* ei = NULL;
-
-		for (size_t x=0; x<m_vExeList.size(); x++)
-		{
-			if (m_vExeList[x]->m_szName == name)
-			{
-				ei = m_vExeList[x];
-				break;
-			}
-		}
-
-		if (!ei)
-		{
-			ei = new ExeInfo(name.c_str());
-			m_vExeList.push_back(ei);
-		}
-
-		ei->m_uiRank = rank;
-
-		try
-		{
-			pWildCard->constructPath(ePath.c_str(), &ePathRes);
-			if (ePathRes)
-			{
-				ei->setExe(ePathRes);
-
-				//cip needs an install check
-				if (useCip)
-					setInsCheck(ePathRes);
-
-				if (!isDownloadable() && UTIL::FS::isValidFile(UTIL::FS::PathWithFile(m_szInsCheck)))
-				{
-					flags |= UM::ItemInfoI::STATUS_ONCOMPUTER;
-					flags |= UM::ItemInfoI::STATUS_INSTALLED;
-				}
-			}
-			else
-			{
-				ei->setExe(ePath.c_str());
-			}
-		}
-		catch (gcException &)
-		{
-			ei->setExe(ePath.c_str());
-		}
-
-		try
-		{
-			pWildCard->constructPath(args.c_str(), &argsRes, false);
-			ei->m_szExeArgs = argsRes ? argsRes : args;
-		}
-		catch (gcException &)
-		{
-			ei->m_szExeArgs = args;
-		}
-
-		safe_delete(ePathRes);
-		safe_delete(argsRes);
-		rank++;
-	});
-}
-
-void ItemInfo::launchExeHack()
-{
-	//deus ex
-	if (getId().getType() == DesuraId::TYPE_GAME && getId().getItem() == 14)
-	{
-		std::string steam = UTIL::OS::getConfigValue("HKEY_CURRENT_USER\\SOFTWARE\\Valve\\Steam\\SteamPath");
-		gcString steamPath = UTIL::FS::Path(steam, "", false).getFullPath();
-
-		if (steamPath.size() > 0)
-		{
-			for (size_t x=0; x<m_vExeList.size(); x++)
-			{
-				ExeInfo* ei = m_vExeList[x];
-
-				if (ei->m_szExe.find(steamPath) != std::string::npos)
-				{
-					ei->m_szExe = gcString("{0}\\steam.exe", steamPath);
-
-					if (ei->m_szName == "Play")
-						ei->m_szExeArgs = gcString("-applaunch 6910");
-					else
-						ei->m_szExeArgs += gcString("-applaunch 6910");		
-				}
-			}
 		}
 	}
-}
-
-//only can change this if it is not installed
-void ItemInfo::setPath(const char *path)		
-{
-	if (!path)
+	else
 	{
-		m_szPath = gcString();
-	}
-	else if (!(getStatus() & UM::ItemInfoI::STATUS_INSTALLED))
-	{
-		m_szPath = UTIL::FS::PathWithFile(path).getFullPath();
+		Warning("Failed to find platform install settings!\n");
 	}
 }
 
@@ -1071,33 +790,6 @@ void ItemInfo::removeFromAccount()
 	delSFlag(UM::ItemInfoI::STATUS_ONACCOUNT);
 }
 
-
-void ItemInfo::setInsPrimary(const char* path)
-{
-	if (!path)
-	{
-		m_szInsPrim = gcString();
-	}
-	else if (!(getStatus() & UM::ItemInfoI::STATUS_INSTALLED))
-	{
-		m_szInsPrim = UTIL::FS::PathWithFile(path).getFullPath();
-	}	
-}
-
-//only can change this if it is not installed
-void ItemInfo::setInsCheck(const char* path)	
-{
-	if (!path)
-	{
-		m_szInsCheck = gcString();
-	}
-	else if (!(getStatus() & UM::ItemInfoI::STATUS_INSTALLED))
-	{
-		m_szInsCheck = UTIL::FS::PathWithFile(path).getFullPath();
-	}
-}
-
-
 void ItemInfo::onInfoChange()
 {
 	if (!m_bPauseCallBack)
@@ -1115,7 +807,6 @@ void ItemInfo::triggerCallBack()
 	
 	m_iChangedFlags = 0;
 }
-
 
 void ItemInfo::addSFlag(uint32 flags)
 {
@@ -1232,11 +923,8 @@ void ItemInfo::setFavorite(bool fav)
 
 void ItemInfo::updated()
 {
-	if (m_NextBuild > m_INBuild)
-	{
-		m_LastBuild = m_INBuild;
-		m_INBuild = m_NextBuild;
-	}
+	if (getCurrentBranchFull())
+		getCurrentBranchFull()->getInstallInfo()->updated();
 
 	delSFlag(UM::ItemInfoI::STATUS_UPDATEAVAL);
 }
@@ -1320,7 +1008,12 @@ void ItemInfo::processUpdateXml(TiXmlNode *node)
 			uint32 platformId = 100;
 			XML::GetAtt("platformid", platformId, branch);
 
-			bi = new BranchInfo(MCFBranch::BranchFromInt(id), m_iId, platformId);
+			auto it = m_mBranchInstallInfo.find(platformId);
+
+			if (it == m_mBranchInstallInfo.end())
+				m_mBranchInstallInfo[platformId] = new BranchInstallInfo(platformId, this);
+
+			bi = new BranchInfo(MCFBranch::BranchFromInt(id), m_iId, m_mBranchInstallInfo[platformId], platformId);
 			bi->loadXmlData(branch);
 
 			bi->onBranchInfoChangedEvent += delegate(this, &ItemInfo::onBranchInfoChanged);
@@ -1333,20 +1026,7 @@ void ItemInfo::processUpdateXml(TiXmlNode *node)
 
 		if (bi->getBranchId() == m_INBranch)
 		{
-			TiXmlNode* mcfNode = branch->FirstChild("mcf");
-			if (XML::isValidElement(mcfNode))
-			{
-				const char* id = mcfNode->ToElement()->Attribute("id");
-					
-				if (id)
-				{
-					uint32 build = -1;
-					XML::GetChild("build", build, mcfNode);
-					m_NextBuild = MCFBuild::BuildFromInt(build);
-				}
-			}					
-
-			if (m_NextBuild > m_INBuild)
+			if (bi->getInstallInfo()->processUpdateXml(branch))
 				addSFlag(UM::ItemInfoI::STATUS_UPDATEAVAL);
 		}
 
@@ -1380,8 +1060,10 @@ void ItemInfo::broughtCheck()
 	if (brought == false)
 		return;
 
+	BranchInfo* bi = getCurrentBranchFull();
+
 	//if we have an installed mod, means we are complex and cant be forgoten about
-	if (m_iInstalledMod.isOk())
+	if (bi && bi->getInstallInfo()->hasInstalledMod())
 		return;
 
 	std::vector<UserCore::Item::ItemInfoI*> modList;
@@ -1427,10 +1109,11 @@ void ItemInfo::broughtCheck()
 void ItemInfo::resetInstalledMcf()
 {
 	m_LastBranch = MCFBranch();
-	m_LastBuild = MCFBuild();
-	m_INBuild = MCFBuild();
 	m_INBranch = MCFBranch();
 	m_INBranchIndex = -1;
+
+	if (getCurrentBranchFull())
+		getCurrentBranchFull()->getInstallInfo()->resetInstalledMcf();
 
 	onInfoChange();
 }
@@ -1446,18 +1129,11 @@ bool ItemInfo::setInstalledMcf(MCFBranch branch, MCFBuild build)
 			m_LastBranch = m_INBranch;
 			m_INBranch = branch;
 			
-			m_LastBuild = m_INBuild;
+			if (build == 0)
+				build = m_vBranchList[x]->getLatestBuild();
 
-			if (build != 0)
-				m_INBuild = build;
-			else
-				m_INBuild = m_vBranchList[x]->getLatestBuild();
-
-			if (m_NextBuild == m_INBuild)
-			{
-				m_NextBuild = MCFBuild();
+			if (m_vBranchList[x]->getInstallInfo()->setInstalledMcf(build))
 				delSFlag(UM::ItemInfoI::STATUS_UPDATEAVAL);
-			}
 
 			onInfoChange();
 			return true;
@@ -1469,8 +1145,10 @@ bool ItemInfo::setInstalledMcf(MCFBranch branch, MCFBuild build)
 
 void ItemInfo::overideInstalledBuild(MCFBuild build)
 {
-	m_LastBuild = m_INBuild;
-	m_INBuild = build;
+	if (!getCurrentBranchFull())
+		return;
+
+	getCurrentBranchFull()->getInstallInfo()->overideInstalledBuild(build);
 }
 
 bool ItemInfo::hasAcceptedEula()
@@ -1513,98 +1191,6 @@ void ItemInfo::onBranchInfoChanged()
 	onInfoChange();
 }
 
-uint32 ItemInfo::getExeCount(bool setActive)
-{
-	uint32 count = 0;
-	uint32 first = -1;
-
-	for (size_t x=0; x<m_vExeList.size(); x++)
-	{
-		if (UTIL::FS::isValidFile(m_vExeList[x]->getExe()))
-		{
-			count++;
-
-			if (first == UINT_MAX)
-				first = x;
-		}
-	}
-
-	if (setActive && count == 1 && first != UINT_MAX)
-		setActiveExe(m_vExeList[first]->getName());
-
-	//should always have 1 exe
-	if (count == 0)
-		count = 1;
-
-	return count;
-}
-
-void ItemInfo::getExeList(std::vector<UserCore::Item::Misc::ExeInfoI*> &list)
-{
-	for (size_t x=0; x<m_vExeList.size(); x++)
-	{
-		if (UTIL::FS::isValidFile(m_vExeList[x]->getExe()))
-			list.push_back(m_vExeList[x]);
-	}
-
-	if (list.size() == 0 && m_vExeList.size() > 0)
-		list.push_back(m_vExeList[0]);
-
-	std::sort(list.begin(), list.end(), [](UserCore::Item::Misc::ExeInfoI* a, UserCore::Item::Misc::ExeInfoI* b) -> bool
-	{
-		return dynamic_cast<ExeInfo*>(a)->m_uiRank < dynamic_cast<ExeInfo*>(b)->m_uiRank;
-	});
-}
-
-UserCore::Item::Misc::ExeInfoI* ItemInfo::getActiveExe()
-{
-	UserCore::Item::Misc::ExeInfoI* ei = NULL;
-
-	for (size_t x=0; x<m_vExeList.size(); x++)
-	{
-		if (m_szActiveExe == m_vExeList[x]->getName())
-		{
-			ei = m_vExeList[x];
-			break;
-		}
-	}
-
-	if (!ei)
-	{
-		uint32 index = 0;
-		uint32 rank = -1;
-
-		for (size_t x=0; x<m_vExeList.size(); x++)
-		{
-			if (m_vExeList[x]->m_uiRank > rank)
-			{
-				index = x;
-				rank = m_vExeList[x]->m_uiRank;
-			}
-		}
-
-		ei = m_vExeList[index];
-	}
-
-	return ei;
-}
-
-void ItemInfo::setActiveExe(const char* name)
-{
-	gcString n(name);
-
-	for (size_t x=0; x<m_vExeList.size(); x++)
-	{
-		if (n == m_vExeList[x]->getName())
-		{
-			m_szActiveExe = name;
-			return;
-		}
-	}
-
-	Warning(gcString("Failed to set active exe to [{0}] for {1}\n", name, getName()));
-}
-
 void ItemInfo::setParentId(DesuraId id)
 {
 	if (id == m_iParentId)
@@ -1636,57 +1222,57 @@ void ItemInfo::migrateStandalone(MCFBranch branch, MCFBuild build)
 
 void ItemInfo::setLinkInfo(const char* exe, const char* args)
 {
-	if (getId().getType() != DesuraId::TYPE_LINK)
-		return;
-
-	UTIL::FS::Path path = UTIL::FS::PathWithFile(exe);
-
-	setPath(path.getFolderPath().c_str());
-	setInsCheck(exe);
-
-	if (m_vExeList.size() == 0)
-		m_vExeList.push_back(new ExeInfo("Link"));
-
-	ExeInfo* info = m_vExeList[0];
-
-	info->setExe(exe);
-	info->setUserArgs(args);
-
-
-	if (m_vBranchList.size() == 0)
-		m_vBranchList.push_back(new UserCore::Item::BranchInfo(MCFBranch::BranchFromInt(0), getId()));
-
-
-	UserCore::Item::BranchInfo* bi = m_vBranchList[0];
-	bi->setLinkInfo(getName());
-
-	m_iStatus = STATUS_LINK|STATUS_NONDOWNLOADABLE|STATUS_READY|STATUS_ONCOMPUTER|STATUS_INSTALLED;
-
-
-#ifdef WIN32
-	gcString savePathIco = UTIL::OS::getAppDataPath(gcWString(getId().getFolderPathExtension("icon.ico")).c_str());
-	gcString savePathPng = UTIL::OS::getAppDataPath(gcWString(getId().getFolderPathExtension("icon.png")).c_str());
-
-	try
-	{
-		UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(savePathIco));
-		UTIL::FS::FileHandle fh(savePathIco.c_str(), UTIL::FS::FILE_WRITE);
-
-		UTIL::WIN::extractIcon(exe, [&fh](const unsigned char* buff, uint32 size) -> bool
-		{
-			fh.write((char*)buff, size);
-			return true;
-		});
-
-		fh.close();
-
-		UTIL::MISC::convertToPng(savePathIco, savePathPng);
-		setIcon(savePathPng.c_str());
-	}
-	catch (...)
-	{
-	}
-#endif
+//	if (getId().getType() != DesuraId::TYPE_LINK)
+//		return;
+//
+//	UTIL::FS::Path path = UTIL::FS::PathWithFile(exe);
+//
+//	setPath(path.getFolderPath().c_str());
+//	setInsCheck(exe);
+//
+//	if (m_vExeList.size() == 0)
+//		m_vExeList.push_back(new ExeInfo("Link"));
+//
+//	ExeInfo* info = m_vExeList[0];
+//
+//	info->setExe(exe);
+//	info->setUserArgs(args);
+//
+//
+//	if (m_vBranchList.size() == 0)
+//		m_vBranchList.push_back(new UserCore::Item::BranchInfo(MCFBranch::BranchFromInt(0), getId()));
+//
+//
+//	UserCore::Item::BranchInfo* bi = m_vBranchList[0];
+//	bi->setLinkInfo(getName());
+//
+//	m_iStatus = STATUS_LINK|STATUS_NONDOWNLOADABLE|STATUS_READY|STATUS_ONCOMPUTER|STATUS_INSTALLED;
+//
+//
+//#ifdef WIN32
+//	gcString savePathIco = UTIL::OS::getAppDataPath(gcWString(getId().getFolderPathExtension("icon.ico")).c_str());
+//	gcString savePathPng = UTIL::OS::getAppDataPath(gcWString(getId().getFolderPathExtension("icon.png")).c_str());
+//
+//	try
+//	{
+//		UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(savePathIco));
+//		UTIL::FS::FileHandle fh(savePathIco.c_str(), UTIL::FS::FILE_WRITE);
+//
+//		UTIL::WIN::extractIcon(exe, [&fh](const unsigned char* buff, uint32 size) -> bool
+//		{
+//			fh.write((char*)buff, size);
+//			return true;
+//		});
+//
+//		fh.close();
+//
+//		UTIL::MISC::convertToPng(savePathIco, savePathPng);
+//		setIcon(savePathPng.c_str());
+//	}
+//	catch (...)
+//	{
+//	}
+//#endif
 }
 
 MCFBranch ItemInfo::getBestBranch(MCFBranch branch)
@@ -1812,6 +1398,207 @@ MCFBranch ItemInfo::selectBestBranch(const std::vector<BranchInfo*> &list)
 	return MCFBranch::BranchFromInt(0);
 }
 
+
+BranchInfoI* ItemInfo::getBranch(uint32 index)
+{
+	if ((int32)index >= m_vBranchList.size())
+		return NULL;
+
+	return m_vBranchList[index];
+}
+
+BranchInfoI* ItemInfo::getCurrentBranch()
+{
+	if (m_INBranchIndex == UINT_MAX)
+		return NULL;
+
+	return m_vBranchList[m_INBranchIndex];
+}
+
+BranchInfo* ItemInfo::getCurrentBranchFull()
+{
+	if (m_INBranchIndex == UINT_MAX)
+		return NULL;
+
+	return m_vBranchList[m_INBranchIndex];
+}
+
+BranchInfoI* ItemInfo::getBranchById(uint32 id)
+{
+	for (size_t x=0; x<m_vBranchList.size(); x++)
+	{
+		if (m_vBranchList[x]->getBranchId() == id)
+			return m_vBranchList[x];
+	}
+
+	return NULL;
+}
+
+
+DesuraId ItemInfo::getInstalledModId(MCFBranch branch)
+{
+	if (!getCurrentBranchFull())
+		return DesuraId();
+
+	return getCurrentBranchFull()->getInstallInfo()->getInstalledModId();
+}
+
+
+BranchInstallInfo* ItemInfo::getBranchOrCurrent(MCFBranch branch)
+{
+	if (branch == 0)
+		branch = m_INBranch;
+
+	BranchInfo* bi = dynamic_cast<BranchInfo*>(getBranchById(branch));
+
+	if (!bi && !isDownloadable() && m_mBranchInstallInfo.size() > 0)
+		return m_mBranchInstallInfo.begin()->second;
+
+	if (!bi)
+		return NULL;
+
+	return bi->getInstallInfo();
+}
+
+const char* ItemInfo::getPath(MCFBranch branch)		
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return NULL;
+
+	return bi->getPath();
+}
+
+const char* ItemInfo::getInsPrimary(MCFBranch branch)		
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return NULL;
+
+	return bi->getInsPrimary();
+}
+
+void ItemInfo::setInstalledModId(DesuraId id, MCFBranch branch)
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return;
+
+	bi->setInstalledModId(id);
+}
+
+const char* ItemInfo::getInstalledVersion(MCFBranch branch)	
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return NULL;
+
+	return bi->getInstalledVersion();
+}
+
+uint64 ItemInfo::getInstallSize(MCFBranch branch)
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return 0;
+
+	return bi->getInstallSize();
+}
+
+uint64 ItemInfo::getDownloadSize(MCFBranch branch)
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return 0;
+
+	return bi->getDownloadSize();
+}
+
+MCFBuild ItemInfo::getLastInstalledBuild(MCFBranch branch)
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return MCFBuild();
+
+	return bi->getLastInstalledBuild();
+}
+
+MCFBuild ItemInfo::getInstalledBuild(MCFBranch branch)
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return MCFBuild();
+
+	return bi->getInstalledBuild();
+}
+
+MCFBuild ItemInfo::getNextUpdateBuild(MCFBranch branch)
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return MCFBuild();
+
+	return bi->getNextUpdateBuild();
+}
+
+void ItemInfo::overrideMcfBuild(MCFBuild build, MCFBranch branch)
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return;
+
+	bi->overideMcfBuild(build);
+}
+
+uint32 ItemInfo::getExeCount(bool setActive, MCFBranch branch)
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return 0;
+
+	return bi->getExeCount(setActive);
+}
+
+void ItemInfo::getExeList(std::vector<UserCore::Item::Misc::ExeInfoI*> &list, MCFBranch branch)
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return;
+
+	bi->getExeList(list);
+}
+
+UserCore::Item::Misc::ExeInfoI* ItemInfo::getActiveExe(MCFBranch branch)
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return NULL;
+
+	return bi->getActiveExe();
+}
+
+void ItemInfo::setActiveExe(const char* name, MCFBranch branch)
+{
+	BranchInstallInfo* bi = getBranchOrCurrent(branch);
+
+	if (!bi)
+		return;
+
+	bi->setActiveExe(name);
+}
 
 }
 }

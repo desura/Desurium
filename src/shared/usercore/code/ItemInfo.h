@@ -40,55 +40,8 @@ namespace UserCore
 namespace Item
 {
 
-class ExeInfo : public Misc::ExeInfoI
-{
-public:
-	ExeInfo(const char* name)
-	{
-		m_szName = name;
-		m_uiRank = -1;
-	}
-
-	virtual const char* getName()
-	{
-		return m_szName.c_str();
-	}
-
-	virtual const char* getExe()
-	{
-		return m_szExe.c_str();
-	}
-
-	virtual const char* getExeArgs()
-	{
-		return m_szExeArgs.c_str();
-	}
-
-	virtual const char* getUserArgs()
-	{
-		return m_szUserArgs.c_str();
-	}
-
-	void setExe(const char* exe)
-	{
-		if (!exe)
-			m_szExe = "";
-		else
-			m_szExe = UTIL::FS::PathWithFile(exe).getFullPath();
-	}
-
-	void setUserArgs(const char* args)
-	{
-		m_szUserArgs = gcString(args);
-	}
-
-	gcString m_szExe;		//exe command
-	gcString m_szExeArgs;	//command line args
-	gcString m_szUserArgs;	//user command line args
-	gcString m_szName;
-	uint32 m_uiRank;
-};
-
+class BranchInfo;
+class BranchInstallInfo;
 
 class ItemInfo : public ItemInfoI
 {
@@ -114,7 +67,7 @@ public:
 
 	virtual DesuraId getParentId();
 	virtual DesuraId getId();
-	virtual DesuraId getInstalledModId();
+	virtual DesuraId getInstalledModId(MCFBranch branch = MCFBranch());
 
 	virtual uint32 getChangedFlags();
 	virtual uint32 getStatus();
@@ -147,8 +100,8 @@ public:
 	virtual const char* getDev();
 	virtual const char* getName();
 	virtual const char* getShortName();
-	virtual const char* getPath();
-	virtual const char* getInsPrimary();
+	virtual const char* getPath(MCFBranch branch = MCFBranch());
+	virtual const char* getInsPrimary(MCFBranch branch = MCFBranch());
 	virtual const char* getIcon();
 	virtual const char* getLogo();
 	virtual const char* getIconUrl();
@@ -168,15 +121,15 @@ public:
 	virtual Event<ItemInfoI::ItemInfo_s>* getInfoChangeEvent();
 
 
-	void overideMcfBuild(MCFBuild build);
-	virtual uint64 getInstallSize();
-	virtual uint64 getDownloadSize();
-	virtual MCFBuild getLastInstalledBuild();
-	virtual MCFBuild getInstalledBuild();
-	virtual MCFBuild getNextUpdateBuild();
+	void overrideMcfBuild(MCFBuild build, MCFBranch branch = MCFBranch());
+	virtual uint64 getInstallSize(MCFBranch branch = MCFBranch());
+	virtual uint64 getDownloadSize(MCFBranch branch = MCFBranch());
+	virtual MCFBuild getLastInstalledBuild(MCFBranch branch = MCFBranch());
+	virtual MCFBuild getInstalledBuild(MCFBranch branch = MCFBranch());
+	virtual MCFBuild getNextUpdateBuild(MCFBranch branch = MCFBranch());
 	virtual MCFBranch getInstalledBranch();
 	virtual MCFBranch getLastInstalledBranch();
-	virtual const char* getInstalledVersion();
+	virtual const char* getInstalledVersion(MCFBranch branch = MCFBranch());
 
 
 	virtual uint32 getBranchCount();
@@ -187,10 +140,10 @@ public:
 	virtual void acceptEula();
 
 
-	virtual uint32 getExeCount(bool setActive);
-	virtual void getExeList(std::vector<UserCore::Item::Misc::ExeInfoI*> &list);
-	virtual UserCore::Item::Misc::ExeInfoI* getActiveExe();
-	virtual void setActiveExe(const char* name);
+	virtual uint32 getExeCount(bool setActive, MCFBranch branch = MCFBranch());
+	virtual void getExeList(std::vector<UserCore::Item::Misc::ExeInfoI*> &list, MCFBranch branch = MCFBranch());
+	virtual UserCore::Item::Misc::ExeInfoI* getActiveExe(MCFBranch branch = MCFBranch());
+	virtual void setActiveExe(const char* name, MCFBranch branch = MCFBranch());
 
 	virtual bool isFavorite();
 	virtual void setFavorite(bool fav);
@@ -226,7 +179,7 @@ public:
 	//! @param statusOveride New status flags to add when load is complete
 	//! @param pWildCard Wildcard manager to resolve wildcards from
 	//!
-	void loadXmlData(TiXmlNode *xmlNode, uint16 statusOveride, WildcardManager* pWildCard=NULL, bool reset = false);
+	void loadXmlData(uint32 platform, TiXmlNode *xmlNode, uint16 statusOveride, WildcardManager* pWildCard=NULL, bool reset = false);
 
 
 	//! hash for base manager
@@ -262,24 +215,6 @@ public:
 	//! @param name Name
 	//!
 	void setName(const char* name);
-
-	//! Sets the item install path
-	//!
-	//! @param path Install path
-	//!
-	void setPath(const char *path);
-
-	//! Sets the item install check
-	//!
-	//! @param path Install check
-	//!
-	void setInsCheck(const char *path);
-
-	//! Sets the item primary install path
-	//!
-	//! @param path Primary install path
-	//!
-	void setInsPrimary(const char* path);
 
 	//! Sets the item icon
 	//!
@@ -322,7 +257,7 @@ public:
 	//!
 	//! @param id Mod id
 	//!
-	void setInstalledModId(DesuraId id);
+	void setInstalledModId(DesuraId id, MCFBranch branch = MCFBranch());
 
 	//! Overrides the parent id
 	//!
@@ -376,8 +311,7 @@ protected:
 	void broughtCheck();
 
 	void processInfo(TiXmlNode* xmlEl);
-	void processSettings(TiXmlNode* setNode, WildcardManager* pWildCard, bool reset);
-	void processExes(TiXmlNode* setNode, WildcardManager* pWildCard, bool useCip, uint32 &flags);
+	void processSettings(uint32 platform, TiXmlNode* setNode, WildcardManager* pWildCard, bool reset);
 
 	void launchExeHack();
 
@@ -386,29 +320,24 @@ protected:
 
 	void loadBranchXmlData(TiXmlElement* branch);
 	
+	BranchInfo* getCurrentBranchFull();
+	BranchInstallInfo* getBranchOrCurrent(MCFBranch branch);
+
+
 private:
 	bool m_bPauseCallBack;
 	bool m_bWasOnAccount;
 
 	DesuraId m_iId;
 	DesuraId m_iParentId;
-	DesuraId m_iInstalledMod;
-
-
-	uint64 m_uiInstallSize;
-	uint64 m_uiDownloadSize;
+	
 
 	uint32 m_iChangedFlags;
 	uint32 m_iStatus;
 
-	MCFBuild m_LastBuild;	//last installed build
-	MCFBuild m_INBuild;		//installed build
-	MCFBuild m_NextBuild;	//next build
-
+	uint32 m_INBranchIndex;
 	MCFBranch m_INBranch;
 	MCFBranch m_LastBranch;
-
-	uint32 m_INBranchIndex;
 
 	uint8 m_iPermissions;
 	uint8 m_iOptions;
@@ -422,10 +351,6 @@ private:
 	gcString m_szPublisherProfile;
 	gcString m_szName;		//full name
 	gcString m_szShortName;	//short name
-	gcString m_szPath;		//the install path
-	gcString m_szInsCheck;	//install check
-	gcString m_szInsPrim;
-	gcString m_szInsVersion;
 
 	gcString m_szIcon;		//icon path or url
 	gcString m_szLogo;		//logo path or url
@@ -437,10 +362,8 @@ private:
 	gcString m_szProfile;	//url to profile
 	gcString m_szEULAUrl;	//eula
 
-	gcString m_szActiveExe;
-
-	std::vector<ExeInfo*> m_vExeList;
 	std::vector<BranchInfo*> m_vBranchList;
+	std::map<uint32, BranchInstallInfo*> m_mBranchInstallInfo;
 
 	UserCore::User *m_pUserCore; 
 };
@@ -455,11 +378,6 @@ inline DesuraId ItemInfo::getParentId()
 inline DesuraId ItemInfo::getId()
 {
 	return m_iId;
-}
-
-inline DesuraId ItemInfo::getInstalledModId()
-{
-	return m_iInstalledMod;
 }
 
 inline uint32 ItemInfo::getChangedFlags()
@@ -547,17 +465,6 @@ inline const char* ItemInfo::getName()
 inline const char* ItemInfo::getShortName()	
 {
 	return m_szShortName.c_str();
-}
-
-
-inline const char* ItemInfo::getPath()		
-{
-	return m_szPath.c_str();
-}
-
-inline const char* ItemInfo::getInsPrimary()		
-{
-	return m_szInsPrim.c_str();
 }
 
 inline const char* ItemInfo::getIcon()		
@@ -650,12 +557,6 @@ inline bool ItemInfo::isCallBackActive()
 	return m_bPauseCallBack;
 }
 
-
-inline void ItemInfo::setInstalledModId(DesuraId id)
-{
-	m_iInstalledMod = id;
-}
-
 inline void ItemInfo::setName(const char* name)		
 {
 	m_szName = gcString(name);
@@ -666,68 +567,9 @@ inline UserCore::User* ItemInfo::getUserCore()
 	return m_pUserCore;
 }
 
-
 inline uint32 ItemInfo::getBranchCount()
 {
 	return m_vBranchList.size();
-}
-
-inline BranchInfoI* ItemInfo::getBranch(uint32 index)
-{
-	if ((int32)index >= m_vBranchList.size())
-		return NULL;
-
-	return m_vBranchList[index];
-}
-
-inline BranchInfoI* ItemInfo::getCurrentBranch()
-{
-	if (m_INBranchIndex == UINT_MAX)
-		return NULL;
-
-	return m_vBranchList[m_INBranchIndex];
-}
-
-inline BranchInfoI* ItemInfo::getBranchById(uint32 id)
-{
-	for (size_t x=0; x<m_vBranchList.size(); x++)
-	{
-		if (m_vBranchList[x]->getBranchId() == id)
-			return m_vBranchList[x];
-	}
-
-	return NULL;
-}
-
-
-inline const char* ItemInfo::getInstalledVersion()	
-{
-	return m_szInsVersion.c_str();
-}
-
-inline uint64 ItemInfo::getInstallSize()
-{
-	return m_uiInstallSize;
-}
-
-inline uint64 ItemInfo::getDownloadSize()
-{
-	return m_uiDownloadSize;
-}
-
-inline MCFBuild ItemInfo::getLastInstalledBuild()
-{
-	return m_LastBuild;
-}
-
-inline MCFBuild ItemInfo::getInstalledBuild()
-{
-	return m_INBuild;
-}
-
-inline MCFBuild ItemInfo::getNextUpdateBuild()
-{
-	return m_NextBuild;
 }
 
 inline MCFBranch ItemInfo::getInstalledBranch()
@@ -738,12 +580,6 @@ inline MCFBranch ItemInfo::getInstalledBranch()
 inline MCFBranch ItemInfo::getLastInstalledBranch()
 {
 	return m_LastBranch;
-}
-
-
-inline void ItemInfo::overideMcfBuild(MCFBuild build)
-{
-	m_INBuild = build;
 }
 
 inline bool ItemInfo::wasOnAccount()

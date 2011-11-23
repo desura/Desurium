@@ -40,19 +40,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 												"iconurl TEXT,"							\
 												"logo TEXT,"							\
 												"logourl TEXT,"							\
-												"installpath TEXT,"						\
 																						\
-												"installcheck TEXT,"					\
-												"iprimpath TEXT,"						\
-												"imod INTEGER,"							\
-												"ibranch INTEGER,"						\
-												"ibuild INTEGER,"						\
-																						\
-												"eula TEXT,"							\
-												"lastbuild INTEGER,"					\
-												"lastbranch INTEGER,"					\
 												"publisher TEXT,"						\
-												"pubprofile TEXT"						\
+												"pubprofile TEXT,"						\
+																						\
+												"ibranch INTEGER,"						\
+												"lastbranch INTEGER"					\
 												");"
 
 
@@ -67,7 +60,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 												"cdkey TEXT,"							\
 												"installscript TEXT,"					\
 												"installscriptCRC INTEGER,"				\
-												"globalid INTERGER"						\
+												"globalid INTEGER,"						\
+												"biid INTEGER"							\
 												");"
 
 #define COUNT_RECENT "select count(*) from sqlite_master where name='recent';"
@@ -99,15 +93,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #define COUNT_EXE "select count(*) from sqlite_master where name='exe';"
 #define CREATE_EXE "create table exe(	itemid INTEGER, "								\
+												"biid INTEGER,"							\
 												"name TEXT,"							\
 												"exe TEXT,"								\
 												"exeargs TEXT,"							\
 												"userargs TEXT,"						\
 												"rank INTEGER,"							\
-												"PRIMARY KEY (itemid, name)"			\
+												"PRIMARY KEY (itemid, biid, name)"		\
 												");"
 
-#define ITEMINFO_DB "iteminfo_c.sqlite"
+#define COUNT_INSTALLINFO "select count(*) from sqlite_master where name='installinfo';"
+#define CREATE_INSTALLINFO "create table installinfo(	itemid INTEGER, "				\
+												"biid INTEGER,"							\
+												"installpath TEXT,"						\
+												"installcheck TEXT,"					\
+												"iprimpath TEXT,"						\
+												"imod INTEGER,"							\
+												"ibuild INTEGER,"						\
+												"lastbuild INTEGER,"					\
+												"PRIMARY KEY (itemid, biid)"			\
+												");"
+
+
+#define ITEMINFO_DB "iteminfo_d.sqlite"
 
 inline gcString getItemInfoDb(const char* appDataPath)
 {
@@ -120,7 +128,7 @@ inline void trycatch(sqlite3x::sqlite3_connection &db, const char* sql)
 	{
 		db.executenonquery(sql);
 	}
-	catch(std::exception)
+	catch (std::exception)
 	{
 	}
 }
@@ -150,10 +158,8 @@ inline void createItemInfoDbTables(const char* appDataPath)
 	if (db.executeint(COUNT_EXE) == 0)
 		db.executenonquery(CREATE_EXE);
 
-	trycatch(db, "ALTER TABLE branchinfo ADD installscript TEXT;");
-	trycatch(db, "ALTER TABLE branchinfo ADD installscriptCRC INTEGER;");
-	trycatch(db, "ALTER TABLE exe ADD rank INTEGER;");
-	trycatch(db, "ALTER TABLE branchinfo ADD globalid INTEGER;");
+	if (db.executeint(COUNT_INSTALLINFO) == 0)
+		db.executenonquery(CREATE_INSTALLINFO);
 }
 
 #endif //DESURA_CIP_H

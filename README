@@ -29,6 +29,7 @@ This should now allow you to open the desura solution in desura/build_win/desura
 
 Once built, open console to the desura/build_out and run "copy_data.bat [dest]" with dest being debug_win or release_win
 
+
 Build Cef Windows
 ===================
 
@@ -48,6 +49,12 @@ Run cef_create_projects.bat in desura/src/third_party/chromium/src/cef
 And then you should be able to build cef using visual studio 2008 solution file.
 You will need to copy the output dll's into the desura/build_out/[mode]_win/bin folder (where mode is debug or release)
 
+
+Run Windows
+===================
+
+You will need to run the debug build as the release build will try and auto update it self upon start. You can do this via running desura-d.exe
+from the folder or setup visual studio to use the desura-d.exe from the build_out/debug_win and also use this as the current working dir
 
 
 Build Desura Linux
@@ -116,6 +123,7 @@ ln -s chromium/src/cef .
 cd build_lin
 ./BuildCef.sh
 
+
 Build Courgette Linux
 ===================
 
@@ -129,3 +137,10 @@ source python_env.sh # Only run if your Python 2 executable is 'python2'!
 cp -r courgette/* chromium/src/courgette
 cd build_lin
 ./BuildCourgette.sh
+
+
+Run Linux
+===================
+
+If you built the debug build (default) you should be able to run ./test.sh in the build_lin folder to teset or ./desura in the build_out/debug_lin folder
+

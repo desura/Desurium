@@ -374,6 +374,7 @@ BOOL BootLoader::InitInstance()
 		}
 	}
 
+#ifdef DESURA_NONGPL_BUILD
 	if (args.hasArg("forceupdate"))
 	{
 		if (!hasAdminRights)
@@ -390,7 +391,7 @@ BOOL BootLoader::InitInstance()
 			return FALSE;
 		}
 	}
-	
+#endif
 	
 
 #ifdef _DEBUG

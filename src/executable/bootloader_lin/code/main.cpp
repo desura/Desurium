@@ -76,7 +76,6 @@ void SendMessage(const char* msg)
 
 void ShowHelpDialog(const char* msg, const char* url, const char* type)
 {
-	ERROR_OUTPUT(__func__);
 	int fork1;
 	
 	std::string zenityString;
@@ -109,8 +108,6 @@ void ShowHelpDialog(const char* msg, const char* url, const char* type)
 
 bool RestartBootloader(const char* args)
 {
-	ERROR_OUTPUT(__func__);
-	
 	MainApp::restart(args, true);
 	return true;
 }
@@ -118,8 +115,6 @@ bool RestartBootloader(const char* args)
 int main(int argc, char** argv)
 {
 	UTIL::LIN::setupXDGVars();
-
-	ERROR_OUTPUT(__func__);
 
 	MainApp app(argc, argv);
 	g_pMainApp = &app;
@@ -132,8 +127,6 @@ int main(int argc, char** argv)
 
 MainApp::MainApp(int argc, char** argv)
 {
-	ERROR_OUTPUT(__func__);
-	
 	m_Argc = argc;
 	m_Argv = argv;
 	
@@ -144,25 +137,15 @@ MainApp::MainApp(int argc, char** argv)
 
 MainApp::~MainApp()
 {
-	ERROR_OUTPUT(__func__);
 }
 
 int MainApp::run()
 {
-	ERROR_OUTPUT(__func__);
-	
 	ERROR_OUTPUT("#########################################");
 	ERROR_OUTPUT("#               DEBUG BUILD             #");
 	ERROR_OUTPUT("#########################################");
 
 	if (!ChangeToAppDir())
-		return -1;
-
-
-	if (!rootTest())
-		return -1;
-
-	if (!permTest())
 		return -1;
 
 	bool forceUpdate = false;
@@ -339,7 +322,6 @@ int MainApp::run()
 
 bool MainApp::testDeps()
 {
-	ERROR_OUTPUT(__func__);
 	void* gtkHandle = dlopen("libgtk-x11-2.0.so.0", RTLD_LAZY);
 	
 	if (!gtkHandle)
@@ -353,13 +335,20 @@ bool MainApp::testDeps()
 
 	dlclose(gtkHandle);
 	
+	if (!rootTest())
+		return false;
+
+	if (!permTest())
+		return false;
+
+	if (!utf8Test())
+		return false;
+
 	return true;
 }
 
 bool MainApp::loadUICore()
 {
-	ERROR_OUTPUT(__func__);
-	
 	if (!g_UICoreDll.load("libuicore.so"))
 		return false;
 
@@ -387,8 +376,6 @@ bool MainApp::loadUICore()
 
 void MainApp::shutdownUICore()
 {
-	ERROR_OUTPUT(__func__);
-
 	if (m_pUICore)
 		m_pUICore->destroySingleInstanceCheck();
 	
@@ -399,8 +386,6 @@ void MainApp::shutdownUICore()
 
 void MainApp::restartReal(const char* args)
 {
-	ERROR_OUTPUT(__func__);
-	
 	ERROR_OUTPUT("######### RESTARTING ##########");
 	
 	if (execl("desura", "desura", args, NULL) == 0)
@@ -412,8 +397,6 @@ void MainApp::restartReal(const char* args)
 
 void MainApp::restartShib(const char* args)
 {
-	ERROR_OUTPUT(__func__);
-	
 	RestartArg_s* restartArgs = (RestartArg_s*)mmap(0, sizeof(RestartArg_s), PROT_READ|PROT_WRITE, MAP_SHARED, m_RestartMem, 0);
 	
 	if (restartArgs == MAP_FAILED)
@@ -435,8 +418,6 @@ void MainApp::restartShib(const char* args)
 
 void MainApp::restart(const char* args, bool real)
 {
-	ERROR_OUTPUT(__func__);
-	
 	if (real)
 		g_pMainApp->restartReal(args);
 	else	
@@ -450,8 +431,6 @@ void MainApp::restartFromUICore(const char* args)
 
 void MainApp::onCrashShib(const char* path)
 {
-	ERROR_OUTPUT(__func__);
-	
 	if (!path)
 	{
 		fprintf(stderr, "on crash path is null!");
@@ -479,16 +458,12 @@ void MainApp::onCrashShib(const char* path)
 
 bool MainApp::onCrash(const char* path)
 {
-	ERROR_OUTPUT(__func__);
-	
 	g_pMainApp->onCrashShib(path);
 	return true;
 }
 
 void MainApp::processCrash(CrashArg_s* args)
 {
-	ERROR_OUTPUT(__func__);
-
 #ifndef DEBUG
 	if (!args)
 		args = m_pCrashArgs;
@@ -515,23 +490,19 @@ void MainApp::processCrash(CrashArg_s* args)
 
 void MainApp::setUser(const char* user)
 {
-	ERROR_OUTPUT(__func__);
-	
 	if (user)
 		strcpy(m_szUser, user);
 }
 
 void MainApp::setCrashSettings(const char* user, bool upload)
 {
-	ERROR_OUTPUT(__func__);
-	
 	g_pMainApp->setUser(user);
 }
 
 bool MainApp::rootTest()
 {
 	if (getuid() == 0)
-		ShowHelpDialog("Desura is not designed to run as root. Suggestino is to restart under a normal user with read/write permissions in the root folder.", NULL, "--warning");
+		ShowHelpDialog("Desura is not designed to run as root. Suggestion is to restart under a normal user with read/write permissions in the root folder.", NULL, "--warning");
 	
 	return true;
 }
@@ -551,3 +522,27 @@ bool MainApp::permTest()
 	
 	return true;
 }
+
+bool MainApp::utf8Test()
+{
+	bool hasUtf8 = false;
+
+	signed char result[PATH_MAX] = {0};
+	ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
+
+	for (ssize_t x=0; x<count; x++)
+	{
+		if (result[x] > 0)
+			continue;
+
+		hasUtf8 = true;
+		break;
+	}
+	
+	if (hasUtf8)
+		ShowHelpDialog("Desura currently doesnt support running from a directory with UTF8 characters. Please move desura to a normal directory.", NULL, "--error");
+
+	return !hasUtf8;
+}
+
+

@@ -94,7 +94,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/NODEFAULTLIB:libcmtd.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>tinyxml-d.lib;util-d.lib;util_thread-d.lib;mcfcore-d.lib;webcore-d.lib;ipc_pipe-d.lib;crypto-d.lib;util_fs-d.lib;sqlite-d.lib;sqlite3x-d.lib;bzip2-d.lib;managers-d.lib;crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml-d.lib;util-d.lib;util_thread-d.lib;mcfcore-d.lib;webcore-d.lib;ipc_pipe-d.lib;util_fs-d.lib;sqlite-d.lib;sqlite3x-d.lib;bzip2-d.lib;managers-d.lib;crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -124,7 +124,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/NODEFAULTLIB:libcmt.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>tinyxml.lib;util.lib;util_thread.lib;mcfcore.lib;webcore.lib;ipc_pipe.lib;crypto.lib;util_fs.lib;sqlite.lib;sqlite3x.lib;bzip2.lib;managers.lib;crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxml.lib;util.lib;util_thread.lib;mcfcore.lib;webcore.lib;ipc_pipe.lib;util_fs.lib;sqlite.lib;sqlite3x.lib;bzip2.lib;managers.lib;crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -179,6 +179,7 @@
     <ClCompile Include="code\BaseItemServiceTask.cpp" />
     <ClCompile Include="code\BaseItemTask.cpp" />
     <ClCompile Include="code\BDManager.cpp" />
+    <ClCompile Include="code\BranchInstallInfo.cpp" />
     <ClCompile Include="code\CDKeyManager.cpp" />
     <ClCompile Include="code\CIPManager.cpp" />
     <ClCompile Include="code\DownloadToolItemTask.cpp" />
@@ -267,6 +268,7 @@
     <ClInclude Include="code\BaseItemServiceTask.h" />
     <ClInclude Include="code\BaseItemTask.h" />
     <ClInclude Include="code\BDManager.h" />
+    <ClInclude Include="code\BranchInstallInfo.h" />
     <ClInclude Include="code\CDKeyManager.h" />
     <ClInclude Include="code\CIPManager.h" />
     <ClInclude Include="code\DownloadToolItemTask.h" />

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lang name="Deutsch (German)">
+	<author>
+		<username>Desura</username>
+		<profile>http://www.desura.com</profile>
+	</author>
+	<strings>
+		<str name="#CRASH_TITLE">Desura: Dienstprogramm für Fehlerberichte</str>
+		<str name="#CRASH_UPLOADINFO">Lade Fehler Bericht(e) hoch ...</str>
+		<str name="#CRASH_GENERATEINFO">Generiere Fehlerbericht ...</str>
+		<str name="#CRASH_ERROR">Fehler beim erzeugen der Fehlerbericht(e).</str>
+		
+		<str name="#CRASH_BUTGENERATE">Generiere Fehlerbericht</str>
+		<str name="#CRASH_BUTUPLOAD">Fehlerberichte hochladen</str>
+		
+		<str name="#CRASH_LABGENERATE">Wenn Desura nicht mehr reagiert oder etwas unerwartetes macht, wird hiermit ein Fehlerbericht an die Entwickler geschickt um den Fehler so schnell als möglich zu beheben.</str>
+		<str name="#CRASH_LABUPLOAD">Schicke Fehlerberichte, welche passiert sind, bevor Desura gestartet werden konnte.</str>
+		
+		
+		<str name="#CDF_TITLE">Verschiebe Desura Datenordner</str>
+		<str name="#CDF_STARTUP">Analysiere Datenordner...</str>
+		<str name="#CDF_MOVEFILE">Verschiebe Dateien...</str>
+		<str name="#CDF_DBCHANGES">Lade Datenbank hoch...</str>
+		
+		<str name="#CDF_GERRTITLE">Desura Fehler</str>
+		<str name="#CDF_GERROR">Verschieben des Datenordners fehlgeschlagen.</str>
+
+
+		<str name="#DUN_TOTAL">Fortschritt total:</str>
+		<str name="#DUN_CURRENT">Fortschritt:</str>
+		<str name="#DUN_COMPLETED">Erinnerung: Bezahlte Items und Geschenke werden nie von deinem Benutzerkonto gelöscht, du hast jederzeit Zugriff darauf, auch wenn du den Desura Klient neu installierst.</str>
+		
+		<str name="#DUN_UNINSTALL_INFO">Wenn du Desura deinstallierst, werden auch sämtliche Spiele, Mods und Inhalte gelöscht. Um deine installierten Inhalte zu behalten und Desura wiederherzustellen, klicke bitte auf "Reparieren".</str>
+		<str name="#DUN_UNINSTALL_OPT">Optionen zum Deinstallieren:</str>
+		<str name="#DUN_UNINSTALL_LOC">Desura wird vom folgenden Ordner deinstalliert:</str>
+		
+		<str name="#DUN_REMOVE_DESURA">Desura deinstallieren</str>
+		<str name="#DUN_REMOVE_DESURA_TT">Entferne alle installierten Desura Dateien.</str>
+		<str name="#DUN_REMOVE_SETTINGS">Einstellungen zurücksetzen</str>
+		<str name="#DUN_REMOVE_SETTINGS_TT">Entferne die Einstellungsdateien von Desura.</str>		
+		<str name="#DUN_REMOVE_CACHE">Entferne Download Cache</str>
+		<str name="#DUN_REMOVE_CACHE_TT">Leert den Download Cache von Desura.</str>
+		<str name="#DUN_REMOVE_SIMPLE">Einfaches entfernen von Spielen und Mods</str>
+		<str name="#DUN_REMOVE_SIMPLE_TT">Entfernt alle Spiele und Mods von Desura.</str>
+		<str name="#DUN_REMOVE_COMPLEX">Entferne komplexe Mods</str>
+		<str name="#DUN_REMOVE_COMPLEX_TT">Entfernt alle Mods, welche originale Spiele überschrieben haben.</str>
+		<str name="#DUN_REMOVE_ACCOUNT">Entferne Gratis Items vom Benutzerkonto</str>
+		<str name="#DUN_REMOVE_ACCOUNT_TT">Entfernt alle Gratis Items (z.B. Links und Demos) welche von deinem Benutzerkonto auf diesem Computer installiert wurden.</str>
+		
+		<str name="#DUN_UNINSTALL_HEADER">Desura deinstallieren</str>
+		<str name="#DUN_UNINSTALL_SUBHEADER">Deinstalliere Desura von deinem Computer</str>	
+		<str name="#DUN_REPAIR">Reparieren</str>
+		<str name="#DUN_UNINSTALL">Deinstall</str>
+
+		<str name="#DUN_THREAD_UNINSTALL">Entferne Spiele und Mods...</str>
+		<str name="#DUN_THREAD_UNINSTALL_SUB">Deinstallieren: {0}</str><!-- {0} item name -->	
+		<str name="#DUN_THREAD_FINAL">Aufräumen...</str>
+		<str name="#DUN_THREAD_UNINSTALL">Entferne Deinstallationseinträge...</str>
+		<str name="#DUN_THREAD_GAMEEXPLORER">Entferne Einträge...</str>
+		<str name="#DUN_THREAD_CACHE">Entferne Desura Cache...</str>
+		<str name="#DUN_THREAD_SETTINGS">Entferne Desura Einstellungen...</str>
+		<str name="#DUN_THREAD_ACCOUNT">Räume Account Items auf...</str>	
+		<str name="#DUN_THREAD_ACCOUNT_SUB">Entferne {0} vom Benutzerkonto</str><!-- {0} item name -->	
+		
+	</strings>
+</lang>

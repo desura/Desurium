@@ -37,7 +37,6 @@
 			'code/MD5Progressive.cpp',
 			'code/MD5Wrapper.cpp',
 			'code/UtilBZip2.cpp',
-			'code/UtilCrypto.cpp',
 			'code/UtilFsPath.cpp',
 			'code/UtilMisc.cpp',
 			'code/UtilMisc_sha1.cpp',

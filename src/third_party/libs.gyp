@@ -146,13 +146,6 @@
 				'BOOST_FILESYSTEM_VERSION=2'
 			],
 		}
-	},		
-	{
-		'target_name' : 'crypto',
-		'type': 'none',
-		'dependencies' : [
-			'crypto/crypto.gyp:*',
-		],
 	},
 	{
 		'target_name' : 'v8',

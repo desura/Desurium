@@ -212,6 +212,8 @@ bool checkCert()
 }
 
 
+#ifdef DESURA_NONGPL_BUILD
+
 int NeedUpdate()
 {
 	std::wstring path = UTIL::OS::getAppDataPath(UPDATEFILE_W);
@@ -234,6 +236,18 @@ int NeedUpdate()
 
 	return isServiceInstalled();
 }
+
+#else
+
+int NeedUpdate()
+{
+	if (checkCert())
+		return UPDATE_CERT;
+
+	return isServiceInstalled();
+}
+
+#endif
 
 bool CheckUpdate(const wchar_t* path)
 {

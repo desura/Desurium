@@ -110,7 +110,7 @@ protected:
 	class ParseInfo
 	{
 	public:
-		ParseInfo(uint16 statusOverride, WildcardManager* pWildCard = NULL, bool reset=false, InfoMaps* maps=NULL)
+		ParseInfo(uint32 statusOverride, WildcardManager* pWildCard = NULL, bool reset=false, InfoMaps* maps=NULL)
 		{
 			this->rootNode = NULL;
 			this->infoNode = NULL;
@@ -119,14 +119,20 @@ protected:
 			this->pWildCard = pWildCard;
 			this->reset = reset;
 			this->maps = maps;
+
+			platform = -1;
 		}
 
 		TiXmlElement* rootNode;
 		TiXmlElement* infoNode;
-		uint32 statusOverride;
+
 		WildcardManager* pWildCard;
-		bool reset;
 		InfoMaps* maps;
+
+		uint32 statusOverride;
+		uint32 platform;
+
+		bool reset;
 	};
 
 

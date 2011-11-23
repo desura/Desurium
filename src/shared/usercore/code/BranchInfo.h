@@ -36,12 +36,12 @@ namespace UserCore
 namespace Item
 {
 
-
+class BranchInstallInfo;
 
 class BranchInfo : public BranchInfoI
 {
 public:
-	BranchInfo(MCFBranch branchId, DesuraId itemId, uint32 platformId = 0);
+	BranchInfo(MCFBranch branchId, DesuraId itemId, BranchInstallInfo* bii, uint32 platformId = 0);
 	~BranchInfo();
 
 	virtual uint32 getFlags();
@@ -122,6 +122,8 @@ public:
 
 	void setLinkInfo(const char* name);
 
+	BranchInstallInfo* getInstallInfo();
+
 protected:
 	gcString encodeCDKey();
 	void decodeCDKey(gcString key);
@@ -147,6 +149,7 @@ private:
 	MCFBuild m_uiLatestBuild;
 
 	std::vector<DesuraId> m_vToolList;
+	BranchInstallInfo* m_InstallInfo;
 };
 
 

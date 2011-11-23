@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #endif
 
 #include "sqlite3x.hpp"
-#include "util/UtilCrypto.h"
+
 #include "util_thread/ThreadPool.h"
 
 #include "../../branding/usercore_version.h"

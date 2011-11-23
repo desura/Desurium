@@ -317,6 +317,9 @@
     <ClCompile Include="..\..\common\Common.cpp">
       <Filter>Prec Header</Filter>
     </ClCompile>
+    <ClCompile Include="code\BranchInstallInfo.cpp">
+      <Filter>Source Files\Item Manager\Info</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\log.h">
@@ -540,6 +543,9 @@
     </ClInclude>
     <ClInclude Include="..\..\include\usercore\CIPManagerI.h">
       <Filter>Source Files\CIP Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="code\BranchInstallInfo.h">
+      <Filter>Source Files\Item Manager\Info</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

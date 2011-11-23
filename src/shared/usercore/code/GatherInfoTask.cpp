@@ -284,7 +284,7 @@ void GatherInfoTask::checkRequirements()
 				UserCore::Item::Helper::ACTION promptRes = UserCore::Item::Helper::C_NONE;
 				
 				if (!m_bCanceled && m_pGIHH)
-					promptRes = m_pGIHH->showInstallPrompt(getItemHandle()->getItemInfo()->getPath());
+					promptRes = m_pGIHH->showInstallPrompt(getItemHandle()->getItemInfo()->getPath(getMcfBranch()));
 
 				switch (promptRes)
 				{
@@ -344,7 +344,9 @@ uint32 GatherInfoTask::validate()
 			isValid |= UserCore::Item::Helper::V_PARENT;
 	}
 
-	if (!pItemInfo->getPath())
+	const char* path = pItemInfo->getPath(getMcfBranch());
+
+	if (!path)
 	{
 		isValid |= UserCore::Item::Helper::V_BADPATH;
 	}
@@ -352,11 +354,11 @@ uint32 GatherInfoTask::validate()
 	{
 		const char *comAppPath = getUserCore()->getAppDataPath();
 
-		uint64 inFreeSpace = UTIL::OS::getFreeSpace(pItemInfo->getPath());
+		uint64 inFreeSpace = UTIL::OS::getFreeSpace(path);
 		uint64 dlFreeSpace = UTIL::OS::getFreeSpace(comAppPath);
 
 		//if they are on the same drive:
-		if (strncmp(comAppPath, pItemInfo->getPath(), 3) == 0)
+		if (strncmp(comAppPath, path, 3) == 0)
 		{
 			if ((inFreeSpace+dlFreeSpace) < (pItemInfo->getDownloadSize()+pItemInfo->getInstallSize()))
 			{
@@ -381,13 +383,13 @@ uint32 GatherInfoTask::validate()
 		}
 		else if (pItemInfo->getStatus() & UserCore::Item::ItemInfoI::STATUS_DLC)
 		{
-			if (!parInfo || gcString(pItemInfo->getPath()) != gcString(parInfo->getPath()))
+			if (!parInfo || gcString(path) != gcString(parInfo->getPath()))
 			{
-				if (!UTIL::FS::isFolderEmpty(pItemInfo->getPath()))
+				if (!UTIL::FS::isFolderEmpty(path))
 					isValid |= UserCore::Item::Helper::V_NONEMPTY;
 			}
 		}
-		else if (!UTIL::FS::isFolderEmpty(pItemInfo->getPath()))
+		else if (!UTIL::FS::isFolderEmpty(path))
 		{
 			isValid |= UserCore::Item::Helper::V_NONEMPTY;
 		}

@@ -35,9 +35,6 @@
     <ClCompile Include="code\UtilBZip2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="code\UtilCrypto.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="code\UtilMisc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
