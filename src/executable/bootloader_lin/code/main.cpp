@@ -219,8 +219,6 @@ int MainApp::run()
 	ERROR_OUTPUT("Skipping update check due to debug compile!");
 #endif
 
-	//UpdateIcons();
-
 	if (!loadUICore())
 	{
 		ERROR_OUTPUT(dlerror());
