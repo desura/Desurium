@@ -9,7 +9,7 @@ fi
 PYTHON="/usr/bin/python"
 PYTHONVER="`$PYTHON2 --version 2>&1`"
 
-# Check if PYTHON is Python 2..
+# Check if $PYTHON is Python 2..
 if [ "`echo \"$PYTHONVER\" | grep \"Python 2\"`" == "" ]; then # It's not!
 	# Clever hack borrowed from the official Arch Linux Chromium PKGBUILD.
 	# The idea is that shebangs use absolute paths, which need to be changed.
