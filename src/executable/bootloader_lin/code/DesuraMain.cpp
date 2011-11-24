@@ -197,7 +197,7 @@ int MainApp::run()
 #ifndef DEBUG
 	std::string lockPath = UTIL::LIN::expandPath("$XDG_RUNTIME_DIR/desura/lock");
 
-	if (!FileExists(lockPath)) // if desura isn't already running - simple check
+	if (!FileExists(lockPath.c_str())) // if desura isn't already running - simple check
 	{
 #ifdef DESURA_NONGPL_BUILD
 		if (CheckForUpdate(forceUpdate, skipUpdate))

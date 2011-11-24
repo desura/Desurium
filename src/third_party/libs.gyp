@@ -163,7 +163,7 @@
 			'configurations' : {
 				'Release' : {
 					'ldflags' : [
-						'-lv8-s',
+						'-lv8',
 					],
 				},
 				'Debug' : {
