@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "MiniDumpGenerator.h"
 
 #include "DesuraMain.h"
-#include "Files.h"
+#include "UtilFile.h"
 #include "util/UtilLinux.h"
 
 #ifdef DESURA_NONGPL_BUILD
