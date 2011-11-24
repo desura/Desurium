@@ -38,6 +38,5 @@ bool ChangeToAppDir();
 bool FileExists(const char* file = NULL);
 bool DeleteFile(const char* file = NULL);
 bool DeleteFile(const wchar_t* file = NULL);
-void UpdateIcons(bool updateDesktop = false);
 
 #endif

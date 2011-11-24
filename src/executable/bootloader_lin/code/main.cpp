@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <sys/mman.h>
+
 #include <fcntl.h>
 #include <unistd.h> // execl(), fork(), getppid()
 #include <sys/types.h> // pid_t
@@ -30,14 +31,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "UICoreI.h" // UICoreI
 #include "MiniDumpGenerator.h"
 
-#include "main.h"
-#include "update.h"
-#include "files.h"
+#include "DesuraMain.h"
+#include "Files.h"
 #include "util/UtilLinux.h"
 
+#ifdef DESURA_NONGPL_BUILD
+	#include "Update.h"
+#endif
+
 MainApp* g_pMainApp;
-SharedObjectLoader g_crashObject;
-UploadCrashFn g_uploadCrash;
+SharedObjectLoader g_CrashObject;
+UploadCrashFn g_UploadCrashfn;
 
 void SendMessage(const char* msg)
 {
@@ -148,23 +152,24 @@ int MainApp::run()
 	if (!ChangeToAppDir())
 		return -1;
 
+	bool usingGDB = false;
+		
+#ifdef DESURA_NONGPL_BUILD
 	bool forceUpdate = false;
 	bool skipUpdate = false;
-	bool usingGDB = false;
 	bool testDownload = false;
 	bool testInstall = false;
+#endif	
 
 	for (int x=0; x<m_Argc; x++)
 	{
 		if (!m_Argv[x])
 			continue;
-		
-		if (strcasecmp(m_Argv[x], "-f") == 0 || strcasecmp(m_Argv[x], "--forceupdate") == 0)
-			forceUpdate = true;
 
 		if (strcasecmp(m_Argv[x], "-g") == 0 || strcasecmp(m_Argv[x], "--gdb") == 0)
 			usingGDB = true;
 
+#ifdef DESURA_NONGPL_BUILD			
 		if (strcasecmp(m_Argv[x], "-td") == 0 || strcasecmp(m_Argv[x], "--testdownload") == 0)
 			testDownload = true;
 
@@ -173,50 +178,32 @@ int MainApp::run()
 
 		if (strcasecmp(m_Argv[x], "-s") == 0 || strcasecmp(m_Argv[x], "--skipupdate") == 0 || strncasecmp(m_Argv[x], "desura://", 9) == 0)
 			skipUpdate = true;
+
+		if (strcasecmp(m_Argv[x], "-f") == 0 || strcasecmp(m_Argv[x], "--forceupdate") == 0)
+			forceUpdate = true;			
+#endif			
 	}
 	
+#ifdef DESURA_NONGPL_BUILD	
 	if (testInstall)
 		return InstallFilesForTest();
 		
 	if (testDownload)
 		return DownloadFilesForTest();
-
+#endif
+		
 #ifndef DEBUG
 	std::string lockPath = UTIL::LIN::expandPath("$XDG_RUNTIME_DIR/desura/lock");
 
 	if (!FileExists(lockPath)) // if desura isn't already running - simple check
 	{
-		if (forceUpdate)
-		{
-			FullUpdate();
-		}
-		else if (!skipUpdate)
-		{
-				if (!CheckForUpdates()) // Is this causing double login prompt after install / update?
-					return 0;
-		}
+#ifdef DESURA_NONGPL_BUILD
+		if (CheckForUpdate(forceUpdate, skipUpdate))
+			return 0;
+#endif
 	
-		int ret = system("which gsettings 2>/dev/null 1>/dev/null"); // check gsettings exists
-		if (ret == 0) // if it does
-		{
-			ret = system("gsettings get com.canonical.Unity.Panel systray-whitelist 2>/dev/null 1>/dev/null"); // check that this schema exists
-			if (ret == 0) // if it does
-			{
-				ret = system("gsettings get com.canonical.Unity.Panel systray-whitelist | grep desura 2>/dev/null 1>/dev/null"); // check for desura already being whitelisted
-				if (ret != 0) // if it's not
-				{
-					ret = system("gsettings set com.canonical.Unity.Panel systray-whitelist \"`gsettings get com.canonical.Unity.Panel systray-whitelist | sed -e \"s/]/,\\ 'desura']/g\"`\" 2>/dev/null 1>/dev/null");
-					if (ret == 0)
-						ShowHelpDialog("Desura has been added to the Unity panel whitelist. You should log out and back in for this to take effect or you may experience problems using Desura", NULL, "--info"); 
-				}
-			}
-		}
+		checkUnityWhitelist();
 	}
-#else
-	if (forceUpdate)
-		ERROR_OUTPUT("Should be force updating but...");
-		
-	ERROR_OUTPUT("Skipping update check due to debug compile!");
 #endif
 
 	if (!loadUICore())
@@ -225,97 +212,69 @@ int MainApp::run()
 		return -1;
 	}
 
-	bool res = m_pUICore->singleInstantCheck();
-
-	if (!res)
+	if (!m_pUICore->singleInstantCheck())
 	{
-		std::string args;
-	
-		for (int x=1; x<m_Argc; x++)
-		{
-			if (!m_Argv[x])
-				continue;
-			
-			if (args.size() != 0)
-				args += " "; 
-			args +=  "\"";
-			args += m_Argv[x];
-			args += "\"";	
-		}
-
-		SendMessage(args.c_str());
-		shutdownUICore();
+		sendArgs();
 		return 0;
 	}
 	
-	//this key should be unique due to single instance check above
-	m_RestartMem = shm_open("des_restart_mem", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
-	
-	if (m_RestartMem < 0)
-		fprintf(stderr, "Failed to allocate memory for restart.");
-	else
-		ftruncate(m_RestartMem, sizeof(RestartArg_s));
+	setupSharedMem();
 
 #ifndef DEBUG
-	if (!g_crashObject.load("libcrashuploader.so"))
-	{
-		fprintf(stderr, "Failed to load dump uploader.\n\t[%s]\n", dlerror());
-		return 1;
-	}
-
-	g_uploadCrash = g_crashObject.getFunction<UploadCrashFn>("UploadCrash");
-
-	if (!g_uploadCrash)
-	{
-		fprintf(stderr, "Failed to find UploadCrash function.\n\t[%s]\n", dlerror());
-		return 1;
-	}
+	if (!loadCrashHelper())
+		return -1;
 #endif
 
 	int id = fork();
 
-	if (id != 0) // PARENT
-	{
-		char* endArgs =  (char*)mmap(0, sizeof(RestartArg_s), PROT_READ|PROT_WRITE, MAP_SHARED, m_RestartMem, 0);
+	if (id != 0)
+		return runParent(id);
+
+	return runChild(usingGDB);
+}
+
+int MainApp::runParent(int pid)
+{
+	char* endArgs =  (char*)mmap(0, sizeof(RestartArg_s), PROT_READ|PROT_WRITE, MAP_SHARED, m_RestartMem, 0);
 			
-		if (endArgs != MAP_FAILED)
-			memset(endArgs, 0, sizeof(RestartArg_s));
+	if (endArgs != MAP_FAILED)
+		memset(endArgs, 0, sizeof(RestartArg_s));
 
-		waitpid(id, NULL, 0);
-		
-		shutdownUICore();
-		
-		if (endArgs != MAP_FAILED)
-		{
-			if (endArgs[0] == 'r')
-				restartReal(((RestartArg_s*)endArgs)->args);
-				
-			else if (endArgs[0] == 'c')
-				processCrash((CrashArg_s*)endArgs);
-		}
-	}
-	else // CHILD
+	waitpid(id, NULL, 0);
+	
+	shutdownUICore();
+	
+	if (endArgs != MAP_FAILED)
 	{
-		m_pUICore->disableSingleInstanceLock();
-		
-		if (usingGDB)
-		{
-			ERROR_OUTPUT("Running with GDB -- Not setting up dump handler");
-		}
-		else
-		{
-			MiniDumpGenerator m_MDumpHandle;
-			m_MDumpHandle.showMessageBox(true);
-			m_MDumpHandle.setCrashCallback(&MainApp::onCrash);	
-			m_pCrashArgs =  (CrashArg_s*)mmap(0, sizeof(RestartArg_s), PROT_READ|PROT_WRITE, MAP_SHARED, m_RestartMem, 0);
-			if (!m_pCrashArgs)
-				fprintf(stderr, "Failed to map crash arguments %s\n", dlerror());
-		}
-		
-		return m_pUICore->initWxWidgets(m_Argc, m_Argv);		
+		if (endArgs[0] == 'r')
+			restartReal(((RestartArg_s*)endArgs)->args);
+			
+		else if (endArgs[0] == 'c')
+			processCrash((CrashArg_s*)endArgs);
 	}
-
+	
 	return 0;
+}
+
+int MainApp::runChild(bool usingGDB)
+{
+	m_pUICore->disableSingleInstanceLock();
+		
+	if (usingGDB)
+	{
+		ERROR_OUTPUT("Running with GDB -- Not setting up dump handler");
+	}
+	else
+	{
+		MiniDumpGenerator m_MDumpHandle;
+		m_MDumpHandle.showMessageBox(true);
+		m_MDumpHandle.setCrashCallback(&MainApp::onCrash);	
+		m_pCrashArgs =  (CrashArg_s*)mmap(0, sizeof(RestartArg_s), PROT_READ|PROT_WRITE, MAP_SHARED, m_RestartMem, 0);
+		if (!m_pCrashArgs)
+			fprintf(stderr, "Failed to map crash arguments %s\n", dlerror());
+	}
+	
+	return m_pUICore->initWxWidgets(m_Argc, m_Argv);
 }
 
 bool MainApp::testDeps()
@@ -480,7 +439,7 @@ void MainApp::processCrash(CrashArg_s* args)
 	}
 	else
 	{
-		g_uploadCrash(args->file, args->user, args->build, args->branch);
+		g_UploadCrashfn(args->file, args->user, args->build, args->branch);
 		return;
 	}
 #endif
@@ -543,4 +502,78 @@ bool MainApp::utf8Test()
 	return !hasUtf8;
 }
 
+bool MainApp::loadCrashHelper()
+{
+	if (!g_CrashObject.load("libcrashuploader.so"))
+	{
+		fprintf(stderr, "Failed to load dump uploader.\n\t[%s]\n", dlerror());
+		return false;
+	}
 
+	g_UploadCrashfn = g_CrashObject.getFunction<UploadCrashFn>("UploadCrash");
+
+	if (!g_UploadCrashfn)
+	{
+		fprintf(stderr, "Failed to find UploadCrash function.\n\t[%s]\n", dlerror());
+		return false;
+	}
+	
+	return true;
+}
+
+void MainApp::sendArgs()
+{
+	std::string args;
+	
+	for (int x=1; x<m_Argc; x++)
+	{
+		if (!m_Argv[x])
+			continue;
+		
+		if (args.size() != 0)
+			args += " "; 
+		args +=  "\"";
+		args += m_Argv[x];
+		args += "\"";	
+	}
+
+	SendMessage(args.c_str());
+	shutdownUICore();
+}
+
+void MainApp::setupSharedMem()
+{
+	//this key should be unique due to single instance check above
+	m_RestartMem = shm_open("des_restart_mem", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
+	
+	if (m_RestartMem < 0)
+		fprintf(stderr, "Failed to allocate memory for restart.");
+	else
+		ftruncate(m_RestartMem, sizeof(RestartArg_s));
+}
+
+void MainApp::checkUnityWhitelist()
+{
+	int ret = system("which gsettings 2>/dev/null 1>/dev/null"); // check gsettings exists
+	
+	if (ret != 0) 
+		return;
+		
+	// if it does
+	ret = system("gsettings get com.canonical.Unity.Panel systray-whitelist 2>/dev/null 1>/dev/null"); // check that this schema exists
+	
+	if (ret != 0) 
+		return;
+		
+	// if it does
+	ret = system("gsettings get com.canonical.Unity.Panel systray-whitelist | grep desura 2>/dev/null 1>/dev/null"); // check for desura already being whitelisted
+	
+	if (ret == 0) 
+		return;
+		
+	// if it's not
+	ret = system("gsettings set com.canonical.Unity.Panel systray-whitelist \"`gsettings get com.canonical.Unity.Panel systray-whitelist | sed -e \"s/]/,\\ 'desura']/g\"`\" 2>/dev/null 1>/dev/null");
+	
+	if (ret == 0)
+		ShowHelpDialog("Desura has been added to the Unity panel whitelist. You should log out and back in for this to take effect or you may experience problems using Desura", NULL, "--info"); 
+}

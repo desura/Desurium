@@ -82,6 +82,15 @@ protected:
 	bool permTest();
 	bool utf8Test();
 
+	bool loadCrashHelper();
+	void sendArgs();
+	
+	void checkUnityWhitelist();
+	void setupSharedMem();
+	
+	int runParent(int pid);
+	int runChild(bool usingGDB);
+	
 private:
 	int m_Argc;
 	char** m_Argv;
