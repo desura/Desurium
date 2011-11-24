@@ -796,15 +796,15 @@ bool setupXDGVars(void)
 		// Below we just use 'falling back' and don't note we're setting it,
 		// but as $HOME is referenced later on it might confuse anybody reading the
 		// logs.
-		std::cerr << "$HOME not set, temporarily setting it to the user's " <<
-			"password file entry." << std::endl;
+		// Also use 'passwd' instead of 'password' as that may freak out some users.
+		printf("$HOME not set, temporarily setting it to the user's passwd entry.");
 		
 		struct passwd* pass = getpwuid(getuid());
 		homeDir = pass->pw_dir;
 		
 		if (setenv("HOME", homeDir, 0) == -1)
 		{
-			std::cerr << "Failed to setenv $HOME." << std::endl;
+			printf("Failed to setenv $HOME.");
 			// No need to return from this one as we're using homeDir from here on.
 		}
 		
@@ -816,15 +816,14 @@ bool setupXDGVars(void)
 	
 	if (getenv("XDG_CONFIG_HOME") == 0)
 	{
-		std::cerr << "$XDG_CONFIG_HOME not set, falling " <<
-			"back to $HOME/.config." << std::endl;
+		printf("$XDG_CONFIG_HOME not set, falling back to $HOME/.config.");
 		
 		std::string fullDir(homeDir);
 		fullDir += "/.config";
 		
 		if (setenv("XDG_CONFIG_HOME", fullDir.c_str(), 0) == -1)
 		{
-			std::cerr << "Failed to setenv $XDG_CONFIG_HOME." << std::endl;
+			printf("Failed to setenv $XDG_CONFIG_HOME.");
 			return true;
 		}
 	}
@@ -833,14 +832,14 @@ bool setupXDGVars(void)
 	
 	if (!cacheDir)
 	{
-		std::cerr << "$XDG_CACHE_HOME not set, falling " << "back to $HOME/.cache." << std::endl;
+		printf("$XDG_CACHE_HOME not set, falling back to $HOME/.cache.");
 		
 		std::string fullDir(homeDir);
 		fullDir += "/.cache";
 		
 		if (setenv("XDG_CACHE_HOME", fullDir.c_str(), 0) == -1)
 		{
-			std::cerr << "Failed to setenv $XDG_CACHE_HOME." << std::endl;
+			printf("Failed to setenv $XDG_CACHE_HOME.");
 			return true;
 		}
 		
@@ -853,12 +852,11 @@ bool setupXDGVars(void)
 	
 	if (getenv("XDG_RUNTIME_DIR") == 0)
 	{
-		std::cerr << "$XDG_RUNTIME_DIR not set, falling " <<
-			"back to $XDG_CACHE_HOME." << std::endl;
+		printf("$XDG_RUNTIME_DIR not set, falling back to $XDG_CACHE_HOME.");
 		
 		if (setenv("XDG_RUNTIME_DIR", cacheDirString.c_str(), 0) == -1)
 		{
-			std::cerr << "Failed to setenv $XDG_CONFIG_HOME." << std::endl;
+			printf("Failed to setenv $XDG_CONFIG_HOME.");
 			return true;
 		}
 	}
