@@ -240,7 +240,7 @@ int MainApp::runParent(int pid)
 	if (endArgs != MAP_FAILED)
 		memset(endArgs, 0, sizeof(RestartArg_s));
 
-	waitpid(id, NULL, 0);
+	waitpid(pid, NULL, 0);
 	
 	shutdownUICore();
 	
@@ -485,7 +485,7 @@ bool MainApp::utf8Test()
 	bool hasUtf8 = false;
 
 	signed char result[PATH_MAX] = {0};
-	ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
+	ssize_t count = readlink("/proc/self/exe", (char*)result, PATH_MAX);
 
 	for (ssize_t x=0; x<count; x++)
 	{
