@@ -17,16 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 #include "stdafx.h"
-#include "updateFunctions.h"
+#include "UpdateFunctions.h"
 #include "../../../branding/branding.h"
 
 #include <shlobj.h>
 #include <sys/stat.h> 
 
 #define UTILWEB_INCLUDE
-#include "Common.h"
-#include "umcf/umcf.h"
 
+#include "Common.h"
 #include "AppUpdateInstall.h"
 #include "IPCPipeClient.h"
 #include "IPCManager.h"
@@ -36,7 +35,6 @@ void SetRegValues();
 void InstallService();
 
 
-INT_PTR DisplayUpdateWindow(int updateType);
 
 bool FolderExists(const char* strFolderName)
 {   
@@ -68,9 +66,11 @@ bool FileExists(const wchar_t* fileName)
 		return false;
 }
 
+#ifdef DESURA_NONGPL_BUILD
 extern FILE* g_pUpdateLog;
+#endif
 
-int isServiceInstalled()
+int IsServiceInstalled()
 {
 	uint32 sres = UTIL::WIN::queryService(SERVICE_NAME);
 
@@ -114,8 +114,10 @@ int isServiceInstalled()
 	Safe::snprintf(regname, 255, "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\%s\\Start", SERVICE_NAME);
 	int res = UTIL::WIN::getRegValueInt(regname, true);
 
+#ifdef DESURA_NONGPL_BUILD
 	if (g_pUpdateLog)
 		fprintf(g_pUpdateLog, "Status: %d\n", res);
+#endif
 
 	if (res == 4)
 		return UPDATE_SERVICE_DISABLED;
@@ -123,181 +125,16 @@ int isServiceInstalled()
 	return UPDATE_NONE;
 }
 
-bool checkCert()
+int NeedUpdate()
 {
-#ifndef DESURA_OFFICAL_BUILD
-	return false;
-#endif
-
-	wchar_t exePath[255];
-	GetModuleFileNameW(NULL, exePath, 255);
-
-	size_t exePathLen = Safe::wcslen(exePath, 255);
-	for (size_t x=exePathLen; x>0; x--)
-	{
-		if (exePath[x] == '\\')
-			break;
-		else
-			exePath[x] = '\0';
-	}
-
-	wchar_t *modules[] = 
-	{
-		L"desura.exe",
-		L"desura_service.exe",
-		L"bin\\uicore.dll",
-		L"bin\\usercore.dll",
-		L"bin\\webcore.dll",
-		L"bin\\mcfcore.dll",
-		L"bin\\servicecore_c.dll",
-	};
-
-	char *moduleName[] = 
-	{
-		"desura.exe",
-		"desura_service.exe",
-		"uicore.dll",
-		"usercore.dll",
-		"webcore.dll",
-		"mcfcore.dll",
-		"servicecore_c.dll",
-	};
-
-	bool allGood = true;
-	char msgMsg[1024];
-	
-	char* curPos = msgMsg;
-	size_t curSize = 1024;
-
-	Safe::snprintf(curPos, curSize, "There has been an error validating the Digital Signature for:\n"); 
-
-	curPos+= 62;
-	curSize+= 62;
-
-	for (size_t x=0; x<6; x++)
-	{
-		wchar_t path[255];
-
-		gcString mod(modules[x]);
-		Safe::snwprintf(path, 255, L"%s\\%s", exePath, modules[x]);
-
-		uint32 res = UTIL::WIN::validateCert(path);
-
-		if (res == TRUST_E_NOSIGNATURE)
-		{
-			size_t size = strlen(moduleName[x]);
-			Safe::snprintf(curPos, curSize, "\t%s\n", moduleName[x]);
-			curPos += size+2;
-			curSize -= size+2;
-			allGood = false;
-		}
-	}
-
-	if (allGood)
-		return false;
-
-	Safe::snprintf(curPos, curSize,	"\n"
-								"It is adviseable to do a full update instead of proceding as\n"
-								"you might be running unoffical code.\n"
-								"\n"
-								"Do you want to do a full update now?");
-
-
-	LONG res = ::MessageBoxA(NULL, msgMsg, "Desura Error: Certificate Error", MB_YESNOCANCEL|MB_ICONSTOP);
-
-	if (res == IDCANCEL)
-		exit(200);
-	
-	return (res == IDYES);
-}
-
-
 #ifdef DESURA_NONGPL_BUILD
-
-int NeedUpdate()
-{
-	std::wstring path = UTIL::OS::getAppDataPath(UPDATEFILE_W);
-
-	if (!FileExists(UPDATEXML_W))
-	{
-		return UPDATE_XML;
-	}
-	else
-	{
-		if (FileExists(path.c_str()) && CheckUpdate(path.c_str()))
-			return UPDATE_MCF;
-
-		if (!CheckInstall())
-			return UPDATE_FILES;
-	}
-
-	if (checkCert())
-		return UPDATE_CERT;
-
-	return isServiceInstalled();
-}
-
-#else
-
-int NeedUpdate()
-{
-	if (checkCert())
-		return UPDATE_CERT;
-
-	return isServiceInstalled();
-}
-
-#endif
-
-bool CheckUpdate(const wchar_t* path)
-{
-	UMcf updateMcf;
-	updateMcf.setFile(path);
-
-	return (updateMcf.parseMCF() == UMCF_OK && updateMcf.isValidInstaller());
-}
-
-bool CheckInstall()
-{
-	UMcf updateMcf;
-	updateMcf.loadFromFile(UPDATEXML_W);
-
-	return updateMcf.checkFiles();
-}
-
-//with full updates we should have admin rights
-void FullUpdate()
-{
-	DeleteFileW(L"desura_old.exe");
-	DeleteFileW(L"desura_service_old.exe");
-
-	std::wstring updateFile = UTIL::OS::getAppDataPath(UPDATEFILE_W);
-	DeleteFileW(updateFile.c_str());
-
-	if (DisplayUpdateWindow(UPDATE_FILES) == 2)
-		exit(0);
-
-#ifndef DEBUG
-	try
-	{
-		SetRegValues();
-		InstallService();
-		ServiceUpdate(false);
-	}
-	catch (gcException &e)
-	{
-		char msg[255];
-		Safe::snprintf(msg, 255, "Failed to Update Desura: %s [%d.%d]", e.getErrMsg(), e.getErrId(), e.getSecErrId());
-		::MessageBox(NULL, msg, "Desura Critical Error", MB_OK);
+	int res = NeedUpdateNonGpl();
 	
-		exit(-4);
-	}
+	if (res != UPDATE_NONE)
+		return res;
 #endif
-}
 
-void McfUpdate()
-{
-	DisplayUpdateWindow(UPDATE_MCF);
+	return IsServiceInstalled();
 }
 
 void SetRegValues()
@@ -360,9 +197,6 @@ void InstallService()
 		UTIL::WIN::setRegValue(regname, servicePath, false, true);
 	}
 }
-
-
-
 
 class ServiceInstaller : public AppUpdateInstall
 {
@@ -429,8 +263,6 @@ bool ServiceUpdate(bool validService)
 
 	return true;
 }
-
-
 
 class DataMover : public AppUpdateInstall
 {

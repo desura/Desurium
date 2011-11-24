@@ -25,9 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "IPCPipeClient.h"
 #include "IPCManager.h"
 #include "IPCUpdateApp.h"
-#include "util/UtilWindows.h"
-#include "UpdateMFCForm.h"
 
+#include "util/UtilWindows.h"
 
 class AppUpdateInstall::Privates
 {
@@ -35,20 +34,20 @@ public:
 	gcString m_szMcfPath;
 	gcString m_szInsPath;
 
-	UpdateForm* m_pUpdateForm;
+	ProgressReportI* m_pProgressReport;
 
 	int m_iResult;
 	bool m_bTestMode;
 };
 
-AppUpdateInstall::AppUpdateInstall(UpdateForm* updateForm, bool testMode)
+AppUpdateInstall::AppUpdateInstall(ProgressReportI* progressReport, bool testMode)
 {
 	m_pPrivates = new Privates();
 
 	m_pPrivates->m_bTestMode = testMode;
 	m_pPrivates->m_iResult = -4;
 
-	m_pPrivates->m_pUpdateForm = updateForm;
+	m_pPrivates->m_pProgressReport = progressReport;
 
 	char temp[255] = {0};
 	GetCurrentDirectory(255, temp);
@@ -168,8 +167,8 @@ int AppUpdateInstall::run()
 
 		uint32 p = 100;
 
-		if (m_pPrivates->m_pUpdateForm)
-			m_pPrivates->m_pUpdateForm->getProgressControl()->setProgress(p);
+		if (m_pPrivates->m_pProgressReport)
+			m_pPrivates->m_pProgressReport->reportProgress(p);
 	}
 	catch (gcException &e)
 	{
@@ -211,8 +210,8 @@ void AppUpdateInstall::onError(gcException& e)
 
 void AppUpdateInstall::onProgress(uint32& p)
 {
-	if (m_pPrivates->m_pUpdateForm)
-		m_pPrivates->m_pUpdateForm->getProgressControl()->setProgress(p);
+	if (m_pPrivates->m_pProgressReport)
+		m_pPrivates->m_pProgressReport->reportProgress(p);
 }
 
 void AppUpdateInstall::onComplete()

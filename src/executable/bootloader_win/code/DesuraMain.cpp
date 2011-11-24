@@ -22,16 +22,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "resource.h"
 #include "UtilBootloader.h"
 
-#include "UpdateMFCForm.h"
+#ifdef DESURA_NONGPL_BUILD
+	#include "AppUpdateInstall.h"
+	#include "UpdateMFCForm.h"
+	
+	extern UINT DownloadFilesForTest();
+	extern UINT InstallFilesForTest();
+	
+	extern INT_PTR DisplayUpdateWindow(int updateType);
+	
+	extern bool CheckCert();
+	extern void CheckForBadUninstaller();
+#endif
+
 #include "UpdateFunctions.h"
 #include "MiniDumpGenerator.h"
 
 #include "../../branding/desura_exe_version.h"
 #include "util/gcDDE.h"
-#include "UICoreI.h"
 
+#include "UICoreI.h"
 #include "SharedObjectLoader.h"
-#include "AppUpdateInstall.h"
 
 #include <map>
 #include <string>
@@ -45,42 +56,8 @@ char* g_szArgs = NULL;
 
 extern void InstallService();
 extern void SetRegValues();
-extern bool checkCert();
 extern void cleanUpIPC();
 
-INT_PTR DisplayUpdateWindow(int updateType);
-
-void checkForBadUninstaller()
-{
-	char exePath[255];
-	GetModuleFileName(NULL, exePath, 255);
-
-	size_t exePathLen = strlen(exePath);
-	for (size_t x=exePathLen; x>0; x--)
-	{
-		char c = exePath[x];
-
-		exePath[x] = '\0';
-		exePathLen = x;
-
-		if (c == '\\')
-			break;
-	}
-
-	char * folder = exePath;
-
-	for (size_t x=exePathLen; x>0; x--)
-	{
-		if (exePath[x] == '\\')
-		{
-			folder = &exePath[x+1];
-			break;
-		}
-	}	
-
-	if (strcmp(folder, "Desura") != 0)
-		DeleteFile("Desura_Uninstall.exe");
-}
 
 void UiCoreRestart(const char* args)
 {
@@ -95,58 +72,6 @@ void UiCoreRestart(const char* args)
 		g_szArgs[len] = '\0';
 	}
 }
-
-FILE* g_pUpdateLog = NULL;
-
-void InitUpdateLog()
-{
-	if (g_pUpdateLog)
-		return;
-
-	char path[MAX_PATH];
-	SHGetFolderPathA(NULL, CSIDL_COMMON_APPDATA, NULL, SHGFP_TYPE_CURRENT, path);
-
-	char file[255];
-
-	_snprintf_s(file, 255, "%s\\Desura", path);
-	CreateDirectory(file, NULL);
-
-	_snprintf_s(file, 255, "%s\\Desura\\DesuraApp", path);
-	CreateDirectory(file, NULL);
-
-	_snprintf_s(file, 255, "%s\\Desura\\DesuraApp\\update_log.txt", path);
-	fopen_s(&g_pUpdateLog, file, "a");
-}
-
-void StopUpdateLog()
-{
-	if (!g_pUpdateLog)
-		return;
-
-	fclose(g_pUpdateLog);
-}
-
-void Log(const char* format, ...)
-{
-	if (!g_pUpdateLog)
-		return;
-
-	time_t rawtime;
-	struct tm timeinfo;
-	char buffer[255];
-
-	time(&rawtime);
-	localtime_s(&timeinfo, &rawtime);
-
-	strftime(buffer, 255, "%c:", &timeinfo);
-	fprintf(g_pUpdateLog, buffer);
-
-	va_list args;
-	va_start(args, format);
-	vfprintf(g_pUpdateLog, format, args);
-	va_end(args);
-}
-
 
 const char* g_UpdateReasons[] =
 {
@@ -217,46 +142,32 @@ BootLoader::BootLoader()
 	AfxEnableMemoryTracking(FALSE);
 	InitCommonControls();
 
-#ifdef DEBUG
-#if 0
-	BootLoaderUtil::WaitForDebugger();
-#endif
-#endif
-
 	hasAdminRights = false;
 	m_pUICore = NULL;
-
-	InitUpdateLog();
 	m_bRetCode = false;
 }
 
 BootLoader::~BootLoader()
 {
-	StopUpdateLog();
-
 	cleanUpIPC();
 
 	if (g_szArgs)
 		delete [] g_szArgs;
 }
 
-
-UINT DownloadFilesForTest();
-UINT InstallFilesForTest();
-
 BOOL BootLoader::InitInstance()
 {
 	BootLoaderUtil::CMDArgs args(m_lpCmdLine);
 	
 	if (args.hasArg("waitfordebugger"))
-	{
 		BootLoaderUtil::WaitForDebugger();
-	}
 
 	BootLoaderUtil::SetCurrentDir();
 	CWinApp::InitInstance();
 
-	checkForBadUninstaller();
+#ifdef DESURA_NONGPL_BUILD
+	CheckForBadUninstaller();
+#endif
 
 	if (args.hasArg("urllink"))
 	{
@@ -269,6 +180,7 @@ BOOL BootLoader::InitInstance()
 		return FALSE;
 	}
 
+#ifdef DESURA_NONGPL_BUILD
 	if (args.hasArg("testinstall"))
 	{
 		m_bRetCode = true;
@@ -282,7 +194,8 @@ BOOL BootLoader::InitInstance()
 		m_iRetCode = DownloadFilesForTest();
 		return FALSE;
 	}
-
+#endif
+	
 	if (args.hasArg("dumplevel"))
 	{
 		SetDumpLevel(args.getInt("dumplevel"));
@@ -297,6 +210,7 @@ BOOL BootLoader::InitInstance()
 		return FALSE;
 	}
 
+#ifdef DESURA_NONGPL_BUILD
 #ifdef DEBUG
 	if (args.hasArg("debugupdater"))
 	{
@@ -322,11 +236,12 @@ BOOL BootLoader::InitInstance()
 		return FALSE;
 	}
 #endif
+#endif
 
 	if (args.hasArg("testcrash"))
 	{
-		AppUpdateInstall *ai = NULL;
-		ai->run();
+		BootLoader *ai = NULL;
+		ai->AssertValid();
 	}
 
 	unsigned int osid = BootLoaderUtil::GetOSId();

@@ -30,10 +30,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 class UpdateForm;
 
+class ProgressReportI
+{
+public:
+	virtual void reportProgress(uint32 prog)=0;
+};
+
 class AppUpdateInstall
 {
 public:
-	AppUpdateInstall(UpdateForm* updateForm, bool testMode = false);
+	AppUpdateInstall(ProgressReportI* progressReport, bool testMode = false);
 	~AppUpdateInstall();
 
 	virtual int run();

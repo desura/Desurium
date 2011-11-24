@@ -22,7 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #pragma once
 #endif
 
-
 enum
 {
 	UPDATE_NONE,
@@ -45,12 +44,11 @@ int NeedUpdate();
 void McfUpdate();
 void FullUpdate();
 
-bool ServiceUpdate(bool validService);
-bool MoveDataFolder();
-
 bool CheckUpdate(const wchar_t* path);
 bool CheckInstall();
 
+bool MoveDataFolder();
+bool ServiceUpdate(bool validService);
 bool FixServiceDisabled();
 
 #endif //DESURA_UPDATEFUNCTIONS_H
