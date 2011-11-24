@@ -19,9 +19,6 @@
     <Filter Include="Source Files\desura">
       <UniqueIdentifier>{37d8137d-c12b-4703-8d20-8a2f40f1e213}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\UMcfEx">
-      <UniqueIdentifier>{cc2b9ecf-ab42-4f21-9af3-c8ffadb14767}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\stdafx.cpp">
@@ -30,43 +27,22 @@
     <ClCompile Include="code\AppUpdateInstall.cpp">
       <Filter>Source Files\IPC</Filter>
     </ClCompile>
-    <ClCompile Include="code\DesuraProgress.cpp">
-      <Filter>Source Files\desura</Filter>
-    </ClCompile>
-    <ClCompile Include="code\UpdateMFCForm.cpp">
-      <Filter>Source Files\desura</Filter>
-    </ClCompile>
     <ClCompile Include="code\UpdateFunctions.cpp">
       <Filter>Source Files\desura</Filter>
-    </ClCompile>
-    <ClCompile Include="code\Log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="code\InstallFiles.cpp">
-      <Filter>Source Files\desura</Filter>
-    </ClCompile>
-    <ClCompile Include="code\DesuraMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="code\UMcfEx.cpp">
-      <Filter>Source Files\UMcfEx</Filter>
     </ClCompile>
     <ClCompile Include="..\..\common\service_pipe\IPCUpdateApp.cpp">
       <Filter>Source Files\IPC</Filter>
     </ClCompile>
+    <ClCompile Include="code\DesuraMain.cpp">
+      <Filter>Source Files\desura</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Log.cpp">
+      <Filter>Source Files\desura</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="code\UMcfEx.h">
-      <Filter>Source Files\UMcfEx</Filter>
-    </ClInclude>
     <ClInclude Include="code\AppUpdateInstall.h">
       <Filter>Source Files\IPC</Filter>
-    </ClInclude>
-    <ClInclude Include="code\DesuraProgress.h">
-      <Filter>Source Files\desura</Filter>
-    </ClInclude>
-    <ClInclude Include="code\UpdateMFCForm.h">
-      <Filter>Source Files\desura</Filter>
     </ClInclude>
     <ClInclude Include="code\UpdateFunctions.h">
       <Filter>Source Files\desura</Filter>

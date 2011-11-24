@@ -24,7 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #ifdef DESURA_NONGPL_BUILD
 	#include "AppUpdateInstall.h"
-	#include "UpdateMFCForm.h"
 	
 	extern UINT DownloadFilesForTest();
 	extern UINT InstallFilesForTest();
@@ -294,13 +293,11 @@ BOOL BootLoader::InitInstance()
 	{
 		if (!hasAdminRights)
 		{
-			Log("Force updating, restarting as admin.\n");
 			restartAsAdmin(UPDATE_FORCED);
 			return FALSE;
 		}
 		else
 		{
-			Log("Force updating.\n");
 			FullUpdate();
 			BootLoaderUtil::RestartAsNormal("-wait");
 			return FALSE;

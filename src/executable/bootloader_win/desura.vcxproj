@@ -82,7 +82,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.\code;.\RES;..\..\static\ipc_pipe\code;..\..\common\service_pipe;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;gamecore_LOG;DONT_INCLUDE_WINH;DONTUSE_PCH;DESURA_EXE;DESURA_CLIENT;NO_UTIL_FS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;GAMECORE_LOG;DONT_INCLUDE_WINH;DONTUSE_PCH;DESURA_EXE;DESURA_CLIENT;NO_UTIL_FS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -96,7 +96,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/NODEFAULTLIB:libcmtd.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;comsuppwd.lib;wintrust.lib;tinyxml-d.lib;util-d.lib;util_thread-d.lib;umcf-d.lib;mdump-d.lib;ipc_pipe-d.lib;util_bootloader-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>util-d.lib;util_thread-d.lib;mdump-d.lib;ipc_pipe-d.lib;util_bootloader-d.lib;desura_nongpl-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalManifestDependencies>%(AdditionalManifestDependencies)</AdditionalManifestDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -164,7 +164,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/NODEFAULTLIB:libcmt.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>Nafxcw.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;comsuppw.lib;Psapi.lib;wintrust.lib;libcmt.lib;LIBCPMT.LIB;tinyxml-s.lib;util-s.lib;util_thread-s.lib;umcf-s.lib;mdump-s.lib;ipc_pipe-s.lib;util_bootloader-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>util-s.lib;util_thread-s.lib;mdump-s.lib;ipc_pipe-s.lib;util_bootloader-s.lib;desura_nongpl-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalManifestDependencies>%(AdditionalManifestDependencies)</AdditionalManifestDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -187,8 +187,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="code\DesuraProgress.cpp" />
-    <ClCompile Include="code\InstallFiles.cpp" />
     <ClCompile Include="code\Log.cpp" />
     <ClCompile Include="code\DesuraMain.cpp" />
     <ClCompile Include="code\stdafx.cpp">
@@ -196,9 +194,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="code\UpdateMFCForm.cpp" />
     <ClCompile Include="code\UpdateFunctions.cpp" />
-    <ClCompile Include="code\UMcfEx.cpp" />
     <ClCompile Include="code\AppUpdateInstall.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
@@ -213,10 +209,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="code\DesuraProgress.h" />
-    <ClInclude Include="code\UpdateMFCForm.h" />
     <ClInclude Include="code\UpdateFunctions.h" />
-    <ClInclude Include="code\UMcfEx.h" />
     <ClInclude Include="code\AppUpdateInstall.h" />
   </ItemGroup>
   <ItemGroup>

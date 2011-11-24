@@ -34,6 +34,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 void SetRegValues();
 void InstallService();
 
+#ifdef DESURA_NONGPL_BUILD
+int NeedUpdateNonGpl();
+#endif
 
 
 bool FolderExists(const char* strFolderName)
