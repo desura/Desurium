@@ -36,7 +36,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "util/UtilLinux.h"
 
 #ifdef DESURA_NONGPL_BUILD
-	#include "Update.h"
+	int DownloadFilesForTest();
+	int InstallFilesForTest();
+	bool CheckForUpdate(bool force, bool skip);
 #endif
 
 MainApp* g_pMainApp;
