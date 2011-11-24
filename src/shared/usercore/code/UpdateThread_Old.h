@@ -51,6 +51,10 @@ protected:
 	void checkFreeSpace();
 #endif
 
+#ifdef NIX
+	void updateXDGRuntimeStamps();
+#endif
+
 	void loadLoginItems();
 	void checkAppUpdate(TiXmlNode* uNode);
 

@@ -24,6 +24,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #ifdef WIN32
 #include "GameExplorerManager.h"
 #endif
+#ifdef NIX
+#include "util/UtilLinux.h"
+#include <dirent.h>
+#include <utime.h>
+#include <errno.h>
+#endif
 
 #define SAVE_TIME	30 //seconds
 
@@ -117,6 +123,10 @@ void UpdateThreadOld::doRun()
 				lastFailed = true;
 				timer += boost::posix_time::minutes(1);
 			}
+
+			#ifdef NIX
+				updateXDGRuntimeStamps();
+			#endif
 
 			m_bForcePoll = false;
 		}
@@ -219,6 +229,48 @@ void UpdateThreadOld::checkFreeSpace()
 		std::pair<bool, char> arg = std::pair<bool, char>((sysPath[0] == dataPath[0]), dataPath[0]);
 		m_pUser->getLowSpaceEvent()->operator()(arg);
 	}
+}
+#endif
+
+#ifdef NIX
+void UpdateThreadOld::updateXDGRuntimeStamps()
+{
+	std::string runtimePath = UTIL::LIN::expandPath("$XDG_RUNTIME_DIR/desura");
+	
+	DIR* dir = opendir(runtimePath.c_str());
+	
+	if (dir == 0)
+	{
+		Warning(gcString("Failed to open {0}!\n", runtimePath));
+		return;
+	}
+	
+	dirent* file;
+	
+	errno = 0;
+	
+	while ((file = readdir(dir)) != 0)
+	{
+		std::string filename = runtimePath + "/" + file->d_name;
+		
+		// While calling utime with 0 as its second argument means that access time
+		// is updated as well as the modification time, I don't want to pull in
+		// stat and time buffers. Things are simpler this way.
+		
+		if (utime(filename.c_str(), 0) == -1)
+		{
+			Warning(gcString("utime failed for {0}\n", filename));
+		}
+		
+		errno = 0;
+	}
+	
+	if(errno != 0)
+	{
+		Warning(gcString("readdir failed for {0}!\n", runtimePath));
+	}
+	
+	closedir(dir);
 }
 #endif
 
