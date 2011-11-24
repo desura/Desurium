@@ -241,11 +241,7 @@ touch $logFile
 
 function copyLib()
 {
-	if [ -e "$1" ]; then
-		cp $1 build_out/$outDest/lib_extra/.
-	else
-		echo -e "\t\tWarning not copying $1. This should not be a public build."
-	fi	
+	cp $1 build_out/$outDest/lib_extra/.
 }
 
 function copyFiles()
