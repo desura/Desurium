@@ -136,6 +136,8 @@ public:
 	virtual EventV* getLoginEvent()=0;
 	
 	virtual wxWindow* getTopLevelWindow()=0;
+
+	virtual void newAccountLogin(const char* username, const char* cookie)=0;
 };
 
 

@@ -22,15 +22,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "MainApp.h"
 #include "PasswordReminder.h"
 #include "StripMenuButton.h"
+#include "NewAccountDialog.h"
 
 #include "managers/CVar.h"
 #include <wx/msgdlg.h>
 
 #include "../../../branding/branding.h"
-
-#ifdef DESURA_NONGPL_BUILD
-	extern bool ShowNewAccountForm(wxWindow* parent, gcString &user, gcString &pass);
-#endif
 
 bool validateUsernameChange(const CVar*, const char*);
 
@@ -52,6 +49,7 @@ bool validateUsernameChange(const CVar* cvar, const char* newValue)
 	gc_lastavatar.setValue("");
 	return true;
 }
+
 
 #define GetHrgnOf(rgn)          ((HRGN)(rgn).GetHRGN())
 
@@ -142,6 +140,7 @@ static CVar gc_allow_wm_positioning("gc_allow_wm_positioning", "true");
 LoginForm::LoginForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, Managers::GetString(L"#LF_TITLE"), wxDefaultPosition, wxSize(420,246), wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxWANTS_CHARS|wxMINIMIZE_BOX, true)
 {
 	m_bAutoLogin = false;
+	m_pNewAccount = NULL;
 
 	Bind(wxEVT_COMMAND_TEXT_ENTER, &LoginForm::onTextBoxEnter, this);
 	Bind(wxEVT_CLOSE_WINDOW, &LoginForm::onClose, this);
@@ -640,25 +639,7 @@ void LoginForm::onLinkClick(wxCommandEvent& event)
 {
 	if (event.GetId() == m_linkNewAccount->GetId())
 	{
-#ifdef DESURA_NONGPL_BUILD
-		gcString userName;
-		gcString pass;
-
-		if (ShowNewAccountForm(this, userName, pass))
-		{
-			m_tbUsername->SetValue(userName);
-			m_tbPassword->SetValue(pass);
-
-			m_tbPasswordDisp->Show(false);
-			m_tbPassword->Show();
-			Layout();
-
-			doLogin();
-		}
-#else
-	gcLaunchDefaultBrowser("http://www.desura.com/members/register");
-#endif
-
+		onNewAccount();
 	}
 	else if (event.GetId() == m_linkLostPassword->GetId())
 	{
@@ -886,5 +867,32 @@ void LoginForm::processTab(bool forward, int32 id)
 	{
 		m_tbUsername->SetFocus();
 	}
+}
+
+void LoginForm::onNewAccount()
+{
+	NewAccountDialog naf(this);
+
+	m_pNewAccount = &naf;
+	naf.ShowModal();
+	m_pNewAccount = NULL;
+}
+
+void LoginForm::newAccountLogin(const char* username, const char* cookie)
+{
+	if (!cookie)
+		return;
+
+	if (m_pNewAccount)
+		m_pNewAccount->EndModal(0);
+
+	m_tbUsername->SetValue(username);
+	m_tbPassword->SetValue(cookie);
+
+	m_tbPasswordDisp->Show(false);
+	m_tbPassword->Show();
+	Layout();
+
+	doLogin();
 }
 

@@ -11,9 +11,6 @@
     <Filter Include="Source Files\Dialogs\new account">
       <UniqueIdentifier>{89890623-3fb1-4d0d-b372-85dec1f4f14c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Dialogs\new account\pages">
-      <UniqueIdentifier>{4a81999b-d3ab-4f91-8251-16b1fbf75d52}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Dialogs\about">
       <UniqueIdentifier>{b0016fb7-90a7-4185-8add-283a19c75892}</UniqueIdentifier>
     </Filter>
@@ -452,6 +449,9 @@
     <ClInclude Include="code\ModWizardFinPage.h">
       <Filter>Source Files\Forms\MultiPage\modWizard\pages</Filter>
     </ClInclude>
+    <ClInclude Include="code\NewAccountDialog.h">
+      <Filter>Source Files\Dialogs\new account</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\DesuraServiceError.cpp">
@@ -810,6 +810,9 @@
     </ClCompile>
     <ClCompile Include="..\..\common\gcJSBase.cpp">
       <Filter>Source Files\Browser</Filter>
+    </ClCompile>
+    <ClCompile Include="code\NewAccountDialog.cpp">
+      <Filter>Source Files\Dialogs\new account</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -79,6 +79,8 @@ protected:
 	void* addLink(gcString name, gcString exe, gcString args);
 	void delLink(UserCore::Item::ItemInfoI* item);
 	void updateLink(UserCore::Item::ItemInfoI* item, gcString args);
+
+	void autoLogin(gcString username, gcString loginCookie);
 };
 
 

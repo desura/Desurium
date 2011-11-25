@@ -46,6 +46,8 @@ public:
 	EventV onLoginEvent;
 	Event<gcException> onLoginErrorEvent;
 
+	void newAccountLogin(const char* username, const char* cookie);
+
 protected:
 	gcTextCtrl* m_tbUsername;
 	gcTextCtrl* m_tbPassword;
@@ -101,6 +103,8 @@ protected:
 
 	void onLinkClick(wxCommandEvent& event);
 
+	void onNewAccount();
+
 private:
 	bool m_bSavePos;
 	LoginThread* m_pLogThread;
@@ -112,6 +116,8 @@ private:
 	bool m_bMouseDrag;
 	wxPoint m_StartPos;
 	wxPoint m_StartDrag;
+
+	wxDialog* m_pNewAccount;
 };
 
 #endif

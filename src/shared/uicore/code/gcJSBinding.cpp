@@ -25,7 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 REGISTER_JSEXTENDER(DesuraJSBinding);
 
-
 void FromJSObject(UserCore::Item::ItemInfoI* &item, JSObjHandle& arg)
 {
 	if (!GetUserCore())
@@ -82,6 +81,8 @@ DesuraJSBinding::DesuraJSBinding() : DesuraJSBase("app", "native_binding.js")
 	REG_SIMPLE_JS_FUNCTION( addLink, DesuraJSBinding );
 	REG_SIMPLE_JS_OBJ_VOIDFUNCTION( delLink, DesuraJSBinding );
 	REG_SIMPLE_JS_OBJ_VOIDFUNCTION( updateLink, DesuraJSBinding );
+
+	REG_SIMPLE_JS_VOIDFUNCTION( autoLogin, DesuraJSBinding );
 }
 
 DesuraJSBinding::~DesuraJSBinding()
@@ -515,4 +516,9 @@ void DesuraJSBinding::updateLink(UserCore::Item::ItemInfoI* item, gcString args)
 		return;
 
 	GetUserCore()->getItemManager()->updateLink(item->getId(), args.c_str());
+}
+
+void DesuraJSBinding::autoLogin(gcString username, gcString loginCookie)
+{
+	g_pMainApp->newAccountLogin(username.c_str(), loginCookie.c_str());
 }

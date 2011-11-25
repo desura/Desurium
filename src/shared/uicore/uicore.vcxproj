@@ -214,6 +214,7 @@
     <ClInclude Include="code\InstallWaitPage.h" />
     <ClInclude Include="code\ItemTabPage.h" />
     <ClInclude Include="code\ModWizardFinPage.h" />
+    <ClInclude Include="code\NewAccountDialog.h" />
     <ClInclude Include="code\PreloadPage.h" />
     <ClInclude Include="code\MainFormCustomFrame.h" />
     <ClInclude Include="code\MainFormLeftBorder.h" />
@@ -324,6 +325,7 @@
     <ClCompile Include="code\InstallWaitPage.cpp" />
     <ClCompile Include="code\ItemTabPage.cpp" />
     <ClCompile Include="code\ModWizardFinPage.cpp" />
+    <ClCompile Include="code\NewAccountDialog.cpp" />
     <ClCompile Include="code\PreloadPage.cpp" />
     <ClCompile Include="code\UICoreMain.cpp" />
     <ClCompile Include="code\MainFormCustomFrame.cpp" />

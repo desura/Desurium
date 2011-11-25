@@ -786,3 +786,8 @@ void MainApp::onPipeDisconnect()
 	dse.ShowModal();
 }
 
+void MainApp::newAccountLogin(const char* username, const char* cookie)
+{
+	if (!m_bLoggedIn && m_iMode != MODE_OFFLINE && m_wxLoginForm)
+		m_wxLoginForm->newAccountLogin(username, cookie);
+}

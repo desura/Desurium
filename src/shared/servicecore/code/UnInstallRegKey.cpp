@@ -77,7 +77,7 @@ bool GetUninstallInfo(DesuraId id, UninstallInfo &info)
 		sqlite3x::sqlite3_connection db(getItemInfoDb(g_szAppDataPath.c_str()).c_str());
 
 		{
-			sqlite3x::sqlite3_command cmd(db, "SELECT developer, name, profile, icon, installpath, iprimpath, ibranch, ibuild FROM iteminfo WHERE internalid=?;");
+			sqlite3x::sqlite3_command cmd(db, "SELECT developer, name, profile, icon, ibranch FROM iteminfo WHERE internalid=?;");
 			cmd.bind(1, (long long int)id.toInt64());
 			sqlite3x::sqlite3_reader reader = cmd.executereader();
 	
@@ -87,15 +87,31 @@ bool GetUninstallInfo(DesuraId id, UninstallInfo &info)
 			info.displayName= gcString(reader.getstring(1));
 			info.profile	= gcString(reader.getstring(2));
 			info.icon		= gcString(reader.getstring(3));
-			info.installDir	= gcString(reader.getstring(4));
+			info.branch		= MCFBranch::BranchFromInt(reader.getint(4));
+		}
 			
-			std::string primePath = gcString(reader.getstring(5));
+		int biid = 0;
+
+		{
+			sqlite3x::sqlite3_command cmd(db, "SELECT biid FROM branchinfo WHERE branchid=?;");
+			cmd.bind(1, (int)info.branch);
+			biid = cmd.executeint();
+		}
+
+		{
+			sqlite3x::sqlite3_command cmd(db, "SELECT installpath, iprimpath, ibuild FROM installinfo WHERE itemid=? AND biid=?;");
+			cmd.bind(1, (long long int)id.toInt64());
+			cmd.bind(2, (int)biid);
+
+			sqlite3x::sqlite3_reader reader = cmd.executereader();
+			reader.read();
+
+			info.installDir	= reader.getstring(0);
+			gcString primePath = reader.getstring(1);
+			info.build		= MCFBuild::BuildFromInt(reader.getint(2));
 
 			if (primePath.size() > 0)
 				info.installDir = primePath;
-
-			info.branch		= MCFBranch::BranchFromInt(reader.getint(6));
-			info.build		= MCFBuild::BuildFromInt(reader.getint(7));
 		}
 
 		if (info.branch == 0 || info.build == 0)
@@ -121,7 +137,6 @@ bool GetUninstallInfo(DesuraId id, UninstallInfo &info)
 	{
 		Warning(gcString("Failed to get item {1} for uninstall update: {0}\n", e.what(), id.toInt64()));
 	}
-
 
 	return true;
 }

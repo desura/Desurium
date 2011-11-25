@@ -128,6 +128,9 @@ public:
 
 	virtual EventV* getLoginEvent();
 
+
+	virtual void newAccountLogin(const char* username, const char* cookie);
+
 protected:
 	void showLogin(bool skipAutoLogin = false);
 	void showOffline();
