@@ -32,7 +32,7 @@
 		'conditions' : [
 			['desura_nongpl==1',{
 				'dependencies' : [
-					'<(desura_nongpl_dir)/executable/bootloader_lin/bootloader_lin.gyp:bootloader_lin_nongpl',
+					'<(desura_nongpl_dir)/executable/bootloader_lin/bootloader_lin.gyp:desura_nongpl',
 				]
 			}]
 		],		

@@ -268,6 +268,7 @@ function copyFiles()
 	mkdir -p build_out/$outDest/lib_extra
 
 	if [ -e out/$outTarget/process_data_folder ]; then
+		mkdir -p tools
 		echo -ne "\process_data_folder\t-\t"
 		cp out/$outTarget/process_data_folder tools/.
 		echo "Done"
