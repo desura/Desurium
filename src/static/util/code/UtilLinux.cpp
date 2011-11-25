@@ -31,6 +31,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <cstdlib>
 #include <sys/types.h>
 #include <pwd.h>
+#include <dirent.h>
+#include <utime.h>
+#include <errno.h>
 
 #define CONFIG_DB ".settings/linux_registry.sqlite"
 
@@ -786,7 +789,7 @@ std::string sanitiseFileName(const char* name)
 	return out;
 }
 
-bool setupXDGVars(void)
+bool setupXDGVars()
 {
 	const char* homeDir = getenv("HOME");
 	const char* cacheDir = getenv("XDG_CACHE_HOME");
@@ -862,6 +865,50 @@ bool setupXDGVars(void)
 	}
 	
 	return false;
+}
+
+void updateXDGRuntimeStamps()
+{
+	// This should be at least once every 6 hours, to prevent files in
+	// $XDG_RUNTIME_DIR/desura from being cleaned out.
+	// UpdateThread_Old runs this.
+	
+	std::string runtimePath = UTIL::LIN::expandPath("$XDG_RUNTIME_DIR/desura");
+	
+	DIR* dir = opendir(runtimePath.c_str());
+	
+	if (dir == 0)
+	{
+		printf("Failed to open %s!\n", runtimePath.c_str());
+		return;
+	}
+	
+	dirent* file;
+	
+	errno = 0;
+	
+	while ((file = readdir(dir)) != 0)
+	{
+		std::string filename = runtimePath + "/" + file->d_name;
+		
+		// While calling utime with 0 as its second argument means that access time
+		// is updated as well as the modification time, I don't want to pull in
+		// stat and time buffers. Things are simpler this way.
+		
+		if (utime(filename.c_str(), 0) == -1)
+		{
+			printf("utime failed for %s!\n", filename.c_str());
+		}
+		
+		errno = 0;
+	}
+	
+	if(errno != 0)
+	{
+		printf("readdir failed for %s!\n", runtimePath.c_str());
+	}
+	
+	closedir(dir);
 }
 
 }
