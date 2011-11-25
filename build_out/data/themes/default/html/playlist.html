@@ -307,8 +307,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 		});
 
 		$("td.colname a.demo").live('click', function() {
-			 desura.links.internalLink($(this).parents("tr").attr("rel"), desura.links.action.PROFILE);
-
+			var id = $(this).parents("tr").attr("rel");
+			var item = desura.items.getItemFromId(id);
+		
+			if (isItemOwnFull(item)) {
+				launchItem(item);
+			}
+			else {
+				desura.links.internalLink(id, desura.links.action.PROFILE);
+			}
+			
 			 return false;
 		});
 
@@ -506,7 +514,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 		<td class="colname">
 			<# preload = isPreload(game); #>
 			<#= preload && isPreloadAvailable(game) ? "<a href='#' class='preorder' title='"+desura.utils.getLocalString("#PLAY_UPDATE_PRELOAD")+"' rel='" + preload.getBranchId() + "'></a>" : "" #>
-			<#= isItemDemo(game) && !isItemOwnFull(game) ? "<a href='#' class='demo' title='"+desura.utils.getLocalString("#PLAY_UPDATE_DEMO")+"'></a>" : "" #>
+			<#= isItemDemo(game) ? "<a href='#' class='demo' title='"+desura.utils.getLocalString("#PLAY_UPDATE_DEMO")+"'></a>" : "" #>
 			<#= game.getStatus() & desura.items.status.UPDATEAVAL ? "<a href='#' class='update' title='"+desura.utils.getLocalString("#PLAY_UPDATE_AVAILABLE")+"'></a>" : "" #>
 			<#= getItemName(game) #>
 		</td>
