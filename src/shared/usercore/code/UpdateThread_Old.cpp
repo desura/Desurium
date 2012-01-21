@@ -24,6 +24,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #ifdef WIN32
 #include "GameExplorerManager.h"
 #endif
+#ifdef NIX
+#include "util/UtilLinux.h"
+#endif
 
 #define SAVE_TIME	30 //seconds
 
@@ -117,6 +120,10 @@ void UpdateThreadOld::doRun()
 				lastFailed = true;
 				timer += boost::posix_time::minutes(1);
 			}
+
+			#ifdef NIX
+				UTIL::LIN::updateXDGRuntimeStamps();
+			#endif
 
 			m_bForcePoll = false;
 		}
