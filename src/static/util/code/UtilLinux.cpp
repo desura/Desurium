@@ -194,8 +194,6 @@ public:
 	gcWString path;
 };
 
-WorkingDir g_WorkingDir;
-
 namespace UTIL
 {
 namespace LIN
@@ -245,7 +243,9 @@ bool is64OS()
 
 std::wstring getAppPath(std::wstring extra)
 {
-	gcWString wresult(g_WorkingDir.path);
+	WorkingDir dir;
+
+	gcWString wresult(dir.path);
 
 	if (extra.size() > 0)
 	{
