@@ -65,15 +65,7 @@ while [ $# -gt 0 ]; do
 	# Clean if we need to
 	if [ "$1" == "--clean" -o "$1" == "-X" ]; then
 		echo -n "Cleaning out build files... "
-		mv ../build_out/lin_release/lib/libflashplayer_64.so ../build_out/lin_release/
-		mv ../build_out/lin_release/lib/libflashplayer_32_chrome.so ../build_out/lin_release/
-		mv ../build_out/lin_debug/lib/libflashplayer_64.so ../build_out/lin_debug/
-		mv ../build_out/lin_debug/lib/libflashplayer_32_chrome.so ../build_out/lin_debug/
 		rm -rf ../out/ *.mk ../Makefile ../build_out/lin_release/lib/* ../build_out/lin_release/bin/* ../build_out/lin_release/data/ ../build_out/lin_debug/data/ ../build_out/lin_debug/lib/* ../build_out/lin_debug/bin/* ../build_out/lin_release/cache ../build_out/lin_release/*.desktop ../build_out/lin_release/version ../build_out/lin_release/settings ../build_out/lin_debug/cache ../build_out/lin_debug/*.desktop ../build_out/lin_debug/version ../build_out/lin_debug/settings ../build_out/lin_debug/desura_update.mcf ../build_out/lin_release/desura_update.mcf ../build_out/lin_debug/desura_appfiles.xml ../build_out/lin_release/desura_appfiles.xml desura_upload.mcf desura*.deb desura*.tar.gz
-		mv ../build_out/lin_release/libflashplayer_64.so ../build_out/lin_release/lib/
-		mv ../build_out/lin_release/libflashplayer_32_chrome.so ../build_out/lin_release/lib/
-		mv ../build_out/lin_debug/libflashplayer_64.so ../build_out/lin_debug/lib/
-		mv ../build_out/lin_debug/libflashplayer_32_chrome.so ../build_out/lin_debug/lib/
 		echo -en "Complete.\nRestoring release files... "
 		svn up ../build_out/lin_release ../build_out/lin_debug &>/dev/null
 		echo -e "Complete."
@@ -241,11 +233,7 @@ touch $logFile
 
 function copyLib()
 {
-	if [ -e "$1" ]; then
-		cp $1 build_out/$outDest/lib_extra/.
-	else
-		echo -e "\t\tWarning not copying $1. This should not be a public build."
-	fi	
+	cp $1 build_out/$outDest/lib_extra/.
 }
 
 function copyFiles()
@@ -302,16 +290,6 @@ function copyFiles()
 		cd ../../..
 		echo "Done"
 	fi
-	
-	echo -en "\tmisc libs\t-\t"
-
-	if [ "$(uname -m)" == "x86_64" ]; then
-		cp /usr/local/lib64/libgcc_s.so.1 build_out/$outDest/lib/
-		cp /usr/local/lib64/libstdc++.so.6.0.14 build_out/$outDest/lib/libstdc++.so.6
-	else
-		cp /usr/local/lib/libgcc_s.so.1 build_out/$outDest/lib/
-		cp /usr/local/lib/libstdc++.so.6.0.14 build_out/$outDest/lib/libstdc++.so.6
-	fi	
 
 	echo -e "Done"
 
@@ -327,25 +305,6 @@ function copyFiles()
 		echo "Done"
 	fi
 		
-
-	echo -e "\tExtra libs"
-	
-	copyLib "/usr/lib/libjpeg.so.62"
-	copyLib "/usr/lib/libpng12.so.0"
-	copyLib "/usr/lib/libz.so.1"
-	
-	copyLib "/usr/lib/libnspr4.so.0d"
-	copyLib "/usr/lib/libnss3.so.1d"
-	copyLib "/usr/lib/libnssutil3.so.1d"
-	copyLib "/usr/lib/libplc4.so.0d"
-	copyLib "/usr/lib/libplds4.so.0d"
-	copyLib "/usr/lib/libsmime3.so.1d"
-	copyLib "/usr/lib/libssl3.so.1d"
-
-	copyLib "/usr/lib/libgconf-2.so.4"
-
-	echo -e "\tDone"
-
 	echo -ne "\tCreating data dir:\t-\t" 
 	cd build_out
 	./copy_data.sh $outDest

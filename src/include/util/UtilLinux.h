@@ -136,7 +136,10 @@ namespace LIN
 	//!
 	//! @return True if an error occured.
 	//!
-	bool setupXDGVars(void);
+	bool setupXDGVars();
+	
+	//! Updates the $XDG_RUNTIME_DIR/desura file timestamps.
+	void updateXDGRuntimeStamps();
 }
 }
 
