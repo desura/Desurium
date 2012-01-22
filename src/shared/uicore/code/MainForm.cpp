@@ -350,6 +350,10 @@ void MainForm::onMenuSelect(wxCommandEvent& event )
 		g_pMainApp->handleInternalLink(0, ACTION_SHOWSETTINGS, FormatArgs("tab=cip"));
 		break;
 
+	case DESURA_wxListKeys:
+		g_pMainApp->loadUrl(GetWebCore()->getUrl(WebCore::ListKeys).c_str(), SUPPORT);
+		break;
+
 	case DESURA_wxCart:
 		g_pMainApp->loadUrl(GetWebCore()->getUrl(WebCore::Cart).c_str(), COMMUNITY);
 		break;

@@ -260,6 +260,10 @@ gcString WebCoreClass::getUrl(WebCoreUrl id)
 	case LinuxToolHelp:
 		url += "/tutorials/linux-tool-help";
 		break;
+	
+	case ListKeys:
+		url = "https://secure." + g_szRootDomain + "/cart/cdkeys";
+		break;
 	};
 
 	return  url;

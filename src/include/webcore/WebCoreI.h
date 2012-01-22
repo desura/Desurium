@@ -73,6 +73,7 @@ enum WebCoreUrl
 	Inbox,
 	Updates,
 	LinuxToolHelp,
+	ListKeys,
 };
 
 class WebCoreI
