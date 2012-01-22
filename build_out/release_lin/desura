@@ -9,11 +9,12 @@ GDB="false"
 ARCH="$(uname -m)"
 CONSOLE="false"
 BIT=""
+DESURAEXEC="bin/desura"
 
 # Move into the Desura directory, moving to the backup dir first
 if [ x"$1" != x"--debug" ]; then
-	cd "`dirname "$0"`"
-	cd "`dirname "$(readlink -f "$0")"`"
+	cd "$(dirname "$0")"
+	cd "$(dirname "$(readlink -f "$0")")"
 fi
 
 if [ -d settings -a -d cache ]; then
@@ -26,7 +27,7 @@ if [ -d common/games ]; then
 	rm -fr common/games
 fi
 
-function writeVersion()
+writeVersion()
 {
 cat << EOM > version
 BRANCH=$1
@@ -36,7 +37,7 @@ EOM
 
 if [ -e "version" ]; then
 
-	BUILD=`cat version | grep BRANCH | sed 's/BRANCH=//g'`
+	BUILD=$(cat version | grep BRANCH | sed 's/BRANCH=//g')
 
 	if [ x"$BUILD" == x"120" -o x"$BUILD" == x"320" -o x"$BUILD" == x"520" ]; then
 		BIT="64"
@@ -46,7 +47,7 @@ if [ -e "version" ]; then
 fi
 
 if [ -z $BIT ]; then
-	BUILD=`file ./bin/desura | grep 64-bit`
+	BUILD=$(file ./${DESURAEXEC} | grep 64-bit)
 
 	if [ -n "$BUILD" ]; then
 		BIT="64"
@@ -61,10 +62,10 @@ if [ -z $BIT ]; then
 	fi
 fi
 
-function error()
+error()
 {
 	# Trim newlines etc that may cause dialog issues
-	MSG="`echo "$1" | sed '/./,$!d'`"
+	MSG="$(echo "$1" | sed '/./,$!d')"
 
 	# Print to stderr regardless
 	echo "$MSG" >&2
@@ -100,11 +101,11 @@ function error()
 	fi
 }
 
-function symLinkExtra()
+symLinkExtra()
 {	
-	REALLIB=`../bin/findlib.sh $LIB $BIT`
+	REALLIB=$(../bin/findlib.sh $LIB $BIT)
 
-	rm -f ../lib/$LIB >> /dev/null
+	rm -f ../lib/$LIB > /dev/null
 	
 	if [ -e "$REALLIB" ]; then
 		ln -s $REALLIB ../lib/$LIB
@@ -113,7 +114,7 @@ function symLinkExtra()
 	fi
 }
 
-function removeDesktopShortcut()
+removeDesktopShortcut()
 {
 	# Uninstall the old shortcut
 	if [ -e $1.desktop ]; then
@@ -122,16 +123,16 @@ function removeDesktopShortcut()
 	fi
 }
 
-function installDesktopShortcut()
+installDesktopShortcut()
 {
 	# Chmod it just in case
-	chmod a+x $1.desktop
+	chmod u+x $1.desktop
 
 	# Install it
 	xdg/xdg-desktop-menu install --novendor --mode user $1.desktop
 }
 
-function genDesuraDS()
+genDesuraDS()
 {
 	DIR=$(echo $PWD | sed 's/ /\\ /g')
 
@@ -145,7 +146,7 @@ Name=Desura
 GenericName=Game Manager
 Comment=Download and play the best games
 Exec=$DIR/desura %U
-TryExec=$PWD/bin/desura
+TryExec=$PWD/$DESURAEXEC
 Path=$PWD
 MimeType=x-scheme-handler/desura;
 Icon=$PWD/data/desura.png
@@ -155,7 +156,7 @@ StartupNotify=false
 EOM
 }
 
-function genDesuraForceDS()
+genDesuraForceDS()
 {
 	DIR=$(echo $PWD | sed 's/ /\\ /g')
 
@@ -168,7 +169,7 @@ Name=Desura (Force Update)
 GenericName=Game Manager
 Comment=Force Desura to update itself
 Exec=$DIR/desura -f
-TryExec=$PWD/bin/desura
+TryExec=$PWD/$DESURAEXEC
 Path=$PWD
 Icon=$PWD/data/desura.png
 Terminal=true
@@ -182,7 +183,7 @@ if [ x"$BIT" == x"32" -a x"$ARCH" == x"x86_64" -a ! -e .ignore_bits ]; then
 	error "You are using the i686 version of Desura when you should be using the x86_64 version. Functionality may not be as expected.\n\nIf you would like to ignore this warning, just create an empty file called .ignore_bits in your Desura directory.\n\nPlease see http://www.desura.com to download the correct version"
 fi
 
-CARIO_TEST=`readelf -Ws /usr/lib/libcairo.so | awk '/cairo_(gl|qt)_surface/' | wc -l`
+CARIO_TEST=$(readelf -Ws /usr/lib/libcairo.so | awk '/cairo_(gl|qt)_surface/' | wc -l)
 
 if [ x"$CARIO_TEST" == x"1" -a ! -e .ignore_cariotest ]; then
 	error "Looks like you have cario built with incompatiable flags that cause Desura to crash.\n\nIf you would like to ignore this warning, just create an empty file called .ignore_cariotest in your Desura directory.\n\nPlease see http://www.desura.com/groups/desura/forum/thread/gentoo-crash-on-login for more help"
@@ -195,7 +196,7 @@ MISSING_LIBS=$(ldd "lib/libcef_desura.so" 2> /dev/null |grep "not found$" | cut 
 echo $MISSING_LIBS | grep -qs libbz2.so.1.0
 
 if [ $? = 0 ]; then
-	REALLIB_LOC=`./bin/findlib.sh libbz2.so.1 $BIT`
+	REALLIB_LOC=$(./bin/findlib.sh libbz2.so.1 $BIT)
 
 	if [ -e "$REALLIB_LOC" ]; then
 		ln -snf "$REALLIB_LOC" "lib/libbz2.so.1.0"
@@ -252,7 +253,7 @@ done
 LASTDIR=""
 
 if [ -e ".last_install_dir" ]; then
-	LASTDIR=`cat .last_install_dir`
+	LASTDIR=$(cat .last_install_dir)
 fi
 
 
@@ -295,7 +296,7 @@ fi
 # If --gdb was passed, run Desura with gdb, passing any other args
 if [ x"$GDB" = x"true" ]; then
 	echo "set follow-fork-mode child" > /tmp/desura-gdb-commands
-	exec gdb -x /tmp/desura-gdb-commands --args bin/desura $ARGS
+	exec gdb -x /tmp/desura-gdb-commands --args $DESURAEXEC $ARGS
 fi	
 
-exec bin/desura $ARGS
+exec $DESURAEXEC $ARGS
