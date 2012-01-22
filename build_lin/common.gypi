@@ -64,6 +64,7 @@
 		],
 		'ldflags': [
 			'-Wl,-Bsymbolic-functions',
+			'-lpthread',
 		],
 		'include_dirs': [
 			'<(include_dir)',

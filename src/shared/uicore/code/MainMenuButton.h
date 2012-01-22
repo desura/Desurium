@@ -56,6 +56,7 @@ enum
 	DESURA_wxExit,
 	DESURA_wxChangeLog,
 	DESURA_wxCustomInstallPath,
+	DESURA_wxListKeys,
 	DESURA_wxDownloadReport,
 	DESURA_wxCart,
 	DESURA_wxPurchase,
