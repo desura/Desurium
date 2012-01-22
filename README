@@ -60,7 +60,7 @@ from the folder or setup visual studio to use the desura-d.exe from the build_ou
 Build Desura Linux
 ===================
 
-To install all of buil deps on Debian/Ubuntu just invoke this command as root:
+To install all of build deps on Debian/Ubuntu just invoke this command as root:
 apt-get install gcc-4.5 git-core subversion m4 build-essential binutils automake autoconf libtool libgtk2.0-dev libnss3-dev libgconf2-dev libgnome-keyring-dev libdbus-glib-1-dev gperf bison libcups2-dev flex libjpeg-dev libasound2-dev libbz2-dev libxpm-dev libx11-dev libssl-dev scons
 
 Or if you are using Fedora invoke this command as root:
