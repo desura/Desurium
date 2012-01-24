@@ -107,6 +107,17 @@ Build Cef Linux
 ===================
 
 You can cheat and copy the cef so's from a current Desura install instead of this step.
+To do that copy libcef_desura.so from current Desura's lib/ directory
+to Desurium's build_out/debug_lin/lib/. It's possible that it will be missing some dependencies.
+Easy way to check if this is the case is to invoke:
+
+ldd build_out/debug_lin/lib/libcef_desura.so | grep "not found"
+
+Check output against Desurium's build_out/debug_lin/lib/ and build_out/debug_lin/lib_extra/ content. If some stuff is missing
+you should be able to find it in in "old" client's lib/ and lib_extra/ directories (also copy it to
+corresponding directories).
+
+
 Have a look at desura/src/third_party/cef/CHROMIUM_BUILD_COMPATIBILITY.txt and note the last svn repo (at time of writing its 91424). Make sure you replace [CEF SVN VERSION]
 
 
