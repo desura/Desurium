@@ -399,6 +399,8 @@
 		<str name="#MENU_ONLINE">Go Online</str>
 		<str name="#MENU_INSTALLPATH">Add Games Installed</str>
 		<str name="#MENU_INSTALLPATH_TOOLTIP">Set custom install paths for games</str>
+		<str name="#MENU_LISTKEYS">List Games and CD Keys</str>
+		<str name="#MENU_LISTKEYS_TOOLTIP">Shows a web page containing your games and their CD keys</str>
 		<str name="#MENU_ACTIVATEGAME">Activate Game CD key or Gift</str>
 		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Enter a CD key or giftcode to activate a game on your account</str>	
 		<str name="#MENU_VERSION">Version</str>

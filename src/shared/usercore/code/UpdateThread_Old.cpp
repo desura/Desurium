@@ -24,6 +24,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #ifdef WIN32
 #include "GameExplorerManager.h"
 #endif
+#ifdef NIX
+#include "util/UtilLinux.h"
+#endif
 
 #define SAVE_TIME	30 //seconds
 
@@ -63,7 +66,7 @@ void UpdateThreadOld::onStop()
 
 void UpdateThreadOld::init()
 {
-	m_iAppId = 999;
+	m_iAppId = 100; // Ignoring updates anyway.
 	m_iAppVersion = 0;
 	
 	m_uiLastAppId = 0;
@@ -118,6 +121,10 @@ void UpdateThreadOld::doRun()
 				timer += boost::posix_time::minutes(1);
 			}
 
+			#ifdef NIX
+				UTIL::LIN::updateXDGRuntimeStamps();
+			#endif
+
 			m_bForcePoll = false;
 		}
 
@@ -150,10 +157,8 @@ bool UpdateThreadOld::pollUpdates()
 
 	std::map<std::string, std::string> post;
 
-#ifdef DESURA_NONGPL_BUILD
 	post["appid"] = gcString("{0}", m_iAppId);
 	post["build"] = gcString("{0}", m_iAppVersion);
-#endif
 
 	for (uint32 x=0; x< m_pUser->getItemManager()->getCount(); x++)
 	{

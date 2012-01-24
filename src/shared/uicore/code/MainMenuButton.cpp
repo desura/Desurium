@@ -97,6 +97,7 @@ void MainMenuButton::createMenu(bool offline)
 	m_toolMenu->Append(DESURA_wxModWizard, Managers::GetString(L"#MENU_WIZZARD"), Managers::GetString(L"#MENU_WIZZARD_TOOLTIP"));
 #endif
 	m_toolMenu->Append(DESURA_wxCustomInstallPath, Managers::GetString(L"#MENU_INSTALLPATH"), Managers::GetString(L"#MENU_INSTALLPATH_TOOLTIP"));
+	m_toolMenu->Append(DESURA_wxListKeys, Managers::GetString(L"#MENU_LISTKEYS"), Managers::GetString(L"#MENU_LISTKEYS_TOOLTIP"));
 
 	m_historyMenu->Append(DESURA_wxGifts, Managers::GetString(L"#MENU_GIFTS"), Managers::GetString(L"#MENU_GIFTS_TOOLTIP"));
 	m_historyMenu->Append(DESURA_wxPurchase, Managers::GetString(L"#MENU_PURCHASE"), Managers::GetString(L"#MENU_PURCHASE_TOOLTIP"));
@@ -126,6 +127,7 @@ void MainMenuButton::createMenu(bool offline)
 		m_toolMenu->Enable(DESURA_wxModWizard, false);
 #endif
 		m_toolMenu->Enable(DESURA_wxCustomInstallPath, false);
+		m_toolMenu->Enable(DESURA_wxListKeys, false);
 
 		m_historyMenu->Enable(DESURA_wxGifts, false);
 		m_historyMenu->Enable(DESURA_wxPurchase, false);

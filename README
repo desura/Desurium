@@ -60,30 +60,11 @@ from the folder or setup visual studio to use the desura-d.exe from the build_ou
 Build Desura Linux
 ===================
 
-Need to have gcc 4.5 installed and these deps:
- * git-core   
- * subversion
- * m4
- * build-essential
- * binutils
- * automake
- * autoconf
- * libtool
- * libgtk2.0-dev 
- * libnss3-dev 
- * libgconf2-dev 
- * libgnome-keyring-dev 
- * libdbus-glib-1-dev 
- * gperf 
- * bison 
- * libcups2-dev 
- * flex 
- * libjpeg-dev 
- * libasound2-dev 
- * libbz2-dev 
- * libxpm-dev 
- * libx11-dev 
- * libssl-dev scons
+To install all of build deps on Debian/Ubuntu just invoke this command as root:
+apt-get install gcc-4.5 git-core subversion m4 build-essential binutils automake autoconf libtool libgtk2.0-dev libnss3-dev libgconf2-dev libgnome-keyring-dev libdbus-glib-1-dev gperf bison libcups2-dev flex libjpeg-dev libasound2-dev libbz2-dev libxpm-dev libx11-dev libssl-dev scons
+
+Or if you are using Fedora invoke this command as root:
+yum install git subversion m4 autoconf gcc-c++ glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel scons
 
 Check out repo
 Copy branding_default in src to src/branding
@@ -91,9 +72,8 @@ Copy branding_default in src to src/branding
 #!/bin/bash
 # Run from root repo dir
 # Build desura
-cd ./src/third_party
-source python_env.sh # Only run if your Python 2 executable is 'python2'!
-                     # And with that, run it each time before build.sh!
+source env.sh
+cd src/third_party
 ./SvnCheckOut.sh
 ./BuildAll.sh
 cd ../../build_lin
@@ -104,15 +84,26 @@ Build Cef Linux
 ===================
 
 You can cheat and copy the cef so's from a current Desura install instead of this step.
+To do that copy libcef_desura.so from current Desura's lib/ directory
+to Desurium's build_out/debug_lin/lib/. It's possible that it will be missing some dependencies.
+Easy way to check if this is the case is to invoke:
+
+ldd build_out/debug_lin/lib/libcef_desura.so | grep "not found"
+
+Check output against Desurium's build_out/debug_lin/lib/ and build_out/debug_lin/lib_extra/ content. If some stuff is missing
+you should be able to find it in in "old" client's lib/ and lib_extra/ directories (also copy it to
+corresponding directories).
+
+
 Have a look at desura/src/third_party/cef/CHROMIUM_BUILD_COMPATIBILITY.txt and note the last svn repo (at time of writing its 91424). Make sure you replace [CEF SVN VERSION]
 
 
 #!/bin/bash
 # Run from root repo dir
 # Checkout Chromium
+source env.sh
 cd src/third_party/
-patches/depot_tools_python3.sh # Only run if your Python 2 executable is 'python2'!
-source python_env.sh # Only run if your Python 2 executable is 'python2'!
+# Make sure you apply the patches in src/third_party/patches/ first.
 mkdir chromium
 cd chromium
 gclient config http://src.chromium.org/svn/trunk/src
@@ -131,9 +122,9 @@ Only do this after you have the Chromium repo checked out.
 
 #!/bin/bash
 # Run from root repo dir
+source env.sh
 cd src/third_party/
-patches/depot_tools_python3.sh # Only run if your Python 2 executable is 'python2'!
-source python_env.sh # Only run if your Python 2 executable is 'python2'!
+# Make sure you apply the patches in src/third_party/patches/ first.
 cp -r courgette/* chromium/src/courgette
 cd build_lin
 ./BuildCourgette.sh
@@ -143,4 +134,3 @@ Run Linux
 ===================
 
 If you built the debug build (default) you should be able to run ./test.sh in the build_lin folder to teset or ./desura in the build_out/debug_lin folder
-
