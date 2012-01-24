@@ -30,6 +30,10 @@ static UINT gs_msgTaskbar = 0;
 static UINT gs_msgRestartTaskbar = 0;
 #endif
 
+#ifdef NIX
+#include <libnotify/notify.h>
+#endif
+
 class gcTaskBarIconWindow : public wxGuiDelegateImplementation<wxFrame>
 {
 public:
@@ -90,12 +94,6 @@ struct NotifyIconData : public NOTIFYICONDATA
 };
 #endif
 
-
-
-
-
-
-
 gcTaskBarIcon::gcTaskBarIcon() : wxTaskBarIcon()
 {
 #ifdef WIN32
@@ -120,6 +118,8 @@ gcTaskBarIcon::gcTaskBarIcon() : wxTaskBarIcon()
 	m_pEvents->Show(false);
 
 	m_pEvents->Bind(wxEVT_CLOSE_WINDOW, &gcTaskBarIcon::onEventClose, this);
+
+	notify_init("Desurium");
 #endif
 }
 
@@ -131,6 +131,8 @@ gcTaskBarIcon::~gcTaskBarIcon()
 		m_pEvents->Unbind(wxEVT_CLOSE_WINDOW, &gcTaskBarIcon::onEventClose, this);
 		m_pEvents->Close();
 	}
+	
+	notify_uninit();
 #endif
 }
 
@@ -248,61 +250,70 @@ bool gcTaskBarIcon::SetIcon(const wxIcon& icon, const wxString& tooltip)
 #endif
 }
 
-#if wxUSE_TASKBARICON_BALLOONS
-	bool gcTaskBarIcon::ShowBalloon(const wxString& title, const wxString& text, unsigned msec, int flags)
+bool gcTaskBarIcon::ShowBalloon(const wxString& title, const wxString& text, unsigned msec, int flags)
+{
+#if defined(WIN32)
+	wxCHECK_MSG( m_iconAdded, false,
+					_T("can't be used before the icon is created") );
+
+	const HWND hwnd = GetHwndOf(m_win);
+
+	// we need to enable version 5.0 behaviour to receive notifications about
+	// the balloon disappearance
+	NotifyIconData notifyData(hwnd);
+	notifyData.uFlags = 0;
+	notifyData.uVersion = 3 /* NOTIFYICON_VERSION for Windows XP */;
+
+	if ( !wxShellNotifyIcon(NIM_SETVERSION, &notifyData) )
 	{
-	#ifdef WIN32
-		wxCHECK_MSG( m_iconAdded, false,
-						_T("can't be used before the icon is created") );
-
-		const HWND hwnd = GetHwndOf(m_win);
-
-		// we need to enable version 5.0 behaviour to receive notifications about
-		// the balloon disappearance
-		NotifyIconData notifyData(hwnd);
-		notifyData.uFlags = 0;
-		notifyData.uVersion = 3 /* NOTIFYICON_VERSION for Windows XP */;
-
-		if ( !wxShellNotifyIcon(NIM_SETVERSION, &notifyData) )
-		{
-			wxLogLastError(wxT("wxShellNotifyIcon(NIM_SETVERSION)"));
-		}
-
-		// do show the balloon now
-		notifyData = NotifyIconData(hwnd);
-		notifyData.uFlags |= NIF_INFO;
-		notifyData.uTimeout = msec;
-		wxStrlcpy(notifyData.szInfo, text.wx_str(), WXSIZEOF(notifyData.szInfo));
-		wxStrlcpy(notifyData.szInfoTitle, title.wx_str(),
-					WXSIZEOF(notifyData.szInfoTitle));
-
-		if ( flags & wxICON_INFORMATION )
-			notifyData.dwInfoFlags |= NIIF_INFO;
-		else if ( flags & wxICON_WARNING )
-			notifyData.dwInfoFlags |= NIIF_WARNING;
-		else if ( flags & wxICON_ERROR )
-			notifyData.dwInfoFlags |= NIIF_ERROR;
-
-		bool ok = wxShellNotifyIcon(NIM_MODIFY, &notifyData) != 0;
-		if ( !ok )
-		{
-			wxLogLastError(wxT("wxShellNotifyIcon(NIM_MODIFY)"));
-
-		}
-		return ok;
-	#else
-		return false;
-	#endif
+		wxLogLastError(wxT("wxShellNotifyIcon(NIM_SETVERSION)"));
 	}
+
+	// do show the balloon now
+	notifyData = NotifyIconData(hwnd);
+	notifyData.uFlags |= NIF_INFO;
+	notifyData.uTimeout = msec;
+	wxStrlcpy(notifyData.szInfo, text.wx_str(), WXSIZEOF(notifyData.szInfo));
+	wxStrlcpy(notifyData.szInfoTitle, title.wx_str(),
+				WXSIZEOF(notifyData.szInfoTitle));
+
+	if ( flags & wxICON_INFORMATION )
+		notifyData.dwInfoFlags |= NIIF_INFO;
+	else if ( flags & wxICON_WARNING )
+		notifyData.dwInfoFlags |= NIIF_WARNING;
+	else if ( flags & wxICON_ERROR )
+		notifyData.dwInfoFlags |= NIIF_ERROR;
+
+	bool ok = wxShellNotifyIcon(NIM_MODIFY, &notifyData) != 0;
+	if ( !ok )
+	{
+		wxLogLastError(wxT("wxShellNotifyIcon(NIM_MODIFY)"));
+
+	}
+	return ok;
+#elif defined(NIX)
+	const char* icon = NULL;
+	
+	if ( flags & wxICON_INFORMATION )
+		icon = "dialog-information";
+	else if ( flags & wxICON_WARNING )
+		icon = "dialog-warning";
+	else if ( flags & wxICON_ERROR )
+		icon = "dialog-error";
+	
+	NotifyNotification* notification =
+		notify_notification_new(
+			title.wx_str(),
+			text.wx_str(),
+			icon);
+	
+	notify_notification_show(notification, NULL);
+	
+	return true;
 #else
-	bool gcTaskBarIcon::ShowBalloon(const wxString& title, const wxString& text, unsigned msec, int flags)
-	{
-#ifdef DEBUG
-		Warning("TaskBar Icon ShowBalloon not implemented!\n");
+	return false;
 #endif
-		return false;
-	}
-#endif
+}
 
 
 bool gcTaskBarIcon::RemoveIcon()

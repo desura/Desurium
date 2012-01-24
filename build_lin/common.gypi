@@ -65,6 +65,7 @@
 		'ldflags': [
 			'-Wl,-Bsymbolic-functions',
 			'-lpthread',
+			'<!@(pkg-config --libs-only-l libnotify)',
 		],
 		'include_dirs': [
 			'<(include_dir)',
