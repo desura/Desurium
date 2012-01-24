@@ -102,7 +102,10 @@ void MainMenuButton::createMenu(bool offline)
 	m_historyMenu->Append(DESURA_wxGifts, Managers::GetString(L"#MENU_GIFTS"), Managers::GetString(L"#MENU_GIFTS_TOOLTIP"));
 	m_historyMenu->Append(DESURA_wxPurchase, Managers::GetString(L"#MENU_PURCHASE"), Managers::GetString(L"#MENU_PURCHASE_TOOLTIP"));
 	m_historyMenu->Append(DESURA_wxCart, Managers::GetString(L"#MENU_CART"), Managers::GetString(L"#MENU_CART_TOOLTIP"));
+
+#ifdef DESURA_NONGPL_BUILD
 	m_historyMenu->Append(DESURA_wxChangeLog, Managers::GetString(L"#MENU_CHANGELOG"), Managers::GetString(L"#MENU_CHANGELOG_TOOLTIP"));
+#endif
 
 	m_mainMenu->Append(DESURA_wxOffline, Managers::GetString(L"#MENU_OFFLINE"), Managers::GetString(L"#MENU_OFFLINE_TOOLTIP"));
 	m_mainMenu->Append(DESURA_wxLogOut, Managers::GetString(L"#MENU_LOGOUT"), Managers::GetString(L"#MENU_LOGOUT_TOOLTIP"));
