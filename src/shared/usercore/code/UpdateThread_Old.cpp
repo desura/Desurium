@@ -66,7 +66,7 @@ void UpdateThreadOld::onStop()
 
 void UpdateThreadOld::init()
 {
-	m_iAppId = 999;
+	m_iAppId = 100; // Ignoring updates anyway.
 	m_iAppVersion = 0;
 	
 	m_uiLastAppId = 0;
@@ -157,10 +157,8 @@ bool UpdateThreadOld::pollUpdates()
 
 	std::map<std::string, std::string> post;
 
-#ifdef DESURA_NONGPL_BUILD
 	post["appid"] = gcString("{0}", m_iAppId);
 	post["build"] = gcString("{0}", m_iAppVersion);
-#endif
 
 	for (uint32 x=0; x< m_pUser->getItemManager()->getCount(); x++)
 	{
