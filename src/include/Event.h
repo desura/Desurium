@@ -173,7 +173,7 @@ public:
 
 		std::for_each(e.m_vDelegates.begin(), e.m_vDelegates.end(), [&](TDel* pDel)
 		{
-			m_vDelegates.push_back(pDel->clone());
+			this->m_vDelegates.push_back(pDel->clone());
 		});
 
 
@@ -182,8 +182,6 @@ public:
 
 	EventBase<TArg, TDel>& operator+=(const EventBase<TArg, TDel>& e)
 	{
-		m_Lock.lock();
-
 		for (size_t x=0; x<e.m_vDelegates.size(); x++)
 		{
 			TDel* d = e.m_vDelegates[x];
@@ -192,14 +190,11 @@ public:
 				m_vDelegates.push_back(d->clone());
 		}
 
-		m_Lock.unlock();
 		return *this;
 	}
 
 	EventBase<TArg, TDel>& operator-=(const EventBase<TArg, TDel>& e)
 	{
-		m_Lock.lock();
-
 		std::vector<size_t> del;
 
 		for (size_t x=0; x<e.m_vDelegates.size(); x++)
@@ -218,7 +213,6 @@ public:
 		for (size_t x=del.size(); x>0; x--)
 			m_vDelegates.erase(m_vDelegates.begin()+del[x]);
 
-		m_Lock.unlock();
 		return *this;
 	}
 
