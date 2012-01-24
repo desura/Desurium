@@ -130,9 +130,6 @@
     <ClInclude Include="..\..\include\util\UtilCallback.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\util\UtilCrypto.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\util\UtilFs.h">
       <Filter>Source Files</Filter>
     </ClInclude>

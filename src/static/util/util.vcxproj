@@ -186,7 +186,6 @@
     <ClInclude Include="..\..\include\util\gcString.h" />
     <ClInclude Include="..\..\include\util\MD5Progressive.h" />
     <ClInclude Include="..\..\include\util\UtilCallback.h" />
-    <ClInclude Include="..\..\include\util\UtilCrypto.h" />
     <ClInclude Include="..\..\include\util\UtilFs.h" />
     <ClInclude Include="..\..\include\util\UtilFsPath.h" />
     <ClInclude Include="..\..\include\util\UtilMisc.h" />

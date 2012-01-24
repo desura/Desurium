@@ -82,7 +82,7 @@ DesuraJSBinding::DesuraJSBinding() : DesuraJSBase("app", "native_binding.js")
 	REG_SIMPLE_JS_OBJ_VOIDFUNCTION( delLink, DesuraJSBinding );
 	REG_SIMPLE_JS_OBJ_VOIDFUNCTION( updateLink, DesuraJSBinding );
 
-	REG_SIMPLE_JS_VOIDFUNCTION( autoLogin, DesuraJSBinding );
+	REG_SIMPLE_JS_VOIDFUNCTION( login, DesuraJSBinding );
 }
 
 DesuraJSBinding::~DesuraJSBinding()
@@ -518,7 +518,7 @@ void DesuraJSBinding::updateLink(UserCore::Item::ItemInfoI* item, gcString args)
 	GetUserCore()->getItemManager()->updateLink(item->getId(), args.c_str());
 }
 
-void DesuraJSBinding::autoLogin(gcString username, gcString loginCookie)
+void DesuraJSBinding::login(gcString username, gcString loginCookie)
 {
 	g_pMainApp->newAccountLogin(username.c_str(), loginCookie.c_str());
 }

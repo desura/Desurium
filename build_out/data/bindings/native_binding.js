@@ -272,7 +272,10 @@ if (!desura.internal) {
 		return is64Bit();
 	};	
 	
-	
+	desura.utils.login = function(username, cookie){
+		native function login();
+		login(username, cookie);
+	};
 	
 
 	desura.internal.checkOldCrumbs = function(){

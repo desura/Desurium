@@ -80,7 +80,7 @@ protected:
 	void delLink(UserCore::Item::ItemInfoI* item);
 	void updateLink(UserCore::Item::ItemInfoI* item, gcString args);
 
-	void autoLogin(gcString username, gcString loginCookie);
+	void login(gcString username, gcString loginCookie);
 };
 
 

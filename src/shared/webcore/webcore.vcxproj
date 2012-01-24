@@ -184,7 +184,6 @@
     <ClInclude Include="code\WebCore.h" />
     <ClInclude Include="code\Log.h" />
     <ClInclude Include="..\..\include\webcore\DLLVersion.h" />
-    <ClInclude Include="..\..\include\webcore\NewAccountInfo.h" />
     <ClInclude Include="..\..\include\webcore\ResumeUploadInfo.h" />
     <ClInclude Include="..\..\include\webcore\WebCoreI.h" />
     <ClInclude Include="..\..\common\Common.h" />
