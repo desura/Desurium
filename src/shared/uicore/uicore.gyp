@@ -142,6 +142,7 @@
 			'code/UploadProgPage.cpp',
 			'code/UploadPrompt.cpp',
 			'code/UsernameBox.cpp',
+			'code/NewAccountDialog.cpp',
 		],
 		'conditions' : [
 			['desura_nongpl==1',{
