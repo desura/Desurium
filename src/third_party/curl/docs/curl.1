@@ -351,12 +351,12 @@ run curl.
 is used to seed the random engine for SSL connections. See also the
 \fI--random-file\fP option.
 .IP "-E/--cert <certificate[:password]>"
-(SSL) Tells curl to use the specified certificate file when getting a file
-with HTTPS or FTPS. The certificate must be in PEM format.  If the optional
-password isn't specified, it will be queried for on the terminal. Note that
-this option assumes a \&"certificate" file that is the private key and the
-private certificate concatenated! See \fI--cert\fP and \fI--key\fP to specify
-them independently.
+(SSL) Tells curl to use the specified client certificate file when getting a
+file with HTTPS, FTPS or another SSL-based protocol. The certificate must be
+in PEM format.  If the optional password isn't specified, it will be queried
+for on the terminal. Note that this option assumes a \&"certificate" file that
+is the private key and the private certificate concatenated! See \fI--cert\fP
+and \fI--key\fP to specify them independently.
 
 If curl is built against the NSS SSL library then this option can tell
 curl the nickname of the certificate to use within the NSS database defined
@@ -815,6 +815,17 @@ to FTP to the machine host.domain.com with user name \&'myself' and password
 .IP "--netrc-optional"
 Very similar to \fI--netrc\fP, but this option makes the .netrc usage
 \fBoptional\fP and not mandatory as the \fI--netrc\fP option does.
+
+.IP "--netrc-file"
+This option is similar to \fI--netrc\fP, except that you provide the path
+(absolute or relative) to the netrc file that Curl should use.
+You can only specify one netrc file per invocation. If several
+\fI--netrc-file\fP options are provided, only the \fBlast one\fP will be used.
+(Added in 7.21.5)
+
+This option overrides any use of \fI--netrc\fP as they are mutually exclusive.
+It will also abide by --netrc-optional if specified.
+
 .IP "--negotiate"
 (HTTP) Enables GSS-Negotiate authentication. The GSS-Negotiate method was
 designed by Microsoft and is used in their web applications. It is primarily
@@ -904,6 +915,10 @@ part of the remote file is used, the path is cut off.)
 
 The remote file name to use for saving is extracted from the given URL,
 nothing else.
+
+Consequentially, the file will be saved in the current working directory. If
+you want the file saved in a different directory, make sure you change current
+working directory before you invoke curl with the \fB-O/--remote-name\fP flag!
 
 You may use this option as many times as the number of URLs you have.
 .IP "--remote-name-all"
@@ -1637,6 +1652,10 @@ Unsupported protocol. This build of curl has no support for this protocol.
 Failed to initialize.
 .IP 3
 URL malformed. The syntax was not correct.
+.IP 4
+A feature or option that was needed to perform the desired request was not
+enabled or was explicitly disabled at build-time. To make curl able to do
+this, you probably need another build of libcurl!
 .IP 5
 Couldn't resolve proxy. The given proxy host could not be resolved.
 .IP 6
@@ -1713,7 +1732,9 @@ Interface error. A specified outgoing interface could not be used.
 .IP 47
 Too many redirects. When following redirects, curl hit the maximum amount.
 .IP 48
-Unknown TELNET option specified.
+Unknown option specified to libcurl. This indicates that you passed a weird
+option to curl that was passed on to libcurl and rejected. Read up in the
+manual!
 .IP 49
 Malformed telnet option.
 .IP 51

@@ -5,7 +5,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2010, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2011, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -93,6 +93,7 @@
 #include "curl_hmac.h"
 #include "curl_gethostname.h"
 #include "warnless.h"
+#include "http_proxy.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -115,6 +116,7 @@ static int smtp_getsock(struct connectdata *conn,
 static CURLcode smtp_doing(struct connectdata *conn,
                            bool *dophase_done);
 static CURLcode smtp_setup_connection(struct connectdata * conn);
+static CURLcode smtp_state_upgrade_tls(struct connectdata *conn);
 
 
 /*
@@ -135,7 +137,8 @@ const struct Curl_handler Curl_handler_smtp = {
   ZERO_NULL,                        /* perform_getsock */
   smtp_disconnect,                  /* disconnect */
   PORT_SMTP,                        /* defport */
-  PROT_SMTP                         /* protocol */
+  CURLPROTO_SMTP,                   /* protocol */
+  PROTOPT_CLOSEACTION               /* flags */
 };
 
 
@@ -158,7 +161,8 @@ const struct Curl_handler Curl_handler_smtps = {
   ZERO_NULL,                        /* perform_getsock */
   smtp_disconnect,                  /* disconnect */
   PORT_SMTPS,                       /* defport */
-  PROT_SMTP | PROT_SMTPS | PROT_SSL  /* protocol */
+  CURLPROTO_SMTP | CURLPROTO_SMTPS, /* protocol */
+  PROTOPT_CLOSEACTION | PROTOPT_SSL /* flags */
 };
 #endif
 
@@ -181,7 +185,8 @@ static const struct Curl_handler Curl_handler_smtp_proxy = {
   ZERO_NULL,                            /* perform_getsock */
   ZERO_NULL,                            /* disconnect */
   PORT_SMTP,                            /* defport */
-  PROT_HTTP                             /* protocol */
+  CURLPROTO_HTTP,                       /* protocol */
+  PROTOPT_NONE                          /* flags */
 };
 
 
@@ -204,7 +209,8 @@ static const struct Curl_handler Curl_handler_smtps_proxy = {
   ZERO_NULL,                            /* perform_getsock */
   ZERO_NULL,                            /* disconnect */
   PORT_SMTPS,                           /* defport */
-  PROT_HTTP                             /* protocol */
+  CURLPROTO_HTTP,                       /* protocol */
+  PROTOPT_NONE                          /* flags */
 };
 #endif
 #endif
@@ -286,6 +292,7 @@ static void state(struct connectdata *conn,
     "EHLO",
     "HELO",
     "STARTTLS",
+    "UPGRADETLS",
     "AUTHPLAIN",
     "AUTHLOGIN",
     "AUTHPASSWD",
@@ -450,6 +457,15 @@ static int smtp_getsock(struct connectdata *conn,
   return Curl_pp_getsock(&conn->proto.smtpc.pp, socks, numsocks);
 }
 
+#ifdef USE_SSL
+static void smtp_to_smtps(struct connectdata *conn)
+{
+  conn->handler = &Curl_handler_smtps;
+}
+#else
+#define smtp_to_smtps(x)
+#endif
+
 /* for STARTTLS responses */
 static CURLcode smtp_state_starttls_resp(struct connectdata *conn,
                                          int smtpcode,
@@ -468,13 +484,33 @@ static CURLcode smtp_state_starttls_resp(struct connectdata *conn,
       result = smtp_authenticate(conn);
   }
   else {
-    /* Curl_ssl_connect is BLOCKING */
-    result = Curl_ssl_connect(conn, FIRSTSOCKET);
-    if(CURLE_OK == result) {
-      conn->protocol |= PROT_SMTPS;
-      result = smtp_state_ehlo(conn);
+    if(data->state.used_interface == Curl_if_multi) {
+      state(conn, SMTP_UPGRADETLS);
+      return smtp_state_upgrade_tls(conn);
+    }
+    else {
+      result = Curl_ssl_connect(conn, FIRSTSOCKET);
+      if(CURLE_OK == result) {
+        smtp_to_smtps(conn);
+        result = smtp_state_ehlo(conn);
+      }
     }
   }
+  return result;
+}
+
+static CURLcode smtp_state_upgrade_tls(struct connectdata *conn)
+{
+  struct smtp_conn *smtpc = &conn->proto.smtpc;
+  CURLcode result;
+
+  result = Curl_ssl_connect_nonblocking(conn, FIRSTSOCKET, &smtpc->ssldone);
+
+  if(smtpc->ssldone) {
+    smtp_to_smtps(conn);
+    result = smtp_state_ehlo(conn);
+  }
+
   return result;
 }
 
@@ -897,6 +933,9 @@ static CURLcode smtp_statemach_act(struct connectdata *conn)
   struct pingpong *pp = &smtpc->pp;
   size_t nread = 0;
 
+  if(smtpc->state == SMTP_UPGRADETLS)
+    return smtp_state_upgrade_tls(conn);
+
   if(pp->sendleft)
     /* we have a piece of a command still left to send */
     return Curl_pp_flushsend(pp);
@@ -986,7 +1025,14 @@ static CURLcode smtp_multi_statemach(struct connectdata *conn,
                                      bool *done)
 {
   struct smtp_conn *smtpc = &conn->proto.smtpc;
-  CURLcode result = Curl_pp_multi_statemach(&smtpc->pp);
+  CURLcode result;
+
+  if((conn->handler->protocol & CURLPROTO_SMTPS) && !smtpc->ssldone) {
+    result = Curl_ssl_connect_nonblocking(conn, FIRSTSOCKET, &smtpc->ssldone);
+  }
+  else {
+    result = Curl_pp_multi_statemach(&smtpc->pp);
+  }
 
   *done = (bool)(smtpc->state == SMTP_STOP);
 
@@ -1072,7 +1118,6 @@ static CURLcode smtp_connect(struct connectdata *conn,
   pp->endofresp = smtp_endofresp;
   pp->conn = conn;
 
-#if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_PROXY)
   if(conn->bits.tunnel_proxy && conn->bits.httpproxy) {
     /* for SMTP over HTTP proxy */
     struct HTTP http_proxy;
@@ -1099,10 +1144,9 @@ static CURLcode smtp_connect(struct connectdata *conn,
     if(CURLE_OK != result)
       return result;
   }
-#endif /* !CURL_DISABLE_HTTP && !CURL_DISABLE_PROXY */
 
-  if(conn->protocol & PROT_SMTPS) {
-    /* BLOCKING */
+  if((conn->handler->protocol & CURLPROTO_SMTPS) &&
+      data->state.used_interface != Curl_if_multi) {
     /* SMTPS is simply smtp with SSL for the control channel */
     /* now, perform the SSL initialization for this socket */
     result = Curl_ssl_connect(conn, FIRSTSOCKET);
