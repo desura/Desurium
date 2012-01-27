@@ -111,6 +111,10 @@
 #include <polarssl/ssl.h>
 #endif
 
+#ifdef USE_CYASSL
+#include <openssl/ssl.h>
+#endif
+
 #ifdef USE_NSS
 #include <nspr.h>
 #include <pk11pub.h>
@@ -266,6 +270,11 @@ struct ssl_connect_data {
   x509_crl crl;
   rsa_context rsa;
 #endif /* USE_POLARSSL */
+#ifdef USE_CYASSL
+  SSL_CTX* ctx;
+  SSL*     handle;
+  ssl_connect_state connecting_state;
+#endif /* USE_CYASSL */
 #ifdef USE_NSS
   PRFileDesc *handle;
   char *client_nickname;
@@ -685,9 +694,22 @@ struct Curl_handler {
    */
   CURLcode (*disconnect)(struct connectdata *, bool dead_connection);
 
-  long defport;       /* Default port. */
-  long protocol;      /* PROT_* flags concerning the protocol set */
+  long defport;           /* Default port. */
+  unsigned int protocol;  /* See CURLPROTO_*  */
+  unsigned int flags;     /* Extra particular characteristics, see PROTOPT_* */
 };
+
+#define PROTOPT_NONE 0             /* nothing extra */
+#define PROTOPT_SSL (1<<0)         /* uses SSL */
+#define PROTOPT_DUAL (1<<1)        /* this protocol uses two connections */
+#define PROTOPT_CLOSEACTION (1<<2) /* need action before socket close */
+/* some protocols will have to call the underlying functions without regard to
+   what exact state the socket signals. IE even if the socket says "readable",
+   the send function might need to be called while uploading, or vice versa.
+*/
+#define PROTOPT_DIRLOCK (1<<3)
+#define PROTOPT_BANPROXY (1<<4)    /* not allowed to use proxy */
+
 
 /* return the count of bytes sent, or -1 on error */
 typedef ssize_t (Curl_send)(struct connectdata *conn, /* connection data */
@@ -726,44 +748,6 @@ struct connectdata {
   /**** Fields set when inited and not modified again */
   long connectindex; /* what index in the connection cache connects index this
                         particular struct has */
-  long protocol; /* PROT_* flags concerning the protocol set */
-#define PROT_HTTP    CURLPROTO_HTTP
-#define PROT_HTTPS   CURLPROTO_HTTPS
-#define PROT_FTP     CURLPROTO_FTP
-#define PROT_TELNET  CURLPROTO_TELNET
-#define PROT_DICT    CURLPROTO_DICT
-#define PROT_LDAP    CURLPROTO_LDAP
-#define PROT_FILE    CURLPROTO_FILE
-#define PROT_FTPS    CURLPROTO_FTPS
-#define PROT_TFTP    CURLPROTO_TFTP
-#define PROT_SCP     CURLPROTO_SCP
-#define PROT_SFTP    CURLPROTO_SFTP
-#define PROT_IMAP    CURLPROTO_IMAP
-#define PROT_IMAPS   CURLPROTO_IMAPS
-#define PROT_POP3    CURLPROTO_POP3
-#define PROT_POP3S   CURLPROTO_POP3S
-#define PROT_SMTP    CURLPROTO_SMTP
-#define PROT_SMTPS   CURLPROTO_SMTPS
-#define PROT_RTSP    CURLPROTO_RTSP
-#define PROT_RTMP    CURLPROTO_RTMP
-#define PROT_RTMPT   CURLPROTO_RTMPT
-#define PROT_RTMPE   CURLPROTO_RTMPE
-#define PROT_RTMPTE  CURLPROTO_RTMPTE
-#define PROT_RTMPS   CURLPROTO_RTMPS
-#define PROT_RTMPTS  CURLPROTO_RTMPTS
-#define PROT_GOPHER  CURLPROTO_GOPHER
-
-/* (1<<25) is currently the highest used bit in the public bitmask. We make
-   sure we use "private bits" above the public ones to make things easier;
-   Gopher will not conflict with the current bit 25. */
-
-#define PROT_EXTMASK 0x03ffffff
-
-#define PROT_SSL     (1<<29) /* protocol requires SSL */
-
-/* these ones need action before socket close */
-#define PROT_CLOSEACTION (PROT_FTP | PROT_IMAP | PROT_POP3)
-#define PROT_DUALCHANNEL PROT_FTP /* these protocols use two connections */
 
   /* 'dns_entry' is the particular host we use. This points to an entry in the
      DNS cache and it will not get pruned while locked. It gets unlocked in
@@ -841,7 +825,8 @@ struct connectdata {
   long timeoutms_per_addr; /* how long time in milliseconds to spend on
                               trying to connect to each IP address */
 
-  const struct Curl_handler * handler;  /* Connection's protocol handler. */
+  const struct Curl_handler *handler; /* Connection's protocol handler */
+  const struct Curl_handler *given;   /* The protocol first given */
 
   long ip_version; /* copied from the SessionHandle at creation time */
 
@@ -951,6 +936,16 @@ struct connectdata {
 
   long verifypeer;
   long verifyhost;
+
+  /* When this connection is created, store the conditions for the local end
+     bind. This is stored before the actual bind and before any connection is
+     made and will serve the purpose of being used for comparison reasons so
+     that subsequent bound-requested connections aren't accidentally re-using
+     wrong connections. */
+  char *localdev;
+  unsigned short localport;
+  int localportrange;
+
 };
 
 /* The end of connectdata. */
