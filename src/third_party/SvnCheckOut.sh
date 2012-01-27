@@ -15,6 +15,6 @@ cp -rp curl-shared curl-static
 
 git clone git://github.com/bagder/c-ares.git c-ares
 cd c-ares
-git checkout cares-1_7_4
+git checkout cares-1_7_5
 
 cd ..
