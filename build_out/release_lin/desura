@@ -183,10 +183,13 @@ if [ x"$BIT" == x"32" -a x"$ARCH" == x"x86_64" -a ! -e .ignore_bits ]; then
 	error "You are using the i686 version of Desura when you should be using the x86_64 version. Functionality may not be as expected.\n\nIf you would like to ignore this warning, just create an empty file called .ignore_bits in your Desura directory.\n\nPlease see http://www.desura.com to download the correct version"
 fi
 
-CARIO_TEST=$(readelf -Ws /usr/lib/libcairo.so | awk '/cairo_(gl|qt)_surface/' | wc -l)
-
-if [ x"$CARIO_TEST" == x"1" -a ! -e .ignore_cariotest ]; then
-	error "Looks like you have cario built with incompatiable flags that cause Desura to crash.\n\nIf you would like to ignore this warning, just create an empty file called .ignore_cariotest in your Desura directory.\n\nPlease see http://www.desura.com/groups/desura/forum/thread/gentoo-crash-on-login for more help"
+CAIRO_LOC=$(./bin/findlib.sh libcairo.so $BIT)
+if [ -e "$CAIRO_LOC" -a ! -e .ignore_cariotest ]; then
+  CAIRO_TEST=$(readelf -Ws $CAIRO_LOC | awk '/cairo_(gl|qt)_surface/' | wc -l)
+  
+  if [ x"$CAIRO_TEST" == x"1" ]; then
+	  error "Looks like you have cairo built with incompatiable flags that cause Desura to crash.\n\nIf you would like to ignore this warning, just create an empty file called .ignore_cariotest in your Desura directory.\n\nPlease see http://www.desura.com/groups/desura/forum/thread/gentoo-crash-on-login for more help"
+  fi
 fi
 
 # Check for missing libs
