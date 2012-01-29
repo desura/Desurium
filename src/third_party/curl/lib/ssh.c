@@ -175,7 +175,8 @@ const struct Curl_handler Curl_handler_scp = {
   ssh_perform_getsock,                  /* perform_getsock */
   scp_disconnect,                       /* disconnect */
   PORT_SSH,                             /* defport */
-  PROT_SCP                              /* protocol */
+  CURLPROTO_SCP,                        /* protocol */
+  PROTOPT_DIRLOCK | PROTOPT_CLOSEACTION /* flags */
 };
 
 
@@ -197,7 +198,8 @@ const struct Curl_handler Curl_handler_sftp = {
   ssh_perform_getsock,                  /* perform_getsock */
   sftp_disconnect,                      /* disconnect */
   PORT_SSH,                             /* defport */
-  PROT_SFTP                             /* protocol */
+  CURLPROTO_SFTP,                       /* protocol */
+  PROTOPT_DIRLOCK | PROTOPT_CLOSEACTION /* flags */
 };
 
 
@@ -411,7 +413,7 @@ static CURLcode ssh_getworkingpath(struct connectdata *conn,
     return CURLE_OUT_OF_MEMORY;
 
   /* Check for /~/ , indicating relative to the user's home directory */
-  if(conn->protocol & PROT_SCP) {
+  if(conn->handler->protocol & CURLPROTO_SCP) {
     real_path = malloc(working_path_len+1);
     if(real_path == NULL) {
       free(working_path);
@@ -423,7 +425,7 @@ static CURLcode ssh_getworkingpath(struct connectdata *conn,
     else
       memcpy(real_path, working_path, 1 + working_path_len);
   }
-  else if(conn->protocol & PROT_SFTP) {
+  else if(conn->handler->protocol & CURLPROTO_SFTP) {
     if((working_path_len > 1) && (working_path[1] == '~')) {
       size_t homelen = strlen(homedir);
       real_path = malloc(homelen + working_path_len + 1);
@@ -931,7 +933,7 @@ static CURLcode ssh_statemach_act(struct connectdata *conn, bool *block)
       conn->sockfd = sock;
       conn->writesockfd = CURL_SOCKET_BAD;
 
-      if(conn->protocol == PROT_SFTP) {
+      if(conn->handler->protocol == CURLPROTO_SFTP) {
         state(conn, SSH_SFTP_INIT);
         break;
       }
@@ -1599,6 +1601,16 @@ static CURLcode ssh_statemach_act(struct connectdata *conn, bool *block)
            figure out a "real" bitmask */
         sshc->orig_waitfor = data->req.keepon;
 
+        /* we want to use the _sending_ function even when the socket turns
+           out readable as the underlying libssh2 sftp send function will deal
+           with both accordingly */
+        conn->cselect_bits = CURL_CSELECT_OUT;
+
+        /* since we don't really wait for anything at this point, we want the
+           state machine to move on as soon as possible so we set a very short
+           timeout here */
+        Curl_expire(data, 1);
+
         state(conn, SSH_STOP);
       }
       break;
@@ -2018,8 +2030,9 @@ static CURLcode ssh_statemach_act(struct connectdata *conn, bool *block)
       /* not set by Curl_setup_transfer to preserve keepon bits */
       conn->writesockfd = conn->sockfd;
 
-      /* FIXME: here should be explained why we need it to start the
-       * download */
+      /* we want to use the _receiving_ function even when the socket turns
+         out writableable as the underlying libssh2 recv function will deal
+         with both accordingly */
       conn->cselect_bits = CURL_CSELECT_IN;
     }
     if(result) {
@@ -2042,8 +2055,10 @@ static CURLcode ssh_statemach_act(struct connectdata *conn, bool *block)
         }
         sshc->sftp_handle = NULL;
       }
-      Curl_safefree(sftp_scp->path);
-      sftp_scp->path = NULL;
+      if(sftp_scp) {
+        Curl_safefree(sftp_scp->path);
+        sftp_scp->path = NULL;
+      }
 
       DEBUGF(infof(data, "SFTP DONE done\n"));
 #if 0 /* PREV */
@@ -2149,6 +2164,11 @@ static CURLcode ssh_statemach_act(struct connectdata *conn, bool *block)
         sshc->actualcode = result;
       }
       else {
+        /* we want to use the _sending_ function even when the socket turns
+           out readable as the underlying libssh2 scp send function will deal
+           with both accordingly */
+        conn->cselect_bits = CURL_CSELECT_OUT;
+
         state(conn, SSH_STOP);
       }
       break;
@@ -2195,8 +2215,9 @@ static CURLcode ssh_statemach_act(struct connectdata *conn, bool *block)
       /* not set by Curl_setup_transfer to preserve keepon bits */
       conn->writesockfd = conn->sockfd;
 
-      /* FIXME: here should be explained why we need it to start the
-       * download */
+      /* we want to use the _receiving_ function even when the socket turns
+         out writableable as the underlying libssh2 recv function will deal
+         with both accordingly */
       conn->cselect_bits = CURL_CSELECT_IN;
 
       if(result) {
@@ -2547,7 +2568,7 @@ static CURLcode ssh_connect(struct connectdata *conn, bool *done)
   if(result)
     return result;
 
-  if(conn->protocol & PROT_SCP) {
+  if(conn->handler->protocol & CURLPROTO_SCP) {
     conn->recv[FIRSTSOCKET] = scp_recv;
     conn->send[FIRSTSOCKET] = scp_send;
   } else {
@@ -2587,10 +2608,9 @@ static CURLcode ssh_connect(struct connectdata *conn, bool *done)
     rc = libssh2_knownhost_readfile(ssh->kh,
                                     data->set.str[STRING_SSH_KNOWNHOSTS],
                                     LIBSSH2_KNOWNHOST_FILE_OPENSSH);
-    if(rc) {
+    if(rc < 0)
       infof(data, "Failed to read known hosts from %s\n",
             data->set.str[STRING_SSH_KNOWNHOSTS]);
-    }
   }
 #endif /* HAVE_LIBSSH2_KNOWNHOST_API */
 
@@ -2697,7 +2717,7 @@ static CURLcode ssh_do(struct connectdata *conn, bool *done)
   Curl_pgrsSetUploadSize(data, 0);
   Curl_pgrsSetDownloadSize(data, 0);
 
-  if(conn->protocol & PROT_SCP)
+  if(conn->handler->protocol & CURLPROTO_SCP)
     res = scp_perform(conn, &connected,  done);
   else
     res = sftp_perform(conn, &connected,  done);
@@ -2748,8 +2768,10 @@ static CURLcode ssh_done(struct connectdata *conn, CURLcode status)
   else
     result = status;
 
-  Curl_safefree(sftp_scp->path);
-  sftp_scp->path = NULL;
+  if(sftp_scp) {
+    Curl_safefree(sftp_scp->path);
+    sftp_scp->path = NULL;
+  }
   Curl_pgrsDone(conn);
 
   conn->data->req.keepon = 0; /* clear all bits */

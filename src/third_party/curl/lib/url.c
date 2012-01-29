@@ -184,8 +184,9 @@ static const struct Curl_handler * const protocols[] = {
 
 #ifndef CURL_DISABLE_LDAP
   &Curl_handler_ldap,
-#if (defined(USE_OPENLDAP) && defined(USE_SSL)) || \
-   (!defined(USE_OPENLDAP) && defined(HAVE_LDAP_SSL))
+#if !defined(CURL_DISABLE_LDAPS) && \
+    ((defined(USE_OPENLDAP) && defined(USE_SSL)) || \
+     (!defined(USE_OPENLDAP) && defined(HAVE_LDAP_SSL)))
   &Curl_handler_ldaps,
 #endif
 #endif
@@ -262,7 +263,8 @@ static const struct Curl_handler Curl_handler_dummy = {
   ZERO_NULL,                            /* perform_getsock */
   ZERO_NULL,                            /* disconnect */
   0,                                    /* defport */
-  0                                     /* protocol */
+  0,                                    /* protocol */
+  PROTOPT_NONE                          /* flags */
 };
 
 void Curl_safefree(void *ptr)
@@ -374,39 +376,6 @@ CURLcode Curl_dupset(struct SessionHandle * dst, struct SessionHandle * src)
   /* If a failure occurred, freeing has to be performed externally. */
   return r;
 }
-
-#if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_COOKIES)
-static void flush_cookies(struct SessionHandle *data, int cleanup)
-{
-  if(data->set.str[STRING_COOKIEJAR]) {
-    if(data->change.cookielist) {
-      /* If there is a list of cookie files to read, do it first so that
-         we have all the told files read before we write the new jar.
-         Curl_cookie_loadfiles() LOCKS and UNLOCKS the share itself! */
-      Curl_cookie_loadfiles(data);
-    }
-
-    Curl_share_lock(data, CURL_LOCK_DATA_COOKIE, CURL_LOCK_ACCESS_SINGLE);
-
-    /* if we have a destination file for all the cookies to get dumped to */
-    if(Curl_cookie_output(data->cookies, data->set.str[STRING_COOKIEJAR]))
-      infof(data, "WARNING: failed to save cookies in %s\n",
-            data->set.str[STRING_COOKIEJAR]);
-  }
-  else {
-    if(cleanup && data->change.cookielist)
-      /* since nothing is written, we can just free the list of cookie file
-         names */
-      curl_slist_free_all(data->change.cookielist); /* clean up list */
-    Curl_share_lock(data, CURL_LOCK_DATA_COOKIE, CURL_LOCK_ACCESS_SINGLE);
-  }
-
-  if(cleanup && (!data->share || (data->cookies != data->share->cookies))) {
-    Curl_cookie_cleanup(data->cookies);
-  }
-  Curl_share_unlock(data, CURL_LOCK_DATA_COOKIE);
-}
-#endif
 
 /*
  * This is the internal function curl_easy_cleanup() calls. This should
@@ -546,9 +515,7 @@ CURLcode Curl_close(struct SessionHandle *data)
 
   Curl_safefree(data->state.headerbuff);
 
-#if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_COOKIES)
-  flush_cookies(data, 1);
-#endif
+  Curl_flush_cookies(data, 1);
 
   Curl_digest_cleanup(data);
 
@@ -764,9 +731,9 @@ CURLcode Curl_init_userdefined(struct UserDefined *set)
   /* for the *protocols fields we don't use the CURLPROTO_ALL convenience
      define since we internally only use the lower 16 bits for the passed
      in bitmask to not conflict with the private bits */
-  set->allowed_protocols = PROT_EXTMASK;
+  set->allowed_protocols = CURLPROTO_ALL;
   set->redir_protocols =
-    PROT_EXTMASK & ~(CURLPROTO_FILE|CURLPROTO_SCP); /* not FILE or SCP */
+    CURLPROTO_ALL & ~(CURLPROTO_FILE|CURLPROTO_SCP); /* not FILE or SCP */
 
 #if defined(HAVE_GSSAPI) || defined(USE_WINDOWS_SSPI)
   /*
@@ -1021,7 +988,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
       break;
     default:
       /* reserve other values for future use */
-      result = CURLE_FAILED_INIT;
+      result = CURLE_UNKNOWN_OPTION;
       break;
     }
     break;
@@ -1391,7 +1358,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     }
     else if(Curl_raw_equal(argptr, "FLUSH")) {
       /* flush cookies to file */
-      flush_cookies(data, 0);
+      Curl_flush_cookies(data, 0);
       break;
     }
 
@@ -1461,7 +1428,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     auth &= ~CURLAUTH_GSSNEGOTIATE; /* no GSS-Negotiate without GSSAPI or WINDOWS_SSPI */
 #endif
     if(!auth)
-      return CURLE_FAILED_INIT; /* no supported types left! */
+      return CURLE_NOT_BUILT_IN; /* no supported types left! */
 
     data->set.httpauth = auth;
   }
@@ -1521,7 +1488,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
     auth &= ~CURLAUTH_GSSNEGOTIATE; /* no GSS-Negotiate without GSSAPI or WINDOWS_SSPI */
 #endif
     if(!auth)
-      return CURLE_FAILED_INIT; /* no supported types left! */
+      return CURLE_NOT_BUILT_IN; /* no supported types left! */
 
     data->set.proxyauth = auth;
   }
@@ -1561,7 +1528,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
       break;
     default:
       /* reserve other values for future use */
-      result = CURLE_FAILED_INIT;
+      result = CURLE_UNKNOWN_OPTION;
       break;
     }
     break;
@@ -2381,7 +2348,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
        transfer, which thus helps the app which takes URLs from users or other
        external inputs and want to restrict what protocol(s) to deal
        with. Defaults to CURLPROTO_ALL. */
-    data->set.allowed_protocols = va_arg(param, long) & PROT_EXTMASK;
+    data->set.allowed_protocols = va_arg(param, long);
     break;
 
   case CURLOPT_REDIR_PROTOCOLS:
@@ -2389,7 +2356,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
        as a subset of the CURLOPT_PROTOCOLS ones. That means the protocol needs
        to be set in both bitmasks to be allowed to get redirected to. Defaults
        to all protocols except FILE and SCP. */
-    data->set.redir_protocols = va_arg(param, long) & PROT_EXTMASK;
+    data->set.redir_protocols = va_arg(param, long);
     break;
 
   case CURLOPT_MAIL_FROM:
@@ -2551,7 +2518,7 @@ CURLcode Curl_setopt(struct SessionHandle *data, CURLoption option,
 #endif
   default:
     /* unknown tag and its companion, just ignore: */
-    result = CURLE_FAILED_INIT; /* correct this */
+    result = CURLE_UNKNOWN_OPTION;
     break;
   }
 
@@ -2604,7 +2571,7 @@ static void conn_free(struct connectdata *conn)
   Curl_safefree(conn->async.hostname);
   Curl_safefree(conn->async.os_specific);
 #endif
-
+  Curl_safefree(conn->localdev);
   Curl_free_ssl_config(&conn->ssl_config);
 
   free(conn); /* free all the connection oriented data */
@@ -2734,45 +2701,10 @@ static bool SocketIsDead(curl_socket_t sock)
   return ret_val;
 }
 
-#ifndef CURL_DISABLE_RTSP
-/*
- * The server may send us RTP data at any point, and RTSPREQ_RECEIVE does not
- * want to block the application forever while receiving a stream. Therefore,
- * we cannot assume that an RTSP socket is dead just because it is readable.
- *
- * Instead, if it is readable, run Curl_getconnectinfo() to peek at the socket
- * and distinguish between closed and data.
- */
-static bool RTSPConnIsDead(struct connectdata *check)
-{
-  int sval;
-  bool ret_val = TRUE;
-
-  sval = Curl_socket_ready(check->sock[FIRSTSOCKET], CURL_SOCKET_BAD, 0);
-  if(sval == 0) {
-    /* timeout */
-    ret_val = FALSE;
-  }
-  else if (sval & CURL_CSELECT_ERR) {
-    /* socket is in an error state */
-    ret_val = TRUE;
-  }
-  else if (sval & CURL_CSELECT_IN) {
-    /* readable with no error. could be closed or could be alive */
-    curl_socket_t connectinfo =
-      Curl_getconnectinfo(check->data, &check);
-    if(connectinfo != CURL_SOCKET_BAD)
-      ret_val = FALSE;
-  }
-
-  return ret_val;
-}
-#endif /* CURL_DISABLE_RTSP */
-
 static bool IsPipeliningPossible(const struct SessionHandle *handle,
                                  const struct connectdata *conn)
 {
-  if((conn->handler->protocol & PROT_HTTP) &&
+  if((conn->handler->protocol & CURLPROTO_HTTP) &&
      handle->multi && Curl_multi_canPipeline(handle->multi) &&
      (handle->set.httpreq == HTTPREQ_GET ||
       handle->set.httpreq == HTTPREQ_HEAD) &&
@@ -2929,12 +2861,10 @@ ConnectionExists(struct SessionHandle *data,
          handles in pipeline and the connection isn't already marked in
          use */
       bool dead;
-#ifndef CURL_DISABLE_RTSP
-      if(check->protocol & PROT_RTSP)
+      if(check->handler->protocol & CURLPROTO_RTSP)
         /* RTSP is a special case due to RTP interleaving */
-        dead = RTSPConnIsDead(check);
+        dead = Curl_rtsp_connisdead(check);
       else
-#endif /*CURL_DISABLE_RTSP*/
         dead = SocketIsDead(check->sock[FIRSTSOCKET]);
 
       if(dead) {
@@ -3002,11 +2932,12 @@ ConnectionExists(struct SessionHandle *data,
       }
     }
 
-    if((needle->protocol&PROT_SSL) != (check->protocol&PROT_SSL))
+    if((needle->handler->flags&PROTOPT_SSL) !=
+       (check->handler->flags&PROTOPT_SSL))
       /* don't do mixed SSL and non-SSL connections */
       continue;
 
-    if(needle->protocol&PROT_SSL) {
+    if(needle->handler->flags&PROTOPT_SSL) {
       if((data->set.ssl.verifypeer != check->verifypeer) ||
          (data->set.ssl.verifyhost != check->verifyhost))
         continue;
@@ -3021,7 +2952,26 @@ ConnectionExists(struct SessionHandle *data,
          in use so we skip it */
       continue;
 
-    if(!needle->bits.httpproxy || needle->protocol&PROT_SSL ||
+    if(needle->localdev || needle->localport) {
+      /* If we are bound to a specific local end (IP+port), we must not re-use
+         a random other one, although if we didn't ask for a particular one we
+         can reuse one that was bound.
+
+         This comparison is a bit rough and too strict. Since the input
+         parameters can be specified in numerous ways and still end up the
+         same it would take a lot of processing to make it really accurate.
+         Instead, this matching will assume that re-uses of bound connections
+         will most likely also re-use the exact same binding parameters and
+         missing out a few edge cases shouldn't hurt anyone very much.
+      */
+      if((check->localport != needle->localport) ||
+         (check->localportrange != needle->localportrange) ||
+         !check->localdev ||
+         strcmp(check->localdev, needle->localdev))
+        continue;
+    }
+
+    if(!needle->bits.httpproxy || needle->handler->flags&PROTOPT_SSL ||
        (needle->bits.httpproxy && check->bits.httpproxy &&
         needle->bits.tunnel_proxy && check->bits.tunnel_proxy &&
         Curl_raw_equal(needle->proxy.name, check->proxy.name) &&
@@ -3033,7 +2983,7 @@ ConnectionExists(struct SessionHandle *data,
       if(Curl_raw_equal(needle->handler->scheme, check->handler->scheme) &&
          Curl_raw_equal(needle->host.name, check->host.name) &&
          (needle->remote_port == check->remote_port) ) {
-        if(needle->protocol & PROT_SSL) {
+        if(needle->handler->flags & PROTOPT_SSL) {
           /* This is SSL, verify that we're using the same
              ssl options as well */
           if(!Curl_ssl_config_matches(&needle->ssl_config,
@@ -3052,8 +3002,8 @@ ConnectionExists(struct SessionHandle *data,
             continue;
           }
         }
-        if((needle->protocol & PROT_FTP) ||
-           ((needle->protocol & PROT_HTTP) &&
+        if((needle->handler->protocol & CURLPROTO_FTP) ||
+           ((needle->handler->protocol & CURLPROTO_HTTP) &&
             (data->state.authhost.want==CURLAUTH_NTLM))) {
           /* This is FTP or HTTP+NTLM, verify that we're using the same name
              and password as well */
@@ -3602,13 +3552,24 @@ static struct connectdata *allocate_conn(struct SessionHandle *data)
   conn->data_prot = PROT_CLEAR;
 #endif
 
+  /* Store the local bind parameters that will be used for this connection */
+  if(data->set.str[STRING_DEVICE]) {
+    conn->localdev = strdup(data->set.str[STRING_DEVICE]);
+    if(!conn->localdev)
+      goto error;
+  }
+  conn->localportrange = data->set.localportrange;
+  conn->localport = data->set.localport;
+
   return conn;
   error:
+
   Curl_llist_destroy(conn->send_pipe, NULL);
   Curl_llist_destroy(conn->recv_pipe, NULL);
   Curl_llist_destroy(conn->pend_pipe, NULL);
   Curl_llist_destroy(conn->done_pipe, NULL);
   Curl_safefree(conn->master_buffer);
+  Curl_safefree(conn->localdev);
   Curl_safefree(conn);
   return NULL;
 }
@@ -3638,8 +3599,7 @@ static CURLcode findprotocol(struct SessionHandle *data,
         break;
 
       /* Perform setup complement if some. */
-      conn->handler = p;
-      conn->protocol |= p->protocol;
+      conn->handler = conn->given = p;
 
       /* 'port' and 'remote_port' are set in setup_connection_internals() */
       return CURLE_OK;
@@ -3937,8 +3897,7 @@ static CURLcode setup_connection_internals(struct connectdata *conn)
     /* we check for -1 here since if proxy was detected already, this
        was very likely already set to the proxy port */
     conn->port = p->defport;
-  conn->remote_port = (unsigned short)p->defport;
-  conn->protocol |= p->protocol;
+  conn->remote_port = (unsigned short)conn->given->defport;
 
   return CURLE_OK;
 }
@@ -4417,7 +4376,7 @@ static CURLcode parse_remote_port(struct SessionHandle *data,
        * stripped off. It would be better to work directly from the original
        * URL and simply replace the port part of it.
        */
-      url = aprintf("%s://%s%s%s:%hu%s%s%s", conn->handler->scheme,
+      url = aprintf("%s://%s%s%s:%hu%s%s%s", conn->given->scheme,
                     conn->bits.ipv6_ip?"[":"", conn->host.name,
                     conn->bits.ipv6_ip?"]":"", conn->remote_port,
                     data->state.slash_removed?"/":"", data->state.path,
@@ -4506,7 +4465,7 @@ static CURLcode set_userpass(struct connectdata *conn,
                              const char *user, const char *passwd)
 {
   /* If our protocol needs a password and we have none, use the defaults */
-  if( (conn->protocol & (PROT_FTP|PROT_IMAP)) &&
+  if( (conn->handler->protocol & (CURLPROTO_FTP|CURLPROTO_IMAP)) &&
        !conn->bits.user_passwd) {
 
     conn->user = strdup(CURL_DEFAULT_USER);
@@ -4828,14 +4787,17 @@ static CURLcode create_conn(struct SessionHandle *data,
     proxy = NULL;
   }
   /* proxy must be freed later unless NULL */
-  if(proxy) {
-    long bits = conn->protocol & (PROT_HTTPS|PROT_SSL);
-
+  if(proxy && !(conn->handler->flags & PROTOPT_BANPROXY)) {
     if((conn->proxytype == CURLPROXY_HTTP) ||
        (conn->proxytype == CURLPROXY_HTTP_1_0)) {
+#ifdef CURL_DISABLE_HTTP
+      /* asking for a HTTP proxy is a bit funny when HTTP is disabled... */
+      return CURLE_UNSUPPORTED_PROTOCOL;
+#else
       /* force this connection's protocol to become HTTP */
-      conn->protocol = PROT_HTTP | bits;
+      conn->handler = &Curl_handler_http;
       conn->bits.httpproxy = TRUE;
+#endif
     }
     conn->bits.proxy = TRUE;
   }
@@ -4880,7 +4842,7 @@ static CURLcode create_conn(struct SessionHandle *data,
    * file: is a special case in that it doesn't need a network connection
    ***********************************************************************/
 #ifndef CURL_DISABLE_FILE
-  if(conn->protocol & PROT_FILE) {
+  if(conn->handler->protocol & CURLPROTO_FILE) {
     bool done;
     /* this is supposed to be the connect function so we better at least check
        that the file is present here! */
@@ -4917,7 +4879,7 @@ static CURLcode create_conn(struct SessionHandle *data,
    * If the protocol is using SSL and HTTP proxy is used, we set
    * the tunnel_proxy bit.
    *************************************************************/
-  if((conn->protocol&PROT_SSL) && conn->bits.httpproxy)
+  if((conn->given->flags&PROTOPT_SSL) && conn->bits.httpproxy)
     conn->bits.tunnel_proxy = TRUE;
 
   /*************************************************************
@@ -5040,7 +5002,7 @@ static CURLcode setup_conn(struct connectdata *conn,
 
   Curl_pgrsTime(data, TIMER_NAMELOOKUP);
 
-  if(conn->protocol & PROT_FILE) {
+  if(conn->handler->protocol & CURLPROTO_FILE) {
     /* There's nothing in this function to setup if we're only doing
        a file:// transfer */
     *protocol_done = TRUE;
@@ -5281,7 +5243,7 @@ CURLcode Curl_done(struct connectdata **connp,
   */
   if(data->set.reuse_forbid || conn->bits.close || premature ||
      (-1 == conn->connectindex)) {
-    CURLcode res2 = Curl_disconnect(conn, FALSE); /* close the connection */
+    CURLcode res2 = Curl_disconnect(conn, premature); /* close the connection */
 
     /* If we had an error already, make sure we return that one. But
        if we got a new error, return that. */

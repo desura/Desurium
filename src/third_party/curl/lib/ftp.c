@@ -93,6 +93,7 @@
 #include "rawstr.h"
 #include "speedcheck.h"
 #include "warnless.h"
+#include "http_proxy.h"
 
 #define _MPRINTF_REPLACE /* use our functions only */
 #include <curl/mprintf.h>
@@ -179,7 +180,8 @@ const struct Curl_handler Curl_handler_ftp = {
   ZERO_NULL,                       /* perform_getsock */
   ftp_disconnect,                  /* disconnect */
   PORT_FTP,                        /* defport */
-  PROT_FTP                         /* protocol */
+  CURLPROTO_FTP,                   /* protocol */
+  PROTOPT_DUAL | PROTOPT_CLOSEACTION /* flags */
 };
 
 
@@ -202,7 +204,8 @@ const struct Curl_handler Curl_handler_ftps = {
   ZERO_NULL,                       /* perform_getsock */
   ftp_disconnect,                  /* disconnect */
   PORT_FTPS,                       /* defport */
-  PROT_FTP | PROT_FTPS | PROT_SSL  /* protocol */
+  CURLPROTO_FTP | CURLPROTO_FTPS,  /* protocol */
+  PROTOPT_SSL | PROTOPT_DUAL | PROTOPT_CLOSEACTION /* flags */
 };
 #endif
 
@@ -225,7 +228,8 @@ static const struct Curl_handler Curl_handler_ftp_proxy = {
   ZERO_NULL,                            /* perform_getsock */
   ZERO_NULL,                            /* disconnect */
   PORT_FTP,                             /* defport */
-  PROT_HTTP                             /* protocol */
+  CURLPROTO_HTTP,                       /* protocol */
+  PROTOPT_NONE                          /* flags */
 };
 
 
@@ -248,7 +252,8 @@ static const struct Curl_handler Curl_handler_ftps_proxy = {
   ZERO_NULL,                            /* perform_getsock */
   ZERO_NULL,                            /* disconnect */
   PORT_FTPS,                            /* defport */
-  PROT_HTTP                             /* protocol */
+  CURLPROTO_HTTP,                       /* protocol */
+  PROTOPT_NONE                          /* flags */
 };
 #endif
 #endif
@@ -1714,7 +1719,6 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
     ftp_pasv_verbose(conn, conninfo, newhost, connectport);
 
   switch(data->set.proxytype) {
-#ifndef CURL_DISABLE_PROXY
     /* FIX: this MUST wait for a proper connect first if 'connected' is
      * FALSE */
   case CURLPROXY_SOCKS5:
@@ -1730,7 +1734,6 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
     result = Curl_SOCKS4(conn->proxyuser, newhost, newport,
                          SECONDARYSOCKET, conn, TRUE);
     break;
-#endif /* CURL_DISABLE_PROXY */
   case CURLPROXY_HTTP:
   case CURLPROXY_HTTP_1_0:
     /* do nothing here. handled later. */
@@ -1740,7 +1743,7 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
     result = CURLE_COULDNT_CONNECT;
     break;
   }
-#if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_PROXY)
+
   if(conn->bits.tunnel_proxy && conn->bits.httpproxy) {
     /* FIX: this MUST wait for a proper connect first if 'connected' is
      * FALSE */
@@ -1766,7 +1769,7 @@ static CURLcode ftp_state_pasv_resp(struct connectdata *conn,
     if(CURLE_OK != result)
       return result;
   }
-#endif /* !CURL_DISABLE_HTTP && !CURL_DISABLE_PROXY */
+
 
   state(conn, FTP_STOP); /* this phase is completed */
 
@@ -2453,7 +2456,7 @@ static CURLcode ftp_statemach_act(struct connectdata *conn)
         default:
           failf(data, "unsupported parameter to CURLOPT_FTPSSLAUTH: %d",
                 (int)data->set.ftpsslauth);
-          return CURLE_FAILED_INIT; /* we don't know what to do */
+          return CURLE_UNKNOWN_OPTION; /* we don't know what to do */
         }
         PPSENDF(&ftpc->pp, "AUTH %s", ftpauth[ftpc->count1]);
         state(conn, FTP_AUTH);
@@ -2480,7 +2483,6 @@ static CURLcode ftp_statemach_act(struct connectdata *conn)
         /* Curl_ssl_connect is BLOCKING */
         result = Curl_ssl_connect(conn, FIRSTSOCKET);
         if(CURLE_OK == result) {
-          conn->protocol |= PROT_FTPS;
           conn->ssl[SECONDARYSOCKET].use = FALSE; /* clear-text data */
           result = ftp_state_user(conn);
         }
@@ -2920,7 +2922,6 @@ static CURLcode ftp_connect(struct connectdata *conn,
   pp->endofresp = ftp_endofresp;
   pp->conn = conn;
 
-#if !defined(CURL_DISABLE_HTTP) && !defined(CURL_DISABLE_PROXY)
   if(conn->bits.tunnel_proxy && conn->bits.httpproxy) {
     /* for FTP over HTTP proxy */
     struct HTTP http_proxy;
@@ -2947,9 +2948,8 @@ static CURLcode ftp_connect(struct connectdata *conn,
     if(CURLE_OK != result)
       return result;
   }
-#endif /* !CURL_DISABLE_HTTP && !CURL_DISABLE_PROXY */
 
-  if(conn->protocol & PROT_FTPS) {
+  if(conn->handler->protocol & CURLPROTO_FTPS) {
     /* BLOCKING */
     /* FTPS is simply ftp with SSL for the control channel */
     /* now, perform the SSL initialization for this socket */
