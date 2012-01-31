@@ -17,4 +17,11 @@ elif [ -f /etc/redhat-release ]; then
 		echo $PASS_MESSAGE
 	fi
 	su -c 'yum install git subversion m4 autoconf gcc-c++ glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel libnotify-devel scons'
+elif [ -f /etc/arch-release ]; then 
+	DISTRIBUTION="arch"
+	if [ "$(whoami)" != 'root' ]; then
+		echo $PASS_MESSAGE
+	fi
+	su -c 'pacman -S git subversion m4 autoconf gcc glibc binutils autoconf libtool gtk2 nss  libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify'
+
 fi
