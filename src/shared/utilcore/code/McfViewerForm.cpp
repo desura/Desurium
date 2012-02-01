@@ -24,7 +24,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "mcfcore/MCFHeaderI.h"
 #include "mcfcore/MCFFileI.h"
 
-McfViewerForm::McfViewerForm(wxWindow* parent, gcString mcf) : gcFrame(parent, wxID_ANY, wxT("Desura: Mcf Viewer"), wxDefaultPosition, wxSize(370,500), wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL)
+#include "../../../branding/branding.h"
+
+McfViewerForm::McfViewerForm(wxWindow* parent, gcString mcf) : gcFrame(parent, wxID_ANY, wxT(PRODUCT_NAME ": Mcf Viewer"), wxDefaultPosition, wxSize(370,500), wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL)
 {
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &McfViewerForm::onButtonClicked, this); 
 	Bind(wxEVT_CLOSE_WINDOW, &McfViewerForm::onClose, this);

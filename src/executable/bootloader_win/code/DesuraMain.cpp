@@ -37,6 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "UpdateFunctions.h"
 #include "MiniDumpGenerator.h"
 
+#include "../../../branding/branding.h"
 #include "../../branding/desura_exe_version.h"
 #include "util/gcDDE.h"
 
@@ -247,7 +248,7 @@ BOOL BootLoader::InitInstance()
 
 	if (osid == WINDOWS_PRE2000)
 	{
-		::MessageBox(NULL, "Desura needs Windows xp or better to run.", "Desura Error: Old Windows", MB_OK);
+		::MessageBox(NULL, PRODUCT_NAME " needs Windows XP or better to run.", PRODUCT_NAME " Error: Old Windows", MB_OK);
 		return FALSE;
 	}
 	else if (osid == WINDOWS_XP || osid == WINDOWS_XP64)
@@ -388,8 +389,8 @@ void BootLoader::restartAsAdmin(int needupdate)
 	if (!BootLoaderUtil::RestartAsAdmin(args))
 	{
 		char msg[255];
-		_snprintf_s(msg, 255, _TRUNCATE, "Failed to restart Desura with admin rights [Update: %d].", needupdate);
-		::MessageBox(NULL, msg, "Desura Critical Error", MB_OK);
+		_snprintf_s(msg, 255, _TRUNCATE, "Failed to restart " PRODUCT_NAME " with admin rights [Update: %d].", needupdate);
+		::MessageBox(NULL, msg, PRODUCT_NAME " Critical Error", MB_OK);
 	}
 }
 
@@ -477,7 +478,7 @@ void BootLoader::loadUICore()
 {
 	if (!BootLoaderUtil::SetDllDir(".\\bin"))
 	{
-		::MessageBox(NULL, "Failed to set the dll path to the bin folder.", "Desura: ERROR!",  MB_OK);
+		::MessageBox(NULL, "Failed to set the DLL path to the bin folder.", PRODUCT_NAME ": ERROR!",  MB_OK);
 		exit(-100);			
 	}
 
@@ -492,7 +493,7 @@ void BootLoader::loadUICore()
 	if (!m_hUICore.load(dllname))
 	{
 		DWORD err = GetLastError();
-		::MessageBox(NULL, "Failed to load uicore.dll", "Desura: ERROR!",  MB_OK);
+		::MessageBox(NULL, "Failed to load uicore.dll", PRODUCT_NAME ": ERROR!",  MB_OK);
 		exit(-200);
 	}
 	
@@ -500,7 +501,7 @@ void BootLoader::loadUICore()
 
 	if (!UICoreGetInterface)
 	{
-		::MessageBox(NULL, "Failed to load wxWidgets mappings in uicore.dll", "Desura: ERROR!", MB_OK);
+		::MessageBox(NULL, "Failed to load wxWidgets mappings in uicore.dll", PRODUCT_NAME ": ERROR!", MB_OK);
 		exit(-500);
 	} 
 

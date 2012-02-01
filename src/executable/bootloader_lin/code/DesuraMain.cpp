@@ -34,6 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "DesuraMain.h"
 #include "UtilFile.h"
 #include "util/UtilLinux.h"
+#include "../../../branding/branding.h"
 
 #ifdef DESURA_NONGPL_BUILD
 	int DownloadFilesForTest();
@@ -461,7 +462,7 @@ void MainApp::setCrashSettings(const char* user, bool upload)
 bool MainApp::rootTest()
 {
 	if (getuid() == 0)
-		ShowHelpDialog("Desura is not designed to run as root. Suggestion is to restart under a normal user with read/write permissions in the root folder.", NULL, "--warning");
+		ShowHelpDialog(PRODUCT_NAME " is not designed to run as root. Suggestion is to restart under a normal user with read/write permissions in the root folder.", NULL, "--warning");
 	
 	return true;
 }
@@ -472,7 +473,7 @@ bool MainApp::permTest()
 	
 	if (!fh)
 	{
-		ShowHelpDialog("Desura needs to be able to write to the root folder. Please fix the file permissions.", NULL, "--error");
+		ShowHelpDialog(PRODUCT_NAME " needs to be able to write to the root folder. Please fix the file permissions.", NULL, "--error");
 		return false;
 	}
 	
@@ -499,7 +500,7 @@ bool MainApp::utf8Test()
 	}
 	
 	if (hasUtf8)
-		ShowHelpDialog("Desura currently doesnt support running from a directory with UTF8 characters. Please move desura to a normal directory.", NULL, "--error");
+		ShowHelpDialog(PRODUCT_NAME " currently doesnt support running from a directory with UTF8 characters. Please move " PRODUCT_NAME " to a normal directory.", NULL, "--error");
 
 	return !hasUtf8;
 }
@@ -577,5 +578,5 @@ void MainApp::checkUnityWhitelist()
 	ret = system("gsettings set com.canonical.Unity.Panel systray-whitelist \"`gsettings get com.canonical.Unity.Panel systray-whitelist | sed -e \"s/]/,\\ 'desura']/g\"`\" 2>/dev/null 1>/dev/null");
 	
 	if (ret == 0)
-		ShowHelpDialog("Desura has been added to the Unity panel whitelist. You should log out and back in for this to take effect or you may experience problems using Desura", NULL, "--info"); 
+		ShowHelpDialog(PRODUCT_NAME " has been added to the Unity panel whitelist. You should log out and back in for this to take effect or you may experience problems using " PRODUCT_NAME, NULL, "--info"); 
 }

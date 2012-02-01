@@ -22,6 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "MainApp.h"
 #include "ButtonStrip.h"
 
+#include "../../../branding/branding.h"
+
 enum
 {
 	BALLON_NONE = 0,
@@ -80,9 +82,9 @@ void TaskBarIcon::onAppUpdateProg(uint32& prog)
 		return;
 
 	if (prog == 0 || prog >= 100)
-		m_szTooltip = "Desura";
+		m_szTooltip = PRODUCT_NAME;
 	else
-		m_szTooltip = gcString("Desura - Update Download Progress: {0}%", prog);
+		m_szTooltip = gcString(PRODUCT_NAME " - Update Download Progress: {0}%", prog);
 
 #ifdef WIN32
 	SetIcon(m_wxIcon, m_szTooltip);

@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "TaskBarIcon.h"
 #include "Managers.h"
+#include "../../../branding/branding.h"
 #include "../../../branding/uicore_version.h"
 #include "mcfcore/MCFMain.h"
 
@@ -70,7 +71,7 @@ void MainApp::onInternalStrLink(gcString &link)
 {
 	if (isOffline())
 	{
-		gcMessageBox(this->getMainWindow(), Managers::GetString(L"#MF_OFFLINEWARN"), wxT("Desura Error"));
+		gcMessageBox(this->getMainWindow(), Managers::GetString(L"#MF_OFFLINEWARN"), wxT(PRODUCT_NAME " Error"));
 		return;
 	}
 

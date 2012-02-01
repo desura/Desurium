@@ -199,14 +199,14 @@ bool MiniDumpGenerator::complete(const wchar_t* dump_path, const wchar_t* minidu
 		_snprintf_s(msg, 1024, _TRUNCATE,	"An unrecoverable error has occurred.\n"
 											"\n"
 											"For some reason the normal crashdump tool could not be used to upload the\n"
-											"report. Please use the DumpGen utility (Start Menu -> Desura) to upload\n"
-											"the dump and then use the force update shortcut to recover Desura into a\n"
+											"report. Please use the DumpGen utility (Start Menu -> " PRODUCT_NAME ") to upload\n"
+											"the dump and then use the force update shortcut to recover " PRODUCT_NAME " into a\n"
 											"usable state.\n"
 											"\n"
 											"The information in the dump will help the developers fix the issue in \n"
 											"future releases.");
 
-		::MessageBox(NULL, msg, "Desura Crash", MB_OK);
+		::MessageBox(NULL, msg, PRODUCT_NAME " Crash", MB_OK);
 	}
 
 	return succeeded;
