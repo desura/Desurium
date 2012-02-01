@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "util/UtilLinux.h"
 #include "../../../branding/branding.h"
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 	int DownloadFilesForTest();
 	int InstallFilesForTest();
 	bool CheckForUpdate(bool force, bool skip);
@@ -157,7 +157,7 @@ int MainApp::run()
 
 	bool usingGDB = false;
 		
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 	bool forceUpdate = false;
 	bool skipUpdate = false;
 	bool testDownload = false;
@@ -172,7 +172,7 @@ int MainApp::run()
 		if (strcasecmp(m_Argv[x], "-g") == 0 || strcasecmp(m_Argv[x], "--gdb") == 0)
 			usingGDB = true;
 
-#ifdef DESURA_NONGPL_BUILD			
+#ifdef DESURA_OFFICAL_BUILD			
 		if (strcasecmp(m_Argv[x], "-td") == 0 || strcasecmp(m_Argv[x], "--testdownload") == 0)
 			testDownload = true;
 
@@ -187,7 +187,7 @@ int MainApp::run()
 #endif			
 	}
 	
-#ifdef DESURA_NONGPL_BUILD	
+#ifdef DESURA_OFFICAL_BUILD	
 	if (testInstall)
 		return InstallFilesForTest();
 		
@@ -200,7 +200,7 @@ int MainApp::run()
 
 	if (!FileExists(lockPath.c_str())) // if desura isn't already running - simple check
 	{
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 		if (CheckForUpdate(forceUpdate, skipUpdate))
 			return 0;
 #endif

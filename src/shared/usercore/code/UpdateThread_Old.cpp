@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #ifdef NIX
 #include "util/UtilLinux.h"
 #endif
+#include "../../../branding/branding.h"
 
 #define SAVE_TIME	30 //seconds
 
@@ -346,7 +347,7 @@ void UpdateThreadOld::loadLoginItems()
 }
 
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 
 void UpdateThreadOld::checkAppUpdate(TiXmlNode* uNode)
 {

@@ -59,7 +59,7 @@ void UpdateShortCuts()
 		UTIL::WIN::createShortCut(gcWString(spOne).c_str(), exe.c_str(), wd.c_str(), "", false);
 	}
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 	if (UTIL::FS::isValidFile(spTwo) || force)
 	{
 		UTIL::FS::delFile(spTwo);

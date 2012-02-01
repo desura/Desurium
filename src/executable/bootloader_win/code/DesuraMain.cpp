@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "resource.h"
 #include "UtilBootloader.h"
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 	#include "AppUpdateInstall.h"
 	
 	extern UINT DownloadFilesForTest();
@@ -165,7 +165,7 @@ BOOL BootLoader::InitInstance()
 	BootLoaderUtil::SetCurrentDir();
 	CWinApp::InitInstance();
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 	CheckForBadUninstaller();
 #endif
 
@@ -180,7 +180,7 @@ BOOL BootLoader::InitInstance()
 		return FALSE;
 	}
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 	if (args.hasArg("testinstall"))
 	{
 		m_bRetCode = true;
@@ -210,7 +210,7 @@ BOOL BootLoader::InitInstance()
 		return FALSE;
 	}
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 #ifdef DEBUG
 	if (args.hasArg("debugupdater"))
 	{
@@ -289,7 +289,7 @@ BOOL BootLoader::InitInstance()
 		}
 	}
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 	if (args.hasArg("forceupdate"))
 	{
 		if (!hasAdminRights)
