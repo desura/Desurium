@@ -45,7 +45,7 @@ public:
 		m_uiTitleHeight = 0;
 #endif
 
-		Create(parent, id, title, pos, size + wxSize(16, 38), style);
+		this->Create(parent, id, title, pos, size + wxSize(16, 38), style);
 		
 #ifdef WIN32
 		SetIcon(wxIcon(wxICON(IDI_ICONNORMAL)));
@@ -57,15 +57,15 @@ public:
 #endif
 
 #ifdef NIX
-		wxSize s = GetSize()-GetClientSize();
+		wxSize s = this->GetSize() - this->GetClientSize();
 		m_uiTitleHeight = s.GetHeight();
 
 		if (m_uiTitleHeight < 0)
 			m_uiTitleHeight = 0;
 #endif
 
-		Layout();
-		Refresh(true);
+		this->Layout();
+		this->Refresh(true);
 	}
 
 	~gcCustomFrame()

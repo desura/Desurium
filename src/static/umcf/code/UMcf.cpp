@@ -412,7 +412,7 @@ bool UMcf::checkFiles()
 		if (!m_pFileList[x]->checkFile(L"."))
 #endif
 		{
-			printf("Failed to check: [%s]\n", m_pFileList[x]->getName());
+			printf("Failed to check: [%s]\n", gcString(m_pFileList[x]->getName()).c_str());
 			return false;
 		}
 	}

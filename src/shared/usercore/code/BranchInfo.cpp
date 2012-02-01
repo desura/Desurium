@@ -290,7 +290,7 @@ void BranchInfo::loadXmlData(TiXmlNode *xmlNode)
 	XML::GetChild("cdkey", cdkey, xmlNode);
 	XML::GetAtt("type", cdkeyType, xmlNode->FirstChildElement("cdkey"));
 
-	uint32 global = -1;
+	int32 global = -1;
 	XML::GetChild("global", global, xmlNode);
 
 	if (global != -1)
@@ -331,7 +331,7 @@ void BranchInfo::loadXmlData(TiXmlNode *xmlNode)
 	}
 	else
 	{
-		uint32 build = -1;
+		int32 build = -1;
 		XML::GetChild("build", build, mcfNode);
 
 		m_uiLatestBuild = MCFBuild::BuildFromInt(build);

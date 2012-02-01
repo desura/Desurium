@@ -384,7 +384,7 @@ void WebCoreClass::getUpdatePoll(TiXmlDocument &doc, const std::map<std::string,
 		postData[p.first] = p.second;
 	});
 
-	TiXmlNode* root = postToServer(getUpdatePollUrl(), "updatepoll", postData, doc);
+	postToServer(getUpdatePollUrl(), "updatepoll", postData, doc);
 }
 
 void WebCoreClass::getLoginItems(TiXmlDocument &doc)

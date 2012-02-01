@@ -652,8 +652,8 @@ void ItemInfo::processInfo(TiXmlNode* xmlEl)
 
 void ItemInfo::processSettings(uint32 platform, TiXmlNode* setNode, WildcardManager* pWildCard, bool reset)
 {
-	if (platform == -1)
-		int a=1;
+	//if (platform == -1)
+	//	int a=1;
 
 	bool hasBroughtItem = false;
 
