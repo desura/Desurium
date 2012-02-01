@@ -1,5 +1,6 @@
 *.mk
 *.log
+*~
 out/
 src/branding
 src/third_party/boost/
