@@ -135,7 +135,9 @@ void MainMenuButton::createMenu(bool offline)
 		m_historyMenu->Enable(DESURA_wxGifts, false);
 		m_historyMenu->Enable(DESURA_wxPurchase, false);
 		m_historyMenu->Enable(DESURA_wxCart, false);
+#ifdef DESURA_OFFICAL_BUILD
 		m_historyMenu->Enable(DESURA_wxChangeLog, false);
+#endif
 
 		m_mainMenu->Enable(DESURA_wxHelp, false);
 		m_mainMenu->Enable(DESURA_wxLogOut, false);
