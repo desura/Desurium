@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 #include "Common.h"
+#include "../../../branding/branding.h"
 #include "TaskBarIcon.h"
 #include "MainApp.h"
 
@@ -95,7 +96,7 @@ TaskBarIcon::TaskBarIcon(wxWindow *parent) : gcTaskBarIcon()
 #endif
 
 	m_wxParent = parent;
-	m_szTooltip = "Desura";
+	m_szTooltip = PRODUCT_NAME;
 	
 #ifdef WIN32
 	m_wxIcon = wxIcon(wxICON(IDI_ICONSMALL));
@@ -184,7 +185,7 @@ wxMenu* TaskBarIcon::CreatePopupMenu()
 	MainApp* temp = dynamic_cast<MainApp*>(m_wxParent);
 
 	gcMenu* menu = new gcMenu();
-	gcMenuItem* m_miDesura = new gcMenuItem(menu, mcMENU_MODCORE, wxT("Desura"));
+	gcMenuItem* m_miDesura = new gcMenuItem(menu, mcMENU_MODCORE, wxT(PRODUCT_NAME));
 	gcMenuItem* m_miExit = new gcMenuItem(menu, mcMENU_EXIT, Managers::GetString(L"#TB_EXIT"));
 
 	if(!temp || !temp->isLoggedIn())

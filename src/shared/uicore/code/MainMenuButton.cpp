@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "MainMenuButton.h"
 #include <wx/msgdlg.h>
 #include "MainFormCustomFrame.h"
-
+#include "../../../branding/branding.h"
 
 
 
@@ -103,7 +103,7 @@ void MainMenuButton::createMenu(bool offline)
 	m_historyMenu->Append(DESURA_wxPurchase, Managers::GetString(L"#MENU_PURCHASE"), Managers::GetString(L"#MENU_PURCHASE_TOOLTIP"));
 	m_historyMenu->Append(DESURA_wxCart, Managers::GetString(L"#MENU_CART"), Managers::GetString(L"#MENU_CART_TOOLTIP"));
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 	m_historyMenu->Append(DESURA_wxChangeLog, Managers::GetString(L"#MENU_CHANGELOG"), Managers::GetString(L"#MENU_CHANGELOG_TOOLTIP"));
 #endif
 
@@ -135,7 +135,9 @@ void MainMenuButton::createMenu(bool offline)
 		m_historyMenu->Enable(DESURA_wxGifts, false);
 		m_historyMenu->Enable(DESURA_wxPurchase, false);
 		m_historyMenu->Enable(DESURA_wxCart, false);
+#ifdef DESURA_OFFICAL_BUILD
 		m_historyMenu->Enable(DESURA_wxChangeLog, false);
+#endif
 
 		m_mainMenu->Enable(DESURA_wxHelp, false);
 		m_mainMenu->Enable(DESURA_wxLogOut, false);

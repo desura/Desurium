@@ -32,6 +32,7 @@ static UINT gs_msgRestartTaskbar = 0;
 
 #ifdef NIX
 #include <libnotify/notify.h>
+#include "../../../branding/branding.h"
 #endif
 
 class gcTaskBarIconWindow : public wxGuiDelegateImplementation<wxFrame>
@@ -119,7 +120,7 @@ gcTaskBarIcon::gcTaskBarIcon() : wxTaskBarIcon()
 
 	m_pEvents->Bind(wxEVT_CLOSE_WINDOW, &gcTaskBarIcon::onEventClose, this);
 
-	notify_init("Desurium");
+	notify_init(PRODUCT_NAME);
 #endif
 }
 

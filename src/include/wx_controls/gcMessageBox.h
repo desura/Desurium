@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "gcControls.h"
 #include "gcDialog.h"
+#include "../../branding/branding.h"
 
 enum
 {
@@ -61,7 +62,7 @@ public:
 void gcErrorBox(wxWindow *parent, const char* title, const char* prompt, const gcException &e, HelperButtonsI* helper=NULL);
 
 //! Shows a message box
-int gcMessageBox(wxWindow *parent, const wxString& message, const wxString& caption = wxT("Desura"), long style = wxICON_EXCLAMATION|wxOK, HelperButtonsI* helper=NULL);
+int gcMessageBox(wxWindow *parent, const wxString& message, const wxString& caption = wxT(PRODUCT_NAME), long style = wxICON_EXCLAMATION|wxOK, HelperButtonsI* helper=NULL);
 
 class gcImageControl;
 class gcButton;

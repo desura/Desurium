@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "IPCBrowser.h"
 #include "IPCManager.h"
 
+#include "../../branding/branding.h"
+
 #ifndef DESURA_CLIENT
 	#include "cef_desura_includes/ChromiumBrowserI.h"
 	#include "CefEvents.h"
@@ -329,7 +331,7 @@ void IPCBrowser::newBrowser(uint64 hwnd, const char* url)
 
 	m_pEventHandler = new EventHandler();
 
-	m_pBrowser = NewChromiumBrowser(h, "Desura", url);
+	m_pBrowser = NewChromiumBrowser(h, PRODUCT_NAME, url);
 	m_pBrowser->setEventCallback(m_pEventHandler);
 }
 

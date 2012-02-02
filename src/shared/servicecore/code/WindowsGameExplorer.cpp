@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 #include "Common.h"
+#include "../../../branding/branding.h"
 #include "XMLMacros.h"
 #include "SharedObjectLoader.h"
 
@@ -88,7 +89,7 @@ void AddDesuraToWIndowsGameExplorer()
 	ValidateGamesInGameExplorer();
 
 	std::string path = UTIL::WIN::getRegValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Desura\\DesuraApp\\InstallPath") + "\\bin\\Desura_GDF.dll";
-	AddGameToWindowsGameExplorer("Desura", path.c_str());
+	AddGameToWindowsGameExplorer(PRODUCT_NAME, path.c_str());
 }
 
 void RemoveGameFromWindowsGameExplorer(const char* dllPath, bool deleteDl)

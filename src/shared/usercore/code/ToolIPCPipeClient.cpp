@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "ToolIPCPipeClient.h"
 #include "IPCToolMain.h"
 
+#include "../../../branding/branding.h"
+
 namespace UserCore
 {
 
@@ -43,7 +45,7 @@ ToolIPCPipeClient::~ToolIPCPipeClient()
 
 void ToolIPCPipeClient::onDisconnect()
 {
-	Warning("Desura Tool Helper Disconnected unexpectedly!\n");
+	Warning(PRODUCT_NAME " Tool Helper Disconnected unexpectedly!\n");
 	m_pServiceMain = NULL;
 }
 
@@ -92,7 +94,7 @@ void ToolIPCPipeClient::tryStart()
 	}
 	catch (gcException &e)
 	{
-		throw gcException((ERROR_ID)e.getErrId(), e.getSecErrId(), gcString("Failed to start desura install helper: {0}", e));
+		throw gcException((ERROR_ID)e.getErrId(), e.getSecErrId(), gcString("Failed to start " PRODUCT_NAME " install helper: {0}", e));
 	}
 }
 
