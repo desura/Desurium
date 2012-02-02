@@ -103,7 +103,7 @@ public:
 	uint32 deserialize(const char* buffer, uint32 size);
 	uint64 getValue(bool dup);
 
-	uint32 getType(){return PVoid::getTypeS();}
+	uint32 getType(){return getTypeS();}
 	static uint32 getTypeS(){ return IPC::getType<void>(); }
 };
 
@@ -117,7 +117,7 @@ public:
 	uint32 deserialize(const char* buffer, uint32 size);
 	uint64 getValue(bool dup);
 
-	uint32 getType(){return PBool::getTypeS();}
+	uint32 getType(){return getTypeS();}
 	static uint32 getTypeS(){ return IPC::getType<bool>(); }
 
 private:
@@ -135,7 +135,7 @@ public:
 	uint32 deserialize(const char* buffer, uint32 size);
 	uint64 getValue(bool dup);
 
-	uint32 getType(){return PUint32::getTypeS();}
+	uint32 getType(){return getTypeS();}
 	static uint32 getTypeS(){ return IPC::getType<uint32>(); }
 
 private:
@@ -152,7 +152,7 @@ public:
 	uint32 deserialize(const char* buffer, uint32 size);
 	uint64 getValue(bool dup);
 
-	uint32 getType(){return PInt32::getTypeS();}
+	uint32 getType(){return getTypeS();}
 	static uint32 getTypeS(){ return IPC::getType<int32>(); }
 
 private:
@@ -169,7 +169,7 @@ public:
 	uint32 deserialize(const char* buffer, uint32 size);
 	uint64 getValue(bool dup);
 
-	uint32 getType(){return PUint64::getTypeS();}
+	uint32 getType(){return getTypeS();}
 	static uint32 getTypeS(){ return IPC::getType<uint64>(); }
 
 private:
@@ -187,7 +187,7 @@ public:
 	uint32 deserialize(const char* buffer, uint32 size);
 	uint64 getValue(bool dup);
 
-	uint32 getType(){return PDouble::getTypeS();}
+	uint32 getType(){return getTypeS();}
 	static uint32 getTypeS(){ return IPC::getType<double>(); }
 
 private:
@@ -206,7 +206,7 @@ public:
 	uint32 deserialize(const char* buffer, uint32 size);
 	uint64 getValue(bool dup);
 
-	uint32 getType(){return PString::getTypeS();}
+	uint32 getType(){return getTypeS();}
 	static uint32 getTypeS(){ return IPC::getType<char*>(); }
 
 private:
@@ -225,7 +225,7 @@ public:
 	uint32 deserialize(const char* buffer, uint32 size);
 	uint64 getValue(bool dup);
 
-	uint32 getType(){return PException::getTypeS();}
+	uint32 getType(){return getTypeS();}
 	static uint32 getTypeS(){ return IPC::getType<gcException>(); }
 
 private:
@@ -248,7 +248,7 @@ public:
 	uint32 deserialize(const char* buffer, uint32 size);
 	uint64 getValue(bool dup);
 
-	uint32 getType(){return PBlob::getTypeS();}
+	uint32 getType(){return getTypeS();}
 	static uint32 getTypeS(){ return IPC::getType<PBlob>(); }
 
 	uint32 getSize()const{return m_uiSize;}
