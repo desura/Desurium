@@ -27,6 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "IPCServiceMain.h"
 
+#include "../../../branding/branding.h"
+
 namespace UserCore
 {
 namespace Task
@@ -51,7 +53,7 @@ void DownloadUpdateTask::doTask()
 	}
 	catch (gcException &except)
 	{
-		Warning(gcString("Failed to download Desura Update: {0}.\n", except));
+		Warning(gcString("Failed to download " PRODUCT_NAME " Update: {0}.\n", except));
 	}
 
 	if (!m_bStopped)
@@ -183,7 +185,7 @@ void DownloadUpdateTask::downloadUpdate()
 
 		if (!res)
 		{
-			Msg(gcString("Downloading desura update: Ver {0} build {1}\n", appver, build));
+			Msg(gcString("Downloading " PRODUCT_NAME " update: Ver {0} build {1}\n", appver, build));
 			info.alert = true;
 
 			onDownloadStartEvent(info);

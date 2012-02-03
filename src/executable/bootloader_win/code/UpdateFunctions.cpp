@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 void SetRegValues();
 void InstallService();
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 int NeedUpdateNonGpl();
 #endif
 
@@ -69,7 +69,7 @@ bool FileExists(const wchar_t* fileName)
 		return false;
 }
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 extern FILE* g_pUpdateLog;
 #endif
 
@@ -117,7 +117,7 @@ int IsServiceInstalled()
 	Safe::snprintf(regname, 255, "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\%s\\Start", SERVICE_NAME);
 	int res = UTIL::WIN::getRegValueInt(regname, true);
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 	if (g_pUpdateLog)
 		fprintf(g_pUpdateLog, "Status: %d\n", res);
 #endif
@@ -130,7 +130,7 @@ int IsServiceInstalled()
 
 int NeedUpdate()
 {
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 	int res = NeedUpdateNonGpl();
 	
 	if (res != UPDATE_NONE)
@@ -156,7 +156,7 @@ void SetRegValues()
 	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Desura\\DesuraApp\\InstallPath", exePath);
 	UTIL::WIN::delRegKey("HKEY_LOCAL_MACHINE\\SOFTWARE\\DesuraNET");
 
-	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\DisplayName", "Desura");
+	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\DisplayName", PRODUCT_NAME);
 	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\UninstallString", gcString("{0}\\Desura_Uninstaller.exe", exePath));
 	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\InstallLocation", exePath);
 	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\DisplayIcon", gcString("{0}\\desura.exe", exePath));
@@ -319,7 +319,7 @@ bool FixServiceDisabled()
 	}
 	catch (gcException)
 	{
-		MessageBox(NULL, "The service desura needs to use to install content is disabled. \n\nPlease enable it via msconfig (\"Desura Install Service\").", "Desura: Failed to enable service", MB_OK|MB_ICONEXCLAMATION);
+		MessageBox(NULL, "The service desura needs to use to install content is disabled. \n\nPlease enable it via msconfig (\"" PRODUCT_NAME " Install Service\").", PRODUCT_NAME ": Failed to enable service", MB_OK|MB_ICONEXCLAMATION);
 		return false;
 	}
 

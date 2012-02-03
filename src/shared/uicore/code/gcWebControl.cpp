@@ -24,6 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "gcWebFakeBrowser.h"
 
+#include "../../../branding/branding.h"
+
 #ifdef WIN32
 ChromiumDLL::ChromiumBrowserI* NewChromiumBrowser(HWND hwnd, const char* name, const char* loadUrl);
 #else
@@ -52,7 +54,7 @@ gcWebControl::gcWebControl(wxWindow* parent, const char* defaultUrl, const char*
 	m_pEventHandler = new EventHandler(this);
 
 #ifdef WIN32
-	m_pChromeBrowser = NewChromiumBrowser((HWND)GetHWND(), "Desura", loadingurl.c_str());
+	m_pChromeBrowser = NewChromiumBrowser((HWND)GetHWND(), PRODUCT_NAME, loadingurl.c_str());
 #else
 	GtkWidget* gtkParent = this->GetConnectWidget();
 	GtkWidget* vbox = gtk_vbox_new(FALSE, 0);
@@ -77,7 +79,7 @@ gcWebControl::gcWebControl(wxWindow* parent, const char* defaultUrl, const char*
 	
 	gtk_container_add(GTK_CONTAINER(gtkParent), vbox);
 	
-	m_pChromeBrowser = NewChromiumBrowser((int*)vbox, "Desura", loadingurl.c_str());
+	m_pChromeBrowser = NewChromiumBrowser((int*)vbox, PRODUCT_NAME, loadingurl.c_str());
 #endif
 
 	if (!m_pChromeBrowser)

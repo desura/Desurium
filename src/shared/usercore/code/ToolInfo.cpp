@@ -412,7 +412,7 @@ bool ToolInfo::processResultString()
 	std::deque<std::string> opStack;
 
 	bool lastWasDigit = false;
-	bool lastWasAlpha = false;
+	//bool lastWasAlpha = false;              unused variable
 
 	while (it != m_szResult.end())
 	{
@@ -481,7 +481,7 @@ bool ToolInfo::processResultString()
 			opStack.push_back(val);
 		}
 
-		lastWasAlpha = isalpha(c) || c == '(' || c == ')';
+		//lastWasAlpha = isalpha(c) || c == '(' || c == ')';
 		lastWasDigit = isdigit(c)?true:false;
 
 		++it;

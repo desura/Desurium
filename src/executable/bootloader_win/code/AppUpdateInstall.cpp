@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "IPCUpdateApp.h"
 
 #include "util/UtilWindows.h"
+#include "../../../branding/branding.h"
 
 class AppUpdateInstall::Privates
 {
@@ -199,8 +200,8 @@ void AppUpdateInstall::onError(gcException& e)
 	if (e.getErrId() != ERR_INVALIDFILE && e.getErrId() != ERR_FAILEDSEEK)
 	{
 		char mbmsg[255];
-		Safe::snprintf(mbmsg, 255, "Desura has had a critical error while updating.\n\n%s [%d.%d]", e.getErrMsg(), e.getErrId(), e.getSecErrId());
-		::MessageBox(NULL, mbmsg, "Desura Critical Update Error", MB_OK);
+		Safe::snprintf(mbmsg, 255, PRODUCT_NAME " has had a critical error while updating.\n\n%s [%d.%d]", e.getErrMsg(), e.getErrId(), e.getSecErrId());
+		::MessageBox(NULL, mbmsg, PRODUCT_NAME " Critical Update Error", MB_OK);
 	}
 	else
 	{

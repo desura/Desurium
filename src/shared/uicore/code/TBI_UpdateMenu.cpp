@@ -86,7 +86,11 @@ const wchar_t* TBIUpdateMenu::getMenuName()
 
 void TBIUpdateMenu::calcUpdates()
 {
+  uint32 numUpdates = 0;
 	UserCore::UserI* user = GetUserCore();
+
+	gameUpdateCount = 0;
+	modUpdateCount = 0;
 
 	if (!user)
 	{
@@ -99,29 +103,27 @@ void TBIUpdateMenu::calcUpdates()
 		messageCount = user->getPmCount();
 		updateCount = user->getUpCount();
 		cartCount = user->getCartCount();
+
+	  std::vector<UserCore::Item::ItemInfoI*> gList;
+	  user->getItemManager()->getGameList(gList);
+
+	  for (size_t x=0; x<gList.size(); x++)
+	  {
+		  if (HasAnyFlags(gList[x]->getStatus(), UserCore::Item::ItemInfoI::STATUS_UPDATEAVAL))
+			  gameUpdateCount++;
+
+		  std::vector<UserCore::Item::ItemInfoI*> mList;
+		  user->getItemManager()->getModList(gList[x]->getId(), mList);
+
+		  for (size_t y=0; y<mList.size(); y++)
+		  {
+			  if (HasAnyFlags(mList[y]->getStatus(), UserCore::Item::ItemInfoI::STATUS_UPDATEAVAL))
+				  gameUpdateCount++;
+		  }
+	  }
+
+	  numUpdates = messageCount + updateCount + gameUpdateCount + modUpdateCount;
 	}
-
-	gameUpdateCount = 0;
-	modUpdateCount = 0;
-
-	std::vector<UserCore::Item::ItemInfoI*> gList;
-	user->getItemManager()->getGameList(gList);
-
-	for (size_t x=0; x<gList.size(); x++)
-	{
-		if (HasAnyFlags(gList[x]->getStatus(), UserCore::Item::ItemInfoI::STATUS_UPDATEAVAL))
-			gameUpdateCount++;
-
-		std::vector<UserCore::Item::ItemInfoI*> mList;
-		user->getItemManager()->getModList(gList[x]->getId(), mList);
-
-		for (size_t y=0; y<mList.size(); y++)
-		{
-			if (HasAnyFlags(mList[y]->getStatus(), UserCore::Item::ItemInfoI::STATUS_UPDATEAVAL))
-				gameUpdateCount++;
-		}
-	}
-
-	uint32 numUpdates = messageCount + updateCount + gameUpdateCount + modUpdateCount;
+	
 	m_szMenuName = gcWString(L"{0} ({1})", Managers::GetString(L"#TB_STATUS"), numUpdates);
 }

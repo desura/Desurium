@@ -225,7 +225,7 @@ int InstallBranch::setInfo(DesuraId id, bool selectBranch)
 	}
 
 	uint32 count = 0;
-	uint32 full = -1;
+	int32 full = -1;
 	uint32 fullReadyCount = 0;
 	m_bBuy = true;
 
