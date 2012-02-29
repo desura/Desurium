@@ -5,7 +5,6 @@ Desura is a gaming client that allows a user to one click download and install g
 See here for more information: http://www.moddb.com/groups/desura/forum/thread/open-sourcing-desura
 
 
-
 Build Desura Windows
 ===================
 
@@ -60,23 +59,20 @@ from the folder or setup visual studio to use the desura-d.exe from the build_ou
 Build Desura Linux
 ===================
 
-To install all of build deps on Debian/Ubuntu just invoke this command as root:
-apt-get install gcc-4.5 git-core subversion m4 build-essential binutils automake autoconf libtool libgtk2.0-dev libnss3-dev libgconf2-dev libgnome-keyring-dev libdbus-glib-1-dev gperf bison libcups2-dev flex libjpeg-dev libasound2-dev libbz2-dev libxpm-dev libx11-dev libssl-dev scons
+First you have to install git via your distro's pacakge manager. Command may be "apt-get install git" for Debian-based, for RPM-based it's "yum install git", for Arch it's "pacman -S git".
 
-Or if you are using Fedora invoke this command as root:
-yum install git subversion m4 autoconf gcc-c++ glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel scons
+Clone repo and cd into source directory
+git clone git://github.com/lodle/Desurium.git
+cd Desurium
 
-Check out repo
-Copy branding_default in src to src/branding
+Script install-deps.sh will install building dependecies on major Linux distros. For now it supports Arch, Debian and it's derivatives like Ubuntu and Mint, Red Hat and it's derivatives like Fedora.
+If your distro is not supported yet then you have to read this script and install corresponding packages for it. In case of succes, send us a patch. Now execute it:
+./install-deps.sh
 
-#!/bin/bash
-# Run from root repo dir
-# Build desura
-source env.sh
-cd src/third_party
-./SvnCheckOut.sh
-./BuildAll.sh
-cd ../../build_lin
+Wee don't want to use Desura branding, so invoke:
+cp -r src/branding_default src/branding
+
+Then run the build script
 ./build.sh
 
 
