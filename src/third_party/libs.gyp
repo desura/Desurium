@@ -5,7 +5,7 @@
 	'targets': [
 	{
 		'target_name': 'breakpad',
-		'type': 'settings',
+		'type': 'none',
 		'variables': {
 			'breakpad_static%': 0,
 		},
@@ -29,7 +29,7 @@
 	},	
 	{
 		'target_name': 'curl',
-		'type': 'settings',
+		'type': 'none',
 		'variables': {
 			'curl_static%': 0,
 		},
@@ -76,7 +76,7 @@
 	},
 	{
 		'target_name': 'curl_lib',
-		'type': 'settings',	
+		'type': 'none',	
 		'all_dependent_settings':
 		{	
 			'ldflags': [
@@ -89,7 +89,7 @@
 	},
 	{
 		'target_name' : 'wxWidgets',
-		'type': 'settings',
+		'type': 'none',
 		'all_dependent_settings' : {
 			'cflags' : [
 				'<!@(pkg-config gtk+-2.0 --cflags)',	# GTK+2.0 include directories and defines
@@ -122,7 +122,7 @@
 	},
 	{
 		'target_name': 'gtk',
-		'type': 'settings',
+		'type': 'none',
 		'all_dependent_settings' : {
 			'cflags' : [
 				'<!@(pkg-config gtk+-2.0 --cflags)',	# GTK+2.0 include directories and defines
@@ -134,7 +134,7 @@
 	},
 	{
 		'target_name' : 'boost',
-		'type': 'settings',
+		'type': 'none',
 		'all_dependent_settings' : {
 			'ldflags': [
 				'-L>(third_party_lib_dir)/boost/stage/lib',
@@ -149,7 +149,7 @@
 	},
 	{
 		'target_name' : 'v8',
-		'type': 'settings',
+		'type': 'none',
 		'all_dependent_settings' : {
 			'ldflags': [
 				'-L>(third_party_lib_dir)/v8',
