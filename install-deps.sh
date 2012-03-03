@@ -1,9 +1,12 @@
 #!/bin/sh
 # Determine the Linux distribution that is being run and install the build dependencies for it.
 
+echo "NOTE: It'd be a good idea in general to read the contents of this script if you haven't already."
+# Sounds scary, just to catch attention. Thanks for reading!
+
 PASS_MESSAGE="Please provide root password to install build dependecies"
 DISTRIBUTION="Unknown"
-UNSUPPORTED_DISTROS="Unknown SUSE Slackware"
+UNSUPPORTED_DISTROS="Unknown distribution."
 UNSUPPORTED_MESSAGE=" is not supported yet, consult this script and figure out dependencies for it."
 
 if [ -f /etc/SuSE-release ]; then
@@ -25,7 +28,8 @@ elif [ -f /etc/arch-release ]; then
 	if [ "$(whoami)" != 'root' ]; then
 		echo $PASS_MESSAGE
 	fi
-	su -c 'pacman -S git subversion m4 autoconf gcc glibc binutils autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify'
+	DEPS="$(pacman -T git subversion m4 autoconf gcc glibc binutils autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify)"
+	su -c 'pacman -S $DEPS'
 elif [ -f /etc/slackware-version ]; then
 	DISTRIBUTION="Slackware"
 fi
