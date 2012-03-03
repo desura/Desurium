@@ -132,7 +132,7 @@
 	<str name="#CF_PROG">Postęp:</str>
 	<str name="#CF_NOTSTARTED">Inicjowanie ...</str>
 	<str name="#CF_ERROR">Wystąpił błąd w trakcie procesu tworzenia pliku MCF i operacja została zatrzymana.</str>
-	<str name="#CF_ERRTITLE">Błąd tworzenia MCF</str>
+	<str name="#CF_ERRTITLE">Błąd Tworzenia MCF</str>
 	
 	<!-- note the {0} will be replaced with the item name! -->
 	<str name="#CF_COMPLETE">Tworzenie MCF dla {0} zostało zakończone.</str> 
