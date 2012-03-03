@@ -5,28 +5,28 @@
 		<profile>http://www.desura.com/members/jacklul</profile>
 	</author>
 	<linux>
-	<!-- havnt been translated
-		<str name="#IF_WINDOWS_LAUNCH_WARNING">WARNING: You are attempting to launch a Windows program. This relies on your system recognising the format and launching the appropriate tools (eg: WINE). If you do not, the application/game may not launch correctly or at all.&#xA;&#xA;This warning can be disabled in Settings.</str>
-		<str name="#IF_SHOWFILES">Show Files</str>
-		<str name="#MF_ERROR_NO32LIBS">The item you tried to launch is 32 bit but it appears that you do not have 32 bit libs Installed.&#xA;&#xA;Please see http://www.desura.com/groups/desura/linux for more information.</str>
+
+		<str name="#IF_WINDOWS_LAUNCH_WARNING">UWAGA: Próbujesz uruchomić program na system Windows. Powodzenie zależy od poprawnego wykrycia formatu przez system i uruchomienia odpowiednich narzędzi (np. Wine). Jeśli się to nie powiedzie, aplikacja/gra może uruchomić się niepoprawnie, lub w ogóle. &#xA;&#xA;To ostrzeżenie może zostać zablokowane w Ustawieniach.</str>
+		<str name="#IF_SHOWFILES">Pokaż pliki</str>
+		<str name="#MF_ERROR_NO32LIBS">Element, który próbowałeś uruchomić jest 32 bitowy, ale wygląda na to, że nie są zainstalowane biblioteki 32 bitowe.&#xA;&#xA;Proszę zobaczyć http://www.desura.com/groups/desura/linux aby uzyskać więcej informacji.</str>
 	
-		<str name="#PLAY_EMPTY">You have no Linux {1}games{0} in your account.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
+		<str name="#PLAY_EMPTY">Nie masz {1}gier{0} na system Linux na swoim koncie.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
 	
-	<!-- havnt been translated
-		<str name="#SET_CV_LIN_DIS_WIN_WRN">Disable Windows executable warning.</str>
-		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Doesn't warn you every time you launch a Windows executable.</str>
-		<str name="#SET_CV_ALLOW_WM_POS">Use window manager positioning.</str>
-		<str name="#SET_CV_ALLOW_WM_POS_TOOLTIP">Allows the system window manager to position the main form as opposed to Desura saving and restoring position and size.</str>
-	-->
+	
+		<str name="#SET_CV_LIN_DIS_WIN_WRN">Zablokuj ostrzeżenie o plikach uruchamialnych Windows.</str>
+		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Nie ostrzega za każdym razem, kiedy próbujesz uruchomić plik uruchamialny Windows.</str>
+		<str name="#SET_CV_ALLOW_WM_POS">Użyj pozycjonowania managera okien.</str>
+		<str name="#SET_CV_ALLOW_WM_POS_TOOLTIP">Pozwala managerowi okien systemu na pozycjonowanie głównego formularza, zamiast pozwolić Desurze na zapisywanie i przywracanie pozycji i rozmiaru.</str>
+	
 	</linux>
 	<windows>
 		<str name="#IF_SHOWFILES">Pokaż Pliki w Eksploratorze</str>
 		
-	<!-- havnt been translated	
+	<!-- havent been translated	
         <str name="#PLAY_EMPTY">Vi ne havas iu ajn {1}ludoj{0} aŭ {2}ludŝanĝoj{0} en via konto. Vi devas rulu la {3}instalita asistanto{0} kio serĉos via komputilo por ludoj kio Desuro subtenata.</str>
         <!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
 		
-	<!-- havnt been translated
+	<!-- havent been translated
 		<str name="#SET_CV_DISABLE_FS_PERMS">Make all install folders writable by normal users</str>
 		<str name="#SET_CV_DISABLE_FS_PERMS_TOOLTIP">Due to game developers not being able to follow windows standards many games write to the install folder and crash if they cant. Warning: Disabling this might make some games not work</str>
 		
@@ -98,10 +98,10 @@
 	<str name="#UNF_REMOVEFILES_TOOLTIP">Usuń MCF i pliki związane z platformą Desura dla tego elementu</str>
 	<str name="#UNF_REMOVEACCOUNT">Usuń z konta</str>
 	<str name="#UNF_REMOVEACCOUNT_TOOLTIP">Usunięcie tej pozycji z rachunku bieżącego</str>
-	<str name="#UNF_ERRTITLE">Błąd Odinstalwywania</str>
-	<str name="#UNF_ERROR">Wystąpił błąd w trakcie odinstalowywania i została zatrzymana.</str>
+	<str name="#UNF_ERRTITLE">Błąd Odinstalowywania</str>
+	<str name="#UNF_ERROR">Wystąpił błąd w trakcie odinstalowywania i proces został zatrzymany.</str>
 	<!-- {0} repersents item name -->
-	<str name="#UNF_CONFIRM">Czy na pewno chcesz odinstalować {0} od komputera? Po uruchomieniu procesu nie można go anulować.</str>
+	<str name="#UNF_CONFIRM">Czy na pewno chcesz odinstalować {0} z komputera? Po uruchomieniu procesu nie można go anulować.</str>
 
 	<!-- ALL ones above here are checked to be used in desura -->
 	
@@ -109,11 +109,11 @@
 	<str name="#UDF_PROMPT">Wybierz plik MCF, który chcesz przesłać.</str>
 	<str name="#UDF_ERROR_VALIDATION">Nie udało się potwierdzić pliku do przesłania</str>
 	<str name="#UDF_ERRTITLE">Błąd przesyłania pliku MCF</str>
-	<str name="#UDF_NOFILE">Nie udało się odnaleźć pliku potrzebnych do wznowienia przesyłania. Proszę znaleźć plik lub zacząć od nowa.</str>
-	<str name="#UDF_RESUME_ERRTITLE">Błąd Kontynuacji Przesyłania pliku</str>
-	<str name="#UDF_NONMATCHING_FILE">Wybrany Plik nie pasuje do przesłanego pliku. Proszę wybrać poprawny plik lub zacząć od nowa.</str>
-	<str name="#UDF_UPLOAD_ERRTITLE">Błąd Przesyłania pliku</str>
-	<str name="#UDF_ERROR">Wystąpił błąd podczas Przesyłania MCF i operacja została zatrzymana.</str>
+	<str name="#UDF_NOFILE">Nie udało się odnaleźć pliku potrzebnego do wznowienia przesyłania. Proszę znaleźć plik lub zacząć od nowa.</str>
+	<str name="#UDF_RESUME_ERRTITLE">Błąd kontynuacji przesyłania pliku</str>
+	<str name="#UDF_NONMATCHING_FILE">Wybrany plik nie pasuje do przesłanego pliku. Proszę wybrać poprawny plik lub zacząć od nowa.</str>
+	<str name="#UDF_UPLOAD_ERRTITLE">Błąd przesyłania pliku</str>
+	<str name="#UDF_ERROR">Wystąpił błąd podczas przesyłania MCF i operacja została zatrzymana.</str>
 	<str name="#UDF_ETIME">Szacowany pozostały czas:</str>
 	<str name="#UDF_NOTSTARTED">Przesyłania nie zostało rozpoczęte.</str>
 	<str name="#UDF_DELETE">Usuń MCF po zakończeniu</str>
@@ -121,7 +121,7 @@
 	<str name="#UDF_COMPLETE">Przesyłanie wykonane.</str>
 	<str name="#UDF_UNKNOWNPAUSE">Wstrzymany</str>
 	<str name="#UDF_REMINDER">Nie przypominaj w przyszłości</str>
-	<str name="#UDF_PROMPTINFO">Możesz wznowić przesyłanie w dowolnej chwili za pomocą karty "Gry", która zawiera wszystkie projekty, które rozwijasz i są bieżąco przesyłane.
+	<str name="#UDF_PROMPTINFO">Możesz wznowić przesyłanie w dowolnej chwili za pomocą karty "Gry", która zawiera wszystkie projekty, które rozwijasz i bieżące przesyłania.
 </str>
 	<str name="#UDF_RESUMEDIR">Wyszukiwanie MCF ...</str>
 
@@ -132,7 +132,7 @@
 	<str name="#CF_PROG">Postęp:</str>
 	<str name="#CF_NOTSTARTED">Inicjowanie ...</str>
 	<str name="#CF_ERROR">Wystąpił błąd w trakcie procesu tworzenia pliku MCF i operacja została zatrzymana.</str>
-	<str name="#CF_ERRTITLE">Błąd Tworzenia MCF</str>
+	<str name="#CF_ERRTITLE">Błąd tworzenia MCF</str>
 	
 	<!-- note the {0} will be replaced with the item name! -->
 	<str name="#CF_COMPLETE">Tworzenie MCF dla {0} zostało zakończone.</str> 
@@ -149,7 +149,7 @@
 	<str name="#IF_UNINSTALL_BRANCH">Usuwanie Starych Plików: </str>
 	<str name="#IF_UNINSTALL_PATCH">Usuwanie Starych Plików: </str>
 	<str name="#IF_UNINSTALL_COMPLEX">Odinstalowywanie Skomplikowanej Modyfikacji: </str>
-	<str name="#IF_INSTALL_CHECK">Sprawdzenie Instalacji</str>
+	<str name="#IF_INSTALL_CHECK">Sprawdzenie instalacji</str>
 	
 	<str name="#IF_UNINSTALL_LABEL">Odinstalowywanie ...</str>
 	<str name="#IF_UNINSTALL_BRANCH_LABEL">Usuwanie Starych Plików ... </str>
@@ -159,7 +159,7 @@
 	<!-- Install check -->
 	
 	<str name="#IC_ERRTITLE">Błąd Sprawdzania Instalacji</str>
-	<!-- <str name="#IC_LABEL">Checking Install for:</str> -->
+	<str name="#IC_LABEL">Sprawdzanie instalacji dla:</str>
 	<str name="#IC_ERROR">Wystąpił błąd podczas sprawdzania instalacji i operacja została zatrzymana.</str>
 	<str name="#IC_FOUND">został znaleziony i jest teraz gotowy do gry.</str>
 	<str name="#IC_NOTFOUND">nie został znaleziony. Proszę zobaczyć wsparcie na stronie desura.com</str>
@@ -204,7 +204,7 @@
 	<str name="#IF_VERIFYLABEL">Weryfikowanie ...</str>
 	<str name="#IF_VERIFYCOMPLETE">Weryfikacja Zakończona</str>
 	<str name="#IF_VERROR">Wystąpił błąd w trakcie weryfikacji procesu instalacji i operacja została zatrzymana.</str>
-	<str name="#IF_VERRTITLE">Bląd Werifikacji Instalacji</str>
+	<str name="#IF_VERRTITLE">Błąd Werifikacji Instalacji</str>
 
 	<str name="#IF_VERIFYMCF">Weryfikacja MCF ...</str>
 	<str name="#IF_VERIFYINSTALL">Weryfikacji Instalacji ...</str>
