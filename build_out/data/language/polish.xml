@@ -149,7 +149,7 @@
 	<str name="#IF_UNINSTALL_BRANCH">Usuwanie Starych Plików: </str>
 	<str name="#IF_UNINSTALL_PATCH">Usuwanie Starych Plików: </str>
 	<str name="#IF_UNINSTALL_COMPLEX">Odinstalowywanie Skomplikowanej Modyfikacji: </str>
-	<str name="#IF_INSTALL_CHECK">Sprawdzenie instalacji</str>
+	<str name="#IF_INSTALL_CHECK">Sprawdzenie Instalacji</str>
 	
 	<str name="#IF_UNINSTALL_LABEL">Odinstalowywanie ...</str>
 	<str name="#IF_UNINSTALL_BRANCH_LABEL">Usuwanie Starych Plików ... </str>
