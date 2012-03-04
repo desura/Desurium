@@ -6,6 +6,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
   ${COMMON_INCLUDE_DIRS}
   ${GLOBAL_INCLUDE_DIRS}
+  ${TINYXML_INCLUDE_DIRS}
 )
 
 file(GLOB DesuraSources code/*.cpp code/*.h )
