@@ -2,6 +2,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${GLOBAL_INCLUDE_DIRS}
   ${COMMON_INCLUDE_DIRS}
+  ${TINYXML_INCLUDE_DIRS}
 )
 
 file(GLOB Headers code/*.h)
@@ -23,3 +24,6 @@ else()
 endif()
 
 add_library(ipc_pipe SHARED ${Sources} ${PlattformSources})
+target_link_libraries(ipc_pipe
+    tinyxml
+)
