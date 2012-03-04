@@ -23,7 +23,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
-#include "client/linux/handler/exception_handler.h"
+#ifdef BUILD_WITH_CMAKE
+  #include <google_breakpad/exception_handler.h>
+#else
+  #include "client/linux/handler/exception_handler.h"
+#endif
 
 #include "../../../branding/branding.h"
 
