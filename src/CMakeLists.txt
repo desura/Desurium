@@ -32,6 +32,9 @@ add_subdirectory(static/managers)
 # build mdump
 add_subdirectory(static/mdump)
 
+# build threads
+add_subdirectory(static/util_thread)
+
 # add_subdirectory(static/util)
 
 # build uicore
