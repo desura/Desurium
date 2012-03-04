@@ -21,6 +21,7 @@ add_definitions(-D__WXGTK__)
 add_subdirectory(common)
 
 # build third_party
+add_subdirectory(third_party/courgette)
 add_subdirectory(third_party/sqlite3x)
 add_subdirectory(third_party/tinyxml)
 
@@ -33,6 +34,9 @@ add_subdirectory(static/util)
 add_subdirectory(static/util_fs)
 add_subdirectory(static/util_thread)
 add_subdirectory(static/wx_controls)
+
+# build shared libs
+add_subdirectory(shared/mcfcore)
 
 # build uicore
 # add_subdirectory(shared/uicore)
