@@ -8,9 +8,6 @@ file(COPY branding_default/ DESTINATION ${CMAKE_SOURCE_DIR}/branding)
 
 set(GLOBAL_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/include)
 
-# dirty hacks
-# add_Definitions(-DUI_HIDE_MODS=1 -DCopyMemory=memcpy)
-
 # Desura uses the awesome new C++ Standard
 add_definitions(-std=c++0x -fpermissive -DBUILD_WITH_CMAKE=1 -DBOOST_FILESYSTEM_VERSION=2)
 
@@ -18,7 +15,7 @@ add_definitions(-std=c++0x -fpermissive -DBUILD_WITH_CMAKE=1 -DBOOST_FILESYSTEM_
 add_definitions(-D__WXGTK__)
 
 # other usefull macros
-add_definitions(-DDESURA_CLIENT)
+add_definitions(-DDESURA_CLIENT -DUI_HIDE_MODS=1)
 
 # build the common shared lib
 add_subdirectory(common)
@@ -41,6 +38,7 @@ add_subdirectory(static/wx_controls)
 
 # build shared libs
 add_subdirectory(shared/mcfcore)
+add_subdirectory(shared/uicore)
 add_subdirectory(shared/usercore)
 add_subdirectory(shared/webcore)
 
