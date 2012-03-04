@@ -1,6 +1,3 @@
-find_package(GTK2 REQUIRED)
-find_package(wxWidgets 2.9 REQUIRED)
-
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${GLOBAL_INCLUDE_DIRS}

@@ -2,7 +2,13 @@ cmake_minimum_required(VERSION 2.8)
 project(Desura)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+find_package(Boost COMPONENTS date_time filesystem REQUIRED)
+find_package(BZip2 REQUIRED)
+find_package(CURL REQUIRED)
+find_package(GoogleBreakpad REQUIRED)
+find_package(GTK2 REQUIRED)
 find_package(Sqlite REQUIRED)
+find_package(wxWidgets 2.9 REQUIRED)
 
 file(COPY branding_default/ DESTINATION ${CMAKE_SOURCE_DIR}/branding)
 
@@ -47,3 +53,4 @@ add_subdirectory(shared/webcore)
 
 # build the client
 add_subdirectory(executable/bootloader_lin)
+add_subdirectory(executable/crashdlg_lin)

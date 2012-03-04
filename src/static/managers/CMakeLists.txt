@@ -1,5 +1,3 @@
-find_package(wxWidgets 2.9 REQUIRED)
-
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
   ${GLOBAL_INCLUDE_DIRS}

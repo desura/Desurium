@@ -1,7 +1,3 @@
-find_package(BZip2 REQUIRED)
-find_package(CURL REQUIRED)
-find_package(GoogleBreakpad REQUIRED)
-
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
   ${COMMON_INCLUDE_DIRS}

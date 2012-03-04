@@ -1,5 +1,3 @@
-find_package(Boost COMPONENTS filesystem)
-
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${GLOBAL_INCLUDE_DIRS}
