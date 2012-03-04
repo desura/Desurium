@@ -5,6 +5,7 @@ include_directories(
   ${GLOBAL_INCLUDE_DIRS}
   ${COMMON_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
+  ${TINYXML_INCLUDE_DIRS}
 )
 #  ${TINYXML_INCLUDE_DIRS}
 
@@ -12,5 +13,6 @@ file(GLOB Sources code/*.cpp code/*.h)
 
 add_library(util_fs SHARED ${Sources})
 target_link_libraries(util_fs
+    tinyxml
     ${Boost_LIBRARIES}
 )
