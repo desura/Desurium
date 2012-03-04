@@ -338,7 +338,9 @@
 	<str name="#MENU_HELP">Pomoc</str>
 	<str name="#MENU_ONLINE">Idź do trybu Online</str>
 	<str name="#MENU_INSTALLPATH">Ścieżka Instalacji niestandardowej</str>
-	<str name="#MENU_INSTALLPATH_TOOLTIP">Niestandardowy zainstalować ścieżki do gier</str>
+	<str name="#MENU_INSTALLPATH_TOOLTIP">Ustaw własne ścieżki instalacji gier</str>
+	<str name="#MENU_LISTKEYS">Lista gier i kluczy CD</str>
+	<str name="#MENU_LISTKEYS_TOOLTIP">Pokazuje stronę zawierającą Twoje gry i ich klucze CD</str>
 	<str name="#MENU_ACTIVATEGAME">Aktywuj Grę</str>
 	<str name="#MENU_ACTIVATEGAME_TOOLTIP">Wprowadź klucz do aktywacji gry na Twoim koncie</str>	
 	<str name="#MENU_VERSION">Wersja</str>
