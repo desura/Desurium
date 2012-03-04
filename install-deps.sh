@@ -28,8 +28,7 @@ elif [ -f /etc/arch-release ]; then
 	if [ "$(whoami)" != 'root' ]; then
 		echo $PASS_MESSAGE
 	fi
-	DEPS="$(pacman -T git subversion m4 autoconf gcc glibc binutils autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify)"
-	su -c 'pacman -S $DEPS'
+	su -c 'pacman -S --needed   git subversion m4 autoconf gcc glibc binutils autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify'
 elif [ -f /etc/slackware-version ]; then
 	DISTRIBUTION="Slackware"
 fi
