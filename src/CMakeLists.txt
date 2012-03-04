@@ -15,7 +15,7 @@ set(GLOBAL_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/include)
 # add_Definitions(-DUI_HIDE_MODS=1 -DCopyMemory=memcpy)
 
 # Desura uses the awesome new C++ Standard
-add_definitions(-std=c++0x -fpermissive -DBUILD_WITH_CMAKE=1)
+add_definitions(-std=c++0x -fpermissive -DBUILD_WITH_CMAKE=1 -DBOOST_FILESYSTEM_VERSION=2)
 
 # wxWidgets config
 add_definitions(-D__WXGTK__)
@@ -31,6 +31,7 @@ add_subdirectory(third_party/tinyxml)
 add_subdirectory(static/managers)
 add_subdirectory(static/mdump)
 add_subdirectory(static/umcf)
+add_subdirectory(static/util_fs)
 add_subdirectory(static/util_thread)
 
 # add_subdirectory(static/util)
