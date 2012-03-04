@@ -144,6 +144,8 @@ endif()
 add_library(uicore SHARED ${UiCoreSources} ${PlattformSources})
 
 target_link_libraries(uicore
+    desuracommon
     threads
     wx_controls
+    ${Boost_LIBRARIES}
 )

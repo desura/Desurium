@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 project(Desura)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-find_package(Boost COMPONENTS date_time filesystem REQUIRED)
+find_package(Boost COMPONENTS date_time filesystem thread REQUIRED)
 find_package(BZip2 REQUIRED)
 find_package(CURL REQUIRED)
 find_package(GoogleBreakpad REQUIRED)
@@ -23,14 +23,14 @@ add_definitions(-D__WXGTK__)
 # other usefull macros
 add_definitions(-DDESURA_CLIENT -DUI_HIDE_MODS=1)
 
-# build the common shared lib
-add_subdirectory(common)
-
 # build third_party
 add_subdirectory(third_party/cef) # todo
 add_subdirectory(third_party/courgette) # todo
 add_subdirectory(third_party/sqlite3x)
 add_subdirectory(third_party/tinyxml)
+
+# build the common shared lib
+add_subdirectory(common)
 
 # build static libs
 add_subdirectory(static/managers)
