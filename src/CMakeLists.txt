@@ -8,9 +8,6 @@ file(COPY branding_default/ DESTINATION ${CMAKE_SOURCE_DIR}/branding)
 
 set(GLOBAL_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/include)
 
-# you shoul use stdint.h, really
-# add_definitions(-DDWORD=int32_t -DWORD=int16_t -DBYTE=uint8_t -D__stdcall)
-
 # dirty hacks
 # add_Definitions(-DUI_HIDE_MODS=1 -DCopyMemory=memcpy)
 
@@ -31,10 +28,10 @@ add_subdirectory(third_party/tinyxml)
 add_subdirectory(static/managers)
 add_subdirectory(static/mdump)
 add_subdirectory(static/umcf)
+add_subdirectory(static/util)
 add_subdirectory(static/util_fs)
 add_subdirectory(static/util_thread)
 
-# add_subdirectory(static/util)
 
 # build uicore
 # add_subdirectory(shared/uicore)
