@@ -17,11 +17,15 @@ add_definitions(-std=c++0x -fpermissive -DBUILD_WITH_CMAKE=1 -DBOOST_FILESYSTEM_
 # wxWidgets config
 add_definitions(-D__WXGTK__)
 
+# other usefull macros
+add_definitions(-DDESURA_CLIENT)
+
 # build the common shared lib
 add_subdirectory(common)
 
 # build third_party
-add_subdirectory(third_party/courgette)
+add_subdirectory(third_party/cef) # todo
+add_subdirectory(third_party/courgette) # todo
 add_subdirectory(third_party/sqlite3x)
 add_subdirectory(third_party/tinyxml)
 
@@ -37,6 +41,7 @@ add_subdirectory(static/wx_controls)
 
 # build shared libs
 add_subdirectory(shared/mcfcore)
+add_subdirectory(shared/usercore)
 add_subdirectory(shared/webcore)
 
 # build uicore

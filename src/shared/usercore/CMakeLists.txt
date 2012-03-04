@@ -1,0 +1,101 @@
+include_directories(
+  ${CMAKE_CURRENT_SOURCE_DIR}
+  ${CMAKE_CURRENT_SOURCE_DIR}/code
+  ${COMMON_INCLUDE_DIRS}
+  ${COMMON_INCLUDE_DIRS}/tool_pipe
+  ${COMMON_INCLUDE_DIRS}/service_pipe
+  ${GLOBAL_INCLUDE_DIRS}
+  ${CEF_INCLUDE_DIRS}
+  ${IPC_PIPE_INCLUDE_DIRS}
+  ${SQLITE3X_INCLUDE_DIRS}
+  ${TINYXML_INCLUDE_DIRS}
+)
+
+file(GLOB Headers code/*.h)
+file(GLOB Sources code/BaseItemServiceTask.cpp
+                  code/BaseItemTask.cpp
+                  code/BDManager.cpp
+                  code/BranchInfo.cpp
+                  code/BranchInstallInfo.cpp
+                  code/CDKeyManager.cpp
+                  code/CIPManager.cpp
+                  code/ComplexLaunchServiceTask.cpp
+                  code/CreateMCFThread.cpp
+                  code/DownloadTask.cpp
+                  code/DownloadToolItemTask.cpp
+                  code/DownloadToolTask.cpp
+                  code/DownloadUpdateTask.cpp
+                  code/GatherInfoTask.cpp
+                  code/GatherInfoThread.cpp
+                  code/GetItemListThread.cpp
+                  code/InstallCheckTask.cpp
+                  code/InstalledWizardThread.cpp
+                  code/InstallInfo.cpp
+                  code/InstallServiceTask.cpp
+                  code/InstallToolTask.cpp
+                  code/ItemHandle.cpp
+                  code/ItemHandleEvents.cpp
+                  code/ItemInfo.cpp
+                  code/ItemManager.cpp
+                  code/ItemTaskGroup.cpp
+                  code/ItemThread.cpp
+                  code/Log.cpp
+                  code/McfManager.cpp
+                  code/ToolInfo.cpp
+                  code/ToolInstallThread.cpp
+                  code/ToolManager.cpp
+                  code/ToolTransaction.cpp
+                  code/UIBaseServiceTask.cpp
+                  code/UIBranchServiceTask.cpp
+                  code/UIComplexModServiceTask.cpp
+                  code/UIPatchServiceTask.cpp
+                  code/UIServiceTask.cpp
+                  code/UIUpdateServiceTask.cpp
+                  code/UpdateThread.cpp
+                  code/UploadInfoThread.cpp
+                  code/UploadManager.cpp
+                  code/UploadPrepThread.cpp
+                  code/UploadResumeThread.cpp
+                  code/UploadThread.cpp
+                  code/UserCoreMain.cpp
+                  code/User.cpp
+                  code/UserIPCPipeClient.cpp
+                  code/User_Login.cpp
+                  code/UserTask.cpp
+                  code/UserTasks.cpp
+                  code/UserThreadManager.cpp
+                  code/ValidateTask.cpp
+                  code/VerifyServiceTask.cpp
+                  code/VSBaseTask.cpp
+                  code/VSCheckInstall.cpp
+                  code/VSCheckMcf.cpp
+                  code/VSCheckMcfDownload.cpp
+                  code/VSDownloadMissing.cpp
+                  code/VSInstallMissing.cpp
+)
+
+if(DEFINED WIN32)
+  file(GLOB PlattformSources
+                  code/GameExplorerInfo_win.cpp
+                  code/GameExplorerManager_win.cpp
+                  code/InstallHandler.cpp
+                  code/ItemHandle_win.cpp
+                  code/ToolInstallThread_win.cpp
+                  code/ToolIPCPipeClient.cpp
+                  code/ToolManager_Script.cpp
+                  code/ToolManager_win.cpp
+                  code/User_win.cpp
+)
+else()
+  file(GLOB PlattformSources
+                  code/ItemHandle_nix.cpp
+                  code/ToolInstallThread_nix.cpp
+                  code/ToolManager_lin.cpp
+                  code/User_nix.cpp
+)
+endif()
+
+add_library(usercore SHARED ${Sources} ${PlattformSources})
+target_link_libraries(usercore
+    tinyxml
+)
