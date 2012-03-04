@@ -15,6 +15,7 @@ else()
   file(GLOB PlattFormSources code/UtilFs_nix.cpp)
 endif()
 
+add_definitions(-fPIC)
 add_library(util_fs STATIC ${Sources} ${PlattFormSources})
 target_link_libraries(util_fs
     tinyxml

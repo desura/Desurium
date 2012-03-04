@@ -7,6 +7,7 @@ include_directories(
 
 file(GLOB Sources code/*.cpp code/*.h)
 
+add_definitions(-fPIC)
 add_library(threads STATIC ${Sources})
 target_link_libraries(threads
     tinyxml

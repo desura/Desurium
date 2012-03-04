@@ -7,8 +7,8 @@ include_directories(
 
 file(GLOB Sources code/*.cpp)
 
+add_definitions(-fPIC)
 add_library(umcf STATIC ${Sources})
-
 target_link_libraries(umcf
     tinyxml
 )

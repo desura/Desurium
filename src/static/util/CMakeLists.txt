@@ -36,7 +36,7 @@ else()
   file(GLOB PlattformSources code/UtilLinux.cpp)
 endif()
 
-
+add_definitions(-fPIC)
 add_library(util STATIC ${Sources} ${PlattformSources})
 target_link_libraries(util
     sqlite3x

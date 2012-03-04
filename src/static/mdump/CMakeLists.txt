@@ -12,6 +12,7 @@ else()
   file(GLOB Sources code/MiniDumpGenerator_lin.cpp)
 endif()
 
+add_definitions(-fPIC)
 add_library(mdump STATIC ${Sources})
 target_link_libraries(mdump
     tinyxml
