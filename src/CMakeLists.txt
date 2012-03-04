@@ -23,16 +23,14 @@ add_definitions(-D__WXGTK__)
 # build the common shared lib
 add_subdirectory(common)
 
-# build sqlite3x
+# build third_party
 add_subdirectory(third_party/sqlite3x)
+add_subdirectory(third_party/tinyxml)
 
-# build managers
+# build static libs (at the time there are all shared)
 add_subdirectory(static/managers)
-
-# build mdump
 add_subdirectory(static/mdump)
-
-# build threads
+add_subdirectory(static/umcf)
 add_subdirectory(static/util_thread)
 
 # add_subdirectory(static/util)
