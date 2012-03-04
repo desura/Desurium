@@ -9,9 +9,15 @@ include_directories(
 )
 #  ${TINYXML_INCLUDE_DIRS}
 
-file(GLOB Sources code/*.cpp code/*.h)
+file(GLOB Sources code/UtilFs.cpp code/*.h)
 
-add_library(util_fs SHARED ${Sources})
+if(DEFINED WIN32)
+  file(GLOB PlattFormSources code/UtilFS_win.cpp)
+else()
+  file(GLOB PlattFormSources code/UtilFS_lin.cpp)
+endif()
+
+add_library(util_fs SHARED ${Sources} ${PlattFormSources})
 target_link_libraries(util_fs
     tinyxml
     ${Boost_LIBRARIES}
