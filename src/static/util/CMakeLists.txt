@@ -18,7 +18,9 @@ file(GLOB Sources code/gcBuff.cpp
                   code/UtilMisc_sha1.cpp
                   code/UtilOs.cpp
                   code/UtilString.cpp
-                  code/UtilWeb.cpp)
+                  code/UtilWeb.cpp
+                  code/third_party/GeneralHashFunctions.cpp
+                  code/third_party/md5.cpp)
 
 if(DEFINED WIN32)
   file(GLOB PlattformSources code/gcDDE.cpp
@@ -35,7 +37,7 @@ else()
 endif()
 
 
-add_library(util SHARED ${Sources} ${PlattformSources})
+add_library(util STATIC ${Sources} ${PlattformSources})
 target_link_libraries(util
     sqlite3x
     tinyxml

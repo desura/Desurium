@@ -17,7 +17,7 @@ else()
   file(GLOB PlattFormSources code/UtilFs_nix.cpp)
 endif()
 
-add_library(util_fs SHARED ${Sources} ${PlattFormSources})
+add_library(util_fs STATIC ${Sources} ${PlattFormSources})
 target_link_libraries(util_fs
     tinyxml
     ${Boost_LIBRARIES}

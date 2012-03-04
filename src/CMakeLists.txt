@@ -26,7 +26,7 @@ add_subdirectory(third_party/courgette) # todo
 add_subdirectory(third_party/sqlite3x)
 add_subdirectory(third_party/tinyxml)
 
-# build static libs (at the time there are all shared)
+# build static libs
 add_subdirectory(static/managers)
 add_subdirectory(static/mdump)
 add_subdirectory(static/ipc_pipe)
@@ -37,14 +37,13 @@ add_subdirectory(static/util_thread)
 add_subdirectory(static/wx_controls)
 
 # build shared libs
+add_subdirectory(shared/crashuploader)
 add_subdirectory(shared/mcfcore)
 add_subdirectory(shared/servicecore)
+add_subdirectory(shared/scriptcore)
 add_subdirectory(shared/uicore)
 add_subdirectory(shared/usercore)
 add_subdirectory(shared/webcore)
 
-# build uicore
-# add_subdirectory(shared/uicore)
-
 # build the client
-# add_subdirectory(executable/bootloader_lin)
+add_subdirectory(executable/bootloader_lin)

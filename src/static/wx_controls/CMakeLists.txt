@@ -14,7 +14,7 @@ include_directories(
 file(GLOB Headers code/*.h)
 file(GLOB Sources code/*.cpp)
 
-add_library(wx_control SHARED ${Sources})
+add_library(wx_control STATIC ${Sources})
 target_link_libraries(wx_control
     tinyxml
     ${GTK2_LIBRARIES}

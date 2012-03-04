@@ -25,7 +25,7 @@ else()
 )
 endif()
 
-add_library(ipc_pipe SHARED ${Sources} ${PlattformSources})
+add_library(ipc_pipe STATIC ${Sources} ${PlattformSources})
 target_link_libraries(ipc_pipe
     tinyxml
 )

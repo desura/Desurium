@@ -14,7 +14,7 @@ else()
   file(GLOB Sources code/MiniDumpGenerator_lin.cpp)
 endif()
 
-add_library(mdump SHARED ${Sources})
+add_library(mdump STATIC ${Sources})
 target_link_libraries(mdump
     tinyxml
     ${BREAKPAD_EXCEPTION_HANDLER_LIBRARIES}

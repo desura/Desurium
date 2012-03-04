@@ -11,7 +11,7 @@ include_directories(
 
 file(GLOB Sources code/*.cpp code/*.h)
 
-add_library(managers SHARED ${Sources})
+add_library(managers STATIC ${Sources})
 target_link_libraries(managers
     tinyxml
 )
