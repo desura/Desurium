@@ -37,6 +37,7 @@ add_subdirectory(static/wx_controls)
 
 # build shared libs
 add_subdirectory(shared/mcfcore)
+add_subdirectory(shared/webcore)
 
 # build uicore
 # add_subdirectory(shared/uicore)
