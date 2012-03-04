@@ -12,7 +12,6 @@ include_directories(
 )
 
 file(GLOB UiCoreHeaders code/*.h)
-
 file(GLOB UiCoreSources code/AboutForm.cpp
                         code/AboutPageDev.cpp
                         code/AboutPageMain.cpp
@@ -143,3 +142,7 @@ else()
 endif()
 
 add_library(uicore SHARED ${UiCoreSources} ${PlattformSources})
+
+target_link_libraries(uicore
+    wx_controls
+)

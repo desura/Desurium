@@ -16,5 +16,6 @@ target_link_libraries(Desura
     ${BZIP2_LIBRARIES}
     ${CURL_LIBRARIES}
     ${BREAKPAD_EXCEPTION_HANDLER_LIBRARIES}
-    ${SQLITE_LIBRARIES})
-
+    ${SQLITE_LIBRARIES}
+    ${wxWidgets_LIBRARIES}
+)
