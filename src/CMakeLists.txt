@@ -31,7 +31,7 @@ add_subdirectory(static/umcf)
 add_subdirectory(static/util)
 add_subdirectory(static/util_fs)
 add_subdirectory(static/util_thread)
-
+add_subdirectory(static/wx_controls)
 
 # build uicore
 # add_subdirectory(shared/uicore)
