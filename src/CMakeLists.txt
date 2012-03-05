@@ -18,6 +18,9 @@ include(BuildwxWidgets)
 if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
   include(BuildGoogleBreakpad)
 endif()
+#include(BuildChromium)
+#include(BuildCEF)
+#include(BuildCourgette)
 
 file(COPY branding_default/ DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/branding)
 
@@ -33,8 +36,8 @@ add_definitions(-D__WXGTK__)
 add_definitions(-DDESURA_CLIENT -DUI_HIDE_MODS=1 -DDEBUG=1)
 
 # build third_party
-add_subdirectory(third_party/cef) # todo
-add_subdirectory(third_party/courgette) # todo
+add_subdirectory(third_party/cef) # for headers only, build via ExternalProject
+add_subdirectory(third_party/courgette) # for headers only, build via ExternalProject
 add_subdirectory(third_party/sqlite3x)
 add_subdirectory(third_party/tinyxml)
 
