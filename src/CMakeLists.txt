@@ -41,6 +41,7 @@ add_subdirectory(static/util)
 add_subdirectory(static/util_fs)
 add_subdirectory(static/util_thread)
 add_subdirectory(static/wx_controls)
+set(STATIC_LIBS desuracommon managers mdump ipc_pipe umcf util util_fs threads wx_controls)
 
 # build shared libs
 add_subdirectory(shared/crashuploader)

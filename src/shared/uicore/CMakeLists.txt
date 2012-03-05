@@ -117,6 +117,7 @@ file(GLOB UiCoreSources code/AboutForm.cpp
                         code/TBI_UpdateMenu.cpp
                         code/TBI_WindowMenu.cpp
                         code/UICoreEntry.cpp
+                        code/UICoreMain.cpp
                         code/UninstallInfoPage.cpp
                         code/UninstallProgressPage.cpp
                         code/UploadForm.cpp
@@ -134,7 +135,6 @@ if(DEFINED WIN32)
                         code/gcWebHost.cpp
                         code/HeaderButton.cpp
                         code/TabHandler.cpp
-                        code/UICoreMain.cpp
                         code/UninstallForm.cpp
 )
 else()
@@ -143,9 +143,10 @@ endif()
 
 add_library(uicore SHARED ${UiCoreSources} ${PlattformSources})
 
+# TODO: get notify from cmake, not hardcoded
 target_link_libraries(uicore
-    desuracommon
-    threads
-    wx_controls
+    mcfcore
+    notify
+    ${STATIC_LIBS}
     ${Boost_LIBRARIES}
 )

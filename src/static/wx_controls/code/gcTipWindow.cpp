@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 // karolherbst: where is this class uesd?
 // it is needed to work with wxPopupWindowHandler or will be wxEvtHandler enough?
+#ifdef BUILD_WITH_CMAKE
 //class WXDLLIMPEXP_FWD_CORE wxPopupWindowHandler;
 class WXDLLIMPEXP_CORE wxPopupWindowHandler : public wxEvtHandler
 {
@@ -44,7 +45,7 @@ private:
     DECLARE_EVENT_TABLE()
     wxDECLARE_NO_COPY_CLASS(wxPopupWindowHandler);
 };
-
+#endif
 
 static const wxCoord TEXT_MARGIN_X = 3;
 static const wxCoord TEXT_MARGIN_Y = 3;
