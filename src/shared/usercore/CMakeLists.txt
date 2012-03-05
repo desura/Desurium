@@ -100,3 +100,6 @@ add_library(usercore SHARED ${Sources} ${PlattformSources})
 target_link_libraries(usercore
     tinyxml
 )
+
+install(TARGETS usercore
+        DESTINATION "${LIB_INSTALL_DIR}")

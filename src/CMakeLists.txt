@@ -1,14 +1,23 @@
 cmake_minimum_required(VERSION 2.8)
 project(Desura)
 
+# we wanna build some projects
+include(ExternalProject)
+
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(BuildwxWidgets)
+
 find_package(Boost COMPONENTS date_time filesystem thread REQUIRED)
 find_package(BZip2 REQUIRED)
 find_package(CURL REQUIRED)
 find_package(GoogleBreakpad REQUIRED)
 find_package(GTK2 REQUIRED)
 find_package(Sqlite REQUIRED)
-find_package(wxWidgets 2.9 COMPONENTS richtext REQUIRED)
+
+# set this with cmake -DCMAKE_INSTALL_PREFIX=/where/to/install
+set(INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
+set(BIN_INSTALL_DIR ${CMAKE_INSTALL_DIR}/bin)
+set(LIB_INSTALL_DIR ${CMAKE_INSTALL_DIR}/lib)
 
 file(COPY branding_default/ DESTINATION ${CMAKE_SOURCE_DIR}/branding)
 
@@ -48,6 +57,9 @@ add_subdirectory(shared/mcfcore)
 add_subdirectory(shared/servicecore)
 add_subdirectory(shared/scriptcore)
 add_subdirectory(shared/uicore)
+if(DEFINED WIN32)
+  add_subdirectory(shared/utilcore)
+endif()
 add_subdirectory(shared/usercore)
 add_subdirectory(shared/webcore)
 
@@ -55,3 +67,7 @@ add_subdirectory(shared/webcore)
 add_subdirectory(executable/bootloader_lin)
 add_subdirectory(executable/crashdlg_lin)
 add_subdirectory(tools/process_data_folder)
+
+# we need some dependencies 
+add_dependencies(managers wxWidget-2-9)
+add_dependencies(wx_controls wxWidget-2-9)

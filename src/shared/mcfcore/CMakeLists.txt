@@ -23,3 +23,6 @@ add_library(mcfcore SHARED ${Sources} ${PlattformSources})
 target_link_libraries(mcfcore
     tinyxml
 )
+
+install(TARGETS mcfcore
+        DESTINATION "${LIB_INSTALL_DIR}")

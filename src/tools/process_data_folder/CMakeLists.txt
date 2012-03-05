@@ -12,3 +12,6 @@ target_link_libraries(process_data_folder
     util_fs
     ${SQLITE_LIBRARIES}
 )
+
+install(TARGETS process_data_folder
+        DESTINATION "${BIN_INSTALL_DIR}")

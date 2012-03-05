@@ -19,3 +19,6 @@ target_link_libraries(Desura
     ${SQLITE_LIBRARIES}
     ${wxWidgets_LIBRARIES}
 )
+
+install(TARGETS Desura
+        DESTINATION "${BIN_INSTALL_DIR}")

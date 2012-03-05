@@ -21,3 +21,6 @@ add_library(webcore SHARED ${Sources} ${PlattformSources})
 target_link_libraries(webcore
     tinyxml
 )
+
+install(TARGETS webcore
+        DESTINATION "${LIB_INSTALL_DIR}")

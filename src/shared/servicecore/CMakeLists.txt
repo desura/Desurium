@@ -37,3 +37,6 @@ add_library(servicecore SHARED ${Sources} ${PlattformSources})
 target_link_libraries(servicecore
     tinyxml
 )
+
+install(TARGETS servicecore
+        DESTINATION "${LIB_INSTALL_DIR}")

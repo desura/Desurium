@@ -22,3 +22,6 @@ target_link_libraries(crashuploader
     tinyxml
     ${STATIC_LIBS}
 )
+
+install(TARGETS crashuploader
+        DESTINATION "${LIB_INSTALL_DIR}")

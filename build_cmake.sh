@@ -1,5 +1,5 @@
 #!/bin/sh
 mkdir src/build
 cd src/build
-cmake ..
+cmake .. -DCMAKE_INSTALL_PREFIX=../install
 make

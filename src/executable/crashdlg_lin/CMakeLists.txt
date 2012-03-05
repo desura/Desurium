@@ -14,3 +14,6 @@ target_link_libraries(crashdlg
     ${GTK2_LIBRARIES}
     ${SQLITE_LIBRARIES}
 )
+
+install(TARGETS crashdlg
+        DESTINATION "${BIN_INSTALL_DIR}")

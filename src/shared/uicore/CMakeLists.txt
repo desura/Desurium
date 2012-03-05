@@ -153,3 +153,6 @@ target_link_libraries(uicore
     ${Boost_LIBRARIES}
     ${wxWidgets_LIBRARIES}
 )
+
+install(TARGETS uicore
+        DESTINATION "${LIB_INSTALL_DIR}")
