@@ -20,4 +20,5 @@ endif()
 add_library(crashuploader SHARED ${Sources} ${PlattformSources})
 target_link_libraries(crashuploader
     tinyxml
+    ${STATIC_LIBS}
 )
