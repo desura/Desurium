@@ -9,8 +9,8 @@ file(GLOB DesuraSources code/*.cpp code/*.h )
 
 add_definitions(-DDESURA_CLIENT)
 
-add_executable(Desura ${DesuraSources})
-target_link_libraries(Desura
+add_executable(Desurium ${DesuraSources})
+target_link_libraries(Desurium
     dl
     util
     mdump
@@ -22,5 +22,5 @@ target_link_libraries(Desura
     ${wxWidgets_LIBRARIES}
 )
 
-install(TARGETS Desura
+install(TARGETS Desurium
         DESTINATION "${BIN_INSTALL_DIR}")
