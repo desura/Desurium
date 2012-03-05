@@ -1,4 +1,5 @@
 # TODO: silent output for externel dependencies
+# TODO: get libs automatically for externel builds, maybe make desurium a external build itself?
 
 cmake_minimum_required(VERSION 2.8)
 project(Desura)
@@ -78,6 +79,7 @@ add_subdirectory(tools/process_data_folder)
 # we need some dependencies 
 add_dependencies(managers wxWidget-2-9)
 add_dependencies(wx_controls wxWidget-2-9)
+add_dependencies(Desura wxWidget-2-9)
 if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
     add_dependencies(mdump breakpad)
 endif()
