@@ -9,6 +9,8 @@ include_directories(
 
 file(GLOB Headers code/*.h)
 file(GLOB Sources code/*.cpp
+                  code/mcf/*.cpp
+                  code/thread/*.cpp
 )
 
 if(DEFINED WIN32)
