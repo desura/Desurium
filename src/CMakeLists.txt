@@ -8,7 +8,7 @@ find_package(CURL REQUIRED)
 find_package(GoogleBreakpad REQUIRED)
 find_package(GTK2 REQUIRED)
 find_package(Sqlite REQUIRED)
-find_package(wxWidgets 2.9 REQUIRED)
+find_package(wxWidgets 2.9 COMPONENTS richtext REQUIRED)
 
 file(COPY branding_default/ DESTINATION ${CMAKE_SOURCE_DIR}/branding)
 
@@ -29,19 +29,18 @@ add_subdirectory(third_party/courgette) # todo
 add_subdirectory(third_party/sqlite3x)
 add_subdirectory(third_party/tinyxml)
 
-# build the common shared lib
-add_subdirectory(common)
-
 # build static libs
+add_subdirectory(common)
 add_subdirectory(static/managers)
 add_subdirectory(static/mdump)
 add_subdirectory(static/ipc_pipe)
+add_subdirectory(common/service_pipe)
 add_subdirectory(static/umcf)
 add_subdirectory(static/util)
 add_subdirectory(static/util_fs)
 add_subdirectory(static/util_thread)
 add_subdirectory(static/wx_controls)
-set(STATIC_LIBS desuracommon managers mdump ipc_pipe umcf util util_fs threads wx_controls)
+set(STATIC_LIBS desuracommon managers mdump ipc_pipe umcf util util_fs service_pipe threads wx_controls)
 
 # build shared libs
 add_subdirectory(shared/crashuploader)

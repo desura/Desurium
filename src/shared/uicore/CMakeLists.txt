@@ -147,6 +147,9 @@ add_library(uicore SHARED ${UiCoreSources} ${PlattformSources})
 target_link_libraries(uicore
     mcfcore
     notify
+    usercore
+    webcore
     ${STATIC_LIBS}
     ${Boost_LIBRARIES}
+    ${wxWidgets_LIBRARIES}
 )

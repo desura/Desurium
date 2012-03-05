@@ -52,6 +52,7 @@ file(GLOB Sources code/BaseItemServiceTask.cpp
                   code/UIServiceTask.cpp
                   code/UIUpdateServiceTask.cpp
                   code/UpdateThread.cpp
+                  code/UpdateThread_Old.cpp
                   code/UploadInfoThread.cpp
                   code/UploadManager.cpp
                   code/UploadPrepThread.cpp

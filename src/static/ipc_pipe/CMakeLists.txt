@@ -11,7 +11,7 @@ set(IPC_PIPE_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/code PARENT_SCOPE)
 file(GLOB Headers code/*.h)
 file(GLOB Sources code/IPCClass.cpp
                   code/IPCManager.cpp
-                  code/IPCParamater.cpp
+                  code/IPCParameter.cpp
 )
 
 if(DEFINED WIN32)

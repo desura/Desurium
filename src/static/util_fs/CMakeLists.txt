@@ -5,7 +5,6 @@ include_directories(
   ${Boost_INCLUDE_DIRS}
   ${TINYXML_INCLUDE_DIRS}
 )
-#  ${TINYXML_INCLUDE_DIRS}
 
 file(GLOB Sources code/UtilFs.cpp code/*.h)
 
