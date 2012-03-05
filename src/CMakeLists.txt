@@ -38,7 +38,7 @@ add_definitions(-std=c++0x -fpermissive -DBUILD_WITH_CMAKE=1 -DBOOST_FILESYSTEM_
 add_definitions(-D__WXGTK__)
 
 # other usefull macros
-add_definitions(-DDESURA_CLIENT -DUI_HIDE_MODS=1)
+add_definitions(-DDESURA_CLIENT -DUI_HIDE_MODS=1 -DDEBUG=1)
 
 # build third_party
 add_subdirectory(third_party/cef) # todo
@@ -57,7 +57,7 @@ add_subdirectory(static/util)
 add_subdirectory(static/util_fs)
 add_subdirectory(static/util_thread)
 add_subdirectory(static/wx_controls)
-set(STATIC_LIBS desuracommon managers mdump ipc_pipe umcf util util_fs service_pipe threads wx_controls)
+set(STATIC_LIBS ${STATIC_LIBS} desuracommon managers mdump ipc_pipe umcf util util_fs service_pipe threads wx_controls)
 
 # build shared libs
 add_subdirectory(shared/crashuploader)
