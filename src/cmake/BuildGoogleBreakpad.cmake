@@ -2,7 +2,7 @@ ExternalProject_Add(
     breakpad
     SVN_REPOSITORY http://google-breakpad.googlecode.com/svn/trunk -r 699
     UPDATE_COMMAND ""
-    PATCH_COMMAND patch -p0 -i ${CMAKE_SOURCE_DIR}/third_party/patches/breakpad_patch.patch
+    PATCH_COMMAND patch -p0 -N -i ${CMAKE_SOURCE_DIR}/third_party/patches/breakpad_patch.patch
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --enable-shared=no --enable-static=yes
         --prefix=${CMAKE_SOURCE_DIR}/third_party/breakpad
 )

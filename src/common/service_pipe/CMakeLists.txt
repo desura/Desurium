@@ -3,6 +3,7 @@ include_directories(
   ${COMMON_INCLUDE_DIRS}
   ${GLOBAL_INCLUDE_DIRS}
   ${IPC_PIPE_INCLUDE_DIRS}
+  ${TINYXML_INCLUDE_DIRS}
 )
 
 file(GLOB Headers ./*.h)
