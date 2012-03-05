@@ -8,3 +8,6 @@ file(GLOB Sqlite3xHeaders ./include/*.hpp)
 file(GLOB Sqlite3xSources ./code/*.cpp ./include/*.hpp)
 
 add_library(sqlite3x SHARED ${Sqlite3xSources})
+
+install(TARGETS sqlite3x
+        DESTINATION "${LIB_INSTALL_DIR}")
