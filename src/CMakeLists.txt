@@ -6,8 +6,8 @@ project(Desura)
 
 # set this with cmake -DCMAKE_INSTALL_PREFIX=/where/to/install
 set(INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
-set(BIN_INSTALL_DIR ${CMAKE_INSTALL_DIR}/bin)
-set(LIB_INSTALL_DIR ${CMAKE_INSTALL_DIR}/lib)
+set(BIN_INSTALL_DIR ${INSTALL_DIR}/bin)
+set(LIB_INSTALL_DIR ${INSTALL_DIR}/lib)
 
 # we wanna build some projects
 include(ExternalProject)
