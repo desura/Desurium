@@ -4,6 +4,11 @@
 cmake_minimum_required(VERSION 2.8)
 project(Desura)
 
+# set this with cmake -DCMAKE_INSTALL_PREFIX=/where/to/install
+set(INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
+set(BIN_INSTALL_DIR ${CMAKE_INSTALL_DIR}/bin)
+set(LIB_INSTALL_DIR ${CMAKE_INSTALL_DIR}/lib)
+
 # we wanna build some projects
 include(ExternalProject)
 
@@ -21,11 +26,6 @@ include(BuildwxWidgets)
 if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
   include(BuildGoogleBreakpad)
 endif()
-
-# set this with cmake -DCMAKE_INSTALL_PREFIX=/where/to/install
-set(INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
-set(BIN_INSTALL_DIR ${CMAKE_INSTALL_DIR}/bin)
-set(LIB_INSTALL_DIR ${CMAKE_INSTALL_DIR}/lib)
 
 file(COPY branding_default/ DESTINATION ${CMAKE_SOURCE_DIR}/branding)
 
