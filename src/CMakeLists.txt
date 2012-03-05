@@ -1,7 +1,6 @@
 # TODO: silent output for externel dependencies
 # TODO: get libs automatically for externel builds, maybe make desurium a external build itself?
 
-cmake_minimum_required(VERSION 2.8)
 project(Desura)
 
 # set this with cmake -DCMAKE_INSTALL_PREFIX=/where/to/install
@@ -12,8 +11,6 @@ set(DATA_INSTALL_DIR ${INSTALL_DIR}/data)
 
 # we wanna build some projects
 include(ExternalProject)
-
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 find_package(Boost COMPONENTS date_time filesystem thread REQUIRED)
 find_package(BZip2 REQUIRED)
@@ -28,9 +25,9 @@ if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
   include(BuildGoogleBreakpad)
 endif()
 
-file(COPY branding_default/ DESTINATION ${CMAKE_SOURCE_DIR}/branding)
+file(COPY branding_default/ DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/branding)
 
-set(GLOBAL_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/include)
+set(GLOBAL_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # Desura uses the awesome new C++ Standard
 add_definitions(-std=c++0x -fpermissive -DBUILD_WITH_CMAKE=1 -DBOOST_FILESYSTEM_VERSION=2)
