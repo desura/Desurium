@@ -54,3 +54,4 @@ add_subdirectory(shared/webcore)
 # build the client
 add_subdirectory(executable/bootloader_lin)
 add_subdirectory(executable/crashdlg_lin)
+add_subdirectory(tools/process_data_folder)
