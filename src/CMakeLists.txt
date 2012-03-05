@@ -1,3 +1,5 @@
+# TODO: silent output for externel dependencies
+
 cmake_minimum_required(VERSION 2.8)
 project(Desura)
 
@@ -5,14 +7,19 @@ project(Desura)
 include(ExternalProject)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-include(BuildwxWidgets)
 
 find_package(Boost COMPONENTS date_time filesystem thread REQUIRED)
 find_package(BZip2 REQUIRED)
 find_package(CURL REQUIRED)
-find_package(GoogleBreakpad REQUIRED)
+# we patch google breakpad, so we will build it on our own
+# find_package(GoogleBreakpad REQUIRED)
 find_package(GTK2 REQUIRED)
 find_package(Sqlite REQUIRED)
+
+include(BuildwxWidgets)
+if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
+  include(BuildGoogleBreakpad)
+endif()
 
 # set this with cmake -DCMAKE_INSTALL_PREFIX=/where/to/install
 set(INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
@@ -71,3 +78,6 @@ add_subdirectory(tools/process_data_folder)
 # we need some dependencies 
 add_dependencies(managers wxWidget-2-9)
 add_dependencies(wx_controls wxWidget-2-9)
+if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
+    add_dependencies(mdump breakpad)
+endif()
