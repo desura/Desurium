@@ -8,6 +8,7 @@ project(Desura)
 set(INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
 set(BIN_INSTALL_DIR ${INSTALL_DIR}/bin)
 set(LIB_INSTALL_DIR ${INSTALL_DIR}/lib)
+set(DATA_INSTALL_DIR ${INSTALL_DIR}/data)
 
 # we wanna build some projects
 include(ExternalProject)
@@ -75,6 +76,7 @@ add_subdirectory(shared/webcore)
 add_subdirectory(executable/bootloader_lin)
 add_subdirectory(executable/crashdlg_lin)
 add_subdirectory(tools/process_data_folder)
+add_subdirectory(branding)
 
 # we need some dependencies 
 add_dependencies(managers wxWidget-2-9)
