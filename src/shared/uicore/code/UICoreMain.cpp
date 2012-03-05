@@ -249,7 +249,8 @@ public:
 	{
 		return m_pOldTraits->HasStderr();
 	}
-	/* it is not in use yet and does not exist in wxWidget
+#ifndef BUILD_WITH_CMAKE
+	/* it is not in use yet and does not exist in wxWidget*/
 	virtual void ScheduleForDestroy(wxObject* o)
 	{
 		m_pOldTraits->ScheduleForDestroy(o);
@@ -259,7 +260,7 @@ public:
 	{
 		m_pOldTraits->RemoveFromPendingDelete(o);
 	}
-	*/
+#endif
 	virtual wxEventLoopBase* CreateEventLoop()
 	{
 		return m_pOldTraits->CreateEventLoop();
