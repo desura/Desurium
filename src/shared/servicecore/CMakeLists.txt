@@ -36,6 +36,7 @@ endif()
 add_library(servicecore SHARED ${Sources} ${PlattformSources})
 target_link_libraries(servicecore
     tinyxml
+    ${STATIC_LIBS}
 )
 
 install(TARGETS servicecore
