@@ -7,6 +7,8 @@ include_directories(
 
 file(GLOB DesuraSources code/*.cpp code/*.h )
 
+add_definitions(-DDESURA_CLIENT)
+
 add_executable(Desura ${DesuraSources})
 target_link_libraries(Desura
     dl

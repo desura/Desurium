@@ -4,11 +4,13 @@ include_directories(
   ${GLOBAL_INCLUDE_DIRS}
   ${IPC_PIPE_INCLUDE_DIRS}
   ${TINYXML_INCLUDE_DIRS}
+  ${SERVICECORE_INCLUDE_DIRS}
 )
 
 file(GLOB Headers ./*.h)
 file(GLOB Sources ./*.h
                   ./*.cpp)
+set(SERVICE_PIPE_SPOURCES ${Sources} PARENT_SCOPE)
 
-add_definitions(-fPIC)
-add_library(service_pipe STATIC ${Sources})
+# add_definitions(-fPIC)
+# add_library(service_pipe STATIC ${Sources})

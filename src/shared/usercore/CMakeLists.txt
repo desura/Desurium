@@ -11,6 +11,7 @@ include_directories(
   ${TINYXML_INCLUDE_DIRS}
 )
 
+add_definitions(-DDESURA_CLIENT)
 file(GLOB Headers code/*.h)
 file(GLOB Sources code/BaseItemServiceTask.cpp
                   code/BaseItemTask.cpp
@@ -96,7 +97,7 @@ else()
 )
 endif()
 
-add_library(usercore SHARED ${Sources} ${PlattformSources})
+add_library(usercore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES})
 target_link_libraries(usercore
     tinyxml
 )

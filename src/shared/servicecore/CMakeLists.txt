@@ -9,6 +9,7 @@ include_directories(
   ${TINYXML_INCLUDE_DIRS}
 )
 
+set(SERVICECORE_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/code PARENT_SCOPE)
 file(GLOB Headers code/*.h)
 file(GLOB Sources code/ComplexLaunchProcess.cpp
                   code/InstallProcess.cpp
@@ -33,7 +34,7 @@ else()
   file(GLOB PlattformSources)
 endif()
 
-add_library(servicecore SHARED ${Sources} ${PlattformSources})
+add_library(servicecore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES})
 target_link_libraries(servicecore
     tinyxml
     ${STATIC_LIBS}
