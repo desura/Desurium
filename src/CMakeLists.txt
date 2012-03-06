@@ -39,6 +39,20 @@ endif()
 file(COPY branding_default/ DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/branding)
 
 ###############################################################################
+# build third_party
+###############################################################################
+
+add_subdirectory(third_party/cef) # for headers only, build via ExternalProject
+add_subdirectory(third_party/courgette) # for headers only, build via ExternalProject
+
+if(NOT SQLITE_FOUND)
+  add_subdirectory(third_party/sqlite)
+endif()
+
+add_subdirectory(third_party/sqlite3x)
+add_subdirectory(third_party/tinyxml)
+
+###############################################################################
 # important C/C++ flags
 ###############################################################################
 
@@ -53,20 +67,6 @@ add_definitions(-D__WXGTK__)
 
 # other usefull macros
 add_definitions(-DUI_HIDE_MODS=1 -DDEBUG=1 -DBUILD_WITH_CMAKE=1 -DBOOST_FILESYSTEM_VERSION=2)
-
-###############################################################################
-# build third_party
-###############################################################################
-
-add_subdirectory(third_party/cef) # for headers only, build via ExternalProject
-add_subdirectory(third_party/courgette) # for headers only, build via ExternalProject
-
-if(NOT SQLITE_FOUND)
-  add_subdirectory(third_party/sqlite)
-endif()
-
-add_subdirectory(third_party/sqlite3x)
-add_subdirectory(third_party/tinyxml)
 
 ###############################################################################
 # do final steps for setting up the desurium build environment
