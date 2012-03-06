@@ -20,6 +20,7 @@ find_package(CURL REQUIRED)
 find_package(GTK2 REQUIRED)
 find_package(Sqlite)
 find_package(TinyXML)
+find_package(v8 REQUIRED)
 # we patch wxWidgets so we will build it on our own
 # find_package(wxWidgets 2.9 REQUIRED)
 
