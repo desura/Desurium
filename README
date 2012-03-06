@@ -125,4 +125,4 @@ cd build_lin
 Run Linux
 ===================
 
-If you built the debug build (default) you should be able to run ./test.sh in the build_lin folder to teset or ./desura in the build_out/debug_lin folder
+If you built the debug build (default) you should be able to run ./test.sh in the build_lin folder to test or ./desura in the build_out/debug_lin folder
