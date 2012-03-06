@@ -16,7 +16,7 @@ FIND_PATH( V8_INCLUDE_DIR "v8.h" )
 FIND_LIBRARY( V8_LIBRARIES
               NAMES "v8ds" )
 
-# handle the QUIETLY and REQUIRED arguments and set TINYXML_FOUND to TRUE if
+# handle the QUIETLY and REQUIRED arguments and set V8_FOUND to TRUE if
 # all listed variables are TRUE
 INCLUDE( "FindPackageHandleStandardArgs" )
 FIND_PACKAGE_HANDLE_STANDARD_ARGS( "v8" DEFAULT_MSG V8_INCLUDE_DIR V8_LIBRARIES )
