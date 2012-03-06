@@ -3,7 +3,6 @@ include_directories(
   ${COMMON_INCLUDE_DIRS}
   ${GLOBAL_INCLUDE_DIRS}
   ${GTK2_INCLUDE_DIRS}
-  ${TINYXML_INCLUDE_DIRS}
 )
 
 file(GLOB Sources code/*.cpp code/*.h )

@@ -3,7 +3,6 @@ include_directories(
   ${GLOBAL_INCLUDE_DIRS}
   ${COMMON_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}
-  ${TINYXML_INCLUDE_DIRS}
 )
 
 file(GLOB Headers code/*.h code/third_party/.h)
@@ -40,5 +39,5 @@ add_definitions(-fPIC)
 add_library(util STATIC ${Sources} ${PlattformSources})
 target_link_libraries(util
     sqlite3x
-    tinyxml
+    ${TINYXML_LIBRARIES}
 )

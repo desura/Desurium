@@ -8,7 +8,6 @@ include_directories(
   ${CEF_INCLUDE_DIRS}
   ${IPC_PIPE_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}
-  ${TINYXML_INCLUDE_DIRS}
 )
 
 add_definitions(-DDESURA_CLIENT)
@@ -99,7 +98,7 @@ endif()
 
 add_library(usercore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES})
 target_link_libraries(usercore
-    tinyxml
+    ${TINYXML_LIBRARIES}
 )
 
 install(TARGETS usercore

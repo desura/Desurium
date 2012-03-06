@@ -2,7 +2,6 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${GLOBAL_INCLUDE_DIRS}
   ${COMMON_INCLUDE_DIRS}
-  ${TINYXML_INCLUDE_DIRS}
   ${SERVICECORE_INCLUDE_DIRS}
 )
 
@@ -30,5 +29,5 @@ endif()
 add_definitions(-fPIC)
 add_library(ipc_pipe STATIC ${Sources} ${PlattformSources})
 target_link_libraries(ipc_pipe
-    tinyxml
+    ${TINYXML_LIBRARIES}
 )

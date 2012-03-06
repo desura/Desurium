@@ -4,7 +4,6 @@ include_directories(
   ${GLOBAL_INCLUDE_DIRS}
   ${COMMON_INCLUDE_DIRS}
   ${BZIP2_INCLUDE_DIR}
-  ${TINYXML_INCLUDE_DIRS}
 )
 
 file(GLOB Headers code/*.h)
@@ -19,7 +18,7 @@ endif()
 
 add_library(utilcore SHARED ${Sources} ${PlattformSources})
 target_link_libraries(utilcore
-    tinyxml
+    ${TINYXML_LIBRARIES}
     ${BZIP2_LIBRARIES}
 )
 

@@ -6,7 +6,6 @@ include_directories(
   ${CEF_INCLUDE_DIRS}
   ${IPC_PIPE_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}
-  ${TINYXML_INCLUDE_DIRS}
 )
 
 set(SERVICECORE_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/code PARENT_SCOPE)
@@ -36,7 +35,7 @@ endif()
 
 add_library(servicecore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES})
 target_link_libraries(servicecore
-    tinyxml
+    ${TINYXML_LIBRARIES}
     ${STATIC_LIBS}
 )
 

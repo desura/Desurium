@@ -3,7 +3,6 @@ include_directories(
   ${GLOBAL_INCLUDE_DIRS}
   ${COMMON_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
-  ${TINYXML_INCLUDE_DIRS}
 )
 
 file(GLOB Sources code/UtilFs.cpp code/*.h)
@@ -17,6 +16,6 @@ endif()
 add_definitions(-fPIC)
 add_library(util_fs STATIC ${Sources} ${PlattFormSources})
 target_link_libraries(util_fs
-    tinyxml
     ${Boost_LIBRARIES}
+    ${TINYXML_LIBRARIES}
 )

@@ -4,7 +4,6 @@ include_directories(
   ${GLOBAL_INCLUDE_DIRS}
   ${COMMON_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}
-  ${TINYXML_INCLUDE_DIRS}
 )
 
 file(GLOB Headers code/*.h)
@@ -19,7 +18,7 @@ endif()
 
 add_library(webcore SHARED ${Sources} ${PlattformSources})
 target_link_libraries(webcore
-    tinyxml
+    ${TINYXML_LIBRARIES}
 )
 
 install(TARGETS webcore

@@ -3,7 +3,6 @@ include_directories(
   ${GLOBAL_INCLUDE_DIRS}
   ${COMMON_INCLUDE_DIRS}
   ${BREAKPAD_EXCEPTION_HANDLER_INCLUDE_DIR}
-  ${TINYXML_INCLUDE_DIRS}
 )
 
 if(WIN32)
@@ -15,6 +14,6 @@ endif()
 add_definitions(-fPIC)
 add_library(mdump STATIC ${Sources})
 target_link_libraries(mdump
-    tinyxml
     ${BREAKPAD_EXCEPTION_HANDLER_LIBRARIES}
+    ${TINYXML_LIBRARIES}
 )

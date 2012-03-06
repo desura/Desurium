@@ -13,19 +13,24 @@ include(ExternalProject)
 ###############################################################################
 
 find_package(Boost COMPONENTS date_time filesystem thread REQUIRED)
-find_package(BZip2 REQUIRED)
+find_package(BZip2)
 find_package(CURL REQUIRED)
 # we patch google breakpad, so we will build it on our own
 # find_package(GoogleBreakpad REQUIRED)
 find_package(GTK2 REQUIRED)
 find_package(OpenGL)
-find_package(Sqlite REQUIRED)
+find_package(Sqlite)
+find_package(TinyXML)
+# we patch wxWidgets so we will build it on our own
+# find_package(wxWidgets 2.9 REQUIRED)
 
 ###############################################################################
 # build some externel projects
 ###############################################################################
 
-include(BuildwxWidgets)
+if(NOT wxWidgets_FOUND)
+  include(BuildwxWidgets)
+endif()
 if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
   include(BuildGoogleBreakpad)
 endif()
@@ -54,7 +59,9 @@ if(NOT SQLITE_FOUND)
 endif()
 
 add_subdirectory(third_party/sqlite3x)
-add_subdirectory(third_party/tinyxml)
+if(NOT TINYXML_FOUND)
+  add_subdirectory(third_party/tinyxml)
+endif()
 
 ###############################################################################
 # important C/C++ flags
@@ -71,6 +78,10 @@ add_definitions(-D__WXGTK__)
 
 # other usefull macros
 add_definitions(-DUI_HIDE_MODS=1 -DDEBUG=1 -DBUILD_WITH_CMAKE=1 -DBOOST_FILESYSTEM_VERSION=2)
+
+include_directories(
+    ${TINYXML_INCLUDE_DIR}
+)
 
 ###############################################################################
 # do final steps for setting up the desurium build environment

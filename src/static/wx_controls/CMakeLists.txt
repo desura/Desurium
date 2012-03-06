@@ -4,7 +4,6 @@ include_directories(
   ${GLOBAL_INCLUDE_DIRS}/wx_controls
   ${COMMON_INCLUDE_DIRS}
   ${GTK2_INCLUDE_DIRS}
-  ${TINYXML_INCLUDE_DIRS}
   ${wxWidgets_INCLUDE_DIRS}
 )
 
@@ -14,7 +13,7 @@ file(GLOB Sources code/*.cpp)
 add_definitions(-fPIC)
 add_library(wx_controls STATIC ${Sources})
 target_link_libraries(wx_controls
-    tinyxml
     ${GTK2_LIBRARIES}
+    ${TINYXML_LIBRARIES}
     ${wxWidgets_LIBRARIES}
 )

@@ -4,7 +4,6 @@ include_directories(
   ${GLOBAL_INCLUDE_DIRS}
   ${COMMON_INCLUDE_DIRS}
   ${COURGETTE_INCLUDE_DIRS}
-  ${TINYXML_INCLUDE_DIRS}
 )
 
 file(GLOB Headers code/*.h)
@@ -21,7 +20,7 @@ endif()
 
 add_library(mcfcore SHARED ${Sources} ${PlattformSources})
 target_link_libraries(mcfcore
-    tinyxml
+    ${TINYXML_LIBRARIES}
 )
 
 install(TARGETS mcfcore

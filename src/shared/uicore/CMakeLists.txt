@@ -7,7 +7,6 @@ include_directories(
   ${Boost_INCLUDE_DIRS}
   ${GTK2_INCLUDE_DIRS}
   ${IPCPipeIncludeDir}
-  ${TINYXML_INCLUDE_DIRS}
   ${wxWidgets_INCLUDE_DIRS}
 )
 
