@@ -42,6 +42,10 @@ file(COPY branding_default/ DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/branding)
 # build third_party
 ###############################################################################
 
+if(NOT BZIP2_FOUND)
+  add_subdirectory(third_party/bzip2)
+endif()
+
 add_subdirectory(third_party/cef) # for headers only, build via ExternalProject
 add_subdirectory(third_party/courgette) # for headers only, build via ExternalProject
 
