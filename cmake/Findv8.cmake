@@ -14,7 +14,7 @@ ENDIF( V8_INCLUDE_DIR )
 FIND_PATH( V8_INCLUDE_DIR "v8.h" )
 
 FIND_LIBRARY( V8_LIBRARIES
-              NAMES "v8ds" )
+              NAMES "v8" )
 
 # handle the QUIETLY and REQUIRED arguments and set V8_FOUND to TRUE if
 # all listed variables are TRUE
