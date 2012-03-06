@@ -34,7 +34,7 @@ elif [ -f /etc/slackware-version ]; then
 	DISTRIBUTION="Slackware"
 fi
 
-echo $UNSUPPORTED_DISTROS| grep -q $DISTRIBUTION
+echo $UNSUPPORTED_DISTROS| grep -q "$DISTRIBUTION"
 if [ $? -eq 0 ];then
   echo $DISTRIBUTION $UNSUPPORTED_MESSAGE
 fi
