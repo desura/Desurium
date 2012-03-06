@@ -32,7 +32,7 @@ find_package(v8 REQUIRED)
 ###############################################################################
 
 # other usefull macros
-add_definitions(-DDEBUG -D_DEBUG -DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES -D_FILE_OFFSET_BITS=64 -pipe)
+add_definitions(-DDEBUG -DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES -D_FILE_OFFSET_BITS=64 -pipe)
 
 ###############################################################################
 # build some externel projects
