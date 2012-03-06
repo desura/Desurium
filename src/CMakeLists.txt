@@ -39,6 +39,11 @@ add_definitions(-DUI_HIDE_MODS=1 -DDEBUG=1)
 # build third_party
 add_subdirectory(third_party/cef) # for headers only, build via ExternalProject
 add_subdirectory(third_party/courgette) # for headers only, build via ExternalProject
+
+if(NOT SQLITE_FOUND)
+  add_subdirectory(third_party/sqlite)
+endif()
+
 add_subdirectory(third_party/sqlite3x)
 add_subdirectory(third_party/tinyxml)
 
