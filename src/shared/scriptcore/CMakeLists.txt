@@ -4,6 +4,7 @@ include_directories(
   ${GLOBAL_INCLUDE_DIRS}
   ${COMMON_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}
+  ${V8_INCLUDE_DIR}
 )
 
 file(GLOB Headers code/*.h)
