@@ -22,7 +22,7 @@ elif [ -f /etc/redhat-release ]; then
 	if [ "$(whoami)" != 'root' ]; then
 		echo $PASS_MESSAGE
 	fi
-	su -c 'yum install git subversion m4 autoconf gcc-c++ glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel libnotify-devel scons'
+	su -c 'yum install git subversion m4 autoconf gcc-c++ libstdc++-static glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel libnotify-devel scons'
 elif [ -f /etc/arch-release ]; then
 	DISTRIBUTION="Arch"
 	if [ "$(whoami)" != 'root' ]; then
