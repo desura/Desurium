@@ -2,6 +2,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${GLOBAL_INCLUDE_DIRS}
   ${COMMON_INCLUDE_DIRS}
+  ${CURL_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}
 )
 
@@ -39,5 +40,6 @@ add_definitions(-fPIC)
 add_library(util STATIC ${Sources} ${PlattformSources})
 target_link_libraries(util
     sqlite3x
+    ${CURL_LIBRARIES}
     ${TINYXML_LIBRARIES}
 )

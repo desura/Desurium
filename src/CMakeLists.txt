@@ -97,6 +97,7 @@ add_subdirectory(common/service_pipe)
 add_subdirectory(static/managers)
 add_subdirectory(static/mdump)
 add_subdirectory(static/ipc_pipe)
+add_subdirectory(static/scriptengine)
 add_subdirectory(static/umcf)
 add_subdirectory(static/util)
 add_subdirectory(static/util_fs)
@@ -104,7 +105,7 @@ add_subdirectory(static/util_thread)
 add_subdirectory(static/wx_controls)
 
 # set the static libs, so its easier to link against them
-set(STATIC_LIBS ${STATIC_LIBS} desuracommon managers mdump ipc_pipe umcf util util_fs threads wx_controls)
+set(STATIC_LIBS ${STATIC_LIBS} desuracommon managers mdump ipc_pipe scriptengine umcf util util_fs threads wx_controls)
 
 ###############################################################################
 # build shared libs
