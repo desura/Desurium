@@ -150,6 +150,7 @@ target_link_libraries(uicore
     webcore
     ${STATIC_LIBS}
     ${Boost_LIBRARIES}
+    ${CARES_LIBRARIES}
     ${OPENSSL_LIBRARIES}
     ${wxWidgets_LIBRARIES}
 )
