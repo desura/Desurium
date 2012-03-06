@@ -28,8 +28,15 @@ elif [ -f /etc/arch-release ]; then
 	if [ "$(whoami)" != 'root' ]; then
 		echo $PASS_MESSAGE
 	fi
-	DEPS="$(pacman -T git subversion m4 autoconf gcc glibc binutils autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify)"
-	su -c 'pacman -S $DEPS'
+	DEPS=`pacman -T git subversion m4 autoconf gcc glibc binutils autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify`
+	echo ${DEPS} > /tmp/desura_deps.txt
+	if [ `cat /tmp/desura_deps.txt | wc -c` = "1" ] ; then
+		echo "Dependencies are already installed."
+	else
+		DEPS=`echo ${DEPS}`
+		echo "Dependencies missing: ${DEPS}"
+		su -c 'pacman -S --asdeps `cat /tmp/desura_deps.txt`'
+	fi
 elif [ -f /etc/slackware-version ]; then
 	DISTRIBUTION="Slackware"
 fi
