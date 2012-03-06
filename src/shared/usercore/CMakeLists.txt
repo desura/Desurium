@@ -1,17 +1,12 @@
 include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/code
-  ${COMMON_INCLUDE_DIRS}
-  ${COMMON_INCLUDE_DIRS}/tool_pipe
   ${COMMON_INCLUDE_DIRS}/service_pipe
-  ${GLOBAL_INCLUDE_DIRS}
   ${CEF_INCLUDE_DIRS}
   ${IPC_PIPE_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}
 )
 
 add_definitions(-DDESURA_CLIENT)
-file(GLOB Headers code/*.h)
 file(GLOB Sources code/BaseItemServiceTask.cpp
                   code/BaseItemTask.cpp
                   code/BDManager.cpp
@@ -98,6 +93,19 @@ endif()
 
 add_library(usercore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES})
 target_link_libraries(usercore
+    gcJSBase
+    ipc_pipe
+    managers
+    managers_window
+    mcfcore
+    threads
+    util
+    util_fs
+    util_web
+    webcore
+    ${CURL_LIBRARIES}
+    ${SQLITE_LIBRARIES}
+    ${SQLITE3X_LIBRARIES}
     ${TINYXML_LIBRARIES}
 )
 

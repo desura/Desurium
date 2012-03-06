@@ -1,27 +1,19 @@
 include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/code
-  ${GLOBAL_INCLUDE_DIRS}
-  ${COMMON_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}
 )
 
-file(GLOB Headers code/*.h)
-file(GLOB Sources code/*.cpp
-)
+file(GLOB Sources code/*.cpp)
 
-if(WIN32)
-  file(GLOB PlattformSources)
-else()
-  file(GLOB PlattformSources)
-endif()
-
-add_library(crashuploader SHARED ${Sources} ${PlattformSources})
+add_library(crashuploader SHARED ${Sources})
 target_link_libraries(crashuploader
+    util
+    util_fs
     ${CARES_LIBRARIES}
+    ${CURL_LIBRARIES}
+    ${GTK2_LIBRARIES}
     ${OPENSSL_LIBRARIES}
     ${TINYXML_LIBRARIES}
-    ${STATIC_LIBS}
 )
 
 install(TARGETS crashuploader

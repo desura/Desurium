@@ -1,12 +1,16 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
-  ${GLOBAL_INCLUDE_DIRS}
-  ${COMMON_INCLUDE_DIRS}
   ${CURL_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}
 )
 
-file(GLOB Headers code/*.h code/third_party/.h)
+file(GLOB SourcesWEB code/UtilWeb.cpp)
+
+add_library(util_web STATIC ${SourcesWEB})
+target_link_libraries(util_web
+    ${CURL_LIBRARIES}
+)
+
 file(GLOB Sources code/gcBuff.cpp
                   code/MD5Progressive.cpp
                   code/MD5Wrapper.cpp
@@ -18,7 +22,6 @@ file(GLOB Sources code/gcBuff.cpp
                   code/UtilMisc_sha1.cpp
                   code/UtilOs.cpp
                   code/UtilString.cpp
-                  code/UtilWeb.cpp
                   code/third_party/GeneralHashFunctions.cpp
                   code/third_party/md5.cpp)
 
@@ -36,10 +39,10 @@ else()
   file(GLOB PlattformSources code/UtilLinux.cpp)
 endif()
 
-add_definitions(-fPIC)
 add_library(util STATIC ${Sources} ${PlattformSources})
+
 target_link_libraries(util
-    sqlite3x
-    ${CURL_LIBRARIES}
-    ${TINYXML_LIBRARIES}
+    ${Boost_LIBRARIES}
+    ${BZIP2_LIBRARIES}
+    ${SQLITE3X_LIBRARIES}
 )

@@ -1,14 +1,14 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
-  ${COMMON_INCLUDE_DIRS}
-  ${GLOBAL_INCLUDE_DIRS}
 )
 
-file(GLOB Sources code/*.cpp code/*.h )
+file(GLOB Sources code/*.cpp )
 
 add_executable(process_data_folder ${Sources})
 target_link_libraries(process_data_folder
-    ${STATIC_LIBS}
+    util
+    util_fs
+    ${Boost_LIBRARIES}
     ${SQLITE_LIBRARIES}
     ${TINYXML_LIBRARIES}
 )

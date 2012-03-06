@@ -32,7 +32,7 @@ find_package(v8 REQUIRED)
 ###############################################################################
 
 # other usefull macros
-add_definitions(-DDEBUG -DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES -D_FILE_OFFSET_BITS=64 -pipe)
+add_definitions(-DDEBUG -DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES -D_FILE_OFFSET_BITS=64 -fPIC)
 
 ###############################################################################
 # build some externel projects
@@ -84,21 +84,24 @@ endif()
 add_definitions(-std=c++0x)
 
 # Karol Herbst: I get an error while building without that
-add_Definitions(-fpermissive)
+add_definitions(-fpermissive)
 
 # wxWidgets config
 add_definitions(-D__WXGTK__)
 
-
-include_directories(
-    ${TINYXML_INCLUDE_DIR}
-)
 
 ###############################################################################
 # do final steps for setting up the desurium build environment
 ###############################################################################
 
 set(GLOBAL_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
+set(COMMON_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/common)
+
+include_directories(
+    ${GLOBAL_INCLUDE_DIRS}
+    ${COMMON_INCLUDE_DIRS}
+    ${TINYXML_INCLUDE_DIR}
+)
 
 ###############################################################################
 # build static libs
@@ -114,9 +117,6 @@ add_subdirectory(static/util)
 add_subdirectory(static/util_fs)
 add_subdirectory(static/util_thread)
 add_subdirectory(static/wx_controls)
-
-# set the static libs, so its easier to link against them
-set(STATIC_LIBS ${STATIC_LIBS} desuracommon managers mdump ipc_pipe scriptengine umcf util util_fs threads wx_controls)
 
 ###############################################################################
 # build shared libs

@@ -1,15 +1,11 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
-  ${COMMON_INCLUDE_DIRS}
-  ${GLOBAL_INCLUDE_DIRS}
   ${TINYXML_INCLUDE_DIR}
 )
 
-file(GLOB DesuraSources code/*.cpp code/*.h )
+file(GLOB Sources code/*.cpp )
 
-add_definitions(-DDESURA_CLIENT)
-
-add_executable(Desurium ${DesuraSources})
+add_executable(Desurium ${Sources})
 target_link_libraries(Desurium
     dl
     util

@@ -1,15 +1,29 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
-  ${GLOBAL_INCLUDE_DIRS}
-  ${COMMON_INCLUDE_DIRS}
+  ${SQLITE3X_INCLUDE_DIRS}
+)
+
+file(GLOB Sources code/*.cpp)
+file(GLOB SourcesWindow code/WindowManager.cpp)
+list(REMOVE_ITEM Sources ${SourcesWindow})
+
+add_library(managers STATIC ${Sources})
+target_link_libraries(managers
+    ${SQLITE3X_LIBRARIES}
+)
+
+
+include_directories(
+  ${CMAKE_CURRENT_SOURCE_DIR}/code
   ${SQLITE3X_INCLUDE_DIRS}
   ${wxWidgets_INCLUDE_DIRS}
 )
 
-file(GLOB Sources code/*.cpp code/*.h)
+add_definitions(-DUSING_WX_WIDGETS)
 
-add_definitions(-fPIC -DUSING_WX_WIDGETS)
-add_library(managers STATIC ${Sources})
-target_link_libraries(managers
-    ${TINYXML_LIBRARIES}
+add_library(managers_window STATIC ${SourcesWindow})
+target_link_libraries(managers_window
+    ${wxWidgets_LIBRARIES}
 )
+
+

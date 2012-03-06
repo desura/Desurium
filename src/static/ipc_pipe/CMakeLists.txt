@@ -1,14 +1,10 @@
 include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}
-  ${GLOBAL_INCLUDE_DIRS}
-  ${COMMON_INCLUDE_DIRS}
+  ${CMAKE_CURRENT_SOURCE_DIR}/code
   ${SERVICECORE_INCLUDE_DIRS}
 )
 
 set(IPC_PIPE_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/code PARENT_SCOPE)
 
-
-file(GLOB Headers code/*.h)
 file(GLOB Sources code/IPCClass.cpp
                   code/IPCManager.cpp
                   code/IPCParameter.cpp
@@ -26,8 +22,10 @@ else()
 )
 endif()
 
-add_definitions(-fPIC)
 add_library(ipc_pipe STATIC ${Sources} ${PlattformSources})
+
 target_link_libraries(ipc_pipe
+    threads
+    util
     ${TINYXML_LIBRARIES}
 )

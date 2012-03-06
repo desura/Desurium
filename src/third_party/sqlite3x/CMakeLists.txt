@@ -13,3 +13,4 @@ add_library(sqlite3x STATIC ${Sqlite3xSources})
 target_link_libraries(sqlite3x
     ${SQLITE_LIBRARIES}
 )
+set(SQLITE3X_LIBRARIES sqlite3x PARENT_SCOPE)

@@ -1,17 +1,13 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
-  ${GLOBAL_INCLUDE_DIRS}
-  ${COMMON_INCLUDE_DIRS}
   ${CEF_INCLUDE_DIRS}
-
   ${Boost_INCLUDE_DIRS}
   ${GTK2_INCLUDE_DIRS}
   ${IPCPipeIncludeDir}
   ${wxWidgets_INCLUDE_DIRS}
 )
 
-file(GLOB UiCoreHeaders code/*.h)
-file(GLOB UiCoreSources code/AboutForm.cpp
+file(GLOB Sources       code/AboutForm.cpp
                         code/AboutPageDev.cpp
                         code/AboutPageMain.cpp
                         code/BaseInstallPage.cpp
@@ -142,18 +138,28 @@ endif()
 
 add_definitions(-DUI_HIDE_MODS -DENABLE_SEARCH)
 
-add_library(uicore SHARED ${UiCoreSources} ${PlattformSources})
+add_library(uicore SHARED ${Sources} ${PlattformSources})
 
 # TODO: get notify from cmake, not hardcoded
 target_link_libraries(uicore
+    gcJSBase
+    managers
     mcfcore
     notify
+    ipc_pipe
+    threads
+    umcf
+    util
+    util_fs
     usercore
     webcore
-    ${STATIC_LIBS}
+    wx_controls
     ${Boost_LIBRARIES}
     ${CARES_LIBRARIES}
     ${OPENSSL_LIBRARIES}
+    ${SQLITE_LIBRARIES}
+    ${SQLITE3X_LIBRARIES}
+    ${TINYXML_LIBRARIES}
     ${wxWidgets_LIBRARIES}
 )
 

@@ -1,11 +1,9 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
-  ${COMMON_INCLUDE_DIRS}
-  ${GLOBAL_INCLUDE_DIRS}
   ${GTK2_INCLUDE_DIRS}
 )
 
-file(GLOB Sources code/*.cpp code/*.h )
+file(GLOB Sources code/*.cpp )
 
 add_executable(crashdlg ${Sources})
 target_link_libraries(crashdlg
