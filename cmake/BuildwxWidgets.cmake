@@ -18,4 +18,3 @@ install(FILES ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so
               ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.0
               ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.0.0.0
         DESTINATION ${LIB_INSTALL_DIR})
-#endif()
