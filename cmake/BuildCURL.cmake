@@ -2,10 +2,16 @@ ExternalProject_Add(
     curl
     SOURCE_DIR ${CMAKE_SOURCE_DIR}/src/third_party/curl
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND sh ${CMAKE_SOURCE_DIR}/src/third_party/curl_build/configure --without-librtmp --disable-ldap --disable-debug --disable-curldebug --without-zlib --disable-rtsp --disable-manual --enable-static=yes 
---enable-shared=no --disable-pop3 --disable-imap 
---disable-dict --disable-gopher --disable-verbose --disable-smtp --disable-telnet --disable-tftp --disable-file --without-libidn --without-gnutls --without-nss --without-cyassl --without-ssl --without-axtls --without-libssh2 
---enable-hidden-symbols --enable-cookies --without-sspi --disable-manual --enable-optimize=-O2+ --prefix=${CMAKE_SOURCE_DIR}/src/third_party/curl_install
+    CONFIGURE_COMMAND sh ${CMAKE_SOURCE_DIR}/src/third_party/curl_build/configure
+        --without-librtmp --disable-ldap --disable-debug --disable-curldebug
+        --without-zlib --disable-rtsp --disable-manual --enable-static=yes 
+        --enable-shared=no --disable-pop3 --disable-imap --disable-dict
+        --disable-gopher --disable-verbose --disable-smtp --disable-telnet
+        --disable-tftp --disable-file --without-libidn --without-gnutls
+        --without-nss --without-cyassl --with-ssl --without-axtls
+        --without-libssh2 --enable-hidden-symbols --enable-cookies --without-sspi
+        --disable-manual --enable-optimize=-O2+ --enable-ares
+        --prefix=${CMAKE_SOURCE_DIR}/src/third_party/curl_install
 )
 
 ExternalProject_Add_Step(
