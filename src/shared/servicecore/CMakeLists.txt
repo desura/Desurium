@@ -26,7 +26,7 @@ file(GLOB Sources code/ComplexLaunchProcess.cpp
                   code/UpdateShortcuts.cpp
 )
 
-if(DEFINED WIN32)
+if(WIN32)
   file(GLOB PlattformSources
                   code/WindowsGameExplorer.cpp
 )

@@ -11,7 +11,7 @@ file(GLOB Headers code/*.h)
 file(GLOB Sources code/*.cpp
 )
 
-if(DEFINED WIN32)
+if(WIN32)
   file(GLOB PlattformSources)
 else()
   file(GLOB PlattformSources)

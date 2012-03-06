@@ -8,7 +8,7 @@ include_directories(
 
 file(GLOB Sources code/UtilFs.cpp code/*.h)
 
-if(DEFINED WIN32)
+if(WIN32)
   file(GLOB PlattFormSources code/UtilFs_win.cpp)
 else()
   file(GLOB PlattFormSources code/UtilFs_nix.cpp)

@@ -15,7 +15,7 @@ file(GLOB Sources code/IPCClass.cpp
                   code/IPCParameter.cpp
 )
 
-if(DEFINED WIN32)
+if(WIN32)
   file(GLOB PlattformSources code/IPCPipeBase.cpp
                              code/IPCPipeClient.cpp
                              code/IPCPipeServer.cpp

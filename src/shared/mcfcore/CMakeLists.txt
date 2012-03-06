@@ -13,7 +13,7 @@ file(GLOB Sources code/*.cpp
                   code/thread/*.cpp
 )
 
-if(DEFINED WIN32)
+if(WIN32)
   file(GLOB PlattformSources)
 else()
   file(GLOB PlattformSources)

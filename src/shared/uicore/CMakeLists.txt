@@ -127,7 +127,7 @@ file(GLOB UiCoreSources code/AboutForm.cpp
                         code/UsernameBox.cpp
                         code/*.h)
 
-if(DEFINED WIN32)
+if(WIN32)
   file(GLOB PlattformSources
                         code/CefIPCPipeClient.cpp
                         code/ChromiumMenuInfoFromMem.cpp

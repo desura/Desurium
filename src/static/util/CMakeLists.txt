@@ -22,7 +22,7 @@ file(GLOB Sources code/gcBuff.cpp
                   code/third_party/GeneralHashFunctions.cpp
                   code/third_party/md5.cpp)
 
-if(DEFINED WIN32)
+if(WIN32)
   file(GLOB PlattformSources code/gcDDE.cpp
                              code/gcDDEManager.cpp
                              code/gcDDEManager.h

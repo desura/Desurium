@@ -76,7 +76,7 @@ file(GLOB Sources code/BaseItemServiceTask.cpp
                   code/VSInstallMissing.cpp
 )
 
-if(DEFINED WIN32)
+if(WIN32)
   file(GLOB PlattformSources
                   code/GameExplorerInfo_win.cpp
                   code/GameExplorerManager_win.cpp

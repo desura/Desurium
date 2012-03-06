@@ -6,7 +6,7 @@ include_directories(
   ${TINYXML_INCLUDE_DIRS}
 )
 
-if(DEFINED WIN32)
+if(WIN32)
   file(GLOB Sources code/MiniDumpGenerator_win.cpp)
 else()
   file(GLOB Sources code/MiniDumpGenerator_lin.cpp)
