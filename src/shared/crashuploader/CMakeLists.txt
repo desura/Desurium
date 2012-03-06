@@ -18,6 +18,8 @@ endif()
 
 add_library(crashuploader SHARED ${Sources} ${PlattformSources})
 target_link_libraries(crashuploader
+    ${CARES_LIBRARIES}
+    ${OPENSSL_LIBRARIES}
     ${TINYXML_LIBRARIES}
     ${STATIC_LIBS}
 )

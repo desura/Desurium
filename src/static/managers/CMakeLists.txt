@@ -8,7 +8,7 @@ include_directories(
 
 file(GLOB Sources code/*.cpp code/*.h)
 
-add_definitions(-fPIC)
+add_definitions(-fPIC -DUSING_WX_WIDGETS)
 add_library(managers STATIC ${Sources})
 target_link_libraries(managers
     ${TINYXML_LIBRARIES}

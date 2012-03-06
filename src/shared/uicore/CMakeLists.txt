@@ -140,6 +140,8 @@ else()
   file(GLOB PlattformSources)
 endif()
 
+add_definitions(-DUI_HIDE_MODS -DENABLE_SEARCH)
+
 add_library(uicore SHARED ${UiCoreSources} ${PlattformSources})
 
 # TODO: get notify from cmake, not hardcoded

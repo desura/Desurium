@@ -28,6 +28,13 @@ find_package(v8 REQUIRED)
 # find_package(wxWidgets 2.9 REQUIRED)
 
 ###############################################################################
+# some global defines
+###############################################################################
+
+# other usefull macros
+add_definitions(-DDEBUG -D_DEBUG -DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES -D_FILE_OFFSET_BITS=64 -pipe)
+
+###############################################################################
 # build some externel projects
 ###############################################################################
 
@@ -82,8 +89,6 @@ add_Definitions(-fpermissive)
 # wxWidgets config
 add_definitions(-D__WXGTK__)
 
-# other usefull macros
-add_definitions(-DUI_HIDE_MODS=1 -DDEBUG=1 -DBUILD_WITH_CMAKE=1 -DBOOST_FILESYSTEM_VERSION=2)
 
 include_directories(
     ${TINYXML_INCLUDE_DIR}

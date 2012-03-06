@@ -18,6 +18,8 @@ else()
   file(GLOB PlattformSources)
 endif()
 
+add_definitions(-DNEED_STRDUP -DNEED_MEMCCPY)
+
 add_library(mcfcore SHARED ${Sources} ${PlattformSources})
 target_link_libraries(mcfcore
     ${TINYXML_LIBRARIES}
