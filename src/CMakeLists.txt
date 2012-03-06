@@ -18,7 +18,6 @@ find_package(CURL REQUIRED)
 # we patch google breakpad, so we will build it on our own
 # find_package(GoogleBreakpad REQUIRED)
 find_package(GTK2 REQUIRED)
-find_package(OpenGL)
 find_package(Sqlite)
 find_package(TinyXML)
 # we patch wxWidgets so we will build it on our own
