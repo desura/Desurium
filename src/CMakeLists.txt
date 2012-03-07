@@ -1,7 +1,7 @@
 # TODO: silent output for externel dependencies
 # TODO: get libs automatically for externel builds, maybe make desurium a external build itself?
 
-project(Desura)
+project(Desurium)
 
 ###############################################################################
 # we wanna build some external projects
