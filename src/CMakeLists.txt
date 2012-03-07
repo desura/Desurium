@@ -12,7 +12,7 @@ include(ExternalProject)
 # find all packages which are needed
 ###############################################################################
 
-find_package(Boost COMPONENTS date_time filesystem thread REQUIRED)
+find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
 find_package(BZip2)
 find_package(cares REQUIRED)
 # cURL is patched
