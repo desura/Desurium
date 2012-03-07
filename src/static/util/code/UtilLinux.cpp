@@ -696,7 +696,7 @@ std::wstring getDesktopPath(std::wstring extra)
 {
 	struct passwd* pass = getpwuid(getuid());
 	std::wstring desktop((wchar_t*) pass->pw_dir);
-	desktop += (wchar_t*) "/Desktop/" + extra;
+	desktop += L"/Desktop/" + extra;
 	return desktop;
 }
 
@@ -704,7 +704,7 @@ std::wstring getApplicationsPath(std::wstring extra)
 {
 	struct passwd* pass = getpwuid(getuid());
 	std::wstring applications((wchar_t*) pass->pw_dir);
-	applications += (wchar_t*) "/.local/share/applications" + extra;
+	applications += L"/.local/share/applications/" + extra;
 	return applications;
 }
 

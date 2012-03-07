@@ -176,7 +176,7 @@ std::wstring getLocalAppDataPath(std::wstring extra)
 	}
 
 	return out;
-#else
+#else //TODO LINUX
 	return L"";
 #endif
 }
@@ -199,7 +199,7 @@ std::wstring getTempInternetPath(std::wstring extra)
 	}
 
 	return out;
-#else
+#else //TODO LINUX
 	return L"";
 #endif
 }
@@ -223,7 +223,7 @@ std::wstring getCommonProgramFilesPath(std::wstring extra)
 	}
 
 	return out;
-#else
+#else //TODO LINUX
 	return L"";
 #endif
 }
