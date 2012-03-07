@@ -762,6 +762,29 @@ const char g_cBadChars[] = {
 	NULL
 };
 
+gcString getAbsPath(const gcString& path)
+{
+	if (path.size() == 0 || path[0] == '/')
+		return path;
+
+	gcString wd = UTIL::LIN::getAppPath(L"");
+
+	if (path.find(wd) == std::string::npos)
+		return wd + "/" + path;
+
+	return path;
+}
+
+gcString getRelativePath(const gcString &path)
+{
+	gcString wd = UTIL::LIN::getAppPath(L"");
+
+	if (path.find(wd) == 0)
+		return path.substr(wd.size()+1, std::string::npos);
+
+	return path;
+}
+
 std::string sanitiseFileName(const char* name)
 {
 	if (!name)

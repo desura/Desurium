@@ -846,6 +846,16 @@ const char g_cBadChars[] = {
 	NULL
 };
 
+gcString getAbsPath(const gcString& path)
+{
+	return path;
+}
+
+gcString getRelativePath(const gcString &path)
+{
+	return path;
+}
+
 std::string sanitiseFileName(const char* name)
 {
 	if (!name)

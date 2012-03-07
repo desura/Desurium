@@ -136,6 +136,9 @@ namespace LIN
 	bool fileExists(const char* file);
 	
 	bool is64OS();
+
+	gcString getAbsPath(const gcString& path);
+	gcString getRelativePath(const gcString &path);
 	
 	std::string sanitiseFileName(const char* name);
 	
