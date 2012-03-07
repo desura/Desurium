@@ -16,7 +16,7 @@ elif [ -f /etc/debian_version ]; then
 	if [ "$(whoami)" != 'root' ]; then
 		echo $PASS_MESSAGE
 	fi
-	su -c 'apt-get install gcc git-core subversion m4 build-essential binutils automake autoconf libtool libgtk2.0-dev libnss3-dev libgconf2-dev libgnome-keyring-dev libdbus-glib-1-dev gperf bison libcups2-dev flex libjpeg-dev libasound2-dev libbz2-dev libxpm-dev libx11-dev libssl-dev libnotify-dev scons'
+	su -c 'apt-get install gcc git-core subversion m4 build-essential binutils automake autoconf libtool libgtk2.0-dev libnss3-dev libgconf2-dev libgnome-keyring-dev libdbus-glib-1-dev gperf bison libcups2-dev flex libjpeg-dev libasound2-dev libbz2-dev libxpm-dev libx11-dev libssl-dev libnotify-dev scons libv8-dev libc-ares-dev libboost-dev libboost-date-time-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev'
 elif [ -f /etc/redhat-release ]; then
 	DISTRIBUTION="Red Hat"
 	if [ "$(whoami)" != 'root' ]; then
