@@ -6,6 +6,7 @@ file(GLOB Sources code/*.cpp )
 
 add_executable(process_data_folder ${Sources})
 target_link_libraries(process_data_folder
+    rt
     util
     util_fs
     ${Boost_LIBRARIES}

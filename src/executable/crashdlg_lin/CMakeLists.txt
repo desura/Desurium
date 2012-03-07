@@ -7,6 +7,7 @@ file(GLOB Sources code/*.cpp )
 
 add_executable(crashdlg ${Sources})
 target_link_libraries(crashdlg
+    rt
     util
     ${GTK2_LIBRARIES}
     ${SQLITE_LIBRARIES}

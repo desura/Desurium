@@ -8,9 +8,10 @@ file(GLOB Sources code/*.cpp )
 add_executable(Desurium ${Sources})
 target_link_libraries(Desurium
     dl
-    util
     mdump
+    rt
     sqlite3x
+    util
     ${TINYXML_LIBRARIES}
     ${BZIP2_LIBRARIES}
     ${CURL_LIBRARIES}
