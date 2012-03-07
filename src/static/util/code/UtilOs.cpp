@@ -243,8 +243,8 @@ std::wstring getStartMenuProgramsPath(std::wstring extra)
 	}
 
 	return out;
-#else //TODO LINUX
-	return L"";
+#else
+	return UTIL::LIN::getApplicationsPath(extra);
 #endif
 }
 

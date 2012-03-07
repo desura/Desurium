@@ -128,6 +128,12 @@ namespace LIN
 	//!
 	std::wstring getDesktopPath(std::wstring extra);
 
+	//! Returns ~/.local/share/applications
+	//!
+	//! @param extra extra text to append to Desktop path
+	//!
+	std::wstring getApplicationsPath(std::wstring extra);
+
 	//! Checks if a file exists
 	//!
 	//! @param file The file to stat (check existance of)

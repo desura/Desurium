@@ -700,6 +700,14 @@ std::wstring getDesktopPath(std::wstring extra)
 	return desktop;
 }
 
+std::wstring getApplicationsPath(std::wstring extra)
+{
+	struct passwd* pass = getpwuid(getuid());
+	std::wstring applications((wchar_t*) pass->pw_dir);
+	applications += (wchar_t*) "/.local/share/applications" + extra;
+	return applications;
+}
+
 bool fileExists(const char* file) 
 {
 	char buffer[PATH_MAX];
