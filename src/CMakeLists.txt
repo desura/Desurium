@@ -1,5 +1,9 @@
 # TODO: silent output for externel dependencies
 # TODO: get libs automatically for externel builds, maybe make desurium a external build itself?
+# TODO:
+# -rdynamic -fno-omit-frame-pointer _DEBUG -finline-functions -g3 -Wl,-Bsymbolic-functions -lpthread
+#
+#
 
 project(Desura)
 
@@ -32,7 +36,9 @@ find_package(v8 REQUIRED)
 ###############################################################################
 
 # other usefull macros
-add_definitions(-DDEBUG -DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES -D_FILE_OFFSET_BITS=64 -fPIC)
+add_definitions(-DDEBUG -DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES
+    -D_FILE_OFFSET_BITS=64 -fPIC -pipe -g3 -fvisibility=hidden -rdynamic
+    -fno-omit-frame-pointer -Wl,-Bsymbolic-functions -lpthread)
 
 ###############################################################################
 # build some externel projects
@@ -147,6 +153,7 @@ add_subdirectory(branding)
 ###############################################################################
 
 add_dependencies(managers wxWidget-2-9)
+add_dependencies(managers_window wxWidget-2-9)
 add_dependencies(wx_controls wxWidget-2-9)
 add_dependencies(Desurium wxWidget-2-9)
 if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)

@@ -5,7 +5,8 @@ install(FILES ${BR}/data/desura_lin.png
         RENAME desura.png
 )
 
-install(FILES ${BR}/data/themes/default/images/app/signin_banner.png
-              ${BR}/data/themes/default/images/app/about_logo.png
+install(FILES ${BR}/data/themes/default/images/app/about_logo.png
+              ${BR}/data/themes/default/images/app/icon_download.png
+              ${BR}/data/themes/default/images/app/signin_banner.png
         DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app/
 )

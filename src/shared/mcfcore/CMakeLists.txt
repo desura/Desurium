@@ -15,6 +15,7 @@ target_link_libraries(mcfcore
     umcf
     util
     util_fs
+    util_web
     threads
     ${Boost_LIBRARIES}
     ${CURL_LIBRARIES}
