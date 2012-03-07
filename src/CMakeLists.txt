@@ -31,7 +31,6 @@ find_package(v8 REQUIRED)
 # some global defines
 ###############################################################################
 
-# other usefull macros
 add_definitions(-DDEBUG -DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES
     -D_FILE_OFFSET_BITS=64 -fPIC -pipe -g3 -fvisibility=hidden -rdynamic
     -fno-omit-frame-pointer -Wl,-Bsymbolic-functions -lpthread)
@@ -43,12 +42,15 @@ add_definitions(-DDEBUG -DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES
 if(NOT wxWidgets_FOUND)
   include(BuildwxWidgets)
 endif()
+
 if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
   include(BuildGoogleBreakpad)
 endif()
+
 if(NOT CURL_FOUND)
   include(BuildCURL)  
 endif()
+
 #include(BuildChromium)
 #include(BuildCEF)
 #include(BuildCourgette)
@@ -72,8 +74,8 @@ add_subdirectory(third_party/courgette) # for headers only, build via ExternalPr
 if(NOT SQLITE_FOUND)
   add_subdirectory(third_party/sqlite)
 endif()
-
 add_subdirectory(third_party/sqlite3x)
+
 if(NOT TINYXML_FOUND)
   add_subdirectory(third_party/tinyxml)
 endif()
@@ -148,13 +150,17 @@ add_subdirectory(branding)
 # we need some dependencies 
 ###############################################################################
 
-add_dependencies(managers wxWidget-2-9)
-add_dependencies(managers_window wxWidget-2-9)
-add_dependencies(wx_controls wxWidget-2-9)
-add_dependencies(Desurium wxWidget-2-9)
+if(NOT wxWidgets_FOUND)
+  add_dependencies(managers wxWidget-2-9)
+  add_dependencies(managers_window wxWidget-2-9)
+  add_dependencies(wx_controls wxWidget-2-9)
+  add_dependencies(Desurium wxWidget-2-9)
+endif()
+
 if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
     add_dependencies(mdump breakpad)
 endif()
+
 if(NOT CURL_FOUND)
     add_dependencies(util curl)
     add_dependencies(uicore curl)
