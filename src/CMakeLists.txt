@@ -151,7 +151,6 @@ add_subdirectory(branding)
 ###############################################################################
 
 if(NOT wxWidgets_FOUND)
-  add_dependencies(managers wxWidget-2-9)
   add_dependencies(managers_window wxWidget-2-9)
   add_dependencies(wx_controls wxWidget-2-9)
   add_dependencies(Desurium wxWidget-2-9)
