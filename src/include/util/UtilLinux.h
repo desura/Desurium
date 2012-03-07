@@ -121,6 +121,13 @@ namespace LIN
 	//!
 	std::string getCmdStdout(const char* command, int stdErrDest = 0);
 	
+	//! Returns the Desktop directory in the
+	//! user's home.
+	//!
+	//! @param extra extra text to append to Desktop path
+	//!
+	std::wstring getDesktopPath(std::wstring extra);
+
 	//! Checks if a file exists
 	//!
 	//! @param file The file to stat (check existance of)

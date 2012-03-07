@@ -692,6 +692,14 @@ std::string getCmdStdout(const char* command, int stdErrDest)
 	return trim(output); 
 }
 
+std::wstring getDesktopPath(std::wstring extra)
+{
+	struct passwd* pass = getpwuid(getuid());
+	std::wstring desktop((wchar_t*) pass->pw_dir);
+	desktop += (wchar_t*) "/Desktop/" + extra;
+	return desktop;
+}
+
 bool fileExists(const char* file) 
 {
 	char buffer[PATH_MAX];
