@@ -2,11 +2,24 @@ easy way to build with cmake:
 
 run ./build_cmake.sh
 
-for faster build you can pass options for make
-
-eg: 
+of course you can build it with multicore support
 ./build_cmake.sh -j8
+will invoke "make -j8" so the build is speeded up extremely
+only 7 mins on my machine (intel core i7 2635QM)
 
-to clear all files:
+required dependencies (all can be installed by package manager):
+boost
+c-ares
+gtk2
+OpenSSL
+v8
 
-run ./build_cmake_clean.sh
+optional dependencies (will be built by cmake if not exist):
+bzip2
+tinyxml
+sqlite
+
+cef is needed from official distribution see #5
+just copy required libs to install/lib
+
+finally run desura with /run_desura.sh
