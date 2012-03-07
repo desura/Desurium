@@ -1,9 +1,5 @@
 # TODO: silent output for externel dependencies
 # TODO: get libs automatically for externel builds, maybe make desurium a external build itself?
-# TODO:
-# -rdynamic -fno-omit-frame-pointer _DEBUG -finline-functions -g3 -Wl,-Bsymbolic-functions -lpthread
-#
-#
 
 project(Desura)
 
