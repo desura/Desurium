@@ -263,8 +263,8 @@ std::wstring getDesktopPath(std::wstring extra)
 	}
 
 	return out;
-#else //TODO LINUX
-	return L"";
+#else
+	return UTIL::LIN::getDesktopPath(extra);
 #endif
 }
 
