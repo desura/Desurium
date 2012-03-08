@@ -127,11 +127,11 @@ add_subdirectory(branding)
 # we need some dependencies 
 ###############################################################################
 
-if(NOT wxWidgets_FOUND)
+#if(NOT wxWidgets_FOUND)
   add_dependencies(managers_window wxWidget-2-9)
   add_dependencies(wx_controls wxWidget-2-9)
   add_dependencies(Desurium wxWidget-2-9)
-endif()
+#endif()
 
 if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
     add_dependencies(mdump breakpad)
