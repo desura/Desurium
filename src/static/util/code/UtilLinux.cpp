@@ -695,7 +695,10 @@ std::string getCmdStdout(const char* command, int stdErrDest)
 std::wstring getDesktopPath(std::wstring extra)
 {
 	std::wstring desktop((wchar_t*) getCmdStdout("xdg-user-dir DESKTOP", 1).c_str());
-	desktop += extra;
+	if(!desktop.empty())
+	{
+		desktop += extra;
+	}
 	return desktop;
 }
 
