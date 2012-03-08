@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
+set(CMAKE_PLATFORM_PATH "${CMAKE_SOURCE_DIR}/cmake/platform")
 
 include(CheckCompiler)
 
