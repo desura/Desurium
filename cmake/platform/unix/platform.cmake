@@ -24,7 +24,7 @@ add_compiler_flags(RELEASE -O2)
 ###############################################################################
 
 # Desura uses the awesome new C++ Standard
-add_compiler_flags(-std=c++0x)
+add_compiler_flags(CXX -std=c++0x)
 
 # Karol Herbst: I get an error while building without that
 add_definitions(-fpermissive)
