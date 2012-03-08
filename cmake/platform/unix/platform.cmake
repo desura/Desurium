@@ -19,15 +19,10 @@ add_compiler_flags(-fPIC -pipe -fvisibility=hidden -Wl,-Bsymbolic-functions -lpt
 add_compiler_flags(DEBUG -rdynamic -fno-omit-frame-pointer)
 add_compiler_flags(RELEASE -O2)
 
-###############################################################################
-# important C/C++ flags
-###############################################################################
+add_compiler_flags(CXX -fpermissive)
 
 # Desura uses the awesome new C++ Standard
 add_compiler_flags(CXX -std=c++0x)
-
-# Karol Herbst: I get an error while building without that
-add_definitions(-fpermissive)
 
 # wxWidgets config
 add_definitions(-D__WXGTK__)
