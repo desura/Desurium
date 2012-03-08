@@ -15,7 +15,6 @@ include(ExternalProject)
 find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
 find_package(BZip2)
 find_package(cares REQUIRED)
-# cURL is patched
 find_package(CURL)
 # we patch google breakpad, so we will build it on our own
 # find_package(GoogleBreakpad REQUIRED)
