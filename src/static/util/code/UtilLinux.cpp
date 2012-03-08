@@ -694,18 +694,25 @@ std::string getCmdStdout(const char* command, int stdErrDest)
 
 std::wstring getDesktopPath(std::wstring extra)
 {
-	struct passwd* pass = getpwuid(getuid());
-	std::wstring desktop((wchar_t*) pass->pw_dir);
-	desktop += L"/Desktop/" + extra;
+	std::wstring desktop((wchar_t*) getCmdStdout("xdg-user-dir DESKTOP", 1).c_str());
+	desktop += extra;
 	return desktop;
 }
 
 std::wstring getApplicationsPath(std::wstring extra)
 {
-	struct passwd* pass = getpwuid(getuid());
-	std::wstring applications((wchar_t*) pass->pw_dir);
-	applications += L"/.local/share/applications/" + extra;
-	return applications;
+	std::wstring data_home((wchar_t*) getenv("XDG_DATA_HOME"));
+	if(data_home.empty())
+	{
+		// If $XDG_DATA_HOME isn't set, it's assumed to be
+		// $HOME/.local/share
+		struct passwd* pass = getpwuid(getuid());
+		data_home = (wchar_t*) pass->pw_dir;
+		data_home += L"/.local/share/";
+	}
+
+	data_home += L"/applications/" + extra;
+	return data_home;
 }
 
 bool fileExists(const char* file) 
