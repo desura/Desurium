@@ -1,7 +1,10 @@
 cmake_minimum_required(VERSION 2.8)
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 
+include(CheckCompiler)
+
+# TODO: include this
 # set this with cmake -DCMAKE_INSTALL_PREFIX=/where/to/install
 set(INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
 set(BIN_INSTALL_DIR ${INSTALL_DIR}/bin)

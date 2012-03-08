@@ -16,7 +16,7 @@ find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
 find_package(BZip2)
 find_package(cares REQUIRED)
 # cURL is patched
-# find_package(CURL)
+find_package(CURL)
 # we patch google breakpad, so we will build it on our own
 # find_package(GoogleBreakpad REQUIRED)
 find_package(GTK2 REQUIRED)
@@ -26,14 +26,6 @@ find_package(Sqlite)
 find_package(v8 REQUIRED)
 # we patch wxWidgets so we will build it on our own
 # find_package(wxWidgets 2.9 REQUIRED)
-
-###############################################################################
-# some global defines
-###############################################################################
-
-add_definitions(-DDEBUG -DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES
-    -D_FILE_OFFSET_BITS=64 -fPIC -pipe -g3 -fvisibility=hidden -rdynamic
-    -fno-omit-frame-pointer -Wl,-Bsymbolic-functions -lpthread)
 
 ###############################################################################
 # build some externel projects
@@ -79,20 +71,6 @@ add_subdirectory(third_party/sqlite3x)
 if(NOT TINYXML_FOUND)
   add_subdirectory(third_party/tinyxml)
 endif()
-
-###############################################################################
-# important C/C++ flags
-###############################################################################
-
-# Desura uses the awesome new C++ Standard
-add_definitions(-std=c++0x)
-
-# Karol Herbst: I get an error while building without that
-add_definitions(-fpermissive)
-
-# wxWidgets config
-add_definitions(-D__WXGTK__)
-
 
 ###############################################################################
 # do final steps for setting up the desurium build environment
