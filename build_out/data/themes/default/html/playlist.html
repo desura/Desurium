@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	<meta http-equiv="pragma" content="no-cache" />
 	<meta http-equiv="expires" content="-1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/tipsy.css" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/reset.css" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/screen.css" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="../css/scrollbar.css" />
@@ -31,6 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/jquery.template.js"></script>
 	<script type="text/javascript" src="../js/jquery.ui.achtung.js"></script>
+	<script type="text/javascript" src="../js/jquery.tipsy.js"></script>
 	<script type="text/javascript" src="../js/play.setup.js"></script>
 	<script type="text/javascript" src="../js/play.menu.js"></script>
 	<script type="text/javascript" src="../js/play.items.js"></script>
@@ -750,6 +752,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 		<input type="button" value="<#= desura.utils.getLocalString("#CLOSE") #>" class="minimal btnclose" />
 	</div>
 </div>
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.preorder, .demo, .update, .colfav a').tipsy({gravity: 'e', fade: true, html: true});
+	});
 </script>
 
 </body>

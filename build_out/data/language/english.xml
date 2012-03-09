@@ -103,8 +103,8 @@
 		<!-- Uninstall Form -->
 		<str name="#UNF_REMOVEFILES">Remove Desura Files</str>
 		<str name="#UNF_REMOVEFILES_TOOLTIP">Delete MCF and files related to this that Desura uses</str>
-		<str name="#UNF_REMOVEACCOUNT">Remove From Account</str>
-		<str name="#UNF_REMOVEACCOUNT_TOOLTIP">Removes this item from the current account</str>
+		<str name="#UNF_REMOVEACCOUNT">Remove From List</str>
+		<str name="#UNF_REMOVEACCOUNT_TOOLTIP">Removes this item from the game list</str>
 		<str name="#UNF_ERRTITLE">Uninstall Error</str>
 		<str name="#UNF_ERROR">There was an error during the uninstall process and it has been stopped.</str>
 		<!-- {0} repersents item name -->
@@ -450,7 +450,7 @@
 		<str name="#PM_VIEWPROFILE">View Profile</str>
 		<str name="#PM_MODLIST">View Mod List</str>
 		<str name="#PM_UPDATELOG">View Changelog</str>
-		<str name="#PM_REMOVEACCOUNT">Remove from Account</str>
+		<str name="#PM_REMOVEACCOUNT">Remove from List</str>
 		<str name="#PM_DESURAPAGE">Desura Page</str>
 		<str name="#PM_CREATEMCF">Create MCF</str>
 		<str name="#PM_UPLOADMCF">Upload MCF</str>
@@ -465,7 +465,7 @@
 		<str name="#PM_SHOWMCF">Show MCF</str>
 		<str name="#PM_REVERTCOMPLEX">Revert Game Files</str>
 		<str name="#PM_SHOWCDKEY">View CD Key</str>
-		<str name="#PM_REMOVEFROMACCOUNT">Remove From Account</str>
+		<str name="#PM_REMOVEFROMACCOUNT">Remove from List</str>
 		<str name="#PM_SHORTCUT">Create Desktop Shortcut</str>
 
 		<!-- Settings -->
