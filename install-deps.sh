@@ -17,6 +17,8 @@ elif [ -f /etc/arch-release ]; then
 	else
 		pacman -S --asdeps ${DEPS}
 	fi
+elif [ -f /usr/bin/emerge ]; then
+    emerge -au dev-libs/boost net-dns/c-ares x11-libs/gtk+:2 dev-lang/v8 dev-util/cmake dev-vcs/subversion dev-libs/openssl
 else
 	echo "Unsupported operating system."
 fi
