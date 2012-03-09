@@ -11,14 +11,12 @@ if [ -f /etc/debian_version ]; then
 elif [ -f /etc/redhat-release ]; then
 	yum install git subversion m4 autoconf gcc-c++ libstdc++-static glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel libnotify-devel scons
 elif [ -f /etc/arch-release ]; then
-	DEPS="$(pacman -T git subversion m4 autoconf gcc glibc binutils autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify boost c-ares v8 bzip2 tinyxml sqlite3)"
-	DEPS="$(echo $DEPS | sed -e 's/\n/ /g')"
-	
+	DEPS="$(pacman -T git subversion m4 autoconf gcc glibc binutils autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify boost c-ares v8 bzip2 tinyxml sqlite3 | sed -e 's/\n/ /g')"
 	if [ "$DEPS" == "" ]; then
-		echo "Dependencies already installed."
+		echo "All dependencies already installed."
 	else
 		pacman -S --asdeps $DEPS
 	fi
 else
-  echo "Unsupported operating system."
+	echo "Unsupported operating system."
 fi
