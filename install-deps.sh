@@ -13,7 +13,7 @@ elif [ -f /etc/redhat-release ]; then
 elif [ -f /etc/arch-release ]; then
 	DEPS="$(pacman -T git subversion m4 autoconf gcc glibc binutils autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify boost c-ares v8 bzip2 tinyxml sqlite3 | sed -e 's/\n/ /g')"
 	if [ "${DEPS}" == "" ]; then
-		echo "All dependencies already installed."
+		echo "Required dependencies are already installed."
 	else
 		pacman -S --asdeps ${DEPS}
 	fi
