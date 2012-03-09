@@ -6,3 +6,4 @@ fi
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=../install
 make install $*
+echo -e "Run \e[1;31mrun_desura.sh\e[0m to start Desura!"
