@@ -10,13 +10,7 @@ file(GLOB Headers code/*.h)
 file(GLOB Sources code/*.cpp
 )
 
-if(WIN32)
-  file(GLOB PlattformSources)
-else()
-  file(GLOB PlattformSources)
-endif()
-
-add_library(utilcore SHARED ${Sources} ${PlattformSources})
+add_library(utilcore SHARED ${Sources})
 target_link_libraries(utilcore
     ${TINYXML_LIBRARIES}
     ${BZIP2_LIBRARIES}
