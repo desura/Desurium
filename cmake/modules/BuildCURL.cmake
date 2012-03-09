@@ -12,7 +12,7 @@ ExternalProject_Add(
         --disable-tftp --disable-file --without-libidn --without-gnutls
         --without-nss --without-cyassl --with-ssl --without-axtls
         --without-libssh2 --enable-hidden-symbols --enable-cookies --without-sspi
-        --disable-manual --enable-optimize=-O2+ --enable-ares
+        --disable-manual --enable-optimize=-O2 --enable-ares
         --prefix=${CURL_INSTALL_DIR}
 )
 
