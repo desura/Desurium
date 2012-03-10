@@ -4,6 +4,6 @@ if [ ! -d "build" ] ; then
  mkdir build
 fi
 cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=../install
-make install $*
+cmake .. -DCMAKE_INSTALL_PREFIX=../install || exit 1
+make install $* || exit 2
 echo -e "Run \e[1;31mrun_desura.sh\e[0m to start Desura!"
