@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Managers.h"
 #include "DesuraControl.h"
 
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 
 WebCore::WebCoreUrl g_uiUrlList[] =

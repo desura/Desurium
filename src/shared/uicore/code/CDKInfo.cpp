@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "MainApp.h"
 
 #include <wx/clipbrd.h>
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 #ifdef DESURA_OFFICAL_BUILD
 bool DecodeMsgAMAR2CDKey(unsigned char *msg, const char *buffer);

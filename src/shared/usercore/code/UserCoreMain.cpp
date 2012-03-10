@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Common.h"
 #include "User.h"
 #include "usercore/UserCoreI.h"
-#include "../../branding/usercore_version.h"
+#include <branding/usercore_version.h>
 
 gcString g_szUserCoreVersion("{0}.{1}.{2}.{3}", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILDNO, VERSION_EXTEND);
 

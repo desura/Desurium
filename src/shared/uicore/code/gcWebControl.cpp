@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "gcWebFakeBrowser.h"
 
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 #ifdef WIN32
 ChromiumDLL::ChromiumBrowserI* NewChromiumBrowser(HWND hwnd, const char* name, const char* loadUrl);

@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #pragma once
 #endif
 
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 #include "wx_controls/gcControls.h"
 
 class DSEThread;

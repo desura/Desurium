@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "wx/window.h"
 #include "Managers.h"
 #include "Log.h"
-#include "../../../branding/uicore_version.h"
+#include <branding/uicore_version.h>
 #include "mcfcore/MCFMain.h"
 #include "mcfcore/UserCookies.h"
 

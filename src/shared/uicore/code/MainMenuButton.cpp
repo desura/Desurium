@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "MainMenuButton.h"
 #include <wx/msgdlg.h>
 #include "MainFormCustomFrame.h"
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 
 

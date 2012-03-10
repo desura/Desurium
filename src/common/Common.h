@@ -784,7 +784,7 @@ T Clamp(T val, T minVal, T maxVal)
 #endif
 }
 
-#include "../branding/branding.h"
+#include <branding/branding.h>
 
 #define PRODUCT_NAME_CAT(x) PRODUCT_NAME x
 #define PRODUCT_NAME_CATW(x) _T(PRODUCT_NAME) x

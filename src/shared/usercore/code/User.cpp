@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "UpdateThread.h"
 
-#include "../../branding/usercore_version.h"
+#include <branding/usercore_version.h>
 
 #include "UserIPCPipeClient.h"
 #include "IPCServiceMain.h"

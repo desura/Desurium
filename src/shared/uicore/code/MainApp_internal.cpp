@@ -24,8 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "TaskBarIcon.h"
 #include "Managers.h"
-#include "../../../branding/branding.h"
-#include "../../../branding/uicore_version.h"
+#include <branding/branding.h>
+#include <branding/uicore_version.h>
 #include "mcfcore/MCFMain.h"
 
 #include "InternalLink.h"

@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "CDOverView.h"
 #include "CDProcess.h"
 
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 CrashDumpForm::CrashDumpForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, PRODUCT_NAME_CATW(L": CrashDump Utility"), wxDefaultPosition, wxSize(370, 210), wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL)
 {

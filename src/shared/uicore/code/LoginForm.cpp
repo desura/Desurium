@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "managers/CVar.h"
 #include <wx/msgdlg.h>
 
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 bool validateUsernameChange(const CVar*, const char*);
 

@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "mcf/MCF.h"
 #include "mcf/MCFHeader.h"
 
-#include "../../../branding/mcfcore_version.h"
+#include <branding/mcfcore_version.h>
 #include "mcfcore/MCFMain.h"
 
 #include "MCFDPReporter.h"

@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "SharedObjectLoader.h"
 #include "UICoreI.h"
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 #include <vector>
 

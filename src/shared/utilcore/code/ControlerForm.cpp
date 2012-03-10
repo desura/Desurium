@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "ChangeDirForm.h"
 #include "ToolInstallForm.h"
 
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 #ifdef DEBUG
 //#include "BrowserTest.h"

@@ -60,9 +60,29 @@ endif()
 #include(BuildCourgette)
 
 ###############################################################################
-# copy the branding_default to branding
+# copy branding
 ###############################################################################
-file(COPY branding_default/ DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/branding)
+set(includeDir ${CMAKE_BINARY_DIR}/include)
+file(MAKE_DIRECTORY ${includeDir})
+
+set(BRANDING "branding_default")
+
+file(COPY ${BRANDING} DESTINATION ${includeDir})
+file(REMOVE_RECURSE ${includeDir}/branding)
+file(RENAME ${includeDir}/${BRANDING} ${includeDir}/branding)
+
+set(BR ${includeDir}/branding)
+
+install(FILES ${BR}/data/desura_lin.png
+        DESTINATION ${DATA_INSTALL_DIR}
+        RENAME desura.png
+)
+
+install(FILES ${BR}/data/themes/default/images/app/about_logo.png
+              ${BR}/data/themes/default/images/app/icon_download.png
+              ${BR}/data/themes/default/images/app/signin_banner.png
+        DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app/
+)
 
 ###############################################################################
 # build third_party
@@ -95,6 +115,7 @@ include_directories(
     ${GLOBAL_INCLUDE_DIRS}
     ${COMMON_INCLUDE_DIRS}
     ${TINYXML_INCLUDE_DIR}
+    ${CMAKE_BINARY_DIR}/include
 )
 
 ###############################################################################
@@ -134,7 +155,6 @@ add_subdirectory(shared/webcore)
 add_subdirectory(executable/bootloader_lin)
 add_subdirectory(executable/crashdlg_lin)
 add_subdirectory(tools/process_data_folder)
-add_subdirectory(branding)
 
 ###############################################################################
 # we need some dependencies 

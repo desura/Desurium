@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "IPCUpdateApp.h"
 
 #include "util/UtilWindows.h"
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 class AppUpdateInstall::Privates
 {
