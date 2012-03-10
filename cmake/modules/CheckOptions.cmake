@@ -4,6 +4,7 @@
 
 set(BRANDING "branding_default"
     CACHE STRING "The branding to use for Desurium.")
+option(DEBUG "enable debug build" OFF)
 
 ###############################################################################
 # unix-only options
