@@ -65,9 +65,6 @@ endif()
 set(includeDir ${CMAKE_BINARY_DIR}/include)
 file(MAKE_DIRECTORY ${includeDir})
 
-set(BRANDING "branding_default"
-  CACHE STRING "The branding to use for Desurium.")
-
 file(COPY ${BRANDING} DESTINATION ${includeDir})
 file(REMOVE_RECURSE ${includeDir}/branding)
 file(RENAME ${includeDir}/${BRANDING} ${includeDir}/branding)
