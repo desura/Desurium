@@ -298,6 +298,15 @@ inline uint32 processStatus(TiXmlDocument& doc, const char* root)
 	return v;
 }
 
+#include <tinyxml.h>
+
+inline void loadBuffer(TiXmlDocument& doc, char* buff, size_t buffLen,
+	TiXmlEncoding encoding = TIXML_ENCODING_UTF8)
+{
+	doc.Clear();
+	doc.Parse(buff, 0, encoding);
+}
+
 }
 
 #endif //DESURA_XML_MACROS_H

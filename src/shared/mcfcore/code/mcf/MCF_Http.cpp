@@ -64,7 +64,7 @@ void MCF::getDownloadProviders(const char* url, MCFCore::Misc::UserCookies *pCoo
 	TiXmlDocument doc;
 
 	doc.SetCondenseWhiteSpace(false);
-	doc.LoadBuffer(const_cast<char*>(wc->getData()), wc->getDataSize());
+	XML::loadBuffer(doc, const_cast<char*>(wc->getData()), wc->getDataSize());
 
 	TiXmlNode *uNode = doc.FirstChild("itemdownloadurl");
 

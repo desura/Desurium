@@ -169,7 +169,6 @@ void UMcf::setFile(const wchar_t* file, uint64 offset)
 	m_uiOffset = offset;
 }
 
-
 uint8 UMcf::parseXml(char* buff, size_t buffLen)
 {
 	char* outbuff = NULL;
@@ -188,7 +187,7 @@ uint8 UMcf::parseXml(char* buff, size_t buffLen)
 	}
 
 	TiXmlDocument doc;
-	doc.LoadBuffer(buff, buffLen);
+	XML::loadBuffer(doc, buff, buffLen);
 
 	delete [] outbuff;
 
