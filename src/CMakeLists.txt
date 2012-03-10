@@ -156,6 +156,7 @@ add_subdirectory(shared/webcore)
 add_subdirectory(executable/bootloader_lin)
 add_subdirectory(executable/crashdlg_lin)
 add_subdirectory(tools/process_data_folder)
+add_subdirectory(tools/mfc_upload_cli)
 
 ###############################################################################
 # we need some dependencies 
