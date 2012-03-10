@@ -174,7 +174,7 @@ void UploadThread::doRun()
 		//Warning("UC: %s\n", error);
 
 		TiXmlDocument doc;
-		doc.LoadBuffer(const_cast<char*>(error), m_hHttpHandle->getDataSize());
+		XML::loadBuffer(doc, const_cast<char*>(error), m_hHttpHandle->getDataSize());
 
 		TiXmlNode *gNode = doc.FirstChild("itemupload");
 		if (!gNode)

@@ -57,7 +57,7 @@ void WebCoreClass::sendPassReminder(const char* email)
 		throw gcException(ERR_BADRESPONSE, "Data size was zero");
 
 	TiXmlDocument doc;
-	doc.LoadBuffer(const_cast<char*>(hh->getData()), hh->getDataSize());
+	XML::loadBuffer(doc, const_cast<char*>(hh->getData()), hh->getDataSize());
 
 	TiXmlNode *uNode = doc.FirstChild("memberpasswordreminder");
 
@@ -83,11 +83,11 @@ void WebCoreClass::getInstalledItemList(TiXmlDocument &doc)
 		UTIL::MISC::Buffer buff(bufSize);
 		UTIL::BZIP::BZ2DBuff(buff, &bufSize, const_cast<char*>(hh->getData()), hh->getDataSize());
 
-		doc.LoadBuffer(buff, bufSize);
+		XML::loadBuffer(doc, buff, bufSize);
 	}
 	else
 	{
-		doc.LoadBuffer(const_cast<char*>(hh->getData()), hh->getDataSize());
+		XML::loadBuffer(doc, const_cast<char*>(hh->getData()), hh->getDataSize());
 	}
 
 	XML::processStatus(doc, "itemwizard");
