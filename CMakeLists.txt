@@ -1,3 +1,18 @@
+###############################################################################
+#
+# you can pass some options to cmake via -D<option>[=<value>]
+#
+#   name            default     description
+#
+# global options:
+#
+# unix-only options:
+#   WITH_ARES       ON          build CURL with ares support (c-ares REQUIRED)
+#
+# windows-only options:
+#
+###############################################################################
+
 cmake_minimum_required(VERSION 2.8)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")

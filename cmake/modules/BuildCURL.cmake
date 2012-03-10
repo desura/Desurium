@@ -1,8 +1,9 @@
 set(CURL_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/curl)
-if(NOT CARES_FOUND)
-  set(BUILD_WITH_ARES --disable-ares)
+
+if(WITH_ARES)
+  set(BUILD_WITH_ARES --enable-ares)
 else()
-  set(BUILD_WITH_ARES --enable-ares)  
+  set(BUILD_WITH_ARES --disable-ares)
 endif()
 
 ExternalProject_Add(

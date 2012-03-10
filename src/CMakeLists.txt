@@ -18,10 +18,13 @@ endif()
 
 find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
 find_package(BZip2)
-if(NOT WIN32)
+
+if(WITH_ARES)
   find_package(cares REQUIRED)
+else()
+  find_package(CURL)
 endif()
-find_package(CURL)
+
 # we patch google breakpad, so we will build it on our own
 # find_package(GoogleBreakpad REQUIRED)
 if(NOT WIN32)
