@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "gcControls.h"
 #include "gcDialog.h"
-#include "../../branding/branding.h"
+#include <branding/branding.h>
 
 enum
 {

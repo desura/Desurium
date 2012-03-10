@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "IPCUninstallMcf.h"
 #include "IPCComplexLaunch.h"
 #include "IPCUpdateApp.h"
-#include "../../branding/servicecore_version.h"
+#include <branding/servicecore_version.h>
 
 #ifndef DESURA_CLIENT
 #include "InstallScriptRunTime.h"

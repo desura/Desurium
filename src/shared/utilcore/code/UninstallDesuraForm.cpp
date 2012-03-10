@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "UDFProgressPanel.h"
 #include "usercore\UserCoreI.h"
 
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 void SetExitCode(int32 code);
 

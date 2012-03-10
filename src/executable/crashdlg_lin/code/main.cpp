@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <gtk/gtk.h>
 
 #include "util/UtilLinux.h"
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 std::string GetAppPath()
 {

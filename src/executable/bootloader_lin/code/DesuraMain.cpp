@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "DesuraMain.h"
 #include "UtilFile.h"
 #include "util/UtilLinux.h"
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 #ifdef DESURA_OFFICAL_BUILD
 	int DownloadFilesForTest();

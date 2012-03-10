@@ -37,8 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "UpdateFunctions.h"
 #include "MiniDumpGenerator.h"
 
-#include "../../../branding/branding.h"
-#include "../../branding/desura_exe_version.h"
+#include <branding/branding.h>
+#include <branding/desura_exe_version.h>
 #include "util/gcDDE.h"
 
 #include "UICoreI.h"

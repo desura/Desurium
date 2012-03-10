@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "MainApp.h"
 #include "ButtonStrip.h"
 
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 enum
 {

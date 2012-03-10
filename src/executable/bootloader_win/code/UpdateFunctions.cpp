@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "stdafx.h"
 #include "UpdateFunctions.h"
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 #include <shlobj.h>
 #include <sys/stat.h> 

@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "mcfcore/MCFHeaderI.h"
 #include "mcfcore/MCFFileI.h"
 
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 McfViewerForm::McfViewerForm(wxWindow* parent, gcString mcf) : gcFrame(parent, wxID_ANY, PRODUCT_NAME_CATW(L": Mcf Viewer"), wxDefaultPosition, wxSize(370,500), wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL)
 {

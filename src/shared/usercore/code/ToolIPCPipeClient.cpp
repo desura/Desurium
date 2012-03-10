@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "ToolIPCPipeClient.h"
 #include "IPCToolMain.h"
 
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 namespace UserCore
 {

@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Common.h"
 #include "Browser.h"
 #include "cef_desura_includes/ChromiumBrowserI.h"
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 bool InitWebControl()
 {

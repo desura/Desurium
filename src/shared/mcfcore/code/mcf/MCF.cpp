@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "mcfcore/DownloadProvider.h"
 
 #include "BZip2.h"
-#include "../../../branding/mcfcore_version.h"
+#include <branding/mcfcore_version.h>
 #include "mcfcore/ProgressInfo.h"
 
 #include "XMLSaveAndCompress.h"

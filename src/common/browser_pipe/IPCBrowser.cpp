@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "IPCBrowser.h"
 #include "IPCManager.h"
 
-#include "../../branding/branding.h"
+#include <branding/branding.h>
 
 #ifndef DESURA_CLIENT
 	#include "cef_desura_includes/ChromiumBrowserI.h"

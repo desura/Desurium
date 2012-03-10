@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "ToolInstallForm.h"
 #include "IPCPipeServer.h"
 
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 #define STR_INSTALLING Managers::GetString(L"#TIF_INSTALLING")
 #define STR_NOTINSTALLING Managers::GetString(L"#TIF_WAITINFO")

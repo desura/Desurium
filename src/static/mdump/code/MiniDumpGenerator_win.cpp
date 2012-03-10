@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "client/windows/handler/exception_handler.h"
 #include "common/windows/string_utils-inl.h"
 #include "common/windows/guid_string.h"
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 google_breakpad::ExceptionHandler* MiniDumpGenerator::s_pExceptionHandler = NULL;
 

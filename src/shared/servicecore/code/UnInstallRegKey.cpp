@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 #include "Common.h"
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 #include "sqlite3x.hpp"
 
 #include "sql/ItemInfoSql.h"

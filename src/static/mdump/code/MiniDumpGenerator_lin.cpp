@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <cstdlib>
 #include "client/linux/handler/exception_handler.h"
 
-#include "../../../branding/branding.h"
+#include <branding/branding.h>
 
 google_breakpad::ExceptionHandler* MiniDumpGenerator::s_pExceptionHandler = NULL;
 

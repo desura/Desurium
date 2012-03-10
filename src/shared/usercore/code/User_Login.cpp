@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "util_thread/ThreadPool.h"
 
-#include "../../branding/usercore_version.h"
+#include <branding/usercore_version.h>
 #include "UpdateThread.h"
 
 #include "UserIPCPipeClient.h"
