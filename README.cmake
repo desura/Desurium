@@ -22,4 +22,4 @@ sqlite
 cef is needed from official distribution see #5
 just copy required libs to install/lib
 
-finally run desura with /run_desura.sh
+finally run desurium with ./run_desurium.sh
