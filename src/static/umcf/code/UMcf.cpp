@@ -26,6 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "BZip2.h"
 
+#include "../../../branding/branding.h"
+
 #ifdef WIN32
 class FileHandle
 {
@@ -410,7 +412,7 @@ bool UMcf::checkFiles()
 		if (!m_pFileList[x]->checkFile(L"."))
 #endif
 		{
-			printf("Failed to check: [%s]\n", m_pFileList[x]->getName());
+			printf("Failed to check: [%s]\n", gcString(m_pFileList[x]->getName()).c_str());
 			return false;
 		}
 	}
@@ -499,7 +501,7 @@ void UMcf::setRegValues()
 	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\DisplayVersion", gcString("{0}.{1}", appid, build));
 	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\VersionMajor", m_sHeader->getId());
 	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\VersionMinor", m_sHeader->getBuild());
-	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\DisplayName", "Desura");
+	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\DisplayName", PRODUCT_NAME);
 	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\UninstallString", gcString("{0}\\Desura_Uninstaller.exe", exePath));
 	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\InstallLocation", exePath);
 	UTIL::WIN::setRegValue("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Desura\\DisplayIcon", gcString("{0}\\desura.exe", exePath));

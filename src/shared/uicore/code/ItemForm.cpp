@@ -967,7 +967,7 @@ void ItemForm::onSelectBranch(std::pair<bool, MCFBranch> &info)
 	
 	int res = prompt->setInfo(m_pItemHandle->getItemInfo()->getId(), true);
 		
-	if (res == 1 || prompt->ShowModal() == wxID_OK && m_pDialog)
+	if (res == 1 || (prompt->ShowModal() == wxID_OK && m_pDialog))
 	{
 		info.second = prompt->getGlobal();
 

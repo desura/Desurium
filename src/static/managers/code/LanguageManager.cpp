@@ -96,8 +96,9 @@ bool LanguageManager::loadFromFile(const char* file)
 			this->addItem( temp );
 		}
 
-#ifndef DESURA_OFFICAL_BUILD
-
+#ifdef DESURA_OFFICAL_BUILD
+		temp->ustr = val;
+#else
 		std::vector<std::string> res;
 		UTIL::STRING::tokenize(gcString(val), res, "Desura");
 
@@ -113,8 +114,6 @@ bool LanguageManager::loadFromFile(const char* file)
 
 		temp->ustr = out;
 #endif
-
-		temp->ustr = val;
 	};
 
 	XML::for_each_child("str", cNode->FirstChild("strings"), parseString);

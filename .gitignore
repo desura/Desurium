@@ -1,5 +1,7 @@
 *.mk
 *.log
+*~
+python
 out/
 src/branding
 src/third_party/boost/

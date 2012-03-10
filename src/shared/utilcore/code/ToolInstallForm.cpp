@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "ToolInstallForm.h"
 #include "IPCPipeServer.h"
 
+#include "../../../branding/branding.h"
+
 #define STR_INSTALLING Managers::GetString(L"#TIF_INSTALLING")
 #define STR_NOTINSTALLING Managers::GetString(L"#TIF_WAITINFO")
 
@@ -37,7 +39,7 @@ void PipeIsActive()
 		g_pToolInstallForm->pipeIsActive();
 }
 
-ToolInstallForm::ToolInstallForm(wxWindow* parent, const char* key) : gcFrame(parent, wxID_ANY, wxT("Desura Tool Install Helper"), wxDefaultPosition, wxSize(354,82), wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL|wxMINIMIZE_BOX)
+ToolInstallForm::ToolInstallForm(wxWindow* parent, const char* key) : gcFrame(parent, wxID_ANY, wxT(PRODUCT_NAME " Tool Install Helper"), wxDefaultPosition, wxSize(354,82), wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL|wxMINIMIZE_BOX)
 {
 	m_szKey = key;
 	g_pToolInstallForm = this;

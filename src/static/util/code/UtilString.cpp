@@ -288,31 +288,28 @@ void tokenize(std::string str, std::vector<std::string>& tokens, std::string del
 std::string urlDecode(const std::string& url)
 {
 	std::string res;
+	std::string::size_type i;
 
-	for (std::string::const_iterator it=url.begin(); it!= url.end(); ++it)
+	for (i = 0; i < url.size(); ++i)
 	{
-		char val = *it;
-
-		if (val == '%')
+	  if (url[i] == '+')
+	  {
+	    res.push_back(' ');
+	  }
+	  else if (url[i] == '%' && url.size() > i+2)
 		{
 			char hexStr[3];
+
+			hexStr[0] = url[i+1];
+			hexStr[1] = url[i+2];
 			hexStr[2] = 0;
 
-			if (it++ == url.end())
-				continue;
-
-			hexStr[0] = *it;
-
-			if (it++ == url.end())
-				continue;
-
-			hexStr[1] = *it;
-
 			res.push_back(UTIL::MISC::hextoDec(hexStr));
+			i += 2;
 		}
 		else
 		{
-			res.push_back(val);
+			res.push_back(url[i]);
 		}
 	}
 

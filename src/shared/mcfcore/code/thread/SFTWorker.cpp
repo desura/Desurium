@@ -131,7 +131,7 @@ void SFTWorker::finishFile()
 	std::string hash = "Failed to generate hash";
 
 #ifdef NIX
-	struct stat s;
+	//struct stat s;
 	bool isWinExe = false;
 	
 	if (file.size() > 4)

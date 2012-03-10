@@ -18,9 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "Common.h"
 #include "WebCore.h"
+#include "../../../branding/branding.h"
 #include "../../../branding/webcore_version.h"
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 	extern void* FactoryBuilderNonGpl(const char* name);
 #else
 	void* FactoryBuilderNonGpl(const char* name)
