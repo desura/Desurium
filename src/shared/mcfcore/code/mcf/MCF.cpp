@@ -293,7 +293,7 @@ void MCF::parseXml(char* buff, uint32 buffLen)
 	TiXmlDocument doc;
 	
 	doc.SetCondenseWhiteSpace(false);
-	doc.LoadBuffer(buff, buffLen);
+	XML::loadBuffer(doc, buff, buffLen);
 
 	TiXmlNode *fNode = doc.FirstChild("files");
 

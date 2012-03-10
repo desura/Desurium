@@ -64,7 +64,7 @@ TiXmlNode* WebCoreClass::postToServer(std::string url, std::string resource, Pos
 		if (hh->getDataSize() == 0)
 			throw gcException(ERR_BADRESPONSE, "Data size was zero");
 
-		doc.LoadBuffer(const_cast<char*>(hh->getData()), hh->getDataSize(), TIXML_ENCODING_UTF8);
+		XML::loadBuffer(doc, const_cast<char*>(hh->getData()), hh->getDataSize());
 
 		if (m_bDebuggingOut)
 			httpOut.assign(const_cast<char*>(hh->getData()), hh->getDataSize());

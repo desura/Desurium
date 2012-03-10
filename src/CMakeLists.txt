@@ -34,7 +34,7 @@ if(NOT WIN32)
   find_package(OpenSSL REQUIRED)
 endif()
 find_package(Sqlite)
-# find_package(TinyXML)
+find_package(TinyXML)
 find_package(v8 ${REQUIRED_ON_UNIX})
 # we patch wxWidgets so we will build it on our own
 # find_package(wxWidgets 2.9 REQUIRED)

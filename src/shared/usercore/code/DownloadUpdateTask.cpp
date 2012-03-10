@@ -103,7 +103,7 @@ void DownloadUpdateTask::downloadUpdate()
 
 
 	TiXmlDocument doc;
-	doc.LoadBuffer(const_cast<char*>(wc->getData()), wc->getDataSize());
+	XML::loadBuffer(doc, const_cast<char*>(wc->getData()), wc->getDataSize());
 
 	XML::processStatus(doc, "appupdate");
 
