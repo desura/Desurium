@@ -15,7 +15,6 @@ set(wxWidgets_LIBRARY_DIRS ${wxWidgets_INSTALL_DIR}/lib)
 set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include/wx-2.9-desura ${wxWidgets_LIBRARY_DIRS}/wx/include/gtk2-unicode-release-2.9-desura)
 
 set(wxWidgets_LIBRARIES "${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.0.0.0")
-install(FILES ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so
-              ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.0
-              ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.0.0.0
+install(FILES ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.0.0.0
+        RENAME libwx_gtk2u_desura-2.9.so.0
         DESTINATION ${LIB_INSTALL_DIR})
