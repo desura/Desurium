@@ -40,7 +40,7 @@ find_package(v8 ${REQUIRED_ON_UNIX})
 # build some externel projects
 ###############################################################################
 
-if(NOT wxWidgets_FOUND AND NOT WIN32)
+if(NOT wxWidgets_FOUND)
   include(BuildwxWidgets)
 endif()
 
