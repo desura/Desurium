@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lang name="Greek - Ελληνικά (GR)" skip="true">
+	<author>
+		<username>azazeln</username>
+		<profile>http://www.desura.com/members/azazeln</profile>
+	</author>
+	<strings>
+		<str name="#CRASH_TITLE">Desura: Λειτουργία Ενδείξεων Σφαλμάτων</str>
+		<str name="#CRASH_UPLOADINFO">Ανέβασμα Ενδείξεων Σφαλμάτος (ων) ...</str>
+		<str name="#CRASH_GENERATEINFO">Εκκίνηση Ενδείξεων Σφαλμάτος ...</str>
+		<str name="#CRASH_ERROR">Αποτυχία προώθησης σφάλματος(ων).</str>
+		
+		<str name="#CRASH_BUTGENERATE">Εκκίνηση Ενδείξεων Σφαλμάτων</str>
+		<str name="#CRASH_BUTUPLOAD">Αναφορά Ενδείξεων Σφαλμάτων</str>
+		
+		<str name="#CRASH_LABGENERATE">Όταν το Desura δεν αποκρίνεται ή κάνει κάτι απρόσμενο θα ενημερώνονται γι' αυτό οι δημιουργοί για την βοήθεια επίλυσης του προβλήματος.</str>
+		<str name="#CRASH_LABUPLOAD">Αναφορά υπάρχοντων ενδείξεων σφαλμάτων, π.χ. Ενδείξεις Σφαλμάτων που συμβαίνουν πριν την εκκίνηση του Desura.</str>
+		
+		
+		<str name="#CDF_TITLE">Μετακίνηση Φακέλου Δεδομένων του Desura</str>
+		<str name="#CDF_STARTUP">Ανάλυση Φακέλου Δεδομένων...</str>
+		<str name="#CDF_MOVEFILE">Μετακίνηση αρχείων...</str>
+		<str name="#CDF_DBCHANGES">Ενημέρωση βάσης δεδομένων...</str>
+		
+		<str name="#CDF_GERRTITLE">Σφάλμα Desura</str>
+		<str name="#CDF_GERROR">Σφάλμα μετακίνησης Φακέλου Δεδομένων του Desura.</str>
+
+
+		<str name="#DUN_TOTAL">Συνολική πρόοδος:</str>
+		<str name="#DUN_CURRENT">Τρέχουσα πρόοδος:</str>
+		<str name="#DUN_COMPLETED">Υπενθύμιση: Όλα τα υπό πληρωμή αντικείμενα και δώρα δεν διαγράφονται ποτά από τον λογαριασμό σας, μπορείτε να έχετε πρόσβαση σε αυτά κάθε φορά που εγκαθιστάτε το Desura.</str>
+		
+		<str name="#DUN_UNINSTALL_INFO">Απεγκαθιστώντας το Desura θα απεγκατασταθούν και όλα τα παιχνίδια, τα mods και λοιπό περιεχόμενο. Για να κρατήσετε το εγκατεστημένο περιεχόμενο και να διορθώσετε την εγκατάσταση Desura, πατήστε το κουμπί διόρθωσης από κάτω.</str>
+		<str name="#DUN_UNINSTALL_OPT">Επιλογές απεγκατάστασης:</str>
+		<str name="#DUN_UNINSTALL_LOC">Το Desura θα απεγκατασταθεί από τον φάκελο:</str>
+		
+		<str name="#DUN_REMOVE_DESURA">Αφαίρεση του Desura</str>
+		<str name="#DUN_REMOVE_DESURA_TT">Αφαιρεί όλα τα εγκατεστημένα αρχεία του Desura.</str>
+		<str name="#DUN_REMOVE_SETTINGS">Αφαίρεση ρυθμίσεων</str>
+		<str name="#DUN_REMOVE_SETTINGS_TT">Αφαιρεί τα αρχεία ρυθμίσεων που χρησιμοποιεί το Desura.</str>		
+		<str name="#DUN_REMOVE_CACHE">Αφαίρεση Download Cache</str>
+		<str name="#DUN_REMOVE_CACHE_TT">Αφαιρεί την download cache που χρησιμοποιεί το Desura.</str>
+		<str name="#DUN_REMOVE_SIMPLE">Αφαίρεση απλών παιχνιδιών και mods</str>
+		<str name="#DUN_REMOVE_SIMPLE_TT">Αφαιρεί όλα τα παιχνίδια και τα mods που εγκαταστάθηκαν απ' το Desura.</str>
+		<str name="#DUN_REMOVE_COMPLEX">Αφαίρεση Complex Mods</str>
+		<str name="#DUN_REMOVE_COMPLEX_TT">Αφαιρεί όλα τα mods που εγκαθίστανται στα αρχικά αρχεία των παιχνιδιών.</str>
+		<str name="#DUN_REMOVE_ACCOUNT">Αφαίρεση όλων των δωρεάν αντικειμένων από τον λογαριασμό</str>
+		<str name="#DUN_REMOVE_ACCOUNT_TT">Αφαιρεί όλα τα δωρεάν αντικείμενα (π.χ. demos) που έχουν εγκατασταθεί σ' αυτόν τον υπολογιστή απ' τον λογαριασμό σας.</str>
+		
+		<str name="#DUN_UNINSTALL_HEADER">Απεγκατάσταση του Desura</str>
+		<str name="#DUN_UNINSTALL_SUBHEADER">Αφαίρεση του Desura απ' τον υπολογιστή</str>	
+		<str name="#DUN_REPAIR">Διόρθωση</str>
+		<str name="#DUN_UNINSTALL">Απεγκατάσταση</str>
+
+		<str name="#DUN_THREAD_UNINSTALL">Αφαίρεση παιχνιδιών και Mods...</str>
+		<str name="#DUN_THREAD_UNINSTALL_SUB">Απεγκατάσταση: {0}</str><!-- {0} item name -->	
+		<str name="#DUN_THREAD_FINAL">Τελική εκκαθάριση...</str>
+		<str name="#DUN_THREAD_UNINSTALL">Αφαίρεση δεδομένων απεγκατάστασης...</str>
+		<str name="#DUN_THREAD_GAMEEXPLORER">Αφαίρεση δεδομένων περιήγησης παιχνιδιών...</str>
+		<str name="#DUN_THREAD_CACHE">Αφαίρεση Desura Cache...</str>
+		<str name="#DUN_THREAD_SETTINGS">Αφαίρεση Ρυθμίσεων Desura...</str>
+		<str name="#DUN_THREAD_ACCOUNT">Εκκαθάριση Δεδομένων Λογαριασμού...</str>	
+		<str name="#DUN_THREAD_ACCOUNT_SUB">Αφαίρεση του {0} απ' τον Λογαριασμό</str><!-- {0} item name -->	
+		
+	</strings>
+</lang>
