@@ -446,7 +446,7 @@ public:
 		}
 		else
 		{
-			wxMessageBox(wxT("Another instance is all ready running."), wxT(PRODUCT_NAME " Error"));
+			wxMessageBox(wxT("Another instance is all ready running."), PRODUCT_NAME_CATW(L" Error"));
 			return false;
 		}
 #endif

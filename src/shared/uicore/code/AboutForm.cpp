@@ -26,9 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "AboutPageDev.h"
 
 #ifdef WIN32
-AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, wxT("About " PRODUCT_NAME), wxDefaultPosition, wxSize(295,412), wxDEFAULT_DIALOG_STYLE)
+AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, "About " PRODUCT_NAME, wxDefaultPosition, wxSize(295,412), wxDEFAULT_DIALOG_STYLE)
 #else
-AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, wxT("About " PRODUCT_NAME), wxDefaultPosition, wxSize(283,462), wxDEFAULT_DIALOG_STYLE)
+AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, "About " PRODUCT_NAME, wxDefaultPosition, wxSize(283,462), wxDEFAULT_DIALOG_STYLE)
 #endif
 {
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &AboutForm::onButtonClicked, this);
