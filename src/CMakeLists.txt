@@ -12,19 +12,27 @@ include(ExternalProject)
 # find all packages which are needed
 ###############################################################################
 
+if(NOT WIN32)
+  set(REQUIRED_ON_UNIX REQUIRED)
+endif()
+
 find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
 find_package(BZip2)
-find_package(cares REQUIRED)
+if(NOT WIN32)
+  find_package(cares REQUIRED)
+endif()
 find_package(CURL)
 # we patch google breakpad, so we will build it on our own
 # find_package(GoogleBreakpad REQUIRED)
 if(NOT WIN32)
   find_package(GTK2 REQUIRED)
 endif()
-find_package(OpenSSL REQUIRED)
+if(NOT WIN32)
+  find_package(OpenSSL REQUIRED)
+endif()
 find_package(Sqlite)
 # find_package(TinyXML)
-find_package(v8 REQUIRED)
+find_package(v8 ${REQUIRED_ON_UNIX})
 # we patch wxWidgets so we will build it on our own
 # find_package(wxWidgets 2.9 REQUIRED)
 
@@ -32,7 +40,7 @@ find_package(v8 REQUIRED)
 # build some externel projects
 ###############################################################################
 
-if(NOT wxWidgets_FOUND)
+if(NOT wxWidgets_FOUND AND NOT WIN32)
   include(BuildwxWidgets)
 endif()
 
