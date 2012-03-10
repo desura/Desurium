@@ -7,7 +7,7 @@ ExternalProject_Add(
     SVN_REPOSITORY http://v8.googlecode.com/svn/tags/3.7.7/
     DOWNLOAD_DIR ${V8_INSTALL_DIR}
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND scons --clean
+    CONFIGURE_COMMAND ""
     BUILD_COMMAND scons snapshot=on mode=release library=shared ${EXTRA_OPTS}
     BUILD_IN_SOURCE 1
     INSTALL_COMMAND ""
