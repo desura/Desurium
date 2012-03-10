@@ -14,7 +14,6 @@ target_link_libraries(mfc_upload_cli
     util
     util_fs
     ${Boost_LIBRARIES}
-    ${CARES_LIBRARIES}
     ${OPENSSL_LIBRARIES}
 )
 

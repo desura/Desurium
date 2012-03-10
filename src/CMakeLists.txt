@@ -19,9 +19,7 @@ endif()
 find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
 find_package(BZip2)
 
-if(WITH_ARES)
-  find_package(cares REQUIRED)
-else()
+if(NOT WITH_ARES)
   find_package(CURL)
 endif()
 

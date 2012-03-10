@@ -1,6 +1,7 @@
 set(CURL_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/curl)
 
 if(WITH_ARES)
+  find_package(cares REQUIRED)
   set(BUILD_WITH_ARES --enable-ares)
 else()
   set(BUILD_WITH_ARES --disable-ares)
@@ -40,4 +41,8 @@ ExternalProject_Add_Step(
 set(CURL_BIN_DIRS ${CURL_INSTALL_DIR}/bin)
 set(CURL_LIBRARY_DIR ${CURL_INSTALL_DIR}/lib)
 set(CURL_INCLUDE_DIRS ${CURL_INSTALL_DIR}/include)
-set(CURL_LIBRARIES ${CURL_LIBRARY_DIR}/libcurl.a)
+
+if(WITH_ARES)
+  set(CURL_LIBRARIES ${CARES_LIBRARIES})
+endif()
+list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl.a")
