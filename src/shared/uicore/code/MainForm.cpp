@@ -91,7 +91,7 @@ static CVar gc_allow_wm_positioning("gc_allow_wm_positioning", "true");
 #endif
 
 #ifdef NIX64
-MainForm::MainForm(wxWindow* parent, bool offline) : gcFrame(parent, wxID_ANY, wxT(PRODUCT_NAME " 64"), wxDefaultPosition, wxSize(990, 690), wxDEFAULT_FRAME_STYLE, true )
+MainForm::MainForm(wxWindow* parent, bool offline) : gcFrame(parent, wxID_ANY, PRODUCT_NAME_CATW(L" 64"), wxDefaultPosition, wxSize(990, 690), wxDEFAULT_FRAME_STYLE, true )
 #else
 MainForm::MainForm(wxWindow* parent, bool offline) : gcFrame(parent, wxID_ANY, wxT(PRODUCT_NAME), wxDefaultPosition, wxSize(990, 690), wxDEFAULT_FRAME_STYLE, true )
 #endif

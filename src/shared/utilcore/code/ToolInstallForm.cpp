@@ -39,7 +39,7 @@ void PipeIsActive()
 		g_pToolInstallForm->pipeIsActive();
 }
 
-ToolInstallForm::ToolInstallForm(wxWindow* parent, const char* key) : gcFrame(parent, wxID_ANY, wxT(PRODUCT_NAME " Tool Install Helper"), wxDefaultPosition, wxSize(354,82), wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL|wxMINIMIZE_BOX)
+ToolInstallForm::ToolInstallForm(wxWindow* parent, const char* key) : gcFrame(parent, wxID_ANY, PRODUCT_NAME_CATW(L" Tool Install Helper"), wxDefaultPosition, wxSize(354,82), wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL|wxMINIMIZE_BOX)
 {
 	m_szKey = key;
 	g_pToolInstallForm = this;

@@ -76,7 +76,7 @@ bool ControllerForm::init(int argc, wxCmdLineArgsArray &argv)
 
 	if (formList["-uninstall"] == true)
 	{
-		if (!setUpSIC(PRODUCT_NAME L" UnInstaller"))
+		if (!setUpSIC(PRODUCT_NAME_CATW(L" UnInstaller")))
 			return false;
 
 		if (!setUpUserCore())
@@ -120,7 +120,7 @@ bool ControllerForm::init(int argc, wxCmdLineArgsArray &argv)
 	}
 	else if (formList["-setcachedir"] && formList["-dir"])
 	{
-		if (!setUpSIC(PRODUCT_NAME L" Utility"))
+		if (!setUpSIC(PRODUCT_NAME_CATW(L" Utility")))
 			return false;
 
 		gcString dir;

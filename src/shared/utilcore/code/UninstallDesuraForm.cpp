@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 void SetExitCode(int32 code);
 
-UninstallForm::UninstallForm(wxWindow* parent, UserCore::UserI* user) : wxFrame(parent, wxID_ANY, wxT(PRODUCT_NAME " UnInstaller"), wxDefaultPosition, wxSize( 500,330 ), wxCAPTION|wxMINIMIZE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL )
+UninstallForm::UninstallForm(wxWindow* parent, UserCore::UserI* user) : wxFrame(parent, wxID_ANY, PRODUCT_NAME_CATW(L" UnInstaller"), wxDefaultPosition, wxSize( 500,330 ), wxCAPTION|wxMINIMIZE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL )
 {
 	m_pUser = user;
 

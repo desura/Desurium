@@ -42,7 +42,7 @@ void UpdateShortCuts()
 	gcWString folder = UTIL::OS::getConfigValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Desura\\DesuraApp\\StartMenuFolder");
 
 	if (folder == L"")
-		folder == PRODUCT_NAME;
+		folder = PRODUCT_NAME;
 
 	gcString startFolder = UTIL::OS::getStartMenuProgramsPath(folder);
 

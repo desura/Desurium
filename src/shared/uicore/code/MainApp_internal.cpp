@@ -71,7 +71,7 @@ void MainApp::onInternalStrLink(gcString &link)
 {
 	if (isOffline())
 	{
-		gcMessageBox(this->getMainWindow(), Managers::GetString(L"#MF_OFFLINEWARN"), wxT(PRODUCT_NAME " Error"));
+		gcMessageBox(this->getMainWindow(), Managers::GetString(L"#MF_OFFLINEWARN"), PRODUCT_NAME_CATW(L" Error"));
 		return;
 	}
 

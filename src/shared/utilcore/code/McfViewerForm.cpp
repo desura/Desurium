@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "../../../branding/branding.h"
 
-McfViewerForm::McfViewerForm(wxWindow* parent, gcString mcf) : gcFrame(parent, wxID_ANY, wxT(PRODUCT_NAME ": Mcf Viewer"), wxDefaultPosition, wxSize(370,500), wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL)
+McfViewerForm::McfViewerForm(wxWindow* parent, gcString mcf) : gcFrame(parent, wxID_ANY, PRODUCT_NAME_CATW(L": Mcf Viewer"), wxDefaultPosition, wxSize(370,500), wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL)
 {
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &McfViewerForm::onButtonClicked, this); 
 	Bind(wxEVT_CLOSE_WINDOW, &McfViewerForm::onClose, this);

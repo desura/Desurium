@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "../../../branding/branding.h"
 
-CrashDumpForm::CrashDumpForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, PRODUCT_NAME L": CrashDump Utility", wxDefaultPosition, wxSize(370, 210), wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL)
+CrashDumpForm::CrashDumpForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, PRODUCT_NAME_CATW(L": CrashDump Utility"), wxDefaultPosition, wxSize(370, 210), wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL)
 {
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &CrashDumpForm::onButtonClicked, this); 
 	Bind(wxEVT_CLOSE_WINDOW, &CrashDumpForm::onClose, this);

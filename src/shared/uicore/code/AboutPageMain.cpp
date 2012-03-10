@@ -66,7 +66,11 @@ AboutMainPage::AboutMainPage(wxWindow* parent) : gcPanel(parent, wxID_ANY)
 			reduced.push_back(out[x]);
 	}
 
+#ifdef DESURA_OFFICAL_BUILD
 	gcWString copy("\u00A9 {0} Desura Pty Ltd. All rights reserved. \nDesura is a trademark of Desura Pty Ltd.", reduced[2]);
+#else
+	gcWString copy("Desurium is open source software GPL v3. \nGet source from: http://github.com/lodle/Desurium");
+#endif
 
 	m_labCopyRight = new wxStaticText( this, wxID_ANY, copy.c_str(), wxDefaultPosition, wxSize( -1,35 ), 0 );
 	m_labCopyRight->Wrap( 270 );
