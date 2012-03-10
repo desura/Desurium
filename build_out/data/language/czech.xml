@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lang name="Czech">
+	<author>
+		<username>geniv</username>
+		<profile>http://www.desura.com/members/geniv</profile>
+
+		<username>Kubijo</username>
+		<profile>http://www.desura.com/members/kubijo</profile>
+	</author>
+	<linux>
+		<str name="#MW_PROMPT">Průvodce nyní prohledá vás počítač pro podporované hry a případně je přidá do vašeho Desura profilu. Mějte prosím na vědomí, že tím se všechny nalezené položky aktualizují na poslední zde dostupnou verzi.</str>
+		<str name="#MW_FINISH">Průvodce dokončil hledání a přidal všechny podporované hry do vašeho účtu. &#xA;&#xA;Pokud nějaká hra nebyla nalezena, múžete jí přidat ručně pomocí tlačítka "Ruční instalace" níže.</str>
+
+		<str name="#IF_WINDOWS_LAUNCH_WARNING">VAROVÁNÍ: Pokoušíte se spustit program pro windows. Funkčnost záleží na tom, jak umí váš systém s těmito soubory pracovat a jestli má potřebné nástroje (např: WINE). Program/hra nemusí pracovat.&#xA;&#xA;Toto varování můžete vypnout v nastavení.</str>
+		<str name="#IF_SHOWFILES">Ukázat soubory</str>
+		<str name="#MF_ERROR_NO32LIBS">Chcete spustit 32bitovou aplikaci, ale zdá se, že nemáte v systému 32bit knihovny.&#xA;&#xA;Pro více informací jděte prosím na http://www.desura.com/groups/desura/linux.</str>
+
+		<str name="#PLAY_EMPTY">Nemáte na účtě naistalovány žádné {1}hry{0} pro Linux.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
+
+		<str name="#SET_CV_LIN_DIS_WIN_WRN">Vypnout varování pro windows soubory.</str>
+		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Nebude vás varovat při každém spouštění programu/hry pro windows.</str>
+		<str name="#SET_CV_ALLOW_WM_POS">Použít pozicování správce oken.</str>
+		<str name="#SET_CV_ALLOW_WM_POS_TOOLTIP">Pro pozicování hlavního okna se namísto systému desury použije systémový správce oken.</str>
+
+		<str name="#SET_CV_GLOBALBIN">Global game launch binary</str>
+		<str name="#SET_CV_GLOBALBIN_TOOLTIP">Launch all games via this binary file</str>
+		<str name="#SET_CV_GLOBALARGS">Global game arguments</str>
+		<str name="#SET_CV_GLOBALARGS_TOOLTIP">Append these args to all games when launching</str>
+
+		<str name="#SET_CV_DISABLE_FORCESHORTCUT">Disable force shortcut in menu</str>
+		<str name="#SET_CV_DISABLE_FORCESHORTCUT_TOOLTIP">Stops Desura creating a force update shortcut in the main menu</str>
+
+		<str name="#IF_GERROR_TOOL">Nelze nalézt položku {0}, jež je požaduje {1}.</str>
+		<str name="#IF_GERROR_TOOL_Q">Chcete pokračovat v instalaci?</str>
+		<str name="#HELP">Nápověda</str>
+</linux>
+	<windows>
+		<str name="#IF_SHOWFILES">Zobrazit soubory na disku</str>
+		<str name="#PLAY_EMPTY">Nemáte na účtě žádne {1}hry{0} nebo {2}modifikace{0} pro windows. Zkuste použít {3}Průvodce přidáním nainstalovaných her{0}, který prohledá váš disk a přidá hry podporované desurou na váš účet.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
+
+		<str name="#SET_CV_DISABLE_FS_PERMS">Povolit běžnému uživateli zapisování do všech instalačních složek</str>
+		<str name="#SET_CV_DISABLE_FS_PERMS_TOOLTIP">Díky tomu, že vývojaři her nejsou schopni následovat systémové standardy windows se spousta her pokouší zapisovat do instalační složky a selže pokud jim to není umožněno. Varování: Vypnutí této možnosti může znemožnit funkčnost některých her</str>
+
+		<str name="#IF_LOWSPACE_SYS">Na systémovém disku ({0}:\\) není dostatek místa, Desura může mít problémy s výkonem. &lt;a href=&quot;desura://settings/cache&quot;&gt;Pro vytvoření místa můžete přesunout cache soubory Desury na jiný disk.&lt;/a&gt;</str>
+		<str name="#IF_LOWSPACE_CACHE">Na pevném disku ({0}:\\), na který Desura ukládá cache soubory je nedostatek místa. Pro správnou funkčnost Desury důrazně doporučujeme uvolnit nějaké místo na tomto disku.</str>
+
+		<str name="#MW_PROMPT">Průvodce nyní prohledá vás počítač pro podporované hry a případně je přidá do vašeho Desura profilu. Mějte prosím na vědomí, že tím se všechny nalezené položky aktualizují na poslední zde dostupnou verzi.</str>
+		<str name="#MW_FINISH">Průvodce dokončil hledání a přidal všechny podporované hry do vašeho účtu. &#xA;&#xA;Pokud nějaká hra nebyla nalezena, múžete jí přidat ručně pomocí tlačítka "Ruční instalace" níže.</str>
+	</windows>
+	<strings>
+		<str name="#DESURA_UPDATE">Aktualizace Desury je k dispozici a připravena pro instalaci.</str>
+
+		<!-- Update Item -->
+		<str name="#UI_LABEL">Je k dispozici nová aktualizace. Přejete si jí provést?</str>
+		<str name="#UI_NO_REMINDER">Příště neupozorňovat</str>
+		<str name="#UI_TITLE">Dostupná aktualizace pro</str>
+
+		<!-- Launch item -->
+		<str name="#LI_LABEL">je již nainstalováno. Spustit nyní?</str>
+
+		<!-- Login Form -->
+		<str name="#LF_TITLE">Desura - přihlášení</str>
+		<str name="#LF_USER">Uživatelské jméno nebo Email</str>
+		<str name="#LF_PASS">Heslo</str>
+		<str name="#LF_AUTO">Automaticky</str>
+		<str name="#LF_AUTO_TOOLTIP">Automatické přihlášení do Desury</str>
+		<str name="#LF_LOSTPASS">Zapomenuté heslo</str>
+		<str name="#LF_NEWACCOUNT">Nový účet</str>
+		<str name="#LF_OFFLINE">Offline mód</str>
+		<str name="#LF_ERRTITLE">Chyba</str>
+		<str name="#LF_ERROR">Nepodařilo se vás přihlásit</str>
+		<str name="#LF_VALDERROR">Během přihlášování došlo k chybě:</str>
+		<str name="#LF_ERRBLANKNAME">Vaše uživatelské jméno je prázdné</str>
+		<str name="#LF_ERRPASSWORD">Vaše heslo je prázdné</str>
+		<str name="#LF_ERRPLEASE">Opravte tyto položky a zkuste se přihlásit znovu.</str>
+
+		<!-- Main Page -->
+		<str name="#MP_PLAY">Hrát</str>
+		<str name="#MP_GAMES">Hry</str>
+		<str name="#MP_MODS">Módy</str>
+		<str name="#MP_COMMUNITY">Komunita</str>
+		<str name="#MP_DEVELOPMENT">Vývoj</str>
+		<str name="#MP_SUPPORT">Podpora</str>
+		<str name="#MP_TITLE_OFFLINE">Desura Offline</str>
+		<str name="#MP_CHAT">Chat</str>
+
+		<!-- News Form -->
+		<str name="#NF_JUMPTO">Skoč do: </str>
+		<str name="#NF_PREV">Předchozí</str>
+		<str name="#NF_NEXT">Další</str>
+		<str name="#NF_TITLE">Novinky v Desuře:</str>
+		<str name="#NF_LOADING">Načítání ...</str>
+		<str name="#NF_LOADING_UNKNOWN">Načítání neznámé stránky ...</str>
+		<str name="#GF_TITLE">Desura dárky:</str>
+
+		<!-- Properties -->
+		<str name="#P_VERIFY">Ověřit soubory</str>
+		<str name="#P_TITLE">Vlastnosti</str>
+		<str name="#P_URLABEL">Nepřipomínat aktualizace při startu</str>
+		<str name="#P_FIXEDLO">Fixní možnosti spuštění:</str>
+		<str name="#P_USERLO">Možnosti uživatelského spuštění:</str>
+		<str name="#P_EXE">Exe umístění:</str>
+		<str name="#P_VERSION">Instalovaná verze</str>
+		<str name="#P_RETAIL">Maloobchod</str>
+
+		<!-- Uninstall Form -->
+		<str name="#UNF_REMOVEFILES">Odebrat soubory Desury</str>
+		<str name="#UNF_REMOVEFILES_TOOLTIP">Odstranit MCF a přidružené soubory používané Desurou</str>
+		<str name="#UNF_REMOVEACCOUNT">Odebrat z účtu</str>
+		<str name="#UNF_REMOVEACCOUNT_TOOLTIP">Odebere tuto položku z aktuálního účtu</str>
+		<str name="#UNF_ERRTITLE">Chyba odinstalace</str>
+		<str name="#UNF_ERROR">Během odinstalce položky došlo k chybám a proces byl proto zastaven.</str>
+		<!-- {0} repersents item name -->
+		<str name="#UNF_CONFIRM">Opravdu si přejete odinstalovat {0}? Tento proces nelze zrušit.</str>
+chybám
+		<!-- ALL ones above here are checked to be used in desura -->
+
+		<!-- Upload form -->
+		<str name="#UDF_PROMPT">Vyberte prosím MCF soubor určený pro nahrání.</str>
+		<str name="#UDF_ERROR_VALIDATION">Chyba: nepodařilo se validovat soubor</str>
+		<str name="#UDF_ERRTITLE">Chyba nahrávání</str>
+		<str name="#UDF_NOFILE">Nepodařilo se nalézt soubor pro obnovení nahrávání. Najděte ho prosím ručně, nebo začněte znovu.</str>
+		<str name="#UDF_RESUME_ERRTITLE">Chyba obnovení nahrávání.</str>
+		<str name="#UDF_NONMATCHING_FILE">Tento soubor se neshoduje s nahraným. Vyberte prosím správný soubor, nebo začněte znovu.</str>
+		<str name="#UDF_UPLOAD_ERRTITLE">Chyba nahrávaní</str>
+		<str name="#UDF_ERROR">Během nahrávání souboru MCF došlo k chybám a proces byl proto zastaven.</str>
+		<str name="#UDF_ERROR_LABEL">Chyba nahrávání</str>
+		<str name="#UDF_ETIME">Odhadovaný zbývající čas:</str>
+		<str name="#UDF_NOTSTARTED">Nahrávání nebylo spuštěno.</str>
+		<str name="#UDF_DELETE">Smazat MCF po dokončení</str>
+		<str name="#UDF_DELETE_TOOLTIP">Po úspěšném nahrání bude soubor smazán</str>
+		<str name="#UDF_COMPLETE">Nahrávání dokončeno.</str>
+		<str name="#UDF_UNKNOWNPAUSE">Pozastaveno</str>
+		<str name="#UDF_REMINDER">Již nepřipomínat</str>
+		<str name="#UDF_PROMPTINFO">Nahrávání můžete kdykoli obnovit skrze záložku "hry", kde jsou všechny projekty, které v současnosti vyvíjíte a současné nahrávání.&#xA;</str>
+		<str name="#UDF_RESUMEDIR">Probíhá hledání MCF ...</str>
+
+		<!-- Create Form -->
+		<str name="#CF_PROMPT">Vyberte prosím složku, kde je čistá instalace vaší hry.</str>
+		<str name="#CF_DIRPROMPT">Desura vytvoří z obsahu složky MCF archiv pro nahrání na server.</str>
+		<str name="#CF_VIEWFILES">Ukázat soubor</str>
+		<str name="#CF_PROG">Průběh: </str>
+		<str name="#CF_NOTSTARTED">Zahájování ...</str>
+		<str name="#CF_ERROR">Během vytváření archivu došlo k chybám a proces byl proto zastaven.</str>
+		<str name="#CF_ERRTITLE">Chyba tvorby archivu</str>
+
+		<!-- note the {0} will be replaced with the item name! -->
+		<str name="#CF_COMPLETE">Archiv položky {0} byl úspěšně vytvořen.</str>
+
+		<!-- Item Form -->
+		<str name="#IF_BROUGHT">Zakoupené</str>
+		<str name="#IF_FREE">Bezplatné</str>
+		<str name="#IF_PREPARE_INFO">Příprava na {0} {1}</str>
+		<str name="#IF_PREPARE_INFO_NOITEM">Příprava...</str>
+
+		<str name="#IF_TITLE">Příprava:</str>
+		<str name="#IF_VERIFY">Ověřování:</str>
+		<str name="#IF_DOWNLOAD">Stahování:</str>
+		<str name="#IF_INSTALL">Instalace:</str>
+		<str name="#IF_UPDATE">Aktualizace:</str>
+		<str name="#IF_UNINSTALL">Odinstalování: </str>
+		<str name="#IF_UNINSTALL_BRANCH">Odstranění starých souborů: </str>
+		<str name="#IF_UNINSTALL_PATCH">Odstranění starých souborů: </str>
+		<str name="#IF_UNINSTALL_COMPLEX">Odinstalace komplexní modifikace</str>
+		<str name="#IF_INSTALL_CHECK">Kontrola instalace</str>
+
+		<str name="#IF_UNINSTALL_LABEL">Odinstalace ...</str>
+		<str name="#IF_UNINSTALL_BRANCH_LABEL">Odebírání starých soubourů ... </str>
+		<str name="#IF_UNINSTALL_PATCH_LABEL">Odebírání starých soubourů ... </str>
+		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Odinstalace komplexní modifikace ... </str>
+
+		<!-- Install check -->
+		<str name="#IC_ERRTITLE">Chyba ověřování instalace</str>
+		<!-- <str name="#IC_LABEL">Kontrola instalace:</str> -->
+		<str name="#IC_ERROR">Během kontroly instalace došlo k chybám, proces byl tedy zastaven.</str>
+		<str name="#IC_FOUND">has been found and is now ready to go.</str>
+		<str name="#IC_NOTFOUND">se nepodařilo nalézt. Ujistěte se prosím, že je instalace v pořádku a položka byla alespoň jednou spuštěna. Další možností je  "Ruční instalace" níže.</str>
+		<str name="#IC_CHECK">Kontrola instalace Desurou</str>
+		<str name="#IC_CIP">Ruční instalace</str>
+
+		<!-- Install form -->
+		<str name="#IF_ONCOMPUTER">Použít verzi instalovanou v počítači</str>
+		<str name="#IF_FINDONCOMPUTER">Nalézt instalaci v počítači</str>
+		<str name="#IF_BRANCHTITLE">Spustit {0}</str>
+		<str name="#IF_BRANCHINFO">položka {0} není nainstalována. Vyberte prosím verzi, kterou chcete spustit.</str>
+		<str name="#IF_PARENTTITLE">Chybí rodič pro položku {0}</str><!-- first {0} is mod name second is game name -->
+		<str name="#IF_NOTFOUND">položka {0} je modifikací pro {1}. Před použitím musíte mít naistalovánu hru.&#xA;&#xA;Vyberte prosím způsob instalace {1}:</str>
+		<str name="#IF_NOTFOUND_GAME">položka {0} je rozšíření pro hru {1}. Před použitím musíte mít naistalovánu hru.&#xA;&#xA;Vyberte prosím způsob instalace {1}:</str>
+		<str name="#IF_INSTALL_REMOVE">Instalovat a odstranit nepotřebné soubory (doporučeno)</str>
+		<str name="#IF_INSTALL_LEAVE">Instalovat a ponechat všechny soubory</str>
+		<str name="#IF_INSTALL_VERIFY">Zkontrolovat soubory a doplnit chybějící</str>
+		<str name="#IF_EXISTINGFILES">V cílové složce pro {0} jsou již soubory.Co provést?</str>
+		<str name="#IF_ETIME">Odhadovaný zbývající čas:</str>
+		<str name="#IF_INITDOWNLOAD">Zahájení stahování</str>
+		<str name="#IF_PROVIDEDBY">Poskytnuto od:</str>
+		<str name="#IF_DLERROR">Během stahování MCF došlo k chybě a stahování bylo přerušeno.</str>
+		<str name="#IF_DLERRTITLE">Chyba stahování MCF</str>
+		<str name="#IF_GATHERINFO">Shromažďování informací ...</str>
+		<str name="#IF_GERROR_PLATFORM">položka {0} není podporována na této platformě.</str><!-- {0} item name -->
+		<str name="#IF_GERROR_BRANCH_PLATFORM">Vybraná větev pro položku {0} není kompatibilní s vaší platformou.</str><!-- {0} item name -->
+		<str name="#IF_GERROR_BRANCH_PLATFORM_Q">Přejete si zvolit jinou větev?</str>
+
+		<str name="#IF_GERROR">Během shromažďování informací došlo k chybě, proces byl přerušen.</str>
+		<str name="#IF_GERRTITLE">Chyba shromažďování informací</str>
+		<str name="#IF_VALIDATE_ERROR">Během ověřování došlo k chybě, proces byl přerušen.</str>
+		<str name="#IF_VALIDATE_TITLE">Chyba ověřování</str>
+		<str name="#IF_GERROR_LABEL">Chyba. Proces byl přerušen.</str>
+		<str name="#IF_CHECKINGIR">Prověřuji závislosti instalace ...</str>
+		<str name="#IF_INITINSTALL">Zahájení instalace</str>
+		<str name="#IF_IERROR">Během instalace MCF archivu došlo k chybě, proces přerušen.</str>
+		<str name="#IF_IERRTITLE">Chyba instalace MCF archivu</str>
+		<str name="#IF_DEVELOPER">Vývojář</str>
+		<str name="#IF_VERSION">Verze</str>
+		<str name="#IF_TYPE">Hra</str>
+		<str name="#IF_DOWNLOADSIZE">Stahování</str>
+		<str name="#IF_INSTALLSIZE">Velikost instalace</str>
+		<str name="#IF_INSTALLPATH">Cesta instalace</str>
+		<str name="#IF_IIPARENT">Rodičovská hra této položky není instalována, nebo nebyla nalezena. Ověřte prosím, že je hra instalována a zkuste to znovu.</str>
+		<str name="#IF_IIPATH">Chyba při určování cílové složky pro tuto položku.</str>
+		<str name="#IF_IIFREESPACE">Pro tuto položku není na disku dostatek místa.</str>
+		<str name="#IF_IIUNKNOWN">Nastala neznámá chyba.</str>
+		<str name="#IF_IIERRTITLE">Chyba instalace</str>
+		<str name="#IF_IINOBRANCHES">Pro Vás není k dispozici vhodné vydání.</str>
+		<str name="#IF_VERIFYLABEL">Ověřování ...</str>
+		<str name="#IF_VERIFYCOMPLETE">Ověřování dokončeno</str>
+		<str name="#IF_VERROR">Během prověřovaní instalace došlo k chybě, proces byl přerušen.</str>
+		<str name="#IF_VERRTITLE">Chyba ověřování instalace</str>
+
+		<str name="#IF_VERIFYFILES">Ověřování souborů</str>
+		<str name="#IF_VERIFYTOOLS">Reinstalace nástrojů</str>
+		<str name="#IF_VERIFYHOOKS">Znovu provést poinstalační úpravy</str>
+		<str name="#IF_VERIFYCONFIRM">Máte-li problémy s položkou {0}, pokusím se nalézt problémy.</str>
+
+		<str name="#IF_VERIFYMCF">Ověřování MCF ...</str>
+		<str name="#IF_VERIFYINSTALL">Ověřování instalace ...</str>
+		<str name="#IF_VERIFYDOWNLOADF">Stahování chybějících souborů ...</str>
+		<str name="#IF_VERIFYINSTALLF">Instalace chybějících souborů ...</str>
+		<str name="#IF_VERIFYBRANCH">Přepínání větví ...</str>
+
+		<str name="#IF_IIBADINFO">Nepodařilo se získat informace pro tuto položku</str>
+		<str name="#IF_INVALIDBRANCH">Větev pro instalaci položky je poškozena</str>
+
+		<str name="#IF_FREESPACE_DL">Na disku není pro stažení dostatek místa.</str>
+		<str name="#IF_FREESPACE_IN">Na disku není pro instalaci dostatek místa.</str>
+		<str name="#IF_PATHERR">Cesta není dostupná.</str>
+		<str name="#IF_FILEERR">V tomto umístění jsou již soubory.</str>
+		<str name="#IF_NOTINSTALLED">Tato položka není nainstalována.</str>
+		<str name="#IF_IHASHFAIL">Jeden nebo více souborů neprošlo kontrolním součtem. Chcete prověřit kompletnost instalace?</str>
+
+		<str name="#IF_CONFLICT">Desura zjistila, že položka {0} je již instalována. {0} však vyžaduje komplexní instalaci, pročež kvůli konfliktům doporučujeme nejdříve ruční odisntalaci.</str>
+		<str name="#IF_CONFLICTTITLE">Konflikty při komplexní instalaci</str>
+
+		<str name="#IF_COMPLETEPREORDER">Přednačtení dokončeno</str>
+
+		<str name="#IF_PRELOADLAUNCH">Položka {0} byla {2} a nemůže by nyní spuštěna. Během {1} dní by mělo být vše v pořádku.</str>
+		<str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
+		<str name="#IF_PRELOADLAUNCH_PREORDERED">předobědnáno</str>
+		<str name="#IF_PRELOADLAUNCH_PRELOADED">přednačteno</str>
+		<str name="#IF_PRELOADLAUNCH_INSTALLDEMO">Instalovat Demo</str>
+		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER">Instalovat ostatní</str>
+		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER_INFO">&#xA;&#xA;There are other versions available to play.</str>
+
+
+		<str name="#IF_COMPLEXREMOVE">Odstraňování starých souborů</str>
+		<str name="#IF_COMPLEXBACKUP">Zálohování herních souborů</str>
+		<str name="#IF_COMPLEXINSTALL">Instalace souborů</str>
+		<str name="#IF_COMPLEXLABEL">{0}...</str>
+		<str name="#IF_COMPLEXLABEL_INIT">{0} (Zahájení)</str>
+
+		<str name="#IF_DOWNLOADTOOL">Stahování závislostí:</str>
+		<str name="#IF_DOWNLOADTOOL_LABEL">Stahování...</str>
+
+		<str name="#IF_INSTALLTOOL">Instalace nástrojů:</str>
+		<str name="#IF_INTOOL_WAIT_OTHER">Waiting for other installs to complete...</str>
+		<str name="#IF_INTOOL_WAIT_HELPER">Waiting for Install Helper...</str>
+		<str name="#IF_INTOOL_LABEL">Instalace nástrojů: {0}</str><!-- {0}: tool name -->
+
+		<str name="#IF_VALIDATE_DEFAULT">Ověřování existujicích souborů...</str>
+		<str name="#IF_VALIDATE_LOCALMCFS">Kontrola starých datových souborů...</str>
+		<str name="#IF_VALIDATE_EXISTINGMCF">Kontrola aktuálních data souboru...</str>
+		<str name="#IF_VALIDATE_LOCALFILES">Kontrola starých instalovaných souborů...</str>
+		<str name="#IF_VALIDATE_PREALLOCATING">Pre-allocating download file...</str>
+		<str name="#IF_VALIDATE_TITLE">Ověřování stahování:</str>
+		<str name="#IF_VALIDATE_LABEL">Stav {2}: Hotovo {0} z {1}</str><!-- {0}: done, {1}: total {2}:Stage number-->
+
+		<str name="#IF_PREORDERED_NORELEASE">Preordered: Not Released</str>
+		<str name="#IF_PREORDERED">Preordered: Preload Ready</str>
+
+		<str name="#IF_WAIT_TITLE">Čekání po položky:</str>
+		<str name="#IF_WAIT_FORCE">Force</str>
+		<str name="#IF_WAIT_CANCELALL">Cancel All</str>
+		<str name="#IF_WAIT_INFO">{0} is waiting for other items to complete before it will start {1}.</str><!-- {0}: item name, {1}: action -->
+		<str name="#IF_WAIT_ACTION_UNINSTALL">to Uninstall the item</str>
+		<str name="#IF_WAIT_ACTION_VERIFY">to Verify the item files</str>
+
+		<!-- Install Wizard -->
+		<str name="#MW_TITLE">Najít instalované hry</str>
+		<str name="#MW_ERROR">There was an error during the wizard process and it has been stopped.</str>
+		<str name="#MW_CUSTOM">Custom Install</str>
+		<str name="#MW_ERRTITLE">Find Games Installed Error</str>
+		<str name="#MW_ADDACCOUNT">Add found items to account</str>
+
+		<!-- Main Form -->
+		<str name="#MF_OFFLINE">Opravdu chcete přejít do offline?</str>
+		<str name="#MF_OFFLINE_TITLE">Offline mód</str>
+		<str name="#MF_OFFLINEWARN">Desura is in offline mode and cannot process links. Please login</str>
+		<str name="#MF_IPERMISSION_ERROR">You don't have permission to install an unauthorized MCF</str>
+		<str name="#MF_PERMISSION_ERRTITLE">Incorrect Permissions Error</str>
+		<str name="#MF_IBADBUILD">Bad Build Number for Item Auth Install</str>
+		<str name="#MF_IBADBRANCH">Bad Branch Number for Item Auth Install</str>
+		<str name="#MF_IMIDDLEINSTALL">Item is in the middle of another process (cannot install auth item). Please finish that first.</str>
+		<str name="#MF_UPERMISSION_ERROR">You don't have permission to upload a MCF for this item.</str>
+		<str name="#MF_CPERMISSION_ERROR">You don't have permission to create a MCF for this item.</str>
+		<str name="#MF_UPDATELOG_ITEMERROR">Cannot display changelog. The item cannot be found on your account.</str>
+		<str name="#MF_ERRTITLE">Chyba Desury</str>
+		<str name="#MF_ERROR">Failed to launch item.</str>
+		<str name="#MF_NONDEV_ERROR">You are not a developer of this item so you do not have permission to make content for it.</str>
+		<str name="#MF_NAMERESOLVE">Failed to resolve item name from id number.</str>
+		<str name="#MF_BADLINK">Unknown Desura Link</str>
+		<str name="#MF_OLNOTINSTALLED">Desura is in offline mode and this item is not installed and thus cant be launched.</str>
+		<str name="#MF_UNINSTALLPROMPT">{0} is currently in the process of installing. In order to uninstall it Desura has to stop the installing process. Continue with uninstall?</str>
+		<str name="#MF_UNINSTALLTITLE">Desura {0} Uninstall</str>
+		<str name="#MF_LUANCH_ERROR_VERIFY_TOOLTIP">Verify the install files</str>
+
+		<!-- Buttons -->
+		<str name="#RESTART_NOW">Restartovat Nyní</str>
+		<str name="#RESTART_LATER">Restartovat Později</str>
+		<str name="#DOWNLOAD">Stahování</str>
+		<str name="#VERIFY">Ověřit</str>
+		<str name="#START">Start</str>
+		<str name="#STOP">Stop</str>
+		<str name="#UPLOAD">Nahrát</str>
+		<str name="#CANCEL">Zrušit</str>
+		<str name="#OK">Ok</str>
+		<str name="#CLOSE">Zavřít</str>
+		<str name="#SAVE">Uložit</str>
+		<str name="#UPDATE">Aktualizovat</str>
+		<str name="#LAUNCH">Spustit</str>
+		<str name="#LOGIN">Přihlásit se</str>
+		<str name="#PAUSE">Pozastavit</str>
+		<str name="#RESUME">Obnovit</str>
+		<str name="#APPLY">Použít</str>
+		<str name="#UNKNOWN">Neznámý</str>
+		<str name="#ACCEPT">Příjmout</str>
+		<str name="#BACK">Zpět</str>
+		<str name="#AGREE">Souhlasím</str>
+		<str name="#SEND">Odeslat</str>
+		<str name="#BROWSE">Prohlížet</str>
+		<str name="#MOREINFO">Více Informací</str>
+		<str name="#YES">Ano</str>
+		<str name="#NO">Ne</str>
+		<str name="#SUBMIT">Odeslat</str>
+		<str name="#ADD">Přidat</str>
+		<str name="#CONTINUE">Pokračovat</str>
+		<str name="#PLAY">Hrát</str>
+		<str name="#PURCHASE">Přidat do košíku</str>
+		<str name="#TBA">TBA</str><!-- to be advertised -->
+		<str name="#TRYAGAIN">Zkusit znovu</str>
+		<str name="#LINK">Link</str>
+		<str name="#PREORDER">PreOrder</str>
+		<str name="#HIDE">Schovat</str>
+		<str name="#FIND">Najít</str>
+
+		<!-- Misc -->
+		<str name="#NAME">Název</str>
+		<str name="#SIZE">Velikost</str>
+		<str name="#PATH">Cesta</str>
+		<str name="#FINALIZING">Dokončení</str>
+		<str name="#COMPLTETED">Kompletní</str>
+		<str name="#SEARCH">Hledej ...</str>
+		<str name="#LOADINGPAGE">Načítání stránky ...</str>
+		<str name="#CONFIRM">Povrzení ...</str>
+		<str name="#CONFIRM_PROMPT">If you close this form it will stop the current process. Are you sure you want to?</str>
+		<str name="#INITIALIZING">Zahájení ...</str>
+		<str name="#PROCESSING">Probíhá:</str>
+		<str name="#STEAMWARN">In order to install some items, Desura needs to know what steam account you use. &#xA;&#xA;You can change this at any time by going into the options form.&#xA;&#xA;Please Note: No one from Desura will ever ask you for your steam password. </str>
+		<str name="#GAMES">Hry</str>
+		<str name="#MODS">Módy</str>
+		<str name="#UPDATEAVL">Dostupné aktualizace</str>
+		<str name="#UNINSTALL">Odinstalovat</str>
+		<str name="#INSTALL">Instalovat</str>
+		<str name="#UNINSTALLING">Odinstalace ...</str>
+		<str name="#REMOVE">Odstranit</str>
+
+		<!-- Main Menu -->
+		<str name="#MENU_OFFLINE">Přejít do Offline</str>
+		<str name="#MENU_OFFLINE_TOOLTIP">Přejít do offline módu (není přistup na internet)</str>
+		<str name="#MENU_LOGOUT">Odhlásit se</str>
+		<str name="#MENU_LOGOUT_TOOLTIP">Odhlásit se z Desury</str>
+		<str name="#MENU_SETTINGS">Nastavení</str>
+		<str name="#MENU_SETTINGS_TOOLTIP">Show the settings form</str>
+		<str name="#MENU_CONSOLE">Konzole</str>
+		<str name="#MENU_WIZZARD">Najít instalované hry</str>
+		<str name="#MENU_WIZZARD_TOOLTIP">Wizard to find games and mods installed on this PC</str>
+		<str name="#MENU_CHANGELOG">Changelog aplikace</str>
+		<str name="#MENU_CHANGELOG_TOOLTIP">Zobrazit changelog Desury</str>
+		<str name="#MENU_ABOUT">O programu</str>
+		<str name="#MENU_EXIT_TOOLTIP">Ukončit Desuru</str>
+		<str name="#MENU_TOOLS">Nástroje</str>
+		<str name="#MENU_HISTORY">Historie</str>
+		<str name="#MENU_HELP">Nápověda</str>
+		<str name="#MENU_ONLINE">Přejít do Online</str>
+		<str name="#MENU_INSTALLPATH">Přidej instalované hry</str>
+		<str name="#MENU_INSTALLPATH_TOOLTIP">Set custom install paths for games</str>
+		<str name="#MENU_ACTIVATEGAME">Aktivace hry z CD klíče nebo Dárku</str>
+		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Vlož CD klíč nebo kód dárku pro aktivaci hry ve vašem účtu</str>
+		<str name="#MENU_VERSION">Verze</str>
+		<str name="#MENU_EXIT">Konec</str>
+
+		<str name="#MENU_DOWNLOADREPORT">Širokoúhlý Monitor</str>
+		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Shows the bandwidth monitor</str>
+
+		<str name="#MENU_CART">Nákupní košík</str>
+
+		<str name="#MENU_CART_TOOLTIP">Procházet položky ve vašem nákupním košíku</str>
+		<str name="#MENU_PURCHASE">Historie nákupů</str>
+		<str name="#MENU_PURCHASE_TOOLTIP">Procházet položky, které jste kopily</str>
+		<str name="#MENU_GIFTS">Historie dárky</str>
+		<str name="#MENU_GIFTS_TOOLTIP">Procházet položky, které vájm byly darovány</str>
+
+		<!-- Headers -->
+		<str name="#HEAD_NAME">Název</str>
+		<str name="#HEAD_STATUS">Status</str>
+		<str name="#HEAD_GENRE">Žánr</str>
+		<str name="#HEAD_THEME">Téma</str>
+		<str name="#HEAD_RATING">Hodnocení</str>
+		<str name="#HEAD_DEV">Vývojář</str>
+		<str name="#HEAD_FAV">Oblíbené</str>
+
+		<!-- Play page -->
+		<str name="#PLAY_UPDATE_AVAILABLE">Aktualizace je k dispozici</str>
+		<str name="#PLAY_UPDATE_DEMO">Povýšit demo na plnou verzi</str>
+		<str name="#PLAY_UPDATE_PRELOAD">Dostupné přednačtení</str>
+		<str name="#PLAY_EDIT_FAV">Upravit oblíbené</str>
+		<str name="#PLAY_UPLOAD">Aktuální nahrávání</str>
+		<str name="#PLAY_RECENT">Nedávno hrané</str>
+		<str name="#PLAY_TOOL">Vývojář</str>
+		<str name="#PLAY_FAVORITES">Oblíbené</str>
+		<str name="#PLAY_NEWITEMS">Nové</str>
+		<str name="#PLAY_INVALID_UPLOAD">Neplatné nahrávání</str>
+		<str name="#PLAY_INVALID_ITEM">Neplatní položka</str>
+		<str name="#PLAY_BRANCH_AUTO">příští autos puštění této verze?</str>
+		<str name="#PLAY_UPDATE_POLL">Kontrola aktualizací seznamu her...</str>
+		<str name="#PLAY_ADD_GAME">Přidáno {0} {1}</str><!-- {0} = mod or game {1} = name -->
+		<str name="#PLAY_PREORDER">Předobnednávka</str>
+		<str name="#PLAY_DELAY_LOADING">Načítání seznamu her...</str>
+		<str name="#PLAY_GAMES">Hry</str>
+		<str name="#PLAY_DEVELOPMENT">Vývoj</str>
+
+		<!-- Pop up menu -->
+		<str name="#PM_VIEWPROFILE">Zobrazit profil</str>
+		<str name="#PM_MODLIST">Zobrazit seznam módů</str>
+		<str name="#PM_UPDATELOG">Zobrazit changelog</str>
+		<str name="#PM_REMOVEACCOUNT">Odebrat z účtu</str>
+		<str name="#PM_DESURAPAGE">Stránka Desury</str>
+		<str name="#PM_CREATEMCF">Vyvtoření MCF</str>
+		<str name="#PM_UPLOADMCF">Nahrání MCF</str>
+		<str name="#PM_ADDACCOUNT">Přidat do účtu</str>
+		<str name="#PM_INSTALLCHECK">Kontola instalace</str>
+		<str name="#PM_INSTALLCHECK_TOOLTIP">Zkontrolujte, zda položka je nainstalována na PC.</str>
+		<str name="#PM_PROPERTIES">Vlastnosti</str>
+		<str name="#PM_FAVORITE">Přidej do oblíbených</str>
+		<str name="#PM_FAVORITE_REMOVE">Odebrat oblíbené</str>
+		<str name="#PM_DEVPROFILE">Vývojový profil</str>
+		<str name="#PM_DELMCF">Smazat MCF</str>
+		<str name="#PM_SHOWMCF">Zobrazit MCF</str>
+		<str name="#PM_REVERTCOMPLEX">Vrátit herních souborů</str>
+		<str name="#PM_SHOWCDKEY">Zobrazit CD klíč</str>
+		<str name="#PM_REMOVEFROMACCOUNT">Odstranit z účtu</str>
+		<str name="#PM_SHORTCUT">Vytvořit zástupce na plochu</str>
+
+		<!-- Settings -->
+		<str name="#SET_TITLE">Nastavení Desury</str>
+		<str name="#SET_BETA_LABEL">Participate in Desura Public Beta</str>
+		<str name="#SET_BETA_INFO">Před uvolněním nové verze a nového sestavení Desury je uvolněna veřejná beta pro testování a opravu chyb v nové verzi. Jako uživatel Desury, se můžete rozhodnout a pomoci testovat veřejnou beta verzi, nové funkce a podpořit při odstraňování chyb a nabídnout zpětnou vazbu. &#xA;&#xA;If you participate and experience a crash, your crash dump will be automatically uploaded and you may be contacted via email to help debug and fix the bugs you encounter. &#xA;&#xA;Please Note: Public beta's may contain bugs which could cause loss of data or application crashes. It is recommended that only advanced users participate in public beta's.&#xA;</str>
+		<str name="#SET_NOTE">Poznámka: Pokud vyberete nový motiv, bude muset znovu restartovat Desuru.</str>
+		<str name="#SET_THEME_VERSION">verze</str>
+		<str name="#SET_THEME_AUTHOR">od</str>
+		<str name="#SET_CV_THEME">Téma</str>
+		<str name="#SET_CV_BETA">Beta</str>
+		<str name="#SET_CV_LANG">Jazyk</str>
+		<str name="#SET_CV_LANG_TOOLTIP">Vyberte jazyk, který chcete použít</str>
+		<str name="#SET_CV_STEAM">Steam username</str>
+		<str name="#SET_CV_STEAM_TOOLTIP">Current Steam username (for mod installations)</str>
+		<str name="#SET_CV_AUTOLOGIN">Auto login on start</str>
+		<str name="#SET_CV_AUTOLOGIN_TOOLTIP">Save login information and auto login when Desura starts</str>
+		<str name="#SET_CV_AUTOSTART">Auto start Desura</str>
+		<str name="#SET_CV_AUTOSTART_TOOLTIP">Start Desura with Windows</str>
+		<str name="#SET_CV_CRASH">Auto upload crash reports</str>
+		<str name="#SET_CV_CRASH_TOOLTIP">Automatically upload crash reports when Desura starts (used for debugging)</str>
+		<str name="#SET_CV_MCFCLEAN">Clean Up MCF's after use</str>
+		<str name="#SET_CV_MCFCLEAN_TOOLTIP">This removes unneeded data from MCF's saving harddrive space. However this will cause more to be downloaded.</str>
+		<str name="#SET_CV_USER">Save username on login</str>
+		<str name="#SET_CV_USER_TOOLTIP">Saves your username for next time on login</str>
+		<str name="#SET_CV_CONSOLE">Show console on error</str>
+		<str name="#SET_CV_CONSOLE_TOOLTIP">Opens the console when errors occur</str>
+		<str name="#SET_CV_DISABLE_WGE">Disable Windows Game Explorer</str>
+		<str name="#SET_CV_DISABLE_WGE_TOOLTIP">Stops Desura putting games into Windows Game Explorer</str>
+
+		<str name="#SET_CV_WORKER">pracovní vlákna</str>
+		<str name="#SET_CV_WORKER_TOOLTIP">This is the number of workers used to perform processes (like create a MCF).</str>
+		<str name="#SET_CV_DESTMAIN">Unload mainform on Close</str>
+		<str name="#SET_CV_DESTMAIN_TOOLTIP">Unloads the mainform on close saving memory but at the cost of speed (and history).</str>
+		<str name="#SET_CV_NOTAB">Don't autoload browser pages on login</str>
+		<str name="#SET_CV_NOTAB_TOOLTIP">Doesn't load the browser pages on login leading to less memory (but slower load times).</str>
+		<str name="#SET_LAB_GENERAL">General</str>
+		<str name="#SET_LAB_PERFORMANCE">Performance</str>
+		<str name="#SET_LAB_THEME">Téma</str>
+		<str name="#SET_LAB_BETA">Beta</str>
+		<str name="#SET_LAB_CACHE">Cache</str>
+		<str name="#SET_LAB_GAMES">Hry</str>
+		<str name="#SET_LAB_CHAT">Chat</str>
+		<str name="#SET_WARNING">Some settings that have been changed require a restart to take effect.</str>
+
+		<str name="#SET_CV_SILENTLAUNCH">Tichý auto login</str>
+		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Don't show main window on AutoLogin</str>
+		<str name="#SET_CACHE_BROWSE">Please select a new folder for Desura to use as a cache</str>
+
+		<str name="#SET_CV_CHAT_ENABLED">Povolit chat Desury</str>
+		<str name="#SET_CV_CHAT_ENABLED_TOOLTIP">Povolí chat v Desura klientu</str>
+		<str name="#SET_CV_CHAT_BREAKOUT">Chat client as seperate window</str>
+		<str name="#SET_CV_CHAT_BREAKOUT_TOOLTIP">By default make the chat client a seperate window</str>
+		<str name="#SET_CV_CHAT_SHOWCONTACTS">Show chat contacts on login</str>
+		<str name="#SET_CV_CHAT_SHOWCONTACTS_TOOLTIP">When Desura log's in, show the chat contact window (Note: Only if the chat client is a seperate window)</str>
+		<str name="#SET_CV_CHAT_SHOWOFFLINE">Show offline contacts</str>
+		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">Show offline contacts by default</str>
+		<str name="#SET_CV_CHAT_REMEMBERSTATUS">Remember last chat status</str>
+		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Always sets your current status to your status last time you where logged in</str>
+
+		<str name="#SET_CIP_UPDATE">Obnovit seznam her</str>
+		<str name="#SET_CIP_BUT_BROWSE">Procházet</str>
+		<str name="#SET_CIP_BUT_REFRESH">Obnovit hry</str>
+		<str name="#SET_CIP_BUT_DELETE">Smazat</str>
+		<str name="#SET_CIP_BUT_ACTIVATE">Aktivovat</str>
+		<str name="#SET_CIP_ERR_GAME">Please enter a valid path to each game, to save your changes.</str>
+		<str name="#SET_CIP_ERR_CACHE">Please enter a valid cache path, to save your changes.</str>
+		<str name="#SET_CIP_SUCCESS">Your settings have been updated.</str>
+		<str name="#SET_CIP_SUCCESS_GAMES">Your settings have been updated. Because you updated your games list, you will need to run the {1}install wizard{0} to verify the paths you entered, for these games to be displayed on your {2}play page{0}.</str>
+		<str name="#SET_CIP_CDKEY">Please enter a valid CDKey or gift code.</str>
+		<str name="#SET_CIP_CDKEY_VALIDATING">Validating key...</str>
+		<str name="#SET_CIP_CDKEY_ERR">An error has occured activating your key. Please try again shortly.</str>
+		<str name="#SET_CIP_INFO">If you have purchased a retail game or {1}received a gift{0}, to register it with Desura enter the CD/DVD key it was distributed with here:</str><!-- {0} = </a> {1} = <a href="..."> -->
+		<str name="#SET_CIP_CDKEY">CD Klíč / Dárky</str>
+		<str name="#SET_CIP_CDKEY_INFO">Product keys, CDkeys and gift codes typically look like:{0}{0}AAAAA-BBBBB-CCCCC-DDDDD-EEEEE{0}0123456789ABCDEFGHIJKLMNOPQRSTUV{0}00000 11111111</str><!-- {0} = <br /> -->
+		<str name="#SET_CIP_INFO_ADD">If you have games already on your PC which you want Desura to find and list, you can run the {1}find games installed{0} wizard which will automatically add them to your account. If Desura doesn't find a game you have installed, you can manually specify the folder where you installed it below:</str><!-- {0} = </a> {1} = <a href="..."> -->
+		<str name="#SET_CIP_MANUAL">Ručně přidat hru</str>
+
+		<str name="#SET_CIP_LINK">You can add shortcuts for other games and applications on your system by using the form below. You can add launch arguments via properties in the right click menu and also remove by selecting uninstall in the same menu. Warning: This feature is in Beta. Expect Bugs!</str>
+		<str name="#SET_CIP_LINK_NAME">Link Name:</str>
+		<str name="#SET_CIP_LINK_EXE">Link Exe:</str>
+
+		<str name="#CIP_BROWSE">Please select the root folder for the game:</str>
+		<str name="#CIP_LINK_BROWSE">Please select the binary for the link:</str>
+
+
+		<!-- Browser controls -->
+		<str name="#BC_HOME">Otevři domovskou stránku</str>
+		<str name="#BC_STOP">Zastavit načítání aktuální stránky</str>
+		<str name="#BC_REFRESH">Obnovit aktuální stránku</str>
+		<str name="#BC_BACK">Přejít zpět na poslední stránku</str>
+		<str name="#BC_FORWARD">Přejít vpřed na předcházející stránku</str>
+		<str name="#BC_BREAK">Načíst v defaultním prohlížeči</str>
+
+		<!-- Button Strip -->
+		<str name="#BS_MAIN">Otevřít v hlavním menu</str>
+		<str name="#BS_UPDATE">Aktualizace</str>
+		<str name="#BS_PLUS">Thread Watch</str>
+		<str name="#BS_CART">Cart Items</str>
+		<str name="#BS_PMESSAGE">Soukromé zprávy</str>
+
+		<!-- New Account -->
+		<str name="#NA_TITLE">Nový účet Desury</str>
+		<str name="#NA_VALDERROR">There was an error validating your information:</str>
+		<str name="#NA_ERRBLANKNAME">Vaše uživatelské jméno je prázdné</str>
+		<str name="#NA_ERRPASSWORD">Vaše heslo není stejné</str>
+		<str name="#NA_ERREMAIL">Váš email je prázdný nebo chybný</str>
+		<str name="#NA_ERRNAME">Vaše jméno je prázdné</str>
+		<str name="#NA_ERRBIRTHDATE">Your birth date is invalid, or you are too young.</str>
+		<str name="#NA_ERRPLEASE">Please fix these items and try again.</str>
+		<str name="#NA_ERRTITLE">Desura New Account Error</str>
+		<str name="#NA_ERROR">An error has occurred while trying to create your account.</str>
+		<str name="#NA_GENDER">Pohlaví:</str>
+		<str name="#NA_DOB">Narození:</str>
+		<str name="#NA_CONFIRM">Potvrzení hesla:</str>
+		<str name="#NA_PASS">Heslo:</str>
+		<str name="#NA_NAME">Vaše jméno:</str>
+		<str name="#NA_EMAIL">Email:</str>
+		<str name="#NA_USER">Uživatelské jméno:</str>
+		<str name="#NA_FIN">We've sent you an email to verify your account. You should receive the email in the next few minutes. When you do, follow the instructions contained in the email to complete your registration and login to Desura.&#xA;&#xA;Didn't Get the Email?&#xA; - Be patient, sometimes it takes a while for the email to arrive&#xA; - Make sure emails from support@desura.com are not blocked&#xA; - Check your junk email box&#xA; - Try registering again here or via www.desura.com&#xA; - Contact us at support@desura.com if you still experience problems</str>
+		<str name="#NA_INFOPROMPT">Please enter your registration details below and click accept to proceed. Your email will be used to activate your account. If you have a MODDB or INDIEDB account you don't need to register again, you can login with it.</str>
+
+		<str name="#PR_TITLE">Desura Password Reminder</str>
+		<str name="#PR_PROMPT">Please enter the email address you used to register with, and you will be sent an email which you can use to reset your password.</str>
+		<str name="#PR_EMAIL">Email: </str>
+		<str name="#PR_SENT">Reminder has been sent. Please check your email inbox for instructions on what to do next.</str>
+		<str name="#PR_TITLE">Desura Password Reminder</str>
+		<str name="#PR_ERRTITLE">Desura Password Reminder Error</str>
+		<str name="#PR_ERROR">An error has occurred with the password reminder.</str>
+		<str name="#PR_VALIDEMAIL">Please enter a valid email address.</str>
+
+		<!-- Items menu -->
+		<str name="#DM_EXPAND">Rozbalit všechny položky</str>
+		<str name="#DM_CONTRACT">Sbalit všechny položky</str>
+
+		<!-- Item status -->
+		<str name="#IS_INSTALLED">Instalováno</str>
+		<str name="#IS_NOTINSTALLED">Neinstalováno</str>
+		<str name="#IS_READY">Připraveno</str>
+		<str name="#IS_VERIFY">Ověřování</str>
+		<str name="#IS_UPDATING">Nahrávání</str>
+		<str name="#IS_DOWNLOADING">Stahování</str>
+		<str name="#IS_INSTALLING">Instalování</str>
+		<str name="#IS_DEVSTUB">Developer Stub</str>
+		<str name="#IS_NOTAVAIL">Není připraveno</str>
+		<str name="#IS_PAUSED">Pozastaveno</str>
+		<str name="#IS_PREORDER_STATUS">Předprodej</str>
+		<str name="#IS_PRELOADED_STATUS">Přednačtení</str>
+
+		<str name="#IS_PREORDER">Dostupné za </str>
+		<str name="#IS_PREORDER_DAYS">dní</str>
+		<str name="#IS_PREORDER_HOURS">hodin</str>
+		<str name="#IS_PREORDER_MINS">minut</str>
+		<str name="#IS_PREORDER_DAY">den</str>
+		<str name="#IS_PREORDER_HOUR">hodina</str>
+		<str name="#IS_PREORDER_MIN">minuta</str>
+
+		<str name="#IS_LAUNCHING">Spouštění</str>
+		<str name="#IS_DOWNLOADINGTOOL">DL nástroje</str>
+		<str name="#IS_INSTALLINGTOOL">IN nástroje</str>
+		<str name="#IS_VALIDATE">Ověřování</str>
+		<str name="#IS_WAIT">Čekání ({0} z {1})</str>
+
+		<str name="#AB_ABOUTINFO">Desura is a community driven digital distribution service for gamers, putting the best games, mods and downloadable content from developers at your fingertips, ready to buy and play.</str>
+		<str name="#AB_CREDITS">Credits</str>
+		<str name="#AB_ABOUT">About Desura</str>
+
+		<str name="#UF_TITLE">Desura dostupná aktualitzace</str>
+		<str name="#CL_TITLE">Desura ChangeLog</str>
+		<str name="#CS_TITLE">Desura Konzole</str>
+		<str name="#CL_ITEM_TITLE">{0}: ChangeLog</str><!-- {0} is item name -->
+
+		<str name="#DL_LOADING">Načítaní ...</str>
+
+		<str name="#CL_LABEL">Spouštění...</str>
+		<str name="#CL_REMOVING">Odebrání starých souborů</str>
+		<str name="#CL_BACKUP">Backing up game files</str>
+		<str name="#CL_INSTALL">Instalace nových souborů</str>
+		<str name="#CL_ERRTITLE">Complex Launch Error</str>
+		<str name="#CL_ERROR">Failed to Launch Game/Mod</str>
+
+		<str name="#CR_TITLE">Reverting game files</str>
+		<str name="#CR_ERRTITLE">Complex Revert Error</str>
+		<str name="#CR_ERROR">Failed to Revert Game Files</str>
+
+		<!-- Taskbar menu -->
+		<str name="#TB_WINDOWS">Windows</str>
+		<str name="#TB_NOWINDOWS">No open windows</str>
+		<str name="#TB_NOITEMS">No Items</str>
+		<str name="#TB_EXIT">Konec</str>
+		<str name="#TB_STATUS">Status</str>
+
+		<str name="#TB_CART">Položky košíku</str>
+		<str name="#TB_MESSAGE">Zprávy</str>
+		<str name="#TB_UPDATES">Aktualizace</str>
+		<str name="#TB_GAMES">Hry</str>
+		<str name="#TB_MODS">Módy</str>
+
+		<str name="#TB_TITLE">Desura Game Updates Available</str>
+		<str name="#TB_GIFTTITLE">You have been gifted a new item!</str>
+		<str name="#TB_APPUPDATE_TITLE">Desura Update</str>
+		<str name="#TB_APPUPDATE">Downloading Desura update (Build {0}).</str>
+
+		<str name="#DS_ERROR">Desura Service disconnected unexpectedly.&#xA;&#xA;Attempting reconnect...</str>
+		<str name="#DS_ERRORFAILED">Desura Service disconnected unexpectedly.&#xA;&#xA;Restart failed:</str>
+
+		<str name="#DR_TITLE">Širokoúhlý monitor</str>
+
+		<str name="#EULA_LABEL">Before playing you need to agree to the license terms and conditions.</str>
+		<str name="#EULA_TITLE">End User License Agreement: {0}</str>
+
+		<!-- browser menu -->
+		<str name="#CHROME_UNDO">Zpět</str>
+		<str name="#CHROME_REDO">Znovu</str>
+		<str name="#CHROME_CUT">Vyjmout</str>
+		<str name="#CHROME_COPY">Kopírovat</str>
+		<str name="#CHROME_PASTE">Vložit</str>
+		<str name="#CHROME_DELETE">Smazat</str>
+		<str name="#CHROME_SELECTALL">Vybrat vše</str>
+		<str name="#CHROME_BACK">Zpět</str>
+		<str name="#CHROME_FORWARD">Vpřed</str>
+		<str name="#CHROME_RELOAD">Obnovit</str>
+		<str name="#CHROME_ZOOMIN">Přiblížit</str>
+		<str name="#CHROME_ZOOMOUT">Oddálit</str>
+		<str name="#CHROME_ZOOMNORMAL">Normalně</str>
+		<str name="#CHROME_PRINT">Tisk</str>
+		<str name="#CHROME_VIEWSOURCE">Zobrazit zdroj</str>
+		<str name="#CHROME_VIEWPAGE">Zobrazit stránku v prohlížeči</str>
+		<str name="#CHROME_VIEWLINK">Zobrazit Link v prohlížeči</str>
+		<str name="#CHROME_VIEWIMAGE">Zobrazit obrázek v prohlížeči</str>
+		<str name="#CHROME_INSPECTELEMENT">Zkontrolovat prvek</str>
+		<str name="#CHROME_NORMALMENU">Normalní menu</str>
+
+		<!-- cd key form -->
+		<str name="#CDK_ERRTITLE">Nepodařilo se získat CD Key</str>
+		<str name="#CDK_ERROR">Desura failed to locate a CD Key</str>
+
+		<str name="#CDK_PROGRESSINFO">Shromažďování CD klíče ...</str>
+		<str name="#CDK_COPYALL">Kopírovat vše</str>
+		<str name="#CDK_COPYPART">Copy Part 1</str>
+		<str name="#CDK_COPYPART_X">Copy Part {0}</str><!-- {0} is the part number -->
+		<str name="#CDK_INFO">You will need to enter this CD key to play:</str>
+		<str name="#CDK_INFO_STEAM">{0} needs to be activated on Steam before you are able to play. You will need to enter this key into Steam:</str>
+		<str name="#CDK_COUNTDOWN">Launching in {0}</str>
+		<str name="#CDK_LAUNCHNOW">Spustit nyní</str>
+		<str name="#CDK_ACTIVATE">Aktivovat</str>
+
+		<str name="#CDK_REGKEY">CD Key was Installed Automatically</str>
+		<str name="#CDK_REGKEY_TOOLTIP">The CD Key was installed for this item automatically so you dont need to copy it down.</str>
+
+		<!-- exe select form -->
+		<str name="#ES_TITLE">Vybrat verzi: {0}</str>
+		<str name="#ES_LABEL">Please select the version of {0} you want to play:</str>
+
+		<!-- change cache dir -->
+		<str name="#MCFCD_ID">Desura installs games and programs to the folder you installed it to; it cannot be changed:</str>
+		<str name="#MCFCD_CD">All cache files are saved to the folder below, you can type in the folder you wish to store these files:</str>
+		<str name="#MCFCD_NOTE">Please note: On changing the folder, Desura will quit, move files and then restart. This may take some time.</str>
+
+		<str name="#MCFCD_CURRENT">currently</str>
+		<str name="#MCFCD_INVALIDFOLDER">Error: Folder does not exist</str>
+		<str name="#MCFCD_CANTWRITE">Error: Cannot write to folder</str>
+		<str name="#MCFCD_GETTINGSIZE">Načítání...</str>
+
+		<str name="#CC_EDITPROFILE">Edit your user profile</str>
+		<str name="#CC_ADDFRIEND">Add a friend to your chat account</str>
+		<str name="#CC_SHOWCONTACTS">Show offline contacts</str>
+		<str name="#CC_HIDECONTACTS">Hide offline contacts</str>
+		<str name="#CC_BREAKOUT">Break out chat into new window</str>
+
+		<str name="#CHAT_ADDFRIEND_TITLE">Add a friend to your account</str>
+		<str name="#CHAT_ADDFRIEND_SEARCH">Add by search:</str>
+		<str name="#CHAT_ADDFRIEND_BYUSER">Add by username:</str>
+		<str name="#CHAT_ADDFRIEND_NOTE">Note: Search will only return the first 25 items. For a more in depth search please go to the {0}members page{1}.</str><!-- {0} is start of link {1} is end of link</a>-->
+
+		<str name="#CHAT_MENU_CHATWITH">Chatovat s</str>
+		<str name="#CHAT_MENU_UNBLOCK">Odblokovat přítele</str>
+		<str name="#CHAT_MENU_BLOCK">Zablokovat přítele</str>
+		<str name="#CHAT_MENU_ACCEPT">Příjmout přátelství</str>
+		<str name="#CHAT_MENU_REJECT">Zamítnout přítelství</str>
+		<str name="#CHAT_MENU_RESEND">Znovu požádát o přátelství</str>
+		<str name="#CHAT_MENU_REMOVE">Odebrat přítele</str>
+
+		<str name="#CHAT_SEARCH_ADD">Přidat</str>
+		<str name="#CHAT_SEARCH_ADDED">Přidáno</str>
+		<str name="#CHAT_SEARCH_PENDING">Nevyřešený</str>
+
+		<str name="#CHAT_DISCONNECT">Chat byl odpojen.</str>
+		<str name="#CHAT_DISCONNECT_MSG">Attempting to reconnect in {0} {1}(Retry Now){2}.</str>
+
+		<str name="#GD_TITLE">{0}: Need Game Disk</str>
+		<str name="#GD_INFO">{0} vyžaduje pro spuštění disk {1}. &#xA;&#xA;Než budete pokračovat, ujistěte se, že je k dispozici.</str>
+		<str name="#GD_REMINDER">Znovu již nepřipomínat</str>
+		<str name="#SB_DEFAULT">Hledat...</str>
+		<str name="#SB_FULL_SEARCH">Spustit plné vyhledávání</str>
+
+		<str name="#BH_CRASH">Prohlížeč umřel. (Klikněte na obnovit)</str>
+		<str name="#BH_NO_LOAD">Nepodařilo se načíst knihovnu prohlížeče. Zkontrolujte prosím, konzoli chybových zpráv.</str>
+	</strings>
+</lang>
