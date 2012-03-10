@@ -5,5 +5,5 @@ if [ ! -d "build" ] ; then
 fi
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=../install || exit 1
-make install $* || exit 2
+make install $@ || exit 2
 echo -e "Run \e[1;31m./run_desurium.sh\e[0m to start Desurium!"
