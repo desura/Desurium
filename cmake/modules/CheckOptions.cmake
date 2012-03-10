@@ -9,7 +9,9 @@ set(BRANDING "branding_default"
 # unix-only options
 ###############################################################################
 
-option(WITH_ARES "build cURL with c-ares support" ON)
+if(UNIX)
+  option(WITH_ARES "build cURL with c-ares support" ON)
+endif()
 
 ###############################################################################
 # windows-only options
