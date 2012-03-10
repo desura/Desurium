@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lang name="Japanese" skip="true">
+	<author>
+		<username>Yorn</username>
+		<profile>http://www.desura.com/members/yorn</profile>
+	</author>
+	<strings>
+		<str name="#CRASH_TITLE">Desura: クラッシュ Dump ユーティリティ</str>
+		<str name="#CRASH_UPLOADINFO">クラッシュ Dump をアップロード中 ...</str>
+		<str name="#CRASH_GENERATEINFO">クラッシュ Dump を生成中 ...</str>
+		<str name="#CRASH_ERROR">Dump の処理に失敗しました。</str>
+		
+		<str name="#CRASH_BUTGENERATE">クラッシュ Dump 作成</str>
+		<str name="#CRASH_BUTUPLOAD">クラッシュ Dump をアップロードする</str>
+		
+		<str name="#CRASH_LABGENERATE">Desura が応答しない場合や 予期しない動作をする場合は、 問題を修正するために 開発者へ現在の状態を報告します。</str>
+		<str name="#CRASH_LABUPLOAD">Desura 起動時に 存在する 前回起こったクラッシュ Dump を報告する。</str>
+		
+		
+		<str name="#CDF_TITLE">Desura データフォルダ移動</str>
+		<str name="#CDF_STARTUP">データフォルダを解析しています...</str>
+		<str name="#CDF_MOVEFILE">ファイルを移動中...</str>
+		<str name="#CDF_DBCHANGES">データベースの更新中...</str>
+		
+		<str name="#CDF_GERRTITLE">Desura エラー</str>
+		<str name="#CDF_GERROR">Desura データフォルダの移動に 失敗しました。</str>
+
+
+		<str name="#DUN_TOTAL">全体の状況:</str>
+		<str name="#DUN_CURRENT">現在の状況:</str>
+		<str name="#DUN_COMPLETED">覚えておいてください: 支払ったアイテムとギフトは あなたのアカウントからは削除されません。 それらは Desura クライアントから再インストールすることで いつでも利用することが可能です。</str>
+		
+		<str name="#DUN_UNINSTALL_INFO">Desura をアンインストールすると インストールされたすべてのゲーム、MOD、コンテンツを アンインストールします。 インストールされたコンテンツを保持したまま、 Desura のインストールを修理するには 下の修理ボタンをクリックしてください。</str>
+		<str name="#DUN_UNINSTALL_OPT">アンインストールオプション:</str>
+		<str name="#DUN_UNINSTALL_LOC">Desura は 次のフォルダからアンインストールされます:</str>
+		
+		<str name="#DUN_REMOVE_DESURA">Desura 削除</str>
+		<str name="#DUN_REMOVE_DESURA_TT">インストールされたすべての Desura ファイルを削除します。</str>
+		<str name="#DUN_REMOVE_SETTINGS">削除設定</str>
+		<str name="#DUN_REMOVE_SETTINGS_TT">Desura で使用していた 設定ファイルを削除します。</str>
+		<str name="#DUN_REMOVE_CACHE">ダウンロードキャッシュの削除</str>
+		<str name="#DUN_REMOVE_CACHE_TT">Desura で使用していた ダウンロードキャッシュを削除します。</str>
+		<str name="#DUN_REMOVE_SIMPLE">単純なゲームとMODの削除</str>
+		<str name="#DUN_REMOVE_SIMPLE_TT">Desura でインストールされた すべてのゲームと MOD を削除します。</str>
+		<str name="#DUN_REMOVE_COMPLEX">複雑なMODの削除</str>
+		<str name="#DUN_REMOVE_COMPLEX_TT">元となるゲームファイル上にインストールされた すべてのゲームと MOD を削除します。</str>
+		<str name="#DUN_REMOVE_ACCOUNT">フリーアイテムのアカウントからの削除</str>
+		<str name="#DUN_REMOVE_ACCOUNT_TT">あなたのアカウントから このコンピュータにインストールされた すべてのフリーアイテム(リンクやデモを含む) を削除します。</str>
+		
+		<str name="#DUN_UNINSTALL_HEADER">Desura アンインストール</str>
+		<str name="#DUN_UNINSTALL_SUBHEADER">コンピュータから Desura を削除します</str>
+		<str name="#DUN_REPAIR">修理</str>
+		<str name="#DUN_UNINSTALL">アンインストール</str>
+
+		<str name="#DUN_THREAD_UNINSTALL">ゲームとMODを削除中...</str>
+		<!-- {0} item name -->
+		<str name="#DUN_THREAD_UNINSTALL_SUB">アンインストール中: {0}</str>
+		<str name="#DUN_THREAD_FINAL">最終のクリーンナップ...</str>
+		<str name="#DUN_THREAD_UNINSTALL">アンインストールエントリを削除中...</str>
+		<str name="#DUN_THREAD_GAMEEXPLORER">Game Explorer エントリを削除中...</str>
+		<str name="#DUN_THREAD_CACHE">Desura キャッシュを削除中...</str>
+		<str name="#DUN_THREAD_SETTINGS">Desura 設定を削除中...</str>
+		<str name="#DUN_THREAD_ACCOUNT">アカウントのアイテムをクリーンナップしています...</str>	
+		<!-- {0} item name -->
+		<str name="#DUN_THREAD_ACCOUNT_SUB">アカウントから {0} を削除中</str>
+		
+	</strings>
+</lang>
