@@ -1,7 +1,7 @@
 set(BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/breakpad)
 
 if(WIN32)
-  set(CONFIGURE_COMMAND ${PYTHON_EXECUTABLE} <SOURCE_DIR>/src/tools/gyp/gyp <SOURCE_DIR>/src/client/windows/breakpad_client.gyp)
+  set(CONFIGURE_COMMAND ${PYTHON_EXECUTABLE} ../breakpad/src/tools/gyp/gyp ../breakpad/src/client/windows/breakpad_client.gyp)
 else()
   set(CONFIGURE_COMMAND <SOURCE_DIR>/configure --enable-shared=no --enable-static=yes --prefix=${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR})
 endif()
