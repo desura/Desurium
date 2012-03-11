@@ -37,6 +37,10 @@ find_package(v8 ${REQUIRED_ON_UNIX})
 # we patch wxWidgets so we will build it on our own
 # find_package(wxWidgets 2.9 REQUIRED)
 
+if(WIN32)
+  find_package(PythonInterp REQUIRED)
+endif()
+
 ###############################################################################
 # build some externel projects
 ###############################################################################
