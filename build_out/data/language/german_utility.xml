@@ -8,12 +8,12 @@
 		<str name="#CRASH_TITLE">Desura: Dienstprogramm für Fehlerberichte</str>
 		<str name="#CRASH_UPLOADINFO">Lade Fehler Bericht(e) hoch ...</str>
 		<str name="#CRASH_GENERATEINFO">Generiere Fehlerbericht ...</str>
-		<str name="#CRASH_ERROR">Fehler beim erzeugen der Fehlerbericht(e).</str>
+		<str name="#CRASH_ERROR">Fehler beim Erzeugen der Fehlerbericht(e).</str>
 
 		<str name="#CRASH_BUTGENERATE">Generiere Fehlerbericht</str>
 		<str name="#CRASH_BUTUPLOAD">Fehlerberichte hochladen</str>
 
-		<str name="#CRASH_LABGENERATE">Wenn Desura nicht mehr reagiert oder etwas unerwartetes macht, wird hiermit ein Fehlerbericht an die Entwickler geschickt um den Fehler so schnell als möglich zu beheben.</str>
+		<str name="#CRASH_LABGENERATE">Wenn Desura nicht mehr reagiert oder etwas unerwartetes macht, wird hiermit ein Fehlerbericht an die Entwickler geschickt um den Fehler so schnell wie möglich zu beheben.</str>
 		<str name="#CRASH_LABUPLOAD">Schicke Fehlerberichte, welche passiert sind, bevor Desura gestartet werden konnte.</str>
 
 
