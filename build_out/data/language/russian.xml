@@ -9,9 +9,9 @@
 		<str name="#IF_WINDOWS_LAUNCH_WARNING">WARNING: You are attempting to launch a Windows program. This relies on your system recognising the format and launching the appropriate tools (eg: WINE). If you do not, the application/game may not launch correctly or at all.&#xA;&#xA;This warning can be disabled in Settings.</str>
 		<str name="#IF_SHOWFILES">Show Files</str>
 		<str name="#MF_ERROR_NO32LIBS">The item you tried to launch is 32 bit but it appears that you do not have 32 bit libs Installed.&#xA;&#xA;Please see http://www.desura.com/groups/desura/linux for more information.</str>
-	
+
 		<str name="#PLAY_EMPTY">You have no Linux {1}games{0} in your account.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
-	
+
 	<!-- havnt been translated
 		<str name="#SET_CV_LIN_DIS_WIN_WRN">Disable Windows executable warning.</str>
 		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Doesn't warn you every time you launch a Windows executable.</str>
@@ -23,15 +23,15 @@
 		<str name="#IF_SHOWFILES">Показать в проводнике</str>
 		<str name="#PLAY_EMPTY">У Вас нет {1}игр{0} или {2}модов{0} в аккаунте. Вам надо запустить {3}мастер установки{0} который поищет на компьютере игры, поддерживаемые с Desura</str>
 		<!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
-		
+
 	<!-- havnt been translated
 		<str name="#SET_CV_DISABLE_FS_PERMS">Make all install folders writable by normal users</str>
 		<str name="#SET_CV_DISABLE_FS_PERMS_TOOLTIP">Due to game developers not being able to follow windows standards many games write to the install folder and crash if they cant. Warning: Disabling this might make some games not work</str>
-		
+
 		<str name="#IF_LOWSPACE_SYS">The system harddisk ({0}:\\) is low on free space and Desura will start having performance issues. &lt;a href=&quot;desura://settings/cache&quot;&gt;You can move your Desura cache folder to a new disk to free up space.&lt;/a&gt;</str>
 		<str name="#IF_LOWSPACE_CACHE">The harddisk that Desura cache saves to ({0}:\\) is low on free space. It is recommended that you free up space for Desura to perfom correctly.</str>
 	-->
-	</windows>		
+	</windows>
 	<strings>
 		<str name="#DESURA_UPDATE">Выпущенные обновления для Desura готовы к установке.</str>
 
@@ -52,7 +52,7 @@
 		<str name="#LF_LOSTPASS">Забыли пароль?</str>
 		<str name="#LF_NEWACCOUNT">Новый пользователь</str>
 		<str name="#LF_OFFLINE">Offline режим</str>
-			
+
 		<str name="#LF_ERRTITLE">Ошибка входа в Desura</str>
 		<str name="#LF_ERROR">Не удалось войти</str>
 		<str name="#LF_VALDERROR">Во время входа произошла следующая ошибка:</str>
@@ -128,27 +128,27 @@
 		<str name="#CF_NOTSTARTED">Инициализация ...</str>
 		<str name="#CF_ERROR">Произошла ошибка при создании MCF и оно было остановлено</str>
 		<str name="#CF_ERRTITLE">Ошибка создания MCF</str>
-		
+
 		<!-- note the {0} will be replaced with the item name! -->
-		<str name="#CF_COMPLETE">Создание MCF для {0} завершено</str> 
+		<str name="#CF_COMPLETE">Создание MCF для {0} завершено</str>
 
 		<!-- Item Form -->
 		<str name="#IF_TITLE">Подготовка:</str>
 		<str name="#IF_VERIFY">Проверка:</str>
 		<str name="#IF_DOWNLOAD">Загрузка:</str>
 		<str name="#IF_INSTALL">Установка:</str>
-		<str name="#IF_UPDATE">Обновление:</str>	
+		<str name="#IF_UPDATE">Обновление:</str>
 		<str name="#IF_UNINSTALL">Удаление: </str>
 		<str name="#IF_UNINSTALL_BRANCH">Удаление старых файлов: </str>
 		<str name="#IF_UNINSTALL_PATCH">Удаление старых файлов: </str>
 		<str name="#IF_UNINSTALL_COMPLEX">Удаление комплексного мода</str>
 		<str name="#IF_INSTALL_CHECK">Установить проверку</str>
-		
+
 		<str name="#IF_UNINSTALL_LABEL">Удаление ...</str>
 		<str name="#IF_UNINSTALL_BRANCH_LABEL">Удаление старых файлов ... </str>
 		<str name="#IF_UNINSTALL_PATCH_LABEL">Удаление старых файлов ... </str>
-		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Удаление комплексного мода ... </str>	
-		
+		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Удаление комплексного мода ... </str>
+
 		<!-- Install check -->
 		<str name="#IC_ERRTITLE">Ошибка проверки установки</str>
 		<!-- <str name="#IC_LABEL">Checking Install for:</str> -->
@@ -156,7 +156,7 @@
 		<str name="#IC_FOUND">была найдена и теперь готова</str>
 		<str name="#IC_NOTFOUND">не найдена на компьютере. Пожалуйста, убедитесь, что она установлена и Вы запускали её хотя бы раз, и попробуйте снова. Или Вы можете нажать кнопку "Пользовательская установка" и показать, куда она установлена.</str>
 		<str name="#IC_CHECK">Проверка установки</str>
-		<str name="#IC_CIP">Пользовательская установка</str> <!-- custom install path -->	
+		<str name="#IC_CIP">Пользовательская установка</str> <!-- custom install path -->
 
 		<!-- Install form -->
 		<str name="#IF_BRANCHTITLE">Играть в {0}</str>
@@ -200,8 +200,8 @@
 		<str name="#IF_VERIFYMCF">Проверка MCF ...</str>
 		<str name="#IF_VERIFYINSTALL">Проверка установки ...</str>
 		<str name="#IF_VERIFYDOWNLOADF">Загрузка недостающих файлов ...</str>
-		<str name="#IF_VERIFYINSTALLF">Установка недостающих файлов ...</str>	
-		<str name="#IF_VERIFYBRANCH">Переключение ответвлений ...</str>	
+		<str name="#IF_VERIFYINSTALLF">Установка недостающих файлов ...</str>
+		<str name="#IF_VERIFYBRANCH">Переключение ответвлений ...</str>
 
 		<str name="#IF_IIBADINFO">Возникла ошибка при получении информации по этому пункту</str>
 		<str name="#IF_INVALIDBRANCH">Ответвление, указанное для этого пункта, недейтвительно</str>
@@ -212,17 +212,17 @@
 		<str name="#IF_FILEERR">Файлы в этой папке уже существуют</str>
 		<str name="#IF_NOTINSTALLED">Этот пункт не установлен</str>
 		<str name="#IF_IHASHFAIL">В процессе установки не удалось проверить хэш md5 для одного или нескольких файлов. Вы хотите проверить установку для верности?</str>
-		
+
 		<str name="#IF_CONFLICT">Desura установила, что {0} уже установлена. Вы хотите проверить полноту установки {0}?  Для комплексной установки рекомендуется, что вы вручную удалите {0} прежде, чем продолжите, для избежания возможных конфликтов.</str>
 		<str name="#IF_CONFLICTTITLE">Конфликт комплексной установки</str>
-		
+
 		<str name="#IF_COMPLETEPREORDER">Презагрузка завершена</str>
 		<str name="#IF_PRELOADLAUNCH">{0} предварительно заказана, но не может быть запущена сейчас. Пожалуйста, подождите даты релиза.</str>
 		<str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
 
 		<str name="#IF_COMPLEXREMOVE">Удаление старых файлов</str>
 		<str name="#IF_COMPLEXBACKUP">Сохранение файлов игры</str>
-		<str name="#IF_COMPLEXINSTALL">Установка файлов</str>	
+		<str name="#IF_COMPLEXINSTALL">Установка файлов</str>
 		<str name="#IF_COMPLEXLABEL">{0}...</str>
 		<str name="#IF_COMPLEXLABEL_INIT">{0} (инициализация)</str>
 
@@ -294,7 +294,7 @@
 		<str name="#PLAY">Играть</str>
 		<str name="#PURCHASE">Добавить в корзину</str>
 		<str name="#TBA">Разрекламироваться</str> <!-- to be advertised -->
-		<str name="#TRYAGAIN">Попробуйте ещё</str> <!-- to be advertised -->	
+		<str name="#TRYAGAIN">Попробуйте ещё</str> <!-- to be advertised -->
 		<str name="#LINK">Ссылка</str>
 		<str name="#PREORDER">Предзаказ</str>
 
@@ -339,12 +339,12 @@
 		<str name="#MENU_INSTALLPATH">Пользовательский путь установки игр</str>
 		<str name="#MENU_INSTALLPATH_TOOLTIP">Задать пользовательский путь установки для игр</str>
 		<str name="#MENU_ACTIVATEGAME">Активировать игру</str>
-		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Введите ключ, чтобы активировать игру на свой аккаунт</str>	
+		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Введите ключ, чтобы активировать игру на свой аккаунт</str>
 		<str name="#MENU_VERSION">Версия</str>
 		<str name="#MENU_EXIT">Выход</str>
 
 		<str name="#MENU_DOWNLOADREPORT">Разрешение экрана</str>
-		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Показать разрешение экрана</str>	
+		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Показать разрешение экрана</str>
 
 		<str name="#MENU_CART">Корзина</str>
 		<str name="#MENU_CART_TOOLTIP">Показать продукты в корзине</str>
@@ -430,7 +430,7 @@
 		<str name="#SET_WARNING">Некоторые настройки требуют перезапуска для вступления в силу</str>
 
 		<str name="#SET_CV_SILENTLAUNCH">Тихий автоматический вход</str>
-		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Не показывать главное окно при входе</str>	
+		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Не показывать главное окно при входе</str>
 
 		<!-- Browser controls -->
 		<str name="#BC_HOME">Открыть домашнюю страницу</str>
@@ -499,8 +499,8 @@
 
 		<str name="#IS_LAUNCHING">Запуск</str>
 		<str name="#IS_DOWNLOADINGTOOL">DL инструменты</str>
-		<str name="#IS_INSTALLINGTOOL">IN инструменты</str>		
-		
+		<str name="#IS_INSTALLINGTOOL">IN инструменты</str>
+
 		<str name="#AB_ABOUTINFO">Desura - это сообщество управления цифровым контентом, включающим лучшие игры, моды и другой загружаемый контент непосредственно от разработчиков, который легко доступен и готов к покупке и последующей игре</str>
 		<str name="#AB_CREDITS">Создатели</str>
 		<str name="#AB_ABOUT">О Desura</str>
@@ -533,14 +533,14 @@
 		<str name="#TB_WINDOWS">Окна</str>
 		<str name="#TB_NOWINDOWS">Нет открытых окон</str>
 		<str name="#TB_NOITEMS">Нет элементов</str>
-		<str name="#TB_EXIT">Выход</str>	
-		<str name="#TB_STATUS">Статус</str>	
+		<str name="#TB_EXIT">Выход</str>
+		<str name="#TB_STATUS">Статус</str>
 
 		<str name="#TB_CART">Корзина</str>
 		<str name="#TB_MESSAGE">Сообщения</str>
 		<str name="#TB_UPDATES">Обновления</str>
-		<str name="#TB_GAMES">Игры</str>	
-		<str name="#TB_MODS">Моды</str>	
+		<str name="#TB_GAMES">Игры</str>
+		<str name="#TB_MODS">Моды</str>
 
 		<str name="#TB_TITLE">Доступны обновления для игр</str>
 		<str name="#TB_GIFTTITLE">Вам прислали подарок!</str>
@@ -550,7 +550,7 @@
 		<str name="#DS_ERROR">Службы Desura неожиданно отключились.&#xA;&#xA;Поппытка восстановления соединения...</str>
 		<str name="#DS_ERRORFAILED">Службы Desura неожиданно отключились.&#xA;&#xA;Не удалось их перезапустить:</str>
 
-		<str name="#DR_TITLE">Разрешение экрана</str>	
+		<str name="#DR_TITLE">Разрешение экрана</str>
 
 		<str name="#EULA_LABEL">Прежде, чем играть, Вам надо принять условия лицензионного соглашения</str>
 		<str name="#EULA_TITLE">Лицензионное соглашение: {0}</str>
@@ -575,11 +575,11 @@
 		<str name="#CHROME_VIEWLINK">Открыть ссылку в браузере</str>
 		<str name="#CHROME_VIEWIMAGE">Открыть картинку в браузере</str>
 		<str name="#CHROME_INSPECTELEMENT">Инспектировать элемент</str>
-		<str name="#CHROME_NORMALMENU">Нормальное меню</str>	
+		<str name="#CHROME_NORMALMENU">Нормальное меню</str>
 
 		<!-- cd key form -->
 		<str name="#CDK_ERRTITLE">Не удалось получить ключ диска</str>
-		<str name="#CDK_ERROR">Desura не удалось найти ключ диска</str>	
+		<str name="#CDK_ERROR">Desura не удалось найти ключ диска</str>
 
 		<str name="#CDK_PROGRESSINFO">Получение ключа ...</str>
 		<str name="#CDK_COPYALL">Копировать всё</str>

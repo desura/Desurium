@@ -522,7 +522,7 @@
 		<str name="#SET_CV_CHAT_SHOWOFFLINE">Zeige Offline Kontakte</str>
 		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">Standardgemäß offline Kontakte anzeigen</str>
 		<str name="#SET_CV_CHAT_REMEMBERSTATUS">An den Letzten Chat status erinnern</str>
-		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Hiermit wird der Chat Status vom letzten Login übernommen</str>	
+		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Hiermit wird der Chat Status vom letzten Login übernommen</str>
 
 		<str name="#SET_CIP_UPDATE">Spiele Liste Aktualisieren</str>
 		<str name="#SET_CIP_BUT_BROWSE">Durchsuchen</str>
@@ -755,7 +755,7 @@
 		<str name="#CHAT_DISCONNECT_MSG">Versuche neue Verbindung aufzubauen in {0} {1}(Jetzt neu Verbinden){2}.</str>
 
 		<str name="#GD_TITLE">{0}: Datenträger des Spiels benötigt</str>
-		<str name="#GD_INFO">{0} Die {1} Disk muss sich in deinem Laufwerk befinden um zu Spielen. &#xA;&#xA;Bitte stelle sicher, dass sich die Disk in deinem Laufwerk befindet, bevor du fortfahrst.</str>	
+		<str name="#GD_INFO">{0} Die {1} Disk muss sich in deinem Laufwerk befinden um zu Spielen. &#xA;&#xA;Bitte stelle sicher, dass sich die Disk in deinem Laufwerk befindet, bevor du fortfahrst.</str>
 		<str name="#GD_REMINDER">Nicht mehr erinnern</str>
 		<str name="#SB_DEFAULT">Suchen...</str>
 		<str name="#SB_FULL_SEARCH">Suche durchführen</str>
