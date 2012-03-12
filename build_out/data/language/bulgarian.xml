@@ -7,23 +7,23 @@
 	<linux>
 		<str name="#MW_PROMPT">Този помощник ще намери инсталирани игри и модове на този компютър, които се поддържат от Desura. Моля, имайте в предвид, че това ще обнови всички намерени артикули до последната им версия в Desura.</str>
 		<str name="#MW_FINISH">Помощникът е готов и всички намерени игри на този компютър, които се поддържат от Desura, са добавени в акаунта Ви. &#xA;&#xA;Ако Desura не е в състояние да се намери игра, инсталирана на компютъра Ви, можете ръчно да я добавите, като натиснете върху бутона „Персонализирано инсталиране“ по-долу.</str>
-	
+
 		<str name="#IF_WINDOWS_LAUNCH_WARNING">ВНИМАНИЕ: Вие се опитвате да стартирате Windows програма. Това зависи от Вашата система за разпознаване на формата и стартирането на подходящи инструменти (например: Wine). Ако не го стартирате с подходяща програма, приложението/игра няма да може да стартира правилно или изобщо.&#xA;&#xA;Това предупреждение може да бъде забранено от настройките.</str>
 		<str name="#IF_SHOWFILES">Показване на файловете</str>
 		<str name="#MF_ERROR_NO32LIBS">Артикулът, който се опитвате да стартирате е 32-битов, но се оказва, че е нужно да имате инсталирани 32-битови библиотеки.&#xA;&#xA;Моля, погледнете http://www.desura.com/groups/desura/linux за повече информация.</str>
-	
+
 		<str name="#PLAY_EMPTY">Нямате {1}игри{0} за Linux в акаунта си.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
-		
+
 		<str name="#SET_CV_LIN_DIS_WIN_WRN">Изключване на изпълнимото предупреждение на Windows.</str>
 		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Не Ви предупреждава всеки път, когато стартирате изпълнимия файл под Windows.</str>
 		<str name="#SET_CV_ALLOW_WM_POS">Използване мениджъра на прозорците за позициониране.</str>
 		<str name="#SET_CV_ALLOW_WM_POS_TOOLTIP">Позволява на мениджъра да позиционира главната форма, като разликата от Desura се запазва и възстановява позицията и размера си.</str>
-		
+
 		<str name="#SET_CV_GLOBALBIN">Двоично стартиране на глобалните игри</str>
 		<str name="#SET_CV_GLOBALBIN_TOOLTIP">Стартира всичките игри чрез този двоичен файл.</str>
 		<str name="#SET_CV_GLOBALARGS">Аргументи за глобални игри</str>
 		<str name="#SET_CV_GLOBALARGS_TOOLTIP">Добавя тези аргументи на всички игри при стартирането им.</str>
-		
+
 		<str name="#SET_CV_DISABLE_FORCESHORTCUT">Изкл. на преките пътища в менюто</str>
 		<str name="#SET_CV_DISABLE_FORCESHORTCUT_TOOLTIP">Спира Desura да създава принудени преки пътища в главното меню</str>
 
@@ -34,15 +34,15 @@
 	<windows>
 		<str name="#IF_SHOWFILES">Показване на файлове</str>
 		<str name="#PLAY_EMPTY">Нямате Windows {1}игри{0} или {2}модове{0} в акаунта си. Трябва да стартирате {3}помощника за намиране на инсталирани игри{0}, който ще претърси Вашия компютър за игри, които Desura поддържа.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
-		
+
 		<str name="#SET_CV_DISABLE_FS_PERMS">Направи всички инсталационни папки за четене от нормален потребител</str>
 		<str name="#SET_CV_DISABLE_FS_PERMS_TOOLTIP">Заради разработчиците на игри не сте в състояние да следвате стандартите на Windows на много игри, създаващи инсталационни папки и файлове от сривове. Внимание: изключването на това може да накара някои игри да не работят.</str>
-		
+
 		<str name="#IF_LOWSPACE_SYS">Системният дисков дял ({0}:\\) е с малко свободно пространство и Desura ще започне да има проблеми с производителността. &lt;a href=&quot;desura://settings/cache&quot;&gt;Може да преместите кеш папката на Desura в друг дял с повече свободно пространство.&lt;/a&gt;</str>
 		<str name="#IF_LOWSPACE_CACHE">Дялът ({0}:\\), в който Desura записва кеша си е с малко свободно пространство. Препоръчваме Ви да освободите място за Desuraм, за да функционира коректно.</str>
-		
+
 		<str name="#MW_PROMPT">Този помощник ще намери инсталирани игри на този компютър, които се поддържат от Desura. Моля, имайте в предвид, че това ще обнови всички намерени артикули до последната им версия в Desura.</str>
-		<str name="#MW_FINISH">Помощникът е готов и всички намерени игри на този компютър, които се поддържат от Desura, са добавени в акаунта Ви. &#xA;&#xA;Ако Desura не е в състояние да се намери игра, инсталирана на компютъра Ви, можете ръчно да я добавите, като натиснете върху бутона „Персонализирано инсталиране“ по-долу.</str>		
+		<str name="#MW_FINISH">Помощникът е готов и всички намерени игри на този компютър, които се поддържат от Desura, са добавени в акаунта Ви. &#xA;&#xA;Ако Desura не е в състояние да се намери игра, инсталирана на компютъра Ви, можете ръчно да я добавите, като натиснете върху бутона „Персонализирано инсталиране“ по-долу.</str>
 	</windows>
 	<strings>
 		<str name="#DESURA_UPDATE">Пуснато е обновление на Desura и е готово да бъде инсталирано.</str>
@@ -140,31 +140,31 @@
 		<str name="#CF_NOTSTARTED">Инициализиране…</str>
 		<str name="#CF_ERROR">Възникна грешка при създаването на MCF файл и процесът беше спрян.</str>
 		<str name="#CF_ERRTITLE">Грешка при създаването на MCF файл</str>
-		
+
 		<!-- note the {0} will be replaced with the item name! -->
-		<str name="#CF_COMPLETE">Създаването на MCF файл за {0} беше завършено.</str> 
+		<str name="#CF_COMPLETE">Създаването на MCF файл за {0} беше завършено.</str>
 
 		<!-- Item Form -->
 		<str name="#IF_BROUGHT">Закупена</str>
 		<str name="#IF_FREE">Безплатно</str>
 		<str name="#IF_PREPARE_INFO">Подготвяне за {0} {1}</str>
-		<str name="#IF_PREPARE_INFO_NOITEM">Подготвяне…</str>		
-		
+		<str name="#IF_PREPARE_INFO_NOITEM">Подготвяне…</str>
+
 		<str name="#IF_TITLE">Подготвяне:</str>
 		<str name="#IF_VERIFY">Проверяване:</str>
 		<str name="#IF_DOWNLOAD">Сваляне на</str>
 		<str name="#IF_INSTALL">Инсталиране:</str>
-		<str name="#IF_UPDATE">Обновяване:</str>	
+		<str name="#IF_UPDATE">Обновяване:</str>
 		<str name="#IF_UNINSTALL">Деинсталиране: </str>
 		<str name="#IF_UNINSTALL_BRANCH">Премахване на старите файлове: </str>
 		<str name="#IF_UNINSTALL_PATCH">Премахване на старите файлове: </str>
 		<str name="#IF_UNINSTALL_COMPLEX">Деинсталиране на целия мод</str>
 		<str name="#IF_INSTALL_CHECK">Проверка на инсталацията</str>
-		
+
 		<str name="#IF_UNINSTALL_LABEL">Деинсталиране…</str>
 		<str name="#IF_UNINSTALL_BRANCH_LABEL">Премахване на старите файлове… </str>
 		<str name="#IF_UNINSTALL_PATCH_LABEL">Премахване на старите файлове… </str>
-		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Премахване на цялостния мод… </str>	
+		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Премахване на цялостния мод… </str>
 
 		<!-- Install check -->
 		<str name="#IC_ERRTITLE">Грешка при проверка на инсталацията</str>
@@ -182,7 +182,7 @@
 		<str name="#IF_BRANCHINFO">{0} не е инсталиран(а). Моля, изберете версията, която желаете да играете.</str>
 		<str name="#IF_PARENTTITLE">Липсва родител за {0}</str><!-- first {0} is mod name second is game name -->
 		<str name="#IF_NOTFOUND">{0} е модификация за играта {1}. Трябва да имате инсталирана играта преди да играете мода.&#xA;&#xA;Моля, изберете метод за инсталиране на {1}:</str>
-		<str name="#IF_NOTFOUND_GAME">{0} е разширение за играта {1}. Трябва да имате инсталирана играта преди да играете мода.&#xA;&#xA;Моля, изберете метод за инсталиране на {1}:</str>		
+		<str name="#IF_NOTFOUND_GAME">{0} е разширение за играта {1}. Трябва да имате инсталирана играта преди да играете мода.&#xA;&#xA;Моля, изберете метод за инсталиране на {1}:</str>
 		<str name="#IF_INSTALL_REMOVE">Инсталиране и премахване на несвързаните файлове (препоръчително)</str>
 		<str name="#IF_INSTALL_LEAVE">Инсталиране и оставяне на несвързаните файлове</str>
 		<str name="#IF_INSTALL_VERIFY">Проверка на инсталираните файлове и инсталиране на липсващите такива</str>
@@ -196,11 +196,11 @@
 		<str name="#IF_GERROR_PLATFORM">{0} не се поддържа на тази платформа.</str><!-- {0} item name -->
 		<str name="#IF_GERROR_BRANCH_PLATFORM">Клонът, който сте избрали за {0} не се поддържа на тази платформа.</str><!-- {0} item name -->
 		<str name="#IF_GERROR_BRANCH_PLATFORM_Q">Искате ли да изберете друг клон?</str>
-		
+
 		<str name="#IF_GERROR">Възникна грешка при събирането на информация и процесът беше спрян.</str>
 		<str name="#IF_GERRTITLE">Грешка при събиране на информация</str>
 		<str name="#IF_VALIDATE_ERROR">Възникна грешка при проверката и процесът беше спрян.</str>
-		<str name="#IF_VALIDATE_TITLE">Грешка при проверка</str>	
+		<str name="#IF_VALIDATE_TITLE">Грешка при проверка</str>
 		<str name="#IF_GERROR_LABEL">Грешка. Процесът спря.</str>
 		<str name="#IF_CHECKINGIR">Проверка на инсталационните изисквания…</str>
 		<str name="#IF_INITINSTALL">Инициализиране на инсталацията</str>
@@ -225,14 +225,14 @@
 
 		<str name="#IF_VERIFYFILES">Проверяване на файловете</str>
 		<str name="#IF_VERIFYTOOLS">Преинсталиране на инструментите</str>
-		<str name="#IF_VERIFYHOOKS">Пускане отново след инсталиране на куките</str>		
+		<str name="#IF_VERIFYHOOKS">Пускане отново след инсталиране на куките</str>
 		<str name="#IF_VERIFYCONFIRM">Ако имате затруднения със стартирането на {0}, процесът за поверяване ще се опита да разреши всички въпроси.</str>
-		
+
 		<str name="#IF_VERIFYMCF">Проверяване на MCF файлът…</str>
 		<str name="#IF_VERIFYINSTALL">Проверяване на инсталацията…</str>
 		<str name="#IF_VERIFYDOWNLOADF">Сваляне на липсващите файлове…</str>
-		<str name="#IF_VERIFYINSTALLF">Инсталиране на липсващите файлове…</str>	
-		<str name="#IF_VERIFYBRANCH">Превключване на клоновете…</str>	
+		<str name="#IF_VERIFYINSTALLF">Инсталиране на липсващите файлове…</str>
+		<str name="#IF_VERIFYBRANCH">Превключване на клоновете…</str>
 
 		<str name="#IF_IIBADINFO">Възникна грешка при извличането на информация за този артикул</str>
 		<str name="#IF_INVALIDBRANCH">Клонът, определен за инсталиране на този артикул е невалиден</str>
@@ -243,12 +243,12 @@
 		<str name="#IF_FILEERR">Файловете вече съществуват на това място.</str>
 		<str name="#IF_NOTINSTALLED">Този артикул не е инсталиран.</str>
 		<str name="#IF_IHASHFAIL">Един или повече файлове не можаха да направят md5 хеш проверката по време на инсталационния процес. Искате ли да се проверите инсталацията, за да се гарантира цялостността?</str>
-		
+
 		<str name="#IF_CONFLICT">Desura установи, че {0} вече е инсталиран(а). Тъй като {0} изисква цялостно инсталиране се препоръчва да деинсталирате ръчно {0} преди да продължите с инсталацията на Desura, за да избегнете проблеми с конфликти на съдържанието.</str>
 		<str name="#IF_CONFLICTTITLE">Конфликт на цялостното инсталиране</str>
-		
+
 		<str name="#IF_COMPLETEPREORDER">Презареждането е завършено</str>
-		
+
 		<str name="#IF_PRELOADLAUNCH">{0} беше {2} и не може да се стартира в този момент. Ще бъде на разположение за играене след {1} ден(и).</str>
 		<str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
 		<str name="#IF_PRELOADLAUNCH_PREORDERED">презакупен</str>
@@ -256,11 +256,11 @@
 		<str name="#IF_PRELOADLAUNCH_INSTALLDEMO">Инсталиране на демо</str>
 		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER">Инсталиране на друго</str>
 		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER_INFO">&#xA;&#xA;Налични са и други версии за играене.</str>
-		
-		
+
+
 		<str name="#IF_COMPLEXREMOVE">Премахване на старите файлове</str>
 		<str name="#IF_COMPLEXBACKUP">Възстановяване на игровите файлове</str>
-		<str name="#IF_COMPLEXINSTALL">Инсталиране на файловете</str>	
+		<str name="#IF_COMPLEXINSTALL">Инсталиране на файловете</str>
 		<str name="#IF_COMPLEXLABEL">{0}…</str>
 		<str name="#IF_COMPLEXLABEL_INIT">{0} (инициализиране)</str>
 
@@ -277,26 +277,26 @@
 		<str name="#IF_VALIDATE_EXISTINGMCF">Проверяване на текущите файлове с данни…</str>
 		<str name="#IF_VALIDATE_LOCALFILES">Проверяване на старите инсталационни файлове…</str>
 		<str name="#IF_VALIDATE_PREALLOCATING">Преразпределение на свалените файлове…</str>
-		<str name="#IF_VALIDATE_TITLE">Проверяване на сваленото:</str>	
+		<str name="#IF_VALIDATE_TITLE">Проверяване на сваленото:</str>
 		<str name="#IF_VALIDATE_LABEL">Стъпка {2}: готови {0} от {1}</str><!-- {0}: done, {1}: total {2}:Stage number-->
-		
+
 		<str name="#IF_PREORDERED_NORELEASE">Презакупена: не е излязл(а) още</str>
-		<str name="#IF_PREORDERED">Презакупена: готов(а) за презареждане</str>		
-		
+		<str name="#IF_PREORDERED">Презакупена: готов(а) за презареждане</str>
+
 		<str name="#IF_WAIT_TITLE">Изчакване за артикулите:</str>
 		<str name="#IF_WAIT_FORCE">Принуждаване</str>
-		<str name="#IF_WAIT_CANCELALL">Затваряне на всички</str>	
+		<str name="#IF_WAIT_CANCELALL">Затваряне на всички</str>
 		<str name="#IF_WAIT_INFO">{0} чака другите артикули, за да завърши преди да започне {1}.</str><!-- {0}: item name, {1}: action -->
 		<str name="#IF_WAIT_ACTION_UNINSTALL">деинсталацията на артикула</str>
-		<str name="#IF_WAIT_ACTION_VERIFY">проверката файловете на артикула</str>	
-		
+		<str name="#IF_WAIT_ACTION_VERIFY">проверката файловете на артикула</str>
+
 		<!-- Install Wizard -->
 		<str name="#MW_TITLE">Намиране на инсталираните игри</str>
 		<str name="#MW_ERROR">Възникна грешка при процесът на съветника и той беше спрян.</str>
 		<str name="#MW_CUSTOM">Персонализирано инсталиране</str>
 		<str name="#MW_ERRTITLE">Грешка при намиране на инсталирани игри</str>
 		<str name="#MW_ADDACCOUNT">Добавяне на намерените игри към акаунта</str>
-		
+
 		<!-- Main Form -->
 		<str name="#MF_OFFLINE">Сигурни ли сте, че желаете да отидете извън линия?</str>
 		<str name="#MF_OFFLINE_TITLE">Режим извън линия</str>
@@ -318,7 +318,7 @@
 		<str name="#MF_UNINSTALLPROMPT">{0} е в процес на инсталиране. За да го деинсталирате, Desura трябва да спре процеса на инсталиране. Продължете с деинсталирането?</str>
 		<str name="#MF_UNINSTALLTITLE">Desura деинсталира {0}</str>
 		<str name="#MF_LUANCH_ERROR_VERIFY_TOOLTIP">Проверете инсталираните файлове</str>
-		
+
 		<!-- Buttons -->
 		<str name="#RESTART_NOW">Рестартирай сега</str>
 		<str name="#RESTART_LATER">или по-късно</str>
@@ -357,7 +357,7 @@
 		<str name="#PREORDER">Презакупуване</str>
 		<str name="#HIDE">Скрий</str>
 		<str name="#FIND">Намери</str>
-		
+
 		<!-- Misc -->
 		<str name="#NAME">Име</str>
 		<str name="#SIZE">Размер</str>
@@ -378,7 +378,7 @@
 		<str name="#INSTALL">Инсталиране</str>
 		<str name="#UNINSTALLING">Деинсталиране…</str>
 		<str name="#REMOVE">Премахване</str>
-		
+
 		<!-- Main Menu -->
 		<str name="#MENU_OFFLINE">Към режим извън линия</str>
 		<str name="#MENU_OFFLINE_TOOLTIP">Отивате в режим извън линия (без Интернет връзка)</str>
@@ -400,12 +400,12 @@
 		<str name="#MENU_INSTALLPATH">Добавяне на инсталираните игри</str>
 		<str name="#MENU_INSTALLPATH_TOOLTIP">Задаване на персонализирани пътища за инсталиране на игри</str>
 		<str name="#MENU_ACTIVATEGAME">Активиране на CD-Key или подарък</str>
-		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Въвеждате CD-Key или код от подарък, който да активирате в акаунта си</str>	
+		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Въвеждате CD-Key или код от подарък, който да активирате в акаунта си</str>
 		<str name="#MENU_VERSION">Версия</str>
 		<str name="#MENU_EXIT">Изход от клиента</str>
 
 		<str name="#MENU_DOWNLOADREPORT">Честотна лента на монитора</str>
-		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Показва честотната лента на монитора</str>	
+		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Показва честотната лента на монитора</str>
 
 		<str name="#MENU_CART">Кошница</str>
 
@@ -442,8 +442,8 @@
 		<str name="#PLAY_PREORDER">Презакупуване</str>
 		<str name="#PLAY_DELAY_LOADING">Извличане на списъка…</str>
 		<str name="#PLAY_GAMES">Игри</str>
-		<str name="#PLAY_DEVELOPMENT">Разработване</str>	
-	
+		<str name="#PLAY_DEVELOPMENT">Разработване</str>
+
 		<!-- Pop up menu -->
 		<str name="#PM_VIEWPROFILE">Преглед на страницата с играта</str>
 		<str name="#PM_MODLIST">Преглед на списъка с модове</str>
@@ -492,8 +492,8 @@
 		<str name="#SET_CV_CONSOLE">Показвай конзолата, когато има грешка</str>
 		<str name="#SET_CV_CONSOLE_TOOLTIP">Отваря конзолата, когато възникне проблем</str>
 		<str name="#SET_CV_DISABLE_WGE">Изключване на Windows Game Explorer</str>
-		<str name="#SET_CV_DISABLE_WGE_TOOLTIP">Спира поставянето на игри в Windows Game Explorer от Desura</str>		
-		
+		<str name="#SET_CV_DISABLE_WGE_TOOLTIP">Спира поставянето на игри в Windows Game Explorer от Desura</str>
+
 		<str name="#SET_CV_WORKER">Работни нишки</str>
 		<str name="#SET_CV_WORKER_TOOLTIP">Това е числото на работните нишки, използвани за извършване на процеси (като създаването на MCF файлове).</str>
 		<str name="#SET_CV_DESTMAIN">Разтоварване на основната форма при затваряне</str>
@@ -510,20 +510,20 @@
 		<str name="#SET_WARNING">Някои настройки при промяна изискват рестартиране, за да подействат.</str>
 
 		<str name="#SET_CV_SILENTLAUNCH">Тих автоматичен вход</str>
-		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Не се показва главен прозорец при автоматичния вход</str>	
+		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Не се показва главен прозорец при автоматичния вход</str>
 		<str name="#SET_CACHE_BROWSE">Моля, изберете нова папка за Desura за използване като кеш</str>
-		
+
 		<str name="#SET_CV_CHAT_ENABLED">Включване на чата в Desura</str>
-		<str name="#SET_CV_CHAT_ENABLED_TOOLTIP">Включва чата в клиента Desura</str>	
+		<str name="#SET_CV_CHAT_ENABLED_TOOLTIP">Включва чата в клиента Desura</str>
 		<str name="#SET_CV_CHAT_BREAKOUT">Чат клиентът като отделен прозорец</str>
-		<str name="#SET_CV_CHAT_BREAKOUT_TOOLTIP">По подразбиране прави чат клиента като отделен прозорец</str>	
+		<str name="#SET_CV_CHAT_BREAKOUT_TOOLTIP">По подразбиране прави чат клиента като отделен прозорец</str>
 		<str name="#SET_CV_CHAT_SHOWCONTACTS">Показване на контактите при влизане</str>
-		<str name="#SET_CV_CHAT_SHOWCONTACTS_TOOLTIP">Когато влезете в Desura се показва прозореца с контакти (забележка: само, ако чат клиента е в отделен прозорец)</str>	
+		<str name="#SET_CV_CHAT_SHOWCONTACTS_TOOLTIP">Когато влезете в Desura се показва прозореца с контакти (забележка: само, ако чат клиента е в отделен прозорец)</str>
 		<str name="#SET_CV_CHAT_SHOWOFFLINE">Показване на контактите извън линия</str>
-		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">Показва контактите извън линия по подразбиране</str>	
+		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">Показва контактите извън линия по подразбиране</str>
 		<str name="#SET_CV_CHAT_REMEMBERSTATUS">Запомни последния чат статус</str>
-		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Винаги задава текущото състояние на Вашия статус, с който за последен път сте влизали в системата.</str>			
-		
+		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Винаги задава текущото състояние на Вашия статус, с който за последен път сте влизали в системата.</str>
+
 		<str name="#SET_CIP_UPDATE">Обновяване на списъка с игри</str>
 		<str name="#SET_CIP_BUT_BROWSE">Преглед</str>
 		<str name="#SET_CIP_BUT_REFRESH">Обновяване на игрите</str>
@@ -545,11 +545,11 @@
 		<str name="#SET_CIP_LINK">Може да добавяте преки пътища за други игри и приложения от системата си, използвайки форуляра отдолу. Може да стартирате аргументи чрез свойствата (натиснете дясното копче на мишката, за да отворите менюто) и също така да премахвате, избирайки деинсталиране от същото меню. Внимание: тази функция е в бетата. Очаквайте бъгове!</str>
 		<str name="#SET_CIP_LINK_NAME">Име на прекия път:</str>
 		<str name="#SET_CIP_LINK_EXE">Файл на прекия път:</str>
-		
+
 		<str name="#CIP_BROWSE">Моля, изберете главната папка за играта:</str>
 		<str name="#CIP_LINK_BROWSE">Моля, изберете двоичен файл за връзката:</str>
-		
-		
+
+
 		<!-- Browser controls -->
 		<str name="#BC_HOME">Отваряне на началната страница</str>
 		<str name="#BC_STOP">Спиране зареждането на страницата</str>
@@ -612,7 +612,7 @@
 		<str name="#IS_PAUSED">Паузирана</str>
 		<str name="#IS_PREORDER_STATUS">Презакупени</str>
 		<str name="#IS_PRELOADED_STATUS">Презаредени</str>
-		
+
 		<str name="#IS_PREORDER">Достъпна след </str>
 		<str name="#IS_PREORDER_DAYS">дни</str>
 		<str name="#IS_PREORDER_HOURS">часа</str>
@@ -623,10 +623,10 @@
 
 		<str name="#IS_LAUNCHING">Стартиране</str>
 		<str name="#IS_DOWNLOADINGTOOL">Свалящи се</str>
-		<str name="#IS_INSTALLINGTOOL">Инсталиращи се</str>		
+		<str name="#IS_INSTALLINGTOOL">Инсталиращи се</str>
 		<str name="#IS_VALIDATE">Валидиране</str>
 		<str name="#IS_WAIT">Изчакване ({0} от {1})</str>
-		
+
 		<str name="#AB_ABOUTINFO">Desura е общност за задвижване и разпределяне на цифрова услуга за геймърите, предоставяйки най-добрите игри, модове и съдържание за сваляне от разработчици, готови да ги закупят и играят.</str>
 		<str name="#AB_CREDITS">Кредити</str>
 		<str name="#AB_ABOUT">За Desura</str>
@@ -653,14 +653,14 @@
 		<str name="#TB_WINDOWS">Windows</str>
 		<str name="#TB_NOWINDOWS">Няма отворени прозорци</str>
 		<str name="#TB_NOITEMS">Няма артикули</str>
-		<str name="#TB_EXIT">Изход</str>	
-		<str name="#TB_STATUS">Статус</str>	
+		<str name="#TB_EXIT">Изход</str>
+		<str name="#TB_STATUS">Статус</str>
 
 		<str name="#TB_CART">Артикули в кошницата</str>
 		<str name="#TB_MESSAGE">Съобщения</str>
 		<str name="#TB_UPDATES">Обновления</str>
-		<str name="#TB_GAMES">Игри</str>	
-		<str name="#TB_MODS">Модове</str>	
+		<str name="#TB_GAMES">Игри</str>
+		<str name="#TB_MODS">Модове</str>
 
 		<str name="#TB_TITLE">Налични са обновления на игра в Desura</str>
 		<str name="#TB_GIFTTITLE">Получихте нов артикул като подарък!</str>
@@ -670,7 +670,7 @@
 		<str name="#DS_ERROR">Услугата Desura се изключи неочаквано.&#xA;&#xA;Опитва да се свърже отново…</str>
 		<str name="#DS_ERRORFAILED">Услугата Desura се изключи неочаквано.&#xA;&#xA;Неуспешен рестарт:</str>
 
-		<str name="#DR_TITLE">Честотна лента на монитора</str>	
+		<str name="#DR_TITLE">Честотна лента на монитора</str>
 
 		<str name="#EULA_LABEL">Преди да играете трябва да се съгласите с лицензионните условия.</str>
 		<str name="#EULA_TITLE">Крайно лицензионно споразумение: {0}</str>
@@ -695,11 +695,11 @@
 		<str name="#CHROME_VIEWLINK">Преглеждане на връзката в браузъра</str>
 		<str name="#CHROME_VIEWIMAGE">Преглеждане на картинката в браузъра</str>
 		<str name="#CHROME_INSPECTELEMENT">Проверяване на елемента</str>
-		<str name="#CHROME_NORMALMENU">Нормално меню</str>	
+		<str name="#CHROME_NORMALMENU">Нормално меню</str>
 
 		<!-- cd key form -->
 		<str name="#CDK_ERRTITLE">Неуспешно активиране на CD-Key</str>
-		<str name="#CDK_ERROR">Desura не успя да открие този CD-Key</str>	
+		<str name="#CDK_ERROR">Desura не успя да открие този CD-Key</str>
 
 		<str name="#CDK_PROGRESSINFO">Събиране на CD-Key…</str>
 		<str name="#CDK_COPYALL">Копиране на всичко</str>
@@ -710,14 +710,14 @@
 		<str name="#CDK_COUNTDOWN">Стартиране след {0}</str>
 		<str name="#CDK_LAUNCHNOW">Стартиране сега</str>
 		<str name="#CDK_ACTIVATE">Активиране</str>
-		
+
 		<str name="#CDK_REGKEY">Този CD-Key се инсталира автоматично</str>
 		<str name="#CDK_REGKEY_TOOLTIP">Този CD-Key с инсталиран за този артикул автоматично, така че няма нужда да го копирате.</str>
-		
+
 		<!-- exe select form -->
 		<str name="#ES_TITLE">Избрана версия: {0}</str>
-		<str name="#ES_LABEL">Моля, изберете версията на {0}, която желаете да играете:</str>	
-		
+		<str name="#ES_LABEL">Моля, изберете версията на {0}, която желаете да играете:</str>
+
 		<!-- change cache dir -->
 		<str name="#MCFCD_ID">Desura инсталира игри и програми в папката, в която е инсталиран клиента и директорията не може да бъде сменена:</str>
 		<str name="#MCFCD_CD">Всички кеш файлове са запазени в папката отдолу, но може да въведете папката, в която искате да ги съхранявате:</str>
@@ -727,39 +727,39 @@
 		<str name="#MCFCD_INVALIDFOLDER">Грешка: папката не съществува</str>
 		<str name="#MCFCD_CANTWRITE">Грешка: кеша не може да се запише в папката</str>
 		<str name="#MCFCD_GETTINGSIZE">Зареждане…</str>
-	
+
 		<str name="#CC_EDITPROFILE">Редактиране на потребителския Ви профил</str>
 		<str name="#CC_ADDFRIEND">Добавяне на приятел към чат акаунта Ви</str>
 		<str name="#CC_SHOWCONTACTS">Покажи контактите извън линия</str>
 		<str name="#CC_HIDECONTACTS">Скрий контактите извън линия</str>
 		<str name="#CC_BREAKOUT">Отделяне на чата в нов прозорец</str>
-		
+
 		<str name="#CHAT_ADDFRIEND_TITLE">Добавяне на приятел в акаунта Ви</str>
 		<str name="#CHAT_ADDFRIEND_SEARCH">Добавяне по търсене:</str>
 		<str name="#CHAT_ADDFRIEND_BYUSER">Добавяне по псевдоним:</str>
-		<str name="#CHAT_ADDFRIEND_NOTE">Забележка: търсенето ще върне само 25 резултата. За повече резултати, моля, отидете в {0}страницата с потребители{1}.</str><!-- {0} is start of link {1} is end of link</a>-->		
-	
+		<str name="#CHAT_ADDFRIEND_NOTE">Забележка: търсенето ще върне само 25 резултата. За повече резултати, моля, отидете в {0}страницата с потребители{1}.</str><!-- {0} is start of link {1} is end of link</a>-->
+
 		<str name="#CHAT_MENU_CHATWITH">Чат с</str>
 		<str name="#CHAT_MENU_UNBLOCK">Деблокиране на приятеля</str>
 		<str name="#CHAT_MENU_BLOCK">Блокиране на приятеля</str>
 		<str name="#CHAT_MENU_ACCEPT">Приемане на приятелската заявка</str>
 		<str name="#CHAT_MENU_REJECT">Отказване на приятелската заявка</str>
 		<str name="#CHAT_MENU_RESEND">Препращане на приятелската заявка</str>
-		<str name="#CHAT_MENU_REMOVE">Премахване от приятели</str>	
-		
+		<str name="#CHAT_MENU_REMOVE">Премахване от приятели</str>
+
 		<str name="#CHAT_SEARCH_ADD">Добавяне</str>
 		<str name="#CHAT_SEARCH_ADDED">Добавен</str>
 		<str name="#CHAT_SEARCH_PENDING">Изчакващ</str>
 
 		<str name="#CHAT_DISCONNECT">Чатът на Desura е изключен.</str>
-		<str name="#CHAT_DISCONNECT_MSG">Опитване за свързване отново след {0} {1}(повторен опит сега){2}.</str>	
+		<str name="#CHAT_DISCONNECT_MSG">Опитване за свързване отново след {0} {1}(повторен опит сега){2}.</str>
 
 		<str name="#GD_TITLE">{0}: нуждае се от диск</str>
-		<str name="#GD_INFO">{0} изисква диск {1}, за да бъде на компютъра Ви, за да играете. &#xA;&#xA;Моля, уверете се, че дискът е поставен преди да продължите.</str>			
+		<str name="#GD_INFO">{0} изисква диск {1}, за да бъде на компютъра Ви, за да играете. &#xA;&#xA;Моля, уверете се, че дискът е поставен преди да продължите.</str>
 		<str name="#GD_REMINDER">Не ми напомняй отново</str>
 		<str name="#SB_DEFAULT">Търсене…</str>
 		<str name="#SB_FULL_SEARCH">Извършване на цялостно търсене</str>
-		
+
 		<str name="#BH_CRASH">Браузърът спря да работи (натиснете, за да презаредите).</str>
 		<str name="#BH_NO_LOAD">Неуспешно зареждане на библиотеката. Моля, проверете конзолата за съобщение за грешка.</str>
 	</strings>

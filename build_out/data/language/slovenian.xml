@@ -7,23 +7,23 @@
 	<linux>
 		<str name="#MW_PROMPT">Ta čarovnik bo našel igre in modifikacije, ki so nameščene na tem računalniku in so podprte s strani Desure. Zapomnite si, da bo to posodobilo vse najdene predmete na najnovejšo različico, ki je na Desuri.</str>
 		<str name="#MW_FINISH">Čarovnik se je sedaj zaključil. Vse igre in modifikacije, ki so bile najdene na vašem računalniku in jih Desura podpira, so bile dodane k vašem računu. &#xA;&#xA;Če Desura ni našla igre nameščene na vašem računalniku, jo lahko ročno dodate tako da kliknete spodnji gumb "Namestitev po meri".</str>
-	
+
 		<str name="#IF_WINDOWS_LAUNCH_WARNING">POZOR: Poskušate pognati program za Windows. To od vašega sistema zahteva, da prepozna vrsto datoteke in požene primerna orodja (npr.: WINE). Če tega ne zmore, se igra/program morda ne bo zagnala pravilno ali pa se sploh ne bo.&#xA;&#xA;To opozorilo lahko onemogočite v nastavitvah.</str>
 		<str name="#IF_SHOWFILES">Pokaži datoteke</str>
 		<str name="#MF_ERROR_NO32LIBS">Predmet, ki ste ga poskušali zagnati je 32-biten, izgleda pa da nimate nameščenih 32-bitnih knjižnic.&#xA;&#xA;Za več podrobnosti si oglejte http://www.desura.com/groups/desura/linux.</str>
-	
+
 		<str name="#PLAY_EMPTY">V vašem računu nimate nobenih Linux {1}iger{0}.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
-		
+
 		<str name="#SET_CV_LIN_DIS_WIN_WRN">Onemogoči opozorilo o izvedljivih datotekah za Windows.</str>
 		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Ne opozori vsakič, ko zaženete izvedljivo datoteko za Windows.</str>
 		<str name="#SET_CV_ALLOW_WM_POS">Uporabi položaje upravljalnika oken.</str>
 		<str name="#SET_CV_ALLOW_WM_POS_TOOLTIP">Namesto, da Desura shrani in obnovi lego ter velikost, dovoli da to stori sistemski upravljalnik oken.</str>
-		
+
 		<str name="#SET_CV_GLOBALBIN">Splošna programska datoteka za zagon igre</str>
 		<str name="#SET_CV_GLOBALBIN_TOOLTIP">Zaženi vse igre preko te programske datoteke</str>
 		<str name="#SET_CV_GLOBALARGS">Splošni argumenti iger</str>
-		<str name="#SET_CV_GLOBALARGS_TOOLTIP">Ob zagonu pripni te argumente vsem igram</str>		
-		
+		<str name="#SET_CV_GLOBALARGS_TOOLTIP">Ob zagonu pripni te argumente vsem igram</str>
+
 		<str name="#SET_CV_DISABLE_FORCESHORTCUT">Onemogoči bližnjico "Vsili posodobitev" v meniju</str>
 		<str name="#SET_CV_DISABLE_FORCESHORTCUT_TOOLTIP">Onemogoči Desuri v meniju ustvariti bližnjico za vsiljeno posodobitev</str>
 
@@ -34,15 +34,15 @@
 	<windows>
 		<str name="#IF_SHOWFILES">Pokaži datoteke v raziskovalcu</str>
 		<str name="#PLAY_EMPTY">V vašem računu nimate {1}iger{0} ali {2}modifikacij{0} za Windows. Pognati bi morali {3}čarovnik za iskanje nameščenih iger{0}, ki bo vaš računalnik preiskal za igrami, ki jih Desura podpira.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
-		
+
 		<str name="#SET_CV_DISABLE_FS_PERMS">Omogoči, da bodo vse namestitvene zapisljive za običajne uporabnike</str>
 		<str name="#SET_CV_DISABLE_FS_PERMS_TOOLTIP">Ker razvijalci iger ne sledijo standardom za Windows, bo marsikatera igra poskušala zapisovati v namestitveno mapo in se sesula, če tega ne more. Pozor: če to onemogočite, morda nekatere igre ne bodo delovale</str>
-		
+
 		<str name="#IF_LOWSPACE_SYS">Na sistemskemu disku ({0}:\\) zmanjkuje prostora, zato se bo Desura zagnala s težavami v zmogljivosti. &lt;a href=&quot;desura://settings/cache&quot;&gt;Da sprostite prostor, lahko premaknete mapo s predpomnilnikom Desure na drug disk.&lt;/a&gt;</str>
 		<str name="#IF_LOWSPACE_CACHE">Disku na katerega shranjuje Desura ({0}:\\) zmanjkuje prostora. Priporočamo, da sprostite nekaj prostora, da bo Desura delovala pravilno.</str>
-		
+
 		<str name="#MW_PROMPT">Ta čarovnik bo našel igre, ki so nameščene na tem računalniku in so podprte s strani Desure. apomnite si, da bo to posodobilo vse najdene predmete na najnovejšo različico, ki je na Desuri.</str>
-		<str name="#MW_FINISH">Čarovnik se je sedaj zaključil. Vse igre in modifikacije, ki so bile najdene na vašem računalniku in jih Desura podpira, so bile dodane k vašem računu. &#xA;&#xA;Če Desura ni našla igre nameščene na vašem računalniku, jo lahko ročno dodate tako da kliknete spodnji gumb "Namestitev po meri".</str>		
+		<str name="#MW_FINISH">Čarovnik se je sedaj zaključil. Vse igre in modifikacije, ki so bile najdene na vašem računalniku in jih Desura podpira, so bile dodane k vašem računu. &#xA;&#xA;Če Desura ni našla igre nameščene na vašem računalniku, jo lahko ročno dodate tako da kliknete spodnji gumb "Namestitev po meri".</str>
 	</windows>
 	<strings>
 		<str name="#DESURA_UPDATE">Izdana je bila posodobitev Desure. Pripravljena je na namestitev.</str>
@@ -140,31 +140,31 @@
 		<str name="#CF_NOTSTARTED">Začenjanje ...</str>
 		<str name="#CF_ERROR">Med procesom ustvarjanja arhiva MCF je prišlo do napake, zato je bil zaustavljen.</str>
 		<str name="#CF_ERRTITLE">Napaka med ustvarjanjem MCF</str>
-		
+
 		<!-- note the {0} will be replaced with the item name! -->
-		<str name="#CF_COMPLETE">Ustvarjanje MCF za {0} je bilo končano.</str> 
+		<str name="#CF_COMPLETE">Ustvarjanje MCF za {0} je bilo končano.</str>
 
 		<!-- Item Form -->
 		<str name="#IF_BROUGHT">Kupljeno</str>
 		<str name="#IF_FREE">Brezplačno</str>
 		<str name="#IF_PREPARE_INFO">Pripravljanje {0} {1}</str>
-		<str name="#IF_PREPARE_INFO_NOITEM">Pripravljanje ...</str>		
-		
+		<str name="#IF_PREPARE_INFO_NOITEM">Pripravljanje ...</str>
+
 		<str name="#IF_TITLE">Pripravljanje:</str>
 		<str name="#IF_VERIFY">Preverjanje:</str>
 		<str name="#IF_DOWNLOAD">Prejemanje:</str>
 		<str name="#IF_INSTALL">Nameščanje:</str>
-		<str name="#IF_UPDATE">Posodabljanje:</str>	
+		<str name="#IF_UPDATE">Posodabljanje:</str>
 		<str name="#IF_UNINSTALL">Odstranjevanje: </str>
 		<str name="#IF_UNINSTALL_BRANCH">Odstranjevanje starih datotek: </str>
 		<str name="#IF_UNINSTALL_PATCH">Odstranjevanje starih datotek: </str>
 		<str name="#IF_UNINSTALL_COMPLEX">Odstranjevanje zapletene modifikacije</str>
 		<str name="#IF_INSTALL_CHECK">Preverjanje namestitve</str>
-		
+
 		<str name="#IF_UNINSTALL_LABEL">Odstranjevanje ...</str>
 		<str name="#IF_UNINSTALL_BRANCH_LABEL">Odstranjevanje starih datotek ... </str>
 		<str name="#IF_UNINSTALL_PATCH_LABEL">Odstranjevanje starih datotek ... </str>
-		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Odstranjevanje zapletene modifikacije ... </str>	
+		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Odstranjevanje zapletene modifikacije ... </str>
 
 		<!-- Install check -->
 		<str name="#IC_ERRTITLE">Napaka med preverjanjem namestitve</str>
@@ -182,7 +182,7 @@
 		<str name="#IF_BRANCHINFO">{0} ni nameščena. Izberite izdajo, ki bi jo radi igrali.</str>
 		<str name="#IF_PARENTTITLE">Manjka nadrejena igra za {0}</str><!-- first {0} is mod name second is game name -->
 		<str name="#IF_NOTFOUND">{0} je modifikacija igre {1}. Preden jo lahko igrate, morate namestiti igro.&#xA;&#xA;Izberite način namestitve za {1}:</str>
-		<str name="#IF_NOTFOUND_GAME">{0} je razširitev igre {1}. Preden jo lahko igrate, morate namestiti igro.&#xA;&#xA;Izberite način namestitve za {1}:</str>		
+		<str name="#IF_NOTFOUND_GAME">{0} je razširitev igre {1}. Preden jo lahko igrate, morate namestiti igro.&#xA;&#xA;Izberite način namestitve za {1}:</str>
 		<str name="#IF_INSTALL_REMOVE">Namesti in odstrani nepovezane datoteke (priporočeno)</str>
 		<str name="#IF_INSTALL_LEAVE">Namesti in pusti nepovezane datoteke</str>
 		<str name="#IF_INSTALL_VERIFY">Preveri nameščene datoteke in namesti manjkajoče</str>
@@ -196,11 +196,11 @@
 		<str name="#IF_GERROR_PLATFORM">{0} ni podprt v tem okolju.</str><!-- {0} item name -->
 		<str name="#IF_GERROR_BRANCH_PLATFORM">Veja, ki ste jo izbrali za {0} ni podprta v tem okolju.</str><!-- {0} item name -->
 		<str name="#IF_GERROR_BRANCH_PLATFORM_Q">Ali želite izbrati drugo vejo?</str>
-		
+
 		<str name="#IF_GERROR">Med procesom zbiranja podrobnosti je prišlo do napake, zato je bil zaustavljen.</str>
 		<str name="#IF_GERRTITLE">Napaka med zbiranjem podrobnosti</str>
 		<str name="#IF_VALIDATE_ERROR">Med procesom potrjevanja veljavnosti je prišlo do napake, zato je bil zaustavljen.</str>
-		<str name="#IF_VALIDATE_TITLE">Napaka med potrjevanjem veljavnosti</str>	
+		<str name="#IF_VALIDATE_TITLE">Napaka med potrjevanjem veljavnosti</str>
 		<str name="#IF_GERROR_LABEL">Prišlo je do napake, zato je bil proces zaustavljen.</str>
 		<str name="#IF_CHECKINGIR">Preverjanje zahtev za namestitev ...</str>
 		<str name="#IF_INITINSTALL">Začenjanje namestitve</str>
@@ -225,14 +225,14 @@
 
 		<str name="#IF_VERIFYFILES">Preveri datoteke</str>
 		<str name="#IF_VERIFYTOOLS">Ponovno namesti orodja</str>
-		<str name="#IF_VERIFYHOOKS">Ponovno zaženi zanke po namestitvi</str>		
+		<str name="#IF_VERIFYHOOKS">Ponovno zaženi zanke po namestitvi</str>
 		<str name="#IF_VERIFYCONFIRM">Če imate težave z zagonom {0}, bo proces preverjanja poskušal razrešiti vse težave.</str>
-		
+
 		<str name="#IF_VERIFYMCF">Preverjanje MCF ...</str>
 		<str name="#IF_VERIFYINSTALL">Preverjanje namestitve ...</str>
 		<str name="#IF_VERIFYDOWNLOADF">Prejemanje manjkajočih datotek ...</str>
-		<str name="#IF_VERIFYINSTALLF">Nameščanje manjkajočih datotek ...</str>	
-		<str name="#IF_VERIFYBRANCH">Preklapljanje vej ...</str>	
+		<str name="#IF_VERIFYINSTALLF">Nameščanje manjkajočih datotek ...</str>
+		<str name="#IF_VERIFYBRANCH">Preklapljanje vej ...</str>
 
 		<str name="#IF_IIBADINFO">Med pridobivanjem podrobnosti o tem predmetu je prišlo do napake</str>
 		<str name="#IF_INVALIDBRANCH">Veja, ki je bila določena za namestitev tega predmeta je neveljavna</str>
@@ -243,12 +243,12 @@
 		<str name="#IF_FILEERR">Na tem mestu že obstajajo datoteke.</str>
 		<str name="#IF_NOTINSTALLED">Ta predmet ni nameščen.</str>
 		<str name="#IF_IHASHFAIL">Med procesom nameščanja je preverjanje razpršila md5 spodletelo za eno ali več datotek. Ali želite preveriti namestitev, da zagotovite popolno namestitev?</str>
-		
+
 		<str name="#IF_CONFLICT">Desura je zaznala, da je {0} že bila nameščena. Ker {0} zahteva zapleteno namestitev, je priporočeno, da ročno odstranite {0} preden nadaljujete z namestitvijo iz Desure, da se izognete težavam s spori vsebin.</str>
 		<str name="#IF_CONFLICTTITLE">Spor zapletene namestitve</str>
-		
+
 		<str name="#IF_COMPLETEPREORDER">Pred-nalaganje je bilo zaključeno</str>
-		
+
 		<str name="#IF_PRELOADLAUNCH">{0} je bila {2}. Trenutno je ne morete zagnati. To boste lahko storili v {1} dneh.</str>
 		<str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
 		<str name="#IF_PRELOADLAUNCH_PREORDERED">pred-naročena</str>
@@ -256,11 +256,11 @@
 		<str name="#IF_PRELOADLAUNCH_INSTALLDEMO">Namesti Demo</str>
 		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER">Namesti drugo</str>
 		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER_INFO">&#xA;&#xA;Igrate lahko tudi druge različice.</str>
-		
-		
+
+
 		<str name="#IF_COMPLEXREMOVE">Odstranjevanje starih datotek</str>
 		<str name="#IF_COMPLEXBACKUP">Ustvarjanje varnostne kopije datotek igre</str>
-		<str name="#IF_COMPLEXINSTALL">Nameščanje datotek</str>	
+		<str name="#IF_COMPLEXINSTALL">Nameščanje datotek</str>
 		<str name="#IF_COMPLEXLABEL">{0} ...</str>
 		<str name="#IF_COMPLEXLABEL_INIT">{0} (začenjanje)</str>
 
@@ -277,26 +277,26 @@
 		<str name="#IF_VALIDATE_EXISTINGMCF">Preverjanje trenutne podatkovne datoteke ...</str>
 		<str name="#IF_VALIDATE_LOCALFILES">Preverjanje starih namestitvenih datotek ...</str>
 		<str name="#IF_VALIDATE_PREALLOCATING">Pre-dodeljevanje datoteke za prejem ...</str>
-		<str name="#IF_VALIDATE_TITLE">Preverjanje veljavnosti prejema:</str>	
+		<str name="#IF_VALIDATE_TITLE">Preverjanje veljavnosti prejema:</str>
 		<str name="#IF_VALIDATE_LABEL">Stopnja {2}: Končano {0} od {1}</str><!-- {0}: done, {1}: total {2}:Stage number-->
-		
+
 		<str name="#IF_PREORDERED_NORELEASE">Pred-naročeno: ni izdano</str>
-		<str name="#IF_PREORDERED">Pred-naročeno: pred-naložitev na voljo</str>		
-		
+		<str name="#IF_PREORDERED">Pred-naročeno: pred-naložitev na voljo</str>
+
 		<str name="#IF_WAIT_TITLE">Čakanje na predmete:</str>
 		<str name="#IF_WAIT_FORCE">Vsili</str>
-		<str name="#IF_WAIT_CANCELALL">Prekliči vse</str>	
+		<str name="#IF_WAIT_CANCELALL">Prekliči vse</str>
 		<str name="#IF_WAIT_INFO">{0} čaka, da se zaključijo drugi predmeti, preden bo začel {1}.</str><!-- {0}: item name, {1}: action -->
 		<str name="#IF_WAIT_ACTION_UNINSTALL">odstranjevati predmet</str>
-		<str name="#IF_WAIT_ACTION_VERIFY">preverjati veljavnosti datotek predmetov</str>	
-		
+		<str name="#IF_WAIT_ACTION_VERIFY">preverjati veljavnosti datotek predmetov</str>
+
 		<!-- Install Wizard -->
 		<str name="#MW_TITLE">Najdi nameščene igre</str>
 		<str name="#MW_ERROR">Med izvajanjem čarovnika je prišlo do napake, zato je bil zaustavljen.</str>
 		<str name="#MW_CUSTOM">Namestitev po meri</str>
 		<str name="#MW_ERRTITLE">Napaka med iskanjem nameščenih iger</str>
 		<str name="#MW_ADDACCOUNT">Dodaj najdene predmete k računu</str>
-		
+
 		<!-- Main Form -->
 		<str name="#MF_OFFLINE">Ali ste prepričani, da želite preiti v način brez povezave?</str>
 		<str name="#MF_OFFLINE_TITLE">Način brez povezave</str>
@@ -318,7 +318,7 @@
 		<str name="#MF_UNINSTALLPROMPT">{0} se trenutno namešča. Da ga odstranite, mora Desura zaustaviti proces nameščanja. Nadaljuj z odstranitvijo?</str>
 		<str name="#MF_UNINSTALLTITLE">Desura: odstranitev {0}</str>
 		<str name="#MF_LUANCH_ERROR_VERIFY_TOOLTIP">Preveri veljavnost namestitvenih datotek</str>
-		
+
 		<!-- Buttons -->
 		<str name="#RESTART_NOW">Znova zaženi sedaj</str>
 		<str name="#RESTART_LATER">Znova zaženi kasneje</str>
@@ -357,7 +357,7 @@
 		<str name="#PREORDER">Pred-naroči</str>
 		<str name="#HIDE">Skrij</str>
 		<str name="#FIND">Najdi</str>
-		
+
 		<!-- Misc -->
 		<str name="#NAME">Ime</str>
 		<str name="#SIZE">Velikost</str>
@@ -378,7 +378,7 @@
 		<str name="#INSTALL">Namesti</str>
 		<str name="#UNINSTALLING">Odstranjevanje ...</str>
 		<str name="#REMOVE">Odstrani</str>
-		
+
 		<!-- Main Menu -->
 		<str name="#MENU_OFFLINE">Pojdi v način brez povezave</str>
 		<str name="#MENU_OFFLINE_TOOLTIP">Pojdi v način brez povezave (brez dostopa do interneta)</str>
@@ -400,12 +400,12 @@
 		<str name="#MENU_INSTALLPATH">Dodaj nameščene igre</str>
 		<str name="#MENU_INSTALLPATH_TOOLTIP">Nastavi pot namestitve po meri za igre</str>
 		<str name="#MENU_ACTIVATEGAME">Aktiviraj CD ključ igre ali darilo</str>
-		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Vnesite CD ključ ali darilno kodo, da aktivirate igro na vašem računu</str>	
+		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Vnesite CD ključ ali darilno kodo, da aktivirate igro na vašem računu</str>
 		<str name="#MENU_VERSION">Različica</str>
 		<str name="#MENU_EXIT">Končaj</str>
 
 		<str name="#MENU_DOWNLOADREPORT">Nadzornik pasovne širine</str>
-		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Pokaže nadzornika pasovne širine</str>	
+		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Pokaže nadzornika pasovne širine</str>
 
 		<str name="#MENU_CART">Nakupovalna košarica</str>
 
@@ -442,8 +442,8 @@
 		<str name="#PLAY_PREORDER">Pred-naroči</str>
 		<str name="#PLAY_DELAY_LOADING">Pridobivanje seznama predvajanja...</str>
 		<str name="#PLAY_GAMES">Igre</str>
-		<str name="#PLAY_DEVELOPMENT">Razvoj</str>	
-	
+		<str name="#PLAY_DEVELOPMENT">Razvoj</str>
+
 		<!-- Pop up menu -->
 		<str name="#PM_VIEWPROFILE">Ogled profila</str>
 		<str name="#PM_MODLIST">Ogled seznama modifikacij</str>
@@ -492,8 +492,8 @@
 		<str name="#SET_CV_CONSOLE">Pokaži konzolo ob napaki</str>
 		<str name="#SET_CV_CONSOLE_TOOLTIP">Odpre konzolo ob napaki</str>
 		<str name="#SET_CV_DISABLE_WGE">Onemogoči raziskovalec iger Windows</str>
-		<str name="#SET_CV_DISABLE_WGE_TOOLTIP">Prepreči, da bi Desura dodajala igre v raziskovalec iger Windows</str>		
-		
+		<str name="#SET_CV_DISABLE_WGE_TOOLTIP">Prepreči, da bi Desura dodajala igre v raziskovalec iger Windows</str>
+
 		<str name="#SET_CV_WORKER">Delavske niti</str>
 		<str name="#SET_CV_WORKER_TOOLTIP">To je število niti, ki izvajajo procese (npr. ustvarjajo MCF).</str>
 		<str name="#SET_CV_DESTMAIN">Ob zaprtju razloži glavni obrazec</str>
@@ -510,20 +510,20 @@
 		<str name="#SET_WARNING">Nekatere spremenjene nastavitve bodo stopile v veljavo šele po ponovnem zagonu.</str>
 
 		<str name="#SET_CV_SILENTLAUNCH">Tiha samodejna prijava</str>
-		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Ob samodejni prijavi ne pokaže glavnega okna</str>	
+		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Ob samodejni prijavi ne pokaže glavnega okna</str>
 		<str name="#SET_CACHE_BROWSE">Izberite novo mapo, ki naj jo Desura uporabi za predpomnilnik</str>
-		
+
 		<str name="#SET_CV_CHAT_ENABLED">Omogoči klepet v Desuri</str>
-		<str name="#SET_CV_CHAT_ENABLED_TOOLTIP">Omogoči klepet v odjemalcu Desura</str>	
+		<str name="#SET_CV_CHAT_ENABLED_TOOLTIP">Omogoči klepet v odjemalcu Desura</str>
 		<str name="#SET_CV_CHAT_BREAKOUT">Odjemalec klepeta naj bo ločeno okno</str>
-		<str name="#SET_CV_CHAT_BREAKOUT_TOOLTIP">Nastavi, da je odjemalec klepeta privzeto v ločenem oknu</str>	
+		<str name="#SET_CV_CHAT_BREAKOUT_TOOLTIP">Nastavi, da je odjemalec klepeta privzeto v ločenem oknu</str>
 		<str name="#SET_CV_CHAT_SHOWCONTACTS">Pokaži stike klepeta ob prijavi</str>
-		<str name="#SET_CV_CHAT_SHOWCONTACTS_TOOLTIP">Ko se prijavite v Desuro, pokaže okno s stiki klepeta (Opomba: samo če je odjemalec klepeta v ločenem oknu)</str>	
+		<str name="#SET_CV_CHAT_SHOWCONTACTS_TOOLTIP">Ko se prijavite v Desuro, pokaže okno s stiki klepeta (Opomba: samo če je odjemalec klepeta v ločenem oknu)</str>
 		<str name="#SET_CV_CHAT_SHOWOFFLINE">Pokaži stike, ki niso povezani</str>
-		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">Privzeto pokaži stike, ki niso povezani</str>	
+		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">Privzeto pokaži stike, ki niso povezani</str>
 		<str name="#SET_CV_CHAT_REMEMBERSTATUS">Zapomni si zadnje stanje klepeta</str>
-		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Vsakič prestavi vaše trenutno stanje v tistega, ki ste ga uporabljali ob zadnji prijavi</str>			
-		
+		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Vsakič prestavi vaše trenutno stanje v tistega, ki ste ga uporabljali ob zadnji prijavi</str>
+
 		<str name="#SET_CIP_UPDATE">Osveževanje seznama iger</str>
 		<str name="#SET_CIP_BUT_BROWSE">Brskaj</str>
 		<str name="#SET_CIP_BUT_REFRESH">Osveži igre</str>
@@ -545,11 +545,11 @@
 		<str name="#SET_CIP_LINK">Na vašem sistemu lahko dodate bližnjice za druge igre in programe s pomočjo spodnjega obrazca. Argumente zagona lahko dodate preko lastnosti v meniju desnega klika ali pa v istem meniju izvedete odstranitev. Pozor: ta zmožnost je beta, zato lahko vsebuje hrošče!</str>
 		<str name="#SET_CIP_LINK_NAME">Ime povezave:</str>
 		<str name="#SET_CIP_LINK_EXE">Izvedljiva datoteka povezave:</str>
-		
+
 		<str name="#CIP_BROWSE">Izberite korensko mapo igre:</str>
 		<str name="#CIP_LINK_BROWSE">Izberite programsko datoteko povezave:</str>
-		
-		
+
+
 		<!-- Browser controls -->
 		<str name="#BC_HOME">Odpri domačo stran</str>
 		<str name="#BC_STOP">Zaustavi nalaganje trenutne strani</str>
@@ -612,7 +612,7 @@
 		<str name="#IS_PAUSED">V premoru</str>
 		<str name="#IS_PREORDER_STATUS">Pred-naročeno</str>
 		<str name="#IS_PRELOADED_STATUS">Pred-naloženo</str>
-		
+
 		<str name="#IS_PREORDER">Na voljo v </str>
 		<str name="#IS_PREORDER_DAYS">dneh</str>
 		<str name="#IS_PREORDER_HOURS">urah</str>
@@ -623,10 +623,10 @@
 
 		<str name="#IS_LAUNCHING">Zaganjanje</str>
 		<str name="#IS_DOWNLOADINGTOOL">Orodja PR</str>
-		<str name="#IS_INSTALLINGTOOL">Orodja NA</str>		
+		<str name="#IS_INSTALLINGTOOL">Orodja NA</str>
 		<str name="#IS_VALIDATE">Preverjanje veljavnosti</str>
 		<str name="#IS_WAIT">Čakanje ({0} od {1})</str>
-		
+
 		<str name="#AB_ABOUTINFO">Desura je storitev digitalnega razširjanja za igralce, ki jo poganja skupnost. Omogoča vam nakup in igranje najboljših iger, modifikacij in vsebin za prejem.</str>
 		<str name="#AB_CREDITS">Zasluge</str>
 		<str name="#AB_ABOUT">O Desuri</str>
@@ -653,14 +653,14 @@
 		<str name="#TB_WINDOWS">Okna</str>
 		<str name="#TB_NOWINDOWS">Brez odprtih oken</str>
 		<str name="#TB_NOITEMS">Brez predmetov</str>
-		<str name="#TB_EXIT">Končaj</str>	
-		<str name="#TB_STATUS">Stanje</str>	
+		<str name="#TB_EXIT">Končaj</str>
+		<str name="#TB_STATUS">Stanje</str>
 
 		<str name="#TB_CART">Predmeti košarice</str>
 		<str name="#TB_MESSAGE">Sporočila</str>
 		<str name="#TB_UPDATES">Posodobitve</str>
-		<str name="#TB_GAMES">Igre</str>	
-		<str name="#TB_MODS">Modifikacije</str>	
+		<str name="#TB_GAMES">Igre</str>
+		<str name="#TB_MODS">Modifikacije</str>
 
 		<str name="#TB_TITLE">Na voljo so posodobitve iger v Desuri</str>
 		<str name="#TB_GIFTTITLE">Dobili ste novo darilo!</str>
@@ -670,7 +670,7 @@
 		<str name="#DS_ERROR">Povezava s storitvijo Desure je bila nepričakovano prekinjena.&#xA;&#xA;Vzpostavljanje ponovne povezave...</str>
 		<str name="#DS_ERRORFAILED">ovezava s storitvijo Desure je bila nepričakovano prekinjena.&#xA;&#xA;Ponovni zagon je spodletel:</str>
 
-		<str name="#DR_TITLE">Nadzornik pasovne širine</str>	
+		<str name="#DR_TITLE">Nadzornik pasovne širine</str>
 
 		<str name="#EULA_LABEL">Pred igranjem se morate strinjate z pogoji v licenci.</str>
 		<str name="#EULA_TITLE">Licenca (EULA): {0}</str>
@@ -695,11 +695,11 @@
 		<str name="#CHROME_VIEWLINK">Ogled povezave v brskalniku</str>
 		<str name="#CHROME_VIEWIMAGE">Ogled slike v brskalniku</str>
 		<str name="#CHROME_INSPECTELEMENT">Preveri element</str>
-		<str name="#CHROME_NORMALMENU">Običajni meni</str>	
+		<str name="#CHROME_NORMALMENU">Običajni meni</str>
 
 		<!-- cd key form -->
 		<str name="#CDK_ERRTITLE">CD ključa ni bilo mogoče pridobiti</str>
-		<str name="#CDK_ERROR">Desura ni uspela najti CD ključa</str>	
+		<str name="#CDK_ERROR">Desura ni uspela najti CD ključa</str>
 
 		<str name="#CDK_PROGRESSINFO">Pridobivanje CD ključa ...</str>
 		<str name="#CDK_COPYALL">Kopiraj vse</str>
@@ -710,14 +710,14 @@
 		<str name="#CDK_COUNTDOWN">Zagon v {0}</str>
 		<str name="#CDK_LAUNCHNOW">Zaženi zdaj</str>
 		<str name="#CDK_ACTIVATE">Aktiviraj</str>
-		
+
 		<str name="#CDK_REGKEY">CD ključ je bil samodejno nameščen</str>
 		<str name="#CDK_REGKEY_TOOLTIP">Za ta predmet je bil CD ključ samodejno nameščen, zato ga ne rabite kopirati.</str>
-		
+
 		<!-- exe select form -->
 		<str name="#ES_TITLE">Izberite različico: {0}</str>
-		<str name="#ES_LABEL">Izberite različico {0}, ki bi jo želeli igrati:</str>	
-		
+		<str name="#ES_LABEL">Izberite različico {0}, ki bi jo želeli igrati:</str>
+
 		<!-- change cache dir -->
 		<str name="#MCFCD_ID">Desura namešča igre in programe v svojo namestitveno mapo; tega ne morete spremeniti:</str>
 		<str name="#MCFCD_CD">Vse datoteke predpomnilnika so shranjene v sledečo mapo. Vnesete lahko tudi mapo po meri:</str>
@@ -727,39 +727,39 @@
 		<str name="#MCFCD_INVALIDFOLDER">Napaka: mapa ne obstaja</str>
 		<str name="#MCFCD_CANTWRITE">Napaka: v mapo ni mogoče pisati</str>
 		<str name="#MCFCD_GETTINGSIZE">Nalaganje ...</str>
-	
+
 		<str name="#CC_EDITPROFILE">Uredite svoj uporabniški profil</str>
 		<str name="#CC_ADDFRIEND">Dodajte prijatelja k vašem računu za klepet</str>
 		<str name="#CC_SHOWCONTACTS">Pokaži stike, ki niso povezani</str>
 		<str name="#CC_HIDECONTACTS">Skrij stike, ki niso povezani</str>
 		<str name="#CC_BREAKOUT">Loči klepet v novo okno</str>
-		
+
 		<str name="#CHAT_ADDFRIEND_TITLE">Dodaj prijatelja k vašemu računu</str>
 		<str name="#CHAT_ADDFRIEND_SEARCH">Dodaj z iskanjem:</str>
 		<str name="#CHAT_ADDFRIEND_BYUSER">Dodaj z uporabniškim imenom:</str>
-		<str name="#CHAT_ADDFRIEND_NOTE">Opomba: iskanje bo vrnilo le prvih 25 predmetov. Za bolj podrobno iskanje obiščite {0}stran z uporabniki{1}.</str><!-- {0} is start of link {1} is end of link</a>-->		
-	
+		<str name="#CHAT_ADDFRIEND_NOTE">Opomba: iskanje bo vrnilo le prvih 25 predmetov. Za bolj podrobno iskanje obiščite {0}stran z uporabniki{1}.</str><!-- {0} is start of link {1} is end of link</a>-->
+
 		<str name="#CHAT_MENU_CHATWITH">Klepetaj z</str>
 		<str name="#CHAT_MENU_UNBLOCK">Od-blokiraj prijatelja</str>
 		<str name="#CHAT_MENU_BLOCK">Blokiraj prijatelja</str>
 		<str name="#CHAT_MENU_ACCEPT">Sprejmi zahtevo za prijateljstvo</str>
 		<str name="#CHAT_MENU_REJECT">Zavrni zahtevo za prijateljstvo</str>
 		<str name="#CHAT_MENU_RESEND">Ponovno pošlji zahtevo za prijateljstvo</str>
-		<str name="#CHAT_MENU_REMOVE">Odstrani prijatelja</str>	
-		
+		<str name="#CHAT_MENU_REMOVE">Odstrani prijatelja</str>
+
 		<str name="#CHAT_SEARCH_ADD">Dodaj</str>
 		<str name="#CHAT_SEARCH_ADDED">Dodan</str>
 		<str name="#CHAT_SEARCH_PENDING">Na čakanju</str>
 
 		<str name="#CHAT_DISCONNECT">Povezava klepeta Desure je bila prekinjena.</str>
-		<str name="#CHAT_DISCONNECT_MSG">Poskus ponovne povezave v {0} {1}(Poskusi znova zdaj){2}.</str>	
+		<str name="#CHAT_DISCONNECT_MSG">Poskus ponovne povezave v {0} {1}(Poskusi znova zdaj){2}.</str>
 
 		<str name="#GD_TITLE">{0}: potrebuje medij z igro</str>
-		<str name="#GD_INFO">{0} zahteva, da je medij {1} prisoten v računalniku za igranje. &#xA;&#xA;Prepričajte se, da je medij vstavljen, preden nadaljujete.</str>			
+		<str name="#GD_INFO">{0} zahteva, da je medij {1} prisoten v računalniku za igranje. &#xA;&#xA;Prepričajte se, da je medij vstavljen, preden nadaljujete.</str>
 		<str name="#GD_REMINDER">Ne opomni me znova</str>
 		<str name="#SB_DEFAULT">Iskanje ...</str>
 		<str name="#SB_FULL_SEARCH">Izvedi polno iskanje</str>
-		
+
 		<str name="#BH_CRASH">Brskalnik je umrl. (kliknite za ponovno nalaganje)</str>
 		<str name="#BH_NO_LOAD">Knjižnice brskalnika ni bilo mogoče naložiti. Preverite konzolo za sporočili o napakah.</str>
 	</strings>
