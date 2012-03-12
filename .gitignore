@@ -19,3 +19,4 @@ build_out/debug_lin/*
 build_out/release_lin/*
 tools/*
 Makefile
+build/
