@@ -6,7 +6,7 @@
 	</author>
 	<linux>
 		<str name="#MW_PROMPT">Dieser Assistent findet Spiele und Mods auf diesem Computer, welche von Desura unterstützt werden. Bitte beachte: Jedes gefundene Spiel, o.ä. wird dadurch auf den neuesten Stand gebracht.</str>
-		<str name="#MW_FINISH">Die suche wurde erfolgreich beendet und es wurden alle gefundenen Inhalte zu deinem Account hinzugefügt &#xA;&#xA;Wenn etwas nicht in das Benutzerkonto aufgenommen wurde, können durch "Manuelle Installation" weitere Inhalte hinzugefügt werden.</str>
+		<str name="#MW_FINISH">Die Suche wurde erfolgreich beendet und es wurden alle gefundenen Inhalte zu deinem Account hinzugefügt &#xA;&#xA;Wenn etwas nicht in das Benutzerkonto aufgenommen wurde, können durch "Manuelle Installation" weitere Inhalte hinzugefügt werden.</str>
 
 		<str name="#IF_WINDOWS_LAUNCH_WARNING">ACHTUNG: Du versuchst ein Windows Programm zu starten. Desura übergibt nur den Startbefehl. Somit ist das Betriebssystem zuständig, das Format zu erkennen (sollten Zusatzprogramme wie WINE verwendet werden). Möglicherweise wird das Programm/Spiel deshalb nicht korrekt gestartet.&#xA;&#xA;Diese Warnung kann in den Einstellungen ausgeschaltet werden.</str>
 		<str name="#IF_SHOWFILES">Dateien anzeigen</str>
@@ -17,14 +17,14 @@
 		<str name="#SET_CV_LIN_DIS_WIN_WRN">Windows Warnung verbergen.</str>
 		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Wenn aktiviert, wird nicht jedes mal nachgefragt, wenn versucht wird ein Windows Programm zu starten.</str>
 		<str name="#SET_CV_ALLOW_WM_POS">Benutze die Positionierung des Fenstermanagers.</str>
-		<str name="#SET_CV_ALLOW_WM_POS_TOOLTIP">Erlaubt dem Fenstermanager des Systems, das Hauptfenster entgegen der gespeicherten Fensterdaten(Position und Größe)zu positionieren.</str>
+		<str name="#SET_CV_ALLOW_WM_POS_TOOLTIP">Erlaubt dem Fenstermanager des Systems, das Hauptfenster entgegen der gespeicherten Fensterdaten (Position und Größe) zu positionieren.</str>
 
-		<str name="#SET_CV_GLOBALBIN">Global game launch binary</str>
-		<str name="#SET_CV_GLOBALBIN_TOOLTIP">Launch all games via this binary file</str>
+		<str name="#SET_CV_GLOBALBIN">Globale spielstart Binärdatei</str>
+		<str name="#SET_CV_GLOBALBIN_TOOLTIP">Alle Spiele mittles dieser Binärdatei starten</str>
 		<str name="#SET_CV_GLOBALARGS">Globale Spiele Argumente</str>
 		<str name="#SET_CV_GLOBALARGS_TOOLTIP">Fügt diese Argumente zu jedem Spiel hinzu, wenn es gestartet wird</str>
 
-		<str name="#SET_CV_DISABLE_FORCESHORTCUT">Erzwungenes neu erstellen des Icons im Menü deaktivieren.</str>
+		<str name="#SET_CV_DISABLE_FORCESHORTCUT">Erzwungenes Neuerstellen des Icons im Menü deaktivieren.</str>
 		<str name="#SET_CV_DISABLE_FORCESHORTCUT_TOOLTIP">Stoppt das erzwungene Update des Desura Icons im Hauptmenü</str>
 
 		<str name="#IF_GERROR_TOOL">Desura kann {0} nicht finden, welches jedoch von {1} benötigt wird.</str>
