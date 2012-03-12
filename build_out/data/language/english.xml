@@ -7,23 +7,23 @@
 	<linux>
 		<str name="#MW_PROMPT">This wizard will find games and mods installed on this computer that are supported by Desura. Please Note: This will update all found items to the latest version on Desura.</str>
 		<str name="#MW_FINISH">The wizard is now complete and all games and mods found on your computer that are supported by Desura have been added to your account. &#xA;&#xA;If Desura was unable to find a game installed on your PC, you can manually add it by clicking the "Custom Install" button below.</str>
-	
+
 		<str name="#IF_WINDOWS_LAUNCH_WARNING">WARNING: You are attempting to launch a Windows program. This relies on your system recognising the format and launching the appropriate tools (eg: WINE). If you do not, the application/game may not launch correctly or at all.&#xA;&#xA;This warning can be disabled in Settings.</str>
 		<str name="#IF_SHOWFILES">Show Files</str>
 		<str name="#MF_ERROR_NO32LIBS">The item you tried to launch is 32 bit but it appears that you do not have 32 bit libs Installed.&#xA;&#xA;Please see http://www.desura.com/groups/desura/linux for more information.</str>
-	
+
 		<str name="#PLAY_EMPTY">You have no Linux {1}games{0} in your account.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
-		
+
 		<str name="#SET_CV_LIN_DIS_WIN_WRN">Disable Windows executable warning.</str>
 		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Doesn't warn you every time you launch a Windows executable.</str>
 		<str name="#SET_CV_ALLOW_WM_POS">Use window manager positioning.</str>
 		<str name="#SET_CV_ALLOW_WM_POS_TOOLTIP">Allows the system window manager to position the main form as opposed to Desura saving and restoring position and size.</str>
-		
+
 		<str name="#SET_CV_GLOBALBIN">Global game launch binary</str>
 		<str name="#SET_CV_GLOBALBIN_TOOLTIP">Launch all games via this binary file</str>
 		<str name="#SET_CV_GLOBALARGS">Global game arguments</str>
-		<str name="#SET_CV_GLOBALARGS_TOOLTIP">Append these args to all games when launching</str>		
-		
+		<str name="#SET_CV_GLOBALARGS_TOOLTIP">Append these args to all games when launching</str>
+
 		<str name="#SET_CV_DISABLE_FORCESHORTCUT">Disable force shortcut in menu</str>
 		<str name="#SET_CV_DISABLE_FORCESHORTCUT_TOOLTIP">Stops Desura creating a force update shortcut in the main menu</str>
 
@@ -34,15 +34,15 @@
 	<windows>
 		<str name="#IF_SHOWFILES">Show Files in Explorer</str>
 		<str name="#PLAY_EMPTY">You have no windows {1}games{0} or {2}mods{0} in your account. You should run the {3}find games installed wizard{0} which will search your PC for games Desura supports.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
-		
+
 		<str name="#SET_CV_DISABLE_FS_PERMS">Make all install folders writable by normal users</str>
 		<str name="#SET_CV_DISABLE_FS_PERMS_TOOLTIP">Due to game developers not being able to follow windows standards many games write to the install folder and crash if they cant. Warning: Disabling this might make some games not work</str>
-		
+
 		<str name="#IF_LOWSPACE_SYS">The system harddisk ({0}:\\) is low on free space and Desura will start having performance issues. &lt;a href=&quot;desura://settings/cache&quot;&gt;You can move your Desura cache folder to a new disk to free up space.&lt;/a&gt;</str>
 		<str name="#IF_LOWSPACE_CACHE">The harddisk that Desura cache saves to ({0}:\\) is low on free space. It is recommended that you free up space for Desura to perfom correctly.</str>
-		
+
 		<str name="#MW_PROMPT">This wizard will find games installed on this computer that are supported by Desura. Please Note: This will update all found items to the latest version on Desura.</str>
-		<str name="#MW_FINISH">The wizard is now complete and all games found on your computer that are supported by Desura have been added to your account. &#xA;&#xA;If Desura was unable to find a game installed on your PC, you can manually add it by clicking the "Custom Install" button below.</str>		
+		<str name="#MW_FINISH">The wizard is now complete and all games found on your computer that are supported by Desura have been added to your account. &#xA;&#xA;If Desura was unable to find a game installed on your PC, you can manually add it by clicking the "Custom Install" button below.</str>
 	</windows>
 	<strings>
 		<str name="#DESURA_UPDATE">An update for Desura has been released and is ready to be installed.</str>
@@ -140,31 +140,31 @@
 		<str name="#CF_NOTSTARTED">Initializing ...</str>
 		<str name="#CF_ERROR">There was an error during the MCF create process and it has been stopped.</str>
 		<str name="#CF_ERRTITLE">MCF Create Error</str>
-		
+
 		<!-- note the {0} will be replaced with the item name! -->
-		<str name="#CF_COMPLETE">Creating MCF for {0} has completed.</str> 
+		<str name="#CF_COMPLETE">Creating MCF for {0} has completed.</str>
 
 		<!-- Item Form -->
 		<str name="#IF_BROUGHT">Purchased</str>
 		<str name="#IF_FREE">Free</str>
 		<str name="#IF_PREPARE_INFO">Preparing to {0} {1}</str>
-		<str name="#IF_PREPARE_INFO_NOITEM">Preparing...</str>		
-		
+		<str name="#IF_PREPARE_INFO_NOITEM">Preparing...</str>
+
 		<str name="#IF_TITLE">Preparing:</str>
 		<str name="#IF_VERIFY">Verifying:</str>
 		<str name="#IF_DOWNLOAD">Downloading:</str>
 		<str name="#IF_INSTALL">Installing:</str>
-		<str name="#IF_UPDATE">Updating:</str>	
+		<str name="#IF_UPDATE">Updating:</str>
 		<str name="#IF_UNINSTALL">Uninstalling: </str>
 		<str name="#IF_UNINSTALL_BRANCH">Removing Old Files: </str>
 		<str name="#IF_UNINSTALL_PATCH">Removing Old Files: </str>
 		<str name="#IF_UNINSTALL_COMPLEX">Uninstalling Complex Mod</str>
 		<str name="#IF_INSTALL_CHECK">Install Check</str>
-		
+
 		<str name="#IF_UNINSTALL_LABEL">Uninstalling ...</str>
 		<str name="#IF_UNINSTALL_BRANCH_LABEL">Removing Old Files ... </str>
 		<str name="#IF_UNINSTALL_PATCH_LABEL">Removing Old Files ... </str>
-		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Uninstalling Complex Mod ... </str>	
+		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Uninstalling Complex Mod ... </str>
 
 		<!-- Install check -->
 		<str name="#IC_ERRTITLE">Install Check Error</str>
@@ -182,7 +182,7 @@
 		<str name="#IF_BRANCHINFO">{0} is not installed. Please select the release you would like to play.</str>
 		<str name="#IF_PARENTTITLE">Missing parent for {0}</str><!-- first {0} is mod name second is game name -->
 		<str name="#IF_NOTFOUND">{0} is modification for the game {1}. You must have the game installed before you can play.&#xA;&#xA;Please select an install method for {1}:</str>
-		<str name="#IF_NOTFOUND_GAME">{0} is expansion for the game {1}. You must have the game installed before you can play.&#xA;&#xA;Please select an install method for {1}:</str>		
+		<str name="#IF_NOTFOUND_GAME">{0} is expansion for the game {1}. You must have the game installed before you can play.&#xA;&#xA;Please select an install method for {1}:</str>
 		<str name="#IF_INSTALL_REMOVE">Install and remove unrelated files (recommended)</str>
 		<str name="#IF_INSTALL_LEAVE">Install and leave unrelated files</str>
 		<str name="#IF_INSTALL_VERIFY">Verify installed files and install missing ones</str>
@@ -196,11 +196,11 @@
 		<str name="#IF_GERROR_PLATFORM">{0} is not supported on this platform.</str><!-- {0} item name -->
 		<str name="#IF_GERROR_BRANCH_PLATFORM">The branch you have selected for {0} is not supported on this platform.</str><!-- {0} item name -->
 		<str name="#IF_GERROR_BRANCH_PLATFORM_Q">Do you want to select another branch?</str>
-		
+
 		<str name="#IF_GERROR">There was an error during the gathering information process and it has been stopped.</str>
 		<str name="#IF_GERRTITLE">Gathering Information Error</str>
 		<str name="#IF_VALIDATE_ERROR">There was an error during the validation process and it has been stopped.</str>
-		<str name="#IF_VALIDATE_TITLE">Validation Error</str>	
+		<str name="#IF_VALIDATE_TITLE">Validation Error</str>
 		<str name="#IF_GERROR_LABEL">Error Occurred. Process Stopped.</str>
 		<str name="#IF_CHECKINGIR">Checking Install Requirements ...</str>
 		<str name="#IF_INITINSTALL">Initializing Install</str>
@@ -225,14 +225,14 @@
 
 		<str name="#IF_VERIFYFILES">Verify files</str>
 		<str name="#IF_VERIFYTOOLS">Re-install tools</str>
-		<str name="#IF_VERIFYHOOKS">Re-run post install hooks</str>		
+		<str name="#IF_VERIFYHOOKS">Re-run post install hooks</str>
 		<str name="#IF_VERIFYCONFIRM">If you are having difficulty running {0}, the verify process will attempt to resolve all issues.</str>
-		
+
 		<str name="#IF_VERIFYMCF">Verifying MCF ...</str>
 		<str name="#IF_VERIFYINSTALL">Verifying Install ...</str>
 		<str name="#IF_VERIFYDOWNLOADF">Downloading Missing Files ...</str>
-		<str name="#IF_VERIFYINSTALLF">Installing Missing Files ...</str>	
-		<str name="#IF_VERIFYBRANCH">Switching branches ...</str>	
+		<str name="#IF_VERIFYINSTALLF">Installing Missing Files ...</str>
+		<str name="#IF_VERIFYBRANCH">Switching branches ...</str>
 
 		<str name="#IF_IIBADINFO">There was an error retrieving information for this item</str>
 		<str name="#IF_INVALIDBRANCH">The branch specified for installing this item is invalid</str>
@@ -243,12 +243,12 @@
 		<str name="#IF_FILEERR">Files already exist at this location.</str>
 		<str name="#IF_NOTINSTALLED">This item is not installed.</str>
 		<str name="#IF_IHASHFAIL">One or more files failed the md5 hash check during the install process. Do you want to verify the install to ensure completeness?</str>
-		
+
 		<str name="#IF_CONFLICT">Desura has detected that {0} has already been installed. Since {0} requires a complex install, it is recommended that you uninstall {0} manually before continuing with the Desura install to avoid issues with content conflicts.</str>
 		<str name="#IF_CONFLICTTITLE">Complex Install Conflict</str>
-		
+
 		<str name="#IF_COMPLETEPREORDER">Pre Load Complete</str>
-		
+
 		<str name="#IF_PRELOADLAUNCH">{0} has been {2} and cannot be launched at this time. It will be available to play in {1} days.</str>
 		<str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
 		<str name="#IF_PRELOADLAUNCH_PREORDERED">preordered</str>
@@ -256,11 +256,11 @@
 		<str name="#IF_PRELOADLAUNCH_INSTALLDEMO">Install Demo</str>
 		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER">Install Other</str>
 		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER_INFO">&#xA;&#xA;There are other versions available to play.</str>
-		
-		
+
+
 		<str name="#IF_COMPLEXREMOVE">Removing Old Files</str>
 		<str name="#IF_COMPLEXBACKUP">Backing up Game Files</str>
-		<str name="#IF_COMPLEXINSTALL">Installing Files</str>	
+		<str name="#IF_COMPLEXINSTALL">Installing Files</str>
 		<str name="#IF_COMPLEXLABEL">{0}...</str>
 		<str name="#IF_COMPLEXLABEL_INIT">{0} (Initilizing)</str>
 
@@ -277,26 +277,26 @@
 		<str name="#IF_VALIDATE_EXISTINGMCF">Checking current data file...</str>
 		<str name="#IF_VALIDATE_LOCALFILES">Checking old install files...</str>
 		<str name="#IF_VALIDATE_PREALLOCATING">Pre-allocating download file...</str>
-		<str name="#IF_VALIDATE_TITLE">Validating Download:</str>	
+		<str name="#IF_VALIDATE_TITLE">Validating Download:</str>
 		<str name="#IF_VALIDATE_LABEL">Stage {2}: Done {0} out of {1}</str><!-- {0}: done, {1}: total {2}:Stage number-->
-		
+
 		<str name="#IF_PREORDERED_NORELEASE">Preordered: Not Released</str>
-		<str name="#IF_PREORDERED">Preordered: Preload Ready</str>		
-		
+		<str name="#IF_PREORDERED">Preordered: Preload Ready</str>
+
 		<str name="#IF_WAIT_TITLE">Waiting for items:</str>
 		<str name="#IF_WAIT_FORCE">Force</str>
-		<str name="#IF_WAIT_CANCELALL">Cancel All</str>	
+		<str name="#IF_WAIT_CANCELALL">Cancel All</str>
 		<str name="#IF_WAIT_INFO">{0} is waiting for other items to complete before it will start {1}.</str><!-- {0}: item name, {1}: action -->
 		<str name="#IF_WAIT_ACTION_UNINSTALL">to Uninstall the item</str>
-		<str name="#IF_WAIT_ACTION_VERIFY">to Verify the item files</str>	
-		
+		<str name="#IF_WAIT_ACTION_VERIFY">to Verify the item files</str>
+
 		<!-- Install Wizard -->
 		<str name="#MW_TITLE">Find Games Installed</str>
 		<str name="#MW_ERROR">There was an error during the wizard process and it has been stopped.</str>
 		<str name="#MW_CUSTOM">Custom Install</str>
 		<str name="#MW_ERRTITLE">Find Games Installed Error</str>
 		<str name="#MW_ADDACCOUNT">Add found items to account</str>
-		
+
 		<!-- Main Form -->
 		<str name="#MF_OFFLINE">Are you sure you want to go offline?</str>
 		<str name="#MF_OFFLINE_TITLE">Offline Mode</str>
@@ -318,7 +318,7 @@
 		<str name="#MF_UNINSTALLPROMPT">{0} is currently in the process of installing. In order to uninstall it Desura has to stop the installing process. Continue with uninstall?</str>
 		<str name="#MF_UNINSTALLTITLE">Desura {0} Uninstall</str>
 		<str name="#MF_LUANCH_ERROR_VERIFY_TOOLTIP">Verify the install files</str>
-		
+
 		<!-- Buttons -->
 		<str name="#RESTART_NOW">Restart Now</str>
 		<str name="#RESTART_LATER">Restart Later</str>
@@ -357,7 +357,7 @@
 		<str name="#PREORDER">PreOrder</str>
 		<str name="#HIDE">Hide</str>
 		<str name="#FIND">Find</str>
-		
+
 		<!-- Misc -->
 		<str name="#NAME">Name</str>
 		<str name="#SIZE">Size</str>
@@ -378,7 +378,7 @@
 		<str name="#INSTALL">Install</str>
 		<str name="#UNINSTALLING">Uninstalling ...</str>
 		<str name="#REMOVE">Remove</str>
-		
+
 		<!-- Main Menu -->
 		<str name="#MENU_OFFLINE">Go Offline</str>
 		<str name="#MENU_OFFLINE_TOOLTIP">Go into offline mode (no internet access)</str>
@@ -402,12 +402,12 @@
 		<str name="#MENU_LISTKEYS">List Games and CD Keys</str>
 		<str name="#MENU_LISTKEYS_TOOLTIP">Shows a web page containing your games and their CD keys</str>
 		<str name="#MENU_ACTIVATEGAME">Activate Game CD key or Gift</str>
-		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Enter a CD key or giftcode to activate a game on your account</str>	
+		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Enter a CD key or giftcode to activate a game on your account</str>
 		<str name="#MENU_VERSION">Version</str>
 		<str name="#MENU_EXIT">Exit</str>
 
 		<str name="#MENU_DOWNLOADREPORT">Bandwidth Monitor</str>
-		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Shows the bandwidth monitor</str>	
+		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Shows the bandwidth monitor</str>
 
 		<str name="#MENU_CART">Shopping Cart</str>
 
@@ -444,8 +444,8 @@
 		<str name="#PLAY_PREORDER">Preorder</str>
 		<str name="#PLAY_DELAY_LOADING">Retrieving play list...</str>
 		<str name="#PLAY_GAMES">Games</str>
-		<str name="#PLAY_DEVELOPMENT">Development</str>	
-	
+		<str name="#PLAY_DEVELOPMENT">Development</str>
+
 		<!-- Pop up menu -->
 		<str name="#PM_VIEWPROFILE">View Profile</str>
 		<str name="#PM_MODLIST">View Mod List</str>
@@ -494,8 +494,8 @@
 		<str name="#SET_CV_CONSOLE">Show console on error</str>
 		<str name="#SET_CV_CONSOLE_TOOLTIP">Opens the console when errors occur</str>
 		<str name="#SET_CV_DISABLE_WGE">Disable Windows Game Explorer</str>
-		<str name="#SET_CV_DISABLE_WGE_TOOLTIP">Stops Desura putting games into Windows Game Explorer</str>		
-		
+		<str name="#SET_CV_DISABLE_WGE_TOOLTIP">Stops Desura putting games into Windows Game Explorer</str>
+
 		<str name="#SET_CV_WORKER">Worker Threads</str>
 		<str name="#SET_CV_WORKER_TOOLTIP">This is the number of workers used to perform processes (like create a MCF).</str>
 		<str name="#SET_CV_DESTMAIN">Unload mainform on Close</str>
@@ -512,20 +512,20 @@
 		<str name="#SET_WARNING">Some settings that have been changed require a restart to take effect.</str>
 
 		<str name="#SET_CV_SILENTLAUNCH">Silent AutoLogin</str>
-		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Don't show main window on AutoLogin</str>	
+		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Don't show main window on AutoLogin</str>
 		<str name="#SET_CACHE_BROWSE">Please select a new folder for Desura to use as a cache</str>
-		
+
 		<str name="#SET_CV_CHAT_ENABLED">Enable Desura chat</str>
-		<str name="#SET_CV_CHAT_ENABLED_TOOLTIP">Enables chat in the Desura Client</str>	
+		<str name="#SET_CV_CHAT_ENABLED_TOOLTIP">Enables chat in the Desura Client</str>
 		<str name="#SET_CV_CHAT_BREAKOUT">Chat client as seperate window</str>
-		<str name="#SET_CV_CHAT_BREAKOUT_TOOLTIP">By default make the chat client a seperate window</str>	
+		<str name="#SET_CV_CHAT_BREAKOUT_TOOLTIP">By default make the chat client a seperate window</str>
 		<str name="#SET_CV_CHAT_SHOWCONTACTS">Show chat contacts on login</str>
-		<str name="#SET_CV_CHAT_SHOWCONTACTS_TOOLTIP">When Desura log's in, show the chat contact window (Note: Only if the chat client is a seperate window)</str>	
+		<str name="#SET_CV_CHAT_SHOWCONTACTS_TOOLTIP">When Desura log's in, show the chat contact window (Note: Only if the chat client is a seperate window)</str>
 		<str name="#SET_CV_CHAT_SHOWOFFLINE">Show offline contacts</str>
-		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">Show offline contacts by default</str>	
+		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">Show offline contacts by default</str>
 		<str name="#SET_CV_CHAT_REMEMBERSTATUS">Remember last chat status</str>
-		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Always sets your current status to your status last time you where logged in</str>			
-		
+		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Always sets your current status to your status last time you where logged in</str>
+
 		<str name="#SET_CIP_UPDATE">Refreshing game list</str>
 		<str name="#SET_CIP_BUT_BROWSE">Browse</str>
 		<str name="#SET_CIP_BUT_REFRESH">Refresh Games</str>
@@ -547,11 +547,11 @@
 		<str name="#SET_CIP_LINK">You can add shortcuts for other games and applications on your system by using the form below. You can add launch arguments via properties in the right click menu and also remove by selecting uninstall in the same menu. Warning: This feature is in Beta. Expect Bugs!</str>
 		<str name="#SET_CIP_LINK_NAME">Link Name:</str>
 		<str name="#SET_CIP_LINK_EXE">Link Exe:</str>
-		
+
 		<str name="#CIP_BROWSE">Please select the root folder for the game:</str>
 		<str name="#CIP_LINK_BROWSE">Please select the binary for the link:</str>
-		
-		
+
+
 		<!-- Browser controls -->
 		<str name="#BC_HOME">Open homepage</str>
 		<str name="#BC_STOP">Stop loading current page</str>
@@ -614,7 +614,7 @@
 		<str name="#IS_PAUSED">Paused</str>
 		<str name="#IS_PREORDER_STATUS">Preordered</str>
 		<str name="#IS_PRELOADED_STATUS">Preloaded</str>
-		
+
 		<str name="#IS_PREORDER">Available in </str>
 		<str name="#IS_PREORDER_DAYS">days</str>
 		<str name="#IS_PREORDER_HOURS">hours</str>
@@ -625,10 +625,10 @@
 
 		<str name="#IS_LAUNCHING">Launching</str>
 		<str name="#IS_DOWNLOADINGTOOL">DL Tools</str>
-		<str name="#IS_INSTALLINGTOOL">IN Tools</str>		
+		<str name="#IS_INSTALLINGTOOL">IN Tools</str>
 		<str name="#IS_VALIDATE">Validating</str>
 		<str name="#IS_WAIT">Waiting ({0} out of {1})</str>
-		
+
 		<str name="#AB_ABOUTINFO">Desura is a community driven digital distribution service for gamers, putting the best games, mods and downloadable content from developers at your fingertips, ready to buy and play.</str>
 		<str name="#AB_CREDITS">Credits</str>
 		<str name="#AB_ABOUT">About Desura</str>
@@ -655,14 +655,14 @@
 		<str name="#TB_WINDOWS">Windows</str>
 		<str name="#TB_NOWINDOWS">No open windows</str>
 		<str name="#TB_NOITEMS">No Items</str>
-		<str name="#TB_EXIT">Exit</str>	
-		<str name="#TB_STATUS">Status</str>	
+		<str name="#TB_EXIT">Exit</str>
+		<str name="#TB_STATUS">Status</str>
 
 		<str name="#TB_CART">Cart Items</str>
 		<str name="#TB_MESSAGE">Messages</str>
 		<str name="#TB_UPDATES">Updates</str>
-		<str name="#TB_GAMES">Games</str>	
-		<str name="#TB_MODS">Mods</str>	
+		<str name="#TB_GAMES">Games</str>
+		<str name="#TB_MODS">Mods</str>
 
 		<str name="#TB_TITLE">Desura Game Updates Available</str>
 		<str name="#TB_GIFTTITLE">You have been gifted a new item!</str>
@@ -672,7 +672,7 @@
 		<str name="#DS_ERROR">Desura Service disconnected unexpectedly.&#xA;&#xA;Attempting reconnect...</str>
 		<str name="#DS_ERRORFAILED">Desura Service disconnected unexpectedly.&#xA;&#xA;Restart failed:</str>
 
-		<str name="#DR_TITLE">Bandwidth Monitor</str>	
+		<str name="#DR_TITLE">Bandwidth Monitor</str>
 
 		<str name="#EULA_LABEL">Before playing you need to agree to the license terms and conditions.</str>
 		<str name="#EULA_TITLE">End User License Agreement: {0}</str>
@@ -697,11 +697,11 @@
 		<str name="#CHROME_VIEWLINK">View Link in Browser</str>
 		<str name="#CHROME_VIEWIMAGE">View Image in Browser</str>
 		<str name="#CHROME_INSPECTELEMENT">Inspect Element</str>
-		<str name="#CHROME_NORMALMENU">Normal Menu</str>	
+		<str name="#CHROME_NORMALMENU">Normal Menu</str>
 
 		<!-- cd key form -->
 		<str name="#CDK_ERRTITLE">Failed to get CD Key</str>
-		<str name="#CDK_ERROR">Desura failed to locate a CD Key</str>	
+		<str name="#CDK_ERROR">Desura failed to locate a CD Key</str>
 
 		<str name="#CDK_PROGRESSINFO">Gathering CD Key ...</str>
 		<str name="#CDK_COPYALL">Copy All</str>
@@ -712,14 +712,14 @@
 		<str name="#CDK_COUNTDOWN">Launching in {0}</str>
 		<str name="#CDK_LAUNCHNOW">Launch Now</str>
 		<str name="#CDK_ACTIVATE">Activate</str>
-		
+
 		<str name="#CDK_REGKEY">CD Key was Installed Automatically</str>
 		<str name="#CDK_REGKEY_TOOLTIP">The CD Key was installed for this item automatically so you dont need to copy it down.</str>
-		
+
 		<!-- exe select form -->
 		<str name="#ES_TITLE">Select Version: {0}</str>
-		<str name="#ES_LABEL">Please select the version of {0} you want to play:</str>	
-		
+		<str name="#ES_LABEL">Please select the version of {0} you want to play:</str>
+
 		<!-- change cache dir -->
 		<str name="#MCFCD_ID">Desura installs games and programs to the folder you installed it to; it cannot be changed:</str>
 		<str name="#MCFCD_CD">All cache files are saved to the folder below, you can type in the folder you wish to store these files:</str>
@@ -729,39 +729,39 @@
 		<str name="#MCFCD_INVALIDFOLDER">Error: Folder does not exist</str>
 		<str name="#MCFCD_CANTWRITE">Error: Cannot write to folder</str>
 		<str name="#MCFCD_GETTINGSIZE">Loading...</str>
-	
+
 		<str name="#CC_EDITPROFILE">Edit your user profile</str>
 		<str name="#CC_ADDFRIEND">Add a friend to your chat account</str>
 		<str name="#CC_SHOWCONTACTS">Show offline contacts</str>
 		<str name="#CC_HIDECONTACTS">Hide offline contacts</str>
 		<str name="#CC_BREAKOUT">Break out chat into new window</str>
-		
+
 		<str name="#CHAT_ADDFRIEND_TITLE">Add a friend to your account</str>
 		<str name="#CHAT_ADDFRIEND_SEARCH">Add by search:</str>
 		<str name="#CHAT_ADDFRIEND_BYUSER">Add by username:</str>
-		<str name="#CHAT_ADDFRIEND_NOTE">Note: Search will only return the first 25 items. For a more in depth search please go to the {0}members page{1}.</str><!-- {0} is start of link {1} is end of link</a>-->		
-	
+		<str name="#CHAT_ADDFRIEND_NOTE">Note: Search will only return the first 25 items. For a more in depth search please go to the {0}members page{1}.</str><!-- {0} is start of link {1} is end of link</a>-->
+
 		<str name="#CHAT_MENU_CHATWITH">Chat with</str>
 		<str name="#CHAT_MENU_UNBLOCK">Unblock friend</str>
 		<str name="#CHAT_MENU_BLOCK">Block friend</str>
 		<str name="#CHAT_MENU_ACCEPT">Accept friend request</str>
 		<str name="#CHAT_MENU_REJECT">Reject friend request</str>
 		<str name="#CHAT_MENU_RESEND">Resend friend request</str>
-		<str name="#CHAT_MENU_REMOVE">Remove friend</str>	
-		
+		<str name="#CHAT_MENU_REMOVE">Remove friend</str>
+
 		<str name="#CHAT_SEARCH_ADD">Add</str>
 		<str name="#CHAT_SEARCH_ADDED">Added</str>
 		<str name="#CHAT_SEARCH_PENDING">Pending</str>
 
 		<str name="#CHAT_DISCONNECT">Desura chat has disconnected.</str>
-		<str name="#CHAT_DISCONNECT_MSG">Attempting to reconnect in {0} {1}(Retry Now){2}.</str>	
+		<str name="#CHAT_DISCONNECT_MSG">Attempting to reconnect in {0} {1}(Retry Now){2}.</str>
 
 		<str name="#GD_TITLE">{0}: Need Game Disk</str>
-		<str name="#GD_INFO">{0} requires the {1} disk to be in your computer in order to play. &#xA;&#xA;Please make sure the disk is inserted before continuing.</str>			
+		<str name="#GD_INFO">{0} requires the {1} disk to be in your computer in order to play. &#xA;&#xA;Please make sure the disk is inserted before continuing.</str>
 		<str name="#GD_REMINDER">Dont remind me again</str>
 		<str name="#SB_DEFAULT">Search...</str>
 		<str name="#SB_FULL_SEARCH">Perform a full search</str>
-		
+
 		<str name="#BH_CRASH">Browser has died. (Click to reload)</str>
 		<str name="#BH_NO_LOAD">Failed to load browser library. Please check console for error message.</str>
 	</strings>

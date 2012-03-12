@@ -9,20 +9,20 @@
 		<str name="#CRASH_UPLOADINFO">Przesyłanie Zrzutu Awaryjnego ...</str>
 		<str name="#CRASH_GENERATEINFO">Generowanie Zrzutu Awaryjnego ...</str>
 		<str name="#CRASH_ERROR">Nie udało się przetworzyć zrzutu.</str>
-		
+
 		<str name="#CRASH_BUTGENERATE">Wygeneruj Zrzut Awaryjny</str>
 		<str name="#CRASH_BUTUPLOAD">Prześlij Zrzut Awaryjny</str>
-		
+
 		<str name="#CRASH_LABGENERATE">Kiedy Desura nie odpowiada lub coś niespodziewanego się stało to raport bieżącego stanu pozwoli programistom w ustaleniu problemu.</str>
 		<str name="#CRASH_LABUPLOAD">Sprawozdanie istniejących zrzutów awaryjnych. To znaczy Zrzut Awaryjny przed startem Desura.</str>
-		
-		
+
+
 		<str name="#CLEANUP_LABTOTAL">Razem:</str>
-		<str name="#CLEANUP_LABCURRENT">Obecny Element:</str>	
-		
-		
+		<str name="#CLEANUP_LABCURRENT">Obecny Element:</str>
+
+
 		<str name="#CLEANUP_TITLE">Desura: Narzędzie Oczyszczania</str>
-		
+
 		<str name="#CLEANUP_SELECTALL">Wybierz Wszystkie</str>
 		<str name="#CLEANUP_SELECTNONE">Wybierz Nic</str>
 		<str name="#CLEANUP_LABEL">Wybierz gry i modyfikację, który chcesz odinstalować z Desura.</str>

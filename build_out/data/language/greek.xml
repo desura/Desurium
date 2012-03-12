@@ -7,23 +7,23 @@
 	<linux>
 		<str name="#MW_PROMPT">Αυτός ο οδηγός θα βρει παιχνίδια και mods εγκατεστημένα στον υπολογιστή σας τα οποία υποστηρίζονται από το Desura. Σήμείωση: Θα ενημερωθούν όλα στην τελευταία έκδοση του Desura.</str>
 		<str name="#MW_FINISH">Ο οδηγός ολοκληρώθηκε και όλα τα παιχνίδια και τα mods που βρέθηκαν στον υπολογιστή σας και υποστηρίζονται απ' το Desura προστέθηκαν στο λογαριασμό σας. &#xA;&#xA;Αν το Desura δεν μπόρεσε να βρει κάποιο παιχνίδι εγκατεστημένο στον υπολογιστή σας, μπορείτε να το εγκαταστήσετε χειροκίνητα πατώντας το κουμπί "Χειροκίνητη εγκατάσταση" από κάτω.</str>
-	
+
 		<str name="#IF_WINDOWS_LAUNCH_WARNING">ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Προσπαθείτε να εκκινήσετε ένα πρόγραμμα των Windows. Αυτό εξαρτάται απ' το αν το σύστημά σας αναγνωρίσει τη μορφή και το εκκινήσει με τα κατάλληλα εργαλεία (πχ: WINE). Αν δεν έχετε τα εργαλεία, το πρόγραμμα/παιχνίδι μπορεί να μην εκκινηθεί σωστά ή και καθόλου.&#xA;&#xA;Αυτή η προειδοποίηση μπορεί να απενεργοποιηθεί από τις Ρυθμίσεις.</str>
 		<str name="#IF_SHOWFILES">Προβολή αρχείων</str>
 		<str name="#MF_ERROR_NO32LIBS">Το αρχείο που προσπαθείτε να εκκινήσετε είναι 32 bit αλλά δεν έχετε 32 bit libs εγκατεστημένες.&#xA;&#xA;Παρακαλώ δείτε http://www.desura.com/groups/desura/linux για περισσότερες πληροφορίες.</str>
-	
+
 		<str name="#PLAY_EMPTY">Δεν έχετε {1}παιχνίδια{0} για Linux στον λογαριασμό σας.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
-		
+
 		<str name="#SET_CV_LIN_DIS_WIN_WRN">Απενεργοποίηση ειδοποίησης περί εκτελέσιμων Windows.</str>
 		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Δεν θα σας ειδοποιεί κάθε φορά που θα εκκινείτε κάποιο εκτελέσιμο αρχείο Windows.</str>
 		<str name="#SET_CV_ALLOW_WM_POS">Τοποθέτηση παραθύρων από τον διαχειριστή παραθύρων του συστήματος.</str>
 		<str name="#SET_CV_ALLOW_WM_POS_TOOLTIP">Επιτρέπει στον διαχειριστή παραθύρων του συστήματος να τοποθετεί το παραθυρο αντί το Desura να αποθηκεύει την θέση και το μέγεθος του παραθύρου.</str>
-		
+
 		<str name="#SET_CV_GLOBALBIN">Binary εκκίνησης όλων των παιχνιδιών</str>
 		<str name="#SET_CV_GLOBALBIN_TOOLTIP">Εκκίνηση όλων των παιχνιδιών από αυτό το αρχείο binary</str>
 		<str name="#SET_CV_GLOBALARGS">Αrguments όλων των παιχνιδιών</str>
-		<str name="#SET_CV_GLOBALARGS_TOOLTIP">Προσάρτηση αυτών των args σε όλα τα παιχνίδια στην εκκίνησή τους</str>		
-		
+		<str name="#SET_CV_GLOBALARGS_TOOLTIP">Προσάρτηση αυτών των args σε όλα τα παιχνίδια στην εκκίνησή τους</str>
+
 		<str name="#SET_CV_DISABLE_FORCESHORTCUT">Απενεργοποίηση συντόμευσης βίαιης ενημέρωσης (force update shortcut)</str>
 		<str name="#SET_CV_DISABLE_FORCESHORTCUT_TOOLTIP">Δεν επιτρέπει στο Desura να δημιουργεί μια συντόμευση βίαιης ενημέρωσης (force update shortcut) στο κυρίως μενού</str>
 
@@ -34,15 +34,15 @@
 	<windows>
 		<str name="#IF_SHOWFILES">Προβολή αρχείων στον περιηγητή (Explorer)</str>
 		<str name="#PLAY_EMPTY">Δεν υπάρχουν windows {1}παιχνίδια{0} ή {2}mods{0} στον λογαριασμό σας. Θα πρέπει να εκτελέσετε τον {3}οδηγό εύρεσης εγκατεστημένων παιχνιδιών{0} που θα αναζητ'ησει στον υπολογιστή σας για παιχνίδια που υποστηρίζει το Desura.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
-		
+
 		<str name="#SET_CV_DISABLE_FS_PERMS">Make all install folders writable by normal users</str>
 		<str name="#SET_CV_DISABLE_FS_PERMS_TOOLTIP">Due to game developers not being able to follow windows standards many games write to the install folder and crash if they cant. Warning: Disabling this might make some games not work</str>
-		
+
 		<str name="#IF_LOWSPACE_SYS">The system harddisk ({0}:\\) is low on free space and Desura will start having performance issues. &lt;a href=&quot;desura://settings/cache&quot;&gt;You can move your Desura cache folder to a new disk to free up space.&lt;/a&gt;</str>
 		<str name="#IF_LOWSPACE_CACHE">The harddisk that Desura cache saves to ({0}:\\) is low on free space. It is recommended that you free up space for Desura to perfom correctly.</str>
-		
+
 		<str name="#MW_PROMPT">Αυτός ο οδηγός θα βρει παιχνίδια εγκατεστημένα στον υπολογιστή σας που υποστηρίζονται από το Desura. Σημείωση: Θα ενημερωθούν όλα τα παιχνίδια που θα βρεθούν στην τελευταία τους έκδοση στο Desura.</str>
-		<str name="#MW_FINISH">Ο οδηγός ολοκληρώθηκε και όλα τα παιχνίδια που βρέθηκαν στον υπολογιστή σας και υποστηρίζονται από το Desura προστέθηκαν στον λογαριασμό σας. &#xA;&#xA;Αν το Desura δεν ήταν δυνατό να εντοπίσει κάποιο εγκατεστημένο παιχνίδι στον υπολογιστή σας, μπορείτε να το προσθέσετε χειροκίνητα πατώντας το κουμπί "Χειροκίνητη εγκατάσταση" (Custom Install).</str>		
+		<str name="#MW_FINISH">Ο οδηγός ολοκληρώθηκε και όλα τα παιχνίδια που βρέθηκαν στον υπολογιστή σας και υποστηρίζονται από το Desura προστέθηκαν στον λογαριασμό σας. &#xA;&#xA;Αν το Desura δεν ήταν δυνατό να εντοπίσει κάποιο εγκατεστημένο παιχνίδι στον υπολογιστή σας, μπορείτε να το προσθέσετε χειροκίνητα πατώντας το κουμπί "Χειροκίνητη εγκατάσταση" (Custom Install).</str>
 	</windows>
 	<strings>
 		<str name="#DESURA_UPDATE">Μια ενημέρωση για το Desura έχει κυκλοφορήσει και είναι έτοιμη για να εγκατασταθεί.</str>
@@ -141,31 +141,31 @@
 		<str name="#CF_NOTSTARTED">Προετοιμασία ...</str>
 		<str name="#CF_ERROR">Παρουσιάστηκε ένα σφάλμα κατά την διαδικασία δημιουργίας του MCF και σταμάτησε.</str>
 		<str name="#CF_ERRTITLE">Σφάλμα δημιουργίας MCF</str>
-		
+
 		<!-- note the {0} will be replaced with the item name! -->
-		<str name="#CF_COMPLETE">Η δημιουργία MCF για το {0} ολοκληρώθηκε.</str> 
+		<str name="#CF_COMPLETE">Η δημιουργία MCF για το {0} ολοκληρώθηκε.</str>
 
 		<!-- Item Form -->
 		<str name="#IF_BROUGHT">Αγοράστηκε</str>
 		<str name="#IF_FREE">Δωρεάν</str>
 		<str name="#IF_PREPARE_INFO">Προετοιμασία για {0} {1}</str>
-		<str name="#IF_PREPARE_INFO_NOITEM">Προετοιμασία...</str>		
-		
+		<str name="#IF_PREPARE_INFO_NOITEM">Προετοιμασία...</str>
+
 		<str name="#IF_TITLE">Προετοιμασία:</str>
 		<str name="#IF_VERIFY">Επαλήθευση:</str>
 		<str name="#IF_DOWNLOAD">Κατέβασμα:</str>
 		<str name="#IF_INSTALL">Εγκατάσταση:</str>
-		<str name="#IF_UPDATE">Ενημέρωση:</str>	
+		<str name="#IF_UPDATE">Ενημέρωση:</str>
 		<str name="#IF_UNINSTALL">Απεγκατάσταση: </str>
 		<str name="#IF_UNINSTALL_BRANCH">Αφαίρεση παλιών αρχείων: </str>
 		<str name="#IF_UNINSTALL_PATCH">Αφαίρεση παλιών αρχείων: </str>
 		<str name="#IF_UNINSTALL_COMPLEX">Απεγκατάσταση ιδιόμορφου Mod</str>
 		<str name="#IF_INSTALL_CHECK">Έλεγχος εγκατάστασης</str>
-		
+
 		<str name="#IF_UNINSTALL_LABEL">Απεγκατάσταση ...</str>
 		<str name="#IF_UNINSTALL_BRANCH_LABEL">Αφαίρεση παλιών αρχείων ... </str>
 		<str name="#IF_UNINSTALL_PATCH_LABEL">Αφαίρεση παλιών αρχείων ... </str>
-		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Απεγκατάσταση ιδιόμορφου Mod ... </str>	
+		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Απεγκατάσταση ιδιόμορφου Mod ... </str>
 
 		<!-- Install check -->
 		<str name="#IC_ERRTITLE">Σφάλμα ελέγχου εγκατάστασης</str>
@@ -183,7 +183,7 @@
 		<str name="#IF_BRANCHINFO">{0} δεν είναι εγκατεστημένο. Παρακαλώ επιλέξτε την έκδοση που θέλετε να παίξετε.</str>
 		<str name="#IF_PARENTTITLE">Λείπει το κυρίως παινχίδι για το {0}</str><!-- first {0} is mod name second is game name -->
 		<str name="#IF_NOTFOUND">{0} είναι ένα mod για το παιχνίδι {1}. Θα πρέπει να έχετε εγκατεστημένο το παιχνίδι για να μπορείτε να παίξετε.&#xA;&#xA;Παρακαλώ επιλέξτε την μέθοδο εγκατάστασης για το {1}:</str>
-		<str name="#IF_NOTFOUND_GAME">{0} είναι μια επέκταση (expansion) για το παιχνίδι {1}. Θα πρέπει να έχετε εγκατεστημένο το παιχνίδι για να μπορείτε να παίξετε.&#xA;&#xA;Παρακαλώ επιλέξτε την μέθοδο εγκατάστασης για το {1}:</str>		
+		<str name="#IF_NOTFOUND_GAME">{0} είναι μια επέκταση (expansion) για το παιχνίδι {1}. Θα πρέπει να έχετε εγκατεστημένο το παιχνίδι για να μπορείτε να παίξετε.&#xA;&#xA;Παρακαλώ επιλέξτε την μέθοδο εγκατάστασης για το {1}:</str>
 		<str name="#IF_INSTALL_REMOVE">Εγκατάσταση και αφαίρεση μη σχετικών αρχείων (προτίνεται)</str>
 		<str name="#IF_INSTALL_LEAVE">Εγκατάσταση και όχι αφαίρεση μη σχετικών αρχείων</str>
 		<str name="#IF_INSTALL_VERIFY">Επαλήθευση εγκατεστημένων αρχείων και εγκατάσταση αυτών που λείπουν</str>
@@ -197,11 +197,11 @@
 		<str name="#IF_GERROR_PLATFORM">{0} δεν υποστηρίζεται γι' αυτή την πλατφόρμα.</str><!-- {0} item name -->
 		<str name="#IF_GERROR_BRANCH_PLATFORM">Ο τομέας που επιλέξατε για το {0} δεν υποστηρίζεται σ' αυτή τη πλατφόρμα.</str><!-- {0} item name -->
 		<str name="#IF_GERROR_BRANCH_PLATFORM_Q">Θέλετε να επιλέξετε κάποιον άλλο τομέα (branch);</str>
-		
+
 		<str name="#IF_GERROR">Παρουσιάστηκε ένα σφάλμα κατα τη διαδικασία συλλογής πληροφοριών και σταμάτησε.</str>
 		<str name="#IF_GERRTITLE">Σφάλμα συλλογής πληροφοριών</str>
 		<str name="#IF_VALIDATE_ERROR">Παρουσιάστηκε ένα σφαλμα κατα τη διαδικασία επαλήθευσης και σταμάτησε.</str>
-		<str name="#IF_VALIDATE_TITLE">Σφάλμα επαλήθευσης</str>	
+		<str name="#IF_VALIDATE_TITLE">Σφάλμα επαλήθευσης</str>
 		<str name="#IF_GERROR_LABEL">Σφάλμα. Η διαδικασία σταμάτησε.</str>
 		<str name="#IF_CHECKINGIR">Έλεγχος απαιτήσεων εγκατάστασης ...</str>
 		<str name="#IF_INITINSTALL">Εκκίνηση εγκατάστασης</str>
@@ -226,14 +226,14 @@
 
 		<str name="#IF_VERIFYFILES">Επαλήθευση αρχείων</str>
 		<str name="#IF_VERIFYTOOLS">Επανεγκατάσταση εργαλείων</str>
-		<str name="#IF_VERIFYHOOKS">Re-run post install hooks</str>		
+		<str name="#IF_VERIFYHOOKS">Re-run post install hooks</str>
 		<str name="#IF_VERIFYCONFIRM">Αν παρουσιάζονται προβλήματα στην εκτέλεση του {0}, η διαδικασία επαλήθευσης θα προσπαθήσει να επιλύσει τα προβλήματα.</str>
-		
+
 		<str name="#IF_VERIFYMCF">Επαλήθευση MCF ...</str>
 		<str name="#IF_VERIFYINSTALL">Επαλήθευση εγκατάστασης ...</str>
 		<str name="#IF_VERIFYDOWNLOADF">Κατέβασμα αρχείων που λείπουν ...</str>
-		<str name="#IF_VERIFYINSTALLF">Εγκατάσταση αρχείων που λείπουν ...</str>	
-		<str name="#IF_VERIFYBRANCH">Αλλαγή τομέα ...</str>	
+		<str name="#IF_VERIFYINSTALLF">Εγκατάσταση αρχείων που λείπουν ...</str>
+		<str name="#IF_VERIFYBRANCH">Αλλαγή τομέα ...</str>
 
 		<str name="#IF_IIBADINFO">Παρουσιάστηκε ένα πρόβλημα στην ανάκτηση πληροφοριών για αυτό το αρχείο</str>
 		<str name="#IF_INVALIDBRANCH">Ο επιλεγμένος τομέας (branch) για την εγκατάσταση δεν είναι έγκυρος</str>
@@ -244,12 +244,12 @@
 		<str name="#IF_FILEERR">Τα αρχεία ήδη υπάρχουν στην συγκεκριμένη τοποθεσία.</str>
 		<str name="#IF_NOTINSTALLED">Αυτό το αρχείο δεν είναι εγκατεστημένο.</str>
 		<str name="#IF_IHASHFAIL">Ένα ή περισσότερα αρχεία απέτυγχαν τον έλεγχο md5 κατά τη διάρκεια της εγκατάστασης. Θέλετε να επαληθεύσετε την εγκατάσταση για να βεβαιωθείτε για την ολοκλήρωσή της;</str>
-		
+
 		<str name="#IF_CONFLICT">Το Desura έχει ανιχνεύσει ότι το {0} έχει ήδη εγκατασταθεί. Απ' τη στιγμή που το {0} απαιτεί ιδιόμορφη εγκατάσταση, προτίνεται η απεγκατάσταση του {0} χειροκίνητα πριν συνεχίσετε με την εγκατάσταση του Desura για να αποφευχθούν προβλήματα με το περιεχόμενο.</str>
 		<str name="#IF_CONFLICTTITLE">Ιδιόμορφο πρόβλημα εγκατάστασης</str>
-		
+
 		<str name="#IF_COMPLETEPREORDER">Έτοιμη προεγκατάσταση</str>
-		
+
 		<str name="#IF_PRELOADLAUNCH">{0} έχει {2} και δεν μπορεί να εκκινηθεί αυτή τη στιγμή. Θα είναι διαθέσιμο σε {1} μέρες.</str>
 		<str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
 		<str name="#IF_PRELOADLAUNCH_PREORDERED">προπαραγγελία</str>
@@ -257,11 +257,11 @@
 		<str name="#IF_PRELOADLAUNCH_INSTALLDEMO">Εγκατάσταση Demo</str>
 		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER">Εγκατάσταση άλλου</str>
 		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER_INFO">&#xA;&#xA;Και άλλες εκδόσεις του παιχνιδιού είναι διαθέσιμες.</str>
-		
-		
+
+
 		<str name="#IF_COMPLEXREMOVE">Αφαίρεση παλιών αρχείων</str>
 		<str name="#IF_COMPLEXBACKUP">Δημιουργία αντιγράφων ασφαλείας για τα αρχεία του παιχνιδιού</str>
-		<str name="#IF_COMPLEXINSTALL">Εγκατάσταση αρχείων</str>	
+		<str name="#IF_COMPLEXINSTALL">Εγκατάσταση αρχείων</str>
 		<str name="#IF_COMPLEXLABEL">{0}...</str>
 		<str name="#IF_COMPLEXLABEL_INIT">{0} (Εκκίνηση)</str>
 
@@ -278,26 +278,26 @@
 		<str name="#IF_VALIDATE_EXISTINGMCF">Έλεγχος τρέχοντων δεδομένων...</str>
 		<str name="#IF_VALIDATE_LOCALFILES">Έλεγχος παλιών εγκαταστάσεων...</str>
 		<str name="#IF_VALIDATE_PREALLOCATING">Προκατανομή αρχείου κατεβάσματος...</str>
-		<str name="#IF_VALIDATE_TITLE">Επικύρωση κατεβάσματος:</str>	
+		<str name="#IF_VALIDATE_TITLE">Επικύρωση κατεβάσματος:</str>
 		<str name="#IF_VALIDATE_LABEL">Κατάσταση {2}: Έτοιμο {0} από {1}</str><!-- {0}: done, {1}: total {2}:Stage number-->
-		
+
 		<str name="#IF_PREORDERED_NORELEASE">Έχει γίνει προπαραγγελία: Δεν έχει κυκλοφορήσει</str>
-		<str name="#IF_PREORDERED">Έχει γίνει προπαραγγελία: Έτοιμο για προεγκατάσταση</str>		
-		
+		<str name="#IF_PREORDERED">Έχει γίνει προπαραγγελία: Έτοιμο για προεγκατάσταση</str>
+
 		<str name="#IF_WAIT_TITLE">Αναμονή για τα αρχεία:</str>
 		<str name="#IF_WAIT_FORCE">Εξαναγκασμός</str>
-		<str name="#IF_WAIT_CANCELALL">Ακύρωση όλων</str>	
+		<str name="#IF_WAIT_CANCELALL">Ακύρωση όλων</str>
 		<str name="#IF_WAIT_INFO">{0} είναι σε αναμονή για να ολοκληρωθούν άλλα αρχεία πριν γίνει εκκίνηση {1}.</str><!-- {0}: item name, {1}: action -->
 		<str name="#IF_WAIT_ACTION_UNINSTALL">για να απεγκαταστήσει το αρχείο</str>
-		<str name="#IF_WAIT_ACTION_VERIFY">για να επαληθεύσει τα αρχεία</str>	
-		
+		<str name="#IF_WAIT_ACTION_VERIFY">για να επαληθεύσει τα αρχεία</str>
+
 		<!-- Install Wizard -->
 		<str name="#MW_TITLE">Εύρεση εγκατεστημένων παιχνιδιών</str>
 		<str name="#MW_ERROR">Παρουσιάστηκε ένα σφάλμα κατά την διεργασία του οδηγού και απενεργοποιήθηκε.</str>
 		<str name="#MW_CUSTOM">Χειροκίνητη εγκατάσταση</str>
 		<str name="#MW_ERRTITLE">Σφάλμα εύρεσης εγκατεστημένων παιχνιδιών</str>
 		<str name="#MW_ADDACCOUNT">Προσθήκη αρχείων που βρέθηκαν στον λογαριασμό</str>
-		
+
 		<!-- Main Form -->
 		<str name="#MF_OFFLINE">Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από το δίκτυο;</str>
 		<str name="#MF_OFFLINE_TITLE">Αποσυνδεμένος</str>
@@ -319,7 +319,7 @@
 		<str name="#MF_UNINSTALLPROMPT">{0} is currently in the process of installing. In order to uninstall it Desura has to stop the installing process. Continue with uninstall?</str>
 		<str name="#MF_UNINSTALLTITLE">Desura {0} Απεγκατάσταση</str>
 		<str name="#MF_LUANCH_ERROR_VERIFY_TOOLTIP">Επαλήθευση εγκατεστημένων αρχείων</str>
-		
+
 		<!-- Buttons -->
 		<str name="#RESTART_NOW">Επανεκκίνηση τώρα</str>
 		<str name="#RESTART_LATER">Επανεκκίνηση αργότερα</str>
@@ -358,7 +358,7 @@
 		<str name="#PREORDER">Προπαραγγελία</str>
 		<str name="#HIDE">Απόκρυψη</str>
 		<str name="#FIND">Βρες</str>
-		
+
 		<!-- Misc -->
 		<str name="#NAME">Όνομα</str>
 		<str name="#SIZE">Μέγεθος</str>
@@ -379,7 +379,7 @@
 		<str name="#INSTALL">Εγκατάσταση</str>
 		<str name="#UNINSTALLING">Απεγκατάσταση ...</str>
 		<str name="#REMOVE">Αφαίρεση</str>
-		
+
 		<!-- Main Menu -->
 		<str name="#MENU_OFFLINE">Ανενεργός</str>
 		<str name="#MENU_OFFLINE_TOOLTIP">Το Desura μπαίνει σε μη ενεργή συνεδρία (χωρίς πρόσβαση στο δίκτυο)</str>
@@ -401,12 +401,12 @@
 		<str name="#MENU_INSTALLPATH">Προσθήκη εγκατεστημένων παιχνιδιών</str>
 		<str name="#MENU_INSTALLPATH_TOOLTIP">Χειροκίνητες διαδρομές για εγκατάσταση παιχνιδιών</str>
 		<str name="#MENU_ACTIVATEGAME">Ενεργοποίηση Κωδικού CD Παιχνιδιού ή Δώρου</str>
-		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Πληκτρολογήστε τον Κωδικό του CD ή του Δώρου για να ενεργοποιήσετε το παιχνίδι στον λογαριασμό σας</str>	
+		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Πληκτρολογήστε τον Κωδικό του CD ή του Δώρου για να ενεργοποιήσετε το παιχνίδι στον λογαριασμό σας</str>
 		<str name="#MENU_VERSION">Έκδοση</str>
 		<str name="#MENU_EXIT">Έξοδος</str>
 
 		<str name="#MENU_DOWNLOADREPORT">Έλεγχος Bandwidth</str>
-		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Εμφανίζει την οθόνη bandwidth</str>	
+		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Εμφανίζει την οθόνη bandwidth</str>
 
 		<str name="#MENU_CART">Καλάθι αγορών</str>
 
@@ -443,8 +443,8 @@
 		<str name="#PLAY_PREORDER">Προπαραγγελία</str>
 		<str name="#PLAY_DELAY_LOADING">Ανάκτηση λίστας...</str>
 		<str name="#PLAY_GAMES">Παιχνίδια</str>
-		<str name="#PLAY_DEVELOPMENT">Ανάπτυξη</str>	
-	
+		<str name="#PLAY_DEVELOPMENT">Ανάπτυξη</str>
+
 		<!-- Pop up menu -->
 		<str name="#PM_VIEWPROFILE">Προβολή προφίλ</str>
 		<str name="#PM_MODLIST">Προβολή λίστας MOd</str>
@@ -493,8 +493,8 @@
 		<str name="#SET_CV_CONSOLE">Προβολή τερματικού στα σφάλματα</str>
 		<str name="#SET_CV_CONSOLE_TOOLTIP">Άνοιγμα τερματικού όταν παρουσιάζονται σφάλματα</str>
 		<str name="#SET_CV_DISABLE_WGE">Απενεργοποίηση Windows Game Explorer</str>
-		<str name="#SET_CV_DISABLE_WGE_TOOLTIP">Δεν επιτρέπει στο Desura να τοποθετεί παιχνίδια στον Windows Game Explorer</str>		
-		
+		<str name="#SET_CV_DISABLE_WGE_TOOLTIP">Δεν επιτρέπει στο Desura να τοποθετεί παιχνίδια στον Windows Game Explorer</str>
+
 		<str name="#SET_CV_WORKER">Θέματα υπό εργασία</str>
 		<str name="#SET_CV_WORKER_TOOLTIP">Αυτός είναι ο αριθμός των εργασιών που χρησιμοποιούνται για να εκτελούνται οι διαδικασίες (όπως η δημιουργία MCF).</str>
 		<str name="#SET_CV_DESTMAIN">Αποφόρτιση mainform στο κλείσιμο</str>
@@ -511,20 +511,20 @@
 		<str name="#SET_WARNING">Μερικές ρυθμίσεις που άλλαξαν θα πρέπει να γίνει επανεκκίνηση για να εφαρμοστούν.</str>
 
 		<str name="#SET_CV_SILENTLAUNCH">Αυτόματη σύνδεση ως αόρατος</str>
-		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Νη μην εμφανίζεται το βασικό παράθυρο στην Αυτόματη σύνδεση</str>	
+		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Νη μην εμφανίζεται το βασικό παράθυρο στην Αυτόματη σύνδεση</str>
 		<str name="#SET_CACHE_BROWSE">Παρακαλώ επιλέξτε ένα νέο φάκελο για το Desura ωστε να το χρησιμοποιεί για την μνήμη cache</str>
-		
+
 		<str name="#SET_CV_CHAT_ENABLED">Ενεργοποίηση συνομιλίας του Desura</str>
-		<str name="#SET_CV_CHAT_ENABLED_TOOLTIP">Ενεργοποιεί την συνομιλία στο Desura</str>	
+		<str name="#SET_CV_CHAT_ENABLED_TOOLTIP">Ενεργοποιεί την συνομιλία στο Desura</str>
 		<str name="#SET_CV_CHAT_BREAKOUT">Ξεχωριστό παράθυρο συνομιλίας</str>
-		<str name="#SET_CV_CHAT_BREAKOUT_TOOLTIP">Να ξεκινάει πάντα η συνομιλία σε ξεχωριστό παράθυρο</str>	
+		<str name="#SET_CV_CHAT_BREAKOUT_TOOLTIP">Να ξεκινάει πάντα η συνομιλία σε ξεχωριστό παράθυρο</str>
 		<str name="#SET_CV_CHAT_SHOWCONTACTS">Εμφάνιση επαφών συνομιλίας κατά την εκκίνηση</str>
-		<str name="#SET_CV_CHAT_SHOWCONTACTS_TOOLTIP">Όταν το Desura συνδέεται, εμφάνιση του παράθυρου επαφών συνομιλίας (Σημείωση: Μόνο όταν η συνομιλία είναι σε ξεχωριστό παράθυρο)</str>	
+		<str name="#SET_CV_CHAT_SHOWCONTACTS_TOOLTIP">Όταν το Desura συνδέεται, εμφάνιση του παράθυρου επαφών συνομιλίας (Σημείωση: Μόνο όταν η συνομιλία είναι σε ξεχωριστό παράθυρο)</str>
 		<str name="#SET_CV_CHAT_SHOWOFFLINE">Προβολή ανενεργών επαφών</str>
-		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">Προβολή ανενεργών επαφών εξ' αρχής</str>	
+		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">Προβολή ανενεργών επαφών εξ' αρχής</str>
 		<str name="#SET_CV_CHAT_REMEMBERSTATUS">Αποθήκευση προηγούμενης κατάστασης συνομιλίας</str>
-		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Η καταστασή σας στην συνομιλία παραμένει ίδια με αύτη που είχατε την τελευταία φορά που ήσασταν συνδεδεμένος</str>			
-		
+		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Η καταστασή σας στην συνομιλία παραμένει ίδια με αύτη που είχατε την τελευταία φορά που ήσασταν συνδεδεμένος</str>
+
 		<str name="#SET_CIP_UPDATE">Ανανέωση λίστας παιχνιδιών</str>
 		<str name="#SET_CIP_BUT_BROWSE">Περιήγηση</str>
 		<str name="#SET_CIP_BUT_REFRESH">Ανανέωση παιχνιδιών</str>
@@ -546,11 +546,11 @@
 		<str name="#SET_CIP_LINK">Μπορείτε να προσθέσετε συντομεύσεις για άλλα παιχνίδια και εφαρμογές στο σύστημα σας χρησιμοποιώντας την παρακάτω φόρμα. Μπορείτε να προσθέσετε launch arguments από τις ιδιότητες, πατώντας δεξί κλικ, αλλά και να τις αφαιρέσετε επιλέγοντας απεγκατάσταση από το ίδιο μενού. Προειδοποίηση: Αυτό το χαρακτηριστικό βρίσκεται σε δοκιμαστική έκδοση (Beta). Θα υπάρχουν προβλήματα!</str>
 		<str name="#SET_CIP_LINK_NAME">Όνομα συνδέσμου:</str>
 		<str name="#SET_CIP_LINK_EXE">Exe σύνδεσμου:</str>
-		
+
 		<str name="#CIP_BROWSE">Παρακαλώ επιλέγξτε τον ριζικό φάκελο για το παιχνίδι:</str>
 		<str name="#CIP_LINK_BROWSE">Παρακαλώ επιλέγξτε το binary του συνδέσμου:</str>
-		
-		
+
+
 		<!-- Browser controls -->
 		<str name="#BC_HOME">Άνοιγμα κεντρικής σελίδας</str>
 		<str name="#BC_STOP">Ακύρωση φόρτωσης τρέχουσας σελίδας</str>
@@ -613,7 +613,7 @@
 		<str name="#IS_PAUSED">Παυση</str>
 		<str name="#IS_PREORDER_STATUS">Προαπαραγγελία</str>
 		<str name="#IS_PRELOADED_STATUS">Προεγκατάσταση</str>
-		
+
 		<str name="#IS_PREORDER">Διαθέσιμο σε </str>
 		<str name="#IS_PREORDER_DAYS">μέρες</str>
 		<str name="#IS_PREORDER_HOURS">ώρες</str>
@@ -624,10 +624,10 @@
 
 		<str name="#IS_LAUNCHING">Έναρξη</str>
 		<str name="#IS_DOWNLOADINGTOOL">Εργαλεία κατεβάσματος</str>
-		<str name="#IS_INSTALLINGTOOL">Εργαλεία εγκατάστασης</str>		
+		<str name="#IS_INSTALLINGTOOL">Εργαλεία εγκατάστασης</str>
 		<str name="#IS_VALIDATE">Επαλήθευση</str>
 		<str name="#IS_WAIT">Αναμονή ({0} από {1})</str>
-		
+
 		<str name="#AB_ABOUTINFO">Το Desura είναι μια πλατφόρμα ψηφιακής διανομής παιχνιδιών που βασίζεται στην κοινότητα, φέρνοντας τα καλύτερα παιχνίδια, mods και νέο περιεχόμενο από τους δημιουργούς κατευθείαν σε εσάς, έτοιμα να αγοραστούν και να παιχτούν.</str>
 		<str name="#AB_CREDITS">Credits</str>
 		<str name="#AB_ABOUT">Σχετικά με το Desura</str>
@@ -654,14 +654,14 @@
 		<str name="#TB_WINDOWS">Παράθυρα</str>
 		<str name="#TB_NOWINDOWS">Κανένα ανοιχτό παράθυρο</str>
 		<str name="#TB_NOITEMS">Κενό</str>
-		<str name="#TB_EXIT">Έξοδος</str>	
-		<str name="#TB_STATUS">Κατάσταση</str>	
+		<str name="#TB_EXIT">Έξοδος</str>
+		<str name="#TB_STATUS">Κατάσταση</str>
 
 		<str name="#TB_CART">Περιεχόμενα καλαθιού</str>
 		<str name="#TB_MESSAGE">Μηνύματα</str>
 		<str name="#TB_UPDATES">Ενημερώσεις</str>
-		<str name="#TB_GAMES">Παιχνίδια</str>	
-		<str name="#TB_MODS">Mods</str>	
+		<str name="#TB_GAMES">Παιχνίδια</str>
+		<str name="#TB_MODS">Mods</str>
 
 		<str name="#TB_TITLE">Διαθέσιμες ενημερώσεις για τα παιχνίδια του Desura</str>
 		<str name="#TB_GIFTTITLE">Ένα νέο δώρο είναι διαθέσιμο!</str>
@@ -671,7 +671,7 @@
 		<str name="#DS_ERROR">Η υπηρεσία Desura αποσυνδέθηκε απρόσμενα.&#xA;&#xA;Προσπάθεια επανασύνδεσης...</str>
 		<str name="#DS_ERRORFAILED">Η υπηρεσία Desura αποσυνδέθηκε απρόσμενα.&#xA;&#xA;Η επανεκκίνηση απέτυχε:</str>
 
-		<str name="#DR_TITLE">Ελεγκτής Bandwidth</str>	
+		<str name="#DR_TITLE">Ελεγκτής Bandwidth</str>
 
 		<str name="#EULA_LABEL">Πριν παίξετε θα πρέπει να συμφωνήσετε στους όρους και την άδεια χρήσης.</str>
 		<str name="#EULA_TITLE">Άδεια χρήσης τελικού χρήστη: {0}</str>
@@ -696,11 +696,11 @@
 		<str name="#CHROME_VIEWLINK">Προβολή συνδέσμου στον φυλλομετρητή (browser)</str>
 		<str name="#CHROME_VIEWIMAGE">Προβολή εικόνας στον φυλλομετρητή (browser)</str>
 		<str name="#CHROME_INSPECTELEMENT">Επιθεώρηση στοιχείου</str>
-		<str name="#CHROME_NORMALMENU">Κανονικό μενού</str>	
+		<str name="#CHROME_NORMALMENU">Κανονικό μενού</str>
 
 		<!-- cd key form -->
 		<str name="#CDK_ERRTITLE">Αποτυχία εύρεσης κωδικού CD</str>
-		<str name="#CDK_ERROR">Το Desura απέτυχε να βρει τον κωδικό του CD</str>	
+		<str name="#CDK_ERROR">Το Desura απέτυχε να βρει τον κωδικό του CD</str>
 
 		<str name="#CDK_PROGRESSINFO">Εύρεση κωδικού CD ...</str>
 		<str name="#CDK_COPYALL">Αντιγραφή όλων</str>
@@ -711,14 +711,14 @@
 		<str name="#CDK_COUNTDOWN">Έναρξη σε {0}</str>
 		<str name="#CDK_LAUNCHNOW">Έναρξη τώρα</str>
 		<str name="#CDK_ACTIVATE">Ενεργοποίηση</str>
-		
+
 		<str name="#CDK_REGKEY">Ο κωδικός CD εγκαταστάθηκε αυτόματα</str>
 		<str name="#CDK_REGKEY_TOOLTIP">Ο κωδικός CD εγκαταστάθηκε αυτόματα οπότε δεν χρειάζεται να τον πληκτρολογήσετε.</str>
-		
+
 		<!-- exe select form -->
 		<str name="#ES_TITLE">Επιλογή έκδοσης: {0}</str>
-		<str name="#ES_LABEL">Παρακαλώ επιλέξτε την έκδοση του {0} που θέλετε να παίξετε:</str>	
-		
+		<str name="#ES_LABEL">Παρακαλώ επιλέξτε την έκδοση του {0} που θέλετε να παίξετε:</str>
+
 		<!-- change cache dir -->
 		<str name="#MCFCD_ID">Το Desura εγκαθιστά παιχνίδια και προγράμματα στον φάκελο που το εγκαταστήσατε, δεν μπορεί να αλλάξει:</str>
 		<str name="#MCFCD_CD">Όλα τα αρχεία τηε μνήμης cache αποθηκεύτηκαν στον παρακάτω φάκελο, μπορείτε να πληκτρολογήσετε τον φάκελο που θέλετε να παραμείνουν τα αρχεία:</str>
@@ -728,39 +728,39 @@
 		<str name="#MCFCD_INVALIDFOLDER">Σφάλμα: Ο φάκελος δεν υφίσταται</str>
 		<str name="#MCFCD_CANTWRITE">Σφάλμα: Δεν γίνεται εγγραφή στο φάκελο</str>
 		<str name="#MCFCD_GETTINGSIZE">Φόρτωση...</str>
-	
+
 		<str name="#CC_EDITPROFILE">Επεξεργασία του προφίλ του χρήστη</str>
 		<str name="#CC_ADDFRIEND">Προσθήκη φίλου στον λογαριασμό συνομιλίας</str>
 		<str name="#CC_SHOWCONTACTS">Προβολή ανενεργών επαφών</str>
 		<str name="#CC_HIDECONTACTS">Απόκρυψη ανενεργών επαφών</str>
 		<str name="#CC_BREAKOUT">Άνοιγμα συνομιλίας σε νέο παράθυρο</str>
-		
+
 		<str name="#CHAT_ADDFRIEND_TITLE">Πρόσθηκη φίλου στον λογαριασμό σας</str>
 		<str name="#CHAT_ADDFRIEND_SEARCH">Προσθήκη με αναζήτηση:</str>
 		<str name="#CHAT_ADDFRIEND_BYUSER">Προσθήκη με όνομα:</str>
-		<str name="#CHAT_ADDFRIEND_NOTE">Σημείωση: Η αναζήτηση θα εμφανίσει μόνο τα πρώτα 25 αποτελέσματα. Για πιο ενδελεχή αναζήτηση παρακαλώ μεταβείτε στο {0}σελίδα μελών{1}.</str><!-- {0} is start of link {1} is end of link</a>-->		
-	
+		<str name="#CHAT_ADDFRIEND_NOTE">Σημείωση: Η αναζήτηση θα εμφανίσει μόνο τα πρώτα 25 αποτελέσματα. Για πιο ενδελεχή αναζήτηση παρακαλώ μεταβείτε στο {0}σελίδα μελών{1}.</str><!-- {0} is start of link {1} is end of link</a>-->
+
 		<str name="#CHAT_MENU_CHATWITH">Συνομιλία με</str>
 		<str name="#CHAT_MENU_UNBLOCK">Άρση φραγής φίλου</str>
 		<str name="#CHAT_MENU_BLOCK">Φραγή φίλου</str>
 		<str name="#CHAT_MENU_ACCEPT">Αποδοχή αιτήματος φιλίας</str>
 		<str name="#CHAT_MENU_REJECT">Άρνηση αιτήματος φιλίας</str>
 		<str name="#CHAT_MENU_RESEND">Αποστολή ξανά αιτήματος φιλίας</str>
-		<str name="#CHAT_MENU_REMOVE">Αφαίρεση φίλου</str>	
-		
+		<str name="#CHAT_MENU_REMOVE">Αφαίρεση φίλου</str>
+
 		<str name="#CHAT_SEARCH_ADD">Πρόσθεσε</str>
 		<str name="#CHAT_SEARCH_ADDED">Προστέθηκε</str>
 		<str name="#CHAT_SEARCH_PENDING">Αναμονή</str>
 
 		<str name="#CHAT_DISCONNECT">Η συνομιλία Desura αποσυνδέθηκε.</str>
-		<str name="#CHAT_DISCONNECT_MSG">Προσπάθεια επανασύνδεσης σε {0} {1}(Προσπάθεια τωρα){2}.</str>	
+		<str name="#CHAT_DISCONNECT_MSG">Προσπάθεια επανασύνδεσης σε {0} {1}(Προσπάθεια τωρα){2}.</str>
 
 		<str name="#GD_TITLE">{0}: Χρειάζεται ο δίσκος του παιχνιδιού</str>
-		<str name="#GD_INFO">{0} χρειάζεται {1} o δίσκος να είναι στον υπολογιστή για να μπορείτε να παίξετε. &#xA;&#xA;Παρακαλώ βεβαιωθείτε ότι ο δίσκος είναι στον υπολογιστή πριν συνεχίσετε.</str>			
+		<str name="#GD_INFO">{0} χρειάζεται {1} o δίσκος να είναι στον υπολογιστή για να μπορείτε να παίξετε. &#xA;&#xA;Παρακαλώ βεβαιωθείτε ότι ο δίσκος είναι στον υπολογιστή πριν συνεχίσετε.</str>
 		<str name="#GD_REMINDER">Να μην ξαναγίνει υπενθύμιση</str>
 		<str name="#SB_DEFAULT">Αναζήτηση...</str>
 		<str name="#SB_FULL_SEARCH">Εκτέλεση πλήρους αναζήτησης</str>
-		
+
 		<str name="#BH_CRASH">Ο φυλλομετρητής (browser) δεν αποκρίνεται. (πατήστε για επαναφόρτωση)</str>
 		<str name="#BH_NO_LOAD">Αποτυχημένη προσπάθεια φόρτωσης της λίστας του φυλλομετρητή (browser). Παρακαλώ ελέγξτε το τερματικό για το μήνυμα σφάλματος.</str>
 	</strings>
