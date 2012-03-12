@@ -39,6 +39,7 @@ find_package(v8 ${REQUIRED_ON_UNIX})
 
 if(WIN32)
   find_package(PythonInterp REQUIRED)
+  find_package(PythonLibs REQUIRED)
 endif()
 
 ###############################################################################
