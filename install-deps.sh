@@ -24,7 +24,7 @@ elif [ -f /etc/arch-release ]; then # Arch
 		pacman -S --asdeps ${DEPS}
 	fi
 elif [ -f /usr/bin/emerge ]; then # Gentoo
-	emerge -au dev-libs/boost net-dns/c-ares x11-libs/gtk+:2 dev-lang/v8 dev-util/cmake dev-vcs/subversion dev-libs/openssl
+    echo "Please copy the ebuild under gentoo/portage into a local overlay and emerge via emerge --onlydeps desurium"
 else # else
 	echo "Unsupported operating system."
 fi
