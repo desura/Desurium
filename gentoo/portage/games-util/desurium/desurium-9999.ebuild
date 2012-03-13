@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -9,7 +9,7 @@ EGIT_REPO_URI="https://github.com/karolherbst/Desurium"
 inherit eutils cmake-utils git-2
 
 DESCRIPTION="Free software version of Desura game client"
-HOMEPAGE="https://github.com/karolherbst/Desurium"
+HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="amd64 x86"
