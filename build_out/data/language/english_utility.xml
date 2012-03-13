@@ -9,19 +9,19 @@
 		<str name="#CRASH_UPLOADINFO">Uploading Crash Dump(s) ...</str>
 		<str name="#CRASH_GENERATEINFO">Generating Crash Dump ...</str>
 		<str name="#CRASH_ERROR">Failed to process dump(s).</str>
-		
+
 		<str name="#CRASH_BUTGENERATE">Generate Crash Dump</str>
 		<str name="#CRASH_BUTUPLOAD">Upload Crash Dumps</str>
-		
+
 		<str name="#CRASH_LABGENERATE">When Desura is not responding or doing something unexpected this will report the current state to the developers to aid in fixing the issue.</str>
 		<str name="#CRASH_LABUPLOAD">Report existing crash dumps. I.e. Crash dumps that happen before Desura starts.</str>
-		
-		
+
+
 		<str name="#CDF_TITLE">Moving Desura Data Folder</str>
 		<str name="#CDF_STARTUP">Analizing Data Folder...</str>
 		<str name="#CDF_MOVEFILE">Moving Files...</str>
 		<str name="#CDF_DBCHANGES">Updating Database...</str>
-		
+
 		<str name="#CDF_GERRTITLE">Desura Error</str>
 		<str name="#CDF_GERROR">Failed to move Desura Data Folder.</str>
 
@@ -29,15 +29,15 @@
 		<str name="#DUN_TOTAL">Total Progress:</str>
 		<str name="#DUN_CURRENT">Current Progress:</str>
 		<str name="#DUN_COMPLETED">Remember: Paid items and gifts are never deleted from your account, you can access them any time by reinstalling the Desura client.</str>
-		
+
 		<str name="#DUN_UNINSTALL_INFO">Uninstalling Desura will remove all installed games, mods and content.To keep your installed content and repair your Desura install, click the repair button below.</str>
 		<str name="#DUN_UNINSTALL_OPT">Uninstall Options:</str>
 		<str name="#DUN_UNINSTALL_LOC">Desura will be uninstalled from the following folder:</str>
-		
+
 		<str name="#DUN_REMOVE_DESURA">Remove Desura</str>
 		<str name="#DUN_REMOVE_DESURA_TT">Removes all installed Desura files.</str>
 		<str name="#DUN_REMOVE_SETTINGS">Remove Settings</str>
-		<str name="#DUN_REMOVE_SETTINGS_TT">Removes setting files used by Desura.</str>		
+		<str name="#DUN_REMOVE_SETTINGS_TT">Removes setting files used by Desura.</str>
 		<str name="#DUN_REMOVE_CACHE">Remove Download Cache</str>
 		<str name="#DUN_REMOVE_CACHE_TT">Removes the download cache used by Desura.</str>
 		<str name="#DUN_REMOVE_SIMPLE">Remove Simple Game and Mods</str>
@@ -46,21 +46,21 @@
 		<str name="#DUN_REMOVE_COMPLEX_TT">Removes all mods that install over the original game files.</str>
 		<str name="#DUN_REMOVE_ACCOUNT">Remove Free Items from Account</str>
 		<str name="#DUN_REMOVE_ACCOUNT_TT">Removes all free items (such as links and demos) that is installed on this computer from your account.</str>
-		
+
 		<str name="#DUN_UNINSTALL_HEADER">Uninstall Desura</str>
-		<str name="#DUN_UNINSTALL_SUBHEADER">Remove Desura from your computer</str>	
+		<str name="#DUN_UNINSTALL_SUBHEADER">Remove Desura from your computer</str>
 		<str name="#DUN_REPAIR">Repair</str>
 		<str name="#DUN_UNINSTALL">Uninstall</str>
 
 		<str name="#DUN_THREAD_UNINSTALL">Removing Games and Mods...</str>
-		<str name="#DUN_THREAD_UNINSTALL_SUB">Uninstalling: {0}</str><!-- {0} item name -->	
+		<str name="#DUN_THREAD_UNINSTALL_SUB">Uninstalling: {0}</str><!-- {0} item name -->
 		<str name="#DUN_THREAD_FINAL">Final Clean Up...</str>
 		<str name="#DUN_THREAD_UNINSTALL">Removing Uninstall Entries...</str>
 		<str name="#DUN_THREAD_GAMEEXPLORER">Removing Game Explorer Entries...</str>
 		<str name="#DUN_THREAD_CACHE">Removing Desura Cache...</str>
 		<str name="#DUN_THREAD_SETTINGS">Removing Desura Settings...</str>
-		<str name="#DUN_THREAD_ACCOUNT">Cleaning up Account Items...</str>	
-		<str name="#DUN_THREAD_ACCOUNT_SUB">Removing {0} From Account</str><!-- {0} item name -->	
-		
+		<str name="#DUN_THREAD_ACCOUNT">Cleaning up Account Items...</str>
+		<str name="#DUN_THREAD_ACCOUNT_SUB">Removing {0} From Account</str><!-- {0} item name -->
+
 	</strings>
 </lang>

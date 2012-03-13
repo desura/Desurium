@@ -9,9 +9,9 @@
 		<str name="#IF_WINDOWS_LAUNCH_WARNING">WARNING: You are attempting to launch a Windows program. This relies on your system recognising the format and launching the appropriate tools (eg: WINE). If you do not, the application/game may not launch correctly or at all.&#xA;&#xA;This warning can be disabled in Settings.</str>
 		<str name="#IF_SHOWFILES">Show Files</str>
 		<str name="#MF_ERROR_NO32LIBS">The item you tried to launch is 32 bit but it appears that you do not have 32 bit libs Installed.&#xA;&#xA;Please see http://www.desura.com/groups/desura/linux for more information.</str>
-	
+
 		<str name="#PLAY_EMPTY">You have no Linux {1}games{0} in your account.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
-	
+
 	<!-- havnt been translated
 		<str name="#SET_CV_LIN_DIS_WIN_WRN">Disable Windows executable warning.</str>
 		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Doesn't warn you every time you launch a Windows executable.</str>
@@ -21,19 +21,19 @@
 	</linux>
 	<windows>
 		<str name="#IF_SHOWFILES">Näytä tiedostot selaimessa</str>
-		
-	<!-- havnt been translated		
+
+	<!-- havnt been translated
         <str name="#PLAY_EMPTY">Vi ne havas iu ajn {1}ludoj{0} aŭ {2}ludŝanĝoj{0} en via konto. Vi devas rulu la {3}instalita asistanto{0} kio serĉos via komputilo por ludoj kio Desuro subtenata.</str>
         <!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
-		
-	<!-- havnt been translated	
+
+	<!-- havnt been translated
 		<str name="#SET_CV_DISABLE_FS_PERMS">Make all install folders writable by normal users</str>
 		<str name="#SET_CV_DISABLE_FS_PERMS_TOOLTIP">Due to game developers not being able to follow windows standards many games write to the install folder and crash if they cant. Warning: Disabling this might make some games not work</str>
-		
+
 		<str name="#IF_LOWSPACE_SYS">The system harddisk ({0}:\\) is low on free space and Desura will start having performance issues. &lt;a href=&quot;desura://settings/cache&quot;&gt;You can move your Desura cache folder to a new disk to free up space.&lt;/a&gt;</str>
 		<str name="#IF_LOWSPACE_CACHE">The harddisk that Desura cache saves to ({0}:\\) is low on free space. It is recommended that you free up space for Desura to perfom correctly.</str>
 	-->
-	</windows>		
+	</windows>
 	<strings>
 		<str name="#DESURA_UPDATE">Päivitys Desuraan on julkaistu ja on se valmiina asennettavaksi.</str>
 
@@ -55,7 +55,7 @@
 		<str name="#LF_LOSTPASS">Salasana hukassa</str>
 		<str name="#LF_NEWACCOUNT">Uusi tili</str>
 		<str name="#LF_OFFLINE">Offline-tila</str>
-			
+
 		<str name="#LF_ERRTITLE">Desura sisäänkirjautumisvirhe</str>
 		<str name="#LF_ERROR">Epäonnistunut sisäänkirjautuminen</str>
 		<str name="#LF_VALDERROR">Sisäänkirjautumisen aikana tapahtui virhe:</str>
@@ -63,7 +63,7 @@
 		<str name="#LF_ERRPASSWORD">Salasana-kenttä on tyhjä</str>
 		<str name="#LF_ERRPLEASE">Korjaa nämä osat ja kokeile kirjautua uudelleen.</str>
 
-		
+
 		<!-- Main Page -->
 		<str name="#MP_PLAY">Pelaa</str>
 		<str name="#MP_GAMES">Pelit</str>
@@ -81,8 +81,8 @@
 		<str name="#NF_LOADING">Ladataan ...</str>
 		<str name="#NF_LOADING_UNKNOWN">Ladataan tuntematonta sivua ...</str>
 		<str name="#GF_TITLE">Desura Lahjat:</str>
-		
-		
+
+
 		<!-- Properties -->
 		<str name="#P_VERIFY">Todenna tiedostot</str>
 		<str name="#P_UNINSTALL">Poista</str>
@@ -92,7 +92,7 @@
 		<str name="#P_USERLO">Käyttäjän käynnistysasetukset:</str>
 		<str name="#P_VERSION">Asennettu versio</str>
 		<str name="#P_RETAIL">Kaupallinen</str>
-		
+
 		<!-- Uninstall Form -->
 		<str name="#UNF_REMOVEFILES">Poista Desura tiedostot</str>
 		<str name="#UNF_REMOVEFILES_TOOLTIP">Poista MCF ja siihen liittyvät tiedostot jota Desura käyttää</str>
@@ -104,7 +104,7 @@
 		<str name="#UNF_CONFIRM">Oletko varma että haluat poistaa {0} tietokoneeltasi? Kun prosessi on alkanut sitä ei voi peruuttaa.</str>
 
 		<!-- ALL ones above here are checked to be used in desura -->
-		
+
 		<!-- Upload form -->
 		<str name="#UDF_PROMPT">Valitse MCF tiedosto jonka haluat lähettää.</str>
 		<str name="#UDF_ERROR_VALIDATION">Tiedoston oikeellisuus tarkistus epäonnistui lähetettävässä tiedostossa</str>
@@ -132,40 +132,40 @@
 		<str name="#CF_NOTSTARTED">Alustaa ...</str>
 		<str name="#CF_ERROR">Tapahtui virhe MCF tiedoston luomisprosessissa ja se on pysäytetty.</str>
 		<str name="#CF_ERRTITLE">MCF luomisvirhe</str>
-		
+
 		<!-- note the {0} will be replaced with the item name! -->
 		<str name="#CF_COMPLETE">MCF luonti kohteesta {0} on valmistunut.</str>
-		
-		
-		
+
+
+
 		<!-- Item Form -->
 		<str name="#IF_TITLE">Valmistellaan:</str>
 		<str name="#IF_VERIFY">Todennetaan:</str>
 		<str name="#IF_DOWNLOAD">Ladataan:</str>
 		<str name="#IF_INSTALL">Asennetaan:</str>
-		<str name="#IF_UPDATE">Lähetetään:</str>	
+		<str name="#IF_UPDATE">Lähetetään:</str>
 		<str name="#IF_UNINSTALL">Poistetaan: </str>
 		<str name="#IF_UNINSTALL_BRANCH">Poistetaan vanhat tiedostot: </str>
 		<str name="#IF_UNINSTALL_PATCH">Poistetaan vanhat tiedostot: </str>
 		<str name="#IF_UNINSTALL_COMPLEX">Poistetaan kompleksia modia: </str>
 		<str name="#IF_INSTALL_CHECK">Asennustarkistus</str>
-		
+
 		<str name="#IF_UNINSTALL_LABEL">Poistetaan ...</str>
 		<str name="#IF_UNINSTALL_BRANCH_LABEL">Poistetaan vanhat tiedostot ... </str>
 		<str name="#IF_UNINSTALL_PATCH_LABEL">Poistetaan vanhat tiedostot ... </str>
-		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Poistetaan kompleksia modia ... </str>	
-		
+		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Poistetaan kompleksia modia ... </str>
+
 		<!-- Install check -->
-		
+
 		<str name="#IC_ERRTITLE">Asennuksen tarkistusvirhe</str>
 		<!-- <str name="#IC_LABEL">Checking Install for:</str> -->
 		<str name="#IC_ERROR">Tapahtui virhe asennuksen tarkistusprosessin aikana ja se on pysäytetty.</str>
 		<str name="#IC_FOUND">on löytynyt ja on valmiina jatkamaan.</str>
 		<str name="#IC_NOTFOUND">ei löytynyt tietokoneesta. Varmista että se on asennettu ja käynnistetty vähintään kerran, sen jälkeen kokeile uudestaan. Muutoin voit klikata alla olevaa 'mukautettu asennuspolku' painiketta ja kertoa minne se on asennettu.</str>
 		<str name="#IC_CHECK">Desura asennustarkastus</str>
-		<str name="#IC_CIP">Mukautettu asennus</str> <!-- custom install path -->	
-		
-		
+		<str name="#IC_CIP">Mukautettu asennus</str> <!-- custom install path -->
+
+
 		<!-- Install form -->
 		<str name="#IF_BRANCHTITLE">Pelaa {0}</str>
 		<str name="#IF_BRANCHINFO">{0} ei ole asennettu. Valitse julkaisu jota haluat pelata.</str>
@@ -208,14 +208,14 @@
 		<str name="#IF_VERIFYMCF">Todennetaan MCF ...</str>
 		<str name="#IF_VERIFYINSTALL">Todennetaan asennusta ...</str>
 		<str name="#IF_VERIFYDOWNLOADF">Ladataan puuttuvia tiedostoja ...</str>
-		<str name="#IF_VERIFYINSTALLF">Asennetaan puuttuvia tiedostoja ...</str>	
-		<str name="#IF_VERIFYBRANCH">Vaihdetaan haaraa ...</str>	
-		
+		<str name="#IF_VERIFYINSTALLF">Asennetaan puuttuvia tiedostoja ...</str>
+		<str name="#IF_VERIFYBRANCH">Vaihdetaan haaraa ...</str>
+
 
 		<str name="#IF_IIBADINFO">Tapahtui virhe hakiessa informaatiota tälle tuotteelle.</str>
 		<str name="#IF_INVALIDBRANCH">Ennalta määrätty haara tämän tuotteen asennukselle on epäkelpo</str>
-		
-		
+
+
 
 		<str name="#IF_FREESPACE_DL">Kovalevyllä ei ole tarpeeksi tilaa lataukselle.</str>
 		<str name="#IF_FREESPACE_IN">Kovalevyllä ei ole tarpeeksi tilaa asennukselle.</str>
@@ -223,22 +223,22 @@
 		<str name="#IF_FILEERR">Tässä sijainnissa on jo tiedostoja.</str>
 		<str name="#IF_NOTINSTALLED">Tätä tuotetta ei ole asennettu.</str>
 		<str name="#IF_IHASHFAIL">Yksi tai useampi tiedosto ei läpäissyt md5 suojaustarkistusta asennusprosessin aikana. Haluatko todentaa asennuksen varmistaaksesi täydellisyyden?</str>
-		
+
 		<str name="#IF_CONFLICT">Desura on havainnut että {0} on jo asennettu. Koska {0} vaatii monimutkaisen asennuksen, suositellaan että poistat {0} manuaalisesti ennen Desuralla asentamista välttääksesi sisällön välisiä ristiriitoja.</str>
 		<str name="#IF_CONFLICTTITLE">Monimutkaisen asennuksen ristiriita</str>
-		
+
 		<str name="#IF_COMPLETEPREORDER">Esilataus valmis</str>
 		<str name="#IF_PRELOADLAUNCH">{0} on esiladattu ja sitä ei voida nyt käynnistää. Odota julkaisupäivää.</str>
 		<str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
-		
-		
+
+
 		<!-- Install Wizard -->
 		<str name="#MW_PROMPT">Tämä velho etsii asennettuja pelejä ja modeja tietokoneeltasi joita Desura tukee. Huom: Tämä päivittää kaikki löydetyt tuotteet Desuran viimeisimpään versioon. </str>
 		<str name="#MW_ERROR">Tapahtui virhe asennusvelhon aikana ja se on pysäytetty.</str>
 		<str name="#MW_ERRTITLE">Asennusvelho virhe</str>
 		<str name="#MW_ADDACCOUNT">Lisää löydetyt tuotteet tiliin</str>
 		<str name="#MW_FINISH">Asennusvelho on nyt valmis ja kaikki löydetyt modit ja pelit on lisätty tilillesi.</str>
-		
+
 		<!-- Main Form -->
 		<str name="#MF_OFFLINE">Oletko varma että haluat katkaista yhteyden?</str>
 		<str name="#MF_OFFLINE_TITLE">Offline-tila</str>
@@ -259,7 +259,7 @@
 		<str name="#MF_OLNOTINSTALLED">Desura on offline-tilassa ja tämä tuote ei ole asennettuna, täten sitä ei voi laukaista.</str>
 		<str name="#MF_UNINSTALLPROMPT">{0} on tällähetkellä asennusprosessissa. Poistaaksesi sen, Desuran täytyy pysäyttää se. Jatketaanko poistamista?</str>
 		<str name="#MF_UNINSTALLTITLE">Desura {0} poista</str>
-		
+
 		<!-- Buttons -->
 		<str name="#RESTART_NOW">Käynnistä uudelleen nyt</str>
 		<str name="#RESTART_LATER">Käynnistä uudelleen myöhemmin</str>
@@ -292,10 +292,10 @@
 		<str name="#PLAY">Pelaa</str>
 		<str name="#PURCHASE">Lisää ostoskoriin</str>
 		<str name="#TBA">TBA</str> <!-- to be advertised -->
-		<str name="#TRYAGAIN">Yritä uudelleen</str> <!-- to be advertised -->	
+		<str name="#TRYAGAIN">Yritä uudelleen</str> <!-- to be advertised -->
 		<str name="#LINK">Linkki</str>
 		<str name="#PREORDER">Ennakkotilaa</str>
-			
+
 		<!-- Misc -->
 		<str name="#NAME">Nimi</str>
 		<str name="#SIZE">Koko</str>
@@ -339,12 +339,12 @@
 		<str name="#MENU_INSTALLPATH">Mukautettu asennuspolku</str>
 		<str name="#MENU_INSTALLPATH_TOOLTIP">Määritä mukautettu asennuspolku peleille</str>
 		<str name="#MENU_ACTIVATEGAME">Aktivoi Peli</str>
-		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Syötä avain aktivoidaksesi pelin tilillesi</str>	
+		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Syötä avain aktivoidaksesi pelin tilillesi</str>
 		<str name="#MENU_VERSION">Versio</str>
 		<str name="#MENU_EXIT">Poistu</str>
 
 		<str name="#MENU_DOWNLOADREPORT">Kaistankäytön valvonta</str>
-		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Näyttää kaistankäytön valvonnan</str>	
+		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Näyttää kaistankäytön valvonnan</str>
 
 		<str name="#MENU_CART">Ostoskori</str>
 		<str name="#MENU_CART_TOOLTIP">Selaa ostoskorin sisältöä</str>
@@ -352,7 +352,7 @@
 		<str name="#MENU_PURCHASE_TOOLTIP">Selaa tuotteita joita olet ostanut</str>
 		<str name="#MENU_GIFTS">Lahja historia</str>
 		<str name="#MENU_GIFTS_TOOLTIP">Selaa tuotteita jotka olet saanut lahjaksi</str>
-		
+
 		<!-- Headers -->
 		<str name="#HEAD_NAME">Nimi</str>
 		<str name="#HEAD_STATUS">Tila</str>
@@ -378,7 +378,7 @@
 		<str name="#PM_DELMCF">Poista MCF</str>
 		<str name="#PM_SHOWMCF">Näytä MCF</str>
 		<str name="#PM_REVERTCOMPLEX">Palauta pelitiedostot</str>
-		
+
 		<!-- Settings -->
 		<str name="#SET_TITLE">Desura Asetukset</str>
 		<str name="#SET_BETA_LABEL">Osallistu Desuran julkiseen betaan</str>
@@ -416,11 +416,11 @@
 		<str name="#SET_LAB_THEME">Teema</str>
 		<str name="#SET_LAB_BETA">Beta osallistuminen</str>
 		<str name="#SET_WARNING">Joidenkin muuttuneiden asetuksien käyttöönotto vaatii uudelleenkäynnistämisen.</str>
-		
+
 		<str name="#SET_CV_SILENTLAUNCH">Hiljainen automaattinen kirjautuminen</str>
-		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Älä näytä pääikkunaa automaattisessa kirjautumisessa</str>	
-		
-		
+		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Älä näytä pääikkunaa automaattisessa kirjautumisessa</str>
+
+
 		<!-- Browser controls -->
 		<str name="#BC_HOME">Avaa kotisivu</str>
 		<str name="#BC_STOP">Lopeta nykyisen sivun lataaminen</str>
@@ -428,8 +428,8 @@
 		<str name="#BC_BACK">Mene viimeiselle sivulle</str>
 		<str name="#BC_FORWARD">Etene edelliselle sivulle</str>
 		<str name="#BC_BREAK">Lataa oletusselaimessa</str>
-		
-		
+
+
 		<!-- Button Strip -->
 		<str name="#BS_MAIN">Avaa päävalikko</str>
 		<str name="#BS_UPDATE">Päivitykset</str>
@@ -457,7 +457,7 @@
 		<str name="#NA_USER">Käyttäjänimi:</str>
 		<str name="#NA_FIN">Olemme lähettänyt sinulle sähköpostia varmentaaksemme tilisi. Sinun pitäisi saada sähköposti muutaman minuutin kuluessa. Kun näin käy, seuraa ohjeita jotka ovat sisällytetty viestiin viimeistelläksesi rekisteröitymisesi ja kirjaudu Desuraan.&#xA;&#xA;Et saanut sähköpostia?&#xA; - Ole kärsivällinen, joskus sähköpostin saapuminen voi viedä jonkin aikaa&#xA; - Varmista ettei sähköpostit osoitteesta support@desura.com ole estetty&#xA; - Tarkista roskapostikansiosi&#xA; - Kokeile rekisteröityä uudelleen täällä tai osoitteesta www.desura.com&#xA; - Ota meihin yhteyttä osoitteesta support@desura.com jos vielä koet ongelmia</str>
 		<str name="#NA_INFOPROMPT">Täytä alla olevat rekisteröitymistiedot ja klikkaa hyväksy jatkaaksesi. Sähköpostiosoitettasi käytetään tilisi aktivoimiseen. Jos sinulla on MODDB tai INDIEDB tili sinun ei tarvitse rekisteröityä uudelleen, voit käyttää niitä sisäänkirjautumiseen.</str>
-		
+
 		<str name="#PR_TITLE">Desura Salasanamuistutus</str>
 		<str name="#PR_PROMPT">Syötä sähköpostiosoitteesi jota käytit rekisteröitymiseen, ja sinulle lähetetään sähköpostiviesti jota voit käyttää salasanasi resetoimiseen.</str>
 		<str name="#PR_EMAIL">Sähköposti: </str>
@@ -494,51 +494,51 @@
 		<str name="#IH_RECENT">Viimeaikaiset osat</str>
 		<str name="#IH_TOOL">Työkalut</str>
 		<str name="#IH_FAVORITE">Suosikki osat</str>
-		
+
 		<str name="#AB_ABOUTINFO">Desura on yhteisön ylläpitämä digitaalisen levittämisen palvelu pelaajille, antamalla parhaat pelit, modit, ja ladattavan sisällön kehittäjiltä sinun käsiesi ulottuville, valmiina ostoon ja pelaamiseen.</str>
 		<str name="#AB_CREDITS">Tekijätiedot</str>
 		<str name="#AB_ABOUT">Tietoja Desurasta</str>
-		
+
 		<str name="#UF_TITLE">Desura Päivitys Saataville</str>
 		<str name="#CL_TITLE">Desura Muutosloki</str>
 		<str name="#CS_TITLE">Desura Ohjelma Konsoli</str>
-		
+
 		<str name="#DL_LOADING">Ladataan ...</str>
-		
-		
+
+
 		<str name="#CIP_TITLE">Mukautettu Asennuspolku</str>
 		<str name="#CIP_GETLIST">Päivitä pelilista</str>
 		<str name="#CIP_ERRTITLE">Mukautettu Asennuspolku Virhe</str>
 		<str name="#CIP_ERROR">Pelilistan haku epäonnistui</str>
 		<str name="#CIP_HELP">Jos Desura ei pysty automaattisesti tunnistamaan pelejä jotka ovat asennettu tietokoneellesi (asennusvelhon kautta), voit manuaalisesti valita kansion minne ne ovat asennettu käyttäen tätä lomaketta.</str>
 		<str name="#CIP_BROWSE">Valitse pelin juurikansio</str>
-		
+
 		<str name="#CL_LABEL">Käynnistetään...</str>
 		<str name="#CL_REMOVING">Poista vanhat tiedostot</str>
 		<str name="#CL_BACKUP">Varmuuskopioidaan pelitiedostot</str>
 		<str name="#CL_INSTALL">Asennetaan uudet tiedostot</str>
 		<str name="#CL_ERRTITLE">Monimutkainen Käynnistys Virhe</str>
 		<str name="#CL_ERROR">Pelin/modin käynnistys epäonnistui.</str>
-		
-		
+
+
 		<str name="#CR_TITLE">Palautetaan Pelitiedostoja</str>
 		<str name="#CR_ERRTITLE">Monimutkainen Palauttaminen Virhe</str>
 		<str name="#CR_ERROR">Pelitiedostojen palauttaminen epäonnistui</str>
-		
-		
+
+
 		<!-- Taskbar menu -->
 		<str name="#TB_WINDOWS">Ikkunat</str>
 		<str name="#TB_NOWINDOWS">Ei avonaisia ikkunoita</str>
 		<str name="#TB_NOITEMS">Ei osia</str>
-		<str name="#TB_EXIT">Poistu</str>	
-		<str name="#TB_STATUS">Tila</str>	
-		
+		<str name="#TB_EXIT">Poistu</str>
+		<str name="#TB_STATUS">Tila</str>
+
 		<str name="#TB_CART">Ostoskorin osat</str>
 		<str name="#TB_MESSAGE">Viestit</str>
 		<str name="#TB_UPDATES">Päivitykset</str>
-		<str name="#TB_GAMES">Pelit</str>	
-		<str name="#TB_MODS">Modit</str>	
-		
+		<str name="#TB_GAMES">Pelit</str>
+		<str name="#TB_MODS">Modit</str>
+
 		<str name="#TB_TITLE">Desura Pelipäivityksiä Saatavilla</str>
 		<str name="#TB_GIFTTITLE">Sinulle on lahjoitettu uusi tuote!</str>
 		<str name="#TB_APPUPDATE_TITLE">Desura Ohjelmistopäivitys</str>
@@ -546,13 +546,13 @@
 
 		<str name="#DS_ERROR">Desura Palvelun yhteys katkesi odottamattomasti.&#xA;&#xA;Yritetään yhdistää uudelleen...</str>
 		<str name="#DS_ERRORFAILED">Desura Palvelun yhteys katkesi odottamattomasti.&#xA;&#xA;Uudelleenkäynnistys epäonnistui:</str>
-		
 
-		<str name="#DR_TITLE">Kaistankäytön Valvonta</str>	
-		
+
+		<str name="#DR_TITLE">Kaistankäytön Valvonta</str>
+
 		<str name="#EULA_LABEL">Ennen pelaamista sinun täytyy hyväksyä käyttäjäehdot.</str>
 		<str name="#EULA_TITLE">Loppukäyttäjän lisenssisopimus: {0}</str>
-		
+
 
 		<!-- browser menu -->
 		<str name="#CHROME_UNDO">Kumoa</str>
@@ -574,15 +574,15 @@
 		<str name="#CHROME_VIEWLINK">Näytä linkki selaimessa</str>
 		<str name="#CHROME_VIEWIMAGE">Näytä kuva selaimessa</str>
 		<str name="#CHROME_INSPECTELEMENT">Tarkastele elementtiä</str>
-		<str name="#CHROME_NORMALMENU">Normaali valikko</str>	
-		
+		<str name="#CHROME_NORMALMENU">Normaali valikko</str>
+
 		<!-- cd key form -->
 		<str name="#CDK_ERRTITLE">Tuoteavaimen haku epäonnistui</str>
-		<str name="#CDK_ERROR">Desura epäonnistui paikantamaan tuoteavainta</str>	
-		
+		<str name="#CDK_ERROR">Desura epäonnistui paikantamaan tuoteavainta</str>
+
 		<str name="#CDK_PROGRESSINFO">Kootaan tuoteavainta ...</str>
 		<str name="#CDK_COPYALL">Kopioi kaikki</str>
 		<str name="#CDK_COPYPART">Kopioi osa</str>
-		<str name="#CDK_COPYPART_X">Kopioi osa {0}</str><!-- {0} is the part number -->	
+		<str name="#CDK_COPYPART_X">Kopioi osa {0}</str><!-- {0} is the part number -->
 	</strings>
 </lang>

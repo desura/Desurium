@@ -9,19 +9,19 @@
 		<str name="#CRASH_UPLOADINFO">Invio Crash Dump ...</str>
 		<str name="#CRASH_GENERATEINFO">Generazione Crash Dump ...</str>
 		<str name="#CRASH_ERROR">Errore nel processare il dump.</str>
-		
+
 		<str name="#CRASH_BUTGENERATE">Generazione Crash Dump</str>
 		<str name="#CRASH_BUTUPLOAD">Invio Crash Dumps</str>
-		
+
 		<str name="#CRASH_LABGENERATE">Quando Desura non risponde o fa qualcosa di inaspettato questa utilità riferirà lo stato corrente agli sviluppatori per aiutarli a correggere il problema.</str>
 		<str name="#CRASH_LABUPLOAD">Fa rapporto su crash dumps pre-esistenti. P.e. crash dumps che si verificano prima che Desura si avvii.</str>
-		
-		
+
+
 		<str name="#CDF_TITLE">Spostamento cartella Data di Desura</str>
 		<str name="#CDF_STARTUP">Analisi della cartella Data...</str>
 		<str name="#CDF_MOVEFILE">Spostamento file...</str>
 		<str name="#CDF_DBCHANGES">Aggiornamento del database...</str>
-		
+
 		<str name="#CDF_GERRTITLE">Errore di Desura</str>
 		<str name="#CDF_GERROR">Errore durante lo spostamento della cartella Data.</str>
 
@@ -29,11 +29,11 @@
 		<str name="#DUN_TOTAL">Avanzamento totale:</str>
 		<str name="#DUN_CURRENT">Avanzamento attuale:</str>
 		<str name="#DUN_COMPLETED">Ricorda: gli elementi acquistati o ricevuti in regalo non sono mai cancellati dall'account, puoi accedere ad essi semplicemente reinstallando Desura.</str>
-		
+
 		<str name="#DUN_UNINSTALL_INFO">La disinstallazione di Desura rimuoverà tutti i giochi, mod e contenuti installati. Per preservare quanto installato e riparare una installazione di Desura, fare clic sul pulsante ripara in basso.</str>
 		<str name="#DUN_UNINSTALL_OPT">Opzioni di disinstallazione:</str>
 		<str name="#DUN_UNINSTALL_LOC">Desura sarà disinstallata dalla seguente cartella:</str>
-		
+
 		<str name="#DUN_REMOVE_DESURA">Rimuovi Desura</str>
 		<str name="#DUN_REMOVE_DESURA_TT">Rimuove tutti i file installati con Desura.</str>
 		<str name="#DUN_REMOVE_SETTINGS">Rimuovi impostazioni</str>
@@ -46,7 +46,7 @@
 		<str name="#DUN_REMOVE_COMPLEX_TT">Rimuove tutti i mod installati sui file di gioco originari.</str>
 		<str name="#DUN_REMOVE_ACCOUNT">Rimuovi elementi gratis dall'account</str>
 		<str name="#DUN_REMOVE_ACCOUNT_TT">Rimuove tutti gli elementi gratis (come collegamenti e demo) installati sul computer.</str>
-		
+
 		<str name="#DUN_UNINSTALL_HEADER">Disinstalla Desura</str>
 		<str name="#DUN_UNINSTALL_SUBHEADER">Rimuove Desura dal computer</str>
 		<str name="#DUN_REPAIR">Ripara</str>
