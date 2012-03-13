@@ -103,8 +103,8 @@
 		<!-- Uninstall Form -->
 		<str name="#UNF_REMOVEFILES">Премахване файловете на Desura</str>
 		<str name="#UNF_REMOVEFILES_TOOLTIP">Изтриване на MCF и файловете, свързани с тези, които Desura използва.</str>
-		<str name="#UNF_REMOVEACCOUNT">Премахване от акаунта</str>
-		<str name="#UNF_REMOVEACCOUNT_TOOLTIP">Премахва този артикул от текущия акаунт</str>
+		<str name="#UNF_REMOVEACCOUNT">Премахване от списъка</str>
+		<str name="#UNF_REMOVEACCOUNT_TOOLTIP">Премахва този артикул от списъка с игрите</str>
 		<str name="#UNF_ERRTITLE">Грешка при деинсталиране</str>
 		<str name="#UNF_ERROR">Възникна грешка при деинсталиращият процес и той бе спрян.</str>
 		<!-- {0} repersents item name -->
@@ -399,6 +399,8 @@
 		<str name="#MENU_ONLINE">Към режим на линия</str>
 		<str name="#MENU_INSTALLPATH">Добавяне на инсталираните игри</str>
 		<str name="#MENU_INSTALLPATH_TOOLTIP">Задаване на персонализирани пътища за инсталиране на игри</str>
+		<str name="#MENU_LISTKEYS">Покажи игри и CD-Keys</str>
+		<str name="#MENU_LISTKEYS_TOOLTIP">Показва страница съдържаща вашите игри и техните CD-Keys</str>
 		<str name="#MENU_ACTIVATEGAME">Активиране на CD-Key или подарък</str>
 		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Въвеждате CD-Key или код от подарък, който да активирате в акаунта си</str>
 		<str name="#MENU_VERSION">Версия</str>
@@ -448,7 +450,7 @@
 		<str name="#PM_VIEWPROFILE">Преглед на страницата с играта</str>
 		<str name="#PM_MODLIST">Преглед на списъка с модове</str>
 		<str name="#PM_UPDATELOG">Преглед на промените</str>
-		<str name="#PM_REMOVEACCOUNT">Премахване от акаунта</str>
+		<str name="#PM_REMOVEACCOUNT">Премахване от списъка</str>
 		<str name="#PM_DESURAPAGE">Страница на Desura</str>
 		<str name="#PM_CREATEMCF">Създаване на MCF файл</str>
 		<str name="#PM_UPLOADMCF">Качване на MCF файл</str>
@@ -463,7 +465,7 @@
 		<str name="#PM_SHOWMCF">Показване на MCF файла</str>
 		<str name="#PM_REVERTCOMPLEX">Връщане на игровите файлове</str>
 		<str name="#PM_SHOWCDKEY">Преглед на CD-Key</str>
-		<str name="#PM_REMOVEFROMACCOUNT">Премахване от акаунта</str>
+		<str name="#PM_REMOVEFROMACCOUNT">Премахване от списъка</str>
 		<str name="#PM_SHORTCUT">Създаване на пряк път на работния плот</str>
 
 		<!-- Settings -->
