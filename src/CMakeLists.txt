@@ -69,14 +69,14 @@ endif()
 ###############################################################################
 # copy branding
 ###############################################################################
-set(includeDir ${CMAKE_BINARY_DIR}/include)
-file(MAKE_DIRECTORY ${includeDir})
+set(BIN_INCLUDE_DIR ${CMAKE_BINARY_DIR}/include)
+file(MAKE_DIRECTORY ${BIN_INCLUDE_DIR})
 
-file(COPY ${BRANDING} DESTINATION ${includeDir})
-file(REMOVE_RECURSE ${includeDir}/branding)
-file(RENAME ${includeDir}/${BRANDING} ${includeDir}/branding)
+file(COPY ${BRANDING} DESTINATION ${BIN_INCLUDE_DIR})
+file(REMOVE_RECURSE ${BIN_INCLUDE_DIR}/branding)
+file(RENAME ${BIN_INCLUDE_DIR}/${BRANDING} ${BIN_INCLUDE_DIR}/branding)
 
-set(BR ${includeDir}/branding)
+set(BR ${BIN_INCLUDE_DIR}/branding)
 
 install(FILES ${BR}/data/desura_lin.png
         DESTINATION ${DATA_INSTALL_DIR}
@@ -120,7 +120,7 @@ include_directories(
     ${GLOBAL_INCLUDE_DIRS}
     ${COMMON_INCLUDE_DIRS}
     ${TINYXML_INCLUDE_DIR}
-    ${CMAKE_BINARY_DIR}/include
+    ${BIN_INCLUDE_DIR}
 )
 
 ###############################################################################
