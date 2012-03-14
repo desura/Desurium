@@ -32,7 +32,7 @@ if(NOT WIN32)
   find_package(OpenSSL REQUIRED)
 endif()
 find_package(Sqlite)
-find_package(TinyXML)
+find_package(TinyXML ${REQUIRED_ON_UNIX})
 find_package(v8 ${REQUIRED_ON_UNIX})
 # we patch wxWidgets so we will build it on our own
 # find_package(wxWidgets 2.9 REQUIRED)
@@ -60,6 +60,10 @@ endif()
 
 if(NOT V8_FOUND)
   include(Buildv8)
+endif()
+
+if(NOT TINYXML_FOUND)
+  include(BuildTinyXML)
 endif()
 
 #include(BuildChromium)
@@ -104,10 +108,6 @@ if(NOT SQLITE_FOUND)
   add_subdirectory(third_party/sqlite)
 endif()
 add_subdirectory(third_party/sqlite3x)
-
-if(NOT TINYXML_FOUND)
-  add_subdirectory(third_party/tinyxml)
-endif()
 
 ###############################################################################
 # do final steps for setting up the desurium build environment
