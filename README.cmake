@@ -12,11 +12,11 @@ boost
 c-ares
 gtk2
 OpenSSL
+tinyxml
 v8
 
 optional dependencies (will be built by cmake if not exist):
 bzip2
-tinyxml
 sqlite
 
 cef is needed from official distribution see #5
