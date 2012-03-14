@@ -1,7 +1,7 @@
 set(TINYXML_GIT git://tinyxml.git.sourceforge.net/gitroot/tinyxml/tinyxml)
 
 IF(NOT WIN32)
-  message(FATAL_ERROR "building tinyxml unsupported on not windows plattforms")
+  message(FATAL_ERROR "please install tinyxml")
 endif()
 
 ExternalProject_Add(
