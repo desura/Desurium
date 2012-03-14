@@ -4,7 +4,7 @@ ExternalProject_Add(
     wxWidget-2-9
     SVN_REPOSITORY http://svn.wxwidgets.org/svn/wx/wxWidgets/tags/WX_2_9_0
     UPDATE_COMMAND ""
-    PATCH_COMMAND patch -p0 -N -i ${CMAKE_SOURCE_DIR}/src/third_party/patches/wxWidgets_patch.patch
+    PATCH_COMMAND patch -p0 -N -i ${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --enable-shared --enable-unicode
         --enable-monolithic --with-flavour=desura --disable-threads --with-opengl=no
         --disable-joystick --disable-mediactrl --prefix=${wxWidgets_INSTALL_DIR}
