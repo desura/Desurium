@@ -9,19 +9,19 @@
 		<str name="#CRASH_UPLOADINFO">Envoi des rapports de crash ...</str>
 		<str name="#CRASH_GENERATEINFO">Génération d'un rapport de crash ...</str>
 		<str name="#CRASH_ERROR">Impossible de traiter les rapports.</str>
-		
+
 		<str name="#CRASH_BUTGENERATE">Générer un rapport de crash</str>
 		<str name="#CRASH_BUTUPLOAD">Envoyer les rapports de crash</str>
-		
+
 		<str name="#CRASH_LABGENERATE">Lorsque Desura ne répond plus ou que le client effectue une action inattendue, l'état du client sera envoyé aux développeurs pour aider à résoudre le problème.</str>
 		<str name="#CRASH_LABUPLOAD">Reporter les rapports de crash existants. I.e. Les crash survenus avant que Desura n'ait démarré.</str>
-		
-		
+
+
 		<str name="#CDF_TITLE">Déplacement du dossier des données de Desura</str>
 		<str name="#CDF_STARTUP">Analyse du dossier des données...</str>
 		<str name="#CDF_MOVEFILE">Déplacement des fichiers...</str>
 		<str name="#CDF_DBCHANGES">Mise à jour de la base de donnée...</str>
-		
+
 		<str name="#CDF_GERRTITLE">Erreur de Desura</str>
 		<str name="#CDF_GERROR">Impossible de bouger le dossier des données de Desura.</str>
 
@@ -29,15 +29,15 @@
 		<str name="#DUN_TOTAL">Progression totale:</str>
 		<str name="#DUN_CURRENT">Progression actuelle:</str>
 		<str name="#DUN_COMPLETED">Rappel: Les articles achetés et les cadeaux ne sont jamais supprimés de votre compte, vous pouvez y accéder à n'importe quel moment en réinstallant le client Desura.</str>
-		
+
 		<str name="#DUN_UNINSTALL_INFO">La désinstallation de Desura entraînera la suppression des jeux, des Mods et du contenu installé. Pour garder les fichiers installés et réparer l'installation de Desura, cliquez sur le bouton Réparer ci-dessous.</str>
 		<str name="#DUN_UNINSTALL_OPT">Options de désinstallation:</str>
 		<str name="#DUN_UNINSTALL_LOC">Desura va être désinstallé de ce dossier:</str>
-		
+
 		<str name="#DUN_REMOVE_DESURA">Supprimer Desura</str>
 		<str name="#DUN_REMOVE_DESURA_TT">Supprime tous les fichiers de Desura installés.</str>
 		<str name="#DUN_REMOVE_SETTINGS">Supprimer les paramètres</str>
-		<str name="#DUN_REMOVE_SETTINGS_TT">Supprime tous les fichiers de paramètres utilisés par Desura.</str>		
+		<str name="#DUN_REMOVE_SETTINGS_TT">Supprime tous les fichiers de paramètres utilisés par Desura.</str>
 		<str name="#DUN_REMOVE_CACHE">Supprimer le cache de téléchargement</str>
 		<str name="#DUN_REMOVE_CACHE_TT">Supprime le cache de téléchargement utilisé par Desura.</str>
 		<str name="#DUN_REMOVE_SIMPLE">Supprimer un jeu simple et ses Mods</str>
@@ -46,21 +46,21 @@
 		<str name="#DUN_REMOVE_COMPLEX_TT">Supprime tous les Mods qui s'installent à la place du jeu original.</str>
 		<str name="#DUN_REMOVE_ACCOUNT">Supprimer les articles gratuits du compte</str>
 		<str name="#DUN_REMOVE_ACCOUNT_TT">Supprime tous les articles gratuits (tels que les liens et les démos) installés sur cette ordinateur de votre compte.</str>
-		
+
 		<str name="#DUN_UNINSTALL_HEADER">Désinstaller Desura</str>
-		<str name="#DUN_UNINSTALL_SUBHEADER">Supprimer Desura de votre ordinateur</str>	
+		<str name="#DUN_UNINSTALL_SUBHEADER">Supprimer Desura de votre ordinateur</str>
 		<str name="#DUN_REPAIR">Réparer</str>
 		<str name="#DUN_UNINSTALL">Désinstaller</str>
 
 		<str name="#DUN_THREAD_UNINSTALL">Suppression des jeux et des Mods...</str>
-		<str name="#DUN_THREAD_UNINSTALL_SUB">Désinstallation de: {0}</str><!-- {0} item name -->	
+		<str name="#DUN_THREAD_UNINSTALL_SUB">Désinstallation de: {0}</str><!-- {0} item name -->
 		<str name="#DUN_THREAD_FINAL">Nettoyage final...</str>
 		<str name="#DUN_THREAD_UNINSTALL">Suppression des entrées de désinstallation...</str>
 		<str name="#DUN_THREAD_GAMEEXPLORER">Suppression des entrées de l'explorateur de jeux...</str>
 		<str name="#DUN_THREAD_CACHE">Suppression du cache de Desura...</str>
 		<str name="#DUN_THREAD_SETTINGS">Suppression des paramètres de Desura...</str>
-		<str name="#DUN_THREAD_ACCOUNT">Nettoyage des champs du compte...</str>	
-		<str name="#DUN_THREAD_ACCOUNT_SUB">Suppression de {0} du compte</str><!-- {0} item name -->	
-		
+		<str name="#DUN_THREAD_ACCOUNT">Nettoyage des champs du compte...</str>
+		<str name="#DUN_THREAD_ACCOUNT_SUB">Suppression de {0} du compte</str><!-- {0} item name -->
+
 	</strings>
 </lang>

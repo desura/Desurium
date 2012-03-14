@@ -9,19 +9,19 @@
 		<str name="#CRASH_UPLOADINFO">Nalaganje izpisov sesutja ...</str>
 		<str name="#CRASH_GENERATEINFO">Ustvarjanje izpisa sesutja ...</str>
 		<str name="#CRASH_ERROR">Izpisa/-ov ni bilo mogoče obdelati.</str>
-		
+
 		<str name="#CRASH_BUTGENERATE">Ustvari izpis sesutja</str>
 		<str name="#CRASH_BUTUPLOAD">Naloži izpise sesutja</str>
-		
+
 		<str name="#CRASH_LABGENERATE">Ko se Desura ne odziva ali pa počne nekaj nepričakovanega, bo to razvijalcem sporočilo trenutno stanje in jim pomagalo odpraviti težavo.</str>
 		<str name="#CRASH_LABUPLOAD">Poročaj o obstoječih izpisih sesutja. To so izpisi sesutja, ki se zgodijo preden se Desura zažene.</str>
-		
-		
+
+
 		<str name="#CDF_TITLE">Premikanje podatkovne mape Desura</str>
 		<str name="#CDF_STARTUP">Preučevanje podatkovne mape ...</str>
 		<str name="#CDF_MOVEFILE">Premikanje datotek ...</str>
 		<str name="#CDF_DBCHANGES">Posodabljanje podatkovne zbirke ...</str>
-		
+
 		<str name="#CDF_GERRTITLE">Napaka Desure</str>
 		<str name="#CDF_GERROR">Podatkovne datoteke Desura ni bilo mogoče premakniti.</str>
 
@@ -29,15 +29,15 @@
 		<str name="#DUN_TOTAL">Skupen napredek:</str>
 		<str name="#DUN_CURRENT">Trenuten napredek:</str>
 		<str name="#DUN_COMPLETED">Zapomnite si: plačani predmeti in darila niso nikoli izbrisani iz vašega računa. Do njih lahko dostopate kadarkoli tako da ponovno namestite odjemalec Desura.</str>
-		
+
 		<str name="#DUN_UNINSTALL_INFO">Če odstranite Desuro, bo to odstranilo vse nameščene igre, modifikacije in vsebino. Da ohranite vašo nameščeno vsebino in popravite vašo namestitev Desure, kliknite gumb popravi.</str>
 		<str name="#DUN_UNINSTALL_OPT">Možnosti odstranitve:</str>
 		<str name="#DUN_UNINSTALL_LOC">Desura bo odstranjena iz sledeče mape:</str>
-		
+
 		<str name="#DUN_REMOVE_DESURA">Odstrani Desuro</str>
 		<str name="#DUN_REMOVE_DESURA_TT">Odstrani vse nameščene datoteke Desure.</str>
 		<str name="#DUN_REMOVE_SETTINGS">Odstrani nastavitve</str>
-		<str name="#DUN_REMOVE_SETTINGS_TT">Odstrani datoteke z nastavitvami, ki jih uporablja Desura.</str>		
+		<str name="#DUN_REMOVE_SETTINGS_TT">Odstrani datoteke z nastavitvami, ki jih uporablja Desura.</str>
 		<str name="#DUN_REMOVE_CACHE">Odstrani predpomnilnik prejemov</str>
 		<str name="#DUN_REMOVE_CACHE_TT">Odstrani predpomnilnik prejemov, ki ga uporablja Desura.</str>
 		<str name="#DUN_REMOVE_SIMPLE">Odstrani preproste igre in modifikacije</str>
@@ -46,21 +46,21 @@
 		<str name="#DUN_REMOVE_COMPLEX_TT">Odstrani vse modifikacije, ki prepišejo izvorne datoteke igre.</str>
 		<str name="#DUN_REMOVE_ACCOUNT">Odstrani brezplačne predmete iz računa</str>
 		<str name="#DUN_REMOVE_ACCOUNT_TT">Odstrani vse brezplačne predmete (npr. povezave in demo igre), ki so nameščeni na tem računalniku iz vašega računa.</str>
-		
+
 		<str name="#DUN_UNINSTALL_HEADER">Odstrani Desuro</str>
-		<str name="#DUN_UNINSTALL_SUBHEADER">Odstrani Desuro iz vašega računalnika</str>	
+		<str name="#DUN_UNINSTALL_SUBHEADER">Odstrani Desuro iz vašega računalnika</str>
 		<str name="#DUN_REPAIR">Popravi</str>
 		<str name="#DUN_UNINSTALL">Odstrani</str>
 
 		<str name="#DUN_THREAD_UNINSTALL">Odstranjevanje iger in modifikacij ...</str>
-		<str name="#DUN_THREAD_UNINSTALL_SUB">Odstranjevanje: {0}</str><!-- {0} item name -->	
+		<str name="#DUN_THREAD_UNINSTALL_SUB">Odstranjevanje: {0}</str><!-- {0} item name -->
 		<str name="#DUN_THREAD_FINAL">Končno čiščenje ...</str>
 		<str name="#DUN_THREAD_UNINSTALL">Odstranjevanje vnosov za odstranitev ...</str>
 		<str name="#DUN_THREAD_GAMEEXPLORER">Odstranjevanje vnosov raziskovalca iger ...</str>
 		<str name="#DUN_THREAD_CACHE">Odstranjevanje predpomnilnika Desure ...</str>
 		<str name="#DUN_THREAD_SETTINGS">Odstranjevanje nastavitev Desure ...</str>
-		<str name="#DUN_THREAD_ACCOUNT">Čiščenje predmetov računa ...</str>	
-		<str name="#DUN_THREAD_ACCOUNT_SUB">Odstranjevanje {0} iz računa</str><!-- {0} item name -->	
-		
+		<str name="#DUN_THREAD_ACCOUNT">Čiščenje predmetov računa ...</str>
+		<str name="#DUN_THREAD_ACCOUNT_SUB">Odstranjevanje {0} iz računa</str><!-- {0} item name -->
+
 	</strings>
 </lang>

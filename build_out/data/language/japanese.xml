@@ -10,14 +10,14 @@
 		<!-- Note: Linux node is not tested. -->
 		<str name="#MW_PROMPT">このウィザードは このコンピュータにインストールされている Desura で サポートされているゲームと MOD を検索します。 注意:見つかったすべてのアイテムは Desura 上の 最新バージョンにアップデートされます。</str>
 		<str name="#MW_FINISH">ウィザードは完了しました。このコンピュータで見つかった Desura がサポートするすべてのゲームと MOD は あなたのアカウントに追加されました。 &#xA;&#xA;もし Desura  がPCにインストールされているゲームを 見つけられなかった場合、 下の "カスタムインストール" ボタンから 手動で追加することができます。</str>
-	
+
 		<str name="#IF_WINDOWS_LAUNCH_WARNING">警告: Windows のプログラムを起動しようとしています。 プログラムは あなたのシステムが形式を認識して起動する 適切なツール(例:WINE)で動作します。 それがなければ アプリケーション/ゲームは正常に起動できません。&#xA;&#xA;この警告は設定で非表示にすることができます。</str>
 		<str name="#IF_SHOWFILES">ファイルを表示する</str>
 		<str name="#MF_ERROR_NO32LIBS">起動しようとしたアイテムは 32bit です。 しかし 32bit ライブラリがインストールされていません。&#xA;&#xA;これについての情報は http://www.desura.com/groups/desura/linux を参照してください。</str>
-	
+
 		<!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
 		<str name="#PLAY_EMPTY">あなたのアカウントには Linux用の {1}ゲーム{0} がありません。</str>
-		
+
 		<str name="#SET_CV_LIN_DIS_WIN_WRN">Windows 実行形式の警告を無効にする。</str>
 		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Windows 実行形式の起動時に 毎回警告しないようにします。</str>
 		<str name="#SET_CV_ALLOW_WM_POS">ウィンドウマネージャの配置を使用する。</str>
@@ -26,7 +26,7 @@
 		<str name="#SET_CV_GLOBALBIN_TOOLTIP">すべてのゲームはこのバイナリを経由して起動されます</str>
 		<str name="#SET_CV_GLOBALARGS">グローバルゲーム引数</str>
 		<str name="#SET_CV_GLOBALARGS_TOOLTIP">すべてのゲームの起動時に追加される引数です</str>
-		
+
 		<str name="#SET_CV_DISABLE_FORCESHORTCUT">メニューのショートカットを強制的に無効にする</str>
 		<str name="#SET_CV_DISABLE_FORCESHORTCUT_TOOLTIP">Desura がメインメニューのショートカットを強制的に作らないようにします</str>
 
@@ -38,13 +38,13 @@
 		<str name="#IF_SHOWFILES">エクスプローラーでファイルを表示</str>
 		<!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
 		<str name="#PLAY_EMPTY">あなたのアカウントにはWindows用の {1}ゲーム{0} と {2}MOD{0} がありません。 {3}インストールされているゲームを探すウィザード{0} を起動することで PC から Desura でサポートされているゲームを検索することができます。</str>
-		
+
 		<str name="#SET_CV_DISABLE_FS_PERMS">すべてのインストールフォルダは 通常ユーザーが書き込みできるようにする</str>
 		<str name="#SET_CV_DISABLE_FS_PERMS_TOOLTIP">ゲーム開発元は Windows の標準に従おうとせず、 多くのゲームはインストールフォルダに書き込みをしようとして、 それに失敗したときクラッシュします。 警告: これを無効にするといくつかのゲームは動きません</str>
-		
+
 		<str name="#IF_LOWSPACE_SYS">システムディスク ({0}:\\) は空き容量が少なく、 Desura のパフォーマンスが低下する可能性があります。 &lt;a href=&quot;desura://settings/cache&quot;&gt;Desura のキャッシュフォルダに 別のディスクを使うことができます。&lt;/a&gt;</str>
 		<str name="#IF_LOWSPACE_CACHE">この Desura のキャッシュを保存しているハードディスク ({0}:\\) は空き容量が残り少ないです。 Desura の性能をすべて引き出すために、 空き容量を確保することを推奨します。</str>
-		
+
 		<str name="#MW_PROMPT">このウィザードは このコンピュータにインストールされている Desura で サポートされているゲームを検索します。 注意:見つかったすべてのアイテムは Desura 上の 最新バージョンにアップデートされます。</str>
 		<str name="#MW_FINISH">ウィザードは完了しました。このコンピュータで見つかった Desura がサポートするすべてのゲームは あなたのアカウントに追加されました。 &#xA;&#xA;もし Desura  がPCにインストールされているゲームを 見つけられなかった場合、 下の "カスタムインストール" ボタンから 手動で追加することができます。</str>
 	</windows>
@@ -144,16 +144,16 @@
 		<str name="#CF_NOTSTARTED">初期化中 ...</str>
 		<str name="#CF_ERROR">MCS 作成処理で以下のエラーがあるため、 処理を中止しました。</str>
 		<str name="#CF_ERRTITLE">MCF 作成エラー</str>
-		
+
 		<!-- note the {0} will be replaced with the item name! -->
-		<str name="#CF_COMPLETE">{0} の MCF の作成が完了しました。</str> 
+		<str name="#CF_COMPLETE">{0} の MCF の作成が完了しました。</str>
 
 		<!-- Item Form -->
 		<str name="#IF_BROUGHT">購入済</str>
 		<str name="#IF_FREE">フリー</str>
 		<str name="#IF_PREPARE_INFO">{0} に {1} を準備中</str>
 		<str name="#IF_PREPARE_INFO_NOITEM">準備中...</str>
-		
+
 		<str name="#IF_TITLE">準備中:</str>
 		<str name="#IF_VERIFY">照合:</str>
 		<str name="#IF_DOWNLOAD">ダウンロード中:</str>
@@ -164,7 +164,7 @@
 		<str name="#IF_UNINSTALL_PATCH">古いファイルを削除中: </str>
 		<str name="#IF_UNINSTALL_COMPLEX">混成型MODのアンインストール中</str>
 		<str name="#IF_INSTALL_CHECK">インストールチェック</str>
-		
+
 		<str name="#IF_UNINSTALL_LABEL">アンインストール中 ...</str>
 		<str name="#IF_UNINSTALL_BRANCH_LABEL">古いファイルを削除中 ... </str>
 		<str name="#IF_UNINSTALL_PATCH_LABEL">古いファイルを削除中 ... </str>
@@ -203,7 +203,7 @@
 		<!-- {0} item name -->
 		<str name="#IF_GERROR_BRANCH_PLATFORM">指定された {0} のブランチは このプラットフォームではサポートされていません。</str>
 		<str name="#IF_GERROR_BRANCH_PLATFORM_Q">他のブランチを選択しますか？</str>
-		
+
 		<str name="#IF_GERROR">情報の収集で以下のエラーがあるため、 処理を中断しました。</str>
 		<str name="#IF_GERRTITLE">情報の取得 エラー</str>
 		<str name="#IF_VALIDATE_ERROR">照合処理で以下のエラーがあるため、 処理を中断しました。</str>
@@ -234,7 +234,7 @@
 		<str name="#IF_VERIFYTOOLS">ツールを再インストール</str>
 		<str name="#IF_VERIFYHOOKS">インストール後の初期化を実行</str>
 		<str name="#IF_VERIFYCONFIRM">{0}の起動に問題がある場合、 ファイルの照合で問題が解決することがあります。</str>
-		
+
 		<str name="#IF_VERIFYMCF">MCF の照合中...</str>
 		<str name="#IF_VERIFYINSTALL">インストールを照合中 ...</str>
 		<str name="#IF_VERIFYDOWNLOADF">失われたファイルをダウンロード中 ...</str>
@@ -250,12 +250,12 @@
 		<str name="#IF_FILEERR">既にその場所にファイルが存在します。</str>
 		<str name="#IF_NOTINSTALLED">このアイテムはインストールされませんでした。</str>
 		<str name="#IF_IHASHFAIL">インストール処理でMD5ハッシュを検査した結果、一つ以上のファイルが壊れています。 インストールを確実なものにするために照合を行いますか？</str>
-		
+
 		<str name="#IF_CONFLICT">Desura はコンテンツの競合を検出しました。 {0} はインストールされています。 {0} 複合インストールが必要です。 この問題を解決するため、 Desuraでのインストールを継続する前に {0} を手動でアンインストールすることを推奨します。</str>
 		<str name="#IF_CONFLICTTITLE">複合インストール競合</str>
-		
+
 		<str name="#IF_COMPLETEPREORDER">プリロード完了</str>
-		
+
 		<str name="#IF_PRELOADLAUNCH">{0} は {2} です。 現在起動することはできません。 {1}日後にプレイ可能になります。</str>
 		<str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
 		<str name="#IF_PRELOADLAUNCH_PREORDERED">予約購入済</str>
@@ -263,8 +263,8 @@
 		<str name="#IF_PRELOADLAUNCH_INSTALLDEMO">デモをインストール</str>
 		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER">その他のインストール</str>
 		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER_INFO">&#xA;&#xA;プレイ可能な他のバージョンが存在します。</str>
-		
-		
+
+
 		<str name="#IF_COMPLEXREMOVE">古いファイルを削除中</str>
 		<str name="#IF_COMPLEXBACKUP">ゲームファイルをバックアップ中</str>
 		<str name="#IF_COMPLEXINSTALL">ファイルをインストール中</str>
@@ -288,10 +288,10 @@
 		<str name="#IF_VALIDATE_TITLE">ダウンロードの検証:</str>
 		<!-- {0}: done, {1}: total {2}:Stage number-->
 		<str name="#IF_VALIDATE_LABEL">段階 {2}: {0} / {1} 完了</str>
-		
+
 		<str name="#IF_PREORDERED_NORELEASE">予約購入: 未リリース</str>
 		<str name="#IF_PREORDERED">予約購入: プリロード可能</str>
-		
+
 		<str name="#IF_WAIT_TITLE">アイテムを待機中:</str>
 		<str name="#IF_WAIT_FORCE">強行</str>
 		<str name="#IF_WAIT_CANCELALL">すべてキャンセル</str>
@@ -299,14 +299,14 @@
 		<str name="#IF_WAIT_INFO">{0} の {1} を始める前に 他のアイテムが完了するのを待機中です。</str>
 		<str name="#IF_WAIT_ACTION_UNINSTALL">アンインストール</str>
 		<str name="#IF_WAIT_ACTION_VERIFY">ファイルの照合</str>
-		
+
 		<!-- Install Wizard -->
 		<str name="#MW_TITLE">インストールされているゲームの検索</str>
 		<str name="#MW_ERROR">ウィザード処理で以下のエラーがあるため、 処理を中止しました。</str>
 		<str name="#MW_CUSTOM">カスタム インストール</str>
 		<str name="#MW_ERRTITLE">インストールされているゲームの検索 エラー</str>
 		<str name="#MW_ADDACCOUNT">アカウントにアイテムを追加</str>
-		
+
 		<!-- Main Form -->
 		<str name="#MF_OFFLINE">オフラインモードにしますか？</str>
 		<str name="#MF_OFFLINE_TITLE">オフラインモード</str>
@@ -328,7 +328,7 @@
 		<str name="#MF_UNINSTALLPROMPT">{0} は現在インストールの処理中です。 アンインストールを実行するには Desura はインストール処理を止める必要があります。 アンインストールを続けますか？</str>
 		<str name="#MF_UNINSTALLTITLE">Desura {0} アンインストール</str>
 		<str name="#MF_LUANCH_ERROR_VERIFY_TOOLTIP">インストールファイルを照合する</str>
-		
+
 		<!-- Buttons -->
 		<str name="#RESTART_NOW">再起動する</str>
 		<str name="#RESTART_LATER">後で再起動する</str>
@@ -367,7 +367,7 @@
 		<str name="#PREORDER">プリオーダー</str>
 		<str name="#HIDE">隠す</str>
 		<str name="#FIND">探す</str>
-		
+
 		<!-- Misc -->
 		<str name="#NAME">名前</str>
 		<str name="#SIZE">サイズ</str>
@@ -392,7 +392,7 @@
 		<str name="#INSTALL">インストール</str>
 		<str name="#UNINSTALLING">アンインストール中 ...</str>
 		<str name="#REMOVE">削除</str>
-		
+
 		<!-- Main Menu -->
 		<str name="#MENU_OFFLINE">オフラインにする</str>
 		<str name="#MENU_OFFLINE_TOOLTIP">オフラインモードに切り替えます (インターネットに接続しません)</str>
@@ -458,7 +458,7 @@
 		<str name="#PLAY_DELAY_LOADING">プレイリストの取得中...</str>
 		<str name="#PLAY_GAMES">ゲーム</str>
 		<str name="#PLAY_DEVELOPMENT">開発</str>
-	
+
 		<!-- Pop up menu -->
 		<str name="#PM_VIEWPROFILE">プロフィールを表示</str>
 		<str name="#PM_MODLIST">MODリストを表示</str>
@@ -513,7 +513,7 @@ Desuraユーザーとして、パブリックベータ版の新機能をテス�
 		<str name="#SET_CV_CONSOLE_TOOLTIP">エラー発生時にコンソールを表示します。</str>
 		<str name="#SET_CV_DISABLE_WGE">Windows Game Explorer を無効にする</str>
 		<str name="#SET_CV_DISABLE_WGE_TOOLTIP">Desura が Windows Game Explorer へゲームを追加しないようにします。</str>
-		
+
 		<str name="#SET_CV_WORKER">ワーカースレッド</str>
 		<str name="#SET_CV_WORKER_TOOLTIP">この数は処理(MCFの作成など)を実行するワーカーの数を表します。</str>
 		<str name="#SET_CV_DESTMAIN">メインウィンドウを閉じたときにアンロードする</str>
@@ -532,7 +532,7 @@ Desuraユーザーとして、パブリックベータ版の新機能をテス�
 		<str name="#SET_CV_SILENTLAUNCH">サイレントモードで起動</str>
 		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">自動ログイン後にメインウィンドウを表示しません</str>
 		<str name="#SET_CACHE_BROWSE">Desura が新しくキャッシュに使用するディレクトリを選択してください</str>
-		
+
 		<str name="#SET_CV_CHAT_ENABLED">Desura チャットを有効にする</str>
 		<str name="#SET_CV_CHAT_ENABLED_TOOLTIP">Desura クライアントでのチャットを有効にします</str>
 		<str name="#SET_CV_CHAT_BREAKOUT">チャットクライアントのウィンドウを分割する</str>
@@ -543,7 +543,7 @@ Desuraユーザーとして、パブリックベータ版の新機能をテス�
 		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">デフォルトでオフラインコンタクトを表示します。</str>
 		<str name="#SET_CV_CHAT_REMEMBERSTATUS">最後のチャット状態を記憶する</str>
 		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">ログイン時、あなたの状態に 前回の状態を設定します。</str>
-		
+
 		<str name="#SET_CIP_UPDATE">ゲームリストを更新中</str>
 		<str name="#SET_CIP_BUT_BROWSE">参照</str>
 		<str name="#SET_CIP_BUT_REFRESH">ゲームを更新</str>
@@ -571,11 +571,11 @@ Desuraがインストールされているゲームを見つけられない場�
 		<str name="#SET_CIP_LINK">以下のフォームを使用して、システム上の他のゲームやアプリケーションのショートカットを追加することができます。 右クリックメニューのプロパティから起動引数を追加することができ、 メニューからアンインストールを選択して削除することができます。 警告：この機能はベータ版です。バグがあります！</str>
 		<str name="#SET_CIP_LINK_NAME">リンク名:</str>
 		<str name="#SET_CIP_LINK_EXE">リンクのEXE:</str>
-		
+
 		<str name="#CIP_BROWSE">ゲームのルートフォルダを選択してください:</str>
 		<str name="#CIP_LINK_BROWSE">リンクを作成するバイナリを選択してください:</str>
-		
-		
+
+
 		<!-- Browser controls -->
 		<str name="#BC_HOME">ホームページを開く</str>
 		<str name="#BC_STOP">現在のページの読み込みを止める</str>
@@ -650,7 +650,7 @@ Desuraがインストールされているゲームを見つけられない場�
 		<str name="#IS_PAUSED">停止中</str>
 		<str name="#IS_PREORDER_STATUS">予約購入済み</str>
 		<str name="#IS_PRELOADED_STATUS">プリロード済み</str>
-		
+
 		<str name="#IS_PREORDER">ロック解除まであと約</str>
 		<str name="#IS_PREORDER_DAYS">日</str>
 		<str name="#IS_PREORDER_HOURS">時間</str>
@@ -664,9 +664,9 @@ Desuraがインストールされているゲームを見つけられない場�
 		<str name="#IS_INSTALLINGTOOL">IN ツール</str>
 		<str name="#IS_VALIDATE">確認中</str>
 		<str name="#IS_WAIT">待機中 ({0} / {1})</str>
-		
+
 		<str name="#AB_ABOUTINFO">
-Desura はあなたの指先で 開発者から最良のゲームや MOD そして DLC を購入し プレイすることのできる 
+Desura はあなたの指先で 開発者から最良のゲームや MOD そして DLC を購入し プレイすることのできる
 コミュニティ主導のデジタル配信サービスです。
 </str>
 		<str name="#AB_CREDITS">クレジット</str>
@@ -753,14 +753,14 @@ Desura はあなたの指先で 開発者から最良のゲームや MOD そし�
 		<str name="#CDK_COUNTDOWN">起動まで {0}</str>
 		<str name="#CDK_LAUNCHNOW">今すぐ起動</str>
 		<str name="#CDK_ACTIVATE">有効化</str>
-		
+
 		<str name="#CDK_REGKEY">CDキーは自動的にインストールされました</str>
 		<str name="#CDK_REGKEY_TOOLTIP">このアイテムのCDキーは自動的にインストールされたので、 コピーは不要です。</str>
-		
+
 		<!-- exe select form -->
 		<str name="#ES_TITLE">バージョン選択: {0}</str>
 		<str name="#ES_LABEL">プレイする {0} のバージョンを選択してください :</str>
-		
+
 		<!-- change cache dir -->
 		<str name="#MCFCD_ID">Desura はインストールされたフォルダにゲームやプログラムをインストールします(インストール先以外には変更できません):</str>
 		<str name="#MCFCD_CD">すべてのキャッシュファイルは以下のフォルダに保存されました、 ファイルを復元するときはこのフォルダを使用してください:</str>
@@ -770,19 +770,19 @@ Desura はあなたの指先で 開発者から最良のゲームや MOD そし�
 		<str name="#MCFCD_INVALIDFOLDER">エラー: フォルダが見つかりません</str>
 		<str name="#MCFCD_CANTWRITE">エラー: フォルダに書き込みできません</str>
 		<str name="#MCFCD_GETTINGSIZE">読み込み中...</str>
-	
+
 		<str name="#CC_EDITPROFILE">ユーザープロフィールを編集する</str>
 		<str name="#CC_ADDFRIEND">フレンドをチャットアカウントに追加する</str>
 		<str name="#CC_SHOWCONTACTS">オフラインコンタクトを表示する</str>
 		<str name="#CC_HIDECONTACTS">オフラインコンタクトを隠す</str>
 		<str name="#CC_BREAKOUT">新しいウィンドウでチャットを始める</str>
-		
+
 		<str name="#CHAT_ADDFRIEND_TITLE">アカウントにフレンドを追加する</str>
 		<str name="#CHAT_ADDFRIEND_SEARCH">検索して追加:</str>
 		<str name="#CHAT_ADDFRIEND_BYUSER">ユーザ名を追加:</str>
 		<!-- {0} is start of link {1} is end of link</a>-->
 		<str name="#CHAT_ADDFRIEND_NOTE">注意: 検索結果の先頭25件のみを表示します。 もっと詳しく検索するには {0}メンバーページ{1}へ進んでください。</str>
-	
+
 		<str name="#CHAT_MENU_CHATWITH">チャットする</str>
 		<str name="#CHAT_MENU_UNBLOCK">フレンドのブロックを解除する</str>
 		<str name="#CHAT_MENU_BLOCK">フレンドをブロックする</str>
@@ -790,7 +790,7 @@ Desura はあなたの指先で 開発者から最良のゲームや MOD そし�
 		<str name="#CHAT_MENU_REJECT">フレンドのリクエストを拒否する</str>
 		<str name="#CHAT_MENU_RESEND">フレンドのリクエストを再送する</str>
 		<str name="#CHAT_MENU_REMOVE">フレンドから外す</str>
-		
+
 		<str name="#CHAT_SEARCH_ADD">追加</str>
 		<str name="#CHAT_SEARCH_ADDED">追加済</str>
 		<str name="#CHAT_SEARCH_PENDING">保留中</str>
@@ -803,7 +803,7 @@ Desura はあなたの指先で 開発者から最良のゲームや MOD そし�
 		<str name="#GD_REMINDER">次回から表示しない</str>
 		<str name="#SB_DEFAULT">検索...</str>
 		<str name="#SB_FULL_SEARCH">フル検索を実行</str>
-		
+
 		<str name="#BH_CRASH">ブラウザが停止しました。 (クリックで再読み込み)</str>
 		<str name="#BH_NO_LOAD">ブラウザライブラリのロードに失敗しました。 コンソールでエラーメッセージを確認してください。</str>
 	</strings>
