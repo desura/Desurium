@@ -7,11 +7,13 @@ else()
   set(BUILD_WITH_ARES --disable-ares)
 endif()
 
+set(CURL_GIT git://github.com/bagder/curl.git)
+
 ExternalProject_Add(
     curl
-    SOURCE_DIR ${CMAKE_SOURCE_DIR}/src/third_party/curl
+    GIT_REPOSITORY ${CURL_GIT}
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND sh ${CMAKE_BINARY_DIR}/curl/configure
+    CONFIGURE_COMMAND sh <SOURCE_DIR>/configure
         --without-librtmp --disable-ldap --disable-debug --disable-curldebug
         --without-zlib --disable-rtsp --disable-manual --enable-static=yes 
         --enable-shared=no --disable-pop3 --disable-imap --disable-dict
@@ -25,17 +27,11 @@ ExternalProject_Add(
 
 ExternalProject_Add_Step(
     curl
-    copyProject
-    COMMAND cp -r ${CMAKE_SOURCE_DIR}/src/third_party/curl ${CMAKE_BINARY_DIR}/curl
-)
-
-ExternalProject_Add_Step(
-    curl
     preconfigure
     COMMAND sh buildconf
-    DEPENDEES copyProject
+    DEPENDEES download
     DEPENDERS configure
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/curl
+    WORKING_DIRECTORY <SOURCE_DIR>
 )
 
 set(CURL_BIN_DIRS ${CURL_INSTALL_DIR}/bin)
