@@ -692,6 +692,32 @@ std::string getCmdStdout(const char* command, int stdErrDest)
 	return trim(output); 
 }
 
+std::wstring getDesktopPath(std::wstring extra)
+{
+	std::wstring desktop((wchar_t*) getCmdStdout("xdg-user-dir DESKTOP", 1).c_str());
+	if(!desktop.empty())
+	{
+		desktop += extra;
+	}
+	return desktop;
+}
+
+std::wstring getApplicationsPath(std::wstring extra)
+{
+	std::wstring data_home((wchar_t*) getenv("XDG_DATA_HOME"));
+	if(data_home.empty())
+	{
+		// If $XDG_DATA_HOME isn't set, it's assumed to be
+		// $HOME/.local/share
+		struct passwd* pass = getpwuid(getuid());
+		data_home = (wchar_t*) pass->pw_dir;
+		data_home += L"/.local/share/";
+	}
+
+	data_home += L"/applications/" + extra;
+	return data_home;
+}
+
 bool fileExists(const char* file) 
 {
 	char buffer[PATH_MAX];
@@ -753,6 +779,29 @@ const char g_cBadChars[] = {
 	'"',
 	NULL
 };
+
+gcString getAbsPath(const gcString& path)
+{
+	if (path.size() == 0 || path[0] == '/')
+		return path;
+
+	gcString wd = UTIL::LIN::getAppPath(L"");
+
+	if (path.find(wd) == std::string::npos)
+		return wd + "/" + path;
+
+	return path;
+}
+
+gcString getRelativePath(const gcString &path)
+{
+	gcString wd = UTIL::LIN::getAppPath(L"");
+
+	if (path.find(wd) == 0)
+		return path.substr(wd.size()+1, std::string::npos);
+
+	return path;
+}
 
 std::string sanitiseFileName(const char* name)
 {

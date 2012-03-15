@@ -273,6 +273,9 @@ namespace WIN
 	}	
 
 	void extractIconCB(const char* exe, UTIL::CB::CallbackI* callback);
+	
+	gcString getAbsPath(const gcString& path);
+	gcString getRelativePath(const gcString &path);
 
 	//! Removes bad chars in file names
 	std::string sanitiseFileName(const char* name);
