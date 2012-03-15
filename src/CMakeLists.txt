@@ -1,75 +1,3 @@
-# TODO: silent output for externel dependencies
-# TODO: get libs automatically for externel builds, maybe make desurium a external build itself?
-
-project(Desurium)
-
-###############################################################################
-# we wanna build some external projects
-###############################################################################
-include(ExternalProject)
-
-###############################################################################
-# find all packages which are needed
-###############################################################################
-
-if(NOT WIN32)
-  set(REQUIRED_ON_UNIX REQUIRED)
-endif()
-
-find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
-find_package(BZip2)
-
-if(NOT WITH_ARES)
-  find_package(CURL)
-endif()
-
-# we patch google breakpad, so we will build it on our own
-# find_package(GoogleBreakpad REQUIRED)
-if(NOT WIN32)
-  find_package(GTK2 REQUIRED)
-endif()
-if(NOT WIN32)
-  find_package(OpenSSL REQUIRED)
-endif()
-find_package(Sqlite)
-find_package(TinyXML ${REQUIRED_ON_UNIX})
-find_package(v8 ${REQUIRED_ON_UNIX})
-# we patch wxWidgets so we will build it on our own
-# find_package(wxWidgets 2.9 REQUIRED)
-
-if(WIN32)
-  find_package(PythonInterp REQUIRED)
-  find_package(PythonLibs REQUIRED)
-endif()
-
-###############################################################################
-# build some externel projects
-###############################################################################
-
-if(NOT wxWidgets_FOUND)
-  include(BuildwxWidgets)
-endif()
-
-if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
-  include(BuildGoogleBreakpad)
-endif()
-
-if(NOT CURL_FOUND)
-  include(BuildCURL)  
-endif()
-
-if(NOT V8_FOUND)
-  include(Buildv8)
-endif()
-
-if(NOT TINYXML_FOUND)
-  include(BuildTinyXML)
-endif()
-
-#include(BuildChromium)
-#include(BuildCEF)
-#include(BuildCourgette)
-
 ###############################################################################
 # copy branding
 ###############################################################################
@@ -92,22 +20,6 @@ install(FILES ${BR}/data/themes/default/images/app/about_logo.png
               ${BR}/data/themes/default/images/app/signin_banner.png
         DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app/
 )
-
-###############################################################################
-# build third_party
-###############################################################################
-
-if(NOT BZIP2_FOUND)
-  add_subdirectory(third_party/bzip2)
-endif()
-
-add_subdirectory(third_party/cef) # for headers only, build via ExternalProject
-add_subdirectory(third_party/courgette) # for headers only, build via ExternalProject
-
-if(NOT SQLITE_FOUND)
-  add_subdirectory(third_party/sqlite)
-endif()
-add_subdirectory(third_party/sqlite3x)
 
 ###############################################################################
 # do final steps for setting up the desurium build environment
