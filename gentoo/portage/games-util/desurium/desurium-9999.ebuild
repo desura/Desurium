@@ -20,7 +20,11 @@ DEPEND="
     dev-db/sqlite
 	dev-libs/boost
 	dev-libs/openssl
-	!builtin-tinyxml? ( dev-libs/tinyxml[-stl] )
+	!builtin-tinyxml? (
+        || ( <dev-libs/tinyxml-2.6.2-r2[-stl]
+             >=dev-libs/tinyxml-2.6.2-r2
+        )
+    )
 	dev-lang/v8
 	!builtin-breakpad? ( dev-util/google-breakpad )
     dev-vcs/subversion
