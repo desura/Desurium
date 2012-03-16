@@ -40,7 +40,7 @@ else()
     GIT_REPOSITORY ${CURL_GIT}
 	GIT_TAG ${CURL_VERSION}
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND sh configure
+    CONFIGURE_COMMAND sh <SOURCE_DIR>/configure
         --without-librtmp --disable-ldap --disable-debug --disable-curldebug
         --without-zlib --disable-rtsp --disable-manual --enable-static=yes 
         --enable-shared=no --disable-pop3 --disable-imap --disable-dict
