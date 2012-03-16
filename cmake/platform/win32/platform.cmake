@@ -14,7 +14,14 @@ macro(use_unicode_here)
   add_definitions(-DwxUSE_UNICODE)
 endmacro()
 
+if(DEBUG)
+    add_definitions(-DDEBUG -D_DEBUG)
+else()
+    add_definitions(-DNDEBUG -D_NDEBUG)
+endif()
+
 # from official repo, do we need them?
-add_definitions(/ignore:4006
-                /ignore:4099
-                /ignore:4221)
+# /ignore:4006
+# /ignore:4099
+# /ignore:4221
+#add_definitions()

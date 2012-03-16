@@ -7,6 +7,7 @@ file(GLOB Sources code/UtilFs.cpp)
 
 if(WIN32)
   file(GLOB PlattFormSources code/UtilFs_win.cpp)
+  add_linker_flags(/NOD:MSVCRTD)
 else()
   file(GLOB PlattFormSources code/UtilFs_nix.cpp)
 endif()

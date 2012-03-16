@@ -8,8 +8,14 @@ include_directories(
 
 file(GLOB SourcesWEB code/UtilWeb.cpp)
 
+if(WIN32)
+  set(WINDOWS_LIBRARIES msi Winhttp wintrust)
+  add_linker_flags(/NOD:MSVCRTD)
+endif()
+
 add_library(util_web STATIC ${SourcesWEB})
 target_link_libraries(util_web
+	${WINDOWS_LIBRARIES}
     ${CURL_LIBRARIES}
 )
 
@@ -36,7 +42,8 @@ if(WIN32)
                              code/UtilWindows_dotnet.cpp
                              code/UtilWindows_firewall.cpp
                              code/UtilWindows_osver.cpp
-                             code/UtilWindows_service.cpp)
+                             code/UtilWindows_service.cpp
+							 code/third_party/WinXPSP2FireWall.cpp)
 else()
   file(GLOB PlattformSources code/UtilLinux.cpp)
 endif()

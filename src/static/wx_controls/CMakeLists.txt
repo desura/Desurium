@@ -10,6 +10,7 @@ file(GLOB Sources code/*.cpp)
 
 if(WIN32)
   use_unicode_here()
+  add_linker_flags(/NOD:MSVCRTD)
 endif()
 
 add_library(wx_controls STATIC ${Sources})
@@ -19,4 +20,3 @@ target_link_libraries(wx_controls
     ${GTK2_LIBRARIES}
     ${wxWidgets_LIBRARIES}
 )
-message("${Boost_LIBRARIES}")
