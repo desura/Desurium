@@ -57,7 +57,9 @@ if(NOT WIN32)
   set(REQUIRED_ON_UNIX REQUIRED)
 endif()
 
-find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
+if(NOT WIN32)
+  find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
+endif()
 find_package(BZip2)
 
 if(NOT WITH_ARES)
@@ -89,6 +91,10 @@ endif()
 
 if(NOT wxWidgets_FOUND)
   include(BuildwxWidgets)
+endif()
+
+if(NOT Boost_FOUND)
+  include(BuildBoost)
 endif()
 
 if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
@@ -126,6 +132,10 @@ if(NOT SQLITE_FOUND)
   add_subdirectory(third_party/sqlite)
 endif()
 add_subdirectory(third_party/sqlite3x)
+
+if(NOT Boost_FOUND)
+  add_dependencies(sqlite3x boost)
+endif()
 
 ###############################################################################
 # build desurium

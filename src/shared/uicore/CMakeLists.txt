@@ -1,7 +1,7 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
   ${CEF_INCLUDE_DIRS}
-  ${Boost_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIR}
   ${GTK2_INCLUDE_DIRS}
   ${IPCPipeIncludeDir}
   ${wxWidgets_INCLUDE_DIRS}
