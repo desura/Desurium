@@ -3,9 +3,10 @@ if(BITNESS EQUAL 64)
 endif()
 
 set(V8_SVN http://v8.googlecode.com/svn/tags/3.7.7/)
+set(TEST "%")
 
 if(WIN32)
-  set(SCONS_COMMAND ${PYTHON_INCLUDE_DIRS}/../Scripts/scons.bat snapshot=on mode=release msvcrt=static ${EXTRA_OPTS})
+  set(SCONS_COMMAND ${CMAKE_SCRIPT_PATH}/Buildv8.bat ${PYTHON_INCLUDE_DIRS}/../Scripts/scons.bat ${EXTRA_OPTS})
   set(V8_LIB_SUFFIX lib)
 else()
   set(SCONS_COMMAND scons snapshot=on mode=release library=shared ${EXTRA_OPTS})
