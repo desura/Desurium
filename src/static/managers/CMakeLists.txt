@@ -9,10 +9,9 @@ file(GLOB SourcesWindow code/WindowManager.cpp)
 list(REMOVE_ITEM Sources ${SourcesWindow})
 
 if(WIN32)
-  add_definitions(/D_LIB
-                  /DwxUSE_UNICODE
-				  /DWXUSINGDLL
-				  /D_CRT_SECURE_NO_WARNINGS)
+  use_unicode_here()
+  add_definitions(-DWXUSINGDLL
+				  -D_CRT_SECURE_NO_WARNINGS)
 endif()
 
 add_library(managers STATIC ${Sources} ${COMMON_SOURCE})
