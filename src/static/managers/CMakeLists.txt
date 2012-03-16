@@ -12,8 +12,7 @@ if(WIN32)
   add_definitions(/D_LIB
                   /DwxUSE_UNICODE
 				  /DWXUSINGDLL
-				  /D_CRT_SECURE_NO_WARNINGS
-				  /DUSE_WX_WIDGETS)
+				  /D_CRT_SECURE_NO_WARNINGS)
 endif()
 
 add_library(managers STATIC ${Sources} ${COMMON_SOURCE})
