@@ -137,6 +137,16 @@ else()
 endif()
 
 add_definitions(-DUI_HIDE_MODS -DENABLE_SEARCH)
+if(WIN32)
+  add_definitions(-D_WINDOWS
+	              -DSVENHACK
+				  -DINCLUDE_CVAR_CONCOMMAND
+				  -DINCLUDE_WXWIDGETS
+				  -DDESURA_CLIENT)
+  set(WINDOWS_LIBRARIES comctl32 comsuppwd odbc32 rpcrt4 Wininet winmm wsock32 wxmsw29u)
+  use_unicode_here()
+  add_linker_flags(/NOD:LIBCMT)
+endif()
 
 add_library(uicore SHARED ${Sources} ${PlattformSources})
 
@@ -160,6 +170,7 @@ target_link_libraries(uicore
     ${SQLITE3X_LIBRARIES}
     ${TINYXML_LIBRARIES}
     ${wxWidgets_LIBRARIES}
+	${WINDOWS_LIBRARIES}
 )
 
 install(TARGETS uicore

@@ -69,8 +69,13 @@ add_subdirectory(shared/webcore)
 # build the client
 ###############################################################################
 
-add_subdirectory(executable/bootloader_lin)
-add_subdirectory(executable/crashdlg_lin)
+if(WIN32)
+  add_subdirectory(executable/bootloader_win)
+else()
+  add_subdirectory(executable/bootloader_lin)
+  add_subdirectory(executable/crashdlg_lin)
+endif()
+
 add_subdirectory(tools/process_data_folder)
 add_subdirectory(tools/mfc_upload_cli)
 
@@ -105,6 +110,7 @@ endif()
 
 if(NOT CURL_FOUND)
   add_dependencies(util curl)
+  add_dependencies(util_web curl)
   add_dependencies(uicore curl)
 endif()
 

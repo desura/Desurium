@@ -7,6 +7,11 @@ include_directories(
 )
 
 add_definitions(-DDESURA_CLIENT)
+if(WIN32)
+  add_definitions(-DSVENHACK -DDESURA_DIABLO2_HACK)
+  set(WINDOWS_LIBRARIES crypt32)
+endif()
+
 file(GLOB Sources code/BaseItemServiceTask.cpp
                   code/BaseItemTask.cpp
                   code/BDManager.cpp
@@ -107,6 +112,7 @@ target_link_libraries(usercore
     ${SQLITE_LIBRARIES}
     ${SQLITE3X_LIBRARIES}
     ${TINYXML_LIBRARIES}
+	${WINDOWS_LIBRARIES}
 )
 
 install(TARGETS usercore
