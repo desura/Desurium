@@ -1,13 +1,14 @@
-easy way to build with cmake:
+How to compile Desurium using cmake:
 
-run ./build_cmake.sh
+Run ./build_cmake.sh
 
-of course you can build it with multicore support
+In order to make use of multiple CPU cores while compiling, run
 ./build_cmake.sh -j8
-will invoke "make -j8" so the build is speeded up extremely
+which will invoke "make -j8" so the build is speeded up extremely
 only 7 mins on my machine (intel core i7 2635QM)
+"8" will be the number of compile-thread to run at a time
 
-required dependencies (all can be installed by package manager):
+Required dependencies (can be installed by package manager or install-deps.sh):
 boost
 c-ares
 gtk2
@@ -15,11 +16,11 @@ OpenSSL
 tinyxml
 v8
 
-optional dependencies (will be built by cmake if not exist):
+Optional dependencies (will be built by cmake if not existing):
 bzip2
 sqlite
 
 cef is needed from official distribution see #5
-just copy required libs to install/lib
+Just copy required libs to install/lib
 
-finally run desurium with ./run_desurium.sh
+Finally run Desurium using ./run_desurium.sh
