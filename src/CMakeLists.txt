@@ -88,6 +88,10 @@ if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
   add_dependencies(mdump breakpad)
 endif()
 
+if(NOT BZIP2_FOUND)
+  add_dependencies(util bzip2)
+endif()
+
 if(NOT CURL_FOUND)
   add_dependencies(util curl)
   add_dependencies(uicore curl)
