@@ -5,10 +5,15 @@ include_directories(
 
 file(GLOB Sources code/*.cpp)
 
+if(WIN32)
+  # add_definitions(-DMODCORE_LOG)
+endif()
+
 add_library(crashuploader SHARED ${Sources})
 target_link_libraries(crashuploader
     util
     util_fs
+	${Boost_LIBRARIES}
     ${CURL_LIBRARIES}
     ${GTK2_LIBRARIES}
     ${OPENSSL_LIBRARIES}

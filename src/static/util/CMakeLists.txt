@@ -41,6 +41,10 @@ else()
   file(GLOB PlattformSources code/UtilLinux.cpp)
 endif()
 
+if(WIN32)
+  use_unicode_here()
+endif()
+
 add_library(util STATIC ${Sources} ${PlattformSources})
 
 target_link_libraries(util
