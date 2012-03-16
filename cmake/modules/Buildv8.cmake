@@ -11,6 +11,7 @@ if(WIN32)
 else()
   set(SCONS_COMMAND scons snapshot=on mode=release library=shared ${EXTRA_OPTS})
   set(V8_LIB_SUFFIX so)
+  set(V8_LIB_PREFIX lib)
 endif()
 
 ExternalProject_Add(
@@ -30,6 +31,6 @@ ExternalProject_Get_Property(
 
 set(V8_INSTALL_DIR ${source_dir})
 set(V8_INCLUDE_DIR ${V8_INSTALL_DIR}/include)
-set(V8_LIBRARIES "${V8_INSTALL_DIR}/libv8.${V8_LIB_SUFFIX};${V8_INSTALL_DIR}/libv8preparser.${V8_LIB_SUFFIX}")
+set(V8_LIBRARIES "${V8_INSTALL_DIR}/${V8_LIB_PREFIX}v8.${V8_LIB_SUFFIX};${V8_INSTALL_DIR}/${V8_LIB_PREFIX}v8preparser.${V8_LIB_SUFFIX}")
 install(FILES ${V8_LIBRARIES}
         DESTINATION ${LIB_INSTALL_DIR})
