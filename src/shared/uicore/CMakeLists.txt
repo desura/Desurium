@@ -80,6 +80,7 @@ file(GLOB Sources       code/AboutForm.cpp
                         code/LoginForm.cpp
                         code/MainApp.cpp
                         code/MainApp_cvar.cpp
+						code/MainApp_internal.cpp
                         code/MainApp_wildcards.cpp
                         code/MainForm.cpp
                         code/MainFormCustomFrame.cpp
@@ -130,8 +131,7 @@ if(WIN32)
 )
 # code/HeaderButton.cpp code/UninstallForm.cpp code/TabHandler.cpp
 else()
-  file(GLOB PlattformSources
-                        code/MainApp_internal.cpp)
+  file(GLOB PlattformSources)
 endif()
 
 add_definitions(-DUI_HIDE_MODS -DENABLE_SEARCH)
@@ -140,7 +140,8 @@ if(WIN32)
 	              -DSVENHACK
 				  -DINCLUDE_CVAR_CONCOMMAND
 				  -DINCLUDE_WXWIDGETS
-				  -DDESURA_CLIENT)
+				  -DDESURA_CLIENT
+				  -DWXUSINGDLL)
   set(WINDOWS_LIBRARIES comctl32 comsuppwd odbc32 rpcrt4 Wininet winmm wsock32)
   use_unicode_here()
 else()

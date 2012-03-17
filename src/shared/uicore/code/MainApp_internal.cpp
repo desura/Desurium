@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "InternalLink.h"
 
+#include "Log.h"
 
 #include "managers/CVar.h"
 #include "MainForm.h"
