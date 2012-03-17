@@ -17,7 +17,7 @@ if(WIN32)
 	custom_build
 	DEPENDEES configure
 	DEPENDERS build
-	COMMAND nmake /nologo -f makefile.vc BUILD=release VENDOR=desurium SHARED=0 RUNTIME_LIBS=static MONOLITHIC=1
+	COMMAND nmake /nologo -f makefile.vc BUILD=release VENDOR=desurium SHARED=1 RUNTIME_LIBS=shared MONOLITHIC=1
 	WORKING_DIRECTORY <SOURCE_DIR>/build/msw
   )
   
@@ -26,7 +26,7 @@ if(WIN32)
     source_dir
   )
   set(wxWidgets_INSTALL_DIR ${source_dir})
-  set(wxWidgets_LIBRARY_DIRS ${wxWidgets_INSTALL_DIR}/lib/vc_lib)
+  set(wxWidgets_LIBRARY_DIRS ${wxWidgets_INSTALL_DIR}/lib/vc_dll)
   set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include ${wxWidgets_LIBRARY_DIRS}/mswu)
   set(wxWidgets_LIBRARIES ${wxWidgets_LIBRARY_DIRS}/wxmsw29u.lib)
 else()

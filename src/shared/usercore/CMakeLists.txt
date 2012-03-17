@@ -1,6 +1,8 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
   ${COMMON_INCLUDE_DIRS}/service_pipe
+  ${COMMON_INCLUDE_DIRS}/tool_pipe
+  ${Boost_INCLUDE_DIR}
   ${CEF_INCLUDE_DIRS}
   ${IPC_PIPE_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}
@@ -9,7 +11,8 @@ include_directories(
 add_definitions(-DDESURA_CLIENT)
 if(WIN32)
   add_definitions(-DSVENHACK -DDESURA_DIABLO2_HACK)
-  set(WINDOWS_LIBRARIES crypt32)
+  set(WINDOWS_LIBRARIES Comctl32 crypt32)
+  add_linker_flags(/NOD:LIBCMT)
 endif()
 
 file(GLOB Sources code/BaseItemServiceTask.cpp
@@ -79,7 +82,6 @@ if(WIN32)
   file(GLOB PlattformSources
                   code/GameExplorerInfo_win.cpp
                   code/GameExplorerManager_win.cpp
-                  code/InstallHandler.cpp
                   code/ItemHandle_win.cpp
                   code/ToolInstallThread_win.cpp
                   code/ToolIPCPipeClient.cpp
@@ -95,8 +97,9 @@ else()
                   code/User_nix.cpp
 )
 endif()
+# TODO: code/InstallHandler.cpp
 
-add_library(usercore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES})
+add_library(usercore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES} ${TOOL_PIPE_SPOURCES})
 target_link_libraries(usercore
     gcJSBase
     ipc_pipe
