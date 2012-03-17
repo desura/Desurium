@@ -3,7 +3,7 @@ include_directories(
   ${CEF_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIR}
   ${GTK2_INCLUDE_DIRS}
-  ${IPCPipeIncludeDir}
+  ${IPC_PIPE_INCLUDE_DIRS}
   ${wxWidgets_INCLUDE_DIRS}
 )
 
@@ -80,7 +80,6 @@ file(GLOB Sources       code/AboutForm.cpp
                         code/LoginForm.cpp
                         code/MainApp.cpp
                         code/MainApp_cvar.cpp
-                        code/MainApp_internal.cpp
                         code/MainApp_wildcards.cpp
                         code/MainForm.cpp
                         code/MainFormCustomFrame.cpp
@@ -128,12 +127,11 @@ if(WIN32)
                         code/ChromiumMenuInfoFromMem.cpp
                         code/gcWCEvents_win.cpp
                         code/gcWebHost.cpp
-                        code/HeaderButton.cpp
-                        code/TabHandler.cpp
-                        code/UninstallForm.cpp
 )
+# code/HeaderButton.cpp code/UninstallForm.cpp code/TabHandler.cpp
 else()
-  file(GLOB PlattformSources)
+  file(GLOB PlattformSources
+                        code/MainApp_internal.cpp)
 endif()
 
 add_definitions(-DUI_HIDE_MODS -DENABLE_SEARCH)
@@ -143,19 +141,19 @@ if(WIN32)
 				  -DINCLUDE_CVAR_CONCOMMAND
 				  -DINCLUDE_WXWIDGETS
 				  -DDESURA_CLIENT)
-  set(WINDOWS_LIBRARIES comctl32 comsuppwd odbc32 rpcrt4 Wininet winmm wsock32 wxmsw29u)
+  set(WINDOWS_LIBRARIES comctl32 comsuppwd odbc32 rpcrt4 Wininet winmm wsock32)
   use_unicode_here()
-  add_linker_flags(/NOD:LIBCMT)
+else()
+  set(LINUX_LIBRARIES notify)
 endif()
 
-add_library(uicore SHARED ${Sources} ${PlattformSources})
+add_library(uicore SHARED ${Sources} ${PlattformSources} ${BROWSER_PIPE_SPOURCES})
 
 # TODO: get notify from cmake, not hardcoded
 target_link_libraries(uicore
     gcJSBase
     managers
     mcfcore
-    notify
     ipc_pipe
     threads
     umcf
@@ -171,6 +169,7 @@ target_link_libraries(uicore
     ${TINYXML_LIBRARIES}
     ${wxWidgets_LIBRARIES}
 	${WINDOWS_LIBRARIES}
+	${LINUX_LIBRARIES}
 )
 
 install(TARGETS uicore

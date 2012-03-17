@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #endif
 
 #include "IPCPipeClient.h"
-#include "../../common/browser_pipe/IPCBrowser.h"
+#include "browser_pipe/IPCBrowser.h"
 
 class CefIPCPipeClient : public IPC::PipeClient
 {

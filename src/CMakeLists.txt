@@ -41,6 +41,7 @@ include_directories(
 add_subdirectory(common)
 add_subdirectory(common/service_pipe)
 if(WIN32)
+  add_subdirectory(common/browser_pipe)
   add_subdirectory(common/tool_pipe)
 endif()
 add_subdirectory(static/managers)

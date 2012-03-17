@@ -10,7 +10,7 @@ file(GLOB Sources code/*.cpp)
 
 if(WIN32)
   use_unicode_here()
-  add_linker_flags(/NOD:MSVCRTD)
+ # add_linker_flags(/NOD:MSVCRTD)
 endif()
 
 add_library(wx_controls STATIC ${Sources})
