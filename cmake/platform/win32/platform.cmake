@@ -17,8 +17,8 @@ else()
     add_definitions(-DNDEBUG -D_NDEBUG)
 endif()
 
-# from official repo, do we need them?
-# /ignore:4006
-# /ignore:4099
-# /ignore:4221
-#add_definitions()
+# ignore some warnings
+add_linker_flags(/ignore:4006
+                 /ignore:4099
+				 /ignore:4221)
+add_compiler_flags(/wd4996)
