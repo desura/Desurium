@@ -2,7 +2,7 @@ if(BITNESS EQUAL 64)
   set(EXTRA_OPTS "arch=x64")
 endif()
 
-set(V8_SVN http://v8.googlecode.com/svn/tags/3.7.7/)
+set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.9/)
 set(TEST "%")
 
 if(WIN32)

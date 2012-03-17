@@ -6,7 +6,7 @@ include_directories(
 file(GLOB Sources code/*.cpp)
 
 if(WIN32)
-  set(WINDOWS_LIBRARIES msi winmm ws2_32)
+  set(WINDOWS_LIBRARIES msi winmm Wintrust ws2_32)
   add_linker_flags(/NOD:LIBCMT)
 endif()
 
