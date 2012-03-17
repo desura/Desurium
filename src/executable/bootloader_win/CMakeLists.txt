@@ -1,5 +1,8 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
+  ${CMAKE_CURRENT_SOURCE_DIR}/RES
+  ${COMMON_INCLUDE_DIRS}/service_pipe
+  ${IPC_PIPE_INCLUDE_DIRS}
   ${TINYXML_INCLUDE_DIR}
 )
 
@@ -11,13 +14,15 @@ add_definitions(-D_WINDOWS
 				-DDONTUSE_PCH
 				-DDESURA_EXE
 				-DDESURA_CLIENT
-				-DNO_UTIL_FS)
-add_linker_flags(/NOD:LIBCMT)
+				-DNO_UTIL_FS
+				-D_AFXDLL)
+add_linker_flags(/NOD:LIBCMT /FORCE)
 				
-add_executable(Desurium ${Sources})
+add_executable(Desurium ${Sources} ${SERVICE_PIPE_IPCUPDATEMAIN})
 target_link_libraries(Desurium
     ipc_pipe
     mdump
+	msi
     sqlite3x
 	threads
     util

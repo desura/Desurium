@@ -50,6 +50,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #define STR( t ) #t
 
+#define Log( s ) ;
+
 bool g_bRestart = false;
 char* g_szArgs = NULL;
 

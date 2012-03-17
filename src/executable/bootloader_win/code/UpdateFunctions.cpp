@@ -325,3 +325,6 @@ bool FixServiceDisabled()
 
 	return true;
 }
+
+void McfUpdate() {}
+void FullUpdate() {}
