@@ -1,5 +1,7 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
+  ${Boost_INCLUDE_DIR}
+  ${BZIP2_INCLUDE_DIR}
   ${SQLITE3X_INCLUDE_DIRS}
 )
 

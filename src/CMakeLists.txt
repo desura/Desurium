@@ -97,6 +97,7 @@ if(NOT Boost_FOUND)
   add_dependencies(util boost)
   add_dependencies(util_fs boost)
   add_dependencies(threads boost)
+  add_dependencies(webcore boost)
   add_dependencies(wx_controls boost)
 endif()
 
