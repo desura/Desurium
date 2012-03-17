@@ -11,8 +11,8 @@ Build Desurium Windows
 To build Desurium you will need Visual Studio 2008 and also Visual Studio 2010
 
 Download and install:
- * TortiseSvn http://tortoisesvn.net/downloads.html. Make sure to install command line tools
- * TortiseGit http://code.google.com/p/tortoisegit/downloads/list
+ * TortoiseSvn http://tortoisesvn.net/downloads.html. Make sure to install command line tools
+ * TortoiseGit http://code.google.com/p/tortoisegit/downloads/list
  * Windows Sdk 7.1 http://www.microsoft.com/download/en/details.aspx?id=8279
  * Python 2.7 http://www.python.org/getit/
  * SCons http://www.scons.org/download.php
@@ -64,6 +64,7 @@ Following commands must be invoked in the root of source tree.
 The script "install-deps.sh" will install building dependecies on major Linux distros. For now it supports Arch, Debian and it's derivatives like Ubuntu and Mint, Red Hat and it's derivatives like Fedora.
 If your distro is not supported yet, read this script and install corresponding packages for it. In case of succes, please send us a patch.
 To run the script, enter the following line in a command line and press enter.
+
 ./install-deps.sh
 
 We don't want to use Desurium branding, so invoke:
