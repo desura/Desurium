@@ -21,4 +21,4 @@ endif()
 add_linker_flags(/ignore:4006
                  /ignore:4099
 				 /ignore:4221)
-add_compiler_flags(/wd4996)
+add_compiler_flags(/wd4996 /MP)
