@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lang name="български (BG)" skip="true">
+	<author>
+		<username>WildBeλ³st</username>
+		<profile>http://www.desura.com/members/wildbeastbg</profile>
+	</author>
+	<strings>
+		<str name="#CRASH_TITLE">Desura: Полза от сривовете</str>
+		<str name="#CRASH_UPLOADINFO">Качване на срив(ове)…</str>
+		<str name="#CRASH_GENERATEINFO">Генериране на срив…</str>
+		<str name="#CRASH_ERROR">Неуспешно обработване.</str>
+
+		<str name="#CRASH_BUTGENERATE">Генериране на срив</str>
+		<str name="#CRASH_BUTUPLOAD">Качване на сривовете</str>
+
+		<str name="#CRASH_LABGENERATE">Когато Desura не отговаря или върши нещо неочаквано, това ще докладва текущото състояние на разработчиците, за да помогне при определяне на проблема.</str>
+		<str name="#CRASH_LABUPLOAD">Докладване на съществуващите сривове. Тоест сривовете, които са постъпили преди пускането на Desura.</str>
+
+
+		<str name="#CDF_TITLE">Местене папката с данни на Desura</str>
+		<str name="#CDF_STARTUP">Анализиране папката с данни…</str>
+		<str name="#CDF_MOVEFILE">Местене на файловете…</str>
+		<str name="#CDF_DBCHANGES">Обновяване на базата от данни</str>
+
+		<str name="#CDF_GERRTITLE">Грешка на Desura</str>
+		<str name="#CDF_GERROR">Неуспещно преместване на папката с данни на Desura.</str>
+
+
+		<str name="#DUN_TOTAL">Общо прогрес:</str>
+		<str name="#DUN_CURRENT">Текущ прогрес:</str>
+		<str name="#DUN_COMPLETED">Запомнете: заплатените артикули и подаръци не са изтрити от акаунта Ви и можете да ги използвате винаги след преинсталиране на Desura.</str>
+
+		<str name="#DUN_UNINSTALL_INFO">Деинсталирането на Desura ще премахне всички инсталирани игри, модове и съдържание. За да запазите инсталираното съдържание и поправите инсталацията на Desura, натиснете върху бутона за поправка по-долу.</str>
+		<str name="#DUN_UNINSTALL_OPT">Настройки за деинсталиране:</str>
+		<str name="#DUN_UNINSTALL_LOC">Desura ще бъде деинсталирана от следната папка:</str>
+
+		<str name="#DUN_REMOVE_DESURA">Премахване на Desura</str>
+		<str name="#DUN_REMOVE_DESURA_TT">Премахва всички инсталирани файлове на Desura.</str>
+		<str name="#DUN_REMOVE_SETTINGS">Премахване на настройки</str>
+		<str name="#DUN_REMOVE_SETTINGS_TT">Премахва файловете с настройки, използвани от Desura.</str>
+		<str name="#DUN_REMOVE_CACHE">Премахване на сваления кеш</str>
+		<str name="#DUN_REMOVE_CACHE_TT">Премахва сваления кеш, използван от Desura.</str>
+		<str name="#DUN_REMOVE_SIMPLE">Внимателно премахване на игри и модове</str>
+		<str name="#DUN_REMOVE_SIMPLE_TT">Премахва всички игри и модове, които са инсталирани от Desura.</str>
+		<str name="#DUN_REMOVE_COMPLEX">Премахване на модове</str>
+		<str name="#DUN_REMOVE_COMPLEX_TT">Премахва всички модове, инсталирани върху оригинални файлове на игри.</str>
+		<str name="#DUN_REMOVE_ACCOUNT">Премахване на безплатните артикули от акаунта</str>
+		<str name="#DUN_REMOVE_ACCOUNT_TT">Премахва всички безплатни артикули (като връзки и демота), инсталирани на този компютър от този акаунт.</str>
+
+		<str name="#DUN_UNINSTALL_HEADER">Деинсталиране на Desura</str>
+		<str name="#DUN_UNINSTALL_SUBHEADER">Премахване на Desura от компютъра Ви…</str>
+		<str name="#DUN_REPAIR">Поправяне</str>
+		<str name="#DUN_UNINSTALL">Деинсталиране</str>
+
+		<str name="#DUN_THREAD_UNINSTALL">Премахване на игри и модове…</str>
+		<str name="#DUN_THREAD_UNINSTALL_SUB">Деинсталиране на {0}</str><!-- {0} item name -->
+		<str name="#DUN_THREAD_FINAL">Приключване на почистването…</str>
+		<str name="#DUN_THREAD_UNINSTALL">Премахване на записите от деинсталирането…</str>
+		<str name="#DUN_THREAD_GAMEEXPLORER">Премахване на записите от деинсталирането на игрите…</str>
+		<str name="#DUN_THREAD_CACHE">Премахване на кешовете от Desura…</str>
+		<str name="#DUN_THREAD_SETTINGS">Премахване на настройките от Desura…</str>
+		<str name="#DUN_THREAD_ACCOUNT">Почистване на акаунта от безплатни артикули…</str>
+		<str name="#DUN_THREAD_ACCOUNT_SUB">Премахване на {0} от акаунта</str><!-- {0} item name -->
+
+	</strings>
+</lang>

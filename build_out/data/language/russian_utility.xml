@@ -9,20 +9,20 @@
 		<str name="#CRASH_UPLOADINFO">Загрузка дампа ...</str>
 		<str name="#CRASH_GENERATEINFO">Создание дампа ...</str>
 		<str name="#CRASH_ERROR">Не удалось создать дамп</str>
-		
+
 		<str name="#CRASH_BUTGENERATE">Создание дампа ошибки</str>
 		<str name="#CRASH_BUTUPLOAD">Загрузка дампа ошибки</str>
-		
+
 		<str name="#CRASH_LABGENERATE">Когда Desura не отвечает или зависла это сообщение поможет разработчикам в устранении проблемы</str>
 		<str name="#CRASH_LABUPLOAD">Рассказать об ошибках при выходе из Desura</str>
-		
-		
+
+
 		<str name="#CLEANUP_LABTOTAL">Всего:</str>
-		<str name="#CLEANUP_LABCURRENT">Всего элементов:</str>	
-		
-		
+		<str name="#CLEANUP_LABCURRENT">Всего элементов:</str>
+
+
 		<str name="#CLEANUP_TITLE">Desura: инструмент очистки</str>
-		
+
 		<str name="#CLEANUP_SELECTALL">Выбрать всё</str>
 		<str name="#CLEANUP_SELECTNONE">Не выбирать ничего</str>
 		<str name="#CLEANUP_LABEL">Выберите игры и моды, которые хотите удалить</str>

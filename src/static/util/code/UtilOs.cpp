@@ -176,7 +176,7 @@ std::wstring getLocalAppDataPath(std::wstring extra)
 	}
 
 	return out;
-#else
+#else //TODO LINUX
 	return L"";
 #endif
 }
@@ -199,7 +199,7 @@ std::wstring getTempInternetPath(std::wstring extra)
 	}
 
 	return out;
-#else
+#else //TODO LINUX
 	return L"";
 #endif
 }
@@ -223,7 +223,7 @@ std::wstring getCommonProgramFilesPath(std::wstring extra)
 	}
 
 	return out;
-#else
+#else //TODO LINUX
 	return L"";
 #endif
 }
@@ -243,8 +243,8 @@ std::wstring getStartMenuProgramsPath(std::wstring extra)
 	}
 
 	return out;
-#else //TODO LINUX
-	return L"";
+#else
+	return UTIL::LIN::getApplicationsPath(extra);
 #endif
 }
 
@@ -263,49 +263,30 @@ std::wstring getDesktopPath(std::wstring extra)
 	}
 
 	return out;
-#else //TODO LINUX
-	return L"";
-#endif
-}
-
-#ifdef WIN32
-
-gcString getAbsPath(const gcString& path)
-{
-	return path;
-}
-
-gcString getRelativePath(const gcString &path)
-{
-	return path;
-}
-
 #else
+	return UTIL::LIN::getDesktopPath(extra);
+#endif
+}
+
 
 gcString getAbsPath(const gcString& path)
 {
-	if (path.size() == 0 || path[0] == '/')
-		return path;
-	
-	gcString wd = UTIL::LIN::getAppPath(L"");
-	
-	if (path.find(wd) == std::string::npos)
-		return wd + "/" + path;
-	
-	return path;	
+#ifdef WIN32
+	return UTIL::WIN::getAbsPath(path);
+#else
+	return UTIL::LIN::getAbsPath(path);
+#endif
 }
 
 gcString getRelativePath(const gcString &path)
 {
-	gcString wd = UTIL::LIN::getAppPath(L"");
-	
-	if (path.find(wd) == 0)
-		return path.substr(wd.size()+1, std::string::npos);
-	
-	return path;
+#ifdef WIN32
+	return UTIL::WIN::getRelativePath(path);
+#else
+	return UTIL::LIN::getRelativePath(path);
+#endif
 }
 
-#endif
 
 }
 }

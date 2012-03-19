@@ -171,14 +171,13 @@ int getRegValueInt(const std::string &regIndex, bool use64bit)
 
 	res = RegOpenKeyEx(rootKey, parts[1].c_str(), 0, flags, &hk);
 
-	int resInt;
+	int resInt = 0;
 	if (res == ERROR_SUCCESS)
 	{
 		DWORD err = RegQueryValueExW(hk, parts[2].c_str(), NULL, &dwType, NULL, &dwSize);
 
 		if (dwSize != 0)
 		{
-			wchar_t* buff = new wchar_t[(dwSize/sizeof(wchar_t))+1];
 			dwSize += 1;
 
 			err = RegQueryValueExW(hk, parts[2].c_str(), NULL, &dwType, (PBYTE)&resInt, &dwSize);
@@ -846,6 +845,16 @@ const char g_cBadChars[] = {
 	'|',
 	NULL
 };
+
+gcString getAbsPath(const gcString& path)
+{
+	return path;
+}
+
+gcString getRelativePath(const gcString &path)
+{
+	return path;
+}
 
 std::string sanitiseFileName(const char* name)
 {

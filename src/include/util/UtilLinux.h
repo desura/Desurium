@@ -121,6 +121,19 @@ namespace LIN
 	//!
 	std::string getCmdStdout(const char* command, int stdErrDest = 0);
 	
+	//! Returns the Desktop directory in the
+	//! user's home.
+	//!
+	//! @param extra extra text to append to Desktop path
+	//!
+	std::wstring getDesktopPath(std::wstring extra);
+
+	//! Returns ~/.local/share/applications
+	//!
+	//! @param extra extra text to append to Desktop path
+	//!
+	std::wstring getApplicationsPath(std::wstring extra);
+
 	//! Checks if a file exists
 	//!
 	//! @param file The file to stat (check existance of)
@@ -129,6 +142,9 @@ namespace LIN
 	bool fileExists(const char* file);
 	
 	bool is64OS();
+
+	gcString getAbsPath(const gcString& path);
+	gcString getRelativePath(const gcString &path);
 	
 	std::string sanitiseFileName(const char* name);
 	

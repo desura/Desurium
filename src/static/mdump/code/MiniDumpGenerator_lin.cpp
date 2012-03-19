@@ -25,6 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <cstdlib>
 #include "client/linux/handler/exception_handler.h"
 
+#include "../../../branding/branding.h"
+
 google_breakpad::ExceptionHandler* MiniDumpGenerator::s_pExceptionHandler = NULL;
 
 bool CompleteCallback(const char* dump_path, const char* minidump_id, void* context, bool succeeded)
@@ -96,7 +98,7 @@ bool MiniDumpGenerator::complete(const char* dump_path, const char* minidump_id,
 											"\n"
 											"For some reason the normal crashdump tool could not be used to upload the\n"
 											"report. Please use the dumpgen utility (in the 'bin' directory) to upload\n"
-											"the dump and then relaunch Desura.\n"
+											"the dump and then relaunch " PRODUCT_NAME ".\n"
 											"\n"
 											"The information in the dump will help the developers fix the issue in \n"
 											"future releases. If this issue is recurring or severe, please email\n"

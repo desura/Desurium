@@ -788,14 +788,17 @@ void HttpHInternal::cleanUp(bool delUrl)
 	m_vHeaders.clear();
 	addHeader("Expect: ");
 
-	if (m_pMemStruct && m_pMemStruct->memory)
+	if (m_pMemStruct)
 	{
-		free (m_pMemStruct->memory);
-		m_pMemStruct->memory = NULL;
-	}
+	  if (m_pMemStruct->memory)
+	  {
+		  free (m_pMemStruct->memory);
+		  m_pMemStruct->memory = NULL;
+	  }
 
-	m_pMemStruct->size = 0;
-
+	  m_pMemStruct->size = 0;
+  }
+  
 	if (delUrl)
 		m_szUrl = "";
 

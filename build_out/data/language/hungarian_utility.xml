@@ -9,22 +9,22 @@
 		<str name="#CRASH_UPLOADINFO">Crash Dump(ok) Feltöltése ...</str>
 		<str name="#CRASH_GENERATEINFO">Crash Dump Gyûjtése ...</str>
 		<str name="#CRASH_ERROR">Nem sikerült feldolgozni a Dumpokat .</str>
-		
+
 		<str name="#CRASH_BUTGENERATE">Crash Dump Készítése</str>
 		<str name="#CRASH_BUTUPLOAD">Crash Dumps Feltöltése</str>
-		
+
 		<str name="#CRASH_LABGENERATE">Ha a Desura nem válaszol vagy nem megfelelõen mûködik, ez az eszköz elküldi a jelenlegi helyzetét a fejlesztõknek hogy javíthassák a hibát.</str>
 		<str name="#CRASH_LABUPLOAD">Létezõ crash dumpok jelentése. Azaz a Desura indulása elõtt meglévõ Crash Dumpok feltöltése.</str>
-		
-		
+
+
 		<str name="#CLEANUP_LABTOTAL">Összes:</str>
-		<str name="#CLEANUP_LABCURRENT">Jelenleg:</str>	
-		
-		
+		<str name="#CLEANUP_LABCURRENT">Jelenleg:</str>
+
+
 		<str name="#CLEANUP_TITLE">Desura: Tisztító Eszköz</str>
-		
+
 		<str name="#CLEANUP_SELECTALL">Mindent Kijelöl</str>
 		<str name="#CLEANUP_SELECTNONE">Kijelölések Törlése</str>
-		<str name="#CLEANUP_LABEL">Válaszd ki azokat a játékokat vagy modokat amiket törélni szeretnél a Desura-val.</str>	
+		<str name="#CLEANUP_LABEL">Válaszd ki azokat a játékokat vagy modokat amiket törélni szeretnél a Desura-val.</str>
 	</strings>
 </lang>

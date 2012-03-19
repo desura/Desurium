@@ -5,15 +5,14 @@ Desura is a gaming client that allows a user to one click download and install g
 See here for more information: http://www.moddb.com/groups/desura/forum/thread/open-sourcing-desura
 
 
-
 Build Desura Windows
 ===================
 
 To build Desura you will need Visual Studio 2008 and also Visual Studio 2010
 
 Download and install:
- * TortiseSvn http://tortoisesvn.net/downloads.html. Make sure to install command line tools
- * TortiseGit http://code.google.com/p/tortoisegit/downloads/list
+ * TortoiseSvn http://tortoisesvn.net/downloads.html. Make sure to install command line tools
+ * TortoiseGit http://code.google.com/p/tortoisegit/downloads/list
  * Windows Sdk 7.1 http://www.microsoft.com/download/en/details.aspx?id=8279
  * Python 2.7 http://www.python.org/getit/
  * SCons http://www.scons.org/download.php
@@ -60,23 +59,16 @@ from the folder or setup visual studio to use the desura-d.exe from the build_ou
 Build Desura Linux
 ===================
 
-To install all of build deps on Debian/Ubuntu just invoke this command as root:
-apt-get install gcc-4.5 git-core subversion m4 build-essential binutils automake autoconf libtool libgtk2.0-dev libnss3-dev libgconf2-dev libgnome-keyring-dev libdbus-glib-1-dev gperf bison libcups2-dev flex libjpeg-dev libasound2-dev libbz2-dev libxpm-dev libx11-dev libssl-dev scons
+Following commands must be invoked in the root of source tree.
 
-Or if you are using Fedora invoke this command as root:
-yum install git subversion m4 autoconf gcc-c++ glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel scons
+Script install-deps.sh will install building dependencies on major Linux distros. For now it supports Arch, Debian and it's derivatives like Ubuntu and Mint, Red Hat and it's derivatives like Fedora.
+If your distro is not supported yet then you have to read this script and install corresponding packages for it. In case of succes, send us a patch. Now execute it:
+./install-deps.sh
 
-Check out repo
-Copy branding_default in src to src/branding
+Wee don't want to use Desura branding, so invoke:
+cp -r src/branding_default src/branding
 
-#!/bin/bash
-# Run from root repo dir
-# Build desura
-source env.sh
-cd src/third_party
-./SvnCheckOut.sh
-./BuildAll.sh
-cd ../../build_lin
+Then run the build script
 ./build.sh
 
 
@@ -133,4 +125,4 @@ cd build_lin
 Run Linux
 ===================
 
-If you built the debug build (default) you should be able to run ./test.sh in the build_lin folder to teset or ./desura in the build_out/debug_lin folder
+If you built the debug build (default) you should be able to run ./test.sh in the build_lin folder to test or ./desura in the build_out/debug_lin folder

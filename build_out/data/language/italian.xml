@@ -43,7 +43,7 @@
 
         <str name="#MW_PROMPT">La seguente procedura guidata cercherà giochi e mod supportati da Desura installati sul computer. Nota: Questa procedura aggiornerà tutti gli elementi trovati all'ultima versione disponibile su Desura.</str>
         <str name="#MW_FINISH">La procedura è completa e tutti i giochi trovati nel computer e supportati da Desura sono stati aggiunti al tuo account. &#xA;&#xA;Se Desura non ha trovato un gioco installato, può essere aggiunto manualmente facendo clic sul pulsante "Installazione personalizzata" sotto.</str>
-	</windows>		
+	</windows>
 	<strings>
 		<str name="#DESURA_UPDATE">È stato rilasciato un aggiornamento per Desura ed è pronto per essere installato.</str>
 
@@ -140,7 +140,7 @@
 		<str name="#CF_NOTSTARTED">Inizializzazione ...</str>
 		<str name="#CF_ERROR">Si è verificato un errore durante la procedura di creazione MCF ed è stata interrotta.</str>
 		<str name="#CF_ERRTITLE">Errore creazione MCF</str>
-		
+
 		<!-- note the {0} will be replaced with the item name! -->
 		<str name="#CF_COMPLETE">Creazione MCF di {0} completata.</str>
 
@@ -149,7 +149,7 @@
 		<str name="#IF_FREE">Gratis</str>
 		<str name="#IF_PREPARE_INFO">Preparazione di {0} {1}</str>
 		<str name="#IF_PREPARE_INFO_NOITEM">In preparazione...</str>
-		
+
 		<str name="#IF_TITLE">Preparazione:</str>
 		<str name="#IF_VERIFY">Verifica:</str>
 		<str name="#IF_DOWNLOAD">Scaricamento:</str>
@@ -160,11 +160,11 @@
 		<str name="#IF_UNINSTALL_PATCH">Rimozione file vecchi: </str>
 		<str name="#IF_UNINSTALL_COMPLEX">Disinstallazione mod complesso</str>
 		<str name="#IF_INSTALL_CHECK">Verifica installazione</str>
-		
+
 		<str name="#IF_UNINSTALL_LABEL">Disinstallazione ...</str>
 		<str name="#IF_UNINSTALL_BRANCH_LABEL">Rimozione file vecchi ... </str>
 		<str name="#IF_UNINSTALL_PATCH_LABEL">Rimozione file vecchi ... </str>
-		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Disinstallazione mod complesso ... </str>	
+		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Disinstallazione mod complesso ... </str>
 
 		<!-- Install check -->
 		<str name="#IC_ERRTITLE">Errore verifica installazione</str>
@@ -196,7 +196,7 @@
 		<str name="#IF_GERROR_PLATFORM">{0} non è supportato su questa piattaforma.</str><!-- {0} item name -->
 		<str name="#IF_GERROR_BRANCH_PLATFORM">il ramo di {0} selezionato non è supportato su questa piattaforma.</str><!-- {0} item name -->
 		<str name="#IF_GERROR_BRANCH_PLATFORM_Q">Si desidera selezionare un ramo diverso?</str>
-		
+
 		<str name="#IF_GERROR">Si è verificato un errore durante la procedura di raccolta informazioni ed è stata interrotta.</str>
 		<str name="#IF_GERRTITLE">Errore raccolta informazioni</str>
         <str name="#IF_GERRTITLE">Recupero informazioni sull'errore</str>
@@ -227,7 +227,7 @@
 		<str name="#IF_VERIFYTOOLS">Reinstalla strumenti</str>
 		<str name="#IF_VERIFYHOOKS">Riavvia hooks post-installazione</str>
 		<str name="#IF_VERIFYCONFIRM">Se si hanno difficoltà ad eseguire {0}, la procedura di verifica tenterà di risolvere tutti i problemi.</str>
-		
+
 		<str name="#IF_VERIFYMCF">Verifica MCF ...</str>
 		<str name="#IF_VERIFYINSTALL">Verifica installazione ...</str>
 		<str name="#IF_VERIFYDOWNLOADF">Scaricamento file mancanti ...</str>
@@ -243,12 +243,12 @@
 		<str name="#IF_FILEERR">Il percorso contiene già file.</str>
 		<str name="#IF_NOTINSTALLED">Elemento non installato.</str>
 		<str name="#IF_IHASHFAIL">Uno o più file hanno fallito il controllo md5 durante la procedura di installazione. Si desidera verificare l'installazione per assicurarsi che sia completa?</str>
-		
+
 		<str name="#IF_CONFLICT">Desura ha rilevato che {0} è già installato. Poiché {0} richiede un'installazione complessa, è raccomandabile disinstallare manualmente {0} prima di continuare con l'installazione di Desura ed evitare problemi di conflitti.</str>
 		<str name="#IF_CONFLICTTITLE">Conflitto di installazione complessa</str>
-		
+
 		<str name="#IF_COMPLETEPREORDER">Pre-caricamento completo</str>
-		
+
 		<str name="#IF_PRELOADLAUNCH">{0} è stato {2} e non può essere avviato in questo momento. Sarà possibile giocarci tra {1} giorni.</str>
 		<str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
 		<str name="#IF_PRELOADLAUNCH_PREORDERED">pre-ordinato</str>
@@ -256,8 +256,8 @@
 		<str name="#IF_PRELOADLAUNCH_INSTALLDEMO">Installa Demo</str>
 		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER">Installa Altro</str>
 		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER_INFO">&#xA;&#xA;Sono disponibili altre versioni con cui giocare.</str>
-		
-		
+
+
 		<str name="#IF_COMPLEXREMOVE">Rimozione file vecchi</str>
 		<str name="#IF_COMPLEXBACKUP">Backup file di gioco</str>
 		<str name="#IF_COMPLEXINSTALL">Installazione file</str>
@@ -279,24 +279,24 @@
 		<str name="#IF_VALIDATE_PREALLOCATING">Pre-allocazione file da scaricare...</str>
 		<str name="#IF_VALIDATE_TITLE">Convalida scaricamento:</str>
 		<str name="#IF_VALIDATE_LABEL">Fase {2}: Completati {0} di {1}</str><!-- {0}: done, {1}: total {2}:Stage number-->
-		
+
 		<str name="#IF_PREORDERED_NORELEASE">Pre-ordinato: Non rilasciato</str>
 		<str name="#IF_PREORDERED">Pre-ordinato: pre-caricamento pronto</str>
-		
+
 		<str name="#IF_WAIT_TITLE">In attesa degli elementi:</str>
 		<str name="#IF_WAIT_FORCE">Forza</str>
 		<str name="#IF_WAIT_CANCELALL">Annulla tutto</str>
 		<str name="#IF_WAIT_INFO">{0} è in attesa del completamento di altri elementi prima di avviare {1}.</str><!-- {0}: item name, {1}: action -->
 		<str name="#IF_WAIT_ACTION_UNINSTALL">per disinstallare un elemento</str>
 		<str name="#IF_WAIT_ACTION_VERIFY">per verificare i file dell'elemento</str>
-		
+
 		<!-- Install Wizard -->
 		<str name="#MW_TITLE">Cerca giochi installati</str>
 		<str name="#MW_ERROR">Si è verificato un errore durante la procedura guidata ed è stata interrotta.</str>
         <str name="#MW_CUSTOM">Installazione personalizzata</str>
 		<str name="#MW_ERRTITLE">Errore ricerca giochi installati</str>
 		<str name="#MW_ADDACCOUNT">Aggiungi elementi trovati all'account</str>
-		
+
 		<!-- Main Form -->
 		<str name="#MF_OFFLINE">Sei sicuro di voler passare alla modalità non in linea?</str>
 		<str name="#MF_OFFLINE_TITLE">Modalità non in linea</str>
@@ -318,7 +318,7 @@
 		<str name="#MF_UNINSTALLPROMPT">{0} è in fase di installazione. Per disinstallarlo Desura deve interrompere la procedura di installazione. Continuare con la rimozione?</str>
 		<str name="#MF_UNINSTALLTITLE">Desura {0} disinstallazione</str>
 		<str name="#MF_LUANCH_ERROR_VERIFY_TOOLTIP">Verifica file di installazione</str>
-		
+
 		<!-- Buttons -->
 		<str name="#RESTART_NOW">Riavvia ora</str>
 		<str name="#RESTART_LATER">Riavvia dopo</str>
@@ -357,7 +357,7 @@
 		<str name="#PREORDER">Pre-ordina</str>
 		<str name="#HIDE">Nascondi</str>
 		<str name="#FIND">Cerca</str>
-		
+
 		<!-- Misc -->
 		<str name="#NAME">Nome</str>
 		<str name="#SIZE">Dimensione</str>
@@ -378,7 +378,7 @@
 		<str name="#INSTALL">Installa</str>
 		<str name="#UNINSTALLING">Disinstalla ...</str>
 		<str name="#REMOVE">Rimuovi</str>
-		
+
 		<!-- Main Menu -->
 		<str name="#MENU_OFFLINE">Vai non in linea</str>
 		<str name="#MENU_OFFLINE_TOOLTIP">Vai in modalità non in linea (nessun accesso ad internet)</str>
@@ -443,7 +443,7 @@
         <str name="#PLAY_DELAY_LOADING">Recupero elenco giochi...</str>
         <str name="#PLAY_GAMES">Giochi</str>
         <str name="#PLAY_DEVELOPMENT">Sviluppo</str>
-		
+
 		<!-- Pop up menu -->
 		<str name="#PM_VIEWPROFILE">Visualizza profilo</str>
 		<str name="#PM_MODLIST">Visualizza elenco mod</str>
@@ -493,7 +493,7 @@
 		<str name="#SET_CV_CONSOLE_TOOLTIP">Apre la console se si verificano errori</str>
 		<str name="#SET_CV_DISABLE_WGE">Disabilita l'esplora risorse per i giochi di Windows</str>
 		<str name="#SET_CV_DISABLE_WGE_TOOLTIP">Impedisce a Desura di inserire i giochi in esplora risorse per i giochi di Windows</str>
-        
+
 		<str name="#SET_CV_WORKER">Worker Threads</str>
 		<str name="#SET_CV_WORKER_TOOLTIP">Questo è il numero di worker usati per eseguire i processi (come creare un MCF).</str>
 		<str name="#SET_CV_DESTMAIN">Scarica il modulo principale alla chiusura</str>
@@ -512,7 +512,7 @@
 		<str name="#SET_CV_SILENTLAUNCH">Accesso automatico silenzioso</str>
 		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Non mostrare la finestra principale all'accesso automatico</str>
 		<str name="#SET_CACHE_BROWSE">Selezionare una nuova cartella da usare come cache di Desura</str>
-		
+
 		<str name="#SET_CV_CHAT_ENABLED">Abilita la chat di Desura</str>
 		<str name="#SET_CV_CHAT_ENABLED_TOOLTIP">Abilita la chat nel client Desura</str>
 		<str name="#SET_CV_CHAT_BREAKOUT">Chat in una finestra separata</str>
@@ -523,7 +523,7 @@
 		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">Mostra in maniera predefinita i contatti non in linea</str>
 		<str name="#SET_CV_CHAT_REMEMBERSTATUS">Ricorda lo stato dell'ultima chat</str>
 		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Imposta sempre lo stato corrente a quello usato l'ultima volta che ci si è connessi</str>
-		
+
 		<str name="#SET_CIP_UPDATE">Ricarico elenco giochi</str>
 		<str name="#SET_CIP_BUT_BROWSE">Sfoglia</str>
 		<str name="#SET_CIP_BUT_REFRESH">Ricarica giochi</str>
@@ -545,10 +545,10 @@
 		<str name="#SET_CIP_LINK">Puoi aggiungere collegamenti ad altri giochi e applicazioni usando il modulo sotto. Nelle proprietà, accessibili tramite tasto destro del mouse, puoi aggiungere argomenti o disinstallare tramite l'apposita voce. Attenzione: questa funzione è in fase beta. Aspettati qualche bug!</str>
         <str name="#SET_CIP_LINK_NAME">Nome collegamento::</str>
         <str name="#SET_CIP_LINK_EXE">Collegamento eseguibile:</str>
-        
+
 		<str name="#CIP_BROWSE">Selezionare la cartella radice del gioco:</str>
         <str name="#CIP_LINK_BROWSE">Seleziona l'eseguibile per il collegamento:</str>
-        
+
 
 		<!-- Browser controls -->
 		<str name="#BC_HOME">Apri homepage</str>
@@ -612,7 +612,7 @@
 		<str name="#IS_PAUSED">In pausa</str>
 		<str name="#IS_PREORDER_STATUS">Preordinato</str>
 		<str name="#IS_PRELOADED_STATUS">Precaricato</str>
-		
+
 		<str name="#IS_PREORDER">Disponibile tra </str>
 		<str name="#IS_PREORDER_DAYS">giorni</str>
 		<str name="#IS_PREORDER_HOURS">ore</str>
@@ -626,7 +626,7 @@
 		<str name="#IS_INSTALLINGTOOL">Strumenti IN</str>
 		<str name="#IS_VALIDATE">Convalida</str>
 		<str name="#IS_WAIT">In attesa ({0} di {1})</str>
-		
+
 		<str name="#AB_ABOUTINFO">Desura è un servizio di distribuzione digitale creato da e per la comunità di giocatori e che rende facilmente fruibili i migliori giochi, mod e contenuti scaricabili degli sviluppatori, subito pronti per essere acquistati e giocati.</str>
 		<str name="#AB_CREDITS">Crediti</str>
 		<str name="#AB_ABOUT">Informazioni su Desura</str>
@@ -710,14 +710,14 @@
 		<str name="#CDK_COUNTDOWN">Esecuzione tra {0}</str>
 		<str name="#CDK_LAUNCHNOW">Esegui ora</str>
         <str name="#CDK_ACTIVATE">Attiva</str>
-		
+
 		<str name="#CDK_REGKEY">Chiave CD installata automaticamente</str>
 		<str name="#CDK_REGKEY_TOOLTIP">La chiave CD di questo elemento è stata installata automaticamente così non è necessario copiarla.</str>
-		
+
 		<!-- exe select form -->
 		<str name="#ES_TITLE">Seleziona versione: {0}</str>
 		<str name="#ES_LABEL">Selezionare la versione di {0} con cui giocare:</str>
-		
+
 		<!-- change cache dir -->
 		<str name="#MCFCD_ID">Desura installa i giochi e i programmi nella cartella dove è stata installata; non può essere modificata:</str>
 		<str name="#MCFCD_CD">Tutti i file cache sono salvati nella cartella sotto, puoi inserire la cartella nella quale i file verranno conservati:</str>
@@ -727,18 +727,18 @@
 		<str name="#MCFCD_INVALIDFOLDER">Errore: la cartella non esiste</str>
 		<str name="#MCFCD_CANTWRITE">Errore: non posso scrivere nella cartella</str>
 		<str name="#MCFCD_GETTINGSIZE">Caricamento...</str>
-	
+
 		<str name="#CC_EDITPROFILE">Modifica il profilo utente</str>
 		<str name="#CC_ADDFRIEND">Aggiungi un amico alla chat</str>
 		<str name="#CC_SHOWCONTACTS">Mostra contatti non in linea</str>
 		<str name="#CC_HIDECONTACTS">Nascondi contatti non in linea</str>
 		<str name="#CC_BREAKOUT">Separa la chat in una nuova finestra</str>
-		
+
 		<str name="#CHAT_ADDFRIEND_TITLE">Aggiungi un amico al tuo account</str>
 		<str name="#CHAT_ADDFRIEND_SEARCH">Aggiungi da ricerca:</str>
 		<str name="#CHAT_ADDFRIEND_BYUSER">Aggiungi per nome utente:</str>
 		<str name="#CHAT_ADDFRIEND_NOTE">Nota: La ricerca restituirà solo i primi 25 elementi. Per una ricerca più approfondita andare alla {0}pagina utenti{1}.</str><!-- {0} is start of link {1} is end of link</a>-->
-	
+
 		<str name="#CHAT_MENU_CHATWITH">Chat con</str>
 		<str name="#CHAT_MENU_UNBLOCK">Sblocca amico</str>
 		<str name="#CHAT_MENU_BLOCK">Blocca amico</str>
@@ -746,7 +746,7 @@
 		<str name="#CHAT_MENU_REJECT">Rifiuta la richiesta dell'amico</str>
 		<str name="#CHAT_MENU_RESEND">Invia di nuovo la richiesta all'amico</str>
 		<str name="#CHAT_MENU_REMOVE">Rimuovi amico</str>
-		
+
 		<str name="#CHAT_SEARCH_ADD">Aggiungi</str>
 		<str name="#CHAT_SEARCH_ADDED">Aggiunto</str>
 		<str name="#CHAT_SEARCH_PENDING">Pendente</str>

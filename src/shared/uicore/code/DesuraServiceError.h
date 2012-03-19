@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #pragma once
 #endif
 
+#include "../../../branding/branding.h"
 #include "wx_controls/gcControls.h"
 
 class DSEThread;
@@ -29,7 +30,7 @@ class DSEThread;
 class DesuraServiceError : public gcDialog 
 {
 public:
-	DesuraServiceError( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Desura Service Error"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 370,127 ), long style = wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL);
+	DesuraServiceError( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = PRODUCT_NAME_CATW(L" Service Error"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 370,127 ), long style = wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL);
 	~DesuraServiceError();
 
 	void run();

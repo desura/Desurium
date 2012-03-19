@@ -3,7 +3,7 @@
 	<author>
 		<username>jack_wade</username>
 		<profile>http://www.moddb.com/members/jack-wade</profile>
-		
+
 		<username>El Hombre Sin Nombre</username>
 		<profile>http://www.desura.com/members/elhombresinnombre</profile>
 	</author>
@@ -12,30 +12,30 @@
 		<str name="#CRASH_UPLOADINFO">Subiendo Informe(s) de Error(es)...</str>
 		<str name="#CRASH_GENERATEINFO">Generando Informe(s) de Error(es)...</str>
 		<str name="#CRASH_ERROR">Error al procesar el/los informe(s) de error(es).</str>
-		
+
 		<str name="#CRASH_BUTGENERATE">Generar Informe de Errores</str>
 		<str name="#CRASH_BUTUPLOAD">Subir Informes de Errores</str>
-		
+
 		<str name="#CRASH_LABGENERATE">Cuando Desura no responda o realice algo inesperado, esta herramienta informará a los desarrolladores del actual estado de la aplicación para ayudarles a solucionar el problema.</str>
 		<str name="#CRASH_LABUPLOAD">Enviar los informes de errores existentes. P.ej. Informes de errores que se generaron antes de que Desura se iniciara.</str>
-		
-		
+
+
 		<str name="#CLEANUP_LABTOTAL">Total:</str>
-		<str name="#CLEANUP_LABCURRENT">Elemento actual:</str>	
-		
-		
+		<str name="#CLEANUP_LABCURRENT">Elemento actual:</str>
+
+
 		<str name="#CLEANUP_TITLE">Desura: Herramienta de Limpieza</str>
-		
+
 		<str name="#CLEANUP_SELECTALL">Seleccionar Todos</str>
 		<str name="#CLEANUP_SELECTNONE">No Seleccionar Ninguno</str>
-		<str name="#CLEANUP_LABEL">Por favor, selecciona los juegos y los mods que quieras desinstalar con Desura.</str>	
-		
-		
+		<str name="#CLEANUP_LABEL">Por favor, selecciona los juegos y los mods que quieras desinstalar con Desura.</str>
+
+
 		<str name="#CDF_TITLE">Moviendo el archivo de datos de Desura</str>
 		<str name="#CDF_STARTUP">Analizando archivos de datos...</str>
 		<str name="#CDF_MOVEFILE">Moviendo archivos...</str>
 		<str name="#CDF_DBCHANGES">Actualizando base de datos...</str>
-		
+
 		<str name="#CDF_GERRTITLE">Error de Desura</str>
 		<str name="#CDF_GERROR">Error al mover el archivo de datos de Desura.</str>
 	</strings>

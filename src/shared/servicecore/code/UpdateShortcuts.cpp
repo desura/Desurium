@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "Common.h"
 
+#include "../../../branding/branding.h"
+
 #ifdef WIN32
 #include <ShlObj.h>
 #endif
@@ -40,12 +42,12 @@ void UpdateShortCuts()
 	gcWString folder = UTIL::OS::getConfigValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Desura\\DesuraApp\\StartMenuFolder");
 
 	if (folder == L"")
-		folder == L"Desura";
+		folder = PRODUCT_NAME;
 
 	gcString startFolder = UTIL::OS::getStartMenuProgramsPath(folder);
 
-	gcString spOne = startFolder + "\\Desura.lnk";
-	gcString spTwo = startFolder + "\\Desura (force update).lnk";
+	gcString spOne = startFolder + "\\" PRODUCT_NAME ".lnk";
+	gcString spTwo = startFolder + "\\" PRODUCT_NAME " (force update).lnk";
 
 	OS_VERSION ver = UTIL::WIN::getOSId();
 
@@ -57,7 +59,7 @@ void UpdateShortCuts()
 		UTIL::WIN::createShortCut(gcWString(spOne).c_str(), exe.c_str(), wd.c_str(), "", false);
 	}
 
-#ifdef DESURA_NONGPL_BUILD
+#ifdef DESURA_OFFICAL_BUILD
 	if (UTIL::FS::isValidFile(spTwo) || force)
 	{
 		UTIL::FS::delFile(spTwo);

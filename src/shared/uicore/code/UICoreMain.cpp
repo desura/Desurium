@@ -30,6 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "managers/CVar.h"
 
+#include "../../../branding/branding.h"
+
 #ifdef NIX
 #include "util/UtilLinux.h"
 #endif
@@ -432,7 +434,7 @@ public:
 		}
 
 #ifdef WIN32
-		m_pChecker = new wxSingleInstanceChecker(wxT("Desura"));
+		m_pChecker = new wxSingleInstanceChecker(wxT(PRODUCT_NAME));
 
 		// If using a single instance, use IPC to
 		// communicate with the other instance
@@ -444,7 +446,7 @@ public:
 		}
 		else
 		{
-			wxMessageBox(wxT("Another instance is all ready running."), wxT("Desura Error"));
+			wxMessageBox(wxT("Another instance is all ready running."), PRODUCT_NAME_CATW(L" Error"));
 			return false;
 		}
 #endif

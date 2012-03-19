@@ -146,7 +146,10 @@ void WildcardManager::constructPath(const char* path, char **res, uint8 *depth)
 			temp[len-1]='\0';
 
 			if (strlen(temp)==0)
+			{
+			  delete [] temp;
 				throw gcException(ERR_WILDCARD, gcString("Failed to find wildcard [{0}] Current node is null", path));
+			}
 
 			AutoDelete<char> tad(temp);
 			AutoDelete<WildcardInfo> wad;

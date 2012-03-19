@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lang name="Português (BR)" skip="true">
+	<author>
+		<username>hTaver</username>
+		<profile>http://www.desura.com/members/htaver</profile>
+	</author>
+	<strings>
+		<str name="#CRASH_TITLE">Desura: Utilitário de Despejo de Falhas</str>
+		<str name="#CRASH_UPLOADINFO">Enviando Despejo(s) de Falha ...</str>
+		<str name="#CRASH_GENERATEINFO">Gerando Despejo de Falha ...</str>
+		<str name="#CRASH_ERROR">Falha em processar despejo(s).</str>
+		
+		<str name="#CRASH_BUTGENERATE">Gerar Despejo de Falha</str>
+		<str name="#CRASH_BUTUPLOAD">Enviar Despejo de Falha</str>
+		
+		<str name="#CRASH_LABGENERATE">Quando o Desura não está respondendo ou fazendo algo inesperadamente, isso irá reportar o estado atual aos desenvolvedores para ajudar a consertar o problema.</str>
+		<str name="#CRASH_LABUPLOAD">Reportar despejos de falha existentes. I.e. Despejos de falha que acontecem antes do Desura iniciar.</str>
+		
+		
+		<str name="#CDF_TITLE">Movendo Pasta de Dados do Desurar</str>
+		<str name="#CDF_STARTUP">Analizando Pasta de Dados...</str>
+		<str name="#CDF_MOVEFILE">Movendo Arquivos...</str>
+		<str name="#CDF_DBCHANGES">Atualizando Banco de Dados...</str>
+		
+		<str name="#CDF_GERRTITLE">Erro do Desura</str>
+		<str name="#CDF_GERROR">Falha ao mover Pasta de Dados do Desura.</str>
+
+
+		<str name="#DUN_TOTAL">Progresso Atual:</str>
+		<str name="#DUN_CURRENT">Progresso Atual:</str>
+		<str name="#DUN_COMPLETED">Lembre: Itens pagos ou presentes nunca são deletados de sua conta, você pode acessá-los a qualquer momento reinstalando o cliente do Desura.</str>
+		
+		<str name="#DUN_UNINSTALL_INFO">Desinstalando o Desura iŕa remover todos os jogos instalados, mods e conteúdo. Para manter seu conteúdo instalado e reparar sua instalação do Desura, clique no botão de reparação abaixo.</str>
+		<str name="#DUN_UNINSTALL_OPT">Opções de Desistalação:</str>
+		<str name="#DUN_UNINSTALL_LOC">Desura será desinstalado da pasta a seguir:</str>
+		
+		<str name="#DUN_REMOVE_DESURA">Remover Desura</str>
+		<str name="#DUN_REMOVE_DESURA_TT">Remover todos os arquivos instalados do Desura.</str>
+		<str name="#DUN_REMOVE_SETTINGS">Remover Configurações</str>
+		<str name="#DUN_REMOVE_SETTINGS_TT">Remove arquivos de configuração usados pelo Desura.</str>		
+		<str name="#DUN_REMOVE_CACHE">Remover Cache de Download</str>
+		<str name="#DUN_REMOVE_CACHE_TT">Remove o cache de download usado pelo Desura.</str>
+		<str name="#DUN_REMOVE_SIMPLE">Remover Jogos Simples e Mods</str>
+		<str name="#DUN_REMOVE_SIMPLE_TT">Remove todos os jogos e mods que foram instalados pelo Desura.</str>
+		<str name="#DUN_REMOVE_COMPLEX">Remover Mods Complexos</str>
+		<str name="#DUN_REMOVE_COMPLEX_TT">Remove todos os mods que se instalam sobre os arquivos originais do jogo.</str>
+		<str name="#DUN_REMOVE_ACCOUNT">Remover Itens Gratuitos da Conta</str>
+		<str name="#DUN_REMOVE_ACCOUNT_TT">Remove todos os itens gratuitos (como links e demos) que foram instalados nesse computar a partir de sua conta.</str>
+		
+		<str name="#DUN_UNINSTALL_HEADER">Desinstalar Desura</str>
+		<str name="#DUN_UNINSTALL_SUBHEADER">Remove Desura de seu computador</str>	
+		<str name="#DUN_REPAIR">Reparar</str>
+		<str name="#DUN_UNINSTALL">Desinstalar</str>
+
+		<str name="#DUN_THREAD_UNINSTALL">Removendo Jogos e Mods...</str>
+		<str name="#DUN_THREAD_UNINSTALL_SUB">Desinstalando: {0}</str><!-- {0} item name -->	
+		<str name="#DUN_THREAD_FINAL">Limpeza Final...</str>
+		<str name="#DUN_THREAD_UNINSTALL">Removendo Entradas de Desinstalação...</str>
+		<str name="#DUN_THREAD_GAMEEXPLORER">Removendo Entradas do Game Explorer...</str>
+		<str name="#DUN_THREAD_CACHE">Removendo Cache do Desura...</str>
+		<str name="#DUN_THREAD_SETTINGS">Removendo Configurações do Desura...</str>
+		<str name="#DUN_THREAD_ACCOUNT">Limpando Itens da Conta...</str>	
+		<str name="#DUN_THREAD_ACCOUNT_SUB">Removendo {0} da Conta</str><!-- {0} item name -->	
+		
+	</strings>
+</lang>

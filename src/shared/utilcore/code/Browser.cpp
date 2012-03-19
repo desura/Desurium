@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Common.h"
 #include "Browser.h"
 #include "cef_desura_includes/ChromiumBrowserI.h"
+#include "../../../branding/branding.h"
 
 bool InitWebControl()
 {
@@ -121,7 +122,7 @@ Browser::Browser(wxWindow* parent) : gcPanel(parent, wxID_ANY)
 {
 	m_pEventHandler = new EventHandler(this);
 
-	m_pChromeBrowser = CEF_NewChromiumBrowser((int*)GetHWND(), "Desura", "http://www.bobbyvandersluis.com/swfobject/testsuite_2_2/test_dynamic.html"); //L"http://192.168.211.10/cookie.php");
+	m_pChromeBrowser = CEF_NewChromiumBrowser((int*)GetHWND(), PRODUCT_NAME, "http://www.bobbyvandersluis.com/swfobject/testsuite_2_2/test_dynamic.html"); //L"http://192.168.211.10/cookie.php");
 	m_pChromeBrowser->setEventCallback(m_pEventHandler);
 
 }
