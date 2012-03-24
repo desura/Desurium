@@ -94,6 +94,7 @@ add_subdirectory(tools/mfc_upload_cli)
   add_dependencies(managers_window wxWidget-2-9)
   add_dependencies(wx_controls wxWidget-2-9)
   add_dependencies(Desurium wxWidget-2-9)
+  add_dependencies(utilcore wxWidget-2-9)
 #endif()
 
 if(NOT Boost_FOUND)
