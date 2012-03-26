@@ -11,6 +11,8 @@ if [ -f /etc/debian_version ]; then
 elif [ -f /etc/redhat-release ]; then
 	yum install git subversion m4 autoconf gcc-c++ libstdc++-static glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel libnotify-devel scons xdg-user-dirs
 elif [ -f /etc/arch-release ]; then
+	# By using "pacman -T" to find out needed dependencies, we don't get
+	# conflicts if a package we have installed provides one of the dependencies.
 	DEPS=`pacman -T git subversion m4 autoconf gcc glibc binutils autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify xdg-user-dirs | sed -e 's/\n/ /g'`
 	if [ -z "${DEPS}" ]; then
 		echo "Dependencies already installed."
