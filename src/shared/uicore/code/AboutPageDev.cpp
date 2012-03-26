@@ -24,7 +24,11 @@ AboutInfo_s g_AboutInfo[] =
 	{"Application Lead",		"Mark Chandler",	"Angry Drawf"},
 	{"Website Lead",			"Scott Reismanis",	"Slave Driver"},
 	{"Interface Design",		"Joshua Collie",	""},
+	#ifdef DESURA_OFFICAL_BUILD
 	{"Logo && Typography",		"Tim Wilden",		""},
+	#else
+	{"Logo && Typography",		"notshi",		""},
+	#endif
 	{"Network Administrator",	"Greg Macsok",		"Destroyer of Sleep"},
 	{"Windows Game Guru",		"Dave Traeger",		""},
 	{"Linux Game Guru",			"Tim Jung",			""},
