@@ -1,4 +1,4 @@
-How to compile Desurium using cmake:
+How to compile Desura using cmake:
 
 Run ./build_cmake.sh
 
@@ -23,4 +23,4 @@ sqlite
 cef is needed from official distribution see #5
 Just copy required libs to install/lib
 
-Finally run Desurium using ./run_desurium.sh
+Finally run Desura using ./run_desura.sh

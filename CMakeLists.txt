@@ -5,7 +5,7 @@
 #   name            default             description
 #
 # global options:
-#   BRANDING        branding_default    The branding to use for Desurium.
+#   BRANDING        branding_default    The branding to use for Desura.
 #                                       possible values: branding_default, branding_desura
 #   DEBUG           OFF                 will add debug symbols and other debugging stuff
 #
@@ -17,9 +17,9 @@
 ###############################################################################
 
 # TODO: silent output for externel dependencies
-# TODO: get libs automatically for externel builds, maybe make desurium a external build itself?
+# TODO: get libs automatically for externel builds, maybe make desura a external build itself?
 
-project(Desurium)
+project(Desura)
 cmake_minimum_required(VERSION 2.8)
 
 ###############################################################################
@@ -138,7 +138,7 @@ if(NOT Boost_FOUND)
 endif()
 
 ###############################################################################
-# build desurium
+# build desura
 ###############################################################################
 add_subdirectory(src)
 add_subdirectory(build_out)

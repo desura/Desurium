@@ -22,7 +22,7 @@ install(FILES ${BR}/data/themes/default/images/app/about_logo.png
 )
 
 ###############################################################################
-# do final steps for setting up the desurium build environment
+# do final steps for setting up the desura build environment
 ###############################################################################
 
 set(GLOBAL_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -93,7 +93,7 @@ add_subdirectory(tools/mfc_upload_cli)
 #if(NOT wxWidgets_FOUND)
   add_dependencies(managers_window wxWidget-2-9)
   add_dependencies(wx_controls wxWidget-2-9)
-  add_dependencies(Desurium wxWidget-2-9)
+  add_dependencies(Desura wxWidget-2-9)
   if(WIN32)
     add_dependencies(utilcore wxWidget-2-9)
   endif()

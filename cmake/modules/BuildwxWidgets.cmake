@@ -17,7 +17,7 @@ if(WIN32)
 	custom_build
 	DEPENDEES configure
 	DEPENDERS build
-	COMMAND nmake /nologo -f makefile.vc BUILD=release VENDOR=desurium SHARED=1 RUNTIME_LIBS=shared MONOLITHIC=1
+	COMMAND nmake /nologo -f makefile.vc BUILD=release VENDOR=desura SHARED=1 RUNTIME_LIBS=shared MONOLITHIC=1
 	WORKING_DIRECTORY <SOURCE_DIR>/build/msw
   )
   

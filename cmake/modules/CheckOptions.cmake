@@ -3,7 +3,7 @@
 ###############################################################################
 
 set(BRANDING "branding_default"
-    CACHE STRING "The branding to use for Desurium.")
+    CACHE STRING "The branding to use for Desura.")
 option(DEBUG "enable debug build" OFF)
 
 ###############################################################################

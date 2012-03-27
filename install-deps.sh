@@ -26,7 +26,7 @@ elif [ -f /etc/arch-release ]; then
 		pacman -S --asdeps ${DEPS}
 	fi
 elif [ -f /usr/bin/emerge ]; then # Gentoo
-    echo "Please copy the ebuild under gentoo/portage into a local overlay and emerge via emerge --onlydeps desurium"
+    echo "Please copy the ebuild under gentoo/portage into a local overlay and emerge via emerge --onlydeps desura"
 else # else
 	echo "Unsupported operating system."
 fi

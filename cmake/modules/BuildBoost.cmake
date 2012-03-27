@@ -24,6 +24,6 @@ set(Boost_DIR ${source_dir})
 set(Boost_INCLUDE_DIR ${Boost_DIR})
 set(Boost_LIBRARY_DIR ${Boost_DIR}/stage/lib)
 
-# todo: get desurium build with system layout
+# todo: get desura build with system layout
 set(BAS "-vc100-mt-1_49")
 set(Boost_LIBRARIES "${Boost_LIBRARY_DIR}/libboost_date_time${BAS}.lib;${Boost_LIBRARY_DIR}/libboost_filesystem${BAS}.lib;${Boost_LIBRARY_DIR}/libboost_system${BAS}.lib;${Boost_LIBRARY_DIR}/libboost_thread${BAS}.lib")

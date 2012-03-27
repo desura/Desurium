@@ -40,7 +40,7 @@ DEPEND="
 
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/desurium"
+S="${WORKDIR}/desura"
 
 src_configure() {
 	mycmakeargs="

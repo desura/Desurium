@@ -1,14 +1,14 @@
-Desurium
+Desura
 ===================
 
-Desurium is a gaming client that allows users to one click download and install games and game modification.
+Desura is a gaming client that allows users to one click download and install games and game modification.
 For more information, visit http://www.moddb.com/groups/desura/forum/thread/open-sourcing-desura
 
 
-Build Desurium Windows
+Build Desura Windows
 ===================
 
-To build Desurium you will need Visual Studio 2008 and also Visual Studio 2010
+To build Desura you will need Visual Studio 2008 and also Visual Studio 2010
 
 Download and install:
  * TortoiseSvn http://tortoisesvn.net/downloads.html. Make sure to install command line tools
@@ -32,7 +32,7 @@ Once built, open console to the desura/build_out and run "copy_data.bat [dest]" 
 Build Cef Windows
 ===================
 
-This requires visual studio 2008. You can cheat and copy the cef dll's from a current Desurium install instead of this step.
+This requires visual studio 2008. You can cheat and copy the cef dll's from a current Desura install instead of this step.
 
 Have a look at desura/src/third_party/cef/CHROMIUM_BUILD_COMPATIBILITY.txt and note the last svn repo (at time of writing its 91424)
 
@@ -49,14 +49,14 @@ And then you should be able to build cef using visual studio 2008 solution file.
 You will need to copy the output dll's into the desura/build_out/[mode]_win/bin folder (where mode is debug or release)
 
 
-Run Desurium Windows
+Run Desura Windows
 ===================
 
 You will need to run the debug build as the release build will try and auto update itself upon start. You can do this by running desura-d.exe
 from the folder or setup visual studio to use the desura-d.exe from the build_out/debug_win and also use this as the current working dir
 
 
-Build Desurium Linux
+Build Desura Linux
 ===================
 
 Following commands must be invoked in the root of source tree.
@@ -67,7 +67,7 @@ To run the script, enter the following line in a command line and press enter.
 
 ./install-deps.sh
 
-We don't want to use Desurium branding, so invoke:
+We don't want to use Desura branding, so invoke:
 cp -r src/branding_default src/branding
 
 Then run the build script
@@ -77,14 +77,14 @@ Then run the build script
 Build Cef Linux
 ===================
 
-You can cheat and copy the cef so's from a current Desurium install instead of this step.
-To do that copy libcef_desura.so from current Desurium's lib/ directory
-to Desurium's build_out/debug_lin/lib/. It's possible that it will be missing some dependencies.
+You can cheat and copy the cef so's from a current Desura install instead of this step.
+To do that copy libcef_desura.so from current Desura's lib/ directory
+to Desura's build_out/debug_lin/lib/. It's possible that it will be missing some dependencies.
 Easy way to check if this is the case is to invoke:
 
 ldd build_out/debug_lin/lib/libcef_desura.so | grep "not found"
 
-Check output against Desurium's build_out/debug_lin/lib/ and build_out/debug_lin/lib_extra/ content. If some stuff is missing
+Check output against Desura's build_out/debug_lin/lib/ and build_out/debug_lin/lib_extra/ content. If some stuff is missing
 you should be able to find it in in "old" client's lib/ and lib_extra/ directories (also copy it to
 corresponding directories).
 
@@ -124,7 +124,7 @@ cd build_lin
 ./BuildCourgette.sh
 
 
-Run Desurium Linux
+Run Desura Linux
 ===================
 
 If you built the debug build (default) you should be able to run ./test.sh in the build_lin folder to test or ./desura in the build_out/debug_lin folder
