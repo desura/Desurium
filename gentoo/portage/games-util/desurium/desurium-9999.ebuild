@@ -12,7 +12,7 @@ HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="builtin-curl builtin-tinyxml +builtin-wxWidgets debug"
+IUSE="builtin-curl builtin-tinyxml debug"
 
 DEPEND="
 	app-arch/bzip2
