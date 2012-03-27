@@ -4,16 +4,15 @@
 
 EAPI=3
 
-EGIT_REPO_URI="https://github.com/karolherbst/Desurium"
+inherit cmake-utils git-2
 
-inherit eutils cmake-utils git-2
-
+EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 x86"
-IUSE="builtin-curl builtin-tinyxml +builtin-breakpad +builtin-wxWidgets"
+KEYWORDS="~amd64 ~x86"
+IUSE="builtin-curl builtin-tinyxml +builtin-wxWidgets debug"
 
 DEPEND="
 	app-arch/bzip2
@@ -26,9 +25,14 @@ DEPEND="
         )
     )
 	dev-lang/v8
-	!builtin-breakpad? ( dev-util/google-breakpad )
     dev-vcs/subversion
-	!builtin-curl? ( net-misc/curl[ares] )
+	!builtin-curl? (
+        net-misc/curl[ares]
+    )
+    builtin-curl? (
+        net-dns/c-ares
+    )
+    >=sys-devel/gcc-4.5
 	>=x11-libs/gtk+-2.24"
 #	!builtin-wxWidgets? ( >=x11-libs/wxGTK-2.9.0 )
 #	net-print/libgnomecups
@@ -43,9 +47,10 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/desura"
 
 src_configure() {
-	mycmakeargs="
-        cmake-utils_use_with	builtin-curl      ARES
-	"
+	mycmakeargs=(
+        $(cmake-utils_use_with builtin-curl ARES)
+        $(cmake-utils_use debug DEBUG)
+    )
 	cmake-utils_src_configure
 }
 
