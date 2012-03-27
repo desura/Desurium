@@ -5,126 +5,39 @@ Desura is a gaming client that allows users to one click download and install ga
 For more information, visit http://www.moddb.com/groups/desura/forum/thread/open-sourcing-desura
 
 
-Build Desura Windows
+Build Desura
 ===================
-
-To build Desura you will need Visual Studio 2008 and also Visual Studio 2010
 
 Download and install:
  * TortoiseSvn http://tortoisesvn.net/downloads.html. Make sure to install command line tools
  * TortoiseGit http://code.google.com/p/tortoisegit/downloads/list
  * Windows Sdk 7.1 http://www.microsoft.com/download/en/details.aspx?id=8279
+  (If applicable)
  * Python 2.7 http://www.python.org/getit/
  * SCons http://www.scons.org/download.php
+ * CMake 2.8 http://www.cmake.org/
 
-Check Out git repo
-Launch visual studio 2010 command prompt and cd into the desura/src/third_party
-Run SVNCheckOut.bat
-Run BuildAll.bat
-Copy branding_default in desura/src to desura/src/branding
+Run ./build_cmake.sh
 
+In order to make use of multiple CPU cores while compiling, run
+./build_cmake.sh -j8
+which will invoke "make -j8" so the build is speeded up extremely
+only 7 mins on my machine (intel core i7 2635QM)
+"8" will be the number of compile-thread to run at a time
 
-This should now allow you to open the desura solution in desura/build_win/desura.sln and build the desura client but you still need to build Cef
+Required dependencies (can be installed by package manager or install-deps.sh):
+boost
+c-ares
+gtk2
+OpenSSL
+tinyxml
+v8
 
-Once built, open console to the desura/build_out and run "copy_data.bat [dest]" with dest being debug_win or release_win
+Optional dependencies (will be built by cmake if not existing):
+bzip2
+sqlite
 
+cef is needed from official distribution see #5
+Just copy required libs to install/lib
 
-Build Cef Windows
-===================
-
-This requires visual studio 2008. You can cheat and copy the cef dll's from a current Desura install instead of this step.
-
-Have a look at desura/src/third_party/cef/CHROMIUM_BUILD_COMPATIBILITY.txt and note the last svn repo (at time of writing its 91424)
-
-Create a dir called chromium in the desura/src/third_party folder
-Launch command prompt and cd into the desura/src/third_party/chromium
-Run these commands (where SVN VERSION is the number found above):
- set PATH=%PATH%:../depot_tools
- gclient config http://src.chromium.org/svn/trunk/src
- gclient sync --revision src@[SVN VERSION]
-
-Once complete copy desura/src/third_party/cef to desura/src/third_party/chromium/src/cef
-Run cef_create_projects.bat in desura/src/third_party/chromium/src/cef
-And then you should be able to build cef using visual studio 2008 solution file.
-You will need to copy the output dll's into the desura/build_out/[mode]_win/bin folder (where mode is debug or release)
-
-
-Run Desura Windows
-===================
-
-You will need to run the debug build as the release build will try and auto update itself upon start. You can do this by running desura-d.exe
-from the folder or setup visual studio to use the desura-d.exe from the build_out/debug_win and also use this as the current working dir
-
-
-Build Desura Linux
-===================
-
-Following commands must be invoked in the root of source tree.
-
-The script "install-deps.sh" will install building dependecies on major Linux distros. For now it supports Arch, Debian and it's derivatives like Ubuntu and Mint, Red Hat and it's derivatives like Fedora.
-If your distro is not supported yet, read this script and install corresponding packages for it. In case of succes, please send us a patch.
-To run the script, enter the following line in a command line and press enter.
-
-./install-deps.sh
-
-We don't want to use Desura branding, so invoke:
-cp -r src/branding_default src/branding
-
-Then run the build script
-./build_cmake.sh
-
-
-Build Cef Linux
-===================
-
-You can cheat and copy the cef so's from a current Desura install instead of this step.
-To do that copy libcef_desura.so from current Desura's lib/ directory
-to Desura's build_out/debug_lin/lib/. It's possible that it will be missing some dependencies.
-Easy way to check if this is the case is to invoke:
-
-ldd build_out/debug_lin/lib/libcef_desura.so | grep "not found"
-
-Check output against Desura's build_out/debug_lin/lib/ and build_out/debug_lin/lib_extra/ content. If some stuff is missing
-you should be able to find it in in "old" client's lib/ and lib_extra/ directories (also copy it to
-corresponding directories).
-
-
-Have a look at desura/src/third_party/cef/CHROMIUM_BUILD_COMPATIBILITY.txt and note the last svn repo (at time of writing its 91424). Make sure you replace [CEF SVN VERSION]
-
-
-#!/bin/bash
-# Run from root repo dir
-# Checkout Chromium
-source env.sh
-cd src/third_party/
-# Make sure you apply the patches in src/third_party/patches/ first.
-mkdir chromium
-cd chromium
-gclient config http://src.chromium.org/svn/trunk/src
-gclient sync --revision src@[CEF SVN VERSION] #from above
-mv ../cef src/
-cd ..
-ln -s chromium/src/cef .
-cd build_lin
-./BuildCef.sh
-
-
-Build Courgette Linux
-===================
-
-Only do this after you have the Chromium repo checked out.
-
-#!/bin/bash
-# Run from root repo dir
-source env.sh
-cd src/third_party/
-# Make sure you apply the patches in src/third_party/patches/ first.
-cp -r courgette/* chromium/src/courgette
-cd build_lin
-./BuildCourgette.sh
-
-
-Run Desura Linux
-===================
-
-If you built the debug build (default) you should be able to run ./test.sh in the build_lin folder to test or ./desura in the build_out/debug_lin folder
+Finally run Desura using ./run_desura.sh
