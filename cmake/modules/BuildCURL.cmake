@@ -6,7 +6,7 @@ else()
 endif()
 
 set(CURL_GIT git://github.com/bagder/curl.git)
-set(CURL_VERSION tags/curl-7_24_0)
+set(CURL_VERSION tags/curl-7_25_0)
 
 if(WIN32)
   ExternalProject_Add(
@@ -74,4 +74,6 @@ if(WIN32)
   list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl_a.lib")
 else()
   list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl.a")
+  
+  list(APPEND CURL_LIBRARIES "rt")
 endif()
