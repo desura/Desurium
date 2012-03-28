@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Determine the operating system distribution that is being run and install the build dependencies for it.
 
 if [ "$(whoami)" != "root" ]; then
@@ -6,7 +6,6 @@ if [ "$(whoami)" != "root" ]; then
 	exit
 fi
 
-# use dpkg -l instead
 if [ -f /etc/debian_version ]; then # Debian  (untested!)
     DEPS="gcc git-core subversion m4 build-essential binutils automake autoconf libtool libgtk2.0-dev libnss3-dev libgconf2-dev libgnome-keyring-dev libdbus-glib-1-dev gperf bison libcups2-dev flex libasound2-dev libbz2-dev libxpm-dev libx11-dev libssl-dev libnotify-dev scons libv8-dev libc-ares-dev libboost-dev libboost-date-time-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev"
     ST=`dpkg -l ${DEPS} |& awk /^ii\ /  | awk '{print $2}'`
