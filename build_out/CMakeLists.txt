@@ -37,23 +37,8 @@ install(DIRECTORY ${IMG}/html
 )
 
 set(APP ${IMG}/app)
-
 file(GLOB IMAGES ${APP}/*.png)
-file(GLOB IMAGES_REMOVE ${APP}/*win.png
-                        ${APP}/*lin.png)
-
-list(REMOVE_ITEM IMAGES ${IMAGES_REMOVE})
 
 install(FILES ${IMAGES}
         DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app
 )
-
-if(WIN32)
-  install(FILES ${APP}/menu_button_hover_win.png RENAME menu_button_hover.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-  install(FILES ${APP}/menu_button_nonactive_win.png RENAME menu_button_nonactive.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-  install(FILES ${APP}/menu_button_win.png RENAME menu_button.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-else()
-  install(FILES ${APP}/menu_button_hover_lin.png RENAME menu_button_hover.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-  install(FILES ${APP}/menu_button_nonactive_lin.png RENAME menu_button_nonactive.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-  install(FILES ${APP}/menu_button_lin.png RENAME menu_button.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-endif()
