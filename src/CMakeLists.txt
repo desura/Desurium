@@ -9,17 +9,28 @@ file(REMOVE_RECURSE ${BIN_INCLUDE_DIR}/branding)
 file(RENAME ${BIN_INCLUDE_DIR}/${BRANDING} ${BIN_INCLUDE_DIR}/branding)
 
 set(BR ${BIN_INCLUDE_DIR}/branding)
+set(APP ${BR}/data/themes/default/images/app)
 
 install(FILES ${BR}/data/desura_lin.png
         DESTINATION ${DATA_INSTALL_DIR}
         RENAME desura.png
 )
 
-install(FILES ${BR}/data/themes/default/images/app/about_logo.png
-              ${BR}/data/themes/default/images/app/icon_download.png
-              ${BR}/data/themes/default/images/app/signin_banner.png
+install(FILES ${APP}/about_logo.png
+              ${APP}/icon_download.png
+              ${APP}/signin_banner.png
         DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app/
 )
+
+if(WIN32)
+  install(FILES ${APP}/menu_button_hover_win.png RENAME menu_button_hover.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
+  install(FILES ${APP}/menu_button_nonactive_win.png RENAME menu_button_nonactive.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
+  install(FILES ${APP}/menu_button_win.png RENAME menu_button.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
+else()
+  install(FILES ${APP}/menu_button_hover_lin.png RENAME menu_button_hover.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
+  install(FILES ${APP}/menu_button_nonactive_lin.png RENAME menu_button_nonactive.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
+  install(FILES ${APP}/menu_button_lin.png RENAME menu_button.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
+endif()
 
 ###############################################################################
 # do final steps for setting up the desura build environment
