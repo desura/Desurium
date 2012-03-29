@@ -1,3 +1,6 @@
+# TODO: create args for manipulting curl build
+# eg: WITH_IDN, IPV6, ...
+
 if(WITH_ARES)
   find_package(cares REQUIRED)
   set(BUILD_WITH_ARES --enable-ares)
@@ -24,7 +27,7 @@ if(WIN32)
 	custom_build
 	DEPENDEES configure
 	DEPENDERS build
-	COMMAND nmake /f Makefile.vc MODE=static WITH_SSL=no DEBUG=no GEN_PDB=no RTLIBCFG=static USE_SSSPI=no USE_IPV6=no USE_IDN=no
+	COMMAND nmake /f Makefile.vc MODE=static WITH_SSL=no DEBUG=no GEN_PDB=no RTLIBCFG=static USE_SSPI=no USE_IPV6=no ENABLE_IDN=no
 	WORKING_DIRECTORY <SOURCE_DIR>/winbuild
   )
   
@@ -32,7 +35,7 @@ if(WIN32)
     curl
     source_dir
   )
-  set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-release-static-sspi/)
+  set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-release-static/)
 else()
   set(CURL_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/curl)
   ExternalProject_Add(

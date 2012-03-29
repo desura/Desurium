@@ -1,0 +1,71 @@
+
+<!-- saved from url=(0123)https://raw.github.com/lodle/Desurium/c21c857ac21957e1785aa60cac9439e8dc3f2ab6/src/third_party/patches/breakpad_patch.patch -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">Index: src/client/windows/build/common.gypi
+===================================================================
+--- src/client/windows/build/common.gypi	(revision 699)
++++ src/client/windows/build/common.gypi	(working copy)
+@@ -723,6 +723,14 @@
+       #
+       'Debug': {
+         'inherit_from': ['Common_Base', 'x86_Base', 'Debug_Base'],
++		'msvs_settings': {
++		  'VCCLCompilerTool': {
++		    'RuntimeLibrary' :'3',
++		  },
++		  'VCLibrarianTool': {
++		    'OutputFile': '$(OutDir)\lib\$(ProjectName)-d.lib',
++		  },
++		},		
+       },
+       'Release': {
+         'inherit_from': ['Common_Base', 'x86_Base', 'Release_Base'],
+@@ -730,8 +738,32 @@
+           ['msvs_use_common_release', {
+             'includes': ['release.gypi'],
+           }],
+-        ]
++        ],
++		'msvs_settings': {
++		  'VCCLCompilerTool': {
++		    'RuntimeLibrary' :'2',
++		  },
++		  'VCLibrarianTool': {
++		    'OutputFile': '$(OutDir)\lib\$(ProjectName).lib',
++		  },
++		},		
+       },
++	  'Release_Static': {
++        'inherit_from': ['Common_Base', 'x86_Base', 'Release_Base'],
++        'conditions': [
++          ['msvs_use_common_release', {
++            'includes': ['release.gypi'],
++          }],
++		],
++		'msvs_settings': {
++		  'VCCLCompilerTool': {
++		    'RuntimeLibrary' :'0',
++		  },
++		  'VCLibrarianTool': {
++		    'OutputFile': '$(OutDir)\lib\$(ProjectName)-s.lib',
++		  },
++		},
++	  },
+       'conditions': [
+         [ 'OS=="win"', {
+           # TODO(bradnelson): add a gyp mechanism to make this more graceful.
+Index: src/client/windows/handler/exception_handler.h
+===================================================================
+--- src/client/windows/handler/exception_handler.h	(revision 699)
++++ src/client/windows/handler/exception_handler.h	(working copy)
+@@ -310,7 +310,10 @@
+ 
+   HMODULE dbghelp_module_;
+   MiniDumpWriteDump_type minidump_write_dump_;
++
++ public:
+   MINIDUMP_TYPE dump_type_;
++ private:
+ 
+   HMODULE rpcrt4_module_;
+   UuidCreate_type uuid_create_;
+</pre></body></html>
