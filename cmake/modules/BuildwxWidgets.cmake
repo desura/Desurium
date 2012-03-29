@@ -37,16 +37,24 @@ else()
     SVN_REPOSITORY ${WXWIDGET_SVN}
     UPDATE_COMMAND ""
     PATCH_COMMAND patch -p0 -N -i ${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch
-    CONFIGURE_COMMAND <SOURCE_DIR>/configure --enable-shared --enable-unicode
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure --enable-shared --enable-unicode ${CONFIGURE_DEBUG}
         --enable-monolithic --with-flavour=desura --disable-threads --with-opengl=no
         --disable-joystick --disable-mediactrl --prefix=${wxWidgets_INSTALL_DIR}
   )
   
   set(wxWidgets_LIBRARY_DIRS ${wxWidgets_INSTALL_DIR}/lib)
-  set(wxWidgets_INCLUDE_DIRS  ${wxWidgets_INSTALL_DIR}/include/wx-2.9-desura ${wxWidgets_LIBRARY_DIRS}/wx/include/gtk2-unicode-release-2.9-desura)
-  set(wxWidgets_LIBRARIES "${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.0.0.0")
+  if(DEBUG)
+    set(wxWidgets_INCLUDE_DIRS  ${wxWidgets_INSTALL_DIR}/include/wx-2.9-desura ${wxWidgets_LIBRARY_DIRS}/wx/include/gtk2-unicode-debug-2.9-desura)
+    set(wxWidgets_LIBRARIES "${wxWidgets_LIBRARY_DIRS}/libwx_gtk2ud_desura-2.9.so.0.0.0")
+    install(FILES ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2ud_desura-2.9.so.0.0.0
+            RENAME libwx_gtk2ud_desura-2.9.so.0
+            DESTINATION ${LIB_INSTALL_DIR})
+else()
+    set(wxWidgets_INCLUDE_DIRS  ${wxWidgets_INSTALL_DIR}/include/wx-2.9-desura ${wxWidgets_LIBRARY_DIRS}/wx/include/gtk2-unicode-release-2.9-desura)
+    set(wxWidgets_LIBRARIES "${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.0.0.0")
+    install(FILES ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.0.0.0
+            RENAME libwx_gtk2u_desura-2.9.so.0
+            DESTINATION ${LIB_INSTALL_DIR})
+  endif()
 
-  install(FILES ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.0.0.0
-          RENAME libwx_gtk2u_desura-2.9.so.0
-          DESTINATION ${LIB_INSTALL_DIR})
 endif()
