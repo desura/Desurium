@@ -144,19 +144,19 @@ void MiniDumpGenerator::setDumpLevel(unsigned char level)
 	{
 	default:
 	case 1:
-		//s_pExceptionHandler->dump_type_ = MiniDumpNormal;
+		s_pExceptionHandler->dump_type_ = MiniDumpNormal;
 		break;
 
 	case 2:
-		//s_pExceptionHandler->dump_type_ = level2;
+		s_pExceptionHandler->dump_type_ = level2;
 		break;
 
 	case 3:
-		//s_pExceptionHandler->dump_type_ = level3;
+		s_pExceptionHandler->dump_type_ = level3;
 		break;
 
 	case 4:
-		//s_pExceptionHandler->dump_type_ = level4;
+		s_pExceptionHandler->dump_type_ = level4;
 		break;
 	}
 }
