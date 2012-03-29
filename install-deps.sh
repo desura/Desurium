@@ -8,9 +8,16 @@ fi
 
 if [ -f /etc/debian_version ]; then # Debian  (untested!)
     DEPS="gcc git-core subversion m4 build-essential binutils automake autoconf libtool libgtk2.0-dev libnss3-dev libgconf2-dev libgnome-keyring-dev libdbus-glib-1-dev gperf bison libcups2-dev flex libasound2-dev libbz2-dev libxpm-dev libx11-dev libssl-dev libnotify-dev scons libv8-dev libc-ares-dev libboost-dev libboost-date-time-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev"
-    ST=`dpkg -s ${DEPS} | grep "Status" | grep "not"`
-    if [ "${ST}" != "" ] ; then
-        aptitude install ${DEPS}
+    ST=`dpkg -l ${DEPS} | awk /^ii\ /  | awk '{print $2}'`
+    for PACK in ${DEPS}
+    do
+        CHECK=`echo "${ST}" | grep ${PACK}`
+        if [ "${CHECK}" = "" ] ; then
+            MUST_BE_INSTALLED="${MUST_BE_INSTALLED} ${PACK}"
+        fi
+    done
+    if [ "${MUST_BE_INSTALLED}" != "" ] ; then
+        aptitude install ${MUST_BE_INSTALLED}
     else
         echo "everything intalled"
     fi
