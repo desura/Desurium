@@ -12,6 +12,7 @@ option(DEBUG "enable debug build" OFF)
 
 if(UNIX)
   option(WITH_ARES "build cURL with c-ares support" ON)
+  option(DEBUG_EXTERNAL "build external libs with debug support" OFF)
 endif()
 
 ###############################################################################

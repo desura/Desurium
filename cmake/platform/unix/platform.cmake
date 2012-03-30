@@ -16,7 +16,7 @@ add_definitions(-DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES
 #    add_definitions(-DNDEBUG)
 #endif()
 
-if(DEBUG)
+if(DEBUG_EXTERNAL)
   add_definitions(-D_DEBUG)
   set(CONFIGURE_DEBUG --enable-debug)
   set(MODE_DEBUG mode=debug)
