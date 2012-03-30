@@ -169,7 +169,7 @@ target_link_libraries(uicore
     ${SQLITE3X_LIBRARIES}
     ${TINYXML_LIBRARIES}
     ${wxWidgets_LIBRARIES}
-	${WINDOWS_LIBRARIES}
+    ${WINDOWS_LIBRARIES}
 	${LINUX_LIBRARIES}
 )
 
