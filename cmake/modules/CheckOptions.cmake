@@ -2,9 +2,8 @@
 # global options
 ###############################################################################
 
-set(BRANDING "branding_desurium"
-    CACHE STRING "The branding to use for Desura.")
 option(DEBUG "enable debug build" OFF)
+option(OFFICIAL_BUILD "do you want to compile an official build?" OFF)
 
 ###############################################################################
 # unix-only options
