@@ -45,8 +45,16 @@ endif()
 
 add_library(utilcore SHARED ${Sources} ${PLATTFORM_SOURCES})
 target_link_libraries(utilcore
+	managers
+	managers_window
+	threads
+	usercore
+    util
+	util_fs
+	wx_controls
+	${BZIP2_LIBRARIES}
     ${TINYXML_LIBRARIES}
-    ${BZIP2_LIBRARIES}
+	${wxWidgets_LIBRARIES}
 	${WINDOWS_LIBRARIES}
 )
 
