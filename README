@@ -5,29 +5,21 @@ Desura is a gaming client that allows users to one click download and install ga
 For more information, visit http://www.moddb.com/groups/desura/forum/thread/open-sourcing-desura
 
 
-Build Desura
+Build Desura on Linux
 ===================
-
-Download and install:
- * TortoiseSvn http://tortoisesvn.net/downloads.html. Make sure to install command line tools
- * TortoiseGit http://code.google.com/p/tortoisegit/downloads/list
- * Windows Sdk 7.1 http://www.microsoft.com/download/en/details.aspx?id=8279
-  (If applicable)
- * Python 2.7 http://www.python.org/getit/
- * SCons http://www.scons.org/download.php
- * CMake 2.8 http://www.cmake.org/
 
 Run ./build_cmake.sh
 
 In order to make use of multiple CPU cores while compiling, run
 ./build_cmake.sh -j8
 which will invoke "make -j8" so the build is speeded up extremely
-only 7 mins on my machine (intel core i7 2635QM)
+and takes only 7 mins on a modern machine (intel core i7 2635QM)
 "8" will be the number of compile-thread to run at a time
 
 Required dependencies (can be installed by package manager or install-deps.sh):
 boost
-c-ares
+c-ares (for ares support in curl)
+cmake
 gtk2
 OpenSSL
 tinyxml
@@ -35,9 +27,28 @@ v8
 
 Optional dependencies (will be built by cmake if not existing):
 bzip2
+curl (while building without ares support)
 sqlite
 
-cef is needed from official distribution see #5
+cef is needed from official distribution see #5 and #107
 Just copy required libs to install/lib
 
 Finally run Desura using ./run_desura.sh
+
+Build Desura on Windows
+=====================
+
+Download and install:
+ * TortoiseSvn http://tortoisesvn.net/downloads.html. Make sure to install command line tools
+ * msysGit https://code.google.com/p/msysgit/downloads/list
+ * TortoiseGit http://code.google.com/p/tortoisegit/downloads/list. Make sure to install at least the patch tool
+ * Windows Sdk 7.1 http://www.microsoft.com/download/en/details.aspx?id=8279
+  (If applicable)
+ * Python 2.7 http://www.python.org/getit/
+ * SCons http://www.scons.org/download.php (same architecture as python 2.7!)
+ * CMake 2.8 http://www.cmake.org/
+
+
+Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a full build environment)
+run ./build_cmake.bat
+wait

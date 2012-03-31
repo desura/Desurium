@@ -16,6 +16,15 @@ add_definitions(-DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES
 #    add_definitions(-DNDEBUG)
 #endif()
 
+if(DEBUG_EXTERNAL)
+  add_definitions(-D_DEBUG)
+  set(CONFIGURE_DEBUG --enable-debug)
+  set(MODE_DEBUG mode=debug)
+else()
+  set(CONFIGURE_DEBUG --disable-debug)
+  set(MODE_DEBUG mode=release)
+endif()
+
 add_compiler_flags(-fPIC -pipe -fvisibility=hidden -Wl,-Bsymbolic-functions -lpthread -finline-functions)
 add_compiler_flags(DEBUG -rdynamic -fno-omit-frame-pointer -g3)
 add_compiler_flags(RELEASE -O2)

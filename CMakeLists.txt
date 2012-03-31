@@ -5,11 +5,14 @@
 #   name            default             description
 #
 # global options:
-#   BRANDING        branding_default    The branding to use for Desura.
-#                                       possible values: branding_default, branding_desura
-#   DEBUG           OFF                 will add debug symbols and other debugging stuff
+#   OFFICIAL_BUILD  OFF                 for official build only
+#   BRANDING        depends on          ehich branding should be used?
+#                   OFFICIAL_BUILD
+#   DEBUG           OFF                 will add debug symbols and other
+#                                       debugging stuff
 #
 # unix-only options:
+#   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
 #   WITH_ARES       ON                  build CURL with ares support (c-ares REQUIRED)
 #
 # windows-only options:
