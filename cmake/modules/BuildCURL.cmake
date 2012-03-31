@@ -44,14 +44,14 @@ else()
 	GIT_TAG ${CURL_VERSION}
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND sh <SOURCE_DIR>/configure
-        --without-librtmp --disable-ldap --disable-debug --disable-curldebug
+        --without-librtmp --disable-ldap --disable-curldebug
         --without-zlib --disable-rtsp --disable-manual --enable-static=yes 
         --enable-shared=no --disable-pop3 --disable-imap --disable-dict
         --disable-gopher --disable-verbose --disable-smtp --disable-telnet
         --disable-tftp --disable-file --without-libidn --without-gnutls
         --without-nss --without-cyassl --with-ssl --without-axtls
         --without-libssh2 --enable-hidden-symbols --enable-cookies --without-sspi
-        --disable-manual --enable-optimize=-O2 ${BUILD_WITH_ARES}
+        --disable-manual --enable-optimize=-O2 ${BUILD_WITH_ARES} ${CONFIGURE_DEBUG}
         --prefix=${CURL_INSTALL_DIR}
   )
   
