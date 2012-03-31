@@ -6,6 +6,8 @@
 #
 # global options:
 #   OFFICIAL_BUILD  OFF                 for official build only
+#   BRANDING        depends on          ehich branding should be used?
+#                   OFFICIAL_BUILD
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
 #

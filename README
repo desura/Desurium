@@ -1,11 +1,11 @@
-Desurium
+Desura
 ===================
 
-Desurium is an open source version of Desura a gaming client that allows users to one click download and install games and game modification.
+Desura is a gaming client that allows users to one click download and install games and game modification.
 For more information, visit http://www.moddb.com/groups/desura/forum/thread/open-sourcing-desura
 
 
-Build Desurium on Linux
+Build Desura on Linux
 ===================
 
 Run ./build_cmake.sh
@@ -35,7 +35,7 @@ Just copy required libs to install/lib
 
 Finally run Desura using ./run_desura.sh
 
-Build Desurium on Windows
+Build Desura on Windows
 =====================
 
 Download and install:

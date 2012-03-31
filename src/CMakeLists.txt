@@ -2,12 +2,6 @@
 # copy branding
 ###############################################################################
 
-if(OFFICIAL_BUILD)
-  set(BRANDING branding_desura)
-else()
-  set(BRANDING branding_desurium)
-endif()
-
 set(BIN_INCLUDE_DIR ${CMAKE_BINARY_DIR}/include)
 file(MAKE_DIRECTORY ${BIN_INCLUDE_DIR})
 
