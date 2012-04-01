@@ -95,7 +95,6 @@ else()
   add_subdirectory(executable/crashdlg_lin)
 endif()
 
-add_subdirectory(tools/process_data_folder)
 add_subdirectory(tools/mfc_upload_cli)
 
 ###############################################################################
