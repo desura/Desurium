@@ -1,4 +1,4 @@
-if(BITNESS EQUAL 64)
+if(64BIT)
   set(EXTRA_OPTS "arch=x64")
 endif()
 

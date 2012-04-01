@@ -23,3 +23,11 @@ add_linker_flags(/ignore:4006
                  /ignore:4099
 				 /ignore:4221)
 add_compiler_flags(/wd4996 /MP)
+
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+  set(64BIT TRUE)
+  message("-- detected 64bit")
+else()
+  set(64BIT FALSE)
+  message("-- detected 32bit")
+endif()
