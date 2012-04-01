@@ -5,8 +5,8 @@ include_directories(
 
 file(GLOB Sources code/*.cpp )
 
-add_executable(Desura ${Sources})
-target_link_libraries(Desura
+add_executable(desura ${Sources})
+target_link_libraries(desura
     dl
     mdump
     rt
@@ -20,5 +20,5 @@ target_link_libraries(Desura
     ${wxWidgets_LIBRARIES}
 )
 
-install(TARGETS Desura
+install(TARGETS desura
         DESTINATION "${BIN_INSTALL_DIR}")
