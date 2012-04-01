@@ -36,3 +36,7 @@ add_compiler_flags(CXX -std=c++0x)
 
 # wxWidgets config
 add_definitions(-D__WXGTK__)
+
+if(${CMAKE_SIZEOF_VOID_P} EQUAL 8)
+  set(64BITS 1)
+endif()

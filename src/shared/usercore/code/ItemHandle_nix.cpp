@@ -125,7 +125,7 @@ void ItemHandle::doLaunch(bool useXdgOpen, const char* globalExe, const char* gl
 #ifdef NIX64
 	if (!useXdgOpen && branch && branch->is32Bit())
 	{
-		int testRet = system("bin/bittest");
+		int testRet = system("desura_bittest");
 		
 		if (testRet != 0)
 			throw gcException(ERR_NO32LIBS);

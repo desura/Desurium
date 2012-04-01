@@ -93,6 +93,10 @@ if(WIN32)
 else()
   add_subdirectory(executable/bootloader_lin)
   add_subdirectory(executable/crashdlg_lin)
+  
+  if(64BITS)
+    add_subdirectory(executable/bittest)
+  endif()
 endif()
 
 add_subdirectory(tools/mfc_upload_cli)
