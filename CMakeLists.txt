@@ -47,7 +47,7 @@ endif()
 
 include(ExternalProject)
 include(CheckOptions)
-include(compilerflags)
+include(macros)
 include(parsearguments)
 include(CheckCompiler)
 include(SetInstallPaths)
