@@ -1,5 +1,5 @@
-set(CEF_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/cef)
-set(CEF_BIN_DIR ${CEF_INSTALL_DIR}/src/depot_tools)
+set(DEPOT_TOOLS_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/depot_tools)
+set(DEPOT_TOOLS_BIN_DIR ${DEPOT_TOOLS_INSTALL_DIR}/src/depot_tools)
 
 ExternalProject_Add(
     depot_tools
@@ -8,16 +8,46 @@ ExternalProject_Add(
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
-    PREFIX ${CEF_INSTALL_DIR}
+    PREFIX ${DEPOT_TOOLS_INSTALL_DIR}
 )
 
+set(CHROMIUM_SOURCE_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/chromium)
+
 ExternalProject_Add(
-    cef
-    SVN_REPOSITORY http://chromiumembedded.googlecode.com/svn/trunk
+    chromium
+    DOWNLOAD_COMMAND ""
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
+    BUILD_IN_SOURCE 1
     INSTALL_COMMAND ""
 )
 
-add_dependencies(cef depot_tools)
+ExternalProject_Add_Step(
+    chromium
+    gclient_config
+    COMMAND ${DEPOT_TOOLS_BIN_DIR}/gclient config https://src.chromium.org/svn/trunk/src
+    DEPENDERS download
+    WORKING_DIRECTORY <SOURCE_DIR>
+)
+
+ExternalProject_Add_Step(
+    chromium
+    gclient_download
+    COMMAND ${DEPOT_TOOLS_BIN_DIR}/gclient sync --revision src@122508 --jobs 8 --force
+    DEPENDEES gclient_config
+    WORKING_DIRECTORY <SOURCE_DIR>
+)
+
+#ExternalProject_Add(
+#    cef
+#    SVN_REPOSITORY http://chromiumembedded.googlecode.com/svn/trunk
+#    UPDATE_COMMAND ""
+#    CONFIGURE_COMMAND ${CMAKE_SCRIPT_PATH}/configCEF.sh ${CEF_BIN_DIR}
+#    BUILD_COMMAND ""
+#    BUILD_IN_SOURCE 1
+#    INSTALL_COMMAND ""
+#)
+
+add_dependencies(chromium depot_tools)
+#add_dependencies(cef chromium)
