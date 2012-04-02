@@ -1,20 +1,12 @@
+set(CEF_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/cef)
+set(CEF_BIN_DIR ${CEF_INSTALL_DIR}/src/depot_tools)
+
 ExternalProject_Add(
-    cef
-    DOWNLOAD_DIR ""
-    DOWNLOAD_COMMAND ""
+    depot_tools
+    SVN_REPOSITORY http://src.chromium.org/svn/trunk/tools/depot_tools
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
-    BUILD_COMMAND make
+    BUILD_COMMAND ""
     INSTALL_COMMAND ""
+    PREFIX ${CEF_INSTALL_DIR}
 )
-
-ExternalProject_Add_Step(
-    cef
-    configure_cef
-    COMMAND sh cef_create_projects.sh
-    DEPENDEES configure
-    DEPENDERS build
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src/third_party/chromium/src/cef
-)
-
-add_dependencies(cef chromium)

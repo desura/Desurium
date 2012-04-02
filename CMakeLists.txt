@@ -10,6 +10,7 @@
 #                   OFFICIAL_BUILD
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
+#   BUILD_CEF       OFF                 build cef
 #
 # unix-only options:
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
@@ -112,9 +113,10 @@ if(NOT V8_FOUND)
   include(Buildv8)
 endif()
 
-#include(BuildChromium)
-#include(BuildCEF)
-#include(BuildCourgette)
+if(BUILD_CEF)
+  include(BuildCEF)
+endif()
+
 
 ###############################################################################
 # build third_party
