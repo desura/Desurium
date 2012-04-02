@@ -1,3 +1,4 @@
 #!/bin/sh
-export LD_LIBRARY_PATH=`pwd`/install/lib
-install/bin/desura
+export PATH="`pwd`/install/bin:$PATH"
+export LD_LIBRARY_PATH="`pwd`/install/lib"
+desura

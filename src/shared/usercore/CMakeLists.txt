@@ -8,6 +8,10 @@ include_directories(
   ${SQLITE3X_INCLUDE_DIRS}
 )
 
+if(UNIX AND 32BIT_SUPPORT)
+  add_definitions(-DUSE_BITTEST)
+endif()
+
 add_definitions(-DDESURA_CLIENT)
 if(WIN32)
   add_definitions(-DSVENHACK -DDESURA_DIABLO2_HACK)

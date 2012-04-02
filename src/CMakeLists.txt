@@ -94,7 +94,7 @@ else()
   add_subdirectory(executable/bootloader_lin)
   add_subdirectory(executable/crashdlg_lin)
   
-  if(64BIT)
+  if(32BIT_SUPPORT)
     add_subdirectory(executable/bittest)
   endif()
 endif()
