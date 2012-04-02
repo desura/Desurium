@@ -10,3 +10,14 @@ ExternalProject_Add(
     INSTALL_COMMAND ""
     PREFIX ${CEF_INSTALL_DIR}
 )
+
+ExternalProject_Add(
+    cef
+    SVN_REPOSITORY http://chromiumembedded.googlecode.com/svn/trunk
+    UPDATE_COMMAND ""
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+)
+
+add_dependencies(cef depot_tools)
