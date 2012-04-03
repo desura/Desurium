@@ -39,15 +39,28 @@ ExternalProject_Add_Step(
     WORKING_DIRECTORY <SOURCE_DIR>
 )
 
-#ExternalProject_Add(
-#    cef
-#    SVN_REPOSITORY http://chromiumembedded.googlecode.com/svn/trunk
-#    UPDATE_COMMAND ""
-#    CONFIGURE_COMMAND ${CMAKE_SCRIPT_PATH}/configCEF.sh ${CEF_BIN_DIR}
-#    BUILD_COMMAND ""
-#    BUILD_IN_SOURCE 1
-#    INSTALL_COMMAND ""
-#)
+ExternalProject_Get_Property(
+    chromium
+    source_dir
+)
+
+ExternalProject_Add(
+    cef
+    DOWNLOAD_COMMAND ""
+    UPDATE_COMMAND ""
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    BUILD_IN_SOURCE 1
+    INSTALL_COMMAND ""
+)
+
+ExternalProject_Add_Step(
+    cef
+    copy_files
+    COMMAND cp -r ${CMAKE_THIRD_PARTY_DIR}/cef ./src/
+    DEPENDERS download
+    WORKING_DIRECTORY ${source_dir}
+)
 
 add_dependencies(chromium depot_tools)
-#add_dependencies(cef chromium)
+add_dependencies(cef chromium)
