@@ -52,3 +52,9 @@ Download and install:
 Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a full build environment)
 run ./build_cmake.bat
 wait
+
+Copying Cef Libraries
+=====================
+
+Run getceflibs.sh. A downloader will pop up. Once it's done, a login dialog will
+pop up. Close it. That's all you have to do.
