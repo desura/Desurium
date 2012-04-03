@@ -26,7 +26,7 @@ ExternalProject_Add(
 ExternalProject_Add_Step(
     chromium
     gclient_config
-    COMMAND ${DEPOT_TOOLS_BIN_DIR}/gclient config https://src.chromium.org/svn/trunk/src
+    COMMAND cp ${CMAKE_SCRIPT_PATH}/.gclient .gclient
     DEPENDERS download
     WORKING_DIRECTORY <SOURCE_DIR>
 )
