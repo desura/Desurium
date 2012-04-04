@@ -23,10 +23,12 @@ build() {
   msg "Connecting to GIT server...."
 
   if [[ -d "$_gitname" ]]; then
-    cd "$_gitname" && git pull origin
+    cd "$_gitname"
+    git pull origin
     msg "The local files are updated."
   else
-    git clone "$_gitroot" "$_gitname"
+    msg "Cloning..."
+    git clone "$_gitroot" "$_gitname" --depth 1
   fi
 
   msg "GIT checkout done or server timeout"
