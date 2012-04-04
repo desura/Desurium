@@ -329,7 +329,7 @@ std::string getConfigValue(const std::string &configKey)
 		return GetAppBuild();
 	else if (configKey == APPID)
 		return GetAppBranch();
-	else if (configKey.find("HKEY_LOCAL_MACHINE") != std::string::npos)
+	else if (configKey.find("HKEY_") != std::string::npos)
 		return "";
 
 	std::string result;
