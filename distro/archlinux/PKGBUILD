@@ -4,11 +4,11 @@ pkgname=desurium-git
 pkgver=20120404
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
-arch=(i686 x86_64)
 url="http://github.com/lodle/Desurium"
 license=('GPL3')
-depends=('v8' 'tinyxml' 'sqlite3' 'boost-libs' 'bzip2' 'gtk2' 'openssl' 'curl' 'c-ares' 'libnotify')
+arch=('i686' 'x86_64')
 makedepends=('cmake' 'git' 'boost' 'subversion' 'scons')
+depends=('v8' 'tinyxml' 'sqlite3' 'boost-libs' 'bzip2' 'gtk2' 'openssl' 'curl' 'c-ares' 'libnotify')
 provides=('desura')
 conflicts=('desura')
 
