@@ -24,6 +24,9 @@ build() {
 
   if [[ -d "$_gitname" ]]; then
     cd "$_gitname"
+    msg "Removing build files..."
+    git clean -dfx
+    msg "Updating..."
     git pull origin
     msg "The local files are updated."
   else
@@ -33,10 +36,6 @@ build() {
 
   msg "GIT checkout done or server timeout"
   msg "Starting build..."
-
-  rm -rf "$srcdir/$_gitname-build"
-  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
-  cd "$srcdir/$_gitname-build"
 
   mkdir build && cd build
   cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura ..
