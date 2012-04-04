@@ -99,8 +99,12 @@ else()
   endif()
 endif()
 
-add_subdirectory(tools/mfc_upload_cli)
-add_subdirectory(tools/mcf_extract)
+option(BUILD_TOOLS "Build various Desura tools." ON)
+
+if(BUILD_TOOLS)
+  add_subdirectory(tools/mfc_upload_cli)
+  add_subdirectory(tools/mcf_extract)
+endif()
 
 ###############################################################################
 # we need some dependencies 

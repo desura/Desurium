@@ -56,4 +56,4 @@ wait
 Getting Cef Libraries on Linux
 =====================
 
-Run getceflibs.sh after building Desura. That's all you have to do.
+Run getceflibs.sh after building Desura. Make sure you don't disable building the tools.
