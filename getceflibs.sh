@@ -1,16 +1,36 @@
 #!/bin/sh
+# -------
+# Copyright (c) 2012 Jookia
+#
+# Usage of the works is permitted provided that this instrument is retained with
+# the works, so that any entity that uses the works is notified of this
+# instrument.
+#
+# DISCLAIMER: THE WORKS ARE WITHOUT WARRANTY.
 
-COPYPATH="`pwd`/ceflibs"
+COPYPATH="`pwd`/ceflibs/"
 
-ARCH="`uname -m`"
-wget http://www.desura.com/desura-${ARCH}.tar.gz
-tar -xvf desura-${ARCH}.tar.gz
-cd desura
-./desura
-mv lib_extra/* lib
-LIBSPATH="`pwd`/lib"
+# To get these, download the official Desura client, run it, and steal it from
+# the XML file it downloads.
+if [[ "`uname -m`" = "x86_64" ]]; then
+	URL="http://app.desura.com/120/2011/1535.mcf"
+else
+	echo "Add the 32bit URL to getceflibs.sh!"
+	exit 1
+fi
+
 mkdir $COPYPATH
+wget $URL -O desura.mcf
+export LD_LIBRARY_PATH="`pwd`/install/lib"
+install/bin/mcf_extract desura.mcf tmp_desura
 
+cd tmp_desura
+mv lib_extra/* lib
+
+# copyDeps recursively copies libraries. Could come in useful somewhere else.
+# $1:        The library to copy, and to have its deps copied.
+# $COPYPATH: The path to copy $1 to.
+# $LIBSPATH: The path to search for deps of $1 in.
 function copyDeps
 {
 	cp $1 $COPYPATH
@@ -28,11 +48,10 @@ function copyDeps
 	done
 }
 
+LIBSPATH="`pwd`/lib"
 export LD_LIBRARY_PATH="/lib:/usr/lib:$LIBSPATH"
 copyDeps "$LIBSPATH/libcef_desura.so"
 
 cd ..
-rm desura -r
-rm desura-${ARCH}.tar.gz
-xdg-desktop-menu uninstall desura.desktop
-xdg-desktop-menu uninstall desura-force.desktop
+rm tmp_desura -r
+rm desura.mcf
