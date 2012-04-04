@@ -53,8 +53,7 @@ Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a f
 run ./build_cmake.bat
 wait
 
-Copying Cef Libraries
+Getting Cef Libraries on Linux
 =====================
 
-Run getceflibs.sh. A downloader will pop up. Once it's done, a login dialog will
-pop up. Close it. That's all you have to do.
+Run getceflibs.sh after building Desura. That's all you have to do.
