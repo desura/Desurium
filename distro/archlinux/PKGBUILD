@@ -1,0 +1,54 @@
+# Creator: Sven-Hendrik Haase <sh@lutzhaase.com>
+# Maintainer: Jookia <166291@gmail.com>
+pkgname=desurium-git
+pkgver=20120404
+pkgrel=1
+pkgdesc="A community-driven digital distribution service for gamers (open source version)"
+arch=(i686 x86_64)
+url="http://github.com/lodle/Desurium"
+license=('GPL3')
+depends=('v8' 'tinyxml' 'sqlite3' 'boost-libs' 'bzip2' 'gtk2' 'openssl' 'curl' 'c-ares' 'libnotify')
+makedepends=('cmake' 'git' 'boost' 'subversion' 'scons')
+provides=('desura')
+conflicts=('desura')
+
+_gitroot=git://github.com/lodle/Desurium.git
+_gitname=Desurium
+
+build() {
+  cd "$srcdir"
+  msg "Connecting to GIT server...."
+
+  if [[ -d "$_gitname" ]]; then
+    cd "$_gitname" && git pull origin
+    msg "The local files are updated."
+  else
+    git clone "$_gitroot" "$_gitname"
+  fi
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting build..."
+
+  rm -rf "$srcdir/$_gitname-build"
+  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+  cd "$srcdir/$_gitname-build"
+
+  mkdir build && cd build
+  cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura ..
+  make
+
+  cd ..
+  ./getceflibs.sh
+}
+
+package() {
+  cd "$srcdir/$_gitname-build"
+
+  cd build
+  make DESTDIR="$pkgdir/" install
+
+  cd ..
+  cp ceflibs/* "$pkgdir/opt/desura/lib"
+}
+
+# vim:set ts=2 sw=2 et:
