@@ -11,7 +11,7 @@ makedepends=('cmake' 'git' 'boost' 'subversion' 'scons')
 depends=('v8' 'tinyxml' 'sqlite3' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'curl' 'c-ares' 'libnotify' 'nss' 'libgnome-keyring' 'bison'
          'cups' 'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
-         'gconf' 'xdg-users-dirs' 'v8')
+         'gconf' 'xdg-user-dirs' 'v8')
 provides=('desura')
 conflicts=('desura')
 
