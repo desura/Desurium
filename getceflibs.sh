@@ -14,8 +14,10 @@ COPYPATH="`pwd`/ceflibs/"
 # the XML file it downloads.
 if [[ "`uname -m`" = "x86_64" ]]; then
 	URL="http://app.desura.com/120/2011/1535.mcf"
+elif [[ "`uname -m`" = "i686" ]]; then
+	URL="http://app.desura.com/110/2011/1534.mcf"
 else
-	echo "Add the 32bit URL to getceflibs.sh!"
+	echo "Sorry, official Desura only supports x86_64 and i686. This won't work."
 	exit 1
 fi
 
