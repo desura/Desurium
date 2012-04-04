@@ -26,6 +26,7 @@ if(WIN32)
     source_dir
   )
   set(wxWidgets_INSTALL_DIR ${source_dir})
+  set(wxWidgets_BIN_DIR ${wxWidgets_INSTALL_DIR}/bin)
   set(wxWidgets_LIBRARY_DIRS ${wxWidgets_INSTALL_DIR}/lib/vc_dll)
   set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include ${wxWidgets_LIBRARY_DIRS}/mswu)
   set(wxWidgets_LIBRARIES ${wxWidgets_LIBRARY_DIRS}/wxmsw29u.lib)
@@ -56,5 +57,5 @@ else()
             RENAME libwx_gtk2u_desura-2.9.so.0
             DESTINATION ${LIB_INSTALL_DIR})
   endif()
-
+  set(wxWidgets_BIN_DIR ${wxWidgets_INSTALL_DIR}/bin)
 endif()
