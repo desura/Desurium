@@ -100,6 +100,7 @@ else()
 endif()
 
 add_subdirectory(tools/mfc_upload_cli)
+add_subdirectory(tools/mcf_extract)
 
 ###############################################################################
 # we need some dependencies 
