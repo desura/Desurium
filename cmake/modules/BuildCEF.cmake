@@ -49,17 +49,10 @@ ExternalProject_Add(
     DOWNLOAD_COMMAND ""
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
-    BUILD_COMMAND ""
+    BUILD_COMMAND "" 
     BUILD_IN_SOURCE 1
     INSTALL_COMMAND ""
 )
-
-#ExternalProject_Add_Step(
-#    cef
-#    copy_needed_files
-#    COMMAND cp ${wxWidgets_BIN_DIR}/wx-config -f -t ../../../wxWidgets
-#    DEPENDERS download
-#)
 
 ExternalProject_Add_Step(
     cef
@@ -76,6 +69,14 @@ ExternalProject_Add_Step(
     DEPENDEES download
     DEPENDERS configure
     WORKING_DIRECTORY ${source_dir}/src/cef
+)
+
+ExternalProject_Add_Step(
+    cef
+    build_cef
+    COMMAND make cef_desura -j8 BUILDTYPE=Release
+    DEPENDERS build
+    WORKING_DIRECTORY ${source_dir}/src
 )
 
 add_dependencies(chromium depot_tools)
