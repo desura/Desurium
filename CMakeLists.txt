@@ -142,6 +142,10 @@ if(NOT Boost_FOUND)
   add_dependencies(sqlite3x boost)
 endif()
 
+if(BUILD_CEF)
+  add_dependencies(cef wxWidget-2-9)
+endif()
+
 ###############################################################################
 # build desura
 ###############################################################################

@@ -34,7 +34,7 @@ ExternalProject_Add_Step(
 ExternalProject_Add_Step(
     chromium
     gclient_download
-    COMMAND ${DEPOT_TOOLS_BIN_DIR}/gclient sync --revision src@122508 --jobs 8 --force
+    COMMAND ${DEPOT_TOOLS_BIN_DIR}/gclient sync --revision src@91424 --jobs 8 --force
     DEPENDEES gclient_config
     WORKING_DIRECTORY <SOURCE_DIR>
 )
@@ -54,12 +54,28 @@ ExternalProject_Add(
     INSTALL_COMMAND ""
 )
 
+#ExternalProject_Add_Step(
+#    cef
+#    copy_needed_files
+#    COMMAND cp ${wxWidgets_BIN_DIR}/wx-config -f -t ../../../wxWidgets
+#    DEPENDERS download
+#)
+
 ExternalProject_Add_Step(
     cef
     copy_files
     COMMAND cp -r ${CMAKE_THIRD_PARTY_DIR}/cef ./src/
     DEPENDERS download
     WORKING_DIRECTORY ${source_dir}
+)
+
+ExternalProject_Add_Step(
+    cef
+    config_cef
+    COMMAND ${CMAKE_SCRIPT_PATH}/configCEF.sh ${DEPOT_TOOLS_BIN_DIR}
+    DEPENDEES download
+    DEPENDERS configure
+    WORKING_DIRECTORY ${source_dir}/src/cef
 )
 
 add_dependencies(chromium depot_tools)
