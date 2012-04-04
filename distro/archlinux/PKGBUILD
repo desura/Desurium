@@ -37,7 +37,8 @@ build() {
   msg "GIT checkout done or server timeout"
   msg "Starting build..."
 
-  mkdir build && cd build
+  mkdir build
+  cd build
   cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura ..
   make
 
