@@ -7,7 +7,7 @@ pkgdesc="A community-driven digital distribution service for gamers (open source
 url="http://github.com/lodle/Desurium"
 license=('GPL3')
 arch=('i686' 'x86_64')
-makedepends=('cmake' 'git' 'boost' 'subversion' 'scons')
+makedepends=('cmake' 'git' 'boost' 'subversion' 'scons' 'gawk')
 depends=('v8' 'tinyxml' 'sqlite3' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'curl' 'c-ares' 'libnotify' 'nss' 'libgnome-keyring' 'bison'
          'cups' 'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
@@ -42,10 +42,13 @@ build() {
     mkdir build
   fi
   cd build
+  msg "Running cmake..."
   cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura ..
+  msg "Running make..."
   make
 
   cd ..
+  msg "Running getceflibs.sh ..."
   ./getceflibs.sh
 }
 
@@ -53,10 +56,12 @@ package() {
   cd "$srcdir/$_gitname"
 
   cd build
+  msg "Compiling into pkgdir this time..."
   make DESTDIR="$pkgdir/" install
 
   cd ..
   cp ceflibs/* "$pkgdir/opt/desura/lib"
+  msg "Compiling done"
 }
 
 # vim:set ts=2 sw=2 et:
