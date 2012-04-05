@@ -38,7 +38,9 @@ build() {
   msg "Starting build..."
 
   cd "$srcdir/$_gitname"
-  mkdir build
+  if [ ! -d build ] ; then
+    mkdir build
+  fi
   cd build
   cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura ..
   make
