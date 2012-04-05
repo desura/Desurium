@@ -42,10 +42,13 @@ build() {
     mkdir build
   fi
   cd build
+  msg "Running cmake..."
   cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura ..
+  msg "Running make..."
   make
 
   cd ..
+  msg "Running getceflibs.sh ..."
   ./getceflibs.sh
 }
 
@@ -53,10 +56,12 @@ package() {
   cd "$srcdir/$_gitname"
 
   cd build
+  msg "Compiling into pkgdir this time..."
   make DESTDIR="$pkgdir/" install
 
   cd ..
   cp ceflibs/* "$pkgdir/opt/desura/lib"
+  msg "Compiling done"
 }
 
 # vim:set ts=2 sw=2 et:
