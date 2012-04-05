@@ -39,7 +39,7 @@ else()
     PATCH_COMMAND patch -p0 -N -i ${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --enable-shared --enable-unicode ${CONFIGURE_DEBUG}
         --enable-monolithic --with-flavour=desura --disable-threads --with-opengl=no
-        --disable-joystick --disable-mediactrl --prefix=${wxWidgets_INSTALL_DIR}
+        --disable-joystick --disable-mediactrl --prefix=${wxWidgets_INSTALL_DIR} --enable-permissive
   )
   
   set(wxWidgets_LIBRARY_DIRS ${wxWidgets_INSTALL_DIR}/lib)
