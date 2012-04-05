@@ -20,8 +20,9 @@ else
 	echo "Sorry, official Desura only supports x86_64 and i686. This won't work."
 	exit 1
 fi
-
-mkdir $COPYPATH
+if [ ! -d "${COPYPATH}" ] ; then
+	mkdir $COPYPATH
+fi
 wget $URL -O desura.mcf
 export LD_LIBRARY_PATH="`pwd`/install/lib"
 ./build/src/tools/mcf_extract/mcf_extract desura.mcf tmp_desura
@@ -36,14 +37,14 @@ mv lib_extra/* lib
 function copyDeps
 {
 	cp $1 $COPYPATH
-	
+
 	AWKLIBSPATH="`echo \"$LIBSPATH\" | sed 's|\/|\\\/|g'`"
-	
+
 	for dep in $(ldd 2>/dev/null $1 | awk "/^.*$AWKLIBSPATH.*$/{print \$1}")
 	do
 		DEPLIBSPATH="$LIBSPATH/$dep"
 		DEPCOPYPATH="$COPYPATH/$dep"
-		
+
 		if [[ ! -f $DEPCOPYPATH ]]; then
 			copyDeps $DEPLIBSPATH
 		fi
@@ -55,5 +56,4 @@ export LD_LIBRARY_PATH="/lib:/usr/lib:$LIBSPATH"
 copyDeps "$LIBSPATH/libcef_desura.so"
 
 cd ..
-rm tmp_desura -r
-rm desura.mcf
+rm -r ./tmp_desura/ desura.mcf
