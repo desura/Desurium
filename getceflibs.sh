@@ -23,8 +23,10 @@ fi
 if [ ! -d "${COPYPATH}" ] ; then
 	mkdir $COPYPATH
 fi
+echo "Downloading libs..."
 wget $URL -O desura.mcf
 export LD_LIBRARY_PATH="`pwd`/install/lib"
+echo "Extracting libs..."
 ./build/src/tools/mcf_extract/mcf_extract desura.mcf tmp_desura
 
 cd tmp_desura
@@ -53,7 +55,10 @@ function copyDeps
 
 LIBSPATH="`pwd`/lib"
 export LD_LIBRARY_PATH="/lib:/usr/lib:$LIBSPATH"
+echo "Copying libs to destinations..."
 copyDeps "$LIBSPATH/libcef_desura.so"
 
+echo "Removing unwanted files..."
 cd ..
 rm -r ./tmp_desura/ desura.mcf
+echo "Done"
