@@ -1,7 +1,7 @@
 # Creator: Sven-Hendrik Haase <sh@lutzhaase.com>
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20120404
+pkgver=20120405
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -37,6 +37,7 @@ build() {
   msg "GIT checkout done or server timeout"
   msg "Starting build..."
 
+  cd "$srcdir/$_gitname"
   mkdir build
   cd build
   cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura ..
