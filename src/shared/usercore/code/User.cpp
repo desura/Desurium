@@ -375,7 +375,11 @@ void User::onNeedWildCardCB(WCSpecialInfo& info)
 #endif
 	else if (Safe::stricmp("APPLICATION", info.name.c_str()) == 0)
 	{
+#ifdef NIX
+		info.result = gcString("{0}/desura", getenv("XDG_DATA_HOME"));
+#else
 		info.result = gcString(UTIL::OS::getCurrentDir(DIR_WCOMMON));
+#endif
 		info.handled = true;
 	}
 }
