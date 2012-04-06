@@ -6,7 +6,11 @@ set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.9/)
 set(TEST "%")
 
 if(WIN32)
-  set(SCONS_COMMAND ${CMAKE_SCRIPT_PATH}/Buildv8.bat ${PYTHON_INCLUDE_DIRS}/../Scripts/scons.bat ${EXTRA_OPTS})
+  if(DEBUG)
+    set(SCONS_COMMAND ${CMAKE_SCRIPT_PATH}/Buildv8.bat ${PYTHON_INCLUDE_DIRS}/../Scripts/scons.bat debug ${EXTRA_OPTS})
+  else()
+    set(SCONS_COMMAND ${CMAKE_SCRIPT_PATH}/Buildv8.bat ${PYTHON_INCLUDE_DIRS}/../Scripts/scons.bat release ${EXTRA_OPTS})
+  endif()
   set(V8_LIB_SUFFIX lib)
 else()
   set(SCONS_COMMAND scons snapshot=on ${MODE_DEBUG} library=shared ${EXTRA_OPTS})
@@ -31,6 +35,11 @@ ExternalProject_Get_Property(
 
 set(V8_INSTALL_DIR ${source_dir})
 set(V8_INCLUDE_DIR ${V8_INSTALL_DIR}/include)
+
+if(DEBUG)
+set(V8_LIBRARIES "${V8_INSTALL_DIR}/${V8_LIB_PREFIX}v8_g.${V8_LIB_SUFFIX};${V8_INSTALL_DIR}/${V8_LIB_PREFIX}v8preparser_g.${V8_LIB_SUFFIX}")
+else()
 set(V8_LIBRARIES "${V8_INSTALL_DIR}/${V8_LIB_PREFIX}v8.${V8_LIB_SUFFIX};${V8_INSTALL_DIR}/${V8_LIB_PREFIX}v8preparser.${V8_LIB_SUFFIX}")
+endif()
 install(FILES ${V8_LIBRARIES}
         DESTINATION ${LIB_INSTALL_DIR})
