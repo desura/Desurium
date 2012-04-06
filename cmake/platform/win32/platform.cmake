@@ -3,7 +3,7 @@
 ################################################################################
 
 # some boost options
-add_definitions(-DBOOST_FILESYSTEM_VERSION=2 -D_ITERATOR_DEBUG_LEVEL=0)
+add_definitions(-DBOOST_FILESYSTEM_VERSION=2)
 
 # some wxWidget options
 macro(use_unicode_here)

@@ -20,6 +20,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <mcfcore/MCFMain.h>
 #include <cstdio>
 
+void PrintfMsg(const char* format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	vprintf(format, args);
+
+#ifdef DEBUG
+	char out[1024]={0};
+	vsnprintf(out, 1024, format, args);
+	OutputDebugString(out);
+#endif
+
+	va_end(args);
+}
+
 int main(int argCount, const char* args[])
 {
 	if(argCount != 3)

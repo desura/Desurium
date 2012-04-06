@@ -6,20 +6,31 @@ if(WIN32)
     wxWidget-2-9
     SVN_REPOSITORY ${WXWIDGET_SVN}
     UPDATE_COMMAND ""
-    PATCH_COMMAND patch -p0 -N -i ${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch
+    PATCH_COMMAND ${CMAKE_SOURCE_DIR}/cmake/scripts/Patch.bat ${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch
     CONFIGURE_COMMAND ""
 	BUILD_COMMAND ""
 	INSTALL_COMMAND ""
   )
   
+if(DEBUG) 
   ExternalProject_Add_Step(
     wxWidget-2-9
 	custom_build
 	DEPENDEES configure
 	DEPENDERS build
-	COMMAND nmake /nologo -f makefile.vc BUILD=release VENDOR=desura SHARED=1 RUNTIME_LIBS=shared MONOLITHIC=1
+	COMMAND nmake /nologo -f makefile.vc BUILD=debug MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1
 	WORKING_DIRECTORY <SOURCE_DIR>/build/msw
   )
+else()
+  ExternalProject_Add_Step(
+    wxWidget-2-9
+	custom_build
+	DEPENDEES configure
+	DEPENDERS build
+	COMMAND nmake /nologo -f makefile.vc BUILD=release MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1
+	WORKING_DIRECTORY <SOURCE_DIR>/build/msw
+  )
+endif()
   
   ExternalProject_Get_Property(
     wxWidget-2-9
@@ -29,10 +40,10 @@ if(WIN32)
   set(wxWidgets_LIBRARY_DIRS ${wxWidgets_INSTALL_DIR}/lib/vc_dll)
   
   if(DEBUG)
-    set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include ${wxWidgets_LIBRARY_DIRS}/mswud)
+    set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include ${wxWidgets_INSTALL_DIR}/include/msvc)
     set(wxWidgets_LIBRARIES ${wxWidgets_LIBRARY_DIRS}/wxmsw29ud.lib)
   else()
-    set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include ${wxWidgets_LIBRARY_DIRS}/mswu)
+    set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include ${wxWidgets_INSTALL_DIR}/include/msvc)
 	set(wxWidgets_LIBRARIES ${wxWidgets_LIBRARY_DIRS}/wxmsw29u.lib)
   endif()
   

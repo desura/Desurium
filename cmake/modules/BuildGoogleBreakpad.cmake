@@ -7,7 +7,7 @@ if(WIN32)
     breakpad
     SVN_REPOSITORY ${BREAKPAD_SVN}
     UPDATE_COMMAND ""
-	PATCH_COMMAND patch -p0 -N -i ${CMAKE_SOURCE_DIR}/cmake/patches/breakpad.patch
+	PATCH_COMMAND ${CMAKE_SOURCE_DIR}/cmake/scripts/Patch.bat ${CMAKE_SOURCE_DIR}/cmake/patches/breakpad.patch
     CONFIGURE_COMMAND ${PYTHON_EXECUTABLE} ../breakpad/src/tools/gyp/gyp ../breakpad/src/client/windows/breakpad_client.gyp
 	BUILD_COMMAND msbuild <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj /nologo /t:rebuild /m:2 /property:Configuration=Release
 	INSTALL_COMMAND ""
