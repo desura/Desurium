@@ -22,7 +22,7 @@ if [ -f /etc/debian_version ]; then # Debian  (untested!)
         echo "everything intalled"
     fi
 elif [ -f /etc/redhat-release ]; then
-	yum install git subversion m4 autoconf gcc-c++ libstdc++-static glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel libnotify-devel scons xdg-user-dirs
+	yum install git subversion m4 autoconf gcc-c++ libstdc++-static glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel libnotify-devel scons xdg-user-dirs v8-devel c-ares-devel
 elif [ -f /etc/arch-release ]; then
 	# By using "pacman -T" to find out needed dependencies, we don't get
 	# conflicts if a package we have installed provides one of the dependencies.
