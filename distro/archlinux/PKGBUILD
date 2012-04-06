@@ -1,7 +1,7 @@
 # Creator: Sven-Hendrik Haase <sh@lutzhaase.com>
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20120405
+pkgver=20120406
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -49,7 +49,7 @@ build() {
 
   cd ..
   msg "Running getceflibs.sh ..."
-  ./getceflibs.sh
+  ./getceflibs.sh /opt/desura
 }
 
 package() {
