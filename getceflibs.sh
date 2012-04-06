@@ -10,6 +10,11 @@
 
 COPYPATH="`pwd`/ceflibs/"
 
+INSTALLDIR="$1"
+if [ -z ${INSTALLDIR} ] ; then
+	INSTALLDIR="install"
+fi
+
 # To get these, download the official Desura client, run it, and steal it from
 # the XML file it downloads.
 if [[ "`uname -m`" = "x86_64" ]]; then
@@ -25,7 +30,7 @@ if [ ! -d "${COPYPATH}" ] ; then
 fi
 echo "Downloading libs..."
 wget $URL -O desura.mcf
-export LD_LIBRARY_PATH="`pwd`/install/lib"
+export LD_LIBRARY_PATH="`pwd`/${INSTALLDIR}/lib"
 echo "Extracting libs..."
 ./build/src/tools/mcf_extract/mcf_extract desura.mcf tmp_desura
 
