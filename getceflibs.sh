@@ -17,8 +17,8 @@ fi
 
 COPYPATH="`pwd`/ceflibs/"
 
-INSTALLDIR="$1"
-if [ -z ${INSTALLDIR} ] ; then
+ARGUMENTS="$1" # if ARGUMENTS != nil, we assume a script is accesses getceflibs.sh
+if [ -z ${ARGUMENTS} ] ; then
 	INSTALLDIR="install"
 fi
 
@@ -37,7 +37,11 @@ if [ ! -d "${COPYPATH}" ] ; then
 fi
 echo "Downloading libs..."
 wget $URL -O desura.mcf
-export LD_LIBRARY_PATH="`pwd`/${INSTALLDIR}/lib"
+if [ -z ${ARGUMENTS} ] ; then
+	export LD_LIBRARY_PATH="`pwd`/install/lib"
+else
+	export LD_LIBRARY_PATH="`pwd`/${INSTALLDIR}/lib"
+fi
 echo "Extracting libs..."
 ./build/src/tools/mcf_extract/mcf_extract desura.mcf tmp_desura
 
@@ -66,8 +70,13 @@ function copyDeps
 }
 
 LIBSPATH="${INSTALLDIR}/lib"
-#export LD_LIBRARY_PATH="/lib:/usr/lib:$LIBSPATH"
-export LD_LIBRARY_PATH="/opt/desura/lib"
+if [ -z ${ARGUMENTS} ] ; then # no argument is given, we most likely just
+							   # run the script manually
+	export LD_LIBRARY_PATH="/lib:/usr/lib:$LIBSPATH"
+else 						   # an argument is given, we most likely access 
+							   # getceflibs.sh using a script
+	export LD_LIBRARY_PATH="/opt/desura/lib"
+fi
 echo "Copying libs to destinations..."
 copyDeps "$LIBSPATH/libcef_desura.so"
 
