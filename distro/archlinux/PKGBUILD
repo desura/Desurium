@@ -59,12 +59,10 @@ package() {
   msg "Compiling into pkgdir this time..."
   make DESTDIR="$pkgdir/" install
 
-  cd ..
-  cp ceflibs/* "$pkgdir/opt/desura/lib"
   msg "Compiling done"
-  cd ../../
+  cd ../../../
 
   install -Dm 755 ./run-desura.sh ${pkgdir}/usr/bin/desura
-  }
+}
 
 # vim:set ts=2 sw=2 et:
