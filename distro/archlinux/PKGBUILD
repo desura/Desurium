@@ -7,13 +7,15 @@ pkgdesc="A community-driven digital distribution service for gamers (open source
 url="http://github.com/lodle/Desurium"
 license=('GPL3')
 arch=('i686' 'x86_64')
-makedepends=('cmake' 'git' 'boost' 'subversion' 'scons' 'gawk')
+makedepends=('cmake' 'git' 'boost' 'subversion' 'scons' 'gawk' 'gendesk')
 depends=('v8' 'tinyxml' 'sqlite3' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'curl' 'c-ares' 'libnotify' 'nss' 'libgnome-keyring' 'bison'
          'cups' 'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
          'gconf' 'xdg-user-dirs' 'v8')
 provides=('desura')
 conflicts=('desura')
+source=('run-desura.sh')
+sha1sums=('9f89291c13391c7cf7f2ed2581ffb42e7803cee7')
 
 _gitroot=git://github.com/lodle/Desurium.git
 _gitname=Desurium
@@ -59,12 +61,17 @@ package() {
   msg "Compiling into pkgdir this time..."
   make DESTDIR="$pkgdir/" install
 
-  cd ..
-  cp ceflibs/* "$pkgdir/opt/desura/lib"
-  msg "Compiling done"
-  cd ../../
+  cd ../../../
 
   install -Dm 755 ./run-desura.sh ${pkgdir}/usr/bin/desura
-  }
+  gendesk PKGBUILD
+  cp ./pkg/opt/desura/data/desura.png ./desurium-git.png
+  sed -i -e 's/Icon=desurium-git.png/Icon=Desura.png/' -e 's/Exec=desurium-git/Exec=desura/' desurium-git.desktop
+  mv desurium-git.desktop Desura.desktop
+  mv desurium-git.png Desura.png
+
+  msg "Compiling done"
+
+}
 
 # vim:set ts=2 sw=2 et:
