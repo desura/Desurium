@@ -62,6 +62,9 @@ package() {
   cd ..
   cp ceflibs/* "$pkgdir/opt/desura/lib"
   msg "Compiling done"
-}
+  cd ../../
+
+  install -Dm 755 ./run-desura.sh ${pkgdir}/usr/bin/desura
+  }
 
 # vim:set ts=2 sw=2 et:
