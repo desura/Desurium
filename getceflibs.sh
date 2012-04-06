@@ -8,6 +8,11 @@
 #
 # DISCLAIMER: THE WORKS ARE WITHOUT WARRANTY.
 
+# we need mcf_extract, if we don't have it, compile...
+if [ ! -a "./build/src/tools/mcf_extract/mcf_extract" ] ; then
+	./build_cmake.sh
+fi
+
 COPYPATH="`pwd`/ceflibs/"
 
 INSTALLDIR="$1"
