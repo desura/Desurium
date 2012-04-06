@@ -14,6 +14,8 @@ depends=('v8' 'tinyxml' 'sqlite3' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'gconf' 'xdg-user-dirs' 'v8')
 provides=('desura')
 conflicts=('desura')
+source=('run-desura.sh')
+sha1sums=('9f89291c13391c7cf7f2ed2581ffb42e7803cee7')
 
 _gitroot=git://github.com/lodle/Desurium.git
 _gitname=Desurium
