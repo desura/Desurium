@@ -9,8 +9,8 @@
 # DISCLAIMER: THE WORKS ARE WITHOUT WARRANTY.
 
 # we need mcf_extract, if we don't have it, compile...
-if [ ! -a "./build/src/tools/mcf_extract/mcf_extract" ] ; then
-	echo "mcf_extract not found!"
+if [ ! -e ./build/src/tools/mcf_extract/mcf_extract ] ; then
+	echo "mcf_extract not found."
 	echo "Compiling..."
 	./build_cmake.sh
 fi
