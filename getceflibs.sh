@@ -69,12 +69,13 @@ function copyDeps
 	done
 }
 
-LIBSPATH="${INSTALLDIR}/lib"
-if [ -z ${ARGUMENTS} ] ; then # no argument is given, we most likely just
+if [ -z ${ARGUMENTS} ] ; then  # no argument is given, we most likely just
 							   # run the script manually
+	LIBSPATH="`pwd`/lib"
 	export LD_LIBRARY_PATH="/lib:/usr/lib:$LIBSPATH"
-else 						   # an argument is given, we most likely access 
+else 						   # an argument is given, we most likely access
 							   # getceflibs.sh using a script
+	LIBSPATH="${INSTALLDIR}/lib"
 	export LD_LIBRARY_PATH="/opt/desura/lib"
 fi
 echo "Copying libs to destinations..."
