@@ -66,7 +66,8 @@ function copyDeps
 }
 
 LIBSPATH="${INSTALLDIR}/lib"
-export LD_LIBRARY_PATH="/lib:/usr/lib:$LIBSPATH"
+#export LD_LIBRARY_PATH="/lib:/usr/lib:$LIBSPATH"
+export LD_LIBRARY_PATH="/opt/desura/lib"
 echo "Copying libs to destinations..."
 copyDeps "$LIBSPATH/libcef_desura.so"
 

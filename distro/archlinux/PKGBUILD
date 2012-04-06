@@ -43,7 +43,7 @@ build() {
   fi
   cd build
   msg "Running cmake..."
-  cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura ..
+  cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura -LD_LIBRARY_PATH=/opt/desura/lib ..
   msg "Running make..."
   make
 
