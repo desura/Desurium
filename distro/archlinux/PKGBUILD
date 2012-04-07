@@ -27,7 +27,7 @@ build() {
   if [[ -d "$_gitname" ]]; then
     cd "$_gitname"
     msg "Removing build files..."
-    ./build_cmake_clean.sh
+    ./build_make_clean.sh
     msg "Updating..."
     git pull origin
     msg "The local files are updated."
