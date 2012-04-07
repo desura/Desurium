@@ -79,6 +79,12 @@ namespace OS
 	//!
 	std::wstring getDataPath(std::wstring extra = L"");
 
+	//! Gets the folder for Desura's cache
+	//!
+	//! @param extra Extra path to add to the end of app path
+	//!
+	std::wstring getCachePath(std::wstring extra = L"");
+
 	//! Gets the folder for saving app data to
 	//!
 	//! @param extra Extra path to add to the end of app path

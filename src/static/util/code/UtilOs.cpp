@@ -142,6 +142,18 @@ std::wstring getDataPath(std::wstring extra)
 	return getCurrentDir(dataDir + extra);
 }
 
+std::wstring getCachePath(std::wstring extra)
+{
+#ifdef NIX
+	std::string cachePath = getenv("XDG_CACHE_HOME");
+	cachePath.append("/desura");
+	
+	return UTIL::STRING::toWStr(cachePath);
+#else
+	#error NOT IMPLEMENTED
+#endif
+}
+
 std::wstring getAppDataPath(std::wstring extra)
 {
 #ifdef NIX
