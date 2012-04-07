@@ -117,7 +117,7 @@ void WebCoreClass::downloadImage(WebCore::Misc::DownloadImageInfo *dii, volatile
 	if (strncmp(imageUrl,"http://", 7) != 0)
 		throw gcException(ERR_INVALIDDATA, gcString("The url {0} is not a valid http url", imageUrl));
 
-	gcString appDataPath = UTIL::OS::getAppDataPath(L"cache/images");
+	gcString appDataPath = UTIL::OS::getCachePath(L"/images");
 	gcString fileName = UTIL::FS::Path(imageUrl, "", true).getFile().getFile();
 
 	if (dii->id.isOk())
