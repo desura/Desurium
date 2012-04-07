@@ -5,3 +5,8 @@ CMakeFiles/
 Makefile
 build/
 install/
+ceflibs/
+distro/archlinux/pkg
+distro/archlinux/src
+distro/archlinux/Desura.desktop
+distro/archlinux/Desura.png
