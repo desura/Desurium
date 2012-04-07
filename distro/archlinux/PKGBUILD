@@ -15,7 +15,7 @@ depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
 provides=('desura')
 conflicts=('desura')
 source=('run-desura.sh')
-sha1sums=('9f89291c13391c7cf7f2ed2581ffb42e7803cee7')
+sha1sums=('2b42eaf7ce9ca41fa3c340c2b2ea147806025b8b')
 
 _gitroot=git://github.com/lodle/Desurium.git
 _gitname=Desurium
@@ -64,7 +64,7 @@ package() {
 
   install -Dm 755 ./run-desura.sh ${pkgdir}/usr/bin/desura
   gendesk PKGBUILD
-  cp ./pkg/opt/desura/data/desura.png ./desurium-git.png
+  cp ./pkg/opt/desura/desura.png ./desurium-git.png
   sed -i -e 's/Icon=desurium-git.png/Icon=Desura.png/' -e 's/Exec=desurium-git/Exec=desura/' desurium-git.desktop
   mv desurium-git.desktop Desura.desktop
   mv desurium-git.png Desura.png
