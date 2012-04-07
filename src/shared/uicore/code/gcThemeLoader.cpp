@@ -42,11 +42,8 @@ bool ThemeLoaderScheme::processRequest(ChromiumDLL::SchemeRequestI* request, boo
 	UTIL::FS::Path path(themeFolder, url, false);
 
 	if (!UTIL::FS::isValidFile(path))
-#ifdef WIN32
-		path = UTIL::FS::Path("./data/themes/default", url, false);
-#else
-		path = UTIL::FS::Path("data/themes/default", url, false);
-#endif
+		path = UTIL::FS::Path(UTIL::OS::getDataPath(L"/themes/default"),
+			UTIL::STRING::toWStr(url), false);
 
 	if (!UTIL::FS::isValidFile(path))
 		return false;
@@ -101,11 +98,8 @@ bool StaticLoaderScheme::processRequest(ChromiumDLL::SchemeRequestI* request, bo
 	url = url.substr(16);
 	url = UTIL::STRING::urlDecode(url);
 
-#ifdef WIN32
-	UTIL::FS::Path path("./data/static", url, false);
-#else
-	UTIL::FS::Path path("data/static", url, false);
-#endif
+	UTIL::FS::Path path(gcString("{0}/static", UTIL::OS::getDataPath()), url, false);
+
 	if (!UTIL::FS::isValidFile(path))
 		return false;
 

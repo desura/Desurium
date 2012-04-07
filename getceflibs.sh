@@ -24,7 +24,7 @@ fi
 mkdir $COPYPATH
 wget $URL -O desura.mcf
 export LD_LIBRARY_PATH="`pwd`/install/lib"
-install/bin/mcf_extract desura.mcf tmp_desura
+install/mcf_extract desura.mcf tmp_desura
 
 cd tmp_desura
 mv lib_extra/* lib

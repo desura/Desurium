@@ -135,6 +135,13 @@ std::wstring getCurrentDir(std::wstring extra)
 #endif
 }
 
+std::wstring getDataPath(std::wstring extra)
+{
+	std::wstring dataDir = L""; // Use to be 'data'.
+	
+	return getCurrentDir(dataDir + extra);
+}
+
 std::wstring getAppDataPath(std::wstring extra)
 {
 #ifdef NIX
