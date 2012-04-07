@@ -64,7 +64,7 @@ package() {
 
   install -Dm 755 ./run-desura.sh ${pkgdir}/usr/bin/desura
   gendesk PKGBUILD
-  cp ./pkg/opt/desura/data/desura.png ./desurium-git.png
+  cp ./pkg/opt/desura/desura.png ./desurium-git.png
   sed -i -e 's/Icon=desurium-git.png/Icon=Desura.png/' -e 's/Exec=desurium-git/Exec=desura/' desurium-git.desktop
   mv desurium-git.desktop Desura.desktop
   mv desurium-git.png Desura.png
