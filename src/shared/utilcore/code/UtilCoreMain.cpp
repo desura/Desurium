@@ -39,6 +39,8 @@ HINSTANCE g_hInstDLL;
 bool InitWebControl();
 void ShutdownWebControl();
 
+// TODO: Fix this to use UTIL::OS::getDataPath instead of data/.
+
 #ifdef WIN32
 	#define LANGFOLDER	".\\data\\language\\"
 	#define THEMEFOLDER	".\\data\\themes"

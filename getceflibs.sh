@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # -------
 # Copyright (c) 2012 Jookia
 #
@@ -37,13 +37,16 @@ if [ ! -d "${COPYPATH}" ] ; then
 fi
 echo "Downloading libs..."
 wget $URL -O desura.mcf
+
 if [ -z ${ARGUMENTS} ] ; then
 	export LD_LIBRARY_PATH="`pwd`/install/lib"
+	echo "Extracting libs..."
+	install/mcf_extract desura.mcf tmp_desura
 else
 	export LD_LIBRARY_PATH="`pwd`/${INSTALLDIR}/lib"
+	echo "Extracting libs..."
+	./build/src/tools/mcf_extract/mcf_extract desura.mcf tmp_desura
 fi
-echo "Extracting libs..."
-./build/src/tools/mcf_extract/mcf_extract desura.mcf tmp_desura
 
 cd tmp_desura
 mv lib_extra/* lib
