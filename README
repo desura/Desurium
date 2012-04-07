@@ -8,10 +8,10 @@ For more information, visit http://www.moddb.com/groups/desura/forum/thread/open
 Build Desura on Linux
 ===================
 
-Run ./build_cmake.sh
+Run ./build_desura.sh
 
 In order to make use of multiple CPU cores while compiling, run
-./build_cmake.sh -j8
+./build_desura.sh -j8
 which will invoke "make -j8" so the build is speeded up extremely
 and takes only 7 mins on a modern machine (intel core i7 2635QM)
 "8" will be the number of compile-thread to run at a time.
@@ -55,7 +55,7 @@ Download and install:
  Note: Make sure you add git to your environment path and also set SVN_PATH to point to the tortise svn path
 
 Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a full build environment)
-run ./build_cmake.bat
+run ./build_desura.bat
 wait
 
 Getting Cef Libraries on Linux

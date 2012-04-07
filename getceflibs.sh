@@ -12,7 +12,7 @@
 if [ ! -e ./build/src/tools/mcf_extract/mcf_extract ] ; then
 	echo "mcf_extract not found."
 	echo "Compiling..."
-	./build_cmake.sh
+	./build_desura.sh
 fi
 
 COPYPATH="`pwd`/ceflibs/"
