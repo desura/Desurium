@@ -1,7 +1,7 @@
 # Creator: Sven-Hendrik Haase <sh@lutzhaase.com>
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20120406
+pkgver=20120407
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -55,9 +55,8 @@ build() {
 }
 
 package() {
-  cd "$srcdir/$_gitname"
+  cd "$srcdir/$_gitname/build"
 
-  cd build
   msg "Compiling into pkgdir this time..."
   make DESTDIR="$pkgdir/" install
 
