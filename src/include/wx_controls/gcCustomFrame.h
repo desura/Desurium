@@ -51,7 +51,7 @@ public:
 		SetIcon(wxIcon(wxICON(IDI_ICONNORMAL)));
 		m_FrameIcon = wxIcon("IDI_ICONNORMAL",wxBITMAP_TYPE_ICO_RESOURCE,16,16);
 #else
-		gcWString path(L"{0}/data/desura.png", UTIL::OS::getCurrentDir());
+		gcWString path(L"{0}/desura.png", UTIL::OS::getDataPath());
 		wxIcon i(path, wxBITMAP_TYPE_PNG);
 		SetIcon(i);
 #endif

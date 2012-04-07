@@ -89,7 +89,7 @@ void TaskBarIcon::onAppUpdateProg(uint32& prog)
 #ifdef WIN32
 	SetIcon(m_wxIcon, m_szTooltip);
 #else
-	gcWString path(L"{0}/data/desura.png", UTIL::OS::getCurrentDir());
+	gcWString path(L"{0}/desura.png", UTIL::OS::getDataPath());
 	wxIcon i(path, wxBITMAP_TYPE_PNG);
 	SetIcon(i, m_szTooltip);	
 #endif

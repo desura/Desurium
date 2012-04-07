@@ -36,7 +36,7 @@ bool ImgLoaderScheme::processRequest(ChromiumDLL::SchemeRequestI* request, bool*
 	gcString url = wurl;
 	url = url.substr(20);
 
-	UTIL::FS::Path file(".\\data\\themes", "", false);
+	UTIL::FS::Path file(UTIL::OS::getDataPath(L"/themes"), L"", false);
 	UTIL::FS::Path img = UTIL::FS::PathWithFile(url);
 
 	file += img;

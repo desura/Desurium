@@ -27,12 +27,13 @@ std::string GetAppPath(std::string extra)
 
 	if (count <= 0)
 	{
-		ERROR_OUTPUT("Could not get program directory!");
+		ERROR_OUTPUT("Could not read /proc/self/exe!");
 		return "";
 	}
 	
 	std::string exePath(result);
 
+	// Cut off the filename.
 	for(size_t i = count - 1; i > 0; i--)
 	{
 		if(result[i] == '/')
@@ -42,88 +43,7 @@ std::string GetAppPath(std::string extra)
 		}
 	}
 
-	std::string sResult(result);
-	std::string parent;
-	std::string nextParent;
-	
-	
-	size_t pos = sResult.find_last_of('/');
-	size_t nextPos = sResult.find_last_of('/', pos-1);
-	size_t size = (pos-nextPos-1);
-	
-	if (pos != std::string::npos)
-	{
-		parent = sResult.substr(pos+1, std::string::npos);
-	
-		if (nextPos != std::string::npos)
-			nextParent = sResult.substr(nextPos+1, size);
-	}
-	
-	if (parent == "desura")
-	{
-		mkdir("bin", S_IRWXU|S_IRWXG|S_IROTH|S_IXOTH);
-		
-		if (FileExists("bin/desura"))
-			rename("bin/desura", "bin/desura_old");
-			
-		rename(exePath.c_str(), "bin/desura");
-
-		if(extra.size() > 0)
-		{
-			sResult += "/";
-			sResult += extra;
-		}
-		
-		return sResult;
-	}
-
-#ifdef DEBUG
-	nextParent = "desura";
-#endif
-
-	std::string ver = sResult + "/../version";
-
-	//if we are the bootloader and not in a desura folder (note: need to check for version to not screw existing installs)
-	if (parent != "bin" || (nextParent != "desura" && !FileExists(ver.c_str())))
-	{
-		if (FileExists("desura_bin"))
-			rename("desura_bin", "desura_bin_old");
-		
-		// If the end of the path (our name) is not desura, and a 'desura' exists
-		std::vector<std::string> pathTokens;
-		UTIL::STRING::tokenize(exePath, pathTokens, "/");
-		if ((pathTokens.size() > 0 && pathTokens[pathTokens.size() - 1] != "desura") && FileExists("desura"))
-			rename("desura", "desura_old");
-			
-		rename(exePath.c_str(), "desura_bin");
-		mkdir("desura", S_IRWXU|S_IRWXG|S_IROTH|S_IXOTH);
-		mkdir("desura/bin", S_IRWXU|S_IRWXG|S_IROTH|S_IXOTH);
-		
-		if (FileExists("bin/desura"))
-			rename("bin/desura", "bin/desura_old");
-			
-		rename("desura_bin", "desura/bin/desura");
-	
-
-		if(extra.size() > 0)
-		{
-			sResult += "/";
-			sResult += extra;
-		}
-		return sResult + "/desura";
-	}
-	
-	// we actually want one folder above where we are due to executable being in desura/bin/
-	sResult = sResult.substr(0, pos);
-
-	if(extra.size() > 0)
-	{
-		sResult += "/";
-		sResult += extra;
-	}
-
-	ERROR_OUTPUT(sResult.c_str());
-	return sResult;
+	return result;
 }
 
 std::string GetAppDataPath(std::string extra)

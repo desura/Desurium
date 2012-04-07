@@ -188,10 +188,6 @@ public:
 		}
 
 		path = result;
-
-		// we actually want one folder above where we are due to executable being in desura/bin/
-		path.erase(path.find_last_of(L'/'));		
-		
 	}
 
 	gcWString path;
