@@ -148,7 +148,19 @@ std::wstring getCachePath(std::wstring extra)
 	std::string cachePath = getenv("XDG_CACHE_HOME");
 	cachePath.append("/desura");
 	
-	return UTIL::STRING::toWStr(cachePath);
+	return UTIL::STRING::toWStr(cachePath) + extra;
+#else
+	#error NOT IMPLEMENTED
+#endif
+}
+
+std::wstring getAppInstallPath(std::wstring extra)
+{
+#ifdef NIX
+	std::string installPath = getenv("XDG_DATA_HOME");
+	installPath.append("/desura");
+	
+	return UTIL::STRING::toWStr(installPath) + extra;
 #else
 	#error NOT IMPLEMENTED
 #endif
@@ -157,7 +169,10 @@ std::wstring getCachePath(std::wstring extra)
 std::wstring getAppDataPath(std::wstring extra)
 {
 #ifdef NIX
-	return UTIL::LIN::getAppDataPath(extra);
+	std::string configPath = getenv("XDG_CONFIG_HOME");
+	configPath.append("/desura");
+	
+	return UTIL::STRING::toWStr(configPath) + extra;
 #else
 	wchar_t path[MAX_PATH];
 	getSystemPath(CSIDL_COMMON_APPDATA, path);

@@ -61,13 +61,6 @@ namespace LIN
 	//!
 	std::wstring getAppPath(std::wstring extra);
 
-	//! Gets the exectuables data directory
-	//!
-	//! @param optional extra string to append to path
-	//! @return exectuables data directory
-	//!
-	std::wstring getAppDataPath(std::wstring extra);
-
 	//! Gets an OS information string
 	//!
 	//! @return OS information stirng
@@ -153,9 +146,13 @@ namespace LIN
 	//! @return True if an error occured.
 	//!
 	bool setupXDGVars();
-	
-	//! Updates the $XDG_RUNTIME_DIR/desura file timestamps.
-	void updateXDGRuntimeStamps();
+
+#ifdef NIX
+	inline const char* SOCK_PATH(void)
+	{
+		return UTIL::STRING::toStr(UTIL::OS::getCachePath(L"/socket")).c_str();
+	}
+#endif
 }
 }
 

@@ -235,7 +235,7 @@ public:
 #ifndef WIN32
 	bool singleInstantCheck(const char* args)
 	{
-		std::string path = UTIL::LIN::expandPath("$XDG_RUNTIME_DIR/desura");
+		std::string path = UTIL::STRING::toStr(UTIL::OS::getCachePath());
 		
 		UTIL::FS::recMakeFolder(path.c_str());
 		m_pChecker = new wxSingleInstanceChecker("applock", path);

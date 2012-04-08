@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #pragma once
 #endif
 
+
 namespace UTIL
 {
 namespace OS
@@ -85,7 +86,13 @@ namespace OS
 	//!
 	std::wstring getCachePath(std::wstring extra = L"");
 
-	//! Gets the folder for saving app data to
+	//! Gets the folder for installing apps to
+	//!
+	//! @param extra Extra path to add to the end of app path
+	//!
+	std::wstring getAppInstallPath(std::wstring extra = L"");
+
+	//! Gets the folder for saving Desura data to
 	//!
 	//! @param extra Extra path to add to the end of app path
 	//!

@@ -82,10 +82,9 @@ public:
 			return;
 		}
 
-		UTIL::FS::recMakeFolder(UTIL::LIN::expandPath("$XDG_CONFIG_HOME/desura").c_str());
-
 		socketLocal.sun_family = AF_UNIX;
-		strcpy(socketLocal.sun_path, UTIL::LIN::expandPath(SOCK_PATH).c_str());
+		strcpy(socketLocal.sun_path, UTIL::LIN::SOCK_PATH());
+		ERROR_OUTPUT(socketLocal.sun_path);
 		unlink(socketLocal.sun_path);
 		len = strlen(socketLocal.sun_path) + sizeof(socketLocal.sun_family);
 
@@ -190,6 +189,7 @@ protected:
 	virtual void onStop()
 	{
 		m_bShouldStop = true;
+		unlink(socketLocal.sun_path);
 	}
 	
 private:
@@ -520,9 +520,6 @@ public:
 		wxWindow::MSWUnregisterMessageHandler(WM_QUERYENDSESSION, &WindowsShutdown);
 #endif
 
-#ifdef NIX
-		UTIL::FS::delFolder(UTIL::LIN::expandPath("$XDG_RUNTIME_DIR/desura").c_str());
-#endif
 		g_pMainApp = NULL;
 
 		return wxApp::OnExit();

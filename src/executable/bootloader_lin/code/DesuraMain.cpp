@@ -58,7 +58,7 @@ void SendMessage(const char* msg)
     }
 
     remote.sun_family = AF_UNIX;
-    strcpy(remote.sun_path, UTIL::LIN::expandPath(SOCK_PATH).c_str());
+    strcpy(remote.sun_path, UTIL::LIN::SOCK_PATH());
     len = strlen(remote.sun_path) + sizeof(remote.sun_family);
     if (connect(socketConnect, (struct sockaddr*)&remote, len) == -1)
     {
