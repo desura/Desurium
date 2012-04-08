@@ -30,7 +30,8 @@ build() {
   if [[ -d "$_gitname" ]]; then
     cd "$_gitname"
     msg "Removing build files..."
-    ./build_make_clean.sh
+    # if this fails, git clean -dfx
+    ./build_make_clean.sh || echo "./build_make_clean.sh failed, runnung  git clean -dfx ..." ; git clean -dfx
     msg "Updating..."
     git pull origin
     msg "The local files are updated."
