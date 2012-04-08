@@ -1,16 +1,24 @@
 # Creator: Sven-Hendrik Haase <sh@lutzhaase.com>
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20120404
+pkgver=20120408
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
-arch=(i686 x86_64)
 url="http://github.com/lodle/Desurium"
 license=('GPL3')
-depends=('v8' 'tinyxml' 'sqlite3' 'boost-libs' 'bzip2' 'gtk2' 'openssl' 'curl' 'c-ares' 'libnotify')
-makedepends=('cmake' 'git' 'boost' 'subversion' 'scons')
+arch=('i686' 'x86_64')
+makedepends=('cmake' 'git' 'boost' 'subversion' 'scons' 'gawk' 'gendesk' 'sed')
+depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
+         'curl' 'c-ares' 'libnotify' 'nss' 'libgnome-keyring' 'bison'
+         'cups' 'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
+         'gconf' 'xdg-user-dirs' 'v8')
 provides=('desura')
 conflicts=('desura')
+install=desurium-git.install
+source=('run-desura.sh'
+        'desurium-git.install')
+sha1sums=('2b42eaf7ce9ca41fa3c340c2b2ea147806025b8b'
+          '5bc0f47b75bb328b2bb3a735a55558edce75f741')
 
 _gitroot=git://github.com/lodle/Desurium.git
 _gitname=Desurium
@@ -20,35 +28,54 @@ build() {
   msg "Connecting to GIT server...."
 
   if [[ -d "$_gitname" ]]; then
-    cd "$_gitname" && git pull origin
+    cd "$_gitname"
+    msg "Removing build files..."
+    # if this fails, git clean -dfx
+    ./build_make_clean.sh || echo "./build_make_clean.sh failed, runnung  git clean -dfx ..." ; git clean -dfx
+    msg "Updating..."
+    git pull origin
     msg "The local files are updated."
   else
-    git clone "$_gitroot" "$_gitname"
+    msg "Cloning..."
+    git clone "$_gitroot" "$_gitname" --depth 1
   fi
 
   msg "GIT checkout done or server timeout"
   msg "Starting build..."
 
-  rm -rf "$srcdir/$_gitname-build"
-  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
-  cd "$srcdir/$_gitname-build"
-
-  mkdir build && cd build
-  cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura ..
+  cd "$srcdir/$_gitname"
+  if [ ! -d build ] ; then
+    mkdir build
+  fi
+  cd build
+  msg "Running cmake..."
+  cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura -LD_LIBRARY_PATH=/opt/desura/lib ..
+  msg "Running make..."
   make
 
   cd ..
-  ./getceflibs.sh
+  msg "Running getceflibs.sh ..."
+  ./getceflibs.sh /opt/desura
+#  ./getceflibs.sh /opt/desura  || echo "getceflibs.sh failed." ; false
 }
 
 package() {
-  cd "$srcdir/$_gitname-build"
+  cd "$srcdir/$_gitname/build"
 
-  cd build
+  msg "Compiling into pkgdir this time..."
   make DESTDIR="$pkgdir/" install
 
-  cd ..
-  cp ceflibs/* "$pkgdir/opt/desura/lib"
+  cd ../../../
+
+  install -Dm 755 ./run-desura.sh ${pkgdir}/usr/bin/desura
+  gendesk PKGBUILD
+  cp ./pkg/opt/desura/desura.png ./desurium-git.png
+  sed -i -e 's/Icon=desurium-git.png/Icon=Desura.png/' -e 's/Exec=desurium-git/Exec=desura/' desurium-git.desktop
+  mv desurium-git.desktop Desura.desktop
+  mv desurium-git.png Desura.png
+
+  msg "Compiling done"
+
 }
 
 # vim:set ts=2 sw=2 et:

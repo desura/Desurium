@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # -------
 # Copyright (c) 2012 Jookia
 #
@@ -8,7 +8,19 @@
 #
 # DISCLAIMER: THE WORKS ARE WITHOUT WARRANTY.
 
+# we need mcf_extract, if we don't have it, compile...
+if [ ! -e ./build/src/tools/mcf_extract/mcf_extract ] ; then
+	echo "mcf_extract not found."
+	echo "Compiling..."
+	./build_desura.sh
+fi
+
 COPYPATH="`pwd`/ceflibs/"
+
+ARGUMENTS="$1" # if ARGUMENTS != nil, we assume a script is accesses getceflibs.sh
+if [ -z ${ARGUMENTS} ] ; then
+	INSTALLDIR="install"
+fi
 
 # To get these, download the official Desura client, run it, and steal it from
 # the XML file it downloads.
@@ -20,11 +32,21 @@ else
 	echo "Sorry, official Desura only supports x86_64 and i686. This won't work."
 	exit 1
 fi
-
-mkdir $COPYPATH
+if [ ! -d "${COPYPATH}" ] ; then
+	mkdir $COPYPATH
+fi
+echo "Downloading libs..."
 wget $URL -O desura.mcf
-export LD_LIBRARY_PATH="`pwd`/install/lib"
-install/bin/mcf_extract desura.mcf tmp_desura
+
+if [ -z ${ARGUMENTS} ] ; then
+	export LD_LIBRARY_PATH="`pwd`/install/lib"
+	echo "Extracting libs..."
+	install/mcf_extract desura.mcf tmp_desura
+else
+	export LD_LIBRARY_PATH="`pwd`/${INSTALLDIR}/lib"
+	echo "Extracting libs..."
+	./build/src/tools/mcf_extract/mcf_extract desura.mcf tmp_desura
+fi
 
 cd tmp_desura
 mv lib_extra/* lib
@@ -36,24 +58,33 @@ mv lib_extra/* lib
 function copyDeps
 {
 	cp $1 $COPYPATH
-	
+
 	AWKLIBSPATH="`echo \"$LIBSPATH\" | sed 's|\/|\\\/|g'`"
-	
+
 	for dep in $(ldd 2>/dev/null $1 | awk "/^.*$AWKLIBSPATH.*$/{print \$1}")
 	do
 		DEPLIBSPATH="$LIBSPATH/$dep"
 		DEPCOPYPATH="$COPYPATH/$dep"
-		
+
 		if [[ ! -f $DEPCOPYPATH ]]; then
 			copyDeps $DEPLIBSPATH
 		fi
 	done
 }
 
-LIBSPATH="`pwd`/lib"
-export LD_LIBRARY_PATH="/lib:/usr/lib:$LIBSPATH"
+if [ -z ${ARGUMENTS} ] ; then  # no argument is given, we most likely just
+							   # run the script manually
+	LIBSPATH="`pwd`/lib"
+	export LD_LIBRARY_PATH="/lib:/usr/lib:$LIBSPATH"
+else 						   # an argument is given, we most likely access
+							   # getceflibs.sh using a script
+	LIBSPATH="${INSTALLDIR}/lib"
+	export LD_LIBRARY_PATH="/opt/desura/lib"
+fi
+echo "Copying libs to destinations..."
 copyDeps "$LIBSPATH/libcef_desura.so"
 
+echo "Removing unwanted files..."
 cd ..
-rm tmp_desura -r
-rm desura.mcf
+rm -r ./tmp_desura/ desura.mcf
+echo "Done"

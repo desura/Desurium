@@ -102,7 +102,7 @@ TaskBarIcon::TaskBarIcon(wxWindow *parent) : gcTaskBarIcon()
 	m_wxIcon = wxIcon(wxICON(IDI_ICONSMALL));
 	SetIcon(m_wxIcon , m_szTooltip);
 #else
-	gcWString path(L"{0}/data/desura.png", UTIL::OS::getCurrentDir());
+	gcWString path(L"{0}/desura.png", UTIL::OS::getDataPath());
 	wxIcon i(path, wxBITMAP_TYPE_PNG);
 	SetIcon(i, m_szTooltip);	
 #endif

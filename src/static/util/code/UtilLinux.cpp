@@ -35,7 +35,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <utime.h>
 #include <errno.h>
 
-#define CONFIG_DB ".settings/linux_registry.sqlite"
+inline const wchar_t* CONFIG_DB(void)
+{
+	return UTIL::LIN::getAppDataPath(L"linux_registry.sqlite").c_str();
+}
 
 #define COUNT_CONFIGTABLE_STRING "SELECT count(*) FROM sqlite_master WHERE name='config_string';"
 #define COUNT_CONFIGTABLE_BLOB "SELECT count(*) FROM sqlite_master WHERE name='config_blob';"
@@ -64,7 +67,7 @@ static void dbCreateTables()
 {
 	try
 	{
-		sqlite3x::sqlite3_connection db(CONFIG_DB);
+		sqlite3x::sqlite3_connection db(CONFIG_DB());
 		
 		if (db.executeint(COUNT_CONFIGTABLE_STRING) == 0)
 			db.executenonquery(CREATE_CONFIGTABLE_STRING);
@@ -185,10 +188,6 @@ public:
 		}
 
 		path = result;
-
-		// we actually want one folder above where we are due to executable being in desura/bin/
-		path.erase(path.find_last_of(L'/'));		
-		
 	}
 
 	gcWString path;
@@ -258,12 +257,8 @@ std::wstring getAppPath(std::wstring extra)
 
 std::wstring getAppDataPath(std::wstring extra)
 {
-	if(extra.size() > 0)
-	{
-		return getAppPath(L".settings/" + extra);
-	}
-
-	return getAppPath(L".settings");
+	// Extra includes the slash.
+	return gcWString("{0}/desura{1}", getenv("XDG_CONFIG_HOME"), extra);
 }
 
 void setConfigValue(const std::string &configKey, const std::string &value)
@@ -281,7 +276,7 @@ void setConfigValue(const std::string &configKey, const std::string &value)
 
 	dbCreateTables();
 
-	sqlite3x::sqlite3_connection db(CONFIG_DB);
+	sqlite3x::sqlite3_connection db(CONFIG_DB());
 
 	ERROR_OUTPUT(gcString("Setting key \"{0}\" to value \"{1}\"", configKey, value).c_str());
 
@@ -337,7 +332,7 @@ std::string getConfigValue(const std::string &configKey)
 	try
 	{
 		dbCreateTables();
-		sqlite3x::sqlite3_connection db(CONFIG_DB);	
+		sqlite3x::sqlite3_connection db(CONFIG_DB());	
 		
 		sqlite3x::sqlite3_command cmd(db, "SELECT value FROM config_string WHERE key=?;");
 		cmd.bind(1, configKey);

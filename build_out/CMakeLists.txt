@@ -13,7 +13,7 @@ install(FILES ${DATA}/ca-bundle_lin.crt
 )
 
 install(FILES ${DATA}/cef_data_lin.pak
-        DESTINATION ${DATA_INSTALL_DIR}
+        DESTINATION ${DATA_INSTALL_DIR}/data # Ugh, binary Cef packages.
         RENAME cef_data.pak
 )
 

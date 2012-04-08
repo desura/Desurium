@@ -1,6 +1,6 @@
 set(BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/breakpad)
 
-set(BREAKPAD_SVN http://google-breakpad.googlecode.com/svn/trunk -r 699)
+set(BREAKPAD_SVN http://google-breakpad.googlecode.com/svn/trunk -r 850)
 
 if(WIN32)
   ExternalProject_Add(
