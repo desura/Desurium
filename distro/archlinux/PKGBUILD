@@ -18,7 +18,7 @@ install=desurium-git.install
 source=('run-desura.sh'
         'desurium-git.install')
 sha1sums=('2b42eaf7ce9ca41fa3c340c2b2ea147806025b8b'
-          'e570aaf0ec91fa96e17d60e8ddee7ca706064f8d')
+          '5bc0f47b75bb328b2bb3a735a55558edce75f741')
 
 _gitroot=git://github.com/lodle/Desurium.git
 _gitname=Desurium
