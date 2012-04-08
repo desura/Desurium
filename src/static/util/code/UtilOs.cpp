@@ -145,8 +145,13 @@ std::wstring getDataPath(std::wstring extra)
 std::wstring getCachePath(std::wstring extra)
 {
 #ifdef NIX
-	std::string cachePath = getenv("XDG_CACHE_HOME");
-	cachePath.append("/desura");
+	#if defined(USE_XDG_DIRS)
+		std::string cachePath = getenv("XDG_CACHE_HOME");
+		cachePath.append("/desura");
+	#elif defined(USE_SINGLE_HOME_DIR)
+		std::string cachePath = getenv("HOME");
+		cachePath.append("/.desura/cache");
+	#endif
 	
 	return UTIL::STRING::toWStr(cachePath) + extra;
 #else
@@ -157,8 +162,13 @@ std::wstring getCachePath(std::wstring extra)
 std::wstring getAppInstallPath(std::wstring extra)
 {
 #ifdef NIX
-	std::string installPath = getenv("XDG_DATA_HOME");
-	installPath.append("/desura");
+	#if defined(USE_XDG_DIRS)
+		std::string installPath = getenv("XDG_DATA_HOME");
+		installPath.append("/desura");
+	#elif defined(USE_SINGLE_HOME_DIR)
+		std::string installPath = getenv("HOME");
+		installPath.append("/.desura/games");
+	#endif
 	
 	return UTIL::STRING::toWStr(installPath) + extra;
 #else
@@ -169,8 +179,13 @@ std::wstring getAppInstallPath(std::wstring extra)
 std::wstring getAppDataPath(std::wstring extra)
 {
 #ifdef NIX
-	std::string configPath = getenv("XDG_CONFIG_HOME");
-	configPath.append("/desura");
+	#if defined(USE_XDG_DIRS)
+		std::string configPath = getenv("XDG_CONFIG_HOME");
+		configPath.append("/desura");
+	#elif defined(USE_SINGLE_HOME_DIR)
+		std::string configPath = getenv("HOME");
+		configPath.append("/.desura");
+	#endif
 	
 	return UTIL::STRING::toWStr(configPath) + extra;
 #else

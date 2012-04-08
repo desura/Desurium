@@ -63,7 +63,7 @@ CVarManager::CVarManager() : BaseManager()
 {
 	m_uiUserId = -1;
 
-	m_szCVarDb = UTIL::OS::getAppDataPath(L"settings_b.sqlite");
+	m_szCVarDb = UTIL::OS::getAppDataPath(L"/settings_b.sqlite");
 	UTIL::FS::recMakeFolder(UTIL::FS::Path(m_szCVarDb, "", true));
 
 	try

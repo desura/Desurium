@@ -483,10 +483,9 @@ public:
 		UTIL::FS::delFile(UTIL::LIN::expandPath("~/.desura_lock").c_str());
 		UTIL::FS::delFile(UTIL::LIN::expandPath("~/.desura_socket").c_str());
 		UTIL::FS::delFile(UTIL::LIN::expandPath("~/.desura_autologin").c_str());
-		// Kept for reference, not needed as ~/.desura is deleted.
-		// UTIL::FS::delFile(UTIL::LIN::expandPath("~/.desura/.socket").c_str());
-		// UTIL::FS::delFile(UTIL::LIN::expandPath("~/.desura/.autologin").c_str());
-		UTIL::FS::delFolder(UTIL::LIN::expandPath("~/.desura").c_str());
+		
+		UTIL::FS::delFile(UTIL::LIN::expandPath("~/.desura/.socket").c_str());
+		UTIL::FS::delFile(UTIL::LIN::expandPath("~/.desura/.autologin").c_str());
 #endif
 
 		if (link.size() > 0)
