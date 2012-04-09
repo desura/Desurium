@@ -1,7 +1,7 @@
 # Creator: Sven-Hendrik Haase <sh@lutzhaase.com>
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20120408
+pkgver=20120409
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -31,7 +31,7 @@ build() {
     cd "$_gitname"
     msg "Removing build files..."
     # if this fails, git clean -dfx
-    ./build_make_clean.sh || echo "./build_make_clean.sh failed, runnung  git clean -dfx ..." ; git clean -dfx
+    ./build_make_clean.sh || echo "./build_make_clean.sh failed, running  git clean -dfx ..." ; git clean -dfx
     msg "Updating..."
     git pull origin
     msg "The local files are updated."
