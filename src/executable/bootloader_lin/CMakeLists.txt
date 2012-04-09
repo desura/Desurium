@@ -5,19 +5,24 @@ include_directories(
 
 file(GLOB Sources code/*.cpp )
 
+else()
+  set(LINUX_LIBRARIES notify)
+endif()
+
 add_executable(desura ${Sources})
 target_link_libraries(desura
-    dl
-    mdump
-    rt
-    sqlite3x
-    util
-    ${TINYXML_LIBRARIES}
-    ${BZIP2_LIBRARIES}
-    ${CURL_LIBRARIES}
-    ${BREAKPAD_EXCEPTION_HANDLER_LIBRARIES}
-    ${SQLITE_LIBRARIES}
-    ${wxWidgets_LIBRARIES}
+  dl
+  mdump
+  rt
+  sqlite3x
+  util
+  ${TINYXML_LIBRARIES}
+  ${BZIP2_LIBRARIES}
+  ${CURL_LIBRARIES}
+  ${BREAKPAD_EXCEPTION_HANDLER_LIBRARIES}
+  ${SQLITE_LIBRARIES}
+  ${wxWidgets_LIBRARIES}
+  ${LINUX_LIBRARIES}
 )
 
 install(TARGETS desura
