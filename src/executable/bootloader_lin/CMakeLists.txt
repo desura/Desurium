@@ -5,7 +5,7 @@ include_directories(
 
 file(GLOB Sources code/*.cpp )
 
-else()
+if(UNIX)
   set(LINUX_LIBRARIES notify)
 endif()
 
