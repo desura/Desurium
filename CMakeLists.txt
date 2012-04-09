@@ -10,6 +10,7 @@
 #                   OFFICIAL_BUILD
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
+#   BUILD_CEF       OFF                 build cef
 #
 # unix-only options:
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
@@ -83,8 +84,11 @@ find_package(v8 ${REQUIRED_ON_UNIX})
 # we patch wxWidgets so we will build it on our own
 # find_package(wxWidgets 2.9 REQUIRED)
 
-if(WIN32)
+if(WIN32 OR BUILD_CEF)
   find_package(PythonInterp REQUIRED)
+endif()
+
+if(WIN32)
   find_package(PythonLibs REQUIRED)
 endif()
 
@@ -112,9 +116,10 @@ if(NOT V8_FOUND)
   include(Buildv8)
 endif()
 
-#include(BuildChromium)
-#include(BuildCEF)
-#include(BuildCourgette)
+if(BUILD_CEF)
+  include(BuildCEF)
+endif()
+
 
 ###############################################################################
 # build third_party
@@ -138,6 +143,10 @@ add_subdirectory(third_party/sqlite3x)
 
 if(NOT Boost_FOUND)
   add_dependencies(sqlite3x boost)
+endif()
+
+if(BUILD_CEF)
+  add_dependencies(cef wxWidget-2-9)
 endif()
 
 ###############################################################################
