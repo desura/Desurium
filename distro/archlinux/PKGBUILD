@@ -1,4 +1,5 @@
-# Creator: Sven-Hendrik Haase <sh@lutzhaase.com>
+# Contributor: Sven-Hendrik Haase <sh@lutzhaase.com>
+# Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
 pkgver=20120408
