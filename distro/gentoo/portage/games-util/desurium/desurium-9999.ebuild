@@ -6,7 +6,7 @@ EAPI=3
 
 inherit cmake-utils eutils git-2 games
 
-EGIT_REPO_URI="git://github.com/matthiaskrgr/Desurium.git"
+EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
@@ -49,6 +49,7 @@ S="${WORKDIR}/desura"
 
 src_configure() {
 	mycmakeargs=(
+		$(cmake-utils_use bin-cef BUILD_CEF)
 		$(cmake-utils_use_with builtin-curl ARES)
 		$(cmake-utils_use debug DEBUG)
 		-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}/${PN}
