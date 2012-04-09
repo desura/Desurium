@@ -181,7 +181,7 @@ void UploadThread::doRun()
 		{
 			if (m_uiContinueCount > 3)
 			{
-				throw gcException(ERR_BADXML, "Couldnt find the root node in itemupload xml.");
+				throw gcException(ERR_BADXML, "Couldn't find the root node in itemupload xml.");
 			}
 			else
 			{
@@ -196,7 +196,7 @@ void UploadThread::doRun()
 		{
 			if (m_uiContinueCount > 3)
 			{
-				throw gcException(ERR_BADXML, "Couldnt find the status node in itemupload xml.");
+				throw gcException(ERR_BADXML, "Couldn't find the status node in itemupload xml.");
 			}
 			else
 			{
@@ -240,7 +240,7 @@ void UploadThread::doRun()
 		{
 			if (m_uiContinueCount > 3)
 			{
-				throw gcException(ERR_BADXML, "Couldnt find the id node in itemupload xml.");
+				throw gcException(ERR_BADXML, "Couldn't find the id node in itemupload xml.");
 			}
 			else
 			{
