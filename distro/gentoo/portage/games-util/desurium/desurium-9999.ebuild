@@ -4,9 +4,9 @@
 
 EAPI=3
 
-inherit cmake-utils git-2 games
+inherit cmake-utils eutils git-2 games
 
-EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
+EGIT_REPO_URI="git://github.com/matthiaskrgr/Desurium.git"
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
@@ -27,7 +27,7 @@ DEPEND="
 	dev-lang/v8
     dev-vcs/subversion
 	!builtin-curl? (
-        net-misc/curl[ares]
+        net-misc/curl
     )
     builtin-curl? (
         net-dns/c-ares
@@ -50,7 +50,21 @@ src_configure() {
 	mycmakeargs=(
         $(cmake-utils_use_with builtin-curl ARES)
         $(cmake-utils_use debug DEBUG)
+        -DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}/${PN}
     )
 	cmake-utils_src_configure
 }
 
+src_compile() {
+    cmake-utils_src_compile
+}
+
+src_install() {
+    cmake-utils_src_install
+
+    dogamesbin ${FILESDIR}/launch-desura.sh
+    doicon ${FILESDIR}/desura.png
+    make_desktop_entry "launch-desura.sh" "Desurium" "desura"
+
+    prepgamesdirs
+}
