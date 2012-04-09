@@ -4,7 +4,7 @@ if [ -d "${DIR}" ] ; then
 	cd ${DIR}
 	if [[ ! -z `svn status | head -n1` ]] ; then
 		echo "Reverting patches..."
-		svn revert */*/*/* */*/*
+		svn revert -R *
 	fi
 	cd ../../../../build
 fi
