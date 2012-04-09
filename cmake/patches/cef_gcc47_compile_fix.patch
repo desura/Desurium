@@ -1,0 +1,40 @@
+--- chromium/src/base/message_pump_libevent.cc.gcc47
++++ chromium/src/base/message_pump_libevent.cc
+@@ -6,6 +6,7 @@
+ 
+ #include <errno.h>
+ #include <fcntl.h>
++#include <unistd.h>
+ 
+ #include "base/auto_reset.h"
+ #include "base/eintr_wrapper.h"
+--- chromium/src/ipc/ipc_channel.h.gcc47
++++ chromium/src/ipc/ipc_channel.h
+@@ -9,6 +9,7 @@
+ #include "base/compiler_specific.h"
+ #include "ipc/ipc_channel_handle.h"
+ #include "ipc/ipc_message.h"
++#include <sys/types.h>
+ 
+ namespace IPC {
+ 
+--- chromium/src/ipc/ipc_platform_file.cc.gcc47
++++ chromium/src/ipc/ipc_platform_file.cc
+@@ -3,6 +3,7 @@
+ // found in the LICENSE file.
+ 
+ #include "ipc/ipc_platform_file.h"
++ #include <unistd.h>
+ 
+ namespace IPC {
+ 
+--- chromium/src/seccompsandbox/library.h.gcc47
++++ chromium/src/seccompsandbox/library.h
+@@ -12,6 +12,7 @@
+ #include <string>
+ #include <string.h>
+ #include <sys/mman.h>
++#include <sys/types.h>
+ 
+ #include "maps.h"
+ 

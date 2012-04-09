@@ -31,6 +31,7 @@ ExternalProject_Add(
     BUILD_COMMAND ""
     BUILD_IN_SOURCE 1
     INSTALL_COMMAND ""
+    PATCH_COMMAND patch -p1 -N -i ${CMAKE_SOURCE_DIR}/cmake/patches/cef_gcc47_compile_fix.patch
 )
 
 ExternalProject_Add_Step(
