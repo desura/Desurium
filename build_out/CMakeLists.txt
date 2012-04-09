@@ -42,3 +42,8 @@ file(GLOB IMAGES ${APP}/*.png)
 install(FILES ${IMAGES}
         DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app
 )
+
+install(FILES run.sh
+        DESTINATION ${INSTALL_DIR}
+        PERMISSIONS WORLD_EXECUTE
+)
