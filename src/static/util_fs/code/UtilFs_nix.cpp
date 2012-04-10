@@ -133,7 +133,7 @@ void FileHandle::open(const char* fileName, FILE_MODE mode, uint64 offset)
 	if (!fh)
 	{
 		printf("Error opening %s as %d: %d\n", fullFile.c_str(), mode, errno);
-		throw gcException(ERR_INVALIDFILE, gcString("Couldnt open the file [{0}] in mode {1}", fullFile.c_str(), mode));
+		throw gcException(ERR_INVALIDFILE, gcString("Couldn't open the file [{0}] in mode {1}", fullFile.c_str(), mode));
 	}
 	
 	m_hFileHandle = fh;
