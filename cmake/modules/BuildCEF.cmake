@@ -21,8 +21,6 @@ if(PYTHON_VERSION_MAJOR EQUAL 3)
   )
 endif()
 
-set(CHROMIUM_SOURCE_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/chromium)
-
 ExternalProject_Add(
     chromium
     DOWNLOAD_COMMAND ""
@@ -34,17 +32,25 @@ ExternalProject_Add(
     PATCH_COMMAND patch -p1 -N -i ${CMAKE_SOURCE_DIR}/cmake/patches/cef_gcc47_compile_fix.patch
 )
 
-ExternalProject_Add_Step(
-    chromium
-    gclient_download
-    COMMAND ${DEPOT_TOOLS_BIN_DIR}/gclient sync --revision src@91424 --nohooks --jobs 8 --force --gclientfile=${CMAKE_SCRIPT_PATH}/.gclient
-    DEPENDERS download
-    WORKING_DIRECTORY <SOURCE_DIR>
-)
-
 ExternalProject_Get_Property(
     chromium
     source_dir
+)
+
+ExternalProject_Add_Step(
+    chromium
+    copy_gclient_config
+    COMMAND cp ${CMAKE_SCRIPT_PATH}/.gclient ${source_dir}/
+    DEPENDERS download
+)
+
+ExternalProject_Add_Step(
+    chromium
+    gclient_download
+    COMMAND ${DEPOT_TOOLS_BIN_DIR}/gclient sync --revision src@91424 --nohooks --jobs 8 --force
+    DEPENDERS download
+    DEPENDEES copy_gclient_config
+    WORKING_DIRECTORY <SOURCE_DIR>
 )
 
 ExternalProject_Add(
