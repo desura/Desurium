@@ -13,7 +13,7 @@ install(FILES ${DATA}/ca-bundle_lin.crt
 )
 
 install(FILES ${DATA}/cef_data_lin.pak
-        DESTINATION ${DATA_INSTALL_DIR}/data # Ugh, binary Cef packages.
+        DESTINATION ${DATA_INSTALL_DIR}
         RENAME cef_data.pak
 )
 
@@ -45,5 +45,4 @@ install(FILES ${IMAGES}
 
 install(FILES run.sh
         DESTINATION ${INSTALL_DIR}
-        PERMISSIONS WORLD_EXECUTE
 )

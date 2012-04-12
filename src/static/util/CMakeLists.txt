@@ -53,6 +53,22 @@ if(WIN32)
   use_unicode_here()
 endif()
 
+if(UNIX)
+  if(NOT DIR_TYPE)
+    set(DIR_TYPE "SINGLE" CACHE STRING "The directories for Desura's settings. Options: XDG SINGLE PORTABLE")
+  endif()
+  
+  if(${DIR_TYPE} MATCHES "XDG")
+    add_definitions(-DUSE_XDG_DIRS)
+  elseif(${DIR_TYPE} MATCHES "SINGLE")
+    add_definitions(-DUSE_SINGLE_HOME_DIR)
+  elseif(${DIR_TYPE} MATCHES "PORTABLE")
+    add_definitions(-DUSE_PORTABLE_DIR)
+  else()
+    message(FATAL_ERROR "Unknown DIR_TYPE!")
+  endif()
+endif()
+
 add_library(util STATIC ${Sources} ${PlattformSources})
 
 target_link_libraries(util

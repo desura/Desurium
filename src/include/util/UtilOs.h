@@ -22,20 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #pragma once
 #endif
 
-#ifdef NIX
-
-//#define USE_SINGLE_HOME_DIR
-//#define USE_XDG_DIRS
-#define USE_PORTABLE_DIR
-
-#if \
-	!defined(USE_XDG_DIRS) && \
-	!defined(USE_SINGLE_HOME_DIR) && \
-	!defined(USE_PORTABLE_DIR)
-		#error Please select a directory structure for Desura to use!
-#endif
-#endif
-
 namespace UTIL
 {
 namespace OS

@@ -142,6 +142,15 @@ std::wstring getDataPath(std::wstring extra)
 	return getCurrentDir(dataDir + extra);
 }
 
+#ifdef NIX
+	#if \
+		!defined(USE_XDG_DIRS) && \
+		!defined(USE_SINGLE_HOME_DIR) && \
+		!defined(USE_PORTABLE_DIR)
+			#error Please select a directory structure for Desura to use!
+	#endif
+#endif
+
 std::wstring getCachePath(std::wstring extra)
 {
 #ifdef NIX
@@ -152,7 +161,7 @@ std::wstring getCachePath(std::wstring extra)
 		std::string cachePath = getenv("HOME");
 		cachePath.append("/.desura/cache");
 	#elif defined(USE_PORTABLE_DIR)
-		std::string cachePath = UTIL::STRING::toStr(getCurrentDir(L"/cache"));
+		std::string cachePath = UTIL::STRING::toStr(getCurrentDir(L"cache"));
 	#endif
 	
 	return UTIL::STRING::toWStr(cachePath) + extra;
@@ -171,7 +180,7 @@ std::wstring getAppInstallPath(std::wstring extra)
 		std::string installPath = getenv("HOME");
 		installPath.append("/.desura/games");
 	#elif defined(USE_PORTABLE_DIR)
-		std::string installPath = UTIL::STRING::toStr(getCurrentDir(L"/games"));
+		std::string installPath = UTIL::STRING::toStr(getCurrentDir(L"games"));
 	#endif
 	
 	return UTIL::STRING::toWStr(installPath) + extra;
@@ -190,7 +199,7 @@ std::wstring getAppDataPath(std::wstring extra)
 		std::string configPath = getenv("HOME");
 		configPath.append("/.desura");
 	#elif defined(USE_PORTABLE_DIR)
-		std::string configPath = UTIL::STRING::toStr(getCurrentDir(L"/config"));
+		std::string configPath = UTIL::STRING::toStr(getCurrentDir(L"config"));
 	#endif
 	
 	return UTIL::STRING::toWStr(configPath) + extra;
