@@ -153,7 +153,11 @@ void Theme::parseFile(const char* file)
 			{
 				std::string outVal = UTIL::STRING::sanitizeFileName(val);
 
+#ifdef WIN32
 				gcString fullPath("file:///{0}/html/{1}", urlPath, outVal);
+#else
+				gcString fullPath("file://{0}/html/{1}", urlPath, outVal);
+#endif
 
 				ThemeWebInfo* web = WebList::findItem(name);
 
