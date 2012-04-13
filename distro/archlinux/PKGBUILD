@@ -2,7 +2,7 @@
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20120408
+pkgver=20120409
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -18,7 +18,7 @@ conflicts=('desura')
 install=desurium-git.install
 source=('run-desura.sh'
         'desurium-git.install')
-sha1sums=('2b42eaf7ce9ca41fa3c340c2b2ea147806025b8b'
+sha1sums=('9f89291c13391c7cf7f2ed2581ffb42e7803cee7'
           '5bc0f47b75bb328b2bb3a735a55558edce75f741')
 
 _gitroot=git://github.com/lodle/Desurium.git
@@ -32,7 +32,7 @@ build() {
     cd "$_gitname"
     msg "Removing build files..."
     # if this fails, git clean -dfx
-    ./build_make_clean.sh || echo "./build_make_clean.sh failed, runnung  git clean -dfx ..." ; git clean -dfx
+    ./build_make_clean.sh || echo "./build_make_clean.sh failed, running  git clean -dfx ..." ; git clean -dfx
     msg "Updating..."
     git pull origin
     msg "The local files are updated."
@@ -70,7 +70,7 @@ package() {
 
   install -Dm 755 ./run-desura.sh ${pkgdir}/usr/bin/desura
   gendesk PKGBUILD
-  cp ./pkg/opt/desura/desura.png ./desurium-git.png
+  cp ${srcdir}/${_gitname}/src/branding_desurium/data/desura_lin.png ./desurium-git.png
   sed -i -e 's/Icon=desurium-git.png/Icon=Desura.png/' -e 's/Exec=desurium-git/Exec=desura/' desurium-git.desktop
   mv desurium-git.desktop Desura.desktop
   mv desurium-git.png Desura.png

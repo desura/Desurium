@@ -1,9 +1,17 @@
 #!/bin/sh
-echo "reverting patches..."
-cd ./build/wxWidget-2-9-prefix/src/wxWidget-2-9 || exit 1
-svn revert */*/*/* */*/*
-cd ../../../../build || exit 2
-echo "making clean"
+DIR="./build/wxWidget-2-9-prefix/src/wxWidget-2-9/"
+if [ -d "${DIR}" ] ; then
+	cd ${DIR}
+	if [[ ! -z `svn status | head -n1` ]] ; then
+		echo "Reverting patches..."
+		svn revert -R *
+	fi
+	cd ../../../../build
+fi
+echo "Making clean..."
 make clean
-echo "removing install directory"
-rm -rf install
+if [ -d install ] ; then
+	echo "Removing install directory..."
+	rm -rf install
+fi
+echo "Done"

@@ -43,7 +43,7 @@ void ItemHandle::doLaunch(Helper::ItemLaunchHelperI* helper)
 	{
 		if (!UTIL::FS::isValidFile(globalExe.c_str()))
 		{
-			Warning(gcString("Couldnt find global exe [{0}], ignoring.\n", globalExe));
+			Warning(gcString("Couldn't find global exe [{0}], ignoring.\n", globalExe));
 			globalExe = "";
 			exe = ei->getExe();
 		}

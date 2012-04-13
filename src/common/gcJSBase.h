@@ -452,7 +452,7 @@ public:
 	JSObjHandle operator()(ChromiumDLL::JavaScriptFactoryI *factory, ChromiumDLL::JavaScriptContextI* context, JSObjHandle obj, size_t argc, JSObjHandle* argv)
 	{
 		if (argc < m_uiNumParams)
-			throw gcException(ERR_V8, "Not enough paramaters supplied for javascript function call!");
+			throw gcException(ERR_V8, "Not enough parameters supplied for javascript function call!");
 
 		A a;
 		B b;
@@ -617,7 +617,7 @@ public:
 	JSObjHandle operator()(ChromiumDLL::JavaScriptFactoryI *factory, ChromiumDLL::JavaScriptContextI* context, JSObjHandle obj, size_t argc, JSObjHandle* argv)
 	{
 		if (argc < m_uiNumParams+1)
-			throw gcException(ERR_V8, "Not enough paramaters supplied for javascript function call!");
+			throw gcException(ERR_V8, "Not enough parameters supplied for javascript function call!");
 
 		JSObjHandle ret(NULL);
 
@@ -784,7 +784,7 @@ public:
 	JSObjHandle operator()(ChromiumDLL::JavaScriptFactoryI *factory, ChromiumDLL::JavaScriptContextI* context, JSObjHandle obj, size_t argc, JSObjHandle* argv)
 	{
 		if (argc < m_uiNumParams+1)
-			throw gcException(ERR_V8, "Not enough paramaters supplied for javascript function call!");
+			throw gcException(ERR_V8, "Not enough parameters supplied for javascript function call!");
 
 		JSObjHandle ret(NULL);
 
