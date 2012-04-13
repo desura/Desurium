@@ -2,7 +2,7 @@
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20120409
+pkgver=20120413
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -18,7 +18,7 @@ conflicts=('desura')
 install=desurium-git.install
 source=('run-desura.sh'
         'desurium-git.install')
-sha1sums=('9f89291c13391c7cf7f2ed2581ffb42e7803cee7'
+sha1sums=('2b42eaf7ce9ca41fa3c340c2b2ea147806025b8b'
           '5bc0f47b75bb328b2bb3a735a55558edce75f741')
 
 _gitroot=git://github.com/lodle/Desurium.git
@@ -53,11 +53,6 @@ build() {
   cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura -LD_LIBRARY_PATH=/opt/desura/lib ..
   msg "Running make..."
   make
-
-  cd ..
-  msg "Running getceflibs.sh ..."
-  ./getceflibs.sh /opt/desura
-#  ./getceflibs.sh /opt/desura  || echo "getceflibs.sh failed." ; false
 }
 
 package() {
