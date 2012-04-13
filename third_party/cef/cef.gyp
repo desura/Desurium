@@ -1078,12 +1078,12 @@
 			}],
 			[ 'OS=="linux" or OS=="freebsd" or OS=="openbsd"', {
 				'cflags': [
-					'<!(../../../wxWidgets/wx-config --cppflags)',
+					'<!(../../../../../external/wxWidgets/bin/wx-config --cppflags)',
 					'-B /usr/bin/ld.bfd',
 					'<!(pkg-config --cflags gtk+-2.0)',
 				],
 				'ldflags' : [
-					'<!(../../../wxWidgets/wx-config --libs)',
+					'<!(../../../../../external/wxWidgets/bin/wx-config --libs)',
 					'-B /usr/bin/ld.bfd',
 					'<!(pkg-config --libs gtk+-2.0)',
 				],
