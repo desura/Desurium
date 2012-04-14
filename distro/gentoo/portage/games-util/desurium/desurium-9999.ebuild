@@ -49,7 +49,7 @@ S="${WORKDIR}/desura"
 
 src_configure() {
 	mycmakeargs=(
-		$(cmake-utils_use bin-cef BUILD_CEF)
+		$(cmake-utils_use_no bin-cef BUILD_CEF)
 		$(cmake-utils_use_with builtin-curl ARES)
 		$(cmake-utils_use debug DEBUG)
 		-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}/${PN}
