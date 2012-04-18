@@ -10,7 +10,7 @@ Index: include/msvc/wx/setup.h
  #pragma comment(lib, wxWX_LIB_NAME("base", ""))
  
  #ifndef wxNO_NET_LIB
-@@ -177,6 +177,7 @@
+@@ -177,6 +178,7 @@
          #pragma comment(lib, wx3RD_PARTY_LIB_NAME("scintilla"))
      #endif
  #endif // wxUSE_GUI
@@ -428,7 +428,7 @@ Index: src/msw/window.cpp
          wnd->SetHWND((WXHWND)hWnd);
      }
 
- Index: src/unix/snglinst.cpp
+Index: src/unix/snglinst.cpp
 ===================================================================
 --- src/unix/snglinst.cpp	(revision 68963)
 +++ src/unix/snglinst.cpp	(working copy)
@@ -507,3 +507,16 @@ Index: src/msw/window.cpp
          }
  
          if ( wxLockFile(m_fdLock, UNLOCK) != 0 )
+Index: src/common/imagpng.cpp
+===================================================================
++++ src/common/imagpng.cpp
+--- src/common/imagpng.cpp
+@@ -521,7 +521,7 @@
+     png_structp png_ptr = png_create_read_struct
+                           (
+                             PNG_LIBPNG_VER_STRING,
+-                            (voidp) NULL,
++                            (png_voidp) NULL,
+                             wx_png_error,
+                             wx_png_warning
+                           );
