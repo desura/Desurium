@@ -2,133 +2,27 @@ Index: include/msvc/wx/setup.h
 ===================================================================
 --- include/msvc/wx/setup.h	(revision 68296)
 +++ include/msvc/wx/setup.h	(working copy)
-@@ -71,65 +71,67 @@
-     // special version for regex as it does have a Unicode version
-     #define wx3RD_PARTY_LIB_NAME_U(name) "wx" name wxSUFFIX_STR
+@@ -110,6 +110,7 @@
+ // special version for regex as it does have a Unicode version
+ #define wx3RD_PARTY_LIB_NAME_U(name) "wx" name wxSUFFIX_STR
  
--    #pragma comment(lib, wxWX_LIB_NAME("base", ""))
-+	#ifndef WXUSINGDLL
-+		#pragma comment(lib, wxWX_LIB_NAME("base", ""))
++#ifndef WXUSINGDLL
+ #pragma comment(lib, wxWX_LIB_NAME("base", ""))
  
--    #ifndef wxNO_NET_LIB
--        #pragma comment(lib, wxBASE_LIB_NAME("net"))
--    #endif
--    #ifndef wxNO_XML_LIB
--        #pragma comment(lib, wxBASE_LIB_NAME("xml"))
--    #endif
--    #if wxUSE_REGEX && !defined(wxNO_REGEX_LIB)
--        #pragma comment(lib, wx3RD_PARTY_LIB_NAME_U("regex"))
--    #endif
-+		#ifndef wxNO_NET_LIB
-+			#pragma comment(lib, wxBASE_LIB_NAME("net"))
-+		#endif
-+		#ifndef wxNO_XML_LIB
-+			#pragma comment(lib, wxBASE_LIB_NAME("xml"))
-+		#endif
-+		#if wxUSE_REGEX && !defined(wxNO_REGEX_LIB)
-+			#pragma comment(lib, wx3RD_PARTY_LIB_NAME_U("regex"))
-+		#endif
+ #ifndef wxNO_NET_LIB
+@@ -177,6 +177,7 @@
+         #pragma comment(lib, wx3RD_PARTY_LIB_NAME("scintilla"))
+     #endif
+ #endif // wxUSE_GUI
++#endif // WXUSINGDLL
  
--    #if wxUSE_GUI
--        #if wxUSE_XML && !defined(wxNO_EXPAT_LIB)
--            #pragma comment(lib, wx3RD_PARTY_LIB_NAME("expat"))
--        #endif
--        #if wxUSE_LIBJPEG && !defined(wxNO_JPEG_LIB)
--            #pragma comment(lib, wx3RD_PARTY_LIB_NAME("jpeg"))
--        #endif
--        #if wxUSE_LIBPNG && !defined(wxNO_PNG_LIB)
--            #pragma comment(lib, wx3RD_PARTY_LIB_NAME("png"))
--        #endif
--        #if wxUSE_LIBTIFF && !defined(wxNO_TIFF_LIB)
--            #pragma comment(lib, wx3RD_PARTY_LIB_NAME("tiff"))
--        #endif
--        #if wxUSE_ZLIB && !defined(wxNO_ZLIB_LIB)
--            #pragma comment(lib, wx3RD_PARTY_LIB_NAME("zlib"))
--        #endif
-+		#if wxUSE_GUI
-+			#if wxUSE_XML && !defined(wxNO_EXPAT_LIB)
-+				#pragma comment(lib, wx3RD_PARTY_LIB_NAME("expat"))
-+			#endif
-+			#if wxUSE_LIBJPEG && !defined(wxNO_JPEG_LIB)
-+				#pragma comment(lib, wx3RD_PARTY_LIB_NAME("jpeg"))
-+			#endif
-+			#if wxUSE_LIBPNG && !defined(wxNO_PNG_LIB)
-+				#pragma comment(lib, wx3RD_PARTY_LIB_NAME("png"))
-+			#endif
-+			#if wxUSE_LIBTIFF && !defined(wxNO_TIFF_LIB)
-+				#pragma comment(lib, wx3RD_PARTY_LIB_NAME("tiff"))
-+			#endif
-+			#if wxUSE_ZLIB && !defined(wxNO_ZLIB_LIB)
-+				#pragma comment(lib, wx3RD_PARTY_LIB_NAME("zlib"))
-+			#endif
  
--        #pragma comment(lib, wxMSW_LIB_NAME("core"))
-+			#pragma comment(lib, wxMSW_LIB_NAME("core"))
- 
--        #ifndef wxNO_ADV_LIB
--            #pragma comment(lib, wxMSW_LIB_NAME("adv"))
--        #endif
-+			#ifndef wxNO_ADV_LIB
-+				#pragma comment(lib, wxMSW_LIB_NAME("adv"))
-+			#endif
- 
--        #ifndef wxNO_HTML_LIB
--            #pragma comment(lib, wxMSW_LIB_NAME("html"))
--        #endif
--        #if wxUSE_GLCANVAS && !defined(wxNO_GL_LIB)
--            #pragma comment(lib, wxMSW_LIB_NAME("gl"))
--        #endif
--        #if wxUSE_DEBUGREPORT && !defined(wxNO_QA_LIB)
--            #pragma comment(lib, wxMSW_LIB_NAME("qa"))
--        #endif
--        #if wxUSE_XRC && !defined(wxNO_XRC_LIB)
--            #pragma comment(lib, wxMSW_LIB_NAME("xrc"))
--        #endif
--        #if wxUSE_AUI && !defined(wxNO_AUI_LIB)
--            #pragma comment(lib, wxMSW_LIB_NAME("aui"))
--        #endif
--        #if wxUSE_PROPGRID && !defined(wxNO_PROPGRID_LIB)
--            #pragma comment(lib, wxMSW_LIB_NAME("propgrid"))
--        #endif
--        #if wxUSE_RICHTEXT && !defined(wxNO_RICHTEXT_LIB)
--            #pragma comment(lib, wxMSW_LIB_NAME("richtext"))
--        #endif
--        #if wxUSE_MEDIACTRL && !defined(wxNO_MEDIA_LIB)
--            #pragma comment(lib, wxMSW_LIB_NAME("media"))
--        #endif
-+			#ifndef wxNO_HTML_LIB
-+				#pragma comment(lib, wxMSW_LIB_NAME("html"))
-+			#endif
-+			#if wxUSE_GLCANVAS && !defined(wxNO_GL_LIB)
-+				#pragma comment(lib, wxMSW_LIB_NAME("gl"))
-+			#endif
-+			#if wxUSE_DEBUGREPORT && !defined(wxNO_QA_LIB)
-+				#pragma comment(lib, wxMSW_LIB_NAME("qa"))
-+			#endif
-+			#if wxUSE_XRC && !defined(wxNO_XRC_LIB)
-+				#pragma comment(lib, wxMSW_LIB_NAME("xrc"))
-+			#endif
-+			#if wxUSE_AUI && !defined(wxNO_AUI_LIB)
-+				#pragma comment(lib, wxMSW_LIB_NAME("aui"))
-+			#endif
-+			#if wxUSE_PROPGRID && !defined(wxNO_PROPGRID_LIB)
-+				#pragma comment(lib, wxMSW_LIB_NAME("propgrid"))
-+			#endif
-+			#if wxUSE_RICHTEXT && !defined(wxNO_RICHTEXT_LIB)
-+				#pragma comment(lib, wxMSW_LIB_NAME("richtext"))
-+			#endif
-+			#if wxUSE_MEDIACTRL && !defined(wxNO_MEDIA_LIB)
-+				#pragma comment(lib, wxMSW_LIB_NAME("media"))
-+			#endif
-+		#endif // WXUSINGDLL
-     #endif // wxUSE_GUI
- #else
-     #error "This file should only be included when using Microsoft Visual C++"
+ #ifndef WXUSINGDLL
 Index: include/wx/event.h
 ===================================================================
 --- include/wx/event.h	(revision 68296)
 +++ include/wx/event.h	(working copy)
-@@ -1638,7 +1638,8 @@
+@@ -1760,7 +1760,8 @@
      #define wxHAS_PAINT_DEBUG
  
      // see comments in src/msw|os2/dcclient.cpp where g_isPainting is defined
@@ -138,7 +32,7 @@ Index: include/wx/event.h
  #endif // debug
  
  class WXDLLIMPEXP_CORE wxPaintEvent : public wxEvent
-@@ -1649,7 +1650,7 @@
+@@ -1771,7 +1772,7 @@
      {
  #ifdef wxHAS_PAINT_DEBUG
          // set the internal flag for the duration of redrawing
@@ -147,7 +41,7 @@ Index: include/wx/event.h
  #endif // debug
      }
  
-@@ -1659,12 +1660,12 @@
+@@ -1781,12 +1782,12 @@
      wxPaintEvent(const wxPaintEvent& event)
              : wxEvent(event)
      {
@@ -211,20 +105,6 @@ Index: include/wx/msw/taskbar.h
      bool                 m_iconAdded;
      wxIcon               m_icon;
      wxString             m_strTooltip;
-Index: include/wx/platform.h
-===================================================================
---- include/wx/platform.h	(revision 68296)
-+++ include/wx/platform.h	(working copy)
-@@ -526,7 +526,8 @@
- #   elif __VISUALC__ < 1600
- #       define __VISUALC9__
- #   else
--#       pragma message("Please update this code for the next VC++ version")
-+#       define __VISUALC10__
-+#       //pragma message("Please update this code for the next VC++ version")
- #   endif
- 
- #    elif defined(__BCPLUSPLUS__) && !defined(__BORLANDC__)
 Index: include/wx/popupwin.h
 ===================================================================
 --- include/wx/popupwin.h	(revision 68296)
@@ -387,10 +267,10 @@ Index: src/msw/dcclient.cpp
      {
          wxFAIL_MSG( wxT("wxPaintDCImpl may be created only in EVT_PAINT handler!") );
  
-@@ -236,9 +266,9 @@
-     }
-     else // not in cache, create a new one
-     {
+@@ -241,9 +271,9 @@
+ 
+         wxDidCreatePaintDC = true;
+ 
 -        m_hDC = (WXHDC)::BeginPaint(GetHwndOf(m_window), &g_paintStruct);
 +        m_hDC = (WXHDC)::BeginPaint(GetHwndOf(m_window), &(g_paintStruct[wxThread::GetCurrentId()]));
          if (m_hDC)
@@ -399,7 +279,7 @@ Index: src/msw/dcclient.cpp
      }
  
      // Note: at this point m_hDC can be NULL under MicroWindows, when dragging.
-@@ -266,14 +296,14 @@
+@@ -271,14 +301,14 @@
  
          if ( --info->count == 0 )
          {
@@ -418,7 +298,7 @@ Index: src/msw/dcclient.cpp
          }
          //else: cached DC entry is still in use
  
-@@ -285,10 +315,10 @@
+@@ -290,10 +320,10 @@
  wxPaintDCInfo *wxPaintDCImpl::FindInCache(size_t *index) const
  {
      wxPaintDCInfo *info = NULL;
@@ -431,7 +311,7 @@ Index: src/msw/dcclient.cpp
          if ( info1->hwnd == m_window->GetHWND() )
          {
              info = info1;
-@@ -304,10 +334,10 @@
+@@ -309,10 +339,10 @@
  // find the entry for this DC in the cache (keyed by the window)
  WXHDC wxPaintDCImpl::FindDCInCache(wxWindow* win)
  {
@@ -444,7 +324,7 @@ Index: src/msw/dcclient.cpp
          if ( info->hwnd == win->GetHWND() )
          {
              return info->hdc;
-@@ -357,7 +387,7 @@
+@@ -362,7 +392,7 @@
          else // not in cache, create a new one
          {
                  m_hDC = dc;
@@ -453,7 +333,7 @@ Index: src/msw/dcclient.cpp
                  m_saveState = SaveDC((HDC) dc);
          }
  }
-@@ -372,12 +402,12 @@
+@@ -377,12 +407,12 @@
          if ( --info->count == 0 )
          {
                  RestoreDC((HDC) m_hDC, m_saveState);
@@ -473,11 +353,11 @@ Index: src/msw/font.cpp
 ===================================================================
 --- src/msw/font.cpp	(revision 68296)
 +++ src/msw/font.cpp	(working copy)
-@@ -578,6 +578,12 @@
-     
-     lf.lfHeight = pixelSize.GetHeight();
+@@ -582,6 +582,12 @@
+     // versions by passing a negative value explicitly itself.
+     lf.lfHeight = -abs(pixelSize.GetHeight());
      lf.lfWidth = pixelSize.GetWidth();
-+	
++
 +//DESURA
 +	if (pixelSize.GetHeight() < 0)
 +		lf.lfHeight = pixelSize.GetHeight()*-1;
@@ -486,24 +366,11 @@ Index: src/msw/font.cpp
  }
  
  void wxNativeFontInfo::SetStyle(wxFontStyle style)
-Index: src/msw/taskbar.cpp
-===================================================================
---- src/msw/taskbar.cpp	(revision 68296)
-+++ src/msw/taskbar.cpp	(working copy)
-@@ -133,7 +133,7 @@
-     NotifyIconData(WXHWND hwnd)
-     {
-         memset(this, 0, sizeof(NOTIFYICONDATA));
--        cbSize = sizeof(NOTIFYICONDATA);
-+        cbSize = NOTIFYICONDATA_V3_SIZE;
-         hWnd = (HWND) hwnd;
-         uCallbackMessage = gs_msgTaskbar;
-         uFlags = NIF_MESSAGE;
 Index: src/msw/textentry.cpp
 ===================================================================
 --- src/msw/textentry.cpp	(revision 68296)
 +++ src/msw/textentry.cpp	(working copy)
-@@ -373,7 +373,10 @@
+@@ -387,7 +387,10 @@
                          );
      if ( SUCCEEDED(hr) )
      {
@@ -519,7 +386,7 @@ Index: src/msw/window.cpp
 ===================================================================
 --- src/msw/window.cpp	(revision 68296)
 +++ src/msw/window.cpp	(working copy)
-@@ -2634,20 +2634,22 @@
+@@ -2694,20 +2694,22 @@
  // Main wxWidgets window proc and the window proc for wxWindow
  // ---------------------------------------------------------------------------
  
@@ -545,7 +412,7 @@ Index: src/msw/window.cpp
  }
  
  // Main window proc
-@@ -2665,11 +2667,11 @@
+@@ -2730,11 +2732,11 @@
  
      // when we get the first message for the HWND we just created, we associate
      // it with wxWindow stored in gs_winBeingCreated

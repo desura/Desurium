@@ -1,5 +1,5 @@
 
-set(WXWIDGET_SVN http://svn.wxwidgets.org/svn/wx/wxWidgets/tags/WX_2_9_0)
+set(WXWIDGET_SVN http://svn.wxwidgets.org/svn/wx/wxWidgets/tags/WX_2_9_1)
 
 if(WIN32)
   ExternalProject_Add(
