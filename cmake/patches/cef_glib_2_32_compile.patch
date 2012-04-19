@@ -1,0 +1,11 @@
+--- chromium/src/ui/base/l10n/l10n_util.cc
++++ chromium/src/ui/base/l10n/l10n_util.cc
+@@ -5,7 +5,7 @@
+ #include "ui/base/l10n/l10n_util.h"
+ 
+ #if defined(TOOLKIT_USES_GTK)
+-#include <glib/gutils.h>
++#include <glib.h>
+ #endif
+ 
+ #include <algorithm>
