@@ -32,6 +32,15 @@ ExternalProject_Add(
     PATCH_COMMAND patch -p1 -N -i ${CMAKE_SOURCE_DIR}/cmake/patches/cef_gcc47_compile_fix.patch
 )
 
+ExternalProject_Add_Step(
+    chromium
+    glib-2-32-patch
+    COMMAND patch -p1 -N -i ${CMAKE_SOURCE_DIR}/cmake/patches/cef_glib_2_32_compile.patch
+    DEPENDEES download
+    DEPENDERS patch
+    WORKING_DIRECTORY <SOURCE_DIR>
+)
+
 ExternalProject_Get_Property(
     chromium
     source_dir
