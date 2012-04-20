@@ -86,7 +86,7 @@ ExternalProject_Add_Step(
 add_dependencies(cef depot_tools)
 add_dependencies(cef chromium)
 
-set(CEF_LIB_DIR ${source_dir}/out/Release/lib.target)
+set(CEF_LIB_DIR ${source_dir}/src/out/Release/lib.target)
 set(CEF_LIBRARIES "${CEF_LIB_DIR}/libcef_desura.so")
 
 install(FILES ${CEF_LIBRARIES}
