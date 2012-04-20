@@ -29,8 +29,10 @@ DEPEND="
 	)
 	dev-lang/v8
 	dev-vcs/subversion
+	gnome-base/libgnome-keyring
 	media-libs/flac
 	media-libs/libpng
+	media-libs/libwebp
 	media-libs/speex
 	!builtin-curl? (
 		net-misc/curl[ares]
