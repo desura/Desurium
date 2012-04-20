@@ -54,5 +54,22 @@ RunAction(cef_dir, patcher);
 
 print "\nGenerating CEF project files..."
 os.environ['CEF_DIRECTORY'] = os.path.basename(cef_dir);
-gyper = [ 'python', 'tools/gyp_cef', 'cef.gyp', '-I', 'cef.gypi', '-Dwerror=' ]
+# for windows we have to build all deps
+# gyper = [ 'python', 'tools/gyp_cef', 'cef.gyp', '-I', 'cef.gypi', '-Dwerror=']
+gyper = [ 'python', 'tools/gyp_cef', 'cef.gyp',
+	'-I', 'cef.gypi',
+	'-Dwerror=',
+	'-Duse_system_bzip2=1',
+	'-Duse_system_flac=1',
+	'-Duse_system_icu=0',
+	'-Duse_system_libevent=1',
+	'-Duse_system_libjpeg=1',
+	'-Duse_system_libpng=1',
+	'-Duse_system_libwebp=1',
+	'-Duse_system_libxml=1',
+	'-Duse_system_speex=1',
+	'-Duse_system_v8=0',
+	'-Duse_system_xdg_utils=1',
+	'-Duse_system_yasm=1',
+	'-Duse_system_zlib=1']
 RunAction(cef_dir, gyper);
