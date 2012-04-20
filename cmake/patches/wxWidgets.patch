@@ -366,22 +366,6 @@ Index: src/msw/font.cpp
  }
  
  void wxNativeFontInfo::SetStyle(wxFontStyle style)
-Index: src/msw/textentry.cpp
-===================================================================
---- src/msw/textentry.cpp	(revision 68296)
-+++ src/msw/textentry.cpp	(working copy)
-@@ -387,7 +387,10 @@
-                         );
-     if ( SUCCEEDED(hr) )
-     {
--        pAutoComplete2->SetOptions(ACO_AUTOSUGGEST | ACO_UPDOWNKEYDROPSLIST);
-+//DESURA
-+		pAutoComplete2->SetOptions(ACO_AUTOSUGGEST|ACO_AUTOAPPEND|ACO_USETAB);
-+//DESURA
-+        //pAutoComplete2->SetOptions(ACO_AUTOSUGGEST | ACO_UPDOWNKEYDROPSLIST);
-         pAutoComplete2->Release();
-     }
- 
 Index: src/msw/window.cpp
 ===================================================================
 --- src/msw/window.cpp	(revision 68296)
@@ -507,16 +491,3 @@ Index: src/unix/snglinst.cpp
          }
  
          if ( wxLockFile(m_fdLock, UNLOCK) != 0 )
-Index: src/common/imagpng.cpp
-===================================================================
-+++ src/common/imagpng.cpp
---- src/common/imagpng.cpp
-@@ -521,7 +521,7 @@
-     png_structp png_ptr = png_create_read_struct
-                           (
-                             PNG_LIBPNG_VER_STRING,
--                            (voidp) NULL,
-+                            (png_voidp) NULL,
-                             wx_png_error,
-                             wx_png_warning
-                           );
