@@ -29,7 +29,7 @@ ExternalProject_Add(
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     BUILD_IN_SOURCE 1
-    INSTALL_COMMAND ""
+    INSTALL_COMMAND ${CMAKE_SCRIPT_PATH}/fix_chromium_path.sh
     PATCH_COMMAND patch -p1 -N -i ${CMAKE_SOURCE_DIR}/cmake/patches/cef_gcc47_compile_fix.patch
 )
 
@@ -62,7 +62,7 @@ ExternalProject_Add_Step(
     copy_files
     COMMAND cp -r ${CMAKE_THIRD_PARTY_DIR}/cef ./
     DEPENDERS download
-    WORKING_DIRECTORY ${source_dir}
+    WORKING_DIRECTORY ${source_dir}/src
 )
 
 ExternalProject_Add_Step(
@@ -71,7 +71,7 @@ ExternalProject_Add_Step(
     COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} ./cef_create_projects.sh
     DEPENDEES download
     DEPENDERS configure
-    WORKING_DIRECTORY ${source_dir}/cef
+    WORKING_DIRECTORY ${source_dir}/src/cef
 )
 
 ExternalProject_Add_Step(
@@ -80,7 +80,7 @@ ExternalProject_Add_Step(
     COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} make cef_desura -j8 BUILDTYPE=Release
     DEPENDEES configure
     DEPENDERS build
-    WORKING_DIRECTORY ${source_dir}
+    WORKING_DIRECTORY ${source_dir}/src
 )
 
 add_dependencies(cef depot_tools)
