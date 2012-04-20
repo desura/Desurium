@@ -2,7 +2,7 @@ Index: include/msvc/wx/setup.h
 ===================================================================
 --- include/msvc/wx/setup.h	(revision 68296)
 +++ include/msvc/wx/setup.h	(working copy)
-@@ -110,6 +110,7 @@
+@@ -121,6 +121,7 @@
  // special version for regex as it does have a Unicode version
  #define wx3RD_PARTY_LIB_NAME_U(name) "wx" name wxSUFFIX_STR
  
@@ -10,7 +10,7 @@ Index: include/msvc/wx/setup.h
  #pragma comment(lib, wxWX_LIB_NAME("base", ""))
  
  #ifndef wxNO_NET_LIB
-@@ -177,6 +178,7 @@
+@@ -188,6 +189,7 @@
          #pragma comment(lib, wx3RD_PARTY_LIB_NAME("scintilla"))
      #endif
  #endif // wxUSE_GUI
@@ -22,7 +22,7 @@ Index: include/wx/event.h
 ===================================================================
 --- include/wx/event.h	(revision 68296)
 +++ include/wx/event.h	(working copy)
-@@ -1760,7 +1760,8 @@
+@@ -1838,7 +1838,8 @@
      #define wxHAS_PAINT_DEBUG
  
      // see comments in src/msw|os2/dcclient.cpp where g_isPainting is defined
@@ -32,7 +32,7 @@ Index: include/wx/event.h
  #endif // debug
  
  class WXDLLIMPEXP_CORE wxPaintEvent : public wxEvent
-@@ -1771,7 +1772,7 @@
+@@ -1849,7 +1850,7 @@
      {
  #ifdef wxHAS_PAINT_DEBUG
          // set the internal flag for the duration of redrawing
@@ -41,7 +41,7 @@ Index: include/wx/event.h
  #endif // debug
      }
  
-@@ -1781,12 +1782,12 @@
+@@ -1859,12 +1860,12 @@
      wxPaintEvent(const wxPaintEvent& event)
              : wxEvent(event)
      {
@@ -60,7 +60,7 @@ Index: include/wx/gdiobj.h
 ===================================================================
 --- include/wx/gdiobj.h	(revision 68296)
 +++ include/wx/gdiobj.h	(working copy)
-@@ -40,7 +40,9 @@
+@@ -47,7 +47,9 @@
      {
          // the cast here is safe because the derived classes always create
          // wxGDIRefData objects
@@ -151,7 +151,7 @@ Index: src/common/popupcmn.cpp
 ===================================================================
 --- src/common/popupcmn.cpp	(revision 68296)
 +++ src/common/popupcmn.cpp	(working copy)
-@@ -61,24 +61,7 @@
+@@ -66,24 +66,7 @@
  // private classes
  // ----------------------------------------------------------------------------
  
@@ -176,7 +176,7 @@ Index: src/common/popupcmn.cpp
  class wxPopupFocusHandler : public wxEvtHandler
  {
  public:
-@@ -492,6 +475,12 @@
+@@ -497,6 +480,12 @@
  // wxPopupWindowHandler
  // ----------------------------------------------------------------------------
  
@@ -353,7 +353,7 @@ Index: src/msw/font.cpp
 ===================================================================
 --- src/msw/font.cpp	(revision 68296)
 +++ src/msw/font.cpp	(working copy)
-@@ -582,6 +582,12 @@
+@@ -535,6 +535,12 @@
      // versions by passing a negative value explicitly itself.
      lf.lfHeight = -abs(pixelSize.GetHeight());
      lf.lfWidth = pixelSize.GetWidth();
@@ -386,7 +386,7 @@ Index: src/msw/window.cpp
 ===================================================================
 --- src/msw/window.cpp	(revision 68296)
 +++ src/msw/window.cpp	(working copy)
-@@ -2694,20 +2694,22 @@
+@@ -2645,20 +2645,22 @@
  // Main wxWidgets window proc and the window proc for wxWindow
  // ---------------------------------------------------------------------------
  
@@ -412,7 +412,7 @@ Index: src/msw/window.cpp
  }
  
  // Main window proc
-@@ -2730,11 +2732,11 @@
+@@ -2681,11 +2683,11 @@
  
      // when we get the first message for the HWND we just created, we associate
      // it with wxWindow stored in gs_winBeingCreated
