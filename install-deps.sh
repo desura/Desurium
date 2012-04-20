@@ -7,7 +7,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 if [ -f /etc/debian_version ]; then # Debian  (untested!)
-    DEPS="gcc git-core subversion m4 build-essential binutils automake autoconf libtool libgtk2.0-dev libnss3-dev libgconf2-dev libgnome-keyring-dev libdbus-glib-1-dev gperf bison libcups2-dev flex libasound2-dev libbz2-dev libxpm-dev libx11-dev libssl-dev libnotify-dev scons libv8-dev libc-ares-dev libboost-dev libboost-date-time-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev cmake"
+    DEPS="autoconf automake binutils bison build-essential cmake flex gcc git-core gperf libasound2-dev libboost-dev libboost-date-time-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev libbz2-dev libc-ares-dev libcups2-dev libdbus-glib-1-dev libflac-dev libgconf2-dev libgnome-keyring-dev libgtk2.0-dev libjpeg62-dev libnotify-dev libnss3-dev libpng12-dev libspeex-dev libssl-dev libtool libv8-dev libx11-dev libxpm-dev m4 scons subversion xdg-utils"
     ST=`dpkg -l ${DEPS} | awk /^ii\ /  | awk '{print $2}'`
     for PACK in ${DEPS}
     do
