@@ -287,7 +287,7 @@ void MainApp::Init(int argc, wxCmdLineArgsArray &argv)
 	InitLogging();
 	cc_PrintVersion();
 	cc_CheckCert();
-	Msg("Logging Has started\n");
+	Msg("Logging has started\n");
 	Msg("\n\n");
 
 	InitManagers();

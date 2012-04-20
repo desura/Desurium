@@ -40,11 +40,8 @@ TiXmlNode* WebCoreClass::postToServer(std::string url, std::string resource, Pos
 		if (useHTTPS)
 		{
 			hh->setUserAgent(getUserAgent());
-#ifdef WIN32
-			hh->setCertFile(".\\data\\ca-bundle.crt");
-#else
-			hh->setCertFile("data/ca-bundle.crt");
-#endif
+			hh->setCertFile(
+				UTIL::STRING::toStr(UTIL::OS::getDataPath(L"/ca-bundle.crt")).c_str());
 		}
 		else
 		{

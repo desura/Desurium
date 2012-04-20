@@ -122,10 +122,6 @@ void UpdateThreadOld::doRun()
 				timer += boost::posix_time::minutes(1);
 			}
 
-			#ifdef NIX
-				UTIL::LIN::updateXDGRuntimeStamps();
-			#endif
-
 			m_bForcePoll = false;
 		}
 

@@ -34,6 +34,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "DesuraMain.h"
 #include "UtilFile.h"
 #include "util/UtilLinux.h"
+#include "util/UtilOs.h"
+#include "util/UtilString.h"
 #include <branding/branding.h>
 
 #ifdef DESURA_OFFICAL_BUILD
@@ -58,7 +60,7 @@ void SendMessage(const char* msg)
     }
 
     remote.sun_family = AF_UNIX;
-    strcpy(remote.sun_path, UTIL::LIN::expandPath(SOCK_PATH).c_str());
+    strcpy(remote.sun_path, UTIL::LIN::SOCK_PATH());
     len = strlen(remote.sun_path) + sizeof(remote.sun_family);
     if (connect(socketConnect, (struct sockaddr*)&remote, len) == -1)
     {
@@ -122,6 +124,7 @@ bool RestartBootloader(const char* args)
 int main(int argc, char** argv)
 {
 	UTIL::LIN::setupXDGVars();
+	setenv("CEF_DATA_PATH", UTIL::STRING::toStr(UTIL::OS::getDataPath()).c_str(), 0);
 
 	MainApp app(argc, argv);
 	g_pMainApp = &app;

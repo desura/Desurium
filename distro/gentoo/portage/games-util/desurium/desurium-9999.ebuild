@@ -17,31 +17,33 @@ IUSE="builtin-curl builtin-tinyxml debug"
 DEPEND="
 	app-arch/bzip2
 	dev-db/sqlite
+	dev-lang/yasm
 	dev-libs/boost
+	dev-libs/libevent
+	dev-libs/libxml2
 	dev-libs/openssl
 	!builtin-tinyxml? (
 		|| ( <dev-libs/tinyxml-2.6.2-r2[-stl]
-		     >=dev-libs/tinyxml-2.6.2-r2
+		    >=dev-libs/tinyxml-2.6.2-r2
 		)
 	)
 	dev-lang/v8
 	dev-vcs/subversion
+	media-libs/flac
+	media-libs/libpng
+	media-libs/speex
 	!builtin-curl? (
-		net-misc/curl
+		net-misc/curl[ares]
 	)
 	builtin-curl? (
 		net-dns/c-ares
 	)
 	>=sys-devel/gcc-4.5
+	sys-libs/zlib
+	virtual/jpeg
 	>=x11-libs/gtk+-2.24
-	x11-libs/libnotify"
-#	!builtin-wxWidgets? ( >=x11-libs/wxGTK-2.9.0 )
-#	net-print/libgnomecups
-#	dev-util/gyp
-#	dev-util/depot_tools
-#	check svn co http://google-breakpad.googlecode.com/svn/trunk -r 699  breakpad
-#	check svn co http://svn.wxwidgets.org/svn/wx/wxWidgets/tags/WX_2_9_0/ wxWidgets
-
+	x11-misc/xdg-utils
+"
 
 RDEPEND="${DEPEND}"
 

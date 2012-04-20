@@ -103,7 +103,7 @@ void Theme::parseFile(const char* file)
 			}
 
 			const char* name = pChild->ToElement()->Attribute("name");
-			const char* val= pChild->ToElement()->GetText();
+			const char* val = pChild->ToElement()->GetText();
 
 			if (name && val)
 			{
@@ -152,10 +152,11 @@ void Theme::parseFile(const char* file)
 			if (name && val)
 			{
 				std::string outVal = UTIL::STRING::sanitizeFileName(val);
+
 #ifdef WIN32
 				gcString fullPath("file:///{0}/html/{1}", urlPath, outVal);
 #else
-				gcString fullPath("file://{2}/{0}/html/{1}", urlPath, outVal, UTIL::OS::getCurrentDir());
+				gcString fullPath("file://{0}/html/{1}", urlPath, outVal);
 #endif
 
 				ThemeWebInfo* web = WebList::findItem(name);

@@ -35,6 +35,7 @@ set(CMAKE_PLATFORM_PATH "${CMAKE_SOURCE_DIR}/cmake/platform")
 set(CMAKE_EXTERNAL_BINARY_DIR "${CMAKE_BINARY_DIR}/external")
 set(CMAKE_THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/third_party")
 set(CMAKE_SCRIPT_PATH "${CMAKE_SOURCE_DIR}/cmake/scripts")
+set(CMAKE_PATCH_DIR "${CMAKE_SOURCE_DIR}/cmake/patches")
 
 if(DEBUG)
   set(CMAKE_BUILD_TYPE Debug)

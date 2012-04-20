@@ -22,24 +22,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 class CIMPORT uploadMng;
 
-#ifdef WIN32
+inline const char* LANGFOLDER(void)
+{
+	return gcString("{0}{1}language{1}", UTIL::OS::getDataPath(), DIRS_STR).c_str();
+}
 
-	#define LANGFOLDER	".\\data\\language\\"
-	#define THEMEFOLDER	".\\data\\themes"
-
-#else
-
-	#define LANGFOLDER	"data/language/"
-	#define THEMEFOLDER	"data/themes"
-
-#endif
+inline const char* THEMEFOLDER(void)
+{
+	return gcString("{0}{1}themes{1}", UTIL::OS::getDataPath(), DIRS_STR).c_str();
+}
 
 
 bool LangChanged(CVar* var, const char* val)
 {
 	if (GetLanguageManager())
 	{
-		gcString lan("{0}{1}.xml", LANGFOLDER, val);
+		gcString lan("{0}{1}.xml", LANGFOLDER(), val);
 
 		if (GetLanguageManager()->loadFromFile(lan.c_str()))
 		{
@@ -61,7 +59,7 @@ bool ThemeChanged(CVar* var, const char* val)
 	if (!val)
 		return false;
 
-	UTIL::FS::Path path(THEMEFOLDER, "theme.xml", false);
+	UTIL::FS::Path path(THEMEFOLDER(), "theme.xml", false);
 	path += val;
 
 	bool isValid = UTIL::FS::isValidFile(path);
@@ -78,7 +76,7 @@ CVar gc_theme("gc_theme", "default", CFLAG_SAVEONEXIT, (CVarCallBackFn)&ThemeCha
 
 CONCOMMAND(cc_reloadlanguage, "reload_language")
 {
-	gcString lan("{0}{1}.xml", LANGFOLDER, gc_language.getString());
+	gcString lan("{0}{1}.xml", LANGFOLDER(), gc_language.getString());
 	GetLanguageManager()->loadFromFile(lan.c_str());
 }
 
@@ -101,7 +99,7 @@ UserCore::UploadManagerI* GetUploadMng()
 
 void InitLocalManagers()
 {
-	GetGCThemeManager()->loadFromFolder(THEMEFOLDER);
+	GetGCThemeManager()->loadFromFolder(THEMEFOLDER());
 	GetGCThemeManager()->loadTheme(gc_theme.getString());
 }
 

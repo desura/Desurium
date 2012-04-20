@@ -24,24 +24,23 @@ namespace webkit_glue {
 static ui::DataPack* g_resource_data_pack = NULL;
 
 
+const char* PATH_ENV = "CEF_DATA_PATH";
+
+// Helper method for getting the path to the CEF resources directory.
+FilePath GetResourcesFilePath() {
+  return FilePath(getenv(PATH_ENV));
+}
+  
 void InitializeDataPak() {
   g_resource_data_pack = new ui::DataPack;
   FilePath data_path;
-  data_path = data_path.Append("data/cef_data.pak");
+  data_path = data_path.Append(GetResourcesFilePath());
+  data_path = data_path.Append("cef_data.pak");
 
   if (!g_resource_data_pack->Load(data_path)) {
-    LOG(FATAL) << "failed to load data/cef_data.pak";
+    LOG(FATAL) << "failed to load cef_data.pak";
   }
   ResourceBundle::InitSharedInstanceForTest(data_path); // resources
-}
-  
-// Helper method for getting the path to the CEF resources directory.
-FilePath GetResourcesFilePath() {
-  FilePath path;
-  // We need to know if we're bundled or not to know which path to use.
-  // TODO(port): Allow the embedder to customize the resource path.
-  PathService::Get(base::DIR_SOURCE_ROOT, &path);
-  return path.AppendASCII("data");
 }
   
 string16 GetLocalizedString(int message_id) {

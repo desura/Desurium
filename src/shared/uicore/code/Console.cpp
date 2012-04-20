@@ -400,7 +400,7 @@ void Console::processCommand()
 		else if (cv)
 			cv->parseCommand(vArgList);
 		else
-			Msg(gcString("Couldnt find anything related to {0}.\n", vArgList[0]));
+			Msg(gcString("Couldn't find anything related to {0}.\n", vArgList[0]));
 	}
 
 	m_tbInfo->SetValue(L"");
