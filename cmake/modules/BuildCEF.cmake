@@ -23,7 +23,8 @@ endif()
 
 ExternalProject_Add(
     chromium
-    DOWNLOAD_COMMAND ""
+    URL https://commondatastorage.googleapis.com/chromium-browser-official/chromium-14.0.809.0.tar.bz2
+    URL_MD5 7c5850e9fc9c2f3e42e7b0d63a295a09
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
@@ -46,22 +47,6 @@ ExternalProject_Get_Property(
     source_dir
 )
 
-ExternalProject_Add_Step(
-    chromium
-    copy_gclient_config
-    COMMAND cp ${CMAKE_SCRIPT_PATH}/.gclient ${source_dir}/
-    DEPENDERS download
-)
-
-ExternalProject_Add_Step(
-    chromium
-    gclient_download
-    COMMAND ${DEPOT_TOOLS_BIN_DIR}/gclient sync --revision src@91424 --nohooks --jobs 8 --force
-    DEPENDERS download
-    DEPENDEES copy_gclient_config
-    WORKING_DIRECTORY <SOURCE_DIR>
-)
-
 ExternalProject_Add(
     cef
     DOWNLOAD_COMMAND ""
@@ -75,7 +60,7 @@ ExternalProject_Add(
 ExternalProject_Add_Step(
     cef
     copy_files
-    COMMAND cp -r ${CMAKE_THIRD_PARTY_DIR}/cef ./src/
+    COMMAND cp -r ${CMAKE_THIRD_PARTY_DIR}/cef ./
     DEPENDERS download
     WORKING_DIRECTORY ${source_dir}
 )
@@ -86,7 +71,7 @@ ExternalProject_Add_Step(
     COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} ./cef_create_projects.sh
     DEPENDEES download
     DEPENDERS configure
-    WORKING_DIRECTORY ${source_dir}/src/cef
+    WORKING_DIRECTORY ${source_dir}/cef
 )
 
 ExternalProject_Add_Step(
@@ -95,13 +80,13 @@ ExternalProject_Add_Step(
     COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} make cef_desura -j8 BUILDTYPE=Release
     DEPENDEES configure
     DEPENDERS build
-    WORKING_DIRECTORY ${source_dir}/src
+    WORKING_DIRECTORY ${source_dir}
 )
 
-add_dependencies(chromium depot_tools)
+add_dependencies(cef depot_tools)
 add_dependencies(cef chromium)
 
-set(CEF_LIB_DIR ${source_dir}/src/out/Release/lib.target)
+set(CEF_LIB_DIR ${source_dir}/out/Release/lib.target)
 set(CEF_LIBRARIES "${CEF_LIB_DIR}/libcef_desura.so")
 
 install(FILES ${CEF_LIBRARIES}
