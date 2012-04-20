@@ -52,7 +52,7 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/desura"
 
 pkg_pretend() {
-	CHECKREQS_DISK_BUILD="4G"
+	CHECKREQS_DISK_BUILD="3G"
 	check-reqs_pkg_pretend
 }
 
