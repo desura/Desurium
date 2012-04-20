@@ -1,5 +1,5 @@
 
-set(WXWIDGET_SVN http://svn.wxwidgets.org/svn/wx/wxWidgets/tags/WX_2_9_2)
+set(WXWIDGET_SVN http://svn.wxwidgets.org/svn/wx/wxWidgets/tags/WX_2_9_3)
 
 if(WIN32)
   ExternalProject_Add(
@@ -64,15 +64,15 @@ else()
   set(wxWidgets_LIBRARY_DIRS ${wxWidgets_INSTALL_DIR}/lib)
   if(DEBUG_EXTERNAL)
     set(wxWidgets_INCLUDE_DIRS  ${wxWidgets_INSTALL_DIR}/include/wx-2.9-desura ${wxWidgets_LIBRARY_DIRS}/wx/include/gtk2-unicode-debug-2.9-desura)
-    set(wxWidgets_LIBRARIES "${wxWidgets_LIBRARY_DIRS}/libwx_gtk2ud_desura-2.9.so.2.0.0")
-    install(FILES ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2ud_desura-2.9.so.2.0.0
-            RENAME libwx_gtk2ud_desura-2.9.so.2
+    set(wxWidgets_LIBRARIES "${wxWidgets_LIBRARY_DIRS}/libwx_gtk2ud_desura-2.9.so.3.0.0")
+    install(FILES ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2ud_desura-2.9.so.3.0.0
+            RENAME libwx_gtk2ud_desura-2.9.so.3
             DESTINATION ${LIB_INSTALL_DIR})
   else()
     set(wxWidgets_INCLUDE_DIRS  ${wxWidgets_INSTALL_DIR}/include/wx-2.9-desura ${wxWidgets_LIBRARY_DIRS}/wx/include/gtk2-unicode-2.9-desura)
-    set(wxWidgets_LIBRARIES "${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.2.0.0")
-    install(FILES ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.2.0.0
-            RENAME libwx_gtk2u_desura-2.9.so.2
+    set(wxWidgets_LIBRARIES "${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.3.0.0")
+    install(FILES ${wxWidgets_LIBRARY_DIRS}/libwx_gtk2u_desura-2.9.so.3.0.0
+            RENAME libwx_gtk2u_desura-2.9.so.3
             DESTINATION ${LIB_INSTALL_DIR})
   endif()
   set(wxWidgets_BIN_DIR ${wxWidgets_INSTALL_DIR}/bin)

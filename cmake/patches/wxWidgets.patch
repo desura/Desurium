@@ -1,3 +1,4 @@
+
 Index: include/msvc/wx/setup.h
 ===================================================================
 --- include/msvc/wx/setup.h	(revision 68296)
@@ -22,7 +23,7 @@ Index: include/wx/event.h
 ===================================================================
 --- include/wx/event.h	(revision 68296)
 +++ include/wx/event.h	(working copy)
-@@ -1838,7 +1838,8 @@
+@@ -1875,7 +1875,8 @@
      #define wxHAS_PAINT_DEBUG
  
      // see comments in src/msw|os2/dcclient.cpp where g_isPainting is defined
@@ -32,7 +33,7 @@ Index: include/wx/event.h
  #endif // debug
  
  class WXDLLIMPEXP_CORE wxPaintEvent : public wxEvent
-@@ -1849,7 +1850,7 @@
+@@ -1886,7 +1887,7 @@
      {
  #ifdef wxHAS_PAINT_DEBUG
          // set the internal flag for the duration of redrawing
@@ -41,7 +42,7 @@ Index: include/wx/event.h
  #endif // debug
      }
  
-@@ -1859,12 +1860,12 @@
+@@ -1896,12 +1897,12 @@
      wxPaintEvent(const wxPaintEvent& event)
              : wxEvent(event)
      {
@@ -126,6 +127,7 @@ Index: include/wx/popupwin.h
 +protected:
 +    // event handlers
 +    void OnLeftDown(wxMouseEvent& event);
++    void OnCaptureLost(wxMouseCaptureLostEvent& event);
 +
 +private:
 +    wxPopupTransientWindow *m_popup;
@@ -134,14 +136,13 @@ Index: include/wx/popupwin.h
 +    wxDECLARE_NO_COPY_CLASS(wxPopupWindowHandler);
 +};
 +
-+
  class WXDLLIMPEXP_FWD_CORE wxPopupFocusHandler;
  
  class WXDLLIMPEXP_CORE wxPopupTransientWindow : public wxPopupWindow
-@@ -131,7 +151,7 @@
- 
- #if defined( __WXMSW__ ) || defined( __WXMAC__)
-     // check if the mouse needs captured or released
+@@ -135,7 +155,7 @@
+ #if defined(__WXMSW__) ||(defined(__WXMAC__) && wxOSX_USE_CARBON)
+     // Check if the mouse needs to be captured or released: we must release
+     // when it's inside our window if we want the embedded controls to work.
 -    void OnIdle(wxIdleEvent& event);
 +    virtual void OnIdle(wxIdleEvent& event);
  #endif
@@ -151,20 +152,19 @@ Index: src/common/popupcmn.cpp
 ===================================================================
 --- src/common/popupcmn.cpp	(revision 68296)
 +++ src/common/popupcmn.cpp	(working copy)
-@@ -66,24 +66,7 @@
- // private classes
- // ----------------------------------------------------------------------------
+@@ -68,22 +68,6 @@
  
--// event handlers which we use to intercept events which cause the popup to
--// disappear
+ // event handlers which we use to intercept events which cause the popup to
+ // disappear
 -class wxPopupWindowHandler : public wxEvtHandler
 -{
 -public:
 -    wxPopupWindowHandler(wxPopupTransientWindow *popup) : m_popup(popup) {}
- 
+-
 -protected:
 -    // event handlers
 -    void OnLeftDown(wxMouseEvent& event);
+-    void OnCaptureLost(wxMouseCaptureLostEvent& event);
 -
 -private:
 -    wxPopupTransientWindow *m_popup;
@@ -172,11 +172,10 @@ Index: src/common/popupcmn.cpp
 -    DECLARE_EVENT_TABLE()
 -    wxDECLARE_NO_COPY_CLASS(wxPopupWindowHandler);
 -};
--
+ 
  class wxPopupFocusHandler : public wxEvtHandler
  {
- public:
-@@ -497,6 +480,12 @@
+@@ -513,6 +497,12 @@
  // wxPopupWindowHandler
  // ----------------------------------------------------------------------------
  
@@ -267,10 +266,10 @@ Index: src/msw/dcclient.cpp
      {
          wxFAIL_MSG( wxT("wxPaintDCImpl may be created only in EVT_PAINT handler!") );
  
-@@ -241,9 +271,9 @@
- 
-         wxDidCreatePaintDC = true;
- 
+@@ -242,9 +272,9 @@
+     }
+     else // not in cache, create a new one
+     {
 -        m_hDC = (WXHDC)::BeginPaint(GetHwndOf(m_window), &g_paintStruct);
 +        m_hDC = (WXHDC)::BeginPaint(GetHwndOf(m_window), &(g_paintStruct[wxThread::GetCurrentId()]));
          if (m_hDC)
@@ -279,7 +278,7 @@ Index: src/msw/dcclient.cpp
      }
  
      // Note: at this point m_hDC can be NULL under MicroWindows, when dragging.
-@@ -271,14 +301,14 @@
+@@ -272,14 +302,14 @@
  
          if ( --info->count == 0 )
          {
@@ -298,7 +297,7 @@ Index: src/msw/dcclient.cpp
          }
          //else: cached DC entry is still in use
  
-@@ -290,10 +320,10 @@
+@@ -291,10 +321,10 @@
  wxPaintDCInfo *wxPaintDCImpl::FindInCache(size_t *index) const
  {
      wxPaintDCInfo *info = NULL;
@@ -311,7 +310,7 @@ Index: src/msw/dcclient.cpp
          if ( info1->hwnd == m_window->GetHWND() )
          {
              info = info1;
-@@ -309,10 +339,10 @@
+@@ -310,10 +340,10 @@
  // find the entry for this DC in the cache (keyed by the window)
  WXHDC wxPaintDCImpl::FindDCInCache(wxWindow* win)
  {
@@ -324,7 +323,7 @@ Index: src/msw/dcclient.cpp
          if ( info->hwnd == win->GetHWND() )
          {
              return info->hdc;
-@@ -362,7 +392,7 @@
+@@ -363,7 +393,7 @@
          else // not in cache, create a new one
          {
                  m_hDC = dc;
@@ -333,7 +332,7 @@ Index: src/msw/dcclient.cpp
                  m_saveState = SaveDC((HDC) dc);
          }
  }
-@@ -377,12 +407,12 @@
+@@ -378,12 +408,12 @@
          if ( --info->count == 0 )
          {
                  RestoreDC((HDC) m_hDC, m_saveState);
@@ -370,7 +369,7 @@ Index: src/msw/window.cpp
 ===================================================================
 --- src/msw/window.cpp	(revision 68296)
 +++ src/msw/window.cpp	(working copy)
-@@ -2645,20 +2645,22 @@
+@@ -2661,20 +2661,22 @@
  // Main wxWidgets window proc and the window proc for wxWindow
  // ---------------------------------------------------------------------------
  
@@ -396,7 +395,7 @@ Index: src/msw/window.cpp
  }
  
  // Main window proc
-@@ -2681,11 +2683,11 @@
+@@ -2697,11 +2699,11 @@
  
      // when we get the first message for the HWND we just created, we associate
      // it with wxWindow stored in gs_winBeingCreated
