@@ -35,7 +35,7 @@ build() {
     # if this fails, git clean -dfx
     ./build_make_clean.sh || echo "./build_make_clean.sh failed, running  git clean -dfx ..." ; git clean -dfx
     msg "Updating..."
-    git pull origin master --depth 1 --no-tags
+    git pull origin --depth 1 --no-tags
     msg "The local files are updated."
   else
     msg "Cloning..."
