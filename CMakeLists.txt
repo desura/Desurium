@@ -53,6 +53,7 @@ include(macros)
 include(parsearguments)
 include(CheckCompiler)
 include(SetInstallPaths)
+include(ProcessorCount)
 
 ###############################################################################
 # find all packages which are needed
