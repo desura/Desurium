@@ -1,5 +1,5 @@
---- chromium/src/base/message_pump_libevent.cc.gcc47
-+++ chromium/src/base/message_pump_libevent.cc
+--- chromium/base/message_pump_libevent.cc.gcc47
++++ chromium/base/message_pump_libevent.cc
 @@ -6,6 +6,7 @@
  
  #include <errno.h>
@@ -8,8 +8,8 @@
  
  #include "base/auto_reset.h"
  #include "base/eintr_wrapper.h"
---- chromium/src/ipc/ipc_channel.h.gcc47
-+++ chromium/src/ipc/ipc_channel.h
+--- chromium/ipc/ipc_channel.h.gcc47
++++ chromium/ipc/ipc_channel.h
 @@ -9,6 +9,7 @@
  #include "base/compiler_specific.h"
  #include "ipc/ipc_channel_handle.h"
@@ -18,8 +18,8 @@
  
  namespace IPC {
  
---- chromium/src/ipc/ipc_platform_file.cc.gcc47
-+++ chromium/src/ipc/ipc_platform_file.cc
+--- chromium/ipc/ipc_platform_file.cc.gcc47
++++ chromium/ipc/ipc_platform_file.cc
 @@ -3,6 +3,7 @@
  // found in the LICENSE file.
  
@@ -28,8 +28,8 @@
  
  namespace IPC {
  
---- chromium/src/seccompsandbox/library.h.gcc47
-+++ chromium/src/seccompsandbox/library.h
+--- chromium/seccompsandbox/library.h.gcc47
++++ chromium/seccompsandbox/library.h
 @@ -12,6 +12,7 @@
  #include <string>
  #include <string.h>
