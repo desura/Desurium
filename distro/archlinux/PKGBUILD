@@ -35,11 +35,11 @@ build() {
     # if this fails, git clean -dfx
     ./build_make_clean.sh || echo "./build_make_clean.sh failed, running  git clean -dfx ..." ; git clean -dfx
     msg "Updating..."
-    git pull origin
+    git pull origin master --depth 1 --no-tags
     msg "The local files are updated."
   else
     msg "Cloning..."
-    git clone "$_gitroot" "$_gitname" --depth 1
+    git clone "$_gitroot" "$_gitname" --depth 1 --single-branch --branch master
   fi
 
   msg "GIT checkout done or server timeout"
