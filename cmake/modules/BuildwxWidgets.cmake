@@ -1,10 +1,11 @@
-
-set(WXWIDGET_SVN http://svn.wxwidgets.org/svn/wx/wxWidgets/tags/WX_2_9_3)
+set(WXWIDGET_URL http://sourceforge.net/projects/wxwindows/files/2.9.3/wxWidgets-2.9.3.tar.bz2)
+set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
 
 if(WIN32)
   ExternalProject_Add(
     wxWidget-2-9
-    SVN_REPOSITORY ${WXWIDGET_SVN}
+    URL ${WXWIDGET_URL}
+    URL_MD5 ${WXWIDGET_MD5}
     UPDATE_COMMAND ""
     PATCH_COMMAND ${CMAKE_SOURCE_DIR}/cmake/scripts/Patch.bat ${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch
     CONFIGURE_COMMAND ""
@@ -53,7 +54,8 @@ else()
 
   ExternalProject_Add(
     wxWidget-2-9
-    SVN_REPOSITORY ${WXWIDGET_SVN}
+    URL ${WXWIDGET_URL}
+    URL_MD5 ${WXWIDGET_MD5}
     UPDATE_COMMAND ""
     PATCH_COMMAND patch -p0 -N -i ${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --enable-shared --enable-unicode ${CONFIGURE_DEBUG}
