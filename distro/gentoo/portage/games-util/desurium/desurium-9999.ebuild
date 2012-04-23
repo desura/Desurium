@@ -7,6 +7,9 @@ EAPI=3
 inherit check-reqs cmake-utils eutils git-2 games
 
 EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
+
+CHECKREQS_DISK_BUILD="3G"
+
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
@@ -35,7 +38,7 @@ DEPEND="
 	media-libs/libwebp
 	media-libs/speex
 	!builtin-curl? (
-		net-misc/curl[ares]
+		net-misc/curl
 	)
 	builtin-curl? (
 		net-dns/c-ares
@@ -51,10 +54,13 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/desura"
 
-pkg_pretend() {
-	CHECKREQS_DISK_BUILD="3G"
-	check-reqs_pkg_pretend
-}
+# pkg_pretend not working EAPI < 4
+if [[ ${EAPI} != 4 ]]; then
+	src_unpack() {
+		check-reqs_pkg_pretend
+		git-2_src_unpack
+	}
+fi
 
 src_configure() {
 	mycmakeargs=(
@@ -79,3 +85,4 @@ src_install() {
 
 	prepgamesdirs
 }
+
