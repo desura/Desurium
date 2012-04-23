@@ -25,11 +25,6 @@ DEPEND="
 	dev-libs/libevent
 	dev-libs/libxml2
 	dev-libs/openssl
-	!builtin-tinyxml? (
-		|| ( <dev-libs/tinyxml-2.6.2-r2[-stl]
-		    >=dev-libs/tinyxml-2.6.2-r2
-		)
-	)
 	dev-lang/v8
 	dev-vcs/subversion
 	gnome-base/libgnome-keyring
@@ -37,20 +32,36 @@ DEPEND="
 	media-libs/libpng
 	media-libs/libwebp
 	media-libs/speex
-	!builtin-curl? (
-		net-misc/curl
-	)
-	builtin-curl? (
-		net-dns/c-ares
-	)
 	>=sys-devel/gcc-4.5
-	32bit? (
-		sys-devel/gcc[multilib]
-	)
 	sys-libs/zlib
 	virtual/jpeg
 	>=x11-libs/gtk+-2.24
 	x11-misc/xdg-utils
+
+	32bit? (
+		app-emulation/emul-linux-x86-gtklibs
+		app-emulation/emul-linux-x86-gtkmmlibs
+		app-emulation/emul-linux-x86-medialibs
+		app-emulation/emul-linux-x86-opengl
+		app-emulation/emul-linux-x86-sdl
+		app-emulation/emul-linux-x86-soundlibs
+		app-emulation/emul-linux-x86-xlibs[opengl]
+		sys-devel/gcc[multilib]
+	)
+
+	builtin-curl? (
+		net-dns/c-ares
+	)
+
+	!builtin-curl? (
+		net-misc/curl
+	)
+
+	!builtin-tinyxml? (
+		|| ( <dev-libs/tinyxml-2.6.2-r2[-stl]
+		    >=dev-libs/tinyxml-2.6.2-r2
+		)
+	)
 "
 
 RDEPEND="${DEPEND}"
