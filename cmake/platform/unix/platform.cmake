@@ -10,11 +10,11 @@ add_definitions(-DBOOST_FILESYSTEM_VERSION=2 -D_LARGE_FILES
 ###############################################################################
 
 # TODO: if DEBUG is not defined, the binary will be copied
-#if(DEBUG)
+if(DEBUG)
     add_definitions(-DDEBUG)
-#else()
-#    add_definitions(-DNDEBUG)
-#endif()
+else()
+    add_definitions(-DNDEBUG)
+endif()
 
 if(DEBUG_EXTERNAL)
   add_definitions(-D_DEBUG)
