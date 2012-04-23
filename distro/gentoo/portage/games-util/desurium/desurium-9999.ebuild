@@ -15,7 +15,7 @@ HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="builtin-curl builtin-tinyxml debug"
+IUSE="32bit builtin-curl builtin-tinyxml debug"
 
 DEPEND="
 	app-arch/bzip2
@@ -44,6 +44,9 @@ DEPEND="
 		net-dns/c-ares
 	)
 	>=sys-devel/gcc-4.5
+	32bit? (
+		sys-devel/gcc[multilib]
+	)
 	sys-libs/zlib
 	virtual/jpeg
 	>=x11-libs/gtk+-2.24
@@ -66,6 +69,7 @@ src_configure() {
 	mycmakeargs=(
 		$(cmake-utils_use_with builtin-curl ARES)
 		$(cmake-utils_use debug DEBUG)
+		$(cmake-utils_use 32bit 32BIT_SUPPORT)
 		-DBUILD_CEF=TRUE
 		-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}/${PN}
 	)
@@ -80,6 +84,9 @@ src_install() {
 	cmake-utils_src_install
 
 	dogamesbin ${FILESDIR}/launch-desura.sh
+	if use 32bit ; then
+		dogamesbin ${GAMES_PREFIX}/${PN}/desura_bittest
+	fi
 	doicon ${FILESDIR}/desura.png
 	make_desktop_entry "launch-desura.sh" "Desurium" "desura"
 
