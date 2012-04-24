@@ -18,8 +18,8 @@ add_definitions(-D_WINDOWS
 				-D_AFXDLL)
 add_linker_flags(/NOD:LIBCMT /FORCE)
 				
-add_executable(Desura ${Sources} ${SERVICE_PIPE_IPCUPDATEMAIN})
-target_link_libraries(Desura
+add_executable(desura ${Sources} ${SERVICE_PIPE_IPCUPDATEMAIN})
+target_link_libraries(desura
     ipc_pipe
     mdump
 	msi
@@ -36,5 +36,5 @@ target_link_libraries(Desura
 	comctl32 comsuppw odbc32 Psapi rpcrt4 winmm wintrust wsock32
 )
 
-install(TARGETS Desura
+install(TARGETS desura
         DESTINATION "${BIN_INSTALL_DIR}")
