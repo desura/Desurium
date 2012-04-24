@@ -94,12 +94,9 @@ src_compile() {
 src_install() {
 	cmake-utils_src_install
 
-	dogamesbin ${FILESDIR}/launch-desura.sh
-	if use 32bit ; then
-		dogamesbin ${GAMES_PREFIX}/${PN}/desura_bittest
-	fi
+	dosym ${GAMES_PREFIX}/${PN}/run.sh ${GAMES_BINDIR}/desura.sh
 	doicon ${FILESDIR}/desura.png
-	make_desktop_entry "launch-desura.sh" "Desurium" "desura"
+	make_desktop_entry "desura.sh" "Desurium" "desura"
 
 	prepgamesdirs
 }
