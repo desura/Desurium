@@ -32,13 +32,13 @@ ExternalProject_Add(
     BUILD_COMMAND ""
     BUILD_IN_SOURCE 1
     INSTALL_COMMAND ${CMAKE_SCRIPT_PATH}/fix_chromium_path.sh
-    PATCH_COMMAND patch -p1 -N --merge -i ${CMAKE_SOURCE_DIR}/cmake/patches/cef_gcc47_compile_fix.patch
+    PATCH_COMMAND patch -p0 -N --merge -i ${CMAKE_SOURCE_DIR}/cmake/patches/cef_gcc47_compile_fix.patch
 )
 
 ExternalProject_Add_Step(
     chromium
     glib-2-32-patch
-    COMMAND patch -p1 -N --merge -i ${CMAKE_SOURCE_DIR}/cmake/patches/cef_glib_2_32_compile.patch
+    COMMAND patch -p0 -N --merge -i ${CMAKE_SOURCE_DIR}/cmake/patches/cef_glib_2_32_compile.patch
     DEPENDEES download
     DEPENDERS patch
     WORKING_DIRECTORY <SOURCE_DIR>
