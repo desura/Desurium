@@ -28,7 +28,7 @@ else()
   ExternalProject_Add_Step(
     breakpad
     patch-bug-158
-    COMMAND patch -p0 -N --merge -i ${CMAKE_PATCH_DIR}/bug-158.patch
+    COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_PATCH_DIR}/bug-158.patch
     WORKING_DIRECTORY <SOURCE_DIR>
     DEPENDEES download
     DEPENDERS configure
