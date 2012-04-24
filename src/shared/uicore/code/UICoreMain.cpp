@@ -250,16 +250,6 @@ public:
 		return m_pOldTraits->HasStderr();
 	}
 	
-	virtual void ScheduleForDestroy(wxObject* o)
-	{
-		//m_pOldTraits->ScheduleForDestroy(o);
-	}
-	
-	virtual void RemoveFromPendingDelete(wxObject* o)
-	{
-		//m_pOldTraits->RemoveFromPendingDelete(o);
-	}
-	
 	virtual wxEventLoopBase* CreateEventLoop()
 	{
 		return m_pOldTraits->CreateEventLoop();
