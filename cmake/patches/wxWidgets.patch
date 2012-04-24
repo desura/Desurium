@@ -61,13 +61,12 @@ Index: include/wx/gdiobj.h
 ===================================================================
 --- include/wx/gdiobj.h	(revision 68296)
 +++ include/wx/gdiobj.h	(working copy)
-@@ -47,7 +47,9 @@
+@@ -47,7 +47,8 @@
      {
          // the cast here is safe because the derived classes always create
          // wxGDIRefData objects
 -        return m_refData && static_cast<wxGDIRefData *>(m_refData)->IsOk();
-+
-+		wxGDIRefData* gdiRefData = dynamic_cast<wxGDIRefData*>(m_refData);
++        wxGDIRefData* gdiRefData = dynamic_cast<wxGDIRefData*>(m_refData);
 +        return gdiRefData && gdiRefData->IsOk();
      }
  
@@ -110,15 +109,12 @@ Index: include/wx/popupwin.h
 ===================================================================
 --- include/wx/popupwin.h	(revision 68296)
 +++ include/wx/popupwin.h	(working copy)
-@@ -79,7 +79,27 @@
+@@ -79,7 +79,24 @@
  // when the user clicks mouse outside it or if it loses focus in any other way
  // ----------------------------------------------------------------------------
  
 -class WXDLLIMPEXP_FWD_CORE wxPopupWindowHandler;
-+
-+//class WXDLLIMPEXP_FWD_CORE wxPopupWindowHandler;
 +class WXDLLIMPEXP_FWD_CORE wxPopupTransientWindow;
-+
 +class WXDLLIMPEXP_CORE wxPopupWindowHandler : public wxEvtHandler
 +{
 +public:
@@ -139,7 +135,7 @@ Index: include/wx/popupwin.h
  class WXDLLIMPEXP_FWD_CORE wxPopupFocusHandler;
  
  class WXDLLIMPEXP_CORE wxPopupTransientWindow : public wxPopupWindow
-@@ -135,7 +155,7 @@
+@@ -135,7 +152,7 @@
  #if defined(__WXMSW__) ||(defined(__WXMAC__) && wxOSX_USE_CARBON)
      // Check if the mouse needs to be captured or released: we must release
      // when it's inside our window if we want the embedded controls to work.
@@ -192,24 +188,23 @@ Index: src/msw/dcclient.cpp
 ===================================================================
 --- src/msw/dcclient.cpp	(revision 68296)
 +++ src/msw/dcclient.cpp	(working copy)
-@@ -26,7 +26,10 @@
+@@ -26,6 +26,8 @@
  
  #include "wx/dcclient.h"
  #include "wx/msw/dcclient.h"
 +#include "wx/thread.h"
- 
 +#include <map>
-+
+ 
  #ifndef WX_PRECOMP
      #include "wx/string.h"
-     #include "wx/log.h"
-@@ -65,14 +68,28 @@
+@@ -65,14 +67,28 @@
  // global variables
  // ----------------------------------------------------------------------------
  
 -static PAINTSTRUCT g_paintStruct;
+-
 +#include <map>
- 
++
 +static std::map<int, PAINTSTRUCT> g_paintStruct;
 +
  #ifdef wxHAS_PAINT_DEBUG
@@ -234,7 +229,7 @@ Index: src/msw/dcclient.cpp
  #endif // wxHAS_PAINT_DEBUG
  
  // ===========================================================================
-@@ -204,8 +221,21 @@
+@@ -204,8 +220,21 @@
  
  IMPLEMENT_ABSTRACT_CLASS(wxPaintDCImpl, wxClientDCImpl)
  
@@ -257,7 +252,7 @@ Index: src/msw/dcclient.cpp
  wxPaintDCImpl::wxPaintDCImpl( wxDC *owner ) :
     wxClientDCImpl( owner )
  {
-@@ -217,7 +247,7 @@
+@@ -217,7 +246,7 @@
      wxCHECK_RET( window, wxT("NULL canvas in wxPaintDCImpl ctor") );
  
  #ifdef wxHAS_PAINT_DEBUG
@@ -266,7 +261,7 @@ Index: src/msw/dcclient.cpp
      {
          wxFAIL_MSG( wxT("wxPaintDCImpl may be created only in EVT_PAINT handler!") );
  
-@@ -242,9 +272,9 @@
+@@ -242,9 +271,9 @@
      }
      else // not in cache, create a new one
      {
@@ -278,7 +273,7 @@ Index: src/msw/dcclient.cpp
      }
  
      // Note: at this point m_hDC can be NULL under MicroWindows, when dragging.
-@@ -272,14 +302,14 @@
+@@ -272,14 +301,14 @@
  
          if ( --info->count == 0 )
          {
@@ -297,7 +292,7 @@ Index: src/msw/dcclient.cpp
          }
          //else: cached DC entry is still in use
  
-@@ -291,10 +321,10 @@
+@@ -291,10 +320,10 @@
  wxPaintDCInfo *wxPaintDCImpl::FindInCache(size_t *index) const
  {
      wxPaintDCInfo *info = NULL;
@@ -310,7 +305,7 @@ Index: src/msw/dcclient.cpp
          if ( info1->hwnd == m_window->GetHWND() )
          {
              info = info1;
-@@ -310,10 +340,10 @@
+@@ -310,10 +339,10 @@
  // find the entry for this DC in the cache (keyed by the window)
  WXHDC wxPaintDCImpl::FindDCInCache(wxWindow* win)
  {
@@ -323,7 +318,7 @@ Index: src/msw/dcclient.cpp
          if ( info->hwnd == win->GetHWND() )
          {
              return info->hdc;
-@@ -363,7 +393,7 @@
+@@ -363,7 +392,7 @@
          else // not in cache, create a new one
          {
                  m_hDC = dc;
@@ -332,7 +327,7 @@ Index: src/msw/dcclient.cpp
                  m_saveState = SaveDC((HDC) dc);
          }
  }
-@@ -378,12 +408,12 @@
+@@ -378,12 +407,12 @@
          if ( --info->count == 0 )
          {
                  RestoreDC((HDC) m_hDC, m_saveState);
@@ -352,16 +347,12 @@ Index: src/msw/font.cpp
 ===================================================================
 --- src/msw/font.cpp	(revision 68296)
 +++ src/msw/font.cpp	(working copy)
-@@ -535,6 +535,12 @@
+@@ -535,6 +535,8 @@
      // versions by passing a negative value explicitly itself.
      lf.lfHeight = -abs(pixelSize.GetHeight());
      lf.lfWidth = pixelSize.GetWidth();
-+
-+//DESURA
 +	if (pixelSize.GetHeight() < 0)
 +		lf.lfHeight = pixelSize.GetHeight()*-1;
-+//DESURA
-+
  }
  
  void wxNativeFontInfo::SetStyle(wxFontStyle style)
