@@ -164,10 +164,10 @@ bool readFile(const char* file, char *buff, size_t size)
 
 
 
-class WorkingDir
+class ExeDir
 {
 public:
-	WorkingDir()
+	ExeDir()
 	{
 		char result[PATH_MAX] = {0};
 		ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
@@ -242,7 +242,7 @@ bool is64OS()
 
 std::wstring getAppPath(std::wstring extra)
 {
-	WorkingDir dir;
+	ExeDir dir;
 
 	gcWString wresult(dir.path);
 
