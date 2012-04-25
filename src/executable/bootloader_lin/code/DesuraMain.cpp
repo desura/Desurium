@@ -297,12 +297,6 @@ bool MainApp::testDeps()
 	}
 
 	dlclose(gtkHandle);
-	
-	if (!rootTest())
-		return false;
-
-	if (!permTest())
-		return false;
 
 	if (!utf8Test())
 		return false;
@@ -460,30 +454,6 @@ void MainApp::setUser(const char* user)
 void MainApp::setCrashSettings(const char* user, bool upload)
 {
 	g_pMainApp->setUser(user);
-}
-
-bool MainApp::rootTest()
-{
-	if (getuid() == 0)
-		ShowHelpDialog(PRODUCT_NAME " is not designed to run as root. Suggestion is to restart under a normal user with read/write permissions in the root folder.", NULL, "--warning");
-	
-	return true;
-}
-
-bool MainApp::permTest()
-{
-	FILE* fh = fopen("permtest", "w");
-	
-	if (!fh)
-	{
-		ShowHelpDialog(PRODUCT_NAME " needs to be able to write to the root folder. Please fix the file permissions.", NULL, "--error");
-		return false;
-	}
-	
-	fclose(fh);
-	remove("permtest");
-	
-	return true;
 }
 
 bool MainApp::utf8Test()
