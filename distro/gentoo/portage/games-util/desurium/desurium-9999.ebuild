@@ -94,9 +94,10 @@ src_compile() {
 src_install() {
 	cmake-utils_src_install
 
-	dosym ${GAMES_PREFIX}/${PN}/run.sh ${GAMES_BINDIR}/desura.sh
-	doicon ${FILESDIR}/desura.png
-	make_desktop_entry "desura.sh" "Desurium" "desura"
+	dosym ${GAMES_PREFIX}/${PN}/run.sh ${GAMES_BINDIR}/${PN}.sh
+	
+	doicon "${FILESDIR}/${PN}.png" || die
+	make_desktop_entry "${PN}.sh" "Desurium"
 
 	prepgamesdirs
 }
