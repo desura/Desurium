@@ -1,0 +1,14 @@
+<pkgmetadata>
+  <herd>games</herd>
+  <maintainer>
+    <name>Karol Herbst</name>
+  </maintainer>
+  <longdescription lang="en">
+    Desura is a gaming client that allows users to one click download and install games and game modification.
+    For more information, visit http://www.moddb.com/groups/desura/forum/thread/open-sourcing-desura
+  </longdescription>
+  <use>
+    <flag name="32bit">add support for 32bit games in desurium</flag>
+    <flag name="builtin-curl">adds a builtin curl with c-ares support</flag>
+  </use>
+</pkgmetadata>
