@@ -13,6 +13,7 @@ endif()
 
 add_library(sqlite STATIC ${Sources})
 target_link_libraries(sqlite
+  pthread
 )
 
 set(SQLITE_LIBRARIES sqlite PARENT_SCOPE)
