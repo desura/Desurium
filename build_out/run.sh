@@ -7,4 +7,4 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 export PATH="$DIR:$PATH"
 export LD_LIBRARY_PATH="$DIR/lib"
-desura
+desura $@

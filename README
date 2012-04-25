@@ -25,18 +25,20 @@ c-ares (for ares support in curl)
 cmake
 gtk2
 OpenSSL
-tinyxml
-v8
+anything chromium and v8 requires
 
 Optional dependencies (will be built by cmake if not existing):
 bzip2
 curl (while building without ares support)
 sqlite
-
-cef is needed from official distribution see #5 and #107
-Just copy required libs to install/lib
+tinyxml
+v8
 
 Finally run Desura using ./run_desura.sh
+
+If you want 32bit support, abort building it and go to the 'build' folder, and
+edit the CMake cache as to enable the 32BIT_SUPPORT flag.
+(You can use ccmake or cmake-gui for this).
 
 Build Desura on Windows
 =====================
@@ -57,8 +59,3 @@ Download and install:
 Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a full build environment)
 run ./build_desura.bat
 wait
-
-Getting Cef Libraries on Linux
-=====================
-
-Run getceflibs.sh after building Desura. Make sure you don't disable building the tools.

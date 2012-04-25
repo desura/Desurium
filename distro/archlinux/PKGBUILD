@@ -2,7 +2,7 @@
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20120421
+pkgver=20120424
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -13,14 +13,9 @@ depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'curl' 'c-ares' 'libnotify' 'nss' 'libgnome-keyring' 'bison'
          'cups' 'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
          'gconf' 'xdg-user-dirs' 'v8' 'flac' 'libpng' 'speex' 'zlib'
-         'xdg-utils' 'libwebp' 'libevent' 'libxslt')
+         'xdg-utils' 'libwebp' 'libevent' 'libxslt' 'yasm')
 provides=('desura')
 conflicts=('desura')
-install=desurium-git.install
-source=('run-desura.sh'
-        'desurium-git.install')
-sha1sums=('2b42eaf7ce9ca41fa3c340c2b2ea147806025b8b'
-          '5bc0f47b75bb328b2bb3a735a55558edce75f741')
 
 _gitroot=git://github.com/lodle/Desurium.git
 _gitname=Desurium
@@ -51,7 +46,7 @@ build() {
   fi
   cd build
   msg "Running cmake..."
-  cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/opt/desura -LD_LIBRARY_PATH=/opt/desura/lib ..
+  cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/usr/share/desurium ..
   msg "Running make..."
   make
 }
@@ -62,14 +57,21 @@ package() {
   msg "Compiling into pkgdir this time..."
   make DESTDIR="$pkgdir/" install
 
-  cd ../../../
+  cd $srcdir
 
-  install -Dm 755 ./run-desura.sh ${pkgdir}/usr/bin/desura
-  gendesk PKGBUILD
-  cp ${srcdir}/${_gitname}/src/branding_desurium/data/desura_lin.png ./desurium-git.png
-  sed -i -e 's/Icon=desurium-git.png/Icon=Desura.png/' -e 's/Exec=desurium-git/Exec=desura/' desurium-git.desktop
-  mv desurium-git.desktop Desura.desktop
-  mv desurium-git.png Desura.png
+  mkdir -p ${pkgdir}/usr/bin
+  ln -sT ${pkgdir}/usr/share/desurium/run.sh ${pkgdir}/usr/bin/desurium
+  gendesk ../PKGBUILD
+  cp ${srcdir}/${_gitname}/src/branding_desurium/data/desura_lin.png ./desurium.png
+  sed -i -e 's/Icon=desurium-git.png/Icon=desurium/' \
+    -e 's/Exec=desurium-git/Exec=desurium/' \
+    -e 's/Name=Desurium-git/Name=Desurium/' ${pkgname}.desktop
+  
+  install -m644 -D \
+    desurium.png \
+    ${pkgdir}/usr/share/icons/hicolor/256x256/apps/desurium.png
+
+  desktop-file-install -m 644 --dir ${pkgdir}/usr/share/applications/ ${pkgname}.desktop
 
   msg "Compiling done"
 
