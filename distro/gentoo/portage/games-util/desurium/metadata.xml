@@ -10,5 +10,6 @@
   <use>
     <flag name="32bit">add support for 32bit games in desurium</flag>
     <flag name="builtin-curl">adds a builtin curl with c-ares support</flag>
+    <flag name="game-deps">install known dependencies of games in desura</flag>
   </use>
 </pkgmetadata>
