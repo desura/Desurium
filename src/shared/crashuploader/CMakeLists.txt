@@ -14,13 +14,13 @@ add_library(crashuploader SHARED ${Sources})
 target_link_libraries(crashuploader
     util
     util_fs
-	util_web
-	${Boost_LIBRARIES}
+    util_web
+    ${Boost_LIBRARIES}
     ${CURL_LIBRARIES}
     ${GTK2_LIBRARIES}
     ${OPENSSL_LIBRARIES}
     ${TINYXML_LIBRARIES}
-	${windows_libs}
+    ${windows_libs}
 )
 
 install(TARGETS crashuploader
