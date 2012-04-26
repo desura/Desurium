@@ -11,7 +11,7 @@ if(WIN32)
   add_definitions(/D_LIB /DSQLITE_THREADSAFE)
 else()
   set(LINUX_LIBRARIES pthread)
-enfid()
+endif()
 
 add_library(sqlite STATIC ${Sources})
 target_link_libraries(sqlite
