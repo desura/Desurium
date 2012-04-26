@@ -9,10 +9,13 @@ file(GLOB Sources ./code/*.c ./include/*.h)
 
 if(WIN32)
   add_definitions(/D_LIB /DSQLITE_THREADSAFE)
-endif()
+else()
+  set(LINUX_LIBRARIES pthread)
+enfid()
 
 add_library(sqlite STATIC ${Sources})
 target_link_libraries(sqlite
+  ${LINUX_LIBRARIES}
 )
 
 set(SQLITE_LIBRARIES sqlite PARENT_SCOPE)
