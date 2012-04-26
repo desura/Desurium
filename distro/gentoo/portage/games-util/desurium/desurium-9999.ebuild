@@ -15,9 +15,28 @@ HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="32bit builtin-curl builtin-tinyxml debug"
+IUSE="+32bit builtin-curl builtin-tinyxml debug +games-deps"
+
+# some deps needed by some games
+GAMESDEPEND="
+	games-deps? (
+		dev-lang/mono
+		gnome-base/libglade
+		media-libs/libogg
+		media-libs/libpng:1.2
+		media-libs/libsdl
+		media-libs/libtheora
+		media-libs/libvorbis
+		media-libs/openal
+		media-libs/sdl-image
+		media-libs/sdl-ttf
+		virtual/ffmpeg
+		>=virtual/jre-1.6
+	)
+"
 
 DEPEND="
+	${GAMESDEPEND}
 	app-arch/bzip2
 	dev-db/sqlite
 	dev-lang/yasm
