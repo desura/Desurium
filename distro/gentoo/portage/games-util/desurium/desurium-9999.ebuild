@@ -15,7 +15,7 @@ HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+32bit builtin-curl builtin-tinyxml debug +games-deps"
+IUSE="+32bit +builtin-curl builtin-tinyxml debug +games-deps"
 
 # some deps needed by some games
 GAMESDEPEND="
