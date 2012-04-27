@@ -26,3 +26,14 @@ endif()
 ###############################################################################
 # windows-only options
 ###############################################################################
+
+
+###############################################################################
+# check set options, print warnings, what ever
+###############################################################################
+
+if(NOT WITH_ARES)
+  message("WW building Desura without c-ares is not supported.")
+  message("WW Make sure, that your system installed cURL has ares support.")
+  message("WW Ignore this if you are aware of what you do. See #189 for further information.")
+endif()
