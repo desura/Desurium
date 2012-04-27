@@ -52,6 +52,7 @@ UserIPCPipeClient::~UserIPCPipeClient()
 	{
 	}
 #else
+	IPC::PipeClient::disconnect(false);
 	if (m_pServer)
 	{
 		m_pServer->destroy();

@@ -164,6 +164,8 @@ std::wstring getCachePath(std::wstring extra)
 		std::string cachePath = UTIL::STRING::toStr(getCurrentDir(L"cache"));
 	#endif
 	
+	extra.insert(0, L"/");
+	
 	return UTIL::STRING::toWStr(cachePath) + extra;
 #else
 	#error NOT IMPLEMENTED
@@ -182,6 +184,8 @@ std::wstring getAppInstallPath(std::wstring extra)
 	#elif defined(USE_PORTABLE_DIR)
 		std::string installPath = UTIL::STRING::toStr(getCurrentDir(L"games"));
 	#endif
+	
+	extra.insert(0, L"/");
 	
 	return UTIL::STRING::toWStr(installPath) + extra;
 #else
@@ -202,7 +206,9 @@ std::wstring getAppDataPath(std::wstring extra)
 		std::string configPath = UTIL::STRING::toStr(getCurrentDir(L"config"));
 	#endif
 	
-	return UTIL::STRING::toWStr(configPath) + L"/" + extra;
+	extra.insert(0, L"/");
+	
+	return UTIL::STRING::toWStr(configPath) + extra;
 #else
 	wchar_t path[MAX_PATH];
 	getSystemPath(CSIDL_COMMON_APPDATA, path);
