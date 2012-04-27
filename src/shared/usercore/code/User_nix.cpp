@@ -48,7 +48,7 @@ void User::saveLoginInfo()
 	buff[0]=username.size();
 	buff[1]=passhash.size();
 
-	gcString path = UTIL::OS::getAppDataPath(L"/autologin");
+	gcString path = UTIL::OS::getAppDataPath(L"autologin");
 	UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(path.c_str()));
 
 	try
@@ -73,7 +73,7 @@ void User::getLoginInfo(char** username, char** passhash)
 {
 	gcString oldPath = UTIL::LIN::expandPath("~/.desura_autologin");
 	gcString oldPath2 = UTIL::LIN::expandPath("~/.desura/.autologin");
-	gcString path = UTIL::OS::getAppDataPath(L"/autologin");
+	gcString path = UTIL::OS::getAppDataPath(L"autologin");
 	
 	if (UTIL::FS::isValidFile(oldPath.c_str()))
 	{

@@ -41,7 +41,7 @@ TiXmlNode* WebCoreClass::postToServer(std::string url, std::string resource, Pos
 		{
 			hh->setUserAgent(getUserAgent());
 			hh->setCertFile(
-				UTIL::STRING::toStr(UTIL::OS::getDataPath(L"/ca-bundle.crt")).c_str());
+				UTIL::STRING::toStr(UTIL::OS::getDataPath(L"ca-bundle.crt")).c_str());
 		}
 		else
 		{

@@ -92,7 +92,7 @@ std::vector<MapElementI*> DesuraJSSettings::getThemes()
 
 	for (size_t x=0; x<m_vThemes.size(); x++)
 	{
-		UTIL::FS::Path file(UTIL::OS::getDataPath(L"/themes"), L"", false);
+		UTIL::FS::Path file(UTIL::OS::getDataPath(L"themes"), L"", false);
 		UTIL::FS::Path themePath = UTIL::FS::PathWithFile(m_vThemes[x]->getPreview());
 		
 		file += themePath;
@@ -128,7 +128,7 @@ std::vector<MapElementI*> DesuraJSSettings::getLanguages()
 	std::vector<std::string> filter;
 	filter.push_back("xml");
 
-	UTIL::FS::getAllFiles(UTIL::FS::Path(UTIL::OS::getDataPath(L"/language"),
+	UTIL::FS::getAllFiles(UTIL::FS::Path(UTIL::OS::getDataPath(L"language"),
 		L"", false), fileList, &filter);
 	
 	std::map<gcString, uint32> mSeenBefore;

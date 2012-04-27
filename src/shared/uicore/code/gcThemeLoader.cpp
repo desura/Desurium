@@ -42,7 +42,7 @@ bool ThemeLoaderScheme::processRequest(ChromiumDLL::SchemeRequestI* request, boo
 	UTIL::FS::Path path(themeFolder, url, false);
 
 	if (!UTIL::FS::isValidFile(path))
-		path = UTIL::FS::Path(UTIL::OS::getDataPath(L"/themes/default"),
+		path = UTIL::FS::Path(UTIL::OS::getDataPath(L"themes/default"),
 			UTIL::STRING::toWStr(url), false);
 
 	if (!UTIL::FS::isValidFile(path))

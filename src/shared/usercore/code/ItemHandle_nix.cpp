@@ -205,9 +205,9 @@ void ItemHandle::installLaunchScripts()
 	try
 	{
 		UTIL::FS::readWholeFile(UTIL::STRING::toStr(
-			UTIL::OS::getDataPath(L"/scripts/launch_bin_template.sh")), &scriptBin);
+			UTIL::OS::getDataPath(L"scripts/launch_bin_template.sh")), &scriptBin);
 		UTIL::FS::readWholeFile(UTIL::STRING::toStr(
-			UTIL::OS::getDataPath(L"/scripts/launch_xdg_template.sh")), &scriptXdg);
+			UTIL::OS::getDataPath(L"scripts/launch_xdg_template.sh")), &scriptXdg);
 	}
 	catch (gcException &e)
 	{

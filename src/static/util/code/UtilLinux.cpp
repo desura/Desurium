@@ -249,6 +249,7 @@ std::wstring getAppPath(std::wstring extra)
 	if (extra.size() > 0)
 	{
 		wresult += DIRS_WSTR;
+		wresult += L"/";
 		wresult += extra;
 	}
 
@@ -686,6 +687,7 @@ std::wstring getDesktopPath(std::wstring extra)
 	std::wstring desktop((wchar_t*) getCmdStdout("xdg-user-dir DESKTOP", 1).c_str());
 	if(!desktop.empty())
 	{
+		desktop += L"/";
 		desktop += extra;
 	}
 	return desktop;
@@ -695,7 +697,10 @@ std::wstring getApplicationsPath(std::wstring extra)
 {
 	std::wstring data_home(UTIL::STRING::toWStr(getenv("XDG_DATA_HOME")));
 
-	data_home += L"/applications/" + extra;
+	data_home += L"/applications/";
+	data_home += L"/";
+	data_home += extra;
+
 	return data_home;
 }
 

@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 inline const char* LANG_DEF(void)
 {
-	std::wstring path = UTIL::OS::getDataPath(L"/language/english.xml");
+	std::wstring path = UTIL::OS::getDataPath(L"language/english.xml");
 	
 	return UTIL::STRING::toStr(path).c_str();
 }
