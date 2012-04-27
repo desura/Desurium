@@ -208,7 +208,7 @@ std::wstring getAppDataPath(std::wstring extra)
 	
 	extra.insert(0, L"/");
 	
-	return UTIL::STRING::toWStr(configPath) + L"/" + extra;
+	return UTIL::STRING::toWStr(configPath) + extra;
 #else
 	wchar_t path[MAX_PATH];
 	getSystemPath(CSIDL_COMMON_APPDATA, path);
