@@ -754,7 +754,7 @@ public:
 		m_pFunct = f;
 		m_pObj = t;
 
-		init(this, &GuiExtraDelegate::callBack);
+		this->init(this, &GuiExtraDelegate::callBack);
 	}
 
 	void callBack(TArg& a)
@@ -835,7 +835,7 @@ public:
 		m_pFunct = f;
 		m_pObj = t;
 
-		init(this, &GuiExtraDelegateV::callBack);
+		this->init(this, &GuiExtraDelegateV::callBack);
 	}
 
 	void callBack()

@@ -89,10 +89,10 @@ private:
 
 	void initEDW()
 	{
-		Bind( wxEVT_LEFT_DCLICK, &wxEventDelegateWrapper<T>::onMouseEvent, this);
-		Bind( wxEVT_MOTION, &wxEventDelegateWrapper<T>::onMouseEvent, this);
-		Bind( wxEVT_LEFT_DOWN, &wxEventDelegateWrapper<T>::onMouseEvent, this);
-		Bind( wxEVT_LEFT_UP, &wxEventDelegateWrapper<T>::onMouseEvent, this);
+		this->Bind( wxEVT_LEFT_DCLICK, &wxEventDelegateWrapper<T>::onMouseEvent, this);
+		this->Bind( wxEVT_MOTION, &wxEventDelegateWrapper<T>::onMouseEvent, this);
+		this->Bind( wxEVT_LEFT_DOWN, &wxEventDelegateWrapper<T>::onMouseEvent, this);
+		this->Bind( wxEVT_LEFT_UP, &wxEventDelegateWrapper<T>::onMouseEvent, this);
 	}
 };
 
