@@ -2,7 +2,7 @@
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20120424
+pkgver=20120428
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -41,13 +41,20 @@ build() {
   msg "GIT checkout done or server timeout"
   msg "Starting build..."
 
+  MULTILIB=0
+  installed="$(pacman -Qs binutils-multilib)"
+
+  if [ "$installed" != "" ]; then
+    MULTILIB=1
+  fi
+
   cd "$srcdir/$_gitname"
   if [ ! -d build ] ; then
     mkdir build
   fi
   cd build
   msg "Running cmake..."
-  cmake -D32BIT_SUPPORT=0 -DCMAKE_INSTALL_PREFIX=/usr/share/desurium ..
+  cmake -D32BIT_SUPPORT=$MULTILIB -DCMAKE_INSTALL_PREFIX=/usr/share/desurium ..
   msg "Running make..."
   make
 }
@@ -60,22 +67,25 @@ package() {
 
   cd $srcdir
 
-  mkdir -p ${pkgdir}/usr/bin
-  ln -sT ${pkgdir}/usr/share/desurium/run.sh ${pkgdir}/usr/bin/desurium
-  gendesk ../PKGBUILD
-  cp ${srcdir}/${_gitname}/src/branding_desurium/data/desura_lin.png ./desurium.png
-  sed -i -e 's/Icon=desurium-git.png/Icon=desurium/' \
-    -e 's/Exec=desurium-git/Exec=desurium/' \
-    -e 's/Name=Desurium-git/Name=Desurium/' ${pkgname}.desktop
-  
-  install -m644 -D \
-    desurium.png \
-    ${pkgdir}/usr/share/icons/hicolor/256x256/apps/desurium.png
+  gendesk -n ../PKGBUILD
+  sed -i \
+    -e 's/Icon=.*$/Icon=desurium/' \
+    -e 's/Exec=.*$/Exec=desurium/' \
+    -e 's/Categories=.*$/Categories=Game;/' \
+    -e 's/Name=.*$/Name=Desurium/' ${pkgname}.desktop
 
-  desktop-file-install -m 644 --dir ${pkgdir}/usr/share/applications/ ${pkgname}.desktop
+  install -m644 -D \
+    ${srcdir}/${_gitname}/src/branding_desurium/data/desura_lin.png \
+    ${pkgdir}/usr/share/pixmaps/desurium.png
+
+  install -m644 -D \
+    ${pkgname}.desktop \
+    ${pkgdir}/usr/share/applications/desurium.desktop
 
   msg "Compiling done"
-
+  
+  mkdir -p ${pkgdir}/usr/bin
+  ln -sf /usr/share/desurium/run.sh ${pkgdir}/usr/bin/desurium
 }
 
 # vim:set ts=2 sw=2 et:

@@ -1,5 +1,9 @@
 set(DATA ${CMAKE_CURRENT_SOURCE_DIR}/data)
 
+###############################################################################
+# /
+###############################################################################
+
 install(DIRECTORY 
                   ${DATA}/bindings
                   ${DATA}/language
@@ -17,11 +21,14 @@ install(FILES ${DATA}/cef_data_lin.pak
         RENAME cef_data.pak
 )
 
+###############################################################################
+# /themes/default
+###############################################################################
+
 set(DT ${DATA}/themes/default)
 
 install(DIRECTORY ${DT}/css
                   ${DT}/html
-                  ${DT}/js
         DESTINATION ${DATA_INSTALL_DIR}/themes/default
 )
 
@@ -30,11 +37,41 @@ install(FILES ${DT}/preview.jpg
         DESTINATION ${DATA_INSTALL_DIR}/themes/default
 )
 
+###############################################################################
+# /themes/default/js
+###############################################################################
+
+set(JS ${DT}/js)
+file(GLOB JS_SCRIPTS ${JS}/*.js)
+
+list(REMOVE_ITEM JS_SCRIPTS ${JS}/functions_lin.js
+                            ${JS}/functions_win.js
+                            ${JS}/settings_lin.js
+                            ${JS}/settings_win.js)
+install(FILES ${JS_SCRIPTS}
+        DESTINATION ${DATA_INSTALL_DIR}/themes/default/js)
+
+if(WIN32)
+  install(FILES ${JS}/functions_win.js DESTINATION ${DATA_INSTALL_DIR}/themes/default/js RENAME functions.js)
+  install(FILES ${JS}/settings_win.js DESTINATION ${DATA_INSTALL_DIR}/themes/default/js RENAME settings.js)
+else()
+  install(FILES ${JS}/functions_lin.js DESTINATION ${DATA_INSTALL_DIR}/themes/default/js RENAME functions.js)
+  install(FILES ${JS}/settings_lin.js DESTINATION ${DATA_INSTALL_DIR}/themes/default/js RENAME settings.js)
+endif()
+
+###############################################################################
+# /themes/default/images
+###############################################################################
+
 set(IMG ${DT}/images)
 
 install(DIRECTORY ${IMG}/html
         DESTINATION ${DATA_INSTALL_DIR}/themes/default/images
 )
+
+###############################################################################
+# /themes/default/images/app
+###############################################################################
 
 set(APP ${IMG}/app)
 file(GLOB IMAGES ${APP}/*.png)
@@ -49,3 +86,4 @@ install(FILES run.sh
                     GROUP_READ             GROUP_EXECUTE
                     WORLD_READ             WORLD_EXECUTE
 )
+
