@@ -15,7 +15,7 @@ HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+32bit builtin-curl builtin-tinyxml debug +games-deps"
+IUSE="+32bit +builtin-curl builtin-tinyxml debug +games-deps"
 
 # some deps needed by some games
 GAMESDEPEND="
@@ -96,6 +96,14 @@ if [[ ${EAPI} != 4 ]]; then
 fi
 
 src_configure() {
+
+	# check if curl has ares enabled
+	if use !builtin-curl; then
+		ewarn "Using curl without ares USE flag is not supported by desura."
+		ewarn "It may work for your system configuration or not."
+		ewarn "See https://github.com/lodle/Desurium/issues/189 for further information"
+	fi
+
 	mycmakeargs=(
 		$(cmake-utils_use_with builtin-curl ARES)
 		$(cmake-utils_use debug DEBUG)
@@ -114,7 +122,7 @@ src_install() {
 	cmake-utils_src_install
 
 	dosym ${GAMES_PREFIX}/${PN}/run.sh ${GAMES_BINDIR}/${PN}.sh
-	
+
 	doicon "${FILESDIR}/${PN}.png" || die
 	make_desktop_entry "${PN}.sh" "Desurium"
 

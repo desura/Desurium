@@ -32,16 +32,6 @@ ExternalProject_Add(
     BUILD_COMMAND ""
     BUILD_IN_SOURCE 1
     INSTALL_COMMAND ${CMAKE_SCRIPT_PATH}/fix_chromium_path.sh
-    PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/cef_gcc47_compile_fix.patch
-)
-
-ExternalProject_Add_Step(
-    chromium
-    glib-2-32-patch
-    COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/cef_glib_2_32_compile.patch
-    DEPENDEES download
-    DEPENDERS patch
-    WORKING_DIRECTORY <SOURCE_DIR>
 )
 
 ExternalProject_Get_Property(
@@ -66,6 +56,23 @@ ExternalProject_Add_Step(
     DEPENDERS download
     WORKING_DIRECTORY ${source_dir}/src
 )
+
+ExternalProject_Add_Step(
+    cef
+    glib-2-32-patch
+    COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/cef_glib_2_32_compile.patch
+    DEPENDERS patch
+    WORKING_DIRECTORY ${source_dir}/src
+)
+
+ExternalProject_Add_Step(
+    cef
+    gcc-4-7-patch
+    COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/cef_gcc47_compile_fix.patch
+    DEPENDERS patch
+    WORKING_DIRECTORY ${source_dir}/src
+)
+
 
 ExternalProject_Add_Step(
     cef
