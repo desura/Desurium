@@ -101,7 +101,7 @@ protected:
 			m_pTextCtrl->appendText(szString.c_str().AsWChar());
 	}
 
-	wxSUPPRESS_DOLOGSTRING_HIDE_WARNING();
+	void wxSUPPRESS_DOLOGSTRING_HIDE_WARNING();
 
 private:
 	// the control we use
