@@ -548,16 +548,16 @@ bool launchProcess(const char* exe, const std::map<std::string, std::string> &in
 	std::string e = path.getFullPath();	
 	
 	if (info.find("wd") != info.end())
-		workingDir = expandPath( info["wd"].c_str() );
+		workingDir = expandPath( (*info.find("wd")).second.c_str() );
 	
 	if (workingDir == "")
 		workingDir = path.getFolderPath();
 
 	if (info.find("lp") != info.end())
-		libPath = info["lp"].c_str();	
+		libPath = (*info.find("lp")).second.c_str();
 	
 	if (info.find("cla") != info.end())
-		args = info["cla"].c_str();		
+		args = (*info.find("cla")).second.c_str();
 	
 	
 	gcString orgLibPath = getenv("OLD_LIB_PATH");
