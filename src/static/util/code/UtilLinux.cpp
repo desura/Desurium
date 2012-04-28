@@ -249,7 +249,6 @@ std::wstring getAppPath(std::wstring extra)
 	if (extra.size() > 0)
 	{
 		wresult += DIRS_WSTR;
-		wresult += L"/";
 		wresult += extra;
 	}
 
