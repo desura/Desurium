@@ -110,24 +110,24 @@ public:
 	wxGuiDelegateImplementation(wxWindow *parent)
 		: T(parent)
 	{
-		Bind(wxEVT_GUIDELEGATE, &wxGuiDelegateImplementation::onEventCallBack, this);
+		this->Bind(wxEVT_GUIDELEGATE, &wxGuiDelegateImplementation::onEventCallBack, this);
 	}
 
 	wxGuiDelegateImplementation(wxWindow *parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
 		: T(parent, id, pos, size, style)
 	{
-		Bind(wxEVT_GUIDELEGATE, &wxGuiDelegateImplementation::onEventCallBack, this);
+		this->Bind(wxEVT_GUIDELEGATE, &wxGuiDelegateImplementation::onEventCallBack, this);
 	}
 
 	wxGuiDelegateImplementation(wxWindow *parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style)
 		: T(parent, id, title, pos, size, style)
 	{
-		Bind(wxEVT_GUIDELEGATE, &wxGuiDelegateImplementation::onEventCallBack, this);
+		this->Bind(wxEVT_GUIDELEGATE, &wxGuiDelegateImplementation::onEventCallBack, this);
 	}
 
 	~wxGuiDelegateImplementation()
 	{
-		Unbind(wxEVT_GUIDELEGATE, &wxGuiDelegateImplementation::onEventCallBack, this);
+		this->Unbind(wxEVT_GUIDELEGATE, &wxGuiDelegateImplementation::onEventCallBack, this);
 		cleanUpEvents();
 	}
 
