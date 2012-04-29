@@ -1228,7 +1228,7 @@ public:
 	{
 		if (!szFormat)
 		{
-			assign(gcBaseString<T>());
+			this->assign(gcBaseString<T>());
 			return;
 		}
 
@@ -1248,7 +1248,7 @@ public:
 
 		std::basic_string<T> out;
 		Template::ConvertStdString(temp, out);
-		assign(out);
+		this->assign(out);
 
 		safe_delete(temp);
 	}
@@ -1258,7 +1258,7 @@ public:
 	{
 		if (!szFormat)
 		{
-			assign(gcBaseString<T>());
+			this->assign(gcBaseString<T>());
 			return;
 		}
 
@@ -1277,7 +1277,7 @@ public:
 
 		std::basic_string<T> out;
 		Template::ConvertStdString(temp, out);
-		assign(out);
+		this->assign(out);
 
 		safe_delete(temp);
 	}

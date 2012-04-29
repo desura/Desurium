@@ -91,9 +91,9 @@ protected:
 		if(T::m_widget == NULL)
 			return;
 #endif
-		Bind( wxEVT_SIZE, &gcFlickerFreePaint::onResize, this);
-		Bind( wxEVT_PAINT, &gcFlickerFreePaint::onPaint, this);
-		Bind( wxEVT_ERASE_BACKGROUND, &gcFlickerFreePaint::onPaintBG, this);
+		this->Bind( wxEVT_SIZE, &gcFlickerFreePaint::onResize, this);
+		this->Bind( wxEVT_PAINT, &gcFlickerFreePaint::onPaint, this);
+		this->Bind( wxEVT_ERASE_BACKGROUND, &gcFlickerFreePaint::onPaintBG, this);
 
 		m_PaintBMP = wxBitmap(T::GetSize());
 		m_bValidPaintBMP = false;
