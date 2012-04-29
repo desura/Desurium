@@ -547,17 +547,22 @@ bool launchProcess(const char* exe, const std::map<std::string, std::string> &in
 	std::string args;
 	std::string e = path.getFullPath();	
 	
-	if (info.find("wd") != info.end())
-		workingDir = expandPath( (*info.find("wd")).second.c_str() );
+	typedef const std::map<std::string, std::string>::const_iterator MapIterator;
+
+	MapIterator &wd = info.find("wd");
+	if (wd != info.end())
+		workingDir = expandPath( (*wd).second.c_str() );
 	
 	if (workingDir == "")
 		workingDir = path.getFolderPath();
 
-	if (info.find("lp") != info.end())
-		libPath = (*info.find("lp")).second.c_str();
+	MapIterator &lp = info.find("lp");
+	if (lp != info.end())
+		libPath = (*lp).second.c_str();
 	
-	if (info.find("cla") != info.end())
-		args = (*info.find("cla")).second.c_str();
+	MapIterator &cla = info.find("cla");
+	if (cla != info.end())
+		args = (*cla).second.c_str();
 	
 	
 	gcString orgLibPath = getenv("OLD_LIB_PATH");
