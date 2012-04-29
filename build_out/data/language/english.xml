@@ -73,7 +73,7 @@
 
 		<!-- Main Page -->
 		<str name="#MP_PLAY">Play</str>
-		<str name="#MP_GAMES">Games</str>
+		<str name="#MP_GAMES">Store</str>
 		<str name="#MP_MODS">Mods</str>
 		<str name="#MP_COMMUNITY">Community</str>
 		<str name="#MP_DEVELOPMENT">Development</str>
