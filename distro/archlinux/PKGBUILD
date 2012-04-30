@@ -41,7 +41,7 @@ build() {
   msg "Starting build..."
 
   MULTILIB=0
-  installed="$(pacman -Qs binutils-multilib 2>/dev/null)"
+  installed="$(pacman -Qsq binutils-multilib)"
 
   if [ "$installed" != "" ]; then
     MULTILIB=1
