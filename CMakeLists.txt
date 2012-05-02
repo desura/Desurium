@@ -22,6 +22,15 @@
 #
 # windows-only options:
 #
+# some dev notes:
+#
+#   if you want to port desura to another compiler on UNIX bases systems,
+#   please create a files for compiler flags in:
+#
+#     cmake/platform/unix/compiler/${CMAKE_C_COMPILER_ID}.cmake
+#
+#   Take a look into the other files.
+#
 ###############################################################################
 
 # TODO: silent output for externel dependencies
