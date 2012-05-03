@@ -800,8 +800,10 @@ T Clamp(T val, T minVal, T maxVal)
 #  define __GLIB_H_INSIDE__ 1
 #  include <glib/gmacros.h>
 #  undef __GLIB_H_INSIDE__
-#  undef G_DEPRECATED_FOR
-#  define G_DEPRECATED_FOR(a)
+#  ifdef G_DEPRECATED_FOR
+#    undef G_DEPRECATED_FOR
+#    define G_DEPRECATED_FOR(a)
+#  endif
 #endif
 
 #endif
