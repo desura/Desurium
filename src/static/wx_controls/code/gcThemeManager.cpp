@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "gcThemeManager.h"
 
 
-gcThemeManager::gcThemeManager() : BaseManager(true)
+gcThemeManager::gcThemeManager() : BaseManager<gcImageInfo>(true)
 {
 }
 

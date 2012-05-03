@@ -40,12 +40,23 @@ endif()
 set(GLOBAL_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(COMMON_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/common)
 
-include_directories(
+if(ICC)
+  # on ICC we have to include glib-2 because of some hacks in Common.h
+  include_directories(
     ${GLOBAL_INCLUDE_DIRS}
     ${COMMON_INCLUDE_DIRS}
     ${TINYXML_INCLUDE_DIR}
     ${BIN_INCLUDE_DIR}
-)
+    ${GTK2_INCLUDE_DIRS}
+  )
+else()
+  include_directories(
+    ${GLOBAL_INCLUDE_DIRS}
+    ${COMMON_INCLUDE_DIRS}
+    ${TINYXML_INCLUDE_DIR}
+    ${BIN_INCLUDE_DIR}
+  )
+endif()
 
 ###############################################################################
 # build static libs
