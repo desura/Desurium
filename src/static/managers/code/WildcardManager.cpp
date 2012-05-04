@@ -24,12 +24,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 static Thread::Mutex m_WCMutex;
 
-WildcardManager::WildcardManager() : BaseManager( true )
+WildcardManager::WildcardManager() : BaseManager<WildcardInfo>( true )
 {
 	m_uiDepth = 0;
 }
 
-WildcardManager::WildcardManager(WildcardManager* mng) : BaseManager( true )
+WildcardManager::WildcardManager(WildcardManager* mng) : BaseManager<WildcardInfo>( true )
 {
 	m_uiDepth = 0;
 

@@ -75,7 +75,7 @@ void FromJSObject(std::vector<std::map<gcString, gcString>> &args, JSObjHandle& 
 	}
 }
 
-DesuraJSItemInfo::DesuraJSItemInfo() : DesuraJSBase("item", "native_binding_iteminfo.js")
+DesuraJSItemInfo::DesuraJSItemInfo() : DesuraJSBase<DesuraJSItemInfo>("item", "native_binding_iteminfo.js")
 {
 	REG_SIMPLE_JS_OBJ_FUNCTION( getItemId, DesuraJSItemInfo );
 	REG_SIMPLE_JS_OBJ_FUNCTION( getItemParentId, DesuraJSItemInfo );

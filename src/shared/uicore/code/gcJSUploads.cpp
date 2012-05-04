@@ -40,7 +40,7 @@ void FromJSObject(UserCore::Misc::UploadInfoThreadI* &upload, JSObjHandle& arg)
 
 REGISTER_JSEXTENDER(DesuraJSUploadInfo);
 
-DesuraJSUploadInfo::DesuraJSUploadInfo() : DesuraJSBase("uploads", "native_binding_uploadinfo.js")
+DesuraJSUploadInfo::DesuraJSUploadInfo() : DesuraJSBase<DesuraJSUploadInfo>("uploads", "native_binding_uploadinfo.js")
 {
 	REG_SIMPLE_JS_FUNCTION( getUploadFromId, DesuraJSUploadInfo );
 	REG_SIMPLE_JS_OBJ_FUNCTION( getUploadId, DesuraJSUploadInfo );

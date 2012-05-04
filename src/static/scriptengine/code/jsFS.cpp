@@ -28,7 +28,7 @@ void FromJSObject(UTIL::FS::FileHandle* &jsItem, JSObjHandle& arg)
 		jsItem = NULL;
 }
 
-FileSystemJSBinding::FileSystemJSBinding() : DesuraJSBase("fs", "installer_binding_fs.js")
+FileSystemJSBinding::FileSystemJSBinding() : DesuraJSBase<FileSystemJSBinding>("fs", "installer_binding_fs.js")
 {
 	REG_SIMPLE_JS_FUNCTION( IsValidFile, FileSystemJSBinding );
 	REG_SIMPLE_JS_FUNCTION( IsValidFolder, FileSystemJSBinding );

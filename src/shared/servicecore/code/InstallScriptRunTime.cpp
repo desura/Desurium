@@ -59,7 +59,7 @@ void FromJSObject(ServiceItem* &jsItem, JSObjHandle& arg)
 class ItemExtender : public DesuraJSBase<ItemExtender>
 {
 public:
-	ItemExtender() :  DesuraJSBase("item", "installer_binding_item_service.js")
+	ItemExtender() :  DesuraJSBase<ItemExtender>("item", "installer_binding_item_service.js")
 	{
 		REG_SIMPLE_JS_OBJ_FUNCTION( GetInstallPath, ItemExtender );
 		REG_SIMPLE_JS_FUNCTION( GetSpecialPath, ItemExtender );

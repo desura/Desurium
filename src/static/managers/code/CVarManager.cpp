@@ -59,7 +59,7 @@ void SaveCVars()
 #define COUNT_CVAR "SELECT count(*) FROM sqlite_master WHERE name='cvar';"
 
 
-CVarManager::CVarManager() : BaseManager()
+CVarManager::CVarManager() : BaseManager<CVar>()
 {
 	m_uiUserId = -1;
 
