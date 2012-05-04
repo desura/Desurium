@@ -11,6 +11,7 @@
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
 #   BUILD_CEF       OFF                 build cef
+#   PACKAGE_TYPE    DEB                 Which packages should be created with "make package"
 #
 # unix-only options:
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
