@@ -11,12 +11,26 @@
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
 #   BUILD_CEF       OFF                 build cef
+#   PACKAGE_TYPE    DEB                 Which packages should be created with "make package"
 #
 # unix-only options:
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
 #   WITH_ARES       ON                  build CURL with ares support (c-ares REQUIRED)
+#   DIR_TYPE        SINGLE              how should game data be stored?
+#                                       SINGLE:   in a single dir in $HOME
+#                                       XDG:      like the official xdg specification
+#                                       PORTABLE: in the desura installaion dir
 #
 # windows-only options:
+#
+# some dev notes:
+#
+#   if you want to port desura to another compiler on UNIX bases systems,
+#   please create a files for compiler flags in:
+#
+#     cmake/platform/unix/compiler/${CMAKE_C_COMPILER_ID}.cmake
+#
+#   Take a look into the other files.
 #
 ###############################################################################
 
@@ -54,6 +68,7 @@ include(parsearguments)
 include(CheckCompiler)
 include(SetInstallPaths)
 include(ProcessorCount)
+include(Package)
 
 ###############################################################################
 # find all packages which are needed

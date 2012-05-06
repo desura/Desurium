@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <branding/branding.h>
 
 
-LanguageManager::LanguageManager(const char* defaultLangFile) : BaseManager( true )
+LanguageManager::LanguageManager(const char* defaultLangFile) : BaseManager<LanguageString>( true )
 {
 	if (defaultLangFile)
 		loadFromFile(defaultLangFile);

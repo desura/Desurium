@@ -1,3 +1,11 @@
+Content
+==================
+
+ * Desura
+ * Build Desura on Linux
+ * Build Desura on Windows
+ * Create Packages
+
 Desura
 ===================
 
@@ -59,3 +67,19 @@ Download and install:
 Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a full build environment)
 run ./build_desura.bat
 wait
+
+Create Packages
+=====================
+
+You can simply run the following commands to create packages for installing desura with your package manager:
+
+ 1. mkdir package
+ 2. cd package
+ 3. cmake .. -DPACKAGE_TYPE="{PACKAGE_TYPE}" -DCMAKE_INSTALL_PREFIX="/opt/desura"
+ 4. make package
+
+Supported Values for PACKAGE_TYPE are:
+  * DEB
+  * RPM
+
+You can also mix them like: DEB;RPM

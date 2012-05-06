@@ -12,10 +12,14 @@ if [ $TRY_PATCH_STATUS = "1" ]; then
 		patch -p0 -N -R -i $1
 		echo "=== reapllying patch ==="
 		patch -p0 -N -i $1
+	else
+		echo "=== reverting patch failed, please remove all files from this subproject"
+		exit 1
 	fi
 elif [ $TRY_PATCH_STATUS = "0" ]; then
-	echo "test succeeded. Apply patch"
+	echo "=== test succeeded. Apply patch"
 	patch -p0 -N --merge -i $1
 else
-	echo "patch step failed, please remove all the files from this specific subproject"
+	echo "=== patch step failed, please remove all files from this subproject"
+	exit 1
 fi

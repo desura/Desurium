@@ -37,7 +37,7 @@ void FromJSObject(UserCore::Item::ItemInfoI* &item, JSObjHandle& arg)
 }
 
 
-DesuraJSBinding::DesuraJSBinding() : DesuraJSBase("app", "native_binding.js")
+DesuraJSBinding::DesuraJSBinding() : DesuraJSBase<DesuraJSBinding>("app", "native_binding.js")
 {
 	REGISTER_JS_FUNCTION( getLocalString, DesuraJSBinding );
 
