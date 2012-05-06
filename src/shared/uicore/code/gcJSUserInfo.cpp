@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 REGISTER_JSEXTENDER(DesuraJSUserInfo);
 
-DesuraJSUserInfo::DesuraJSUserInfo() : DesuraJSBase("user", "native_binding_userinfo.js")
+DesuraJSUserInfo::DesuraJSUserInfo() : DesuraJSBase<DesuraJSUserInfo>("user", "native_binding_userinfo.js")
 {
 	REG_SIMPLE_JS_FUNCTION( isUserAdmin, DesuraJSUserInfo );
 	REG_SIMPLE_JS_VOIDFUNCTION( forceUpdatePoll, DesuraJSUserInfo );

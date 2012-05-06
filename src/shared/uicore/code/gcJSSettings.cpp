@@ -36,7 +36,7 @@ void RestartAndSetMCFCache(const char* dir);
 
 REGISTER_JSEXTENDER(DesuraJSSettings);
 
-DesuraJSSettings::DesuraJSSettings() : DesuraJSBase("settings", "native_binding_settings.js")
+DesuraJSSettings::DesuraJSSettings() : DesuraJSBase<DesuraJSSettings>("settings", "native_binding_settings.js")
 {
 	REG_SIMPLE_JS_FUNCTION( getValue,	DesuraJSSettings );
 	REG_SIMPLE_JS_FUNCTION( getCoreCount,		DesuraJSSettings );

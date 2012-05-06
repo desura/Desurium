@@ -596,11 +596,18 @@ inline bool HasAllFlags(uint32 value, uint32 flags)
 #include <memory>
 
 #ifdef NIX
-#define WeakPtr std::weak_ptr
-#define SmartPtr std::shared_ptr
+#  ifdef __ICC
+#    include <boost/weak_ptr.hpp>
+#    include <boost/shared_ptr.hpp>
+#    define WeakPtr boost::weak_ptr
+#    define SmartPtr boost::shared_ptr
+#  else
+#    define WeakPtr std::weak_ptr
+#    define SmartPtr std::shared_ptr
+#  endif
 #else
-#define WeakPtr std::tr1::weak_ptr
-#define SmartPtr std::tr1::shared_ptr
+#  define WeakPtr std::tr1::weak_ptr
+#  define SmartPtr std::tr1::shared_ptr
 #endif
 
 namespace Safe
@@ -786,5 +793,17 @@ T Clamp(T val, T minVal, T maxVal)
 
 #define PRODUCT_NAME_CAT(x) PRODUCT_NAME x
 #define PRODUCT_NAME_CATW(x) _T(PRODUCT_NAME) x
+
+// some glib overrides for ICC
+// in ICC __deprecated__ does something different, so glib 2.30 is incompatible with ICC
+#ifdef __ICC
+#  define __GLIB_H_INSIDE__ 1
+#  include <glib/gmacros.h>
+#  undef __GLIB_H_INSIDE__
+#  ifdef G_DEPRECATED_FOR
+#    undef G_DEPRECATED_FOR
+#    define G_DEPRECATED_FOR(a)
+#  endif
+#endif
 
 #endif

@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 
 
-ItemJSBinding::ItemJSBinding() : DesuraJSBase("item", "installer_binding_item.js")
+ItemJSBinding::ItemJSBinding() : DesuraJSBase<ItemJSBinding>("item", "installer_binding_item.js")
 {
 	REG_SIMPLE_JS_FUNCTION( GetRealItem, ItemJSBinding );
 }

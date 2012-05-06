@@ -34,7 +34,7 @@ UserCore::ToolInfo* NewJSToolInfo(DesuraId id);
 namespace UserCore
 {
 
-ToolManager::ToolManager(UserCore::User* user) : BaseManager(true)
+ToolManager::ToolManager(UserCore::User* user) : BaseManager<ToolInfo>(true)
 {
 	m_pUser = user;
 	createToolInfoDbTables(user->getAppDataPath());

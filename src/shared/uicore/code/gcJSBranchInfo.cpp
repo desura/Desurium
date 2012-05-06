@@ -34,7 +34,7 @@ void FromJSObject(UserCore::Item::BranchInfoI* &branch, JSObjHandle& arg)
 REGISTER_JSEXTENDER(DesuraJSBranchInfo);
 
 
-DesuraJSBranchInfo::DesuraJSBranchInfo() : DesuraJSBase("branch", "native_binding_branchinfo.js")
+DesuraJSBranchInfo::DesuraJSBranchInfo() : DesuraJSBase<DesuraJSBranchInfo>("branch", "native_binding_branchinfo.js")
 {
 	REG_SIMPLE_JS_OBJ_FUNCTION( isValidBranch, DesuraJSBranchInfo );
 	

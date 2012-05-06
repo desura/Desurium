@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "jsWin.h"
 
 
-OsJSBinding::OsJSBinding() : DesuraJSBase("os", "installer_binding_os.js")
+OsJSBinding::OsJSBinding() : DesuraJSBase<OsJSBinding>("os", "installer_binding_os.js")
 {
 	REG_SIMPLE_JS_VOIDFUNCTION( SetRegistryKey, OsJSBinding);
 	REG_SIMPLE_JS_VOIDFUNCTION( DelRegistryKey, OsJSBinding);
