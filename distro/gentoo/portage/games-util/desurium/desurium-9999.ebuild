@@ -108,7 +108,6 @@ src_configure() {
 		$(cmake-utils_use_with builtin-curl ARES)
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
-		-DBUILD_CEF=TRUE
 		-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}/${PN}
 	)
 	cmake-utils_src_configure

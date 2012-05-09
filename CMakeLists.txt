@@ -10,7 +10,6 @@
 #                   OFFICIAL_BUILD
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
-#   BUILD_CEF       OFF                 build cef
 #   PACKAGE_TYPE    DEB                 Which packages should be created with "make package"
 #
 # unix-only options:
@@ -101,9 +100,7 @@ find_package(v8 ${REQUIRED_ON_UNIX})
 # we patch wxWidgets so we will build it on our own
 # find_package(wxWidgets 2.9 REQUIRED)
 
-if(WIN32 OR BUILD_CEF)
-  find_package(PythonInterp REQUIRED)
-endif()
+find_package(PythonInterp REQUIRED)
 
 if(WIN32)
   find_package(PythonLibs REQUIRED)
@@ -133,10 +130,7 @@ if(NOT V8_FOUND)
   include(Buildv8)
 endif()
 
-if(BUILD_CEF)
-  include(BuildCEF)
-endif()
-
+include(BuildCEF)
 
 ###############################################################################
 # build third_party
@@ -146,7 +140,6 @@ if(NOT BZIP2_FOUND)
   add_subdirectory(third_party/bzip2)
 endif()
 
-add_subdirectory(third_party/cef) # for headers only, build via ExternalProject
 add_subdirectory(third_party/courgette) # for headers only, build via ExternalProject
 
 if(NOT TINYXML_FOUND)
@@ -162,9 +155,7 @@ if(NOT Boost_FOUND)
   add_dependencies(sqlite3x boost)
 endif()
 
-if(BUILD_CEF)
-  add_dependencies(cef wxWidget-2-9)
-endif()
+add_dependencies(cef wxWidget-2-9)
 
 ###############################################################################
 # build desura
