@@ -1,16 +1,6 @@
-diff '--exclude=.svn' -aurN cef.ori/cef_create_projects.bat cef/cef_create_projects.bat
---- cef.ori/cef_create_projects.bat	2012-05-09 11:27:19.095674201 +0200
-+++ cef/cef_create_projects.bat	2012-05-09 11:32:01.267658243 +0200
-@@ -1,2 +1,3 @@
--@echo off
--..\third_party\python_26\python.exe tools\gclient_hook.py
-+@echo off
-+..\third_party\python_26\python.exe tools\gclient_hook.py
-+pause
-\ Kein Zeilenumbruch am Dateiende.
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowser.cpp cef/cef_desura/ChromiumBrowser.cpp
---- cef.ori/cef_desura/ChromiumBrowser.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/ChromiumBrowser.cpp	2012-05-09 11:32:01.267658243 +0200
+--- cef_desura/ChromiumBrowser.cpp	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/ChromiumBrowser.cpp	2012-05-09 11:32:01.267658243 +0200
 @@ -0,0 +1,557 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -570,8 +560,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowser.cpp cef/cef_desur
 +	m_rContext = context;
 +}
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowserEvents.cpp cef/cef_desura/ChromiumBrowserEvents.cpp
---- cef.ori/cef_desura/ChromiumBrowserEvents.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/ChromiumBrowserEvents.cpp	2012-05-09 11:32:01.267658243 +0200
+--- cef_desura/ChromiumBrowserEvents.cpp	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/ChromiumBrowserEvents.cpp	2012-05-09 11:32:01.267658243 +0200
 @@ -0,0 +1,340 @@
 +///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
 +//
@@ -914,8 +904,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowserEvents.cpp cef/cef
 +
 +
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowserEvents.h cef/cef_desura/ChromiumBrowserEvents.h
---- cef.ori/cef_desura/ChromiumBrowserEvents.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/ChromiumBrowserEvents.h	2012-05-09 11:32:01.267658243 +0200
+--- cef_desura/ChromiumBrowserEvents.h	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/ChromiumBrowserEvents.h	2012-05-09 11:32:01.267658243 +0200
 @@ -0,0 +1,182 @@
 +///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
 +//
@@ -1100,8 +1090,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowserEvents.h cef/cef_d
 +
 +#endif //DESURA_CHROMIUMBROWSEREVENTS_H
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowser.h cef/cef_desura/ChromiumBrowser.h
---- cef.ori/cef_desura/ChromiumBrowser.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/ChromiumBrowser.h	2012-05-09 11:32:01.267658243 +0200
+--- cef_desura/ChromiumBrowser.h	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/ChromiumBrowser.h	2012-05-09 11:32:01.267658243 +0200
 @@ -0,0 +1,140 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -1244,8 +1234,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowser.h cef/cef_desura/
 +
 +
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/Cookie.cpp cef/cef_desura/Cookie.cpp
---- cef.ori/cef_desura/Cookie.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/Cookie.cpp	2012-05-09 11:32:01.267658243 +0200
+--- cef_desura/Cookie.cpp	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/Cookie.cpp	2012-05-09 11:32:01.267658243 +0200
 @@ -0,0 +1,113 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -1361,8 +1351,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/Cookie.cpp cef/cef_desura/Cookie.
 +	}
 +}
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptContext.cpp cef/cef_desura/JavaScriptContext.cpp
---- cef.ori/cef_desura/JavaScriptContext.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/JavaScriptContext.cpp	2012-05-09 11:32:01.267658243 +0200
+--- cef_desura/JavaScriptContext.cpp	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/JavaScriptContext.cpp	2012-05-09 11:32:01.267658243 +0200
 @@ -0,0 +1,75 @@
 +///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
 +//
@@ -1440,8 +1430,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptContext.cpp cef/cef_des
 +	return NULL;
 +}
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptContext.h cef/cef_desura/JavaScriptContext.h
---- cef.ori/cef_desura/JavaScriptContext.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/JavaScriptContext.h	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/JavaScriptContext.h	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/JavaScriptContext.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,46 @@
 +///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
 +//
@@ -1490,8 +1480,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptContext.h cef/cef_desur
 +
 +#endif //DESURA_JAVASCRIPTCONTEXT_H
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptExtender.cpp cef/cef_desura/JavaScriptExtender.cpp
---- cef.ori/cef_desura/JavaScriptExtender.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/JavaScriptExtender.cpp	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/JavaScriptExtender.cpp	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/JavaScriptExtender.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,179 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -1673,8 +1663,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptExtender.cpp cef/cef_de
 +
 +
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptExtender.h cef/cef_desura/JavaScriptExtender.h
---- cef.ori/cef_desura/JavaScriptExtender.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/JavaScriptExtender.h	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/JavaScriptExtender.h	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/JavaScriptExtender.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,92 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -1769,8 +1759,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptExtender.h cef/cef_desu
 +
 +#endif //DESURA_JAVASCRIPTEXTENDER_H
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptFactory.cpp cef/cef_desura/JavaScriptFactory.cpp
---- cef.ori/cef_desura/JavaScriptFactory.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/JavaScriptFactory.cpp	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/JavaScriptFactory.cpp	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/JavaScriptFactory.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,111 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -1884,8 +1874,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptFactory.cpp cef/cef_des
 +	return ret;
 +}
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptFactory.h cef/cef_desura/JavaScriptFactory.h
---- cef.ori/cef_desura/JavaScriptFactory.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/JavaScriptFactory.h	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/JavaScriptFactory.h	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/JavaScriptFactory.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,59 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -1947,8 +1937,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptFactory.h cef/cef_desur
 +
 +#endif //DESURA_JAVASCRIPTFACTORY_H
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptFactory.h.edited cef/cef_desura/JavaScriptFactory.h.edited
---- cef.ori/cef_desura/JavaScriptFactory.h.edited	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/JavaScriptFactory.h.edited	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/JavaScriptFactory.h.edited	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/JavaScriptFactory.h.edited	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,85 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -2036,8 +2026,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptFactory.h.edited cef/ce
 +
 +#endif //DESURA_JAVASCRIPTFACTORY_H
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptObject.cpp cef/cef_desura/JavaScriptObject.cpp
---- cef.ori/cef_desura/JavaScriptObject.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/JavaScriptObject.cpp	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/JavaScriptObject.cpp	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/JavaScriptObject.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,314 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -2354,8 +2344,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptObject.cpp cef/cef_desu
 +
 +
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptObject.h cef/cef_desura/JavaScriptObject.h
---- cef.ori/cef_desura/JavaScriptObject.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/JavaScriptObject.h	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/JavaScriptObject.h	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/JavaScriptObject.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,101 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -2459,8 +2449,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptObject.h cef/cef_desura
 +
 +#endif //DESURA_JAVASCRIPTOBJECT_H
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/MenuInfo.cpp cef/cef_desura/MenuInfo.cpp
---- cef.ori/cef_desura/MenuInfo.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/MenuInfo.cpp	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/MenuInfo.cpp	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/MenuInfo.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,125 @@
 +///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
 +//
@@ -2588,8 +2578,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/MenuInfo.cpp cef/cef_desura/MenuI
 +	return &m_vMenuItems[index];
 +}
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/MenuInfo.h cef/cef_desura/MenuInfo.h
---- cef.ori/cef_desura/MenuInfo.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/MenuInfo.h	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/MenuInfo.h	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/MenuInfo.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,76 @@
 +///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
 +//
@@ -2668,8 +2658,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/MenuInfo.h cef/cef_desura/MenuInf
 +
 +#endif //DESURA_MENUINFO_H
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemeExtender.cpp cef/cef_desura/SchemeExtender.cpp
---- cef.ori/cef_desura/SchemeExtender.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/SchemeExtender.cpp	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/SchemeExtender.cpp	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/SchemeExtender.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,184 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -2857,8 +2847,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemeExtender.cpp cef/cef_desura
 +}
 \ Kein Zeilenumbruch am Dateiende.
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemeExtender.h cef/cef_desura/SchemeExtender.h
---- cef.ori/cef_desura/SchemeExtender.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/SchemeExtender.h	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/SchemeExtender.h	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/SchemeExtender.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,47 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -2908,8 +2898,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemeExtender.h cef/cef_desura/S
 +
 +#endif //DESURA_SCHEMEEXTENDER_H
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemePost.cpp cef/cef_desura/SchemePost.cpp
---- cef.ori/cef_desura/SchemePost.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/SchemePost.cpp	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/SchemePost.cpp	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/SchemePost.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,133 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -3045,8 +3035,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemePost.cpp cef/cef_desura/Sch
 +	m_rPostData->RemoveElements();
 +}
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemePost.h cef/cef_desura/SchemePost.h
---- cef.ori/cef_desura/SchemePost.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/SchemePost.h	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/SchemePost.h	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/SchemePost.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,91 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -3140,8 +3130,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemePost.h cef/cef_desura/Schem
 +
 +#endif //DESURA_SCHEMEPOST_H
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemeRequest.cpp cef/cef_desura/SchemeRequest.cpp
---- cef.ori/cef_desura/SchemeRequest.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/SchemeRequest.cpp	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/SchemeRequest.cpp	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/SchemeRequest.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,124 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -3269,8 +3259,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemeRequest.cpp cef/cef_desura/
 +}
 \ Kein Zeilenumbruch am Dateiende.
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemeRequest.h cef/cef_desura/SchemeRequest.h
---- cef.ori/cef_desura/SchemeRequest.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura/SchemeRequest.h	2012-05-09 11:32:01.268658243 +0200
+--- cef_desura/SchemeRequest.h	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura/SchemeRequest.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,58 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
@@ -3331,8 +3321,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemeRequest.h cef/cef_desura/Sc
 +
 +#endif //DESURA_SCHEMEREQUEST_H
 diff '--exclude=.svn' -aurN cef.ori/cef_desura_includes/ChromiumBrowserI.h cef/cef_desura_includes/ChromiumBrowserI.h
---- cef.ori/cef_desura_includes/ChromiumBrowserI.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura_includes/ChromiumBrowserI.h	2012-05-09 11:32:01.269658243 +0200
+--- cef_desura_includes/ChromiumBrowserI.h	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura_includes/ChromiumBrowserI.h	2012-05-09 11:32:01.269658243 +0200
 @@ -0,0 +1,815 @@
 +///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
 +//
@@ -4150,8 +4140,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura_includes/ChromiumBrowserI.h cef/c
 +
 +#endif //DESURA_WXCHROMIUMI_H
 diff '--exclude=.svn' -aurN cef.ori/cef_desura_includes/SharedObjectLoader.h cef/cef_desura_includes/SharedObjectLoader.h
---- cef.ori/cef_desura_includes/SharedObjectLoader.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_desura_includes/SharedObjectLoader.h	2012-05-09 11:32:01.269658243 +0200
+--- cef_desura_includes/SharedObjectLoader.h	1970-01-01 01:00:00.000000000 +0100
++++ cef_desura_includes/SharedObjectLoader.h	2012-05-09 11:32:01.269658243 +0200
 @@ -0,0 +1,122 @@
 +///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
 +//
@@ -4276,8 +4266,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura_includes/SharedObjectLoader.h cef
 +
 +#endif //DESURA_SHAREDOBJECTLOADER_H
 diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
---- cef.ori/cef.gyp	2012-05-09 11:27:19.094674201 +0200
-+++ cef/cef.gyp	2012-05-09 11:32:01.267658243 +0200
+--- cef.gyp	2012-05-09 11:27:19.094674201 +0200
++++ cef.gyp	2012-05-09 11:32:01.267658243 +0200
 @@ -129,6 +129,7 @@
                    '<(SHARED_INTERMEDIATE_DIR)/webkit/webkit_chromium_resources.pak',
                    '<(SHARED_INTERMEDIATE_DIR)/webkit/webkit_strings_en-US.pak',
@@ -4639,8 +4629,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
 +	],
  }
 diff '--exclude=.svn' -aurN cef.ori/cef.gypi cef/cef.gypi
---- cef.ori/cef.gypi	2012-05-09 11:27:19.093674201 +0200
-+++ cef/cef.gypi	2012-05-09 11:32:01.267658243 +0200
+--- cef.gypi	2012-05-09 11:27:19.093674201 +0200
++++ cef.gypi	2012-05-09 11:32:01.267658243 +0200
 @@ -11,6 +11,7 @@
        }, { # OS!="win"
          'cef_directory' : '<!(echo $CEF_DIRECTORY)',
@@ -4651,8 +4641,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gypi cef/cef.gypi
    },
  }
 diff '--exclude=.svn' -aurN cef.ori/cef_resources.grd cef/cef_resources.grd
---- cef.ori/cef_resources.grd	1970-01-01 01:00:00.000000000 +0100
-+++ cef/cef_resources.grd	2012-05-09 11:32:01.269658243 +0200
+--- cef_resources.grd	1970-01-01 01:00:00.000000000 +0100
++++ cef_resources.grd	2012-05-09 11:32:01.269658243 +0200
 @@ -0,0 +1,16 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<grit latest_public_release="0" current_release="1">
@@ -4671,8 +4661,8 @@ diff '--exclude=.svn' -aurN cef.ori/cef_resources.grd cef/cef_resources.grd
 +  </release>
 +</grit>
 diff '--exclude=.svn' -aurN cef.ori/CMakeLists.txt cef/CMakeLists.txt
---- cef.ori/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
-+++ cef/CMakeLists.txt	2012-05-09 11:32:01.266658243 +0200
+--- CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ CMakeLists.txt	2012-05-09 11:32:01.266658243 +0200
 @@ -0,0 +1,5 @@
 +include_directories(
 +  ${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -4680,8 +4670,8 @@ diff '--exclude=.svn' -aurN cef.ori/CMakeLists.txt cef/CMakeLists.txt
 +
 +set(CEF_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
 diff '--exclude=.svn' -aurN cef.ori/include/cef_capi.h cef/include/cef_capi.h
---- cef.ori/include/cef_capi.h	2012-05-09 11:27:17.734674278 +0200
-+++ cef/include/cef_capi.h	2012-05-09 11:32:01.270658243 +0200
+--- include/cef_capi.h	2012-05-09 11:27:17.734674278 +0200
++++ include/cef_capi.h	2012-05-09 11:32:01.270658243 +0200
 @@ -41,6 +41,8 @@
  extern "C" {
  #endif
@@ -4701,8 +4691,8 @@ diff '--exclude=.svn' -aurN cef.ori/include/cef_capi.h cef/include/cef_capi.h
  #define CEF_MEMBER_MISSING(s, f)  (!CEF_MEMBER_EXISTS(s, f) || !((s)->f))
  
 diff '--exclude=.svn' -aurN cef.ori/include/cef.h cef/include/cef.h
---- cef.ori/include/cef.h	2012-05-09 11:27:17.735674278 +0200
-+++ cef/include/cef.h	2012-05-09 11:32:01.269658243 +0200
+--- include/cef.h	2012-05-09 11:27:17.735674278 +0200
++++ include/cef.h	2012-05-09 11:32:01.269658243 +0200
 @@ -38,6 +38,8 @@
  #ifndef _CEF_H
  #define _CEF_H
@@ -4858,8 +4848,8 @@ diff '--exclude=.svn' -aurN cef.ori/include/cef.h cef/include/cef.h
  
  
 diff '--exclude=.svn' -aurN cef.ori/include/internal/cef_string.h cef/include/internal/cef_string.h
---- cef.ori/include/internal/cef_string.h	2012-05-09 11:27:17.743674277 +0200
-+++ cef/include/internal/cef_string.h	2012-05-09 11:32:01.271658243 +0200
+--- include/internal/cef_string.h	2012-05-09 11:27:17.743674277 +0200
++++ include/internal/cef_string.h	2012-05-09 11:32:01.271658243 +0200
 @@ -35,10 +35,10 @@
  // If you change the default you MUST recompile all of CEF.
  
@@ -4874,8 +4864,8 @@ diff '--exclude=.svn' -aurN cef.ori/include/internal/cef_string.h cef/include/in
  // Build with the wide string type as default.
  //#define CEF_STRING_TYPE_WIDE 1
 diff '--exclude=.svn' -aurN cef.ori/include/internal/cef_types.h cef/include/internal/cef_types.h
---- cef.ori/include/internal/cef_types.h	2012-05-09 11:27:17.742674276 +0200
-+++ cef/include/internal/cef_types.h	2012-05-09 11:32:01.610658223 +0200
+--- include/internal/cef_types.h	2012-05-09 11:27:17.742674276 +0200
++++ include/internal/cef_types.h	2012-05-09 11:32:01.610658223 +0200
 @@ -578,6 +578,7 @@
    V8_ACCESS_CONTROL_PROHIBITS_OVERWRITING = 1 << 2
  };
@@ -4934,8 +4924,8 @@ diff '--exclude=.svn' -aurN cef.ori/include/internal/cef_types.h cef/include/int
  
  enum cef_paint_element_type_t
 diff '--exclude=.svn' -aurN cef.ori/include/internal/cef_types_linux.h cef/include/internal/cef_types_linux.h
---- cef.ori/include/internal/cef_types_linux.h	2012-05-09 11:27:17.737674277 +0200
-+++ cef/include/internal/cef_types_linux.h	2012-05-09 11:32:01.618658223 +0200
+--- include/internal/cef_types_linux.h	2012-05-09 11:27:17.737674277 +0200
++++ include/internal/cef_types_linux.h	2012-05-09 11:32:01.618658223 +0200
 @@ -50,6 +50,11 @@
  {
    // Pointer for the parent GtkBox widget.
@@ -4949,8 +4939,8 @@ diff '--exclude=.svn' -aurN cef.ori/include/internal/cef_types_linux.h cef/inclu
    // Pointer for the new browser widget.
    cef_window_handle_t m_Widget;
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_impl.cc cef/libcef/browser_impl.cc
---- cef.ori/libcef/browser_impl.cc	2012-05-09 11:27:19.075674202 +0200
-+++ cef/libcef/browser_impl.cc	2012-05-09 11:32:01.624658223 +0200
+--- libcef/browser_impl.cc	2012-05-09 11:27:19.075674202 +0200
++++ libcef/browser_impl.cc	2012-05-09 11:32:01.624658223 +0200
 @@ -33,6 +33,10 @@
  #include "webkit/plugins/npapi/webplugin_impl.h"
  #include "webkit/glue/webkit_glue.h"
@@ -5116,8 +5106,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_impl.cc cef/libcef/browser_im
  // CefFrameImpl
  
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_impl_gtk.cc cef/libcef/browser_impl_gtk.cc
---- cef.ori/libcef/browser_impl_gtk.cc	2012-05-09 11:27:19.070674202 +0200
-+++ cef/libcef/browser_impl_gtk.cc	2012-05-09 11:32:01.625658223 +0200
+--- libcef/browser_impl_gtk.cc	2012-05-09 11:27:19.070674202 +0200
++++ libcef/browser_impl_gtk.cc	2012-05-09 11:32:01.625658223 +0200
 @@ -18,6 +18,12 @@
  using WebKit::WebRect;
  using WebKit::WebSize;
@@ -5271,8 +5261,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_impl_gtk.cc cef/libcef/browse
 +    return false;
  }
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_impl.h cef/libcef/browser_impl.h
---- cef.ori/libcef/browser_impl.h	2012-05-09 11:27:19.070674202 +0200
-+++ cef/libcef/browser_impl.h	2012-05-09 11:32:01.625658223 +0200
+--- libcef/browser_impl.h	2012-05-09 11:27:19.070674202 +0200
++++ libcef/browser_impl.h	2012-05-09 11:32:01.625658223 +0200
 @@ -107,6 +107,14 @@
    virtual void SendFocusEvent(bool setFocus) OVERRIDE;
    virtual void SendCaptureLostEvent() OVERRIDE;
@@ -5321,8 +5311,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_impl.h cef/libcef/browser_imp
    CefRefPtr<CefBrowserImpl> browser_;
    CefString name_;
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_request_context.cc cef/libcef/browser_request_context.cc
---- cef.ori/libcef/browser_request_context.cc	2012-05-09 11:27:19.049674201 +0200
-+++ cef/libcef/browser_request_context.cc	2012-05-09 11:32:01.625658223 +0200
+--- libcef/browser_request_context.cc	2012-05-09 11:27:19.049674201 +0200
++++ libcef/browser_request_context.cc	2012-05-09 11:32:01.625658223 +0200
 @@ -73,6 +73,7 @@
      const FilePath& cache_path,
      net::HttpCache::Mode cache_mode,
@@ -5424,8 +5414,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_request_context.cc cef/libcef
  
  BrowserRequestContext::~BrowserRequestContext() {
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webkit_glue_gtk.cc cef/libcef/browser_webkit_glue_gtk.cc
---- cef.ori/libcef/browser_webkit_glue_gtk.cc	1970-01-01 01:00:00.000000000 +0100
-+++ cef/libcef/browser_webkit_glue_gtk.cc	2012-05-09 11:32:01.627658222 +0200
+--- libcef/browser_webkit_glue_gtk.cc	1970-01-01 01:00:00.000000000 +0100
++++ libcef/browser_webkit_glue_gtk.cc	2012-05-09 11:32:01.627658222 +0200
 @@ -0,0 +1,105 @@
 +// Copyright (c) 2010 The Chromium Embedded Framework Authors.
 +// Portions copyright (c) 2006-2008 The Chromium Authors. All rights reserved.
@@ -5533,8 +5523,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webkit_glue_gtk.cc cef/libcef
 +  
 +}  // namespace webkit_glue
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webkit_glue.h cef/libcef/browser_webkit_glue.h
---- cef.ori/libcef/browser_webkit_glue.h	2012-05-09 11:27:19.061674203 +0200
-+++ cef/libcef/browser_webkit_glue.h	2012-05-09 11:32:01.627658222 +0200
+--- libcef/browser_webkit_glue.h	2012-05-09 11:27:19.061674203 +0200
++++ libcef/browser_webkit_glue.h	2012-05-09 11:32:01.627658222 +0200
 @@ -29,8 +29,12 @@
  // Save a bitmap image to file, providing optional alternative data in |lpBits|
  BOOL SaveBitmapToFile(HBITMAP hBmp, HDC hDC, LPCTSTR file, LPBYTE lpBits);
@@ -5551,8 +5541,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webkit_glue.h cef/libcef/brow
  FilePath GetResourcesFilePath();
  #endif
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webkit_init.h cef/libcef/browser_webkit_init.h
---- cef.ori/libcef/browser_webkit_init.h	2012-05-09 11:27:19.088674201 +0200
-+++ cef/libcef/browser_webkit_init.h	2012-05-09 11:32:01.627658222 +0200
+--- libcef/browser_webkit_init.h	2012-05-09 11:27:19.088674201 +0200
++++ libcef/browser_webkit_init.h	2012-05-09 11:32:01.627658222 +0200
 @@ -67,11 +67,17 @@
      WebKit::WebRuntimeFeatures::enableDeviceMotion(false);
      WebKit::WebRuntimeFeatures::enableDeviceOrientation(false);
@@ -5572,8 +5562,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webkit_init.h cef/libcef/brow
      // Construct and initialize an appcache system for this scope.
      // A new empty temp directory is created to house any cached
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_gtk.cc cef/libcef/browser_webview_delegate_gtk.cc
---- cef.ori/libcef/browser_webview_delegate_gtk.cc	2012-05-09 11:27:19.063674202 +0200
-+++ cef/libcef/browser_webview_delegate_gtk.cc	2012-05-09 11:32:01.628658222 +0200
+--- libcef/browser_webview_delegate_gtk.cc	2012-05-09 11:27:19.063674202 +0200
++++ libcef/browser_webview_delegate_gtk.cc	2012-05-09 11:32:01.628658222 +0200
 @@ -10,30 +10,47 @@
  #include <gtk/gtk.h>
  
@@ -6124,8 +6114,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_gtk.cc cef/l
 +  return true;
  }
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate.h cef/libcef/browser_webview_delegate.h
---- cef.ori/libcef/browser_webview_delegate.h	2012-05-09 11:27:19.081674201 +0200
-+++ cef/libcef/browser_webview_delegate.h	2012-05-09 11:32:01.628658222 +0200
+--- libcef/browser_webview_delegate.h	2012-05-09 11:27:19.081674201 +0200
++++ libcef/browser_webview_delegate.h	2012-05-09 11:32:01.628658222 +0200
 @@ -97,6 +97,9 @@
        OVERRIDE;
    virtual bool runModalBeforeUnloadDialog(
@@ -6149,8 +6139,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate.h cef/libcef
    // Called after the external popup menu has been dismissed.
    void ClosePopupMenu();
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_win.cc cef/libcef/browser_webview_delegate_win.cc
---- cef.ori/libcef/browser_webview_delegate_win.cc	2012-05-09 11:27:19.046674203 +0200
-+++ cef/libcef/browser_webview_delegate_win.cc	2012-05-09 11:32:01.628658222 +0200
+--- libcef/browser_webview_delegate_win.cc	2012-05-09 11:27:19.046674203 +0200
++++ libcef/browser_webview_delegate_win.cc	2012-05-09 11:32:01.628658222 +0200
 @@ -496,8 +496,65 @@
      cef_string_set(securityInfoStr.c_str(), securityInfoStr.length(),
          &menuInfo.securityInfo, false);
@@ -6278,8 +6268,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_win.cc cef/l
 +  return false;
 +}
 diff '--exclude=.svn' -aurN cef.ori/libcef/cef_context.cc cef/libcef/cef_context.cc
---- cef.ori/libcef/cef_context.cc	2012-05-09 11:27:17.883674268 +0200
-+++ cef/libcef/cef_context.cc	2012-05-09 11:32:01.628658222 +0200
+--- libcef/cef_context.cc	2012-05-09 11:27:17.883674268 +0200
++++ libcef/cef_context.cc	2012-05-09 11:32:01.628658222 +0200
 @@ -8,6 +8,7 @@
  #include "cef_thread.h"
  #include "cef_time_util.h"
@@ -6319,8 +6309,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/cef_context.cc cef/libcef/cef_context
  {
    // Verify that the context is in a valid state.
 diff '--exclude=.svn' -aurN cef.ori/libcef/cef_paths.cc cef/libcef/cef_paths.cc
---- cef.ori/libcef/cef_paths.cc	1970-01-01 01:00:00.000000000 +0100
-+++ cef/libcef/cef_paths.cc	2012-05-09 11:32:01.629658221 +0200
+--- libcef/cef_paths.cc	1970-01-01 01:00:00.000000000 +0100
++++ libcef/cef_paths.cc	2012-05-09 11:32:01.629658221 +0200
 @@ -0,0 +1,68 @@
 +// Copyright (c) 2006-2010 The Chromium Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style license that can be
@@ -6391,8 +6381,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/cef_paths.cc cef/libcef/cef_paths.cc
 +
 +}  // namespace chrome
 diff '--exclude=.svn' -aurN cef.ori/libcef/cef_paths.h cef/libcef/cef_paths.h
---- cef.ori/libcef/cef_paths.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/libcef/cef_paths.h	2012-05-09 11:32:01.629658221 +0200
+--- libcef/cef_paths.h	1970-01-01 01:00:00.000000000 +0100
++++ libcef/cef_paths.h	2012-05-09 11:32:01.629658221 +0200
 @@ -0,0 +1,20 @@
 +// Copyright (c) 2006-2010 The Chromium Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style license that can be
@@ -6415,8 +6405,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/cef_paths.h cef/libcef/cef_paths.h
 +
 +#endif  // CEF_COMMON_CHROME_PATHS_H__
 diff '--exclude=.svn' -aurN cef.ori/libcef/cef_process_ui_thread.cc cef/libcef/cef_process_ui_thread.cc
---- cef.ori/libcef/cef_process_ui_thread.cc	2012-05-09 11:27:19.045674203 +0200
-+++ cef/libcef/cef_process_ui_thread.cc	2012-05-09 11:32:01.629658221 +0200
+--- libcef/cef_process_ui_thread.cc	2012-05-09 11:27:19.045674203 +0200
++++ libcef/cef_process_ui_thread.cc	2012-05-09 11:32:01.629658221 +0200
 @@ -144,7 +144,11 @@
    // Flush any remaining messages.  This ensures that any accumulated
    // Task objects get destroyed before we exit, which avoids noise in
@@ -6430,8 +6420,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/cef_process_ui_thread.cc cef/libcef/c
    // Destroy the storage context object.
    _Context->set_storage_context(NULL);
 diff '--exclude=.svn' -aurN cef.ori/libcef/cef_process_ui_thread_gtk.cc cef/libcef/cef_process_ui_thread_gtk.cc
---- cef.ori/libcef/cef_process_ui_thread_gtk.cc	2012-05-09 11:27:19.065674201 +0200
-+++ cef/libcef/cef_process_ui_thread_gtk.cc	2012-05-09 11:32:01.629658221 +0200
+--- libcef/cef_process_ui_thread_gtk.cc	2012-05-09 11:27:19.065674201 +0200
++++ libcef/cef_process_ui_thread_gtk.cc	2012-05-09 11:32:01.629658221 +0200
 @@ -4,9 +4,10 @@
  
  #include "cef_process_ui_thread.h"
@@ -6445,8 +6435,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/cef_process_ui_thread_gtk.cc cef/libc
  
  void CefProcessUIThread::PlatformCleanUp() {
 diff '--exclude=.svn' -aurN cef.ori/libcef/cef_string_map.cc cef/libcef/cef_string_map.cc
---- cef.ori/libcef/cef_string_map.cc	2012-05-09 11:27:19.064674202 +0200
-+++ cef/libcef/cef_string_map.cc	2012-05-09 11:32:01.629658221 +0200
+--- libcef/cef_string_map.cc	2012-05-09 11:27:19.064674202 +0200
++++ libcef/cef_string_map.cc	2012-05-09 11:32:01.629658221 +0200
 @@ -30,7 +30,7 @@
    StringMap* impl = (StringMap*)map;
    StringMap::const_iterator it = impl->find(CefString(key));
@@ -6475,8 +6465,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/cef_string_map.cc cef/libcef/cef_stri
    for(int ct = 0; it != impl->end(); ++it, ct++) {
      if(ct == index) {
 diff '--exclude=.svn' -aurN cef.ori/libcef/v8_impl.cc cef/libcef/v8_impl.cc
---- cef.ori/libcef/v8_impl.cc	2012-05-09 11:27:19.082674201 +0200
-+++ cef/libcef/v8_impl.cc	2012-05-09 11:32:01.633658222 +0200
+--- libcef/v8_impl.cc	2012-05-09 11:27:19.082674201 +0200
++++ libcef/v8_impl.cc	2012-05-09 11:32:01.633658222 +0200
 @@ -736,7 +736,7 @@
      return NULL;
    if(!GetHandle()->IsObject()) {
@@ -6496,8 +6486,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/v8_impl.cc cef/libcef/v8_impl.cc
  
    v8::HandleScope handle_scope;
 diff '--exclude=.svn' -aurN cef.ori/libcef/webview_host.cc cef/libcef/webview_host.cc
---- cef.ori/libcef/webview_host.cc	2012-05-09 11:27:19.085674199 +0200
-+++ cef/libcef/webview_host.cc	2012-05-09 11:32:01.634658222 +0200
+--- libcef/webview_host.cc	2012-05-09 11:27:19.085674199 +0200
++++ libcef/webview_host.cc	2012-05-09 11:32:01.634658222 +0200
 @@ -4,8 +4,9 @@
  
  #include "webview_host.h"
@@ -6510,8 +6500,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/webview_host.cc cef/libcef/webview_ho
  
  #if !defined(OS_MACOSX)
 diff '--exclude=.svn' -aurN cef.ori/libcef/webview_host_gtk.cc cef/libcef/webview_host_gtk.cc
---- cef.ori/libcef/webview_host_gtk.cc	2012-05-09 11:27:19.057674203 +0200
-+++ cef/libcef/webview_host_gtk.cc	2012-05-09 11:32:01.634658222 +0200
+--- libcef/webview_host_gtk.cc	2012-05-09 11:27:19.057674203 +0200
++++ libcef/webview_host_gtk.cc	2012-05-09 11:32:01.634658222 +0200
 @@ -20,9 +20,7 @@
  
  // static
@@ -6547,8 +6537,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/webview_host_gtk.cc cef/libcef/webvie
    return static_cast<WebView*>(webwidget_);
  }
 diff '--exclude=.svn' -aurN cef.ori/libcef/webview_host.h cef/libcef/webview_host.h
---- cef.ori/libcef/webview_host.h	2012-05-09 11:27:19.076674202 +0200
-+++ cef/libcef/webview_host.h	2012-05-09 11:32:01.634658222 +0200
+--- libcef/webview_host.h	2012-05-09 11:27:19.076674202 +0200
++++ libcef/webview_host.h	2012-05-09 11:32:01.634658222 +0200
 @@ -7,6 +7,7 @@
  
  #include "base/basictypes.h"
@@ -6625,8 +6615,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/webview_host.h cef/libcef/webview_hos
  
  #endif  // _WEBVIEW_HOST_H
 diff '--exclude=.svn' -aurN cef.ori/libcef/webview_host_win.cc cef/libcef/webview_host_win.cc
---- cef.ori/libcef/webview_host_win.cc	2012-05-09 11:27:19.089674201 +0200
-+++ cef/libcef/webview_host_win.cc	2012-05-09 11:32:01.634658222 +0200
+--- libcef/webview_host_win.cc	2012-05-09 11:27:19.089674201 +0200
++++ libcef/webview_host_win.cc	2012-05-09 11:32:01.634658222 +0200
 @@ -17,13 +17,13 @@
  static const wchar_t kWindowClassName[] = L"WebViewHost";
  
@@ -6666,8 +6656,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/webview_host_win.cc cef/libcef/webvie
  }
 +
 diff '--exclude=.svn' -aurN cef.ori/libcef/webwidget_host_gtk.cc cef/libcef/webwidget_host_gtk.cc
---- cef.ori/libcef/webwidget_host_gtk.cc	2012-05-09 11:27:19.078674202 +0200
-+++ cef/libcef/webwidget_host_gtk.cc	2012-05-09 11:32:01.635658222 +0200
+--- libcef/webwidget_host_gtk.cc	2012-05-09 11:27:19.078674202 +0200
++++ libcef/webwidget_host_gtk.cc	2012-05-09 11:32:01.635658222 +0200
 @@ -13,6 +13,8 @@
  #include "skia/ext/bitmap_platform_device.h"
  #include "skia/ext/platform_canvas.h"
@@ -6876,8 +6866,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/webwidget_host_gtk.cc cef/libcef/webw
  
  void WebWidgetHost::Paint() {
 diff '--exclude=.svn' -aurN cef.ori/libcef_dll/cpptoc/domdocument_cpptoc.cc cef/libcef_dll/cpptoc/domdocument_cpptoc.cc
---- cef.ori/libcef_dll/cpptoc/domdocument_cpptoc.cc	2012-05-09 11:27:16.242674362 +0200
-+++ cef/libcef_dll/cpptoc/domdocument_cpptoc.cc	2012-05-09 11:32:01.636658222 +0200
+--- libcef_dll/cpptoc/domdocument_cpptoc.cc	2012-05-09 11:27:16.242674362 +0200
++++ libcef_dll/cpptoc/domdocument_cpptoc.cc	2012-05-09 11:32:01.636658222 +0200
 @@ -110,7 +110,7 @@
  {
    DCHECK(self);
@@ -6906,8 +6896,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef_dll/cpptoc/domdocument_cpptoc.cc cef/
    return CefDOMDocumentCppToC::Get(self)->GetSelectionEndOffset();
  }
 diff '--exclude=.svn' -aurN cef.ori/libcef_dll/ctocpp/browser_ctocpp.h cef/libcef_dll/ctocpp/browser_ctocpp.h
---- cef.ori/libcef_dll/ctocpp/browser_ctocpp.h	2012-05-09 11:27:16.668674338 +0200
-+++ cef/libcef_dll/ctocpp/browser_ctocpp.h	2012-05-09 11:32:01.641658222 +0200
+--- libcef_dll/ctocpp/browser_ctocpp.h	2012-05-09 11:27:16.668674338 +0200
++++ libcef_dll/ctocpp/browser_ctocpp.h	2012-05-09 11:32:01.641658222 +0200
 @@ -55,6 +55,10 @@
    virtual void StopFinding(bool clearSelection) OVERRIDE;
    virtual double GetZoomLevel() OVERRIDE;
@@ -6920,8 +6910,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef_dll/ctocpp/browser_ctocpp.h cef/libce
    virtual void CloseDevTools() OVERRIDE;
    virtual bool IsWindowRenderingDisabled() OVERRIDE;
 diff '--exclude=.svn' -aurN cef.ori/libcef_dll/ctocpp/frame_ctocpp.h cef/libcef_dll/ctocpp/frame_ctocpp.h
---- cef.ori/libcef_dll/ctocpp/frame_ctocpp.h	2012-05-09 11:27:16.683674337 +0200
-+++ cef/libcef_dll/ctocpp/frame_ctocpp.h	2012-05-09 11:32:01.663658220 +0200
+--- libcef_dll/ctocpp/frame_ctocpp.h	2012-05-09 11:27:16.683674337 +0200
++++ libcef_dll/ctocpp/frame_ctocpp.h	2012-05-09 11:32:01.663658220 +0200
 @@ -55,6 +55,11 @@
    virtual CefString GetName() OVERRIDE;
    virtual CefString GetURL() OVERRIDE;
@@ -6935,8 +6925,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef_dll/ctocpp/frame_ctocpp.h cef/libcef_
  };
  
 diff '--exclude=.svn' -aurN cef.ori/libcef_dll/ctocpp/v8value_ctocpp.cc cef/libcef_dll/ctocpp/v8value_ctocpp.cc
---- cef.ori/libcef_dll/ctocpp/v8value_ctocpp.cc	2012-05-09 11:27:16.683674337 +0200
-+++ cef/libcef_dll/ctocpp/v8value_ctocpp.cc	2012-05-09 11:32:01.666658218 +0200
+--- libcef_dll/ctocpp/v8value_ctocpp.cc	2012-05-09 11:27:16.683674337 +0200
++++ libcef_dll/ctocpp/v8value_ctocpp.cc	2012-05-09 11:32:01.666658218 +0200
 @@ -297,7 +297,7 @@
  CefRefPtr<CefV8Value> CefV8ValueCToCpp::GetValue(const CefString& key)
  {
@@ -6973,227 +6963,9 @@ diff '--exclude=.svn' -aurN cef.ori/libcef_dll/ctocpp/v8value_ctocpp.cc cef/libc
  
    cef_v8handler_t* handlerStruct = struct_->get_function_handler(struct_);
    if(handlerStruct)
-diff '--exclude=.svn' -aurN cef.ori/libcef_dll/libcef_dll.rc cef/libcef_dll/libcef_dll.rc
---- cef.ori/libcef_dll/libcef_dll.rc	2012-05-09 11:27:16.206674364 +0200
-+++ cef/libcef_dll/libcef_dll.rc	2012-05-09 11:32:01.667658219 +0200
-@@ -1,107 +1,107 @@
--// Microsoft Visual C++ generated resource script.
--//
--#include "resource.h"
--
--#define APSTUDIO_READONLY_SYMBOLS
--/////////////////////////////////////////////////////////////////////////////
--//
--// Generated from the TEXTINCLUDE 2 resource.
--//
--#define APSTUDIO_HIDDEN_SYMBOLS
--#include "windows.h"
--#undef APSTUDIO_HIDDEN_SYMBOLS
--#include "version.h"
--
--/////////////////////////////////////////////////////////////////////////////
--#undef APSTUDIO_READONLY_SYMBOLS
--
--/////////////////////////////////////////////////////////////////////////////
--// English (U.S.) resources
--
--#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
--#ifdef _WIN32
--LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
--#pragma code_page(1252)
--#endif //_WIN32
--
--#ifdef APSTUDIO_INVOKED
--/////////////////////////////////////////////////////////////////////////////
--//
--// TEXTINCLUDE
--//
--
--1 TEXTINCLUDE 
--BEGIN
--    "resource.h\0"
--END
--
--2 TEXTINCLUDE 
--BEGIN
--    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
--    "#include ""windows.h""\r\n"
--    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
--    "#include ""version.h""\r\n"
--    "\0"
--END
--
--3 TEXTINCLUDE 
--BEGIN
--    "\r\n"
--    "\0"
--END
--
--#endif    // APSTUDIO_INVOKED
--
--
--/////////////////////////////////////////////////////////////////////////////
--//
--// Version
--//
--
--VS_VERSION_INFO VERSIONINFO
-- FILEVERSION 1,0,SVN_REVISION,0
-- PRODUCTVERSION 1,0,SVN_REVISION,0
-- FILEFLAGSMASK 0x17L
--#ifdef _DEBUG
-- FILEFLAGS 0x1L
--#else
-- FILEFLAGS 0x0L
--#endif
-- FILEOS 0x4L
-- FILETYPE 0x2L
-- FILESUBTYPE 0x0L
--BEGIN
--    BLOCK "StringFileInfo"
--    BEGIN
--        BLOCK "040904b0"
--        BEGIN
--            VALUE "FileDescription", "Chromium Embedded Framework (CEF) Dynamic Link Library"
--            VALUE "FileVersion", "1.0." MAKE_STRING(SVN_REVISION)
--            VALUE "InternalName", "libcef"
--            VALUE "LegalCopyright", "Copyright (C) " MAKE_STRING(COPYRIGHT_YEAR) " The Chromium Embedded Framework Authors"
--            VALUE "OriginalFilename", "libcef.dll"
--            VALUE "ProductName", "Chromium Embedded Framework (CEF) Dynamic Link Library"
--            VALUE "ProductVersion", "1.0." MAKE_STRING(SVN_REVISION)
--        END
--    END
--    BLOCK "VarFileInfo"
--    BEGIN
--        VALUE "Translation", 0x409, 1200
--    END
--END
--
--#endif    // English (U.S.) resources
--/////////////////////////////////////////////////////////////////////////////
--
--
--
--#ifndef APSTUDIO_INVOKED
--/////////////////////////////////////////////////////////////////////////////
--//
--// Generated from the TEXTINCLUDE 3 resource.
--//
--
--
--/////////////////////////////////////////////////////////////////////////////
--#endif    // not APSTUDIO_INVOKED
--
-+// Microsoft Visual C++ generated resource script.
-+//
-+#include "resource.h"
-+
-+#define APSTUDIO_READONLY_SYMBOLS
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// Generated from the TEXTINCLUDE 2 resource.
-+//
-+#define APSTUDIO_HIDDEN_SYMBOLS
-+#include "windows.h"
-+#undef APSTUDIO_HIDDEN_SYMBOLS
-+#include "version.h"
-+
-+/////////////////////////////////////////////////////////////////////////////
-+#undef APSTUDIO_READONLY_SYMBOLS
-+
-+/////////////////////////////////////////////////////////////////////////////
-+// English (U.S.) resources
-+
-+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-+#ifdef _WIN32
-+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
-+#pragma code_page(1252)
-+#endif //_WIN32
-+
-+#ifdef APSTUDIO_INVOKED
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// TEXTINCLUDE
-+//
-+
-+1 TEXTINCLUDE 
-+BEGIN
-+    "resource.h\0"
-+END
-+
-+2 TEXTINCLUDE 
-+BEGIN
-+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
-+    "#include ""windows.h""\r\n"
-+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
-+    "#include ""version.h""\r\n"
-+    "\0"
-+END
-+
-+3 TEXTINCLUDE 
-+BEGIN
-+    "\r\n"
-+    "\0"
-+END
-+
-+#endif    // APSTUDIO_INVOKED
-+
-+
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// Version
-+//
-+
-+VS_VERSION_INFO VERSIONINFO
-+ FILEVERSION 1,0,SVN_REVISION,0
-+ PRODUCTVERSION 1,0,SVN_REVISION,0
-+ FILEFLAGSMASK 0x17L
-+#ifdef _DEBUG
-+ FILEFLAGS 0x1L
-+#else
-+ FILEFLAGS 0x0L
-+#endif
-+ FILEOS 0x4L
-+ FILETYPE 0x2L
-+ FILESUBTYPE 0x0L
-+BEGIN
-+    BLOCK "StringFileInfo"
-+    BEGIN
-+        BLOCK "040904b0"
-+        BEGIN
-+            VALUE "FileDescription", "Chromium Embedded Framework (CEF) Dynamic Link Library"
-+            VALUE "FileVersion", "1.0." MAKE_STRING(SVN_REVISION)
-+            VALUE "InternalName", "libcef"
-+            VALUE "LegalCopyright", "Copyright (C) " MAKE_STRING(COPYRIGHT_YEAR) " The Chromium Embedded Framework Authors"
-+            VALUE "OriginalFilename", "libcef.dll"
-+            VALUE "ProductName", "Chromium Embedded Framework (CEF) Dynamic Link Library"
-+            VALUE "ProductVersion", "1.0." MAKE_STRING(SVN_REVISION)
-+        END
-+    END
-+    BLOCK "VarFileInfo"
-+    BEGIN
-+        VALUE "Translation", 0x409, 1200
-+    END
-+END
-+
-+#endif    // English (U.S.) resources
-+/////////////////////////////////////////////////////////////////////////////
-+
-+
-+
-+#ifndef APSTUDIO_INVOKED
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// Generated from the TEXTINCLUDE 3 resource.
-+//
-+
-+
-+/////////////////////////////////////////////////////////////////////////////
-+#endif    // not APSTUDIO_INVOKED
-+
 diff '--exclude=.svn' -aurN cef.ori/libcef_dll/version.h cef/libcef_dll/version.h
---- cef.ori/libcef_dll/version.h	1970-01-01 01:00:00.000000000 +0100
-+++ cef/libcef_dll/version.h	2012-05-09 11:32:01.667658219 +0200
+--- libcef_dll/version.h	1970-01-01 01:00:00.000000000 +0100
++++ libcef_dll/version.h	2012-05-09 11:32:01.667658219 +0200
 @@ -0,0 +1,11 @@
 +// This file is generated by the make_version_header.py tool.
 +#ifndef _VERSION_H
@@ -7207,8 +6979,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef_dll/version.h cef/libcef_dll/version.
 +
 +#endif
 diff '--exclude=.svn' -aurN cef.ori/patch/patch_build.cfg cef/patch/patch_build.cfg
---- cef.ori/patch/patch_build.cfg	2012-05-09 11:27:15.411674409 +0200
-+++ cef/patch/patch_build.cfg	2012-05-09 11:32:01.667658219 +0200
+--- patch/patch_build.cfg	2012-05-09 11:27:15.411674409 +0200
++++ patch/patch_build.cfg	2012-05-09 11:32:01.667658219 +0200
 @@ -1,5 +1,9 @@
  # An element of this array associates a patch file with a target directory.
  # All paths in the patch file must be relative to that directory.
@@ -7221,8 +6993,8 @@ diff '--exclude=.svn' -aurN cef.ori/patch/patch_build.cfg cef/patch/patch_build.
 +  'desura': '../',
  }
 diff '--exclude=.svn' -aurN cef.ori/patch/patches/desura.patch cef/patch/patches/desura.patch
---- cef.ori/patch/patches/desura.patch	1970-01-01 01:00:00.000000000 +0100
-+++ cef/patch/patches/desura.patch	2012-05-09 11:32:01.668658220 +0200
+--- patch/patches/desura.patch	1970-01-01 01:00:00.000000000 +0100
++++ patch/patches/desura.patch	2012-05-09 11:32:01.668658220 +0200
 @@ -0,0 +1,64 @@
 +Index: net/proxy/proxy_service.cc
 +===================================================================
@@ -7289,8 +7061,8 @@ diff '--exclude=.svn' -aurN cef.ori/patch/patches/desura.patch cef/patch/patches
 +     // accurate error code for this error condition, but is close enough.
 +
 diff '--exclude=.svn' -aurN cef.ori/patch/patches/resources.patch cef/patch/patches/resources.patch
---- cef.ori/patch/patches/resources.patch	1970-01-01 01:00:00.000000000 +0100
-+++ cef/patch/patches/resources.patch	2012-05-09 11:32:01.668658220 +0200
+--- patch/patches/resources.patch	1970-01-01 01:00:00.000000000 +0100
++++ patch/patches/resources.patch	2012-05-09 11:32:01.668658220 +0200
 @@ -0,0 +1,14 @@
 +Index: tools/grit/resource_ids
 +===================================================================
@@ -7307,8 +7079,8 @@ diff '--exclude=.svn' -aurN cef.ori/patch/patches/resources.patch cef/patch/patc
 +     "includes": [5500],
 +   },
 diff '--exclude=.svn' -aurN cef.ori/patch/patches/root.patch cef/patch/patches/root.patch
---- cef.ori/patch/patches/root.patch	1970-01-01 01:00:00.000000000 +0100
-+++ cef/patch/patches/root.patch	2012-05-09 11:32:01.668658220 +0200
+--- patch/patches/root.patch	1970-01-01 01:00:00.000000000 +0100
++++ patch/patches/root.patch	2012-05-09 11:32:01.668658220 +0200
 @@ -0,0 +1,13 @@
 +Index: base/message_loop.h
 +===================================================================
@@ -7324,8 +7096,8 @@ diff '--exclude=.svn' -aurN cef.ori/patch/patches/root.patch cef/patch/patches/r
 +   }
 + 
 diff '--exclude=.svn' -aurN cef.ori/patch/patches/webkit.patch cef/patch/patches/webkit.patch
---- cef.ori/patch/patches/webkit.patch	1970-01-01 01:00:00.000000000 +0100
-+++ cef/patch/patches/webkit.patch	2012-05-09 11:32:01.668658220 +0200
+--- patch/patches/webkit.patch	1970-01-01 01:00:00.000000000 +0100
++++ patch/patches/webkit.patch	2012-05-09 11:32:01.668658220 +0200
 @@ -0,0 +1,138 @@
 +Index: bindings/v8/custom/V8DOMWindowCustom.cpp
 +===================================================================
@@ -7465,187 +7237,9 @@ diff '--exclude=.svn' -aurN cef.ori/patch/patches/webkit.patch cef/patch/patches
 +             handleLinkClick(event, document(), url, target);
 +             return;
 +         }
-diff '--exclude=.svn' -aurN cef.ori/patch/patch.vcproj cef/patch/patch.vcproj
---- cef.ori/patch/patch.vcproj	2012-05-09 11:27:15.358674412 +0200
-+++ cef/patch/patch.vcproj	2012-05-09 11:32:01.667658219 +0200
-@@ -1,87 +1,87 @@
--<?xml version="1.0" encoding="Windows-1252"?>
--<VisualStudioProject
--	ProjectType="Visual C++"
--	Version="8.00"
--	Name="patch"
--	ProjectGUID="{A6D0953E-899E-4C60-AB6B-CAE75A44B8E6}"
--	RootNamespace="patch"
--	Keyword="Win32Proj"
--	>
--	<Platforms>
--		<Platform
--			Name="Win32"
--		/>
--	</Platforms>
--	<ToolFiles>
--	</ToolFiles>
--	<Configurations>
--		<Configuration
--			Name="Debug|Win32"
--			ConfigurationType="10"
--			InheritedPropertySheets="$(SolutionDir)..\build\debug.vsprops"
--			>
--			<Tool
--				Name="VCPreBuildEventTool"
--			/>
--			<Tool
--				Name="VCCustomBuildTool"
--			/>
--			<Tool
--				Name="VCMIDLTool"
--			/>
--			<Tool
--				Name="VCPostBuildEventTool"
--			/>
--		</Configuration>
--		<Configuration
--			Name="Release|Win32"
--			ConfigurationType="10"
--			InheritedPropertySheets="$(SolutionDir)..\build\release.vsprops"
--			>
--			<Tool
--				Name="VCPreBuildEventTool"
--			/>
--			<Tool
--				Name="VCCustomBuildTool"
--			/>
--			<Tool
--				Name="VCMIDLTool"
--			/>
--			<Tool
--				Name="VCPostBuildEventTool"
--			/>
--		</Configuration>
--	</Configurations>
--	<References>
--	</References>
--	<Files>
--		<File
--			RelativePath="..\tools\patcher.bat"
--			>
--			<FileConfiguration
--				Name="Debug|Win32"
--				>
--				<Tool
--					Name="VCCustomBuildTool"
--					Description="patcher"
--					CommandLine="..\tools\patcher.bat&#x0D;&#x0A;"
--					AdditionalDependencies=""
--					Outputs="$(IntDir)\patcher.out"
--				/>
--			</FileConfiguration>
--			<FileConfiguration
--				Name="Release|Win32"
--				>
--				<Tool
--					Name="VCCustomBuildTool"
--					Description="patcher"
--					CommandLine="..\tools\patcher.bat&#x0D;&#x0A;"
--					AdditionalDependencies=""
--					Outputs="$(IntDir)\patcher.out"
--				/>
--			</FileConfiguration>
--		</File>
--	</Files>
--	<Globals>
--	</Globals>
--</VisualStudioProject>
-+<?xml version="1.0" encoding="Windows-1252"?>
-+<VisualStudioProject
-+	ProjectType="Visual C++"
-+	Version="8.00"
-+	Name="patch"
-+	ProjectGUID="{A6D0953E-899E-4C60-AB6B-CAE75A44B8E6}"
-+	RootNamespace="patch"
-+	Keyword="Win32Proj"
-+	>
-+	<Platforms>
-+		<Platform
-+			Name="Win32"
-+		/>
-+	</Platforms>
-+	<ToolFiles>
-+	</ToolFiles>
-+	<Configurations>
-+		<Configuration
-+			Name="Debug|Win32"
-+			ConfigurationType="10"
-+			InheritedPropertySheets="$(SolutionDir)..\build\debug.vsprops"
-+			>
-+			<Tool
-+				Name="VCPreBuildEventTool"
-+			/>
-+			<Tool
-+				Name="VCCustomBuildTool"
-+			/>
-+			<Tool
-+				Name="VCMIDLTool"
-+			/>
-+			<Tool
-+				Name="VCPostBuildEventTool"
-+			/>
-+		</Configuration>
-+		<Configuration
-+			Name="Release|Win32"
-+			ConfigurationType="10"
-+			InheritedPropertySheets="$(SolutionDir)..\build\release.vsprops"
-+			>
-+			<Tool
-+				Name="VCPreBuildEventTool"
-+			/>
-+			<Tool
-+				Name="VCCustomBuildTool"
-+			/>
-+			<Tool
-+				Name="VCMIDLTool"
-+			/>
-+			<Tool
-+				Name="VCPostBuildEventTool"
-+			/>
-+		</Configuration>
-+	</Configurations>
-+	<References>
-+	</References>
-+	<Files>
-+		<File
-+			RelativePath="..\tools\patcher.bat"
-+			>
-+			<FileConfiguration
-+				Name="Debug|Win32"
-+				>
-+				<Tool
-+					Name="VCCustomBuildTool"
-+					Description="patcher"
-+					CommandLine="..\tools\patcher.bat&#x0D;&#x0A;"
-+					AdditionalDependencies=""
-+					Outputs="$(IntDir)\patcher.out"
-+				/>
-+			</FileConfiguration>
-+			<FileConfiguration
-+				Name="Release|Win32"
-+				>
-+				<Tool
-+					Name="VCCustomBuildTool"
-+					Description="patcher"
-+					CommandLine="..\tools\patcher.bat&#x0D;&#x0A;"
-+					AdditionalDependencies=""
-+					Outputs="$(IntDir)\patcher.out"
-+				/>
-+			</FileConfiguration>
-+		</File>
-+	</Files>
-+	<Globals>
-+	</Globals>
-+</VisualStudioProject>
 diff '--exclude=.svn' -aurN cef.ori/resources/AHEM____.TTF cef/resources/AHEM____.TTF
---- cef.ori/resources/AHEM____.TTF	1970-01-01 01:00:00.000000000 +0100
-+++ cef/resources/AHEM____.TTF	2012-05-09 11:32:01.668658220 +0200
+--- resources/AHEM____.TTF	1970-01-01 01:00:00.000000000 +0100
++++ resources/AHEM____.TTF	2012-05-09 11:32:01.668658220 +0200
 @@ -0,0 +1,23 @@
 +     Ä  0OS/2xPJç  8   `cmap÷F  l  rgasp  	  0∞   glyfI≥t⁄  ‡  dhead÷¢N   º   6hhea
 +   Ù   $hmtxπ  }  ò  ‘loca u'"  &D  Ïmaxp ¯ 	      name~å∏  (0  hpostç–ä  .ò       BQg_<ı 	Ë    ≥o_Y    ¿-´I  ˇ8Ë               ˇ8  Ë    Ë                ı    ı                        Ëê   ºä   èºä  ≈ 2   	      Ä  Ø  H        W3C  @   ˇ8    »  @           Ë }    Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë  Ë          L          & 
@@ -7672,8 +7266,8 @@ diff '--exclude=.svn' -aurN cef.ori/resources/AHEM____.TTF cef/resources/AHEM___
 +Ù,:HVdrÄéú™∏∆‘‚˛(6DR`n|äò¶¥¬–ﬁÏ˙$2   J        û          û        ¶         ¥        ‘        ‹        Ú        œ˙       …       Õ       ‘       ‰       Ë       Û       ˜       ˚         	  û  	  §  	  ¨  	   ∫  	  ⁄  	  ‚  	  ¯  	     	    	   M o s t   c h a r a c t e r s   a r e   t h e   e m   s q u a r e ,   e x c e p t   & E A c u t e   a n d   " p " ,   w h i c h   s h o w   a s c e n t / d e s c e n t   f r o m   t h e   b a s e l i n e .   U s e f u l   f o r   t e s t i n g   c o m p o s i t i o n   s y s t e m s .   P r o d u c e d   b y   T o d d   F a h r n e r   f o r   t h e   C S S   S a m u r a i ' s   b r o w s e r   t e s t i n g . A h e m R e g u l a r V e r s i o n   1 . 1   A h e m A h e m V e r s i o n   1 . 1 A h e mMost characters are the em square, except &EAcute and "p", which show ascent/descent from the baseline. Useful for testing composition systems. Produced by Todd Fahrner for the CSS Samurai's browser testing.AhemRegularVersion 1.1 AhemAhemVersion 1.1AhemAhemRegularAhem M o s t   c h a r a c t e r s   a r e   t h e   e m   s q u a r e ,   e x c e p t   & E A c u t e   a n d   " p " ,   w h i c h   s h o w   a s c e n t / d e s c e n t   f r o m   t h e   b a s e l i n e .   U s e f u l   f o r   t e s t i n g   c o m p o s i t i o n   s y s t e m s .   P r o d u c e d   b y   T o d d   F a h r n e r   f o r   t h e   C S S   S a m u r a i ' s   b r o w s e r   t e s t i n g . A h e m R e g u l a r V e r s i o n   1 . 1   A h e m A h e m V e r s i o n   1 . 1 A h e m A h e m R e g u l a r A h e m       ˇ{                     ı          	                        ! " # $ % & ' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ? @ A B C D E F G H I J K L M N O P Q R S T U V W X Y Z [ \ ] ^ _ ` a b c d e f g h i j k l m n o p q r s t u v w x y z { | } ~  Ä Å É Ñ Ö Ü à â ä ã ç é ê ë ì ñ ó ù û † ° ¢ £ § © ™ ¨ ≠ Æ Ø ∂ ∑ ∏ ∫ Ω √ « » …   À Ã Õ Œ œ – — ” ‘ ’ ÷ ◊ ÿ Ÿ ⁄ € ‹ › ﬁ ﬂ ‡ · Ë È Í Î Ï Ì Ó Ô  Ò Ú Û Ù ı ˆ     ∞ ± ª ¶ ® ü õ ≤ ≥ ƒ ¥ µ ≈ Ç ¬ á ´ ∆ æ ø º å ò ö ô • í ú è î ï ß π “ ¿ ¡ NULLHTDEL       ˇˇ 
 \ Kein Zeilenumbruch am Dateiende.
 diff '--exclude=.svn' -aurN cef.ori/resources/cef.ico cef/resources/cef.ico
---- cef.ori/resources/cef.ico	1970-01-01 01:00:00.000000000 +0100
-+++ cef/resources/cef.ico	2012-05-09 11:32:01.668658220 +0200
+--- resources/cef.ico	1970-01-01 01:00:00.000000000 +0100
++++ resources/cef.ico	2012-05-09 11:32:01.668658220 +0200
 @@ -0,0 +1,19 @@
 +           Ë  Ü        (  n  00    ®  ñ        ®  >      h  Ê  00     ®%  N!         ®  ˆF       h  ûW  (       @                                   Ä  Ä   ÄÄ Ä   Ä Ä ÄÄ  ÄÄÄ ¿¿¿   ˇ  ˇ   ˇˇ ˇ   ˇ ˇ ˇˇ  ˇˇˇ ™™™™™™™™™™™™™™™™                wwwwwwwwwwwwwwwpxààààààààààààààpxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxwwwwwwwwwwwwwxpxààààààààààààààpxDDDDDDDDD@    pxDDDDDDDDDHÄàÄpxDDDDDDDDDHÄàÄpxDDDDDDDDDDDDDDpxààààààààààààààpwwwwwwwwwwwwwwwp™™™™™™™™™™™™™™™™™™™™™™™™™™™™™™™™                                                                                                                                (                                          Ä  Ä   ÄÄ Ä   Ä Ä ÄÄ  ÄÄÄ ¿¿¿   ˇ  ˇ   ˇˇ ˇ   ˇ ˇ ˇˇ  ˇˇˇ ™™™™™™™™        wwwwwwwpxˇˇˇˇˇˇpxˇˇˇˇˇˇpxˇˇˇˇˇˇpxˇˇˇˇˇˇpxˇˇˇˇˇˇpxˇˇˇˇˇˇpxˇˇˇˇˇˇpxwwwwwwpxDDDpxDDDDDDpxààààààpwwwwwwww™™™™™™™™                                                                (   0   `                             qjã {rì     •R' £Q' ¢P' íH# ßS$ ßS% •R& •S& §R& §R' ÆhC ¨W! ´V" ™V" ®U# ®U$ íiP ±Z ±Z ÆY ØX  ≠X  ∏^ µ] µ] ≥[ ≥\ ºa ∫` π` ∏_ ƒg ƒg ¿d æc Õl
 + Àk »i …i ∆h ∆i §e)  åP πb  πb ∏b Ÿt ÿs ≤_ ´[ ™[ πc ÷r Ÿv ‘p µb ”q “o —p ⁄x
@@ -7696,8 +7290,8 @@ diff '--exclude=.svn' -aurN cef.ori/resources/cef.ico cef/resources/cef.ico
 +      k   Ä   Å   Å   Å   Å   Å   Å   Å   Å   Å   Å   Ç   {   OüO&∏àF#ÂÉC!ÏÉC!ÏÇC!ÏÉC!ÏÉC!ÏÉC!ÏÉC!ÏÉC!ÏÉC!ÏÉC!ÏA ÏÜE$ÓR(œ   p÷∞ô˙˙ıÛˇ˘ıÚˇ¯ıÚˇ˜ıÚˇ˘ıÚˇ˘ıÚˇ˘ıÚˇ˘ıÚˇ˘ıÚˇ˘ıÚˇ˘ıÚˇ˙ıÛˇ˘ıÚˇrE+›   pŸµûÒˇˇˇˇ˝ˇˇˇ˝ˇˇˇ¸ˇˇˇ¸ˇˇˇ¸ˇˇˇ¸ˇˇˇ¸ˇˇˇ¸ˇˇˇ¸ˇˇˇ¸ˇˇˇ˝ˇˇˇ˛ˇˇˇqD)€   p€µôÒˇˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˚ˇˇˇ˝ˇ˛ˇtF'€   pﬁ∑óÒˇˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˚ˇˇˇ˝ˇ˛ˇwH'€   p·∏ñÒˇˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˚ˇˇˇ¸ˇ˛ˇzI&€   p‰∫îÒˇˇˇˇ˙ˇˇˇ˚ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˛ˇ˝ˇ}L%€   pÊªíÒˇˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˚ˇˇˇ˚ˇˇˇ˛ˇ˝ˇÄN%€   pÏ¿ñÒˇˇˇˇˇˇˇˇ˛ˇˇˇ˛ˇˇˇ˛ˇˇˇ˛ˇˇˇˇˇˇˇ˛ˇˇˇ˛ˇˇˇ˛ˇˇˇ˛ˇˇˇˇˇˇˇˇˇˇˇÉM!€   pﬁ∞}ÒÂ‡◊ˇ‰‹œˇÂ›–ˇÂ‹–ˇÂ‹–ˇ‰›–ˇÂ‹–ˇÂ‹–ˇ‰‹–ˇ„⁄Àˇ„⁄ÃˇÁ€…ˇÏ⁄Ωˇäc>⁄   p∫c¯ΩdˇºcˇΩdˇΩdˇΩdˇºcˇºbˇºcˇºcˇ»x(ˇ s ˇ≥o7ˇ|WRˇözWÕ   R÷y¿‰é*ÒÂâÎÂáÎ‰àÎ‰ÜÎ‰âÎ‰áÎ‰ÖÎ‚ÇÎÂÜÎÁáÎ·à$ÏÀ1Ôømp   	                                                                                                                                Ä :ˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇˇˇˇˇˇˇˇˇ
 \ Kein Zeilenumbruch am Dateiende.
 diff '--exclude=.svn' -aurN cef.ori/resources/cef.rc cef/resources/cef.rc
---- cef.ori/resources/cef.rc	1970-01-01 01:00:00.000000000 +0100
-+++ cef/resources/cef.rc	2012-05-09 11:32:01.668658220 +0200
+--- resources/cef.rc	1970-01-01 01:00:00.000000000 +0100
++++ resources/cef.rc	2012-05-09 11:32:01.668658220 +0200
 @@ -0,0 +1,140 @@
 +//Microsoft Visual C++ generated resource script.
 +//
@@ -7840,8 +7434,8 @@ diff '--exclude=.svn' -aurN cef.ori/resources/cef.rc cef/resources/cef.rc
 +/////////////////////////////////////////////////////////////////////////////
 +#endif    // not APSTUDIO_INVOKED
 diff '--exclude=.svn' -aurN cef.ori/resources/fonts.conf cef/resources/fonts.conf
---- cef.ori/resources/fonts.conf	1970-01-01 01:00:00.000000000 +0100
-+++ cef/resources/fonts.conf	2012-05-09 11:32:01.668658220 +0200
+--- resources/fonts.conf	1970-01-01 01:00:00.000000000 +0100
++++ resources/fonts.conf	2012-05-09 11:32:01.668658220 +0200
 @@ -0,0 +1,229 @@
 +<?xml version="1.0"?>
 +<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
@@ -8073,16 +7667,16 @@ diff '--exclude=.svn' -aurN cef.ori/resources/fonts.conf cef/resources/fonts.con
 +
 +</fontconfig>
 diff '--exclude=.svn' -aurN cef.ori/resources/missingImage.gif cef/resources/missingImage.gif
---- cef.ori/resources/missingImage.gif	1970-01-01 01:00:00.000000000 +0100
-+++ cef/resources/missingImage.gif	2012-05-09 11:32:01.668658220 +0200
+--- resources/missingImage.gif	1970-01-01 01:00:00.000000000 +0100
++++ resources/missingImage.gif	2012-05-09 11:32:01.668658220 +0200
 @@ -0,0 +1,3 @@
 +GIF89a  ’   h∞pò¿(x∏ p∏à∏ÿxò»(Ä¿¯¯¯¯‡Ë–‡∏–Ë¿ÿËò¿‡hê¿pê¿0Ä¿(à¿0x∏à∏‡x†» p∞ê®–à®–pò»ê∞–Ä†»(à» x∏@ê»Pò»(x¿Pê»                                                                                             ,       è¿åpH,f,á§rπ¥ 7–®z∞\QÉv=\Æëàv2Y4:Ü∞WsÿÜŒ!Ò—4Ï≠á Ävxmá Çáá ïáïïú®
 +
 +©ß©´≠ØΩ ¿ æº√…Ω«LœIÕ“”‘“A ;
 \ Kein Zeilenumbruch am Dateiende.
 diff '--exclude=.svn' -aurN cef.ori/resources/missingImage.png cef/resources/missingImage.png
---- cef.ori/resources/missingImage.png	1970-01-01 01:00:00.000000000 +0100
-+++ cef/resources/missingImage.png	2012-05-09 11:32:01.668658220 +0200
+--- resources/missingImage.png	1970-01-01 01:00:00.000000000 +0100
++++ resources/missingImage.png	2012-05-09 11:32:01.668658220 +0200
 @@ -0,0 +1,6 @@
 +âPNG
 +
@@ -8092,8 +7686,8 @@ diff '--exclude=.svn' -aurN cef.ori/resources/missingImage.png cef/resources/mis
 +2˙é2 u0åäí±*%HÛ≈¯›Ü∑∆ö..Yn⁄µ˜ãã-›Ê∫9>£‹ÍÊióßÍ„Œ h_Äﬁ≠    IENDÆB`Ç
 \ Kein Zeilenumbruch am Dateiende.
 diff '--exclude=.svn' -aurN cef.ori/resources/README.txt cef/resources/README.txt
---- cef.ori/resources/README.txt	1970-01-01 01:00:00.000000000 +0100
-+++ cef/resources/README.txt	2012-05-09 11:32:01.668658220 +0200
+--- resources/README.txt	1970-01-01 01:00:00.000000000 +0100
++++ resources/README.txt	2012-05-09 11:32:01.668658220 +0200
 @@ -0,0 +1,26 @@
 +missingImage.gif was created from Webkit data: WebCore/Resources/missingImage.tiff
 +
@@ -8122,8 +7716,8 @@ diff '--exclude=.svn' -aurN cef.ori/resources/README.txt cef/resources/README.tx
 +
 +missingImage.png is the same as WebCore/Resources/missingImage.png and carries exactly the same license.
 diff '--exclude=.svn' -aurN cef.ori/resources/small.ico cef/resources/small.ico
---- cef.ori/resources/small.ico	1970-01-01 01:00:00.000000000 +0100
-+++ cef/resources/small.ico	2012-05-09 11:32:01.668658220 +0200
+--- resources/small.ico	1970-01-01 01:00:00.000000000 +0100
++++ resources/small.ico	2012-05-09 11:32:01.668658220 +0200
 @@ -0,0 +1,19 @@
 +           Ë  Ü        (  n  00    ®  ñ        ®  >      h  Ê  00     ®%  N!         ®  ˆF       h  ûW  (       @                                   Ä  Ä   ÄÄ Ä   Ä Ä ÄÄ  ÄÄÄ ¿¿¿   ˇ  ˇ   ˇˇ ˇ   ˇ ˇ ˇˇ  ˇˇˇ ™™™™™™™™™™™™™™™™                wwwwwwwwwwwwwwwpxààààààààààààààpxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxˇˇˇˇˇˇˇˇˇˇˇˇ¯pxwwwwwwwwwwwwwxpxààààààààààààààpxDDDDDDDDD@    pxDDDDDDDDDHÄàÄpxDDDDDDDDDHÄàÄpxDDDDDDDDDDDDDDpxààààààààààààààpwwwwwwwwwwwwwwwp™™™™™™™™™™™™™™™™™™™™™™™™™™™™™™™™                                                                                                                                (                                          Ä  Ä   ÄÄ Ä   Ä Ä ÄÄ  ÄÄÄ ¿¿¿   ˇ  ˇ   ˇˇ ˇ   ˇ ˇ ˇˇ  ˇˇˇ ™™™™™™™™        wwwwwwwpxˇˇˇˇˇˇpxˇˇˇˇˇˇpxˇˇˇˇˇˇpxˇˇˇˇˇˇpxˇˇˇˇˇˇpxˇˇˇˇˇˇpxˇˇˇˇˇˇpxwwwwwwpxDDDpxDDDDDDpxààààààpwwwwwwww™™™™™™™™                                                                (   0   `                             qjã {rì     •R' £Q' ¢P' íH# ßS$ ßS% •R& •S& §R& §R' ÆhC ¨W! ´V" ™V" ®U# ®U$ íiP ±Z ±Z ÆY ØX  ≠X  ∏^ µ] µ] ≥[ ≥\ ºa ∫` π` ∏_ ƒg ƒg ¿d æc Õl
 + Àk »i …i ∆h ∆i §e)  åP πb  πb ∏b Ÿt ÿs ≤_ ´[ ™[ πc ÷r Ÿv ‘p µb ”q “o —p ⁄x
@@ -8146,16 +7740,16 @@ diff '--exclude=.svn' -aurN cef.ori/resources/small.ico cef/resources/small.ico
 +      k   Ä   Å   Å   Å   Å   Å   Å   Å   Å   Å   Å   Ç   {   OüO&∏àF#ÂÉC!ÏÉC!ÏÇC!ÏÉC!ÏÉC!ÏÉC!ÏÉC!ÏÉC!ÏÉC!ÏÉC!ÏA ÏÜE$ÓR(œ   p÷∞ô˙˙ıÛˇ˘ıÚˇ¯ıÚˇ˜ıÚˇ˘ıÚˇ˘ıÚˇ˘ıÚˇ˘ıÚˇ˘ıÚˇ˘ıÚˇ˘ıÚˇ˙ıÛˇ˘ıÚˇrE+›   pŸµûÒˇˇˇˇ˝ˇˇˇ˝ˇˇˇ¸ˇˇˇ¸ˇˇˇ¸ˇˇˇ¸ˇˇˇ¸ˇˇˇ¸ˇˇˇ¸ˇˇˇ¸ˇˇˇ˝ˇˇˇ˛ˇˇˇqD)€   p€µôÒˇˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˚ˇˇˇ˝ˇ˛ˇtF'€   pﬁ∑óÒˇˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˚ˇˇˇ˝ˇ˛ˇwH'€   p·∏ñÒˇˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˚ˇˇˇ¸ˇ˛ˇzI&€   p‰∫îÒˇˇˇˇ˙ˇˇˇ˚ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˛ˇ˝ˇ}L%€   pÊªíÒˇˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˙ˇˇˇ˚ˇˇˇ˚ˇˇˇ˛ˇ˝ˇÄN%€   pÏ¿ñÒˇˇˇˇˇˇˇˇ˛ˇˇˇ˛ˇˇˇ˛ˇˇˇ˛ˇˇˇˇˇˇˇ˛ˇˇˇ˛ˇˇˇ˛ˇˇˇ˛ˇˇˇˇˇˇˇˇˇˇˇÉM!€   pﬁ∞}ÒÂ‡◊ˇ‰‹œˇÂ›–ˇÂ‹–ˇÂ‹–ˇ‰›–ˇÂ‹–ˇÂ‹–ˇ‰‹–ˇ„⁄Àˇ„⁄ÃˇÁ€…ˇÏ⁄Ωˇäc>⁄   p∫c¯ΩdˇºcˇΩdˇΩdˇΩdˇºcˇºbˇºcˇºcˇ»x(ˇ s ˇ≥o7ˇ|WRˇözWÕ   R÷y¿‰é*ÒÂâÎÂáÎ‰àÎ‰ÜÎ‰âÎ‰áÎ‰ÖÎ‚ÇÎÂÜÎÁáÎ·à$ÏÀ1Ôømp   	                                                                                                                                Ä :ˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇ  ˇˇˇˇˇˇˇˇˇˇ
 \ Kein Zeilenumbruch am Dateiende.
 diff '--exclude=.svn' -aurN cef.ori/resources/textAreaResizeCorner.png cef/resources/textAreaResizeCorner.png
---- cef.ori/resources/textAreaResizeCorner.png	1970-01-01 01:00:00.000000000 +0100
-+++ cef/resources/textAreaResizeCorner.png	2012-05-09 11:32:01.669658220 +0200
+--- resources/textAreaResizeCorner.png	1970-01-01 01:00:00.000000000 +0100
++++ resources/textAreaResizeCorner.png	2012-05-09 11:32:01.669658220 +0200
 @@ -0,0 +1,3 @@
 +âPNG
 +
 +   IHDR         ƒæã   	pHYs     öú   gAMA  ±é|˚Qì    cHRM  z%  ÄÉ  ˘ˇ  ÄÈ  u0  Í`  :ò  oí_≈F   9IDATx⁄|é±  √ûÂ¶^∂J†–¨é%√eõ5¡…,Ätjò| 6ívjHf7h™8 @3=XWk≥    IENDÆB`Ç
 \ Kein Zeilenumbruch am Dateiende.
 diff '--exclude=.svn' -aurN cef.ori/tests/cefclient/cefclient_gtk.cpp cef/tests/cefclient/cefclient_gtk.cpp
---- cef.ori/tests/cefclient/cefclient_gtk.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/tests/cefclient/cefclient_gtk.cpp	2012-05-09 11:32:01.669658220 +0200
+--- tests/cefclient/cefclient_gtk.cpp	1970-01-01 01:00:00.000000000 +0100
++++ tests/cefclient/cefclient_gtk.cpp	2012-05-09 11:32:01.669658220 +0200
 @@ -0,0 +1,397 @@
 +#include "include/cef.h"
 +#include "cefclient.h"
@@ -8554,661 +8148,9 @@ diff '--exclude=.svn' -aurN cef.ori/tests/cefclient/cefclient_gtk.cpp cef/tests/
 +std::string AppGetWorkingDirectory() {
 +    return szWorkingDir;
 +}
-diff '--exclude=.svn' -aurN cef.ori/tests/cefclient/cefclient.rc cef/tests/cefclient/cefclient.rc
---- cef.ori/tests/cefclient/cefclient.rc	2012-05-09 11:27:17.417674296 +0200
-+++ cef/tests/cefclient/cefclient.rc	2012-05-09 11:32:01.669658220 +0200
-@@ -1,184 +1,184 @@
--// Microsoft Visual C++ generated resource script.
--//
--#include "resource.h"
--
--#define APSTUDIO_READONLY_SYMBOLS
--/////////////////////////////////////////////////////////////////////////////
--//
--// Generated from the TEXTINCLUDE 2 resource.
--//
--#define APSTUDIO_HIDDEN_SYMBOLS
--#include "windows.h"
--#undef APSTUDIO_HIDDEN_SYMBOLS
--
--/////////////////////////////////////////////////////////////////////////////
--#undef APSTUDIO_READONLY_SYMBOLS
--
--/////////////////////////////////////////////////////////////////////////////
--// English (U.S.) resources
--
--#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
--#ifdef _WIN32
--LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
--#pragma code_page(1252)
--#endif //_WIN32
--
--/////////////////////////////////////////////////////////////////////////////
--//
--// Binary
--//
--
--IDS_LOGO BINARY "res\\logo.png"
--IDS_UIPLUGIN BINARY "res\\uiplugin.html"
--IDS_OSRPLUGIN BINARY "res\\osrplugin.html"
--IDS_LOGOBALL BINARY "res\\logoball.png"
--IDS_LOCALSTORAGE BINARY "res\\localstorage.html"
--IDS_XMLHTTPREQUEST BINARY "res\\xmlhttprequest.html"
--IDS_DOMACCESS BINARY "res\\domaccess.html"
--IDS_MODALMAIN BINARY "res\\modalmain.html"
--IDS_MODALDIALOG BINARY "res\\modaldialog.html"
--
--/////////////////////////////////////////////////////////////////////////////
--//
--// Icon
--//
--
--// Icon with lowest ID value placed first to ensure application icon
--// remains consistent on all systems.
--IDI_CEFCLIENT           ICON                    "res\cefclient.ico"
--IDI_SMALL               ICON                    "res\small.ico"
--
--/////////////////////////////////////////////////////////////////////////////
--//
--// Menu
--//
--
--IDC_CEFCLIENT MENU 
--BEGIN
--    POPUP "&File"
--    BEGIN
--        MENUITEM "&Find...",                    ID_FIND
--        MENUITEM SEPARATOR
--        MENUITEM "&Print...",                   ID_PRINT
--        MENUITEM SEPARATOR
--        MENUITEM "E&xit",                       IDM_EXIT
--    END
--    POPUP "&Help"
--    BEGIN
--        MENUITEM "&About ...",                  IDM_ABOUT
--    END
--    POPUP "Tests"
--    BEGIN
--        MENUITEM "Get Source",                  ID_TESTS_GETSOURCE
--        MENUITEM "Get Text",                    ID_TESTS_GETTEXT
--        MENUITEM "JavaScript Binding Handler",  ID_TESTS_JAVASCRIPT_BINDING
--        MENUITEM "JavaScript Extension Handler",ID_TESTS_JAVASCRIPT_EXTENSION
--        MENUITEM "JavaScript Execute",          ID_TESTS_JAVASCRIPT_EXECUTE
--        MENUITEM "Plugin",                      ID_TESTS_PLUGIN
--        MENUITEM "Popup Window",                ID_TESTS_POPUP
--        MENUITEM "Request",                     ID_TESTS_REQUEST
--        MENUITEM "Scheme Handler",              ID_TESTS_SCHEME_HANDLER
--        MENUITEM "UI App Example",              ID_TESTS_UIAPP
--        MENUITEM "Off-Screen Rendering Example",ID_TESTS_OSRAPP
--        MENUITEM "Local Storage",               ID_TESTS_LOCALSTORAGE
--        MENUITEM "XMLHttpRequest",              ID_TESTS_XMLHTTPREQUEST
--        MENUITEM "WebURLRequest",               ID_TESTS_WEBURLREQUEST
--        MENUITEM "DOM Access",                  ID_TESTS_DOMACCESS
--        MENUITEM "Accelerated 2D Canvas",       ID_TESTS_ACCELERATED2DCANVAS
--        MENUITEM "Accelerated Layers",          ID_TESTS_ACCELERATEDLAYERS
--        MENUITEM "WebGL",                       ID_TESTS_WEBGL
--        MENUITEM "HTML5 Video",                 ID_TESTS_HTML5VIDEO
--        MENUITEM "Drag && Drop",                ID_TESTS_DRAGDROP
--        MENUITEM "Zoom In",                     ID_TESTS_ZOOM_IN
--        MENUITEM "Zoom Out",                    ID_TESTS_ZOOM_OUT
--        MENUITEM "Reset Zoom",                  ID_TESTS_ZOOM_RESET
--        MENUITEM "Show Developer Tools",        ID_TESTS_DEVTOOLS_SHOW
--        MENUITEM "Close Developer Tools",       ID_TESTS_DEVTOOLS_CLOSE
--        MENUITEM "Modal Dialog",                ID_TESTS_MODALDIALOG
--   END
--END
--
--
--/////////////////////////////////////////////////////////////////////////////
--//
--// Accelerator
--//
--
--IDC_CEFCLIENT ACCELERATORS 
--BEGIN
--    "?",            IDM_ABOUT,              ASCII,  ALT
--    "/",            IDM_ABOUT,              ASCII,  ALT
--END
--
--
--/////////////////////////////////////////////////////////////////////////////
--//
--// Dialog
--//
--
--IDD_ABOUTBOX DIALOG  22, 17, 230, 75
--STYLE DS_SETFONT | DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
--CAPTION "About"
--FONT 8, "System"
--BEGIN
--    ICON            IDI_CEFCLIENT,IDC_MYICON,14,9,16,16
--    LTEXT           "cefclient Version 1.0",IDC_STATIC,49,10,119,8,SS_NOPREFIX
--    LTEXT           "Copyright (C) 2008",IDC_STATIC,49,20,119,8
--    DEFPUSHBUTTON   "OK",IDOK,195,6,30,11,WS_GROUP
--END
--
--
--#ifdef APSTUDIO_INVOKED
--/////////////////////////////////////////////////////////////////////////////
--//
--// TEXTINCLUDE
--//
--
--1 TEXTINCLUDE 
--BEGIN
--    "resource.h\0"
--END
--
--2 TEXTINCLUDE 
--BEGIN
--    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
--    "#include ""windows.h""\r\n"
--    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
--    "\0"
--END
--
--3 TEXTINCLUDE 
--BEGIN
--    "\r\n"
--    "\0"
--END
--
--#endif    // APSTUDIO_INVOKED
--
--
--/////////////////////////////////////////////////////////////////////////////
--//
--// String Table
--//
--
--STRINGTABLE 
--BEGIN
--    IDS_APP_TITLE           "cefclient"
--    IDC_CEFCLIENT           "CEFCLIENT"
--END
--
--#endif    // English (U.S.) resources
--/////////////////////////////////////////////////////////////////////////////
--
--
--
--#ifndef APSTUDIO_INVOKED
--/////////////////////////////////////////////////////////////////////////////
--//
--// Generated from the TEXTINCLUDE 3 resource.
--//
--
--
--/////////////////////////////////////////////////////////////////////////////
--#endif    // not APSTUDIO_INVOKED
--
-+// Microsoft Visual C++ generated resource script.
-+//
-+#include "resource.h"
-+
-+#define APSTUDIO_READONLY_SYMBOLS
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// Generated from the TEXTINCLUDE 2 resource.
-+//
-+#define APSTUDIO_HIDDEN_SYMBOLS
-+#include "windows.h"
-+#undef APSTUDIO_HIDDEN_SYMBOLS
-+
-+/////////////////////////////////////////////////////////////////////////////
-+#undef APSTUDIO_READONLY_SYMBOLS
-+
-+/////////////////////////////////////////////////////////////////////////////
-+// English (U.S.) resources
-+
-+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-+#ifdef _WIN32
-+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
-+#pragma code_page(1252)
-+#endif //_WIN32
-+
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// Binary
-+//
-+
-+IDS_LOGO BINARY "res\\logo.png"
-+IDS_UIPLUGIN BINARY "res\\uiplugin.html"
-+IDS_OSRPLUGIN BINARY "res\\osrplugin.html"
-+IDS_LOGOBALL BINARY "res\\logoball.png"
-+IDS_LOCALSTORAGE BINARY "res\\localstorage.html"
-+IDS_XMLHTTPREQUEST BINARY "res\\xmlhttprequest.html"
-+IDS_DOMACCESS BINARY "res\\domaccess.html"
-+IDS_MODALMAIN BINARY "res\\modalmain.html"
-+IDS_MODALDIALOG BINARY "res\\modaldialog.html"
-+
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// Icon
-+//
-+
-+// Icon with lowest ID value placed first to ensure application icon
-+// remains consistent on all systems.
-+IDI_CEFCLIENT           ICON                    "res\cefclient.ico"
-+IDI_SMALL               ICON                    "res\small.ico"
-+
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// Menu
-+//
-+
-+IDC_CEFCLIENT MENU 
-+BEGIN
-+    POPUP "&File"
-+    BEGIN
-+        MENUITEM "&Find...",                    ID_FIND
-+        MENUITEM SEPARATOR
-+        MENUITEM "&Print...",                   ID_PRINT
-+        MENUITEM SEPARATOR
-+        MENUITEM "E&xit",                       IDM_EXIT
-+    END
-+    POPUP "&Help"
-+    BEGIN
-+        MENUITEM "&About ...",                  IDM_ABOUT
-+    END
-+    POPUP "Tests"
-+    BEGIN
-+        MENUITEM "Get Source",                  ID_TESTS_GETSOURCE
-+        MENUITEM "Get Text",                    ID_TESTS_GETTEXT
-+        MENUITEM "JavaScript Binding Handler",  ID_TESTS_JAVASCRIPT_BINDING
-+        MENUITEM "JavaScript Extension Handler",ID_TESTS_JAVASCRIPT_EXTENSION
-+        MENUITEM "JavaScript Execute",          ID_TESTS_JAVASCRIPT_EXECUTE
-+        MENUITEM "Plugin",                      ID_TESTS_PLUGIN
-+        MENUITEM "Popup Window",                ID_TESTS_POPUP
-+        MENUITEM "Request",                     ID_TESTS_REQUEST
-+        MENUITEM "Scheme Handler",              ID_TESTS_SCHEME_HANDLER
-+        MENUITEM "UI App Example",              ID_TESTS_UIAPP
-+        MENUITEM "Off-Screen Rendering Example",ID_TESTS_OSRAPP
-+        MENUITEM "Local Storage",               ID_TESTS_LOCALSTORAGE
-+        MENUITEM "XMLHttpRequest",              ID_TESTS_XMLHTTPREQUEST
-+        MENUITEM "WebURLRequest",               ID_TESTS_WEBURLREQUEST
-+        MENUITEM "DOM Access",                  ID_TESTS_DOMACCESS
-+        MENUITEM "Accelerated 2D Canvas",       ID_TESTS_ACCELERATED2DCANVAS
-+        MENUITEM "Accelerated Layers",          ID_TESTS_ACCELERATEDLAYERS
-+        MENUITEM "WebGL",                       ID_TESTS_WEBGL
-+        MENUITEM "HTML5 Video",                 ID_TESTS_HTML5VIDEO
-+        MENUITEM "Drag && Drop",                ID_TESTS_DRAGDROP
-+        MENUITEM "Zoom In",                     ID_TESTS_ZOOM_IN
-+        MENUITEM "Zoom Out",                    ID_TESTS_ZOOM_OUT
-+        MENUITEM "Reset Zoom",                  ID_TESTS_ZOOM_RESET
-+        MENUITEM "Show Developer Tools",        ID_TESTS_DEVTOOLS_SHOW
-+        MENUITEM "Close Developer Tools",       ID_TESTS_DEVTOOLS_CLOSE
-+        MENUITEM "Modal Dialog",                ID_TESTS_MODALDIALOG
-+   END
-+END
-+
-+
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// Accelerator
-+//
-+
-+IDC_CEFCLIENT ACCELERATORS 
-+BEGIN
-+    "?",            IDM_ABOUT,              ASCII,  ALT
-+    "/",            IDM_ABOUT,              ASCII,  ALT
-+END
-+
-+
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// Dialog
-+//
-+
-+IDD_ABOUTBOX DIALOG  22, 17, 230, 75
-+STYLE DS_SETFONT | DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
-+CAPTION "About"
-+FONT 8, "System"
-+BEGIN
-+    ICON            IDI_CEFCLIENT,IDC_MYICON,14,9,16,16
-+    LTEXT           "cefclient Version 1.0",IDC_STATIC,49,10,119,8,SS_NOPREFIX
-+    LTEXT           "Copyright (C) 2008",IDC_STATIC,49,20,119,8
-+    DEFPUSHBUTTON   "OK",IDOK,195,6,30,11,WS_GROUP
-+END
-+
-+
-+#ifdef APSTUDIO_INVOKED
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// TEXTINCLUDE
-+//
-+
-+1 TEXTINCLUDE 
-+BEGIN
-+    "resource.h\0"
-+END
-+
-+2 TEXTINCLUDE 
-+BEGIN
-+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
-+    "#include ""windows.h""\r\n"
-+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
-+    "\0"
-+END
-+
-+3 TEXTINCLUDE 
-+BEGIN
-+    "\r\n"
-+    "\0"
-+END
-+
-+#endif    // APSTUDIO_INVOKED
-+
-+
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// String Table
-+//
-+
-+STRINGTABLE 
-+BEGIN
-+    IDS_APP_TITLE           "cefclient"
-+    IDC_CEFCLIENT           "CEFCLIENT"
-+END
-+
-+#endif    // English (U.S.) resources
-+/////////////////////////////////////////////////////////////////////////////
-+
-+
-+
-+#ifndef APSTUDIO_INVOKED
-+/////////////////////////////////////////////////////////////////////////////
-+//
-+// Generated from the TEXTINCLUDE 3 resource.
-+//
-+
-+
-+/////////////////////////////////////////////////////////////////////////////
-+#endif    // not APSTUDIO_INVOKED
-+
-diff '--exclude=.svn' -aurN cef.ori/tests/cefclient/res/modaldialog.html cef/tests/cefclient/res/modaldialog.html
---- cef.ori/tests/cefclient/res/modaldialog.html	2012-05-09 11:27:17.335674299 +0200
-+++ cef/tests/cefclient/res/modaldialog.html	2012-05-09 11:32:01.699658218 +0200
-@@ -1,78 +1,78 @@
--<!doctype html>
--<html>
--<head>
--    <title>A Modal Dialog</title>
--</head>
--<body>
--Argument:<input id="argument" type="text" size="32"><br>
--<br>
--Reply:<input id="reply" type="text" autofocus="autofocus" size="32"><br>
--<p>
--<button onclick="OnOK(false)">Cancel</button> <button onclick="OnOK(true)">OK</button>
--</p>
--<p id="time"></p>
--<script>
--              
--function init()
--{
--  timer();
--  setInterval(timer, 200);
--  setValueToId('argument', dialogArguments.msg);
--}
--
--function timer()
--{
--  updateId("time",new Date().toLocaleString());
--}
--
--function updateId(id, html, append)
--{
--  id = document.getElementById(id);
--  if (typeof html == "boolean")
--    html = html?"Yes":"No";
--  if (append)
--    id.innerHTML += html + '<br>';
--  else
--    id.innerHTML = html;
--}
--              
--function setValueToId(id, v)
--{
--  id = document.getElementById(id);
--  id.value = v;
--}
--
--function getValueFromId(id)
--{
--  id = document.getElementById(id);
--  if (id)
--    return id.value;
--  else
--    return "";
--}
--
--function OnOK(what)
--{
--  if (what)
--    returnValue = { dialogResult:true,  msg: "'"+ getValueFromId('reply') + "'" };
--  else 
--    returnValue = { dialogResult:false, msg:'(cancelled)' };
--  window.close();
--}
--
--function keydown(e)
--{
--  if (!e) e= event;
--  if (e.keyCode == 27) {
--    OnOK(false);
--  } else if (e.keyCode == 13) {
--    OnOK(true);
--  }
--}
--
--document.addEventListener('keydown', keydown, false); 
--window.addEventListener('load', init, false);
--
--</script>
--</body>
--</html>
-+<!doctype html>
-+<html>
-+<head>
-+    <title>A Modal Dialog</title>
-+</head>
-+<body>
-+Argument:<input id="argument" type="text" size="32"><br>
-+<br>
-+Reply:<input id="reply" type="text" autofocus="autofocus" size="32"><br>
-+<p>
-+<button onclick="OnOK(false)">Cancel</button> <button onclick="OnOK(true)">OK</button>
-+</p>
-+<p id="time"></p>
-+<script>
-+              
-+function init()
-+{
-+  timer();
-+  setInterval(timer, 200);
-+  setValueToId('argument', dialogArguments.msg);
-+}
-+
-+function timer()
-+{
-+  updateId("time",new Date().toLocaleString());
-+}
-+
-+function updateId(id, html, append)
-+{
-+  id = document.getElementById(id);
-+  if (typeof html == "boolean")
-+    html = html?"Yes":"No";
-+  if (append)
-+    id.innerHTML += html + '<br>';
-+  else
-+    id.innerHTML = html;
-+}
-+              
-+function setValueToId(id, v)
-+{
-+  id = document.getElementById(id);
-+  id.value = v;
-+}
-+
-+function getValueFromId(id)
-+{
-+  id = document.getElementById(id);
-+  if (id)
-+    return id.value;
-+  else
-+    return "";
-+}
-+
-+function OnOK(what)
-+{
-+  if (what)
-+    returnValue = { dialogResult:true,  msg: "'"+ getValueFromId('reply') + "'" };
-+  else 
-+    returnValue = { dialogResult:false, msg:'(cancelled)' };
-+  window.close();
-+}
-+
-+function keydown(e)
-+{
-+  if (!e) e= event;
-+  if (e.keyCode == 27) {
-+    OnOK(false);
-+  } else if (e.keyCode == 13) {
-+    OnOK(true);
-+  }
-+}
-+
-+document.addEventListener('keydown', keydown, false); 
-+window.addEventListener('load', init, false);
-+
-+</script>
-+</body>
-+</html>
-diff '--exclude=.svn' -aurN cef.ori/tests/cefclient/res/modalmain.html cef/tests/cefclient/res/modalmain.html
---- cef.ori/tests/cefclient/res/modalmain.html	2012-05-09 11:27:17.337674300 +0200
-+++ cef/tests/cefclient/res/modalmain.html	2012-05-09 11:32:01.700658217 +0200
-@@ -1,58 +1,58 @@
--<!doctype html> 
--<html> 
--<head> 
--<title>Test Modal Dialog</title> 
--</head> 
--<body>
--
--<h3>Tests</h3>
--<button onclick="doModal()">Open the modal dialog</button><br>
--<button onclick="window.close()">Close this window</button>
--
--<h3>Time (timers are suppresed while the modal dialog is open)</h3>
--<div id="time"></div>
--
--<h3>Result Log</h3>
--<div id="result"></div>
--
--<script>
--
--function init()
--{
--  timer();
--  setInterval(timer, 200);
--}
--
--function timer()
--{
--  updateId("time",new Date().toLocaleString());
--}
--
--function updateId(id, html, append)
--{
--  id = document.getElementById(id);
--  if (typeof html == "boolean")
--    html = html?"Yes":"No";
--  if (append)
--    id.innerHTML += html + '<br>';
--  else
--    id.innerHTML = html;
--}
--
--function doModal()
--{
--  updateId('result', "Modal dialog is open...", true);
--  var result = window.showModalDialog("http://tests/modaldialog", { msg:"Hi from parent"} );
--  if (typeof result == "object") {
--    updateId('result', "Result: " + result.msg, true);
--  } else {
--    updateId('result', "Dialog was closed", true);
--  }
--}
--
--window.addEventListener('load', init, false);
--
--</script>
--
--</body> 
--</html>
-+<!doctype html> 
-+<html> 
-+<head> 
-+<title>Test Modal Dialog</title> 
-+</head> 
-+<body>
-+
-+<h3>Tests</h3>
-+<button onclick="doModal()">Open the modal dialog</button><br>
-+<button onclick="window.close()">Close this window</button>
-+
-+<h3>Time (timers are suppresed while the modal dialog is open)</h3>
-+<div id="time"></div>
-+
-+<h3>Result Log</h3>
-+<div id="result"></div>
-+
-+<script>
-+
-+function init()
-+{
-+  timer();
-+  setInterval(timer, 200);
-+}
-+
-+function timer()
-+{
-+  updateId("time",new Date().toLocaleString());
-+}
-+
-+function updateId(id, html, append)
-+{
-+  id = document.getElementById(id);
-+  if (typeof html == "boolean")
-+    html = html?"Yes":"No";
-+  if (append)
-+    id.innerHTML += html + '<br>';
-+  else
-+    id.innerHTML = html;
-+}
-+
-+function doModal()
-+{
-+  updateId('result', "Modal dialog is open...", true);
-+  var result = window.showModalDialog("http://tests/modaldialog", { msg:"Hi from parent"} );
-+  if (typeof result == "object") {
-+    updateId('result', "Result: " + result.msg, true);
-+  } else {
-+    updateId('result', "Dialog was closed", true);
-+  }
-+}
-+
-+window.addEventListener('load', init, false);
-+
-+</script>
-+
-+</body> 
-+</html>
 diff '--exclude=.svn' -aurN cef.ori/tests/gtkclient/cefclient_gtk.cpp cef/tests/gtkclient/cefclient_gtk.cpp
---- cef.ori/tests/gtkclient/cefclient_gtk.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/tests/gtkclient/cefclient_gtk.cpp	2012-05-09 11:32:01.701658216 +0200
+--- tests/gtkclient/cefclient_gtk.cpp	1970-01-01 01:00:00.000000000 +0100
++++ tests/gtkclient/cefclient_gtk.cpp	2012-05-09 11:32:01.701658216 +0200
 @@ -0,0 +1,172 @@
 +#include <unistd.h>
 +#include <gtk/gtk.h>
@@ -9383,8 +8325,8 @@ diff '--exclude=.svn' -aurN cef.ori/tests/gtkclient/cefclient_gtk.cpp cef/tests/
 +    return 0;
 +}
 diff '--exclude=.svn' -aurN cef.ori/tests/wxclient/main.cpp cef/tests/wxclient/main.cpp
---- cef.ori/tests/wxclient/main.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ cef/tests/wxclient/main.cpp	2012-05-09 11:32:01.703658217 +0200
+--- tests/wxclient/main.cpp	1970-01-01 01:00:00.000000000 +0100
++++ tests/wxclient/main.cpp	2012-05-09 11:32:01.703658217 +0200
 @@ -0,0 +1,213 @@
 +#define CEF_IGNORE_FUNCTIONS 1
 +#include "ChromiumBrowserI.h"
@@ -9600,8 +8542,8 @@ diff '--exclude=.svn' -aurN cef.ori/tests/wxclient/main.cpp cef/tests/wxclient/m
 +}
 +
 diff '--exclude=.svn' -aurN cef.ori/tools/gclient_hook.py cef/tools/gclient_hook.py
---- cef.ori/tools/gclient_hook.py	2012-05-09 11:27:16.865674327 +0200
-+++ cef/tools/gclient_hook.py	2012-05-09 11:32:01.703658217 +0200
+--- tools/gclient_hook.py	2012-05-09 11:27:16.865674327 +0200
++++ tools/gclient_hook.py	2012-05-09 11:32:01.703658217 +0200
 @@ -54,5 +54,22 @@
  
  print "\nGenerating CEF project files..."
@@ -9626,59 +8568,3 @@ diff '--exclude=.svn' -aurN cef.ori/tools/gclient_hook.py cef/tools/gclient_hook
 +	'-Duse_system_yasm=1',
 +	'-Duse_system_zlib=1']
  RunAction(cef_dir, gyper);
-diff '--exclude=.svn' -aurN cef.ori/tools/make_cppdocs.bat cef/tools/make_cppdocs.bat
---- cef.ori/tools/make_cppdocs.bat	2012-05-09 11:27:16.867674327 +0200
-+++ cef/tools/make_cppdocs.bat	2012-05-09 11:32:01.703658217 +0200
-@@ -1,9 +1,9 @@
--@echo off
--set CPPDOC_PATH="C:\Program Files (x86)\richfeit\CppDoc\CppDoc.exe"
--
--if not exist %CPPDOC_PATH% (
--echo Please install CppDoc from http://www.cppdoc.com/
--pause
--) else (
--%CPPDOC_PATH% -title="CEF C++ API Docs - Revision XXX"  -footer="<center><a href="http://code.google.com/p/chromiumembedded" target="_top">Chromium Embedded Framework (CEF)</a> Copyright &copy 2011 Marshall A. Greenblatt</center>" -namespace-as-project -comment-format="///;//;///" -classdir=projects -module="cppdoc-standard" -extensions=h -languages="c=cpp,cc=cpp,cpp=cpp,cs=csharp,cxx=cpp,h=cpp,hpp=cpp,hxx=cpp,java=java" -D"OS_WIN" -D"USING_CEF_SHARED" -D"__cplusplus" -D"CEF_STRING_TYPE_UTF16" -enable-author=false -enable-deprecations=true -enable-since=true -enable-version=false -file-links-for-globals=false -generate-deprecations-list=false -generate-hierarchy=true -header-background-dark="#ccccff" -header-background-light="#eeeeff" -include-private=false -include-protected=true -index-file-base=index -overview-html=overview.html -reduce-summary-font=true -selected-text-background=navy -selected-text-foreground=white -separate-index-pages=false -show-cppdoc-version=false -show-timestamp=false -summary-html=project.html -suppress-details=false -suppress-frames-links=false -table-background=white -wrap-long-lines=false ..\include #cef_capi.h #cef_nplugin_capi.h #cef_runnable.h #cef_tuple.h "..\docs\index.html"
--)
-+@echo off
-+set CPPDOC_PATH="C:\Program Files (x86)\richfeit\CppDoc\CppDoc.exe"
-+
-+if not exist %CPPDOC_PATH% (
-+echo Please install CppDoc from http://www.cppdoc.com/
-+pause
-+) else (
-+%CPPDOC_PATH% -title="CEF C++ API Docs - Revision XXX"  -footer="<center><a href="http://code.google.com/p/chromiumembedded" target="_top">Chromium Embedded Framework (CEF)</a> Copyright &copy 2011 Marshall A. Greenblatt</center>" -namespace-as-project -comment-format="///;//;///" -classdir=projects -module="cppdoc-standard" -extensions=h -languages="c=cpp,cc=cpp,cpp=cpp,cs=csharp,cxx=cpp,h=cpp,hpp=cpp,hxx=cpp,java=java" -D"OS_WIN" -D"USING_CEF_SHARED" -D"__cplusplus" -D"CEF_STRING_TYPE_UTF16" -enable-author=false -enable-deprecations=true -enable-since=true -enable-version=false -file-links-for-globals=false -generate-deprecations-list=false -generate-hierarchy=true -header-background-dark="#ccccff" -header-background-light="#eeeeff" -include-private=false -include-protected=true -index-file-base=index -overview-html=overview.html -reduce-summary-font=true -selected-text-background=navy -selected-text-foreground=white -separate-index-pages=false -show-cppdoc-version=false -show-timestamp=false -summary-html=project.html -suppress-details=false -suppress-frames-links=false -table-background=white -wrap-long-lines=false ..\include #cef_capi.h #cef_nplugin_capi.h #cef_runnable.h #cef_tuple.h "..\docs\index.html"
-+)
-diff '--exclude=.svn' -aurN cef.ori/tools/make_version_header.bat cef/tools/make_version_header.bat
---- cef.ori/tools/make_version_header.bat	2012-05-09 11:27:16.867674327 +0200
-+++ cef/tools/make_version_header.bat	2012-05-09 11:32:01.704658218 +0200
-@@ -1,2 +1,2 @@
--@echo off
--svn info | ..\third_party\python_26\python.exe tools\make_version_header.py --header libcef_dll\version.h
-+@echo off
-+svn info | ..\third_party\python_26\python.exe tools\make_version_header.py --header libcef_dll\version.h
-diff '--exclude=.svn' -aurN cef.ori/tools/patch_build.bat cef/tools/patch_build.bat
---- cef.ori/tools/patch_build.bat	2012-05-09 11:27:16.863674327 +0200
-+++ cef/tools/patch_build.bat	2012-05-09 11:32:01.704658218 +0200
-@@ -1,2 +1,2 @@
--@echo off
-+@echo off
- ..\third_party\python_26\python.exe tools\patcher.py  --patch-config patch/patch_build.cfg
-\ Kein Zeilenumbruch am Dateiende.
-diff '--exclude=.svn' -aurN cef.ori/tools/patch_source.bat cef/tools/patch_source.bat
---- cef.ori/tools/patch_source.bat	2012-05-09 11:27:16.864674327 +0200
-+++ cef/tools/patch_source.bat	2012-05-09 11:32:01.704658218 +0200
-@@ -1,2 +1,2 @@
--@echo off
-+@echo off
- ..\third_party\python_26\python.exe tools\patcher.py --patch-config patch/patch_source.cfg
-\ Kein Zeilenumbruch am Dateiende.
-diff '--exclude=.svn' -aurN cef.ori/tools/translator.bat cef/tools/translator.bat
---- cef.ori/tools/translator.bat	2012-05-09 11:27:16.867674327 +0200
-+++ cef/tools/translator.bat	2012-05-09 11:32:01.705658218 +0200
-@@ -1,3 +1,3 @@
--@echo off
--..\..\third_party\python_26\python.exe translator.py --cpp-header ..\include\cef.h --capi-header ..\include\cef_capi.h --cpptoc-dir ..\libcef_dll\cpptoc --ctocpp-dir ..\libcef_dll\ctocpp
-+@echo off
-+..\..\third_party\python_26\python.exe translator.py --cpp-header ..\include\cef.h --capi-header ..\include\cef_capi.h --cpptoc-dir ..\libcef_dll\cpptoc --ctocpp-dir ..\libcef_dll\ctocpp
- pause
-\ Kein Zeilenumbruch am Dateiende.
