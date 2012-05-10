@@ -78,7 +78,7 @@ macro(pair)
     unset(_pos)
     unset(_len)
   else()
-    message(FATAL_ERROR "${_CMD} is not implemented for map_item")
+    message(FATAL_ERROR "${_CMD} is not implemented for pair")
   endif()
   
   unset(_CMD)
