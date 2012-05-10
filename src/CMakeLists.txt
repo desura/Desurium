@@ -121,15 +121,27 @@ endif()
 # some pre building or installing actions
 ###############################################################################
 
-# if we install to /usr/share/desura, we want to symlink run.sh to /usr/bin/desura
-if(CMAKE_INSTALL_PREFIX STREQUAL "/usr/share/desura" AND UNIX)
+# create a list of pairs first
+set(DESURA_SYMLINK_RULES
+    /usr/share/desura->/usr/bin;
+    /usr/local/share/desura->/usr/local/bin;
+    /usr/games/desura->/usr/games/bin;)
 
-  # to avoid the nedd of root rights while creating install packages we create
-  # the symlink in CMAKE_BINARY_DIR and install it after creation
-  install(CODE "execute_process(COMMAND ln -fs ${CMAKE_INSTALL_PREFIX}/run.sh ${CMAKE_BINARY_DIR}/desura)")
-  install(FILES ${CMAKE_BINARY_DIR}/desura
-          DESTINATION "/usr/bin")
-endif()
+# create symlink and install it
+foreach(item ${DESURA_SYMLINK_RULES})
+  pair(FIRST ${item} first)
+  if(CMAKE_INSTALL_PREFIX STREQUAL "${first}" AND UNIX)
+    pair(SECOND ${item} second)
+
+    # to avoid the nedd of root rights while creating install packages we create
+    # the symlink in CMAKE_BINARY_DIR and install it after creation
+    install(CODE "execute_process(COMMAND ln -fs ${first}/run.sh ${CMAKE_BINARY_DIR}/desura)")
+    install(FILES ${CMAKE_BINARY_DIR}/desura
+            DESTINATION "${second}")
+    message("II make install/package will create a symlink: ${second}/desura -> ${first}/run.sh")
+    break()
+  endif()
+endforeach()
 
 ###############################################################################
 # we need some dependencies 
