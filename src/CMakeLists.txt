@@ -118,6 +118,20 @@ if(BUILD_TOOLS)
 endif()
 
 ###############################################################################
+# some pre building or installing actions
+###############################################################################
+
+# if we install to /usr/share/desura, we want to symlink run.sh to /usr/bin/desura
+if(CMAKE_INSTALL_PREFIX STREQUAL "/usr/share/desura" AND UNIX)
+
+  # to avoid the nedd of root rights while creating install packages we create
+  # the symlink in CMAKE_BINARY_DIR and install it after creation
+  install(CODE "execute_process(COMMAND ln -fs ${CMAKE_INSTALL_PREFIX}/run.sh ${CMAKE_BINARY_DIR}/desura)")
+  install(FILES ${CMAKE_BINARY_DIR}/desura
+          DESTINATION "/usr/bin")
+endif()
+
+###############################################################################
 # we need some dependencies 
 ###############################################################################
 
