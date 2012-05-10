@@ -4,9 +4,17 @@
 
 EAPI=3
 
-inherit check-reqs cmake-utils eutils git-2 games
+if [[ ${PV} = 9999* ]]; then
+	GIT_ECLASS="git-2"
+fi
 
-EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
+inherit check-reqs cmake-utils eutils ${GIT_ECLASS} games
+
+if [[ $PV = 9999* ]]; then
+	EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
+else
+	SRC_URI="https://github.com/downloads/lodle/Desurium/Desura-${PV}.tar.bz2"
+fi
 
 CHECKREQS_DISK_BUILD="3G"
 
@@ -85,15 +93,15 @@ DEPEND="
 
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/desura"
-
-# pkg_pretend not working EAPI < 4
-if [[ ${EAPI} != 4 ]]; then
-	src_unpack() {
-		check-reqs_pkg_pretend
-		git-2_src_unpack
-	}
+if [[ $PV = 9999* ]]; then
+	S="${WORKDIR}/desura"
+else
+	S="${WORKDIR}/Desura-${PV}"
 fi
+
+pkg_pretend() {
+	check-reqs_pkg_pretend
+}
 
 src_configure() {
 
