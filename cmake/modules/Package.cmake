@@ -15,7 +15,6 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Desura is a gaming client that allows use
 set(CPACK_PACKAGE_VERSION_MAJOR 0)
 set(CPACK_PACKAGE_VERSION_MINOR 8)
 set(CPACK_PACKAGE_VERSION_PATCH 0)
-set(CPACK_INSTALL_PREFIX "/opt/desura")
 
 ###############################################################################
 # some internal variables
