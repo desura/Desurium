@@ -23,7 +23,7 @@ HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+32bit builtin-tinyxml debug +games-deps"
+IUSE="+32bit debug +games-deps"
 
 # some deps needed by some games
 GAMESDEPEND="
@@ -50,6 +50,11 @@ COMMON_DEPEND="
 	dev-libs/libevent
 	dev-libs/libxml2
 	dev-libs/openssl:0
+
+	|| ( <dev-libs/tinyxml-2.6.2-r2[-stl]
+	    >=dev-libs/tinyxml-2.6.2-r2
+	)
+
 	dev-lang/v8
 	gnome-base/libgnome-keyring
 	media-libs/flac
@@ -72,12 +77,6 @@ COMMON_DEPEND="
 		app-emulation/emul-linux-x86-soundlibs
 		app-emulation/emul-linux-x86-xlibs[opengl]
 		sys-devel/gcc[multilib]
-	)
-
-	!builtin-tinyxml? (
-		|| ( <dev-libs/tinyxml-2.6.2-r2[-stl]
-		    >=dev-libs/tinyxml-2.6.2-r2
-		)
 	)
 "
 
@@ -125,4 +124,3 @@ src_install() {
 
 	prepgamesdirs
 }
-
