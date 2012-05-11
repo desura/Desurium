@@ -93,9 +93,7 @@ DEPEND="
 	${COMMONDEPEND}
 "
 
-if [[ $PV = 9999* ]]; then
-	S="${WORKDIR}/desura"
-else
+if [[ $PV != 9999* ]]; then
 	S="${WORKDIR}/Desura-${PV}"
 fi
 
