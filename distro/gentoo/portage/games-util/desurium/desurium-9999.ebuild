@@ -9,6 +9,7 @@ if [[ ${PV} = 9999* ]]; then
 fi
 
 inherit check-reqs cmake-utils eutils ${GIT_ECLASS} games
+unset GIT_ECLASS
 
 if [[ $PV = 9999* ]]; then
 	EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
@@ -23,7 +24,7 @@ HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+32bit +builtin-curl builtin-tinyxml debug +games-deps"
+IUSE="+32bit builtin-tinyxml debug +games-deps"
 
 # some deps needed by some games
 GAMESDEPEND="
@@ -43,21 +44,22 @@ GAMESDEPEND="
 	)
 "
 
-DEPEND="
+COMMONDEPEND="
 	app-arch/bzip2
 	dev-db/sqlite
 	dev-lang/yasm
-	dev-libs/boost
+	>=dev-libs/boost-1.47
 	dev-libs/libevent
 	dev-libs/libxml2
-	dev-libs/openssl
+	dev-libs/openssl:0
 	dev-lang/v8
 	dev-vcs/subversion
 	gnome-base/libgnome-keyring
 	media-libs/flac
-	media-libs/libpng
+	media-libs/libpng:0
 	media-libs/libwebp
 	media-libs/speex
+	net-misc/curl[ares]
 	>=sys-devel/gcc-4.5
 	sys-libs/zlib
 	virtual/jpeg
@@ -75,14 +77,6 @@ DEPEND="
 		sys-devel/gcc[multilib]
 	)
 
-	builtin-curl? (
-		net-dns/c-ares
-	)
-
-	!builtin-curl? (
-		net-misc/curl
-	)
-
 	!builtin-tinyxml? (
 		|| ( <dev-libs/tinyxml-2.6.2-r2[-stl]
 		    >=dev-libs/tinyxml-2.6.2-r2
@@ -91,8 +85,12 @@ DEPEND="
 "
 
 RDEPEND="
-	${DEPEND}
+	${COMMONDEPEND}
 	${GAMESDEPEND}
+"
+
+DEPEND="
+	${COMMONDEPEND}
 "
 
 if [[ $PV = 9999* ]]; then
@@ -106,7 +104,6 @@ pkg_pretend() {
 }
 
 src_configure() {
-
 	# check if curl has ares enabled
 	if use !builtin-curl; then
 		ewarn "Using curl without ares USE flag is not supported by desura."
@@ -114,8 +111,9 @@ src_configure() {
 		ewarn "See https://github.com/lodle/Desurium/issues/189 for further information"
 	fi
 
-	mycmakeargs=(
-		$(cmake-utils_use_with builtin-curl ARES)
+	# -DWITH_ARES=FALSE will use system curl, because we force curl[ares] we have ares support
+	local mycmakeargs=(
+		-DWITH_ARES=FALSE
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
 		-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}/${PN}
