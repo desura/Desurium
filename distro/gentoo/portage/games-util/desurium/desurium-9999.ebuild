@@ -99,18 +99,11 @@ else
 	S="${WORKDIR}/Desura-${PV}"
 fi
 
-pkg_pretend() {
-	check-reqs_pkg_pretend
+pkg_setup() {
+    check-reqs_pkg_setup
 }
 
 src_configure() {
-	# check if curl has ares enabled
-	if use !builtin-curl; then
-		ewarn "Using curl without ares USE flag is not supported by desura."
-		ewarn "It may work for your system configuration or not."
-		ewarn "See https://github.com/lodle/Desurium/issues/189 for further information"
-	fi
-
 	# -DWITH_ARES=FALSE will use system curl, because we force curl[ares] we have ares support
 	local mycmakeargs=(
 		-DWITH_ARES=FALSE
