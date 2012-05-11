@@ -44,7 +44,6 @@ GAMESDEPEND="
 "
 
 DEPEND="
-	${GAMESDEPEND}
 	app-arch/bzip2
 	dev-db/sqlite
 	dev-lang/yasm
@@ -91,7 +90,10 @@ DEPEND="
 	)
 "
 
-RDEPEND="${DEPEND}"
+RDEPEND="
+	${DEPEND}
+	${GAMESDEPEND}
+"
 
 if [[ $PV = 9999* ]]; then
 	S="${WORKDIR}/desura"
