@@ -61,7 +61,7 @@ DEPEND="
 	>=sys-devel/gcc-4.5
 	sys-libs/zlib
 	virtual/jpeg
-	>=x11-libs/gtk+-2.24
+	x11-libs/gtk+:2
 	x11-misc/xdg-utils
 
 	32bit? (
