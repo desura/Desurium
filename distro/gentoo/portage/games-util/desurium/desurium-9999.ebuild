@@ -121,7 +121,7 @@ src_install() {
 
 	dosym ${GAMES_PREFIX}/${PN}/run.sh ${GAMES_BINDIR}/${PN}.sh
 
-	doicon "${FILESDIR}/${PN}.png" || die
+	doicon "${FILESDIR}/${PN}.png"
 	make_desktop_entry "${PN}.sh" "Desurium"
 
 	prepgamesdirs
