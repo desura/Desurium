@@ -5,17 +5,14 @@
 EAPI=3
 
 if [[ ${PV} = 9999* ]]; then
+	EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
 	GIT_ECLASS="git-2"
+else
+	SRC_URI="https://github.com/downloads/lodle/Desurium/Desura-${PV}.tar.bz2"
 fi
 
 inherit check-reqs cmake-utils eutils ${GIT_ECLASS} games
 unset GIT_ECLASS
-
-if [[ $PV = 9999* ]]; then
-	EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
-else
-	SRC_URI="https://github.com/downloads/lodle/Desurium/Desura-${PV}.tar.bz2"
-fi
 
 CHECKREQS_DISK_BUILD="3G"
 
@@ -44,10 +41,9 @@ GAMESDEPEND="
 	)
 "
 
-COMMONDEPEND="
+COMMON_DEPEND="
 	app-arch/bzip2
 	dev-db/sqlite
-	dev-lang/yasm
 	>=dev-libs/boost-1.47
 	dev-libs/libevent
 	dev-libs/libxml2
@@ -85,12 +81,13 @@ COMMONDEPEND="
 "
 
 RDEPEND="
-	${COMMONDEPEND}
+	${COMMON_DEPEND}
 	${GAMESDEPEND}
 "
 
 DEPEND="
-	${COMMONDEPEND}
+	dev-lang/yasm
+	${COMMON_DEPEND}
 "
 
 if [[ $PV != 9999* ]]; then
