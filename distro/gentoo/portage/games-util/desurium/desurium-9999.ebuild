@@ -4,15 +4,17 @@
 
 EAPI=3
 
+unset GIT_ECLASS
+
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
 	GIT_ECLASS="git-2"
+	SRC_URI=""
 else
 	SRC_URI="https://github.com/downloads/lodle/Desurium/Desura-${PV}.tar.bz2"
 fi
 
 inherit check-reqs cmake-utils eutils ${GIT_ECLASS} games
-unset GIT_ECLASS
 
 CHECKREQS_DISK_BUILD="3G"
 
@@ -49,7 +51,6 @@ COMMON_DEPEND="
 	dev-libs/libxml2
 	dev-libs/openssl:0
 	dev-lang/v8
-	dev-vcs/subversion
 	gnome-base/libgnome-keyring
 	media-libs/flac
 	media-libs/libpng:0
@@ -87,6 +88,7 @@ RDEPEND="
 
 DEPEND="
 	dev-lang/yasm
+	dev-vcs/subversion
 	${COMMON_DEPEND}
 "
 
