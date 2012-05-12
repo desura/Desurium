@@ -273,11 +273,9 @@ onItemContextMenu = function(event, itemId) {
 
 	menu.appendSeparator();		
 
-	if (desura.utils.isWindows()){
-		menu.appendItem(desura.utils.getLocalString("#PM_SHORTCUT"), function(){
-			item.createDesktopShortcut();
-		});
-	}	
+	menu.appendItem(desura.utils.getLocalString("#PM_SHORTCUT"), function(){
+		item.createDesktopShortcut();
+	});
 	
 	if(hasCDKey) {
 		menu.appendItem(desura.utils.getLocalString("#PM_SHOWCDKEY"), function() {
@@ -306,10 +304,6 @@ onItemContextMenu = function(event, itemId) {
 	}
 	
 	menu.appendSeparator();
-
-	menu.appendCheckboxItem(desura.utils.getLocalString(item.isFavorite() ? "#PM_FAVORITE_REMOVE" : "#PM_FAVORITE"), function() {
-		item.setFavorite(!item.isFavorite());
-	}, item.isFavorite());
 
 	menu.appendItem(desura.utils.getLocalString("#PM_PROPERTIES"), function() {
 		showProperties(item);
