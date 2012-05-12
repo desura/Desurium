@@ -129,7 +129,7 @@ Console::Console(wxWindow* parent) : gcFrame(parent, wxID_ANY, wxT("#CS_TITLE"),
 	m_tbInfo = new gcComboBox( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, NULL, wxTE_PROCESS_ENTER|wxWANTS_CHARS );
 	m_tbInfo->Bind(wxEVT_KEY_DOWN, &Console::onKeyDown, this);
 
-	m_butSubmit = new gcButton();
+	m_butSubmit = 0;
 	
 	m_pSizer = new wxBoxSizer( wxHORIZONTAL );
 	m_pSizer->Add( m_tbInfo, 1, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM|wxLEFT, 5 );
@@ -239,7 +239,8 @@ void Console::applyTheme()
 	SetTitle(Managers::GetString(L"#CS_TITLE"));
 
 	m_tbInfo->applyTheme(); // LINUX TODO
-	m_butSubmit->Create(this, wxID_ANY, Managers::GetString(L"#SUBMIT"), wxDefaultPosition, wxDefaultSize, 0 );
+	delete m_butSubmit;
+	m_butSubmit = new gcButton(this, wxID_ANY, Managers::GetString(L"#SUBMIT"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_pSizer->Add( m_butSubmit, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5 );	
 
 	Managers::LoadTheme(m_rtDisplay, "textbox");
