@@ -57,8 +57,7 @@ UploadProgPage::UploadProgPage( wxWindow* parent, wxWindowID id, const wxPoint& 
 	bSizer5->Add( m_labTimeLeft, 0, wxALIGN_BOTTOM|wxTOP|wxRIGHT, 5 );
 	
 
-	m_pbProgress = new gcULProgressBar( this, wxID_ANY );
-
+	m_pbProgress = new gcProgressBar(this, wxID_ANY, wxDefaultPosition, wxSize( -1,22 ));
 
 	m_cbDeleteMcf = new gcCheckBox( this, wxID_ANY, Managers::GetString(L"#UDF_DELETE"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_cbDeleteMcf->SetValue( true ); 
