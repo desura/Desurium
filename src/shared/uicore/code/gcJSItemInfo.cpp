@@ -457,5 +457,5 @@ bool DesuraJSItemInfo::isItemBusy(UserCore::Item::ItemInfoI* item)
 bool DesuraJSItemInfo::createItemDesktopShortcut(UserCore::Item::ItemInfoI* item)
 {
 	UserCore::Item::ItemHandleI* handle = GetUserCore()->getItemManager()->findItemHandle(item->getId());
-	return handle && handle->createDektopShortcut();
+	return handle && handle->createDesktopShortcut();
 }

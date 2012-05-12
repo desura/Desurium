@@ -1397,7 +1397,7 @@ void ItemHandle::force()
 	group->startAction(this);
 }
 
-bool ItemHandle::createDektopShortcut()
+bool ItemHandle::createDesktopShortcut()
 {
 #ifdef NIX
 	return false;

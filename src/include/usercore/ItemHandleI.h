@@ -99,7 +99,7 @@ public:
 	//!
 	virtual void force()=0;
 
-	virtual bool createDektopShortcut()=0;
+	virtual bool createDesktopShortcut()=0;
 
 #ifdef NIX
 	//! Creates the launch scripts
