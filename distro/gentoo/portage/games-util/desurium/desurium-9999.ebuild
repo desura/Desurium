@@ -81,6 +81,7 @@ COMMON_DEPEND="
 "
 
 RDEPEND="
+	x11-misc/xdg-user-dirs
 	${COMMON_DEPEND}
 	${GAMESDEPEND}
 "
