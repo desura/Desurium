@@ -305,6 +305,10 @@ onItemContextMenu = function(event, itemId) {
 	
 	menu.appendSeparator();
 
+	menu.appendCheckboxItem(desura.utils.getLocalString(item.isFavorite() ? "#PM_FAVORITE_REMOVE" : "#PM_FAVORITE"), function() {
+		item.setFavorite(!item.isFavorite());
+	}, item.isFavorite());
+
 	menu.appendItem(desura.utils.getLocalString("#PM_PROPERTIES"), function() {
 		showProperties(item);
 	}, !enableProps);		
