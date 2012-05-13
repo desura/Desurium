@@ -317,7 +317,6 @@ inline gcString createDesktopFile(ItemInfoI* i)
 {
 	// KDE menu doesn't accept files like "Publisher Name-GameName.desktop" so we replace all " " with "_"
 	gcString publisher = boost::algorithm::replace_all_copy(std::string(i->getPublisher()), " ", "_");
-	std::cout << publisher << std::endl;
 
 	gcString tmpPath("{0}/{1}-{2}.desktop",
 	                 UTIL::OS::getCachePath(),
