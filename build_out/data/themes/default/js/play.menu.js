@@ -277,9 +277,11 @@ onItemContextMenu = function(event, itemId) {
 		item.createDesktopShortcut();
 	});
 
-	menu.appendItem(desura.utils.getLocalString("#PM_MENU_ENTRY"), function(){
-		item.createMenuEntry();
-	});
+	if (desura.utils.isLinux()) {
+		menu.appendItem(desura.utils.getLocalString("#PM_MENU_ENTRY"), function(){
+			item.createMenuEntry();
+		});
+	}
 	
 	if(hasCDKey) {
 		menu.appendItem(desura.utils.getLocalString("#PM_SHOWCDKEY"), function() {
