@@ -79,7 +79,7 @@ endif()
 
 if(NOT WIN32)
   find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
-  find_package(Notify)
+  find_package(Notify REQUIRED)
 endif()
 find_package(BZip2)
 
