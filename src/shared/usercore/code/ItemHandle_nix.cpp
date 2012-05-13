@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
+#include <fstream>
+
 #include "Common.h"
 #include "ItemHandle.h"
 
@@ -309,6 +311,37 @@ void ItemHandle::installLaunchScripts()
 	safe_delete(scriptXdg);
 }
 
+bool ItemHandle::createDesktopShortcut()
+{
+	gcString tmpPath("{0}/{1}-{2}.desktop",
+	                 UTIL::OS::getCachePath(),
+	                 getItemInfo()->getPublisher(),
+	                 getItemInfo()->getShortName());
+
+	std::ofstream desktopFile(tmpPath);
+	desktopFile << "[Desktop Entry]"
+	            << "\nType=Application"
+	            << "\nName=" << getItemInfo()->getShortName()
+	            << "\nComment" << getItemInfo()->getDesc()
+	            << "\nIcon=" << getItemInfo()->getIcon()
+	            << "\nTryExec" << getItemInfo()->getActiveExe()->getExe()
+	            << "\nExec=" << getItemInfo()->getActiveExe()->getExe() << ' '
+	                         << getItemInfo()->getActiveExe()->getExeArgs()
+	            << "\nCategories=Game;" << getItemInfo()->getGenre() << ';'
+	            << std::endl;
+	desktopFile.close();
+
+	// just in case we pass --novendor to xdg-desktop-icon, so games without a proper publisher entry will accepted
+	std::ostringstream cmd;
+	cmd << "xdg-desktop-icon install --novendor \""
+	    << tmpPath.c_str() << '"';
+	bool result = system(cmd.str().c_str()) == 0;
+
+	// if something is going wrong, we don't delete the created desktop file
+	if (result) UTIL::FS::delFile(tmpPath);
+
+	return result;
+}
 
 }
 }
