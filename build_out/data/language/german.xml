@@ -465,6 +465,7 @@
 		<str name="#PM_SHOWCDKEY">Zeige CD Key</str>
 		<str name="#PM_REMOVEFROMACCOUNT">Vom Account entfernen</str>
 		<str name="#PM_SHORTCUT">Desktop shortcut erstellen</str>
+		<str name="#PM_MENU_ENTRY">Eintrag ins Application Menu</str>
 
 		<!-- Settings -->
 		<str name="#SET_TITLE">Desura Einstellungen</str>
