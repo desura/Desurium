@@ -23,6 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "User.h"
 
+#include <boost/algorithm/string/replace.hpp>
+
 #ifdef NIX
 #include "util/UtilLinux.h"
 #endif
@@ -313,9 +315,13 @@ void ItemHandle::installLaunchScripts()
 
 inline gcString createDesktopFile(ItemInfoI* i)
 {
+	// KDE menu doesn't accept files like "Publisher Name-GameName.desktop" so we replace all " " with "_"
+	gcString publisher = boost::algorithm::replace_all_copy(std::string(i->getPublisher()), " ", "_");
+	std::cout << publisher << std::endl;
+
 	gcString tmpPath("{0}/{1}-{2}.desktop",
 	                 UTIL::OS::getCachePath(),
-	                 i->getPublisher(),
+	                 publisher,
 	                 i->getShortName());
 
 	std::ofstream desktopFile(tmpPath);
@@ -361,7 +367,7 @@ bool ItemHandle::createMenuEntry()
 	bool result = system(cmd.str().c_str()) == 0;
 
 	// if something is going wrong, we don't delete the created desktop file
-//	if (result) UTIL::FS::delFile(tmpPath);
+	if (result) UTIL::FS::delFile(tmpPath);
 
 	return result;
 }
