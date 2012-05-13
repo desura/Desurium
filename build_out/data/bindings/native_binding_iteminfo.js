@@ -657,6 +657,17 @@ if (!desura.items.options)
 			native function createItemDesktopShortcut();
 			return createItemDesktopShortcut(this);
 		};					
+
+		/**
+		* Creates a menu entry
+		* @method createMenuEntry
+		* @return {Bool} Ceates a menu entry and returns true if succeceded, false if failed
+		*/		
+		
+		self.createMenuEntry = function(){
+			native function createItemMenuEntry();
+			return createItemMenuEntry(this);
+		};					
 		
 		return self;
 	};

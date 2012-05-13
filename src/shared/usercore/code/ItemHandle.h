@@ -99,7 +99,8 @@ public:
 	virtual void force();
 
 	virtual bool createDesktopShortcut();
-	
+	virtual bool createMenuEntry();
+
 #ifdef NIX
 	virtual void installLaunchScripts();
 #endif

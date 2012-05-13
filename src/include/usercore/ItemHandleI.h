@@ -100,6 +100,7 @@ public:
 	virtual void force()=0;
 
 	virtual bool createDesktopShortcut()=0;
+	virtual bool createMenuEntry()=0;
 
 #ifdef NIX
 	//! Creates the launch scripts

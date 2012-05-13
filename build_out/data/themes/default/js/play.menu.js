@@ -276,6 +276,10 @@ onItemContextMenu = function(event, itemId) {
 	menu.appendItem(desura.utils.getLocalString("#PM_SHORTCUT"), function(){
 		item.createDesktopShortcut();
 	});
+
+	menu.appendItem(desura.utils.getLocalString("#PM_MENU_ENTRY"), function(){
+		item.createMenuEntry();
+	});
 	
 	if(hasCDKey) {
 		menu.appendItem(desura.utils.getLocalString("#PM_SHOWCDKEY"), function() {

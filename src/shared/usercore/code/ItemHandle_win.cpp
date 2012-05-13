@@ -111,5 +111,10 @@ bool ItemHandle::createDesktopShortcut()
 	return UTIL::FS::isValidFile(path);
 }
 
+bool ItemHandle::createMenuEntry()
+{
+	return false;
+}
+
 }
 }
