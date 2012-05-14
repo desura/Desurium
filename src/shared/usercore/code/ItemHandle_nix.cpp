@@ -327,7 +327,7 @@ inline gcString createDesktopFile(ItemInfoI* i)
 	desktopFile << "[Desktop Entry]"
 	            << "\nType=Application"
 	            << "\nName=" << i->getName()
-	            << "\nComment" << i->getDesc()
+	            << "\nComment=" << i->getDesc()
 	            << "\nIcon=" << i->getIcon()
 	            << "\nTryExec" << i->getActiveExe()->getExe()
 	            << "\nExec=" << i->getActiveExe()->getExe() << ' '
