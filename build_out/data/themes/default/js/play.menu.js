@@ -163,7 +163,7 @@ onItemContextMenu = function(event, itemId) {
 	var isAppLink = item.isLink();
 	
 	var branchMenu = null;
-	var toolMenu = createToolMenu(item);
+	var toolMenu = desura.utils.isOffline() ? null : createToolMenu(item);
 
 	var exeList = item.getExeInfoList();
 	var isBought = false;
@@ -204,13 +204,8 @@ onItemContextMenu = function(event, itemId) {
 			menu.appendItem(exeList[x]['name'], exeAction, !item.isLaunchable());	
 		}
 	}
-	
-	if(desura.utils.isOffline()) {
-		menu.show(event);
-		return;
-	}
 
-	if(isDownloadable) {
+	if(isDownloadable && !desura.utils.isOffline()) {
 		if(isPausable) {
 			var label = desura.utils.getLocalString("#PAUSE");
 			var action = desura.links.action.PAUSE;
@@ -225,50 +220,52 @@ onItemContextMenu = function(event, itemId) {
 			});
 		}
 	}
-
-	menu.appendSeparator();
 	
-	if(!onAccount && !isAppLink) {
-		menu.appendItem(desura.utils.getLocalString("#PM_ADDACCOUNT"), function() {
-			desura.links.internalLink(itemId, desura.links.action.ACCOUNTSTAT);
-		});
-	}
-
-	if(!isAppLink && !isInstalled && !isDownloadable) {
-		menu.appendItem(desura.utils.getLocalString("#PM_INSTALLCHECK"), function() {
-			desura.links.internalLink(itemId, desura.links.action.INSCHECK);
-		});	
-	} else if(!isAppLink && !isInstalled) {
-		menu.appendItem(desura.utils.getLocalString("#INSTALL"), function() {
-			desura.links.internalLink(itemId, desura.links.action.INSTALL);
-		});
-	}
-
-	if (!isBought || isInstalled) {
-		var t = "#UNINSTALL";
+	if(!desura.utils.isOffline()) {
+		menu.appendSeparator();
 	
-		if (isAppLink)
-			t = "#REMOVE";
-		else if (!isInstalled && onAccount)
-			t = "#PM_REMOVEFROMACCOUNT";
+		if(!onAccount && !isAppLink) {
+			menu.appendItem(desura.utils.getLocalString("#PM_ADDACCOUNT"), function() {
+				desura.links.internalLink(itemId, desura.links.action.ACCOUNTSTAT);
+			});
+		}
+
+		if(!isAppLink && !isInstalled && !isDownloadable) {
+			menu.appendItem(desura.utils.getLocalString("#PM_INSTALLCHECK"), function() {
+				desura.links.internalLink(itemId, desura.links.action.INSCHECK);
+			});	
+		} else if(!isAppLink && !isInstalled) {
+			menu.appendItem(desura.utils.getLocalString("#INSTALL"), function() {
+				desura.links.internalLink(itemId, desura.links.action.INSTALL);
+			});
+		}
+
+		if (!isBought || isInstalled) {
+			var t = "#UNINSTALL";
 	
-		menu.appendItem(desura.utils.getLocalString(t), function() {
-			desura.links.internalLink(itemId, desura.links.action.UNINSTALL);
-		});
-	}
+			if (isAppLink)
+				t = "#REMOVE";
+			else if (!isInstalled && onAccount)
+				t = "#PM_REMOVEFROMACCOUNT";
+	
+			menu.appendItem(desura.utils.getLocalString(t), function() {
+				desura.links.internalLink(itemId, desura.links.action.UNINSTALL);
+			});
+		}
 
-	if(isInstalled && isDownloadable) {
-		menu.appendItem(desura.utils.getLocalString("#P_VERIFY"), function() {
-			desura.links.internalLink(item.getId(), desura.links.action.VERIFY);
-		});
-	}
+		if(isInstalled && isDownloadable) {
+			menu.appendItem(desura.utils.getLocalString("#P_VERIFY"), function() {
+				desura.links.internalLink(item.getId(), desura.links.action.VERIFY);
+			});
+		}
 
-	installedMod = desura.items.getItemFromId(item.getInstalledModId());
+		installedMod = desura.items.getItemFromId(item.getInstalledModId());
 
-	if(isInstalled && installedMod != null && installedMod.isValid() && item.getType() == desura.items.type.GAME) {
-		menu.appendItem(desura.utils.getLocalString("#PM_REVERTCOMPLEX"), function() {
-			desura.links.internalLink(item.getId(), desura.links.action.CLEANCOMPLEXMOD);
-		});
+		if(isInstalled && installedMod != null && installedMod.isValid() && item.getType() == desura.items.type.GAME) {
+			menu.appendItem(desura.utils.getLocalString("#PM_REVERTCOMPLEX"), function() {
+				desura.links.internalLink(item.getId(), desura.links.action.CLEANCOMPLEXMOD);
+			});
+		}
 	}
 
 	menu.appendSeparator();		
@@ -283,30 +280,32 @@ onItemContextMenu = function(event, itemId) {
 		});
 	}
 	
-	if(hasCDKey) {
-		menu.appendItem(desura.utils.getLocalString("#PM_SHOWCDKEY"), function() {
-			desura.links.internalLink(itemId, desura.links.action.DISPCDKEY);
-		});
-	}	
+	if(!desura.utils.isOffline()) {	
+		if(hasCDKey) {
+			menu.appendItem(desura.utils.getLocalString("#PM_SHOWCDKEY"), function() {
+				desura.links.internalLink(itemId, desura.links.action.DISPCDKEY);
+			});
+		}	
 	
-	if(isDownloadable) {
-		menu.appendItem(desura.utils.getLocalString("#PM_UPDATELOG"), function() {
-			desura.links.internalLink(itemId, desura.links.action.UPDATELOG);
-		});
+		if(isDownloadable) {
+			menu.appendItem(desura.utils.getLocalString("#PM_UPDATELOG"), function() {
+				desura.links.internalLink(itemId, desura.links.action.UPDATELOG);
+			});
 
-		branchMenu = createBranchMenu(item);
-	}
+			branchMenu = createBranchMenu(item);
+		}
 
-	if (item.getProfile().length != 0) {
-		menu.appendItem(desura.utils.getLocalString("#PM_VIEWPROFILE"), function() {
-			desura.links.internalLink(itemId, desura.links.action.PROFILE);
-		});
-	}
+		if (item.getProfile().length != 0) {
+			menu.appendItem(desura.utils.getLocalString("#PM_VIEWPROFILE"), function() {
+				desura.links.internalLink(itemId, desura.links.action.PROFILE);
+			});
+		}
 
-	if(item.getType() == desura.items.type.GAME && (item.getStatus() & desura.items.status.DLC)) {
-		menu.appendItem(desura.utils.getLocalString("#PM_MODLIST"), function() {
-			desura.links.internalLink(itemId, desura.links.action.PROFILE, "/mods");
-		});			
+		if(item.getType() == desura.items.type.GAME && (item.getStatus() & desura.items.status.DLC)) {
+			menu.appendItem(desura.utils.getLocalString("#PM_MODLIST"), function() {
+				desura.links.internalLink(itemId, desura.links.action.PROFILE, "/mods");
+			});
+		}
 	}
 	
 	menu.appendSeparator();
