@@ -329,7 +329,7 @@ inline gcString createDesktopFile(ItemInfoI* i)
 	            << "\nName=" << i->getName()
 	            << "\nComment=" << i->getDesc()
 	            << "\nIcon=" << i->getIcon()
-	            << "\nTryExec" << i->getActiveExe()->getExe()
+	            << "\nTryExec=" << i->getActiveExe()->getExe()
 	            << "\nExec=" << i->getActiveExe()->getExe() << ' '
 	                         << i->getActiveExe()->getExeArgs()
 	            << "\nCategories=Game;" << i->getGenre() << ';'
