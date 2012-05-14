@@ -351,6 +351,11 @@ bool ItemHandle::createDesktopShortcut()
 
 	// if something is going wrong, we don't delete the created desktop file
 	if (result) UTIL::FS::delFile(tmpPath);
+	else
+	{
+		Msg("Desktop file could not be installed.\n");
+		Msg(gcString("The file is located here: {0}\n", tmpPath));
+	}
 
 	return result;
 }
@@ -367,6 +372,11 @@ bool ItemHandle::createMenuEntry()
 
 	// if something is going wrong, we don't delete the created desktop file
 	if (result) UTIL::FS::delFile(tmpPath);
+	else
+	{
+		Msg("Desktop file could not be installed.\n");
+		Msg(gcString("The file is located here: {0}\n", tmpPath));
+	}
 
 	return result;
 }
