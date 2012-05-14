@@ -33,6 +33,7 @@ c-ares (for ares support in curl)
 cmake
 gtk2
 OpenSSL
+v8
 anything chromium and v8 requires
 
 Optional dependencies (will be built by cmake if not existing):
@@ -40,7 +41,6 @@ bzip2
 curl (while building without ares support)
 sqlite
 tinyxml
-v8
 
 Finally run Desura using ./run_desura.sh
 
