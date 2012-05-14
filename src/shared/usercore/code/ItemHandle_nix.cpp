@@ -326,7 +326,7 @@ inline gcString createDesktopFile(ItemInfoI* i)
 	std::ofstream desktopFile(tmpPath);
 	desktopFile << "[Desktop Entry]"
 	            << "\nType=Application"
-	            << "\nName=" << i->getShortName()
+	            << "\nName=" << i->getName()
 	            << "\nComment" << i->getDesc()
 	            << "\nIcon=" << i->getIcon()
 	            << "\nTryExec" << i->getActiveExe()->getExe()
