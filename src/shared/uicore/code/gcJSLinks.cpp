@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 REGISTER_JSEXTENDER(DesuraJSLinks);
 
-DesuraJSLinks::DesuraJSLinks() : DesuraJSBase("links", "native_binding_links.js")
+DesuraJSLinks::DesuraJSLinks() : DesuraJSBase<DesuraJSLinks>("links", "native_binding_links.js")
 {
 	REG_SIMPLE_JS_VOIDFUNCTION( switchTab, DesuraJSLinks );
 	REG_SIMPLE_JS_VOIDFUNCTION( loadUrl, DesuraJSLinks );

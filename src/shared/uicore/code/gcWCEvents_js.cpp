@@ -126,7 +126,7 @@ public:
 class CrumbExtender : public DesuraJSBase<CrumbExtender>
 {
 public:
-	CrumbExtender(gcWebControlI* parent) : DesuraJSBase("CrumbExtender", "")
+	CrumbExtender(gcWebControlI* parent) : DesuraJSBase<CrumbExtender>("CrumbExtender", "")
 	{
 		m_pParent = parent;
 
@@ -135,7 +135,7 @@ public:
 	}
 
 	//dont use. Need for template
-	CrumbExtender() : DesuraJSBase("CrumbExtender", "")
+	CrumbExtender() : DesuraJSBase<CrumbExtender>("CrumbExtender", "")
 	{
 		assert(false);
 	}
@@ -173,11 +173,11 @@ protected:
 class ObjectExtender : public DesuraJSBase<ObjectExtender>
 {
 public:
-	ObjectExtender() : DesuraJSBase("ObjectExtender", "")
+	ObjectExtender() : DesuraJSBase<ObjectExtender>("ObjectExtender", "")
 	{
 	}
 
-	ObjectExtender(const char* name) : DesuraJSBase(name, "")
+	ObjectExtender(const char* name) : DesuraJSBase<ObjectExtender>(name, "")
 	{
 	}
 };
@@ -187,12 +187,12 @@ class ContextMenuExtender : public DesuraJSBase<ContextMenuExtender>
 {
 public:
 	//Dont use
-	ContextMenuExtender() : DesuraJSBase("ContextMenuExtender", "")
+	ContextMenuExtender() : DesuraJSBase<ContextMenuExtender>("ContextMenuExtender", "")
 	{
 		assert(false);
 	}
 
-	ContextMenuExtender(gcWebControlI* parent) : DesuraJSBase("ContextMenuExtender", "")
+	ContextMenuExtender(gcWebControlI* parent) : DesuraJSBase<ContextMenuExtender>("ContextMenuExtender", "")
 	{
 		m_pParent = parent;
 		REG_SIMPLE_JS_VOIDFUNCTION( showContextMenu, ContextMenuExtender );

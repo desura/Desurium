@@ -4,7 +4,6 @@
 
 option(DEBUG "enable debug build" OFF)
 option(OFFICIAL_BUILD "do you want to compile an official build?" OFF)
-option(BUILD_CEF "do you want to build cef?" ON)
 
 if(OFFICIAL_BUILD)
   set(BRANDING "branding_desura"

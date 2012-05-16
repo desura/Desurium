@@ -10,13 +10,26 @@
 #                   OFFICIAL_BUILD
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
-#   BUILD_CEF       OFF                 build cef
+#   PACKAGE_TYPE    DEB                 Which packages should be created with "make package"
 #
 # unix-only options:
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
 #   WITH_ARES       ON                  build CURL with ares support (c-ares REQUIRED)
+#   DIR_TYPE        SINGLE              how should game data be stored?
+#                                       SINGLE:   in a single dir in $HOME
+#                                       XDG:      like the official xdg specification
+#                                       PORTABLE: in the desura installaion dir
 #
 # windows-only options:
+#
+# some dev notes:
+#
+#   if you want to port desura to another compiler on UNIX bases systems,
+#   please create a files for compiler flags in:
+#
+#     cmake/platform/unix/compiler/${CMAKE_C_COMPILER_ID}.cmake
+#
+#   Take a look into the other files.
 #
 ###############################################################################
 
@@ -54,6 +67,7 @@ include(parsearguments)
 include(CheckCompiler)
 include(SetInstallPaths)
 include(ProcessorCount)
+include(Package)
 
 ###############################################################################
 # find all packages which are needed
@@ -65,6 +79,7 @@ endif()
 
 if(NOT WIN32)
   find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
+  find_package(Notify REQUIRED)
 endif()
 find_package(BZip2)
 
@@ -84,11 +99,9 @@ find_package(Sqlite)
 find_package(TinyXML)
 find_package(v8 ${REQUIRED_ON_UNIX})
 # we patch wxWidgets so we will build it on our own
-# find_package(wxWidgets 2.9 REQUIRED)
+# find_package(wxWidgets 2.9 COMPONENTS richtext REQUIRED)
 
-if(WIN32 OR BUILD_CEF)
-  find_package(PythonInterp REQUIRED)
-endif()
+find_package(PythonInterp REQUIRED)
 
 if(WIN32)
   find_package(PythonLibs REQUIRED)
@@ -118,10 +131,7 @@ if(NOT V8_FOUND)
   include(Buildv8)
 endif()
 
-if(BUILD_CEF)
-  include(BuildCEF)
-endif()
-
+include(BuildCEF)
 
 ###############################################################################
 # build third_party
@@ -131,7 +141,6 @@ if(NOT BZIP2_FOUND)
   add_subdirectory(third_party/bzip2)
 endif()
 
-add_subdirectory(third_party/cef) # for headers only, build via ExternalProject
 add_subdirectory(third_party/courgette) # for headers only, build via ExternalProject
 
 if(NOT TINYXML_FOUND)
@@ -147,9 +156,7 @@ if(NOT Boost_FOUND)
   add_dependencies(sqlite3x boost)
 endif()
 
-if(BUILD_CEF)
-  add_dependencies(cef wxWidget-2-9)
-endif()
+add_dependencies(cef wxWidget-2-9)
 
 ###############################################################################
 # build desura

@@ -98,8 +98,9 @@ public:
 	virtual ItemTaskGroupI* getTaskGroup();
 	virtual void force();
 
-	virtual bool createDektopShortcut();
-	
+	virtual bool createDesktopShortcut();
+	virtual bool createMenuEntry();
+
 #ifdef NIX
 	virtual void installLaunchScripts();
 #endif

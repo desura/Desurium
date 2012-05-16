@@ -40,12 +40,23 @@ endif()
 set(GLOBAL_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(COMMON_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/common)
 
-include_directories(
+if(ICC)
+  # on ICC we have to include glib-2 because of some hacks in Common.h
+  include_directories(
     ${GLOBAL_INCLUDE_DIRS}
     ${COMMON_INCLUDE_DIRS}
     ${TINYXML_INCLUDE_DIR}
     ${BIN_INCLUDE_DIR}
-)
+    ${GTK2_INCLUDE_DIRS}
+  )
+else()
+  include_directories(
+    ${GLOBAL_INCLUDE_DIRS}
+    ${COMMON_INCLUDE_DIRS}
+    ${TINYXML_INCLUDE_DIR}
+    ${BIN_INCLUDE_DIR}
+  )
+endif()
 
 ###############################################################################
 # build static libs
@@ -107,8 +118,43 @@ if(BUILD_TOOLS)
 endif()
 
 ###############################################################################
+# some pre building or installing actions
+###############################################################################
+
+# create a list of pairs first
+set(DESURA_SYMLINK_RULES
+    /usr/share/desura->/usr/bin;
+    /usr/local/share/desura->/usr/local/bin;
+    /usr/games/desura->/usr/games/bin;)
+
+# create symlink and install it
+foreach(item ${DESURA_SYMLINK_RULES})
+  pair(FIRST ${item} first)
+  if(CMAKE_INSTALL_PREFIX STREQUAL "${first}" AND UNIX)
+    pair(SECOND ${item} second)
+
+    # to avoid the nedd of root rights while creating install packages we create
+    # the symlink in CMAKE_BINARY_DIR and install it after creation
+    install(CODE "execute_process(COMMAND ln -fs ${first}/run.sh ${CMAKE_BINARY_DIR}/desura)")
+    install(FILES ${CMAKE_BINARY_DIR}/desura
+            DESTINATION "${second}")
+    message("II make install/package will create a symlink: ${second}/desura -> ${first}/run.sh")
+    break()
+  endif()
+endforeach()
+
+###############################################################################
 # we need some dependencies 
 ###############################################################################
+
+add_dependencies(gcJSBase fetch_cef)
+add_dependencies(scriptengine fetch_cef)
+add_dependencies(servicecore fetch_cef)
+add_dependencies(uicore fetch_cef)
+add_dependencies(usercore fetch_cef)
+if(WIN32)
+  add_dependencies(utilcore fetch_cef)
+endif()
 
 #if(NOT wxWidgets_FOUND)
   add_dependencies(managers_window wxWidget-2-9)

@@ -1,5 +1,6 @@
 set(DEPOT_TOOLS_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/depot_tools)
 set(DEPOT_TOOLS_BIN_DIR ${DEPOT_TOOLS_INSTALL_DIR}/src/depot_tools)
+set(CEF_SVN http://chromiumembedded.googlecode.com/svn/trunk/@282)
 
 ProcessorCount(CPU_COUNT)
 
@@ -34,10 +35,16 @@ ExternalProject_Add(
     INSTALL_COMMAND ${CMAKE_SCRIPT_PATH}/fix_chromium_path.sh
 )
 
-ExternalProject_Get_Property(
-    chromium
-    source_dir
+ExternalProject_Add(
+	fetch_cef
+    SVN_REPOSITORY ${CEF_SVN}
+    UPDATE_COMMAND ""
+    PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/cef.patch
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND "" 
+    INSTALL_COMMAND ""
 )
+
 
 ExternalProject_Add(
     cef
@@ -49,12 +56,23 @@ ExternalProject_Add(
     INSTALL_COMMAND ""
 )
 
+ExternalProject_Get_Property(
+    chromium
+    source_dir
+)
+set(CHROMIUM_SOURCE_DIR ${source_dir})
+ExternalProject_Get_Property(
+    fetch_cef
+    source_dir
+)
+set(CEF_SOURCE_DIR ${source_dir})
+
 ExternalProject_Add_Step(
     cef
     copy_files
-    COMMAND cp -r ${CMAKE_THIRD_PARTY_DIR}/cef ./
+    COMMAND cp -r ${CEF_SOURCE_DIR} ./cef
     DEPENDERS download
-    WORKING_DIRECTORY ${source_dir}/src
+    WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
 )
 
 ExternalProject_Add_Step(
@@ -62,7 +80,7 @@ ExternalProject_Add_Step(
     glib-2-32-patch
     COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/cef_glib_2_32_compile.patch
     DEPENDERS patch
-    WORKING_DIRECTORY ${source_dir}/src
+    WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
 )
 
 ExternalProject_Add_Step(
@@ -70,7 +88,7 @@ ExternalProject_Add_Step(
     gcc-4-7-patch
     COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/cef_gcc47_compile_fix.patch
     DEPENDERS patch
-    WORKING_DIRECTORY ${source_dir}/src
+    WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
 )
 
 
@@ -80,7 +98,7 @@ ExternalProject_Add_Step(
     COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} ./cef_create_projects.sh
     DEPENDEES download
     DEPENDERS configure
-    WORKING_DIRECTORY ${source_dir}/src/cef
+    WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src/cef
 )
 
 ExternalProject_Add_Step(
@@ -89,14 +107,16 @@ ExternalProject_Add_Step(
     COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} make cef_desura -j${CPU_COUNT} BUILDTYPE=Release
     DEPENDEES configure
     DEPENDERS build
-    WORKING_DIRECTORY ${source_dir}/src
+    WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
 )
 
 add_dependencies(cef depot_tools)
 add_dependencies(cef chromium)
+add_dependencies(cef fetch_cef)
 
-set(CEF_LIB_DIR ${source_dir}/src/out/Release/lib.target)
+set(CEF_LIB_DIR ${CHROMIUM_SOURCE_DIR}/src/out/Release/lib.target)
 set(CEF_LIBRARIES "${CEF_LIB_DIR}/libcef_desura.so")
+set(CEF_INCLUDE_DIRS "${CEF_SOURCE_DIR}")
 
 install(FILES ${CEF_LIBRARIES}
         DESTINATION ${LIB_INSTALL_DIR})

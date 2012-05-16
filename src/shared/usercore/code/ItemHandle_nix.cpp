@@ -16,10 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
+#include <fstream>
+
 #include "Common.h"
 #include "ItemHandle.h"
 
 #include "User.h"
+
+#include <boost/algorithm/string/replace.hpp>
 
 #ifdef NIX
 #include "util/UtilLinux.h"
@@ -309,6 +313,73 @@ void ItemHandle::installLaunchScripts()
 	safe_delete(scriptXdg);
 }
 
+inline gcString createDesktopFile(ItemInfoI* i)
+{
+	// KDE menu doesn't accept files like "Publisher Name-GameName.desktop" so we replace all " " with "_"
+	gcString publisher = boost::algorithm::replace_all_copy(std::string(i->getPublisher()), " ", "_");
+
+	gcString tmpPath("{0}/{1}-{2}.desktop",
+	                 UTIL::OS::getCachePath(),
+	                 publisher,
+	                 i->getShortName());
+
+	std::ofstream desktopFile(tmpPath);
+	desktopFile << "[Desktop Entry]"
+	            << "\nType=Application"
+	            << "\nName=" << i->getName()
+	            << "\nComment=" << i->getDesc()
+	            << "\nIcon=" << i->getIcon()
+	            << "\nTryExec=" << i->getActiveExe()->getExe()
+	            << "\nExec=" << i->getActiveExe()->getExe() << ' '
+	                         << i->getActiveExe()->getExeArgs()
+	            << "\nCategories=Game;" << i->getGenre() << ';'
+	            << std::endl;
+	desktopFile.close();
+
+	return tmpPath;
+}
+
+bool ItemHandle::createDesktopShortcut()
+{
+	gcString tmpPath = createDesktopFile(getItemInfo());
+
+	// just in case we pass --novendor to xdg-desktop-icon, so games without a proper publisher entry will accepted
+	std::ostringstream cmd;
+	cmd << "xdg-desktop-icon install --novendor \""
+	    << tmpPath.c_str() << '"';
+	bool result = system(cmd.str().c_str()) == 0;
+
+	// if something is going wrong, we don't delete the created desktop file
+	if (result) UTIL::FS::delFile(tmpPath);
+	else
+	{
+		Msg("Desktop file could not be installed.\n");
+		Msg(gcString("The file is located here: {0}\n", tmpPath));
+	}
+
+	return result;
+}
+
+bool ItemHandle::createMenuEntry()
+{
+	gcString tmpPath = createDesktopFile(getItemInfo());
+
+	// just in case we pass --novendor to xdg-desktop-menu, so games without a proper publisher entry will accepted
+	std::ostringstream cmd;
+	cmd << "xdg-desktop-menu install --novendor \""
+	    << tmpPath.c_str() << '"';
+	bool result = system(cmd.str().c_str()) == 0;
+
+	// if something is going wrong, we don't delete the created desktop file
+	if (result) UTIL::FS::delFile(tmpPath);
+	else
+	{
+		Msg("Desktop file could not be installed.\n");
+		Msg(gcString("The file is located here: {0}\n", tmpPath));
+	}
+
+	return result;
+}
 
 }
 }

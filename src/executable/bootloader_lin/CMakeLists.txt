@@ -5,10 +5,6 @@ include_directories(
 
 file(GLOB Sources code/*.cpp )
 
-if(UNIX)
-  set(LINUX_LIBRARIES notify)
-endif()
-
 add_executable(desura ${Sources})
 target_link_libraries(desura
   dl
@@ -22,7 +18,7 @@ target_link_libraries(desura
   ${BREAKPAD_EXCEPTION_HANDLER_LIBRARIES}
   ${SQLITE_LIBRARIES}
   ${wxWidgets_LIBRARIES}
-  ${LINUX_LIBRARIES}
+  ${LIBNOTIFY_LIBRARIES}
 )
 
 install(TARGETS desura

@@ -164,7 +164,8 @@ std::wstring getCachePath(std::wstring extra)
 		std::string cachePath = UTIL::STRING::toStr(getCurrentDir(L"cache"));
 	#endif
 	
-	extra.insert(0, L"/");
+	if (extra.size() > 0)
+		extra.insert(0, DIRS_WSTR);
 	
 	return UTIL::STRING::toWStr(cachePath) + extra;
 #else
@@ -185,7 +186,8 @@ std::wstring getAppInstallPath(std::wstring extra)
 		std::string installPath = UTIL::STRING::toStr(getCurrentDir(L"games"));
 	#endif
 	
-	extra.insert(0, L"/");
+	if (extra.size() > 0)
+		extra.insert(0, DIRS_WSTR);
 	
 	return UTIL::STRING::toWStr(installPath) + extra;
 #else
@@ -206,7 +208,8 @@ std::wstring getAppDataPath(std::wstring extra)
 		std::string configPath = UTIL::STRING::toStr(getCurrentDir(L"config"));
 	#endif
 	
-	extra.insert(0, L"/");
+	if (extra.size() > 0)
+		extra.insert(0, DIRS_WSTR);
 	
 	return UTIL::STRING::toWStr(configPath) + extra;
 #else

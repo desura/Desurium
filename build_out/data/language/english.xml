@@ -73,7 +73,7 @@
 
 		<!-- Main Page -->
 		<str name="#MP_PLAY">Play</str>
-		<str name="#MP_GAMES">Games</str>
+		<str name="#MP_GAMES">Store</str>
 		<str name="#MP_MODS">Mods</str>
 		<str name="#MP_COMMUNITY">Community</str>
 		<str name="#MP_DEVELOPMENT">Development</str>
@@ -467,6 +467,7 @@
 		<str name="#PM_SHOWCDKEY">View CD Key</str>
 		<str name="#PM_REMOVEFROMACCOUNT">Remove from List</str>
 		<str name="#PM_SHORTCUT">Create Desktop Shortcut</str>
+		<str name="#PM_MENU_ENTRY">Create Application Menu Entry</str>
 
 		<!-- Settings -->
 		<str name="#SET_TITLE">Desura Settings</str>

@@ -4,9 +4,17 @@
 
 EAPI=3
 
-inherit check-reqs cmake-utils eutils git-2 games
+unset GIT_ECLASS
 
-EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
+if [[ ${PV} = 9999* ]]; then
+	EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
+	GIT_ECLASS="git-2"
+	SRC_URI=""
+else
+	SRC_URI="https://github.com/downloads/lodle/Desurium/Desura-${PV}.tar.bz2"
+fi
+
+inherit check-reqs cmake-utils eutils ${GIT_ECLASS} games
 
 CHECKREQS_DISK_BUILD="3G"
 
@@ -15,7 +23,7 @@ HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+32bit +builtin-curl builtin-tinyxml debug +games-deps"
+IUSE="+32bit debug +games-deps"
 
 # some deps needed by some games
 GAMESDEPEND="
@@ -35,26 +43,29 @@ GAMESDEPEND="
 	)
 "
 
-DEPEND="
-	${GAMESDEPEND}
+COMMON_DEPEND="
 	app-arch/bzip2
 	dev-db/sqlite
-	dev-lang/yasm
-	dev-libs/boost
+	>=dev-libs/boost-1.47
 	dev-libs/libevent
 	dev-libs/libxml2
-	dev-libs/openssl
+	dev-libs/openssl:0
+
+	|| ( <dev-libs/tinyxml-2.6.2-r2[-stl]
+	    >=dev-libs/tinyxml-2.6.2-r2
+	)
+
 	dev-lang/v8
-	dev-vcs/subversion
 	gnome-base/libgnome-keyring
 	media-libs/flac
-	media-libs/libpng
+	media-libs/libpng:0
 	media-libs/libwebp
 	media-libs/speex
+	net-misc/curl[ares]
 	>=sys-devel/gcc-4.5
 	sys-libs/zlib
 	virtual/jpeg
-	>=x11-libs/gtk+-2.24
+	x11-libs/gtk+:2
 	x11-misc/xdg-utils
 
 	32bit? (
@@ -67,48 +78,34 @@ DEPEND="
 		app-emulation/emul-linux-x86-xlibs[opengl]
 		sys-devel/gcc[multilib]
 	)
-
-	builtin-curl? (
-		net-dns/c-ares
-	)
-
-	!builtin-curl? (
-		net-misc/curl
-	)
-
-	!builtin-tinyxml? (
-		|| ( <dev-libs/tinyxml-2.6.2-r2[-stl]
-		    >=dev-libs/tinyxml-2.6.2-r2
-		)
-	)
 "
 
-RDEPEND="${DEPEND}"
+RDEPEND="
+	x11-misc/xdg-user-dirs
+	${COMMON_DEPEND}
+	${GAMESDEPEND}
+"
 
-S="${WORKDIR}/desura"
+DEPEND="
+	dev-lang/yasm
+	dev-vcs/subversion
+	${COMMON_DEPEND}
+"
 
-# pkg_pretend not working EAPI < 4
-if [[ ${EAPI} != 4 ]]; then
-	src_unpack() {
-		check-reqs_pkg_pretend
-		git-2_src_unpack
-	}
+if [[ $PV != 9999* ]]; then
+	S="${WORKDIR}/Desura-${PV}"
 fi
 
+pkg_setup() {
+    check-reqs_pkg_setup
+}
+
 src_configure() {
-
-	# check if curl has ares enabled
-	if use !builtin-curl; then
-		ewarn "Using curl without ares USE flag is not supported by desura."
-		ewarn "It may work for your system configuration or not."
-		ewarn "See https://github.com/lodle/Desurium/issues/189 for further information"
-	fi
-
-	mycmakeargs=(
-		$(cmake-utils_use_with builtin-curl ARES)
+	# -DWITH_ARES=FALSE will use system curl, because we force curl[ares] we have ares support
+	local mycmakeargs=(
+		-DWITH_ARES=FALSE
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
-		-DBUILD_CEF=TRUE
 		-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}/${PN}
 	)
 	cmake-utils_src_configure
@@ -123,9 +120,8 @@ src_install() {
 
 	dosym ${GAMES_PREFIX}/${PN}/run.sh ${GAMES_BINDIR}/${PN}.sh
 
-	doicon "${FILESDIR}/${PN}.png" || die
+	doicon "${FILESDIR}/${PN}.png"
 	make_desktop_entry "${PN}.sh" "Desurium"
 
 	prepgamesdirs
 }
-

@@ -74,5 +74,47 @@ void ItemHandle::doLaunch(Helper::ItemLaunchHelperI* helper)
 		throw gcException(ERR_LAUNCH, GetLastError(), gcString("Failed to create {0} process. [{1}: {2}].\n", getItemInfo()->getName(), GetLastError(), ei->getExe()));
 }
 
+bool ItemHandle::createDesktopShortcut()
+{
+	gcString workingDir = UTIL::OS::getDesktopPath();
+	gcString path("{0}\\{1}.lnk", workingDir, UTIL::WIN::sanitiseFileName(getItemInfo()->getName()));
+	gcString link("desura://launch/{0}/{1}", getItemInfo()->getId().getTypeString(), getItemInfo()->getShortName());
+
+	gcString icon(getItemInfo()->getIcon());
+
+	if (UTIL::FS::isValidFile(icon))
+	{
+		gcString out(icon);
+		out += ".ico";
+
+		if (UTIL::MISC::convertToIco(icon.c_str(), out.c_str()))
+			icon = out;
+		else
+			icon = "";
+	}
+	else
+	{
+		icon = "";
+	}
+
+#ifdef DEBUG
+	if (icon == "")
+		icon = UTIL::OS::getCurrentDir(L"\\desura.exe");
+#else
+	if (icon == "")
+		icon = UTIL::OS::getCurrentDir(L"\\desura-d.exe");
+#endif
+
+	UTIL::FS::delFile(path);
+	UTIL::WIN::createShortCut(gcWString(path).c_str(), link.c_str(), workingDir.c_str(), "", false, (icon.size()>0)?icon.c_str():NULL);
+
+	return UTIL::FS::isValidFile(path);
+}
+
+bool ItemHandle::createMenuEntry()
+{
+	return false;
+}
+
 }
 }

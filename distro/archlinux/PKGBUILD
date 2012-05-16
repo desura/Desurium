@@ -2,7 +2,7 @@
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20120428
+pkgver=20120430
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -12,9 +12,8 @@ makedepends=('cmake' 'git' 'boost' 'subversion' 'scons' 'gawk' 'gendesk' 'sed')
 depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'curl' 'c-ares' 'libnotify' 'nss' 'libgnome-keyring' 'bison'
          'cups' 'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
-         'gconf' 'xdg-user-dirs' 'v8' 'flac' 'libpng' 'speex' 'zlib'
-         'xdg-utils' 'libwebp' 'libevent' 'libxslt' 'yasm' ' libxml2'
-         'libxxf86vm')
+         'gconf' 'xdg-user-dirs' 'flac' 'libpng' 'speex' 'zlib'
+         'xdg-utils' 'libwebp' 'libevent' 'libxslt' 'yasm', 'libxxf86vm')
 provides=('desura')
 conflicts=('desura')
 
@@ -42,7 +41,7 @@ build() {
   msg "Starting build..."
 
   MULTILIB=0
-  installed="$(pacman -Qs binutils-multilib)"
+  installed="$(pacman -Qsq binutils-multilib)"
 
   if [ "$installed" != "" ]; then
     MULTILIB=1

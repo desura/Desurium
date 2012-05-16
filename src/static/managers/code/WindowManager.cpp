@@ -44,7 +44,7 @@ WindowItem::WindowItem(wxFrame* frame) : BaseItem()
 	m_pFrame = frame;
 }
 
-WindowManager::WindowManager() : BaseManager(true)
+WindowManager::WindowManager() : BaseManager<WindowItem>(true)
 {
 
 }

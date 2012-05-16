@@ -34,7 +34,7 @@ void DestroyConComManager()
 }
 
 
-ConsoleCommandManager::ConsoleCommandManager() : BaseManager()
+ConsoleCommandManager::ConsoleCommandManager() : BaseManager<ConCommand>()
 {
 
 }

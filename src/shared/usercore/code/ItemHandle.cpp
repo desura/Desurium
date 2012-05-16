@@ -43,8 +43,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "ItemThread.h"
 #include "ItemTaskGroup.h"
 
-
-
 #include "User.h"
 
 class BlankTask : public UserCore::ItemTask::BaseItemTask
@@ -1396,48 +1394,6 @@ void ItemHandle::force()
 	group->removeItem(this);
 	group->startAction(this);
 }
-
-bool ItemHandle::createDektopShortcut()
-{
-#ifdef NIX
-	return false;
-#else
-	gcString workingDir = UTIL::OS::getDesktopPath();
-	gcString path("{0}\\{1}.lnk", workingDir, UTIL::WIN::sanitiseFileName(getItemInfo()->getName()));
-	gcString link("desura://launch/{0}/{1}", getItemInfo()->getId().getTypeString(), getItemInfo()->getShortName());
-
-	gcString icon(getItemInfo()->getIcon());
-
-	if (UTIL::FS::isValidFile(icon))
-	{
-		gcString out(icon);
-		out += ".ico";
-
-		if (UTIL::MISC::convertToIco(icon.c_str(), out.c_str()))
-			icon = out;
-		else
-			icon = "";
-	}
-	else
-	{
-		icon = "";
-	}
-
-#ifdef DEBUG
-	if (icon == "")
-		icon = UTIL::OS::getCurrentDir(L"\\desura.exe");
-#else
-	if (icon == "")
-		icon = UTIL::OS::getCurrentDir(L"\\desura-d.exe");
-#endif
-
-	UTIL::FS::delFile(path);
-	UTIL::WIN::createShortCut(gcWString(path).c_str(), link.c_str(), workingDir.c_str(), "", false, (icon.size()>0)?icon.c_str():NULL);
-
-	return UTIL::FS::isValidFile(path);
-#endif
-}
-
 
 }
 }

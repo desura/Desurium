@@ -144,13 +144,10 @@ if(WIN32)
 				  -DWXUSINGDLL)
   set(WINDOWS_LIBRARIES comctl32 comsuppwd odbc32 rpcrt4 Wininet winmm wsock32)
   use_unicode_here()
-else()
-  set(LINUX_LIBRARIES notify)
 endif()
 
 add_library(uicore SHARED ${Sources} ${PlattformSources} ${BROWSER_PIPE_SPOURCES})
 
-# TODO: get notify from cmake, not hardcoded
 target_link_libraries(uicore
     gcJSBase
     managers
@@ -164,13 +161,13 @@ target_link_libraries(uicore
     webcore
     wx_controls
     ${Boost_LIBRARIES}
+    ${LIBNOTIFY_LIBRARIES}
     ${OPENSSL_LIBRARIES}
     ${SQLITE_LIBRARIES}
     ${SQLITE3X_LIBRARIES}
     ${TINYXML_LIBRARIES}
     ${wxWidgets_LIBRARIES}
     ${WINDOWS_LIBRARIES}
-	${LINUX_LIBRARIES}
 )
 
 install(TARGETS uicore

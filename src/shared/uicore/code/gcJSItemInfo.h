@@ -99,6 +99,7 @@ private:
 
 	bool isItemBusy(UserCore::Item::ItemInfoI* item);
 	bool createItemDesktopShortcut(UserCore::Item::ItemInfoI* item);
+	bool createItemMenuEntry(UserCore::Item::ItemInfoI* item);
 
 	uint32 m_uiValidItemHash;
 };
