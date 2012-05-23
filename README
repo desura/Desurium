@@ -20,8 +20,8 @@ Run ./build_desura.sh
 
 In order to make use of multiple CPU cores while compiling, run
 ./build_desura.sh -j8
-which will invoke "make -j8" so the build is speeded up extremely
-and takes only 7 mins on a modern machine (intel core i7 2635QM)
+which will invoke "make -j8" so the build is sped up extremely
+and takes only 7 minutes on a modern machine (intel core i7 2635QM)
 "8" will be the number of compile-thread to run at a time.
 
 You can find out the number of cores you have running:
@@ -62,7 +62,7 @@ Download and install:
  * SCons http://www.scons.org/download.php (same architecture as python 2.7!)
  * CMake 2.8 http://www.cmake.org/
 
- Note: Make sure you add git to your environment path and also set SVN_PATH to point to the tortise svn path
+ Note: Make sure you add git to your environment path and also set SVN_PATH to point to the tortoise svn path
 
 Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a full build environment)
 run ./build_desura.bat
