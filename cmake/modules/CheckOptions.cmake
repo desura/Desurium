@@ -2,6 +2,12 @@
 # global options
 ###############################################################################
 
+option(BUILD_TESTS "Build various unit tests." ON)
+if(BUILD_TESTS)
+  include(CTest)
+  enable_testing()
+endif()
+
 option(DEBUG "enable debug build" OFF)
 option(OFFICIAL_BUILD "do you want to compile an official build?" OFF)
 

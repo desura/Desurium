@@ -121,11 +121,7 @@ endif()
 # build the tests
 ###############################################################################
 
-option(BUILD_TESTS "Build various unit tests." ON)
-
-if(BUILD_TESTS)
-  add_subdirectory(tests)
-endif()
+add_desura_test(UtilLinux_test util "util")
 
 ###############################################################################
 # some pre building or installing actions
