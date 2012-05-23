@@ -855,7 +855,7 @@ bool setupXDGVars()
 	}
 	
 	if (!homeDir)
-		return false;
+		return true;
 	
 	if (getenv("XDG_CONFIG_HOME") == 0)
 	{
