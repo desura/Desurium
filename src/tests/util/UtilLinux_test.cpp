@@ -1,7 +1,7 @@
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-#warning todo: add boost checks for alle util calls
+#warning todo: add boost checks for all util calls
 
 #ifdef BOOST_FILESYSTEM_VERSION
 #  undef BOOST_FILESYSTEM_VERSION
