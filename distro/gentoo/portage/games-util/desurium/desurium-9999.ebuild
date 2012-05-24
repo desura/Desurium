@@ -40,6 +40,16 @@ GAMESDEPEND="
 		media-libs/sdl-ttf
 		virtual/ffmpeg
 		>=virtual/jre-1.6
+
+		amd64? ( 32bit? (
+			app-emulation/emul-linux-x86-gtklibs
+			app-emulation/emul-linux-x86-gtkmmlibs
+			app-emulation/emul-linux-x86-medialibs
+			app-emulation/emul-linux-x86-opengl
+			app-emulation/emul-linux-x86-sdl
+			app-emulation/emul-linux-x86-soundlibs
+			app-emulation/emul-linux-x86-xlibs[opengl]
+		) )
 	)
 "
 
@@ -66,22 +76,15 @@ COMMON_DEPEND="
 	sys-libs/zlib
 	virtual/jpeg
 	x11-libs/gtk+:2
-	x11-misc/xdg-utils
 
-	32bit? (
-		app-emulation/emul-linux-x86-gtklibs
-		app-emulation/emul-linux-x86-gtkmmlibs
-		app-emulation/emul-linux-x86-medialibs
-		app-emulation/emul-linux-x86-opengl
-		app-emulation/emul-linux-x86-sdl
-		app-emulation/emul-linux-x86-soundlibs
-		app-emulation/emul-linux-x86-xlibs[opengl]
+	amd64? ( 32bit? (
 		sys-devel/gcc[multilib]
-	)
+	) )
 "
 
 RDEPEND="
 	x11-misc/xdg-user-dirs
+	x11-misc/xdg-utils
 	${COMMON_DEPEND}
 	${GAMESDEPEND}
 "
