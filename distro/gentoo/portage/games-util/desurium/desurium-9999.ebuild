@@ -97,7 +97,7 @@ if [[ $PV != 9999* ]]; then
 fi
 
 pkg_setup() {
-    check-reqs_pkg_setup
+	check-reqs_pkg_setup
 }
 
 src_configure() {
@@ -118,7 +118,7 @@ src_compile() {
 src_install() {
 	cmake-utils_src_install
 
-	dosym ${GAMES_PREFIX}/${PN}/run.sh ${GAMES_BINDIR}/${PN}.sh
+	dosym "${GAMES_PREFIX}/${PN}/run.sh" "${GAMES_BINDIR}/${PN}.sh"
 
 	doicon "${FILESDIR}/${PN}.png"
 	make_desktop_entry "${PN}.sh" "Desurium"
