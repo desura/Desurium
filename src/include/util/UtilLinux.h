@@ -142,10 +142,7 @@ namespace LIN
 	std::string sanitiseFileName(const char* name);
 	
 	//! Sets up XDG environmental variables.
-	//!
-	//! @return True if an error occured.
-	//!
-	bool setupXDGVars();
+	void setupXDGVars();
 
 #ifdef NIX
 	inline const char* SOCK_PATH(void)

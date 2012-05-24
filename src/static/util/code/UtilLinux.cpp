@@ -834,12 +834,13 @@ std::string sanitiseFileName(const char* name)
 	return out;
 }
 
-bool setupXDGVars()
+void setupXDGVars()
 {
-	const char* homeDir = getenv("HOME");
-	const char* cacheDir = getenv("XDG_CACHE_HOME");
+	gcString homeDir(getenv("HOME")); // Used for falling back.
+	gcString configDir(getenv("XDG_CONFIG_HOME"));
+	gcString cacheDir(getenv("XDG_CACHE_HOME"));
 	
-	if (!homeDir)
+	if (homeDir.empty())
 	{
 		// Below we just use 'falling back' and don't note we're setting it,
 		// but as $HOME is referenced later on it might confuse anybody reading the
@@ -849,56 +850,23 @@ bool setupXDGVars()
 		
 		struct passwd* pass = getpwuid(getuid());
 		homeDir = pass->pw_dir;
-		
-		if (setenv("HOME", homeDir, 0) == -1)
-		{
-			printf("Failed to setenv $HOME.");
-			// No need to return from this one as we're using homeDir from here on.
-		}
-		
-		// If homeDir is still blank, there's bigger problems for them than Desura.
 	}
 	
-	if (!homeDir)
-		return true;
-	
-	if (getenv("XDG_CONFIG_HOME") == 0)
+	if (configDir.empty())
 	{
 		printf("$XDG_CONFIG_HOME not set, falling back to $HOME/.config.");
-		
-		std::string fullDir(homeDir);
-		fullDir += "/.config";
-		
-		if (setenv("XDG_CONFIG_HOME", fullDir.c_str(), 0) == -1)
-		{
-			printf("Failed to setenv $XDG_CONFIG_HOME.");
-			return true;
-		}
+		configDir = homeDir + "/.config";
 	}
 	
-	std::string cacheDirString;
-	
-	if (!cacheDir)
+	if (cacheDir.empty())
 	{
 		printf("$XDG_CACHE_HOME not set, falling back to $HOME/.cache.");
-		
-		std::string fullDir(homeDir);
-		fullDir += "/.cache";
-		
-		if (setenv("XDG_CACHE_HOME", fullDir.c_str(), 0) == -1)
-		{
-			printf("Failed to setenv $XDG_CACHE_HOME.");
-			return true;
-		}
-		
-		cacheDirString = fullDir;
-	}
-	else
-	{
-		cacheDirString = cacheDir;
+		cacheDir = homeDir + "/.cache";
 	}
 	
-	return false;
+	setenv("HOME", homeDir.c_str(), 1);
+	setenv("XDG_CONFIG_HOME", configDir.c_str(), 1);
+	setenv("XDG_CACHE_HOME", cacheDir.c_str(), 1);
 }
 
 }
