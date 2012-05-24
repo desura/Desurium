@@ -635,7 +635,7 @@ std::string getOSString()
 	distro = "Unknown (debug build)";
 	arch = "XXX";
 #else
-	std::string lsbInfo = getCmdStdout("lsb_release -a", 1);
+	std::string lsbInfo = getCmdStdout("lsb_release -a", 2);
 	
 	arch = getCmdStdout("uname -m", 1);
 	
@@ -659,7 +659,7 @@ std::string getCmdStdout(const char* command, int stdErrDest)
 	ERROR_OUTPUT("\ngetCmdStdout() is being called from inside a debug build. This should be avoided as GDB promptly packs it in. See appstaff ticket #711 for more information\n");
 
 	if (!command)
-		return "";
+		return "No command - error";
 
 	std::string newCommand(command);
 	
@@ -673,41 +673,17 @@ std::string getCmdStdout(const char* command, int stdErrDest)
 	if (!fd)
 	{
 		ERROR_OUTPUT(gcString("Failed to run command: [{0}]\n", command).c_str());
-		return "";
+		return "Failed to run - error";
 	}
 
-	// Get the size of fd
-	fseek (fd,0,SEEK_END);
-	long size = ftell(fd);
-	rewind(fd);
+	std::string output = "";
+	const unsigned int size = 512;
+	char buffer[size];
 	
-	char * buffer = (char*) malloc (sizeof(char)*size);
-	if(buffer == NULL) {
-		// Failed to allocated memory
-		ERROR_OUTPUT(gcString("Failed to allocate memory.").c_str());
-		return "";
-	}
-
-	size_t elemRead;
-	elemRead = fread(buffer,1,size,fd);
-	if(elemRead != size) {
-		// All elements were not read
-		if(feof(fd) != 0) {
-			// EOF indicator is set
-		}
-		if(ferror(fd) != 0) {
-			// ERROR indicator is set
-			ERROR_OUTPUT(gcString("Failed to read command result").c_str());
-		}
-	}
-
-	std::string output(buffer);
-	
-	/*while (fgets(buffer, 512, fd) != NULL)
-		output.append(buffer);*/
+	while (fgets(buffer, size, fd) != NULL)
+		output.append(buffer);
 
 	pclose(fd);
-	free(buffer);
 	return trim(output); 
 }
 
