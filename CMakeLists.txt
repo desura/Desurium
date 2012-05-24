@@ -5,6 +5,7 @@
 #   name            default             description
 #
 # global options:
+#   BUILD_TESTS     ON                  Build various unit tests
 #   OFFICIAL_BUILD  OFF                 for official build only
 #   BRANDING        depends on          ehich branding should be used?
 #                   OFFICIAL_BUILD
@@ -60,8 +61,8 @@ endif()
 # some includes
 ###############################################################################
 
-include(ExternalProject)
 include(CheckOptions)
+include(ExternalProject)
 include(macros)
 include(parsearguments)
 include(CheckCompiler)
