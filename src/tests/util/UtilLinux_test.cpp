@@ -25,11 +25,11 @@ BOOST_AUTO_TEST_CASE (Util_Lin_String_Output)
 	std::wcout << L"UTIL::LIN::getDesktopPath(L\"test/path\") result: " << UTIL::LIN::getDesktopPath(L"test/path") << std::endl;
 
 	std::cout << "-- Testing UTIL::LIN::getOSString(...) --\n";
-	//std::cout << "UTIL::LIN::getOSString() result: " << UTIL::LIN::getOSString() << std::endl;
+	std::cout << "UTIL::LIN::getOSString() result: " << UTIL::LIN::getOSString() << std::endl;
 
 	std::cout << "-- Testing UTIL::LIN::getFreeSpace(...) --\n";
 	std::cout << "UTIL::LIN::getFreeSpace(\"/\") result: " << UTIL::LIN::getFreeSpace("/") << std::endl;
 
 	std::cout << "-- Testing UTIL::LIN::getCmdStdout(...) --\n";
-	//std::cout << "UTIL::LIN::getCmdStdout(\"ping -c 4\",0) result: " << UTIL::LIN::getCmdStdout("ping -c 4",0) << std::endl;
+	std::cout << "UTIL::LIN::getCmdStdout(\"xdg-user-dir DESKTOP\",0) result: " << UTIL::LIN::getCmdStdout("xdg-user-dir DESKTOP",0) << std::endl;
 }

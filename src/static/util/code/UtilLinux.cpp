@@ -675,14 +675,39 @@ std::string getCmdStdout(const char* command, int stdErrDest)
 		ERROR_OUTPUT(gcString("Failed to run command: [{0}]\n", command).c_str());
 		return "";
 	}
+
+	// Get the size of fd
+	fseek (fd,0,SEEK_END);
+	long size = ftell(fd);
+	rewind(fd);
 	
-	char buffer[512];
-	std::string output;
+	char * buffer = (char*) malloc (sizeof(char)*size);
+	if(buffer == NULL) {
+		// Failed to allocated memory
+		ERROR_OUTPUT(gcString("Failed to allocate memory.").c_str());
+		return "";
+	}
+
+	size_t elemRead;
+	elemRead = fread(buffer,1,size,fd);
+	if(elemRead != size) {
+		// All elements were not read
+		if(feof(fd) != 0) {
+			// EOF indicator is set
+		}
+		if(ferror(fd) != 0) {
+			// ERROR indicator is set
+			ERROR_OUTPUT(gcString("Failed to read command result").c_str());
+		}
+	}
+
+	std::string output(buffer);
 	
-	while (fgets(buffer, 512, fd) != NULL)
-		output.append(buffer);
+	/*while (fgets(buffer, 512, fd) != NULL)
+		output.append(buffer);*/
 
 	pclose(fd);
+	free(buffer);
 	return trim(output); 
 }
 
