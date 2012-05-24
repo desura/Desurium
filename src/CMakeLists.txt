@@ -121,7 +121,7 @@ endif()
 # build the tests
 ###############################################################################
 
-add_desura_test(UtilLinux_test util "util")
+add_subdirectory(tests)
 
 ###############################################################################
 # some pre building or installing actions
