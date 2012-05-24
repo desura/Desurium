@@ -101,6 +101,6 @@ macro(add_desura_test name category neededLibs)
       ${Boost_LIBRARIES}
       ${neededLibs}
     )
-    add_test(${name} ${CMAKE_BINARY_DIR}/src/${name})
+    add_test(${name} ${CMAKE_BINARY_DIR}/src/tests/${name})
   endif()
 endmacro()
