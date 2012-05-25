@@ -885,12 +885,20 @@ void ItemForm::launchError(gcException& e)
 {
 	LaunchErrorHelper leh(m_pItemHandle);
 
-#ifdef NIX
-	if (e.getErrId() == ERR_NO32LIBS)
-	{
-		gcErrorBox(g_pMainApp->getMainWindow(), "#MF_ERRTITLE", "#MF_ERROR_NO32LIBS", e, NULL);
-		return;
-	}
+#ifdef NIX64
+	#ifdef USE_BITTEST
+		if (e.getErrId() == ERR_NO32LIBS)
+		{
+			gcErrorBox(g_pMainApp->getMainWindow(), "#MF_ERRTITLE", "#MF_ERROR_NO32LIBS", e, NULL);
+			return;
+		}
+	#else
+		if (e.getErrId() == ERR_NOBITTEST)
+		{
+			gcErrorBox(g_pMainApp->getMainWindow(), "#MF_ERRTITLE", "#MF_ERROR_NOBITTEST", e, NULL);
+			return;
+		}
+	#endif
 #endif
 
 	gcErrorBox(g_pMainApp->getMainWindow(), "#MF_ERRTITLE", "#MF_ERROR", e, &leh);

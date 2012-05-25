@@ -131,12 +131,13 @@ void ItemHandle::doLaunch(bool useXdgOpen, const char* globalExe, const char* gl
 	{
 		#ifdef USE_BITTEST
 			int testRet = system("desura_bittest");
+			
+			if (testRet != 0)
+				throw gcException(ERR_NO32LIBS);
 		#else
-			int testRet = 1;
+			throw gcException(ERR_NOBITTEST);
 		#endif
 		
-		if (testRet != 0)
-			throw gcException(ERR_NO32LIBS);
 	}
 #endif
 
