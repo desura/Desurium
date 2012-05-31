@@ -38,7 +38,7 @@
 # TODO: get libs automatically for externel builds, maybe make desura a external build itself?
 
 project(Desura)
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.5)
 
 ###############################################################################
 # some globale variables
