@@ -119,6 +119,7 @@ enum ERROR_ID
 	ERR_USERCANCELED,
 	ERR_UNSUPPORTEDPLATFORM,
 	ERR_NO32LIBS,
+	ERR_NOBITTEST,
 
 	ERR_LASTERR,
 };
@@ -203,6 +204,7 @@ const static char* errMsg [] =
 	"User cancelled action",
 	"This platform is unsupported",
 	"You need 32 bit libraries to play this game",
+	"Not compiled with 32 bit application support.",
 
 	"THIS SHOULDN'T BE USED AS AN ERR ID!",
 };
