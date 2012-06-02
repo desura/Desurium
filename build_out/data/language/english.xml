@@ -11,6 +11,7 @@
 		<str name="#IF_WINDOWS_LAUNCH_WARNING">WARNING: You are attempting to launch a Windows program. This relies on your system recognising the format and launching the appropriate tools (eg: WINE). If you do not, the application/game may not launch correctly or at all.&#xA;&#xA;This warning can be disabled in Settings.</str>
 		<str name="#IF_SHOWFILES">Show Files</str>
 		<str name="#MF_ERROR_NO32LIBS">The item you tried to launch is 32 bit but it appears that you do not have 32 bit libs Installed.&#xA;&#xA;Please see http://www.desura.com/groups/desura/linux for more information.</str>
+		<str name="#MF_ERROR_NOBITTEST">The version of Desura you're running does not support running 32 bit games.</str>
 
 		<str name="#PLAY_EMPTY">You have no Linux {1}games{0} in your account.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
 
