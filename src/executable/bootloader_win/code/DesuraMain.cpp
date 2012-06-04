@@ -243,7 +243,7 @@ BOOL BootLoader::InitInstance()
 	if (args.hasArg("testcrash"))
 	{
 		BootLoader *ai = NULL;
-		ai->AssertValid();
+		//ai->AssertValid();
 	}
 
 	unsigned int osid = BootLoaderUtil::GetOSId();

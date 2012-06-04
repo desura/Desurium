@@ -19,7 +19,7 @@ if(DEBUG)
 	custom_build
 	DEPENDEES configure
 	DEPENDERS build
-	COMMAND nmake /nologo -f makefile.vc BUILD=debug MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1
+	COMMAND nmake /nologo -f makefile.vc BUILD=debug MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=static
 	WORKING_DIRECTORY <SOURCE_DIR>/build/msw
   )
 else()
@@ -28,7 +28,7 @@ else()
 	custom_build
 	DEPENDEES configure
 	DEPENDERS build
-	COMMAND nmake /nologo -f makefile.vc BUILD=release MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1
+	COMMAND nmake /nologo -f makefile.vc BUILD=release MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=static
 	WORKING_DIRECTORY <SOURCE_DIR>/build/msw
   )
 endif()

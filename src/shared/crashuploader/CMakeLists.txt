@@ -6,7 +6,7 @@ include_directories(
 file(GLOB Sources code/*.cpp)
 
 if(WIN32)
-  add_linker_flags(/NODEFAULTLIB:LIBCMT)
+#  add_linker_flags(/NODEFAULTLIB:LIBCMT)
 endif()
 
 add_library(crashuploader SHARED ${Sources})

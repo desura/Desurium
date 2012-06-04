@@ -14,7 +14,7 @@ add_definitions(-DNEED_STRDUP -DNEED_MEMCCPY)
 
 if(WIN32)
   set(WINDOWS_LIBRARIES dnsapi rpcrt4 wininet winmm ws2_32)
-  add_linker_flags(/NOD:LIBCMT)
+#  add_linker_flags(/NOD:LIBCMT)
 endif()
 
 add_library(mcfcore SHARED ${Sources})

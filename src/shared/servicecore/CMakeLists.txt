@@ -28,7 +28,7 @@ if(WIN32)
                   code/WindowsGameExplorer.cpp
   )
   set(WINDOWS_LIBRARIES msi Wintrust)
-  add_linker_flags(/NOD:LIBCMT)
+#  add_linker_flags(/NOD:LIBCMT)
 else()
   file(GLOB PlattformSources)
 endif()
