@@ -26,7 +26,7 @@ endif()
 
 ExternalProject_Add(
     chromium
-    URL https://commondatastorage.googleapis.com/chromium-browser-official/chromium-14.0.809.0.tar.bz2
+    URL http://commondatastorage.googleapis.com/chromium-browser-official/chromium-14.0.809.0.tar.bz2
     URL_MD5 7c5850e9fc9c2f3e42e7b0d63a295a09
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
