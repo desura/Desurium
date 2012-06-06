@@ -132,5 +132,7 @@ set(CEF_LIB_DIR ${CHROMIUM_SOURCE_DIR}/src/out/Release/lib.target)
 set(CEF_LIBRARIES "${CEF_LIB_DIR}/libcef_desura.so")
 set(CEF_INCLUDE_DIRS "${CEF_SOURCE_DIR}")
 
-install(FILES ${CEF_LIBRARIES}
-        DESTINATION ${LIB_INSTALL_DIR})
+if(NOT WIN32)
+  install(FILES ${CEF_LIBRARIES}
+          DESTINATION ${LIB_INSTALL_DIR})
+endif()
