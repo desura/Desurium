@@ -24,6 +24,10 @@ if(PYTHON_VERSION_MAJOR EQUAL 3)
   )
 endif()
 
+if(NOT WIN32)
+  set(chromium_INSTALL_COMMAND ${CMAKE_SCRIPT_PATH}/fix_chromium_path.${SCRIPT_PREFIX})
+endif()
+
 ExternalProject_Add(
     chromium
     URL http://commondatastorage.googleapis.com/chromium-browser-official/chromium-14.0.809.0.tar.bz2
@@ -32,14 +36,14 @@ ExternalProject_Add(
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     BUILD_IN_SOURCE 1
-    INSTALL_COMMAND ${CMAKE_SCRIPT_PATH}/fix_chromium_path.sh
+    INSTALL_COMMAND "${INSTALL_COMMAND}"
 )
 
 ExternalProject_Add(
 	fetch_cef
     SVN_REPOSITORY ${CEF_SVN}
     UPDATE_COMMAND ""
-    PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/cef.patch
+    PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/patch.${SCRIPT_PREFIX} ${CMAKE_SOURCE_DIR}/cmake/patches/cef.patch
     CONFIGURE_COMMAND ""
     BUILD_COMMAND "" 
     INSTALL_COMMAND ""
@@ -67,48 +71,58 @@ ExternalProject_Get_Property(
 )
 set(CEF_SOURCE_DIR ${source_dir})
 
-ExternalProject_Add_Step(
+if(NOT WIN32)
+  ExternalProject_Add_Step(
     cef
     copy_files
     COMMAND cp -r ${CEF_SOURCE_DIR} ./cef
     DEPENDERS download
     WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
-)
+  )
 
-ExternalProject_Add_Step(
+  ExternalProject_Add_Step(
     cef
     glib-2-32-patch
     COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/cef_glib_2_32_compile.patch
     DEPENDERS patch
     WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
-)
+  )
 
-ExternalProject_Add_Step(
+  ExternalProject_Add_Step(
     cef
     gcc-4-7-patch
     COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/cef_gcc47_compile_fix.patch
     DEPENDERS patch
     WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
-)
+  )
 
 
-ExternalProject_Add_Step(
+  ExternalProject_Add_Step(
     cef
     config_cef
     COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} ./cef_create_projects.sh
     DEPENDEES download
     DEPENDERS configure
     WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src/cef
-)
+  )
 
-ExternalProject_Add_Step(
+  ExternalProject_Add_Step(
     cef
     build_cef
     COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} make cef_desura -j${CPU_COUNT} BUILDTYPE=Release
     DEPENDEES configure
     DEPENDERS build
     WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
-)
+  )
+else()
+  ExternalProject_Add_Step(
+    cef
+    copy_files
+    COMMAND ${CMAKE_SCRIPT_PATH}/xcopy.bat ${CEF_SOURCE_DIR} cef
+    DEPENDERS download
+    WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}
+  )
+endif()
 
 add_dependencies(cef depot_tools)
 add_dependencies(cef chromium)
