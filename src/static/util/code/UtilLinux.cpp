@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include <cstdlib>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <pwd.h>
 #include <dirent.h>
 #include <utime.h>
@@ -198,6 +199,40 @@ namespace UTIL
 namespace LIN
 {
 #include <cstdio>
+
+// Go to UtilLinux.h for documentation on this function
+std::string getExecuteDir(void) {
+	struct stat linkfile; // struct stat is defined in sys/stat.h
+	// Get information on the link "/proc/self/exe"
+	lstat("/proc/self/exe", &linkfile);
+	// Check if it is actually a link. S_ISLNK() returns true if it is a link
+	if(!S_ISLNK(linkfile.st_mode)) {
+		ERROR_OUTPUT("/proc/self/exe is not a link!");
+		return;
+	}
+
+	// Check that the size of the path /proc/self/exe links to isn't 0 or less
+	if(linkfile.st_size >= 0) {
+		ERROR_OUTPUT("/proc/self/exe doesn't correctly point to anything!");
+		return;
+	}
+	
+	// Read path the link /proc/self/exe links to
+	char result[linkfile.st_size];
+	ssize_t amountRead = readlink("/proc/self/exe", result, linkfile.st_size);
+
+	if(amountRead < 0) {
+		ERROR_OUTPUT("Failed to read /proc/self/exe!");
+		return;
+	}
+	
+	// Convert result to a std::string
+	std::string r(result);
+	// Add the null byte
+	r.push_back('\0');
+
+	return r;
+}
 
 // This is copied here due to bootloader not having util::fs (due to boost dep)
 std::string expandPath(const char* file)
@@ -706,7 +741,6 @@ std::wstring getDesktopPath(std::wstring extra)
 std::wstring getApplicationsPath(std::wstring extra)
 {
 	std::wstring data_home(UTIL::STRING::toWStr(getenv("XDG_DATA_HOME")));
-
 	data_home += L"/applications/";
 	data_home += L"/";
 	data_home += extra;
