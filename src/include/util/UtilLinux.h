@@ -40,15 +40,12 @@ namespace LIN
 	};
 
 	/*! \brief Gets the path from which the executable was launched.
-	 *  \return Returns a std::string for the path
-	 *  \author Ian T. Jacobsen(Smilex)
+	 *  \return Returns a std::string for the path without an ending '/'
 	 *
 	 *  Uses /proc/self/exe to get the path, from which the executable was launched.
 	 *  Uses readlink() - Read more about readlink at http://linux.die.net/man/2/readlink
-	 *  This function implementation uses a lstat() sized char buffer. Read more about lstat at http://linux.die.net/man/2/lstat
-	 *  This function uses the S_ISLINK macro to confirm that /proc/self/exe is a link, this makes it non-conformant to POSIX.1-1996.
-	 *	Read more about S_ISLINK at http://linux.die.net/man/2/lstat
-	 *  Contrary to readlink(), this function appends a null byte to the string
+	 *  This function implementation uses a stat() sized char buffer. Read more about stat at http://linux.die.net/man/2/stat
+	 *  Contrary to readlink(), this function appends a null byte to the string.
 	 *  This function was implemented to replace a previous ExeDir class
 	 */
 	std::string getExecuteDir(void);
