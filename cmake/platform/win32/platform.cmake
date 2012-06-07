@@ -2,6 +2,8 @@
 # set some windows specific variables
 ################################################################################
 
+set(SCRIPT_PREFIX bat)
+
 # some boost options
 add_definitions(-DBOOST_FILESYSTEM_VERSION=2)
 
@@ -22,7 +24,7 @@ endif()
 add_linker_flags(/ignore:4006
                  /ignore:4099
 				 /ignore:4221)
-add_compiler_flags(/wd4996 /MP)
+add_compiler_flags(/wd4996 /MP /MT)
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
   set(64BIT TRUE)

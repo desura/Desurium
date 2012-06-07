@@ -12,7 +12,7 @@ ExternalProject_Add(
   CONFIGURE_COMMAND bootstrap.bat
   BUILD_COMMAND b2.exe --with-date_time --with-filesystem
                   --with-thread --with-system variant=debug link=static
-				  threading=multi runtime-link=shared
+				  threading=multi runtime-link=static
   INSTALL_COMMAND ""
 )
 else()
@@ -25,7 +25,7 @@ ExternalProject_Add(
   CONFIGURE_COMMAND bootstrap.bat
   BUILD_COMMAND b2.exe --with-date_time --with-filesystem
                   --with-thread --with-system variant=release link=static
-				  threading=multi runtime-link=shared
+				  threading=multi runtime-link=static
   INSTALL_COMMAND ""
 )
 endif()
@@ -41,9 +41,9 @@ set(Boost_LIBRARY_DIR ${Boost_DIR}/stage/lib)
 
 # todo: get desura build with system layout
 if(DEBUG)
-	set(BAS "-vc100-mt-gd-1_49")
+	set(BAS "-vc100-mt-s-gd-1_49")
 else()
-	set(BAS "-vc100-mt-1_49")
+	set(BAS "-vc100-mt-s-1_49")
 endif()
 
 set(Boost_LIBRARIES "${Boost_LIBRARY_DIR}/libboost_date_time${BAS}.lib;${Boost_LIBRARY_DIR}/libboost_filesystem${BAS}.lib;${Boost_LIBRARY_DIR}/libboost_system${BAS}.lib;${Boost_LIBRARY_DIR}/libboost_thread${BAS}.lib")

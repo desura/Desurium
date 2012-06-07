@@ -37,7 +37,9 @@ file(GLOB Sources code/BZip2.cpp
 
 if(WIN32)
   use_unicode_here()
-  set(WINDOWS_LIBRARIES msi Wintrust)
+  add_definitions(-DWXUSINGDLL)
+  set(WINDOWS_LIBRARIES msi Wintrust Psapi)
+  add_linker_flags(/FORCE)
 else()
   set(PLATTFORM_SOURCES code/Browser.cpp
                         code/BrowserTest.cpp)

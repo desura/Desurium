@@ -14,9 +14,9 @@ add_definitions(-D_WINDOWS
 				-DDONTUSE_PCH
 				-DDESURA_EXE
 				-DDESURA_CLIENT
-				-DNO_UTIL_FS
-				-D_AFXDLL)
-add_linker_flags(/NOD:LIBCMT /FORCE)
+				-DNO_UTIL_FS)
+#				-D_AFXDLL)
+add_linker_flags(/FORCE)
 				
 add_executable(desura ${Sources} ${SERVICE_PIPE_IPCUPDATEMAIN})
 target_link_libraries(desura

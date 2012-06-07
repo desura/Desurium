@@ -16,7 +16,7 @@ add_definitions(-DDESURA_CLIENT)
 if(WIN32)
   add_definitions(-DSVENHACK -DDESURA_DIABLO2_HACK)
   set(WINDOWS_LIBRARIES Comctl32 crypt32)
-  add_linker_flags(/NOD:LIBCMT)
+#  add_linker_flags(/NOD:LIBCMT)
 endif()
 
 file(GLOB Sources code/BaseItemServiceTask.cpp

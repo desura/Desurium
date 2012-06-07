@@ -169,7 +169,8 @@ std::wstring getCachePath(std::wstring extra)
 	
 	return UTIL::STRING::toWStr(cachePath) + extra;
 #else
-	#error NOT IMPLEMENTED
+	return L"";
+//	#error NOT IMPLEMENTED
 #endif
 }
 
@@ -191,7 +192,8 @@ std::wstring getAppInstallPath(std::wstring extra)
 	
 	return UTIL::STRING::toWStr(installPath) + extra;
 #else
-	#error NOT IMPLEMENTED
+	return L"";
+//	#error NOT IMPLEMENTED
 #endif
 }
 

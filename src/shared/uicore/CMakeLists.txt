@@ -144,6 +144,7 @@ if(WIN32)
 				  -DWXUSINGDLL)
   set(WINDOWS_LIBRARIES comctl32 comsuppwd odbc32 rpcrt4 Wininet winmm wsock32)
   use_unicode_here()
+  add_linker_flags(/FORCE)
 endif()
 
 add_library(uicore SHARED ${Sources} ${PlattformSources} ${BROWSER_PIPE_SPOURCES})

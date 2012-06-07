@@ -20,13 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Log.h"
 #include "LogCallback.h"
 
-//#include "log_bones.cpp"
-
-LogCallback* g_pLogCallback = NULL;
-
-void LogMsg(int type, std::string msg, Color* col);
-void LogMsg(int type, std::wstring msg, Color* col);
-
+#include "LogBones.cpp"
+//LogCallback* g_pLogCallback = NULL;
+//void LogMsg(int type, std::string msg, Color* col);
+//void LogMsg(int type, std::wstring msg, Color* col);
 
 void DESURA_Msg(const char* msg, Color *col = NULL)
 {
