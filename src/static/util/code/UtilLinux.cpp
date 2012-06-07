@@ -204,32 +204,34 @@ namespace LIN
 std::string getExecuteDir(void) {
 	struct stat linkfile; // struct stat is defined in sys/stat.h
 	// Get information on the link "/proc/self/exe"
-	lstat("/proc/self/exe", &linkfile);
-	// Check if it is actually a link. S_ISLNK() returns true if it is a link
-	if(!S_ISLNK(linkfile.st_mode)) {
-		ERROR_OUTPUT("/proc/self/exe is not a link!");
-		return;
+	if(stat("/proc/self/exe", &linkfile) == -1) {
+		ERROR_OUTPUT("Failed to stat /proc/self/exe!");
 	}
 
 	// Check that the size of the path /proc/self/exe links to isn't 0 or less
-	if(linkfile.st_size >= 0) {
+	if(linkfile.st_size <= 0) {
 		ERROR_OUTPUT("/proc/self/exe doesn't correctly point to anything!");
-		return;
+		return "";
 	}
 	
 	// Read path the link /proc/self/exe links to
-	char result[linkfile.st_size];
+	char * result = new char[linkfile.st_size];
 	ssize_t amountRead = readlink("/proc/self/exe", result, linkfile.st_size);
+	//std::cout << "amountRead = " << amountRead;
 
-	if(amountRead < 0) {
+	if(amountRead == -1) {
 		ERROR_OUTPUT("Failed to read /proc/self/exe!");
-		return;
+		return "";
 	}
 	
 	// Convert result to a std::string
-	std::string r(result);
+	std::string r(result, linkfile.st_size);
+	// Remove anything before the last / and the / itself
+	r.resize(r.find_last_of('/'));
 	// Add the null byte
 	r.push_back('\0');
+
+	delete [] result;
 
 	return r;
 }
