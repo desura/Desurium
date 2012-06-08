@@ -41,10 +41,10 @@ namespace LIN
 
 	/*! \brief Gets the path from which the executable was launched.
 	 *  \return Returns a std::string for the path without an ending '/'
+	 *  \attention Currently this function serves the same purpose as getAppPath()
 	 *
 	 *  Uses /proc/self/exe to get the path, from which the executable was launched.
 	 *  Uses readlink() - Read more about readlink at http://linux.die.net/man/2/readlink
-	 *  This function implementation uses a stat() sized char buffer. Read more about stat at http://linux.die.net/man/2/stat
 	 *  Contrary to readlink(), this function appends a null byte to the string.
 	 *  This function was implemented to replace a previous ExeDir class
 	 */

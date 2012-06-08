@@ -165,7 +165,7 @@ bool readFile(const char* file, char *buff, size_t size)
 
 
 
-class ExeDir
+/*class ExeDir
 {
 public:
 	ExeDir()
@@ -192,7 +192,7 @@ public:
 	}
 
 	gcWString path;
-};
+};*/
 
 namespace UTIL
 {
@@ -202,21 +202,12 @@ namespace LIN
 
 // Go to UtilLinux.h for documentation on this function
 std::string getExecuteDir(void) {
-	struct stat linkfile; // struct stat is defined in sys/stat.h
-	// Get information on the link "/proc/self/exe"
-	if(stat("/proc/self/exe", &linkfile) == -1) {
-		ERROR_OUTPUT("Failed to stat /proc/self/exe!");
-	}
-
-	// Check that the size of the path /proc/self/exe links to isn't 0 or less
-	if(linkfile.st_size <= 0) {
-		ERROR_OUTPUT("/proc/self/exe doesn't correctly point to anything!");
-		return "";
-	}
 	
 	// Read path the link /proc/self/exe links to
-	char * result = new char[linkfile.st_size];
-	ssize_t amountRead = readlink("/proc/self/exe", result, linkfile.st_size);
+	// We are making the array a size of PATH_MAX, which is the maximum amount of bytes a Linux path can be
+	char result[PATH_MAX];
+	//std::cout << "Size of result: " << PATH_MAX << std::endl;
+	ssize_t amountRead = readlink("/proc/self/exe", (char *)result, PATH_MAX);
 	//std::cout << "amountRead = " << amountRead;
 
 	if(amountRead == -1) {
@@ -225,13 +216,11 @@ std::string getExecuteDir(void) {
 	}
 	
 	// Convert result to a std::string
-	std::string r(result, linkfile.st_size);
-	// Remove anything before the last / and the / itself
+	std::string r(result, amountRead);
+	// Remove anything before the last /
 	r.resize(r.find_last_of('/'));
 	// Add the null byte
 	r.push_back('\0');
-
-	delete [] result;
 
 	return r;
 }
@@ -279,17 +268,21 @@ bool is64OS()
 
 std::wstring getAppPath(std::wstring extra)
 {
-	ExeDir dir;
+	std::string dir = getExecuteDir();
 
-	gcWString wresult(dir.path);
+	gcWString dirW(UTIL::STRING::toWStr(dir));
+
+	// Convert std::string to std::wstring using std::copy
+	/*std::wstring dirW(dir.length(),L' ');
+	std::copy(dir.begin(), dir.end(), dirW.begin());*/
 
 	if (extra.size() > 0)
 	{
-		wresult += DIRS_WSTR;
-		wresult += extra;
+		dirW += DIRS_WSTR;
+		dirW += extra;
 	}
 
-	return wresult;
+	return dirW;
 }
 
 void setConfigValue(const std::string &configKey, const std::string &value)
