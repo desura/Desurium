@@ -48,12 +48,17 @@ BOOST_AUTO_TEST_CASE (Util_Lin_String_Output)
 	*/
 	//BOOST_REQUIRE(getApplicationsPath(L"") == L"~/.local/share/applications");
 
+	std::cout << "-- Testing UTIL::LIN::getExecuteDir(...) --\n";
 	std::string execpath = getExecuteDir();
 	// First output the received path
-	std::cout<< execpath << std::endl;
+	std::cout<< "UTIL::LIN::getExecuteDir(L\"\") result: " << execpath << std::endl;
 	// Secondly check if getExecuteDir() returns a consistent path
 	for(int i = 0; i < 100; ++i) {
 		BOOST_REQUIRE(getExecuteDir() == execpath);
 	}
+
+	std::cout << "-- Testing UTIL::LIN::getAppPath(...) --\n";
+	std::wcout << L"UTIL::LIN::getAppPath(L\"\") result: " << getAppPath(L"") << std::endl;
+	std::wcout << L"UTIL::LIN::getAppPath(L\"test/path\") result: " << getAppPath(L"test/path") << std::endl;
 	
 }
