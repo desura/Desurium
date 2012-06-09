@@ -1,11 +1,16 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
+  ${CMAKE_CURRENT_SOURCE_DIR}/RES
   ${CEF_INCLUDE_DIRS}
   ${IPC_PIPE_INCLUDE_DIRS}
   ${BROWSER_PIPE_INCLUDE_DIRS}
 )
 
-file(GLOB Sources code/*.cpp )
+configure_file(RES/desura_browserhost.rc ${RC_DIR}/desura_browserhost.rc @ONLY)
+file(GLOB
+  Sources code/*.cpp
+  ${RC_DIR}/desura_browserhost.rc
+)
 
 add_definitions(
   -D_CONSOLE

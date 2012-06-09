@@ -3,6 +3,8 @@
 ###############################################################################
 
 set(BIN_INCLUDE_DIR ${CMAKE_BINARY_DIR}/include)
+set(RC_DIR ${CMAKE_BINARY_DIR}/rc_files)
+
 file(MAKE_DIRECTORY ${BIN_INCLUDE_DIR})
 
 file(COPY ${BRANDING} DESTINATION ${BIN_INCLUDE_DIR})

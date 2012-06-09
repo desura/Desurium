@@ -62,7 +62,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON                ICON                    "..\\..\\..\\branding\\desura.ico"
+IDI_ICON                ICON                    "@BRANDING_DIR@/desura.ico"
 
 
 #endif    // English (U.S.) resources
@@ -83,7 +83,7 @@ IDI_ICON                ICON                    "..\\..\\..\\branding\\desura.ic
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE 9, 1
 #pragma code_page(1252)
-#include "..\\..\\branding\\desura_browserhost.rc2"  // non-Microsoft Visual C++ edited resources
+#include "@BRANDING_DIR@/desura_browserhost.rc2"  // non-Microsoft Visual C++ edited resources
 #include "afxres.rc"     // Standard components
 #endif
 /////////////////////////////////////////////////////////////////////////////

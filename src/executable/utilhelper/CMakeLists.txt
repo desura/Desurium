@@ -2,7 +2,11 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/RES
 )
 
-file(GLOB Sources code/*.cpp)
+configure_file(RES/repair.rc ${RC_DIR}/repair.rc @ONLY)
+file(GLOB Sources
+  code/*.cpp
+  ${RC_DIR}/repair.rc
+)
 
 add_definitions(
   -Dgamecore_LOG

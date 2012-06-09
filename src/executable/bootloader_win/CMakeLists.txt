@@ -6,9 +6,12 @@ include_directories(
   ${TINYXML_INCLUDE_DIR}
 )
 
+configure_file(RES/desura_exe.rc ${RC_DIR}/desura_exe.rc @ONLY)
 file(GLOB Sources code/AppUpdateInstall.cpp
                   code/Log.cpp
-                  code/UpdateFunctions.cpp)
+                  code/UpdateFunctions.cpp
+                  ${RC_DIR}/desura_exe.rc)
+
 if(MINGW)
   file(GLOB AdditionalSources code/DesuraMainMingw.cpp)
 else()
