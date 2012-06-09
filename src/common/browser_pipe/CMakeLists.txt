@@ -6,3 +6,4 @@ include_directories(
 file(GLOB Sources *.cpp)
 
 set(BROWSER_PIPE_SPOURCES ${Sources} PARENT_SCOPE)
+set(BROWSER_PIPE_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
