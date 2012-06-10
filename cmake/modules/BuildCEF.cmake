@@ -1,6 +1,6 @@
 set(DEPOT_TOOLS_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/depot_tools)
 set(DEPOT_TOOLS_BIN_DIR ${DEPOT_TOOLS_INSTALL_DIR}/src/depot_tools)
-set(CEF_SVN http://chromiumembedded.googlecode.com/svn/trunk/@282)
+set(CEF_SVN http://chromiumembedded.googlecode.com/svn/trunk/@283)
 
 ProcessorCount(CPU_COUNT)
 
