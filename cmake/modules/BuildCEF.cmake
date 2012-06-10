@@ -25,7 +25,7 @@ if(PYTHON_VERSION_MAJOR EQUAL 3)
 endif()
 
 if(NOT WIN32)
-  set(chromium_INSTALL_COMMAND ${CMAKE_SCRIPT_PATH}/fix_chromium_path.${SCRIPT_PREFIX})
+  set(chromium_INSTALL_COMMAND "${CMAKE_SCRIPT_PATH}/fix_chromium_path.${SCRIPT_PREFIX}")
 endif()
 
 ExternalProject_Add(
@@ -36,7 +36,7 @@ ExternalProject_Add(
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     BUILD_IN_SOURCE 1
-    INSTALL_COMMAND "${INSTALL_COMMAND}"
+    INSTALL_COMMAND "${chromium_INSTALL_COMMAND}"
 )
 
 ExternalProject_Add(
