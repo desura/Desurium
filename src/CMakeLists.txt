@@ -132,7 +132,7 @@ set(DESURA_SYMLINK_RULES
     /usr/share/desura->/usr/bin;
     /usr/local/share/desura->/usr/local/bin;
     /usr/games/desura->/usr/games/bin;
-	/opt/desura->/usr/bin;)
+    /opt/desura->/usr/bin;)
 
 # configure our desktop file
 configure_file(${CMAKE_SCRIPT_PATH}/desura.desktop ${CMAKE_BINARY_DIR}/desura.desktop)
