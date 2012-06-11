@@ -37,7 +37,7 @@ set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Karol Herbst")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "libboost-filesystem-dev libboost-thread-dev libc-ares2 libjpeg62 libtinyxml-dev libwebp-dev")
 set(CPACK_DEBIAN_PACKAGE_SECTION "games")
 set(CPACK_DEBIAN_PACKAGE_PRIORITY "extra")
-set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "${CPACK_PACKAGE_HOMEPAGE}"
+set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "${CPACK_PACKAGE_HOMEPAGE}")
 set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}")
 
 ###############################################################################
