@@ -4326,7 +4326,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
        ],
      },
 @@ -442,6 +482,9 @@
-             'include/cef_win.h',
+             'include/internal/cef_win.h',
              'libcef_dll/libcef_dll.rc',
            ],
 +          'resource_include_dirs': [
@@ -4382,7 +4382,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
            'sources': [
              'include/internal/cef_types_linux.h',
              'include/internal/cef_linux.h',
-@@ -818,8 +875,244 @@
+@@ -818,8 +875,241 @@
              'libcef/webview_host_gtk.cc',
              'libcef/webwidget_host_gtk.cc',
            ],
@@ -4398,7 +4398,6 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
 +		'type': 'shared_library',
 +		'msvs_guid': '6DDD4763-2525-02FD-1CB2-5B5021AC5E96',
 +		'dependencies': [
-+		        '../app/app.gyp:app_base',
 +		        '../base/base.gyp:base',
 +		        '../base/base.gyp:base_i18n',
 +		        '../build/temp_gyp/googleurl.gyp:googleurl',
@@ -4412,7 +4411,6 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
 +		        '../third_party/ffmpeg/ffmpeg.gyp:ffmpeg',
 +		        '../third_party/icu/icu.gyp:icui18n',
 +		        '../third_party/icu/icu.gyp:icuuc',
-+		        '../third_party/leveldb/leveldb.gyp:leveldb',
 +		        '../third_party/libjpeg_turbo/libjpeg.gyp:libjpeg',
 +		        '../third_party/libpng/libpng.gyp:libpng',
 +		        '../third_party/libxml/libxml.gyp:libxml',
@@ -4426,8 +4424,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
 +		        '../third_party/WebKit/Source/WebKit/chromium/WebKit.gyp:webkit',
 +		        '../third_party/zlib/zlib.gyp:zlib',
 +		        '../ui/ui.gyp:gfx_resources',
-+		        '../ui/ui.gyp:ui_base',
-+		        '../ui/ui.gyp:ui_gfx',
++		        '../ui/ui.gyp:ui',
 +		        '../webkit/support/webkit_support.gyp:appcache',
 +		        '../webkit/support/webkit_support.gyp:blob',
 +		        '../webkit/support/webkit_support.gyp:database',
@@ -4660,15 +4657,6 @@ diff '--exclude=.svn' -aurN cef.ori/cef_resources.grd cef/cef_resources.grd
 +    </includes>
 +  </release>
 +</grit>
-diff '--exclude=.svn' -aurN cef.ori/CMakeLists.txt cef/CMakeLists.txt
---- CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
-+++ CMakeLists.txt	2012-05-09 11:32:01.266658243 +0200
-@@ -0,0 +1,5 @@
-+include_directories(
-+  ${CMAKE_CURRENT_SOURCE_DIR}/include
-+)
-+
-+set(CEF_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
 diff '--exclude=.svn' -aurN cef.ori/include/cef_capi.h cef/include/cef_capi.h
 --- include/cef_capi.h	2012-05-09 11:27:17.734674278 +0200
 +++ include/cef_capi.h	2012-05-09 11:32:01.270658243 +0200
@@ -5321,7 +5309,7 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_request_context.cc cef/libcef
    // Create the |cache_path| directory if necessary.
    bool cache_path_valid = false;
    if (!cache_path.empty()) {
-@@ -183,6 +184,91 @@
+@@ -183,6 +184,92 @@
            file_system_context_.get(),
            CefThread::GetMessageLoopProxyForThread(CefThread::FILE)));
    storage_.set_job_factory(job_factory);
@@ -5383,7 +5371,8 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_request_context.cc cef/libcef
 +      cache_path, 0, BrowserResourceLoaderBridge::GetCacheThread());
 +
 +  net::HttpCache* cache =
-+      new net::HttpCache(host_resolver(), cert_verifier(), NULL, NULL,
++      new net::HttpCache(host_resolver(), cert_verifier(),
++                         origin_bound_cert_service(), NULL, NULL,
 +                         proxy_service(), ssl_config_service(),
 +                         http_auth_handler_factory(), NULL, NULL, backend);
 +
@@ -5395,7 +5384,7 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_request_context.cc cef/libcef
 +
 +  blob_storage_controller_.reset(new webkit_blob::BlobStorageController());
 +  file_system_context_ = static_cast<BrowserFileSystem*>(
-+      WebKit::webKitClient()->fileSystem())->file_system_context();
++      WebKit::webKitPlatformSupport()->fileSystem())->file_system_context();
 +
 +  net::URLRequestJobFactory* job_factory = new net::URLRequestJobFactory;
 +  job_factory->SetProtocolHandler(
@@ -5540,27 +5529,27 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webkit_glue.h cef/libcef/brow
  void InitializeDataPak();
  FilePath GetResourcesFilePath();
  #endif
-diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webkit_init.h cef/libcef/browser_webkit_init.h
---- libcef/browser_webkit_init.h	2012-05-09 11:27:19.088674201 +0200
-+++ libcef/browser_webkit_init.h	2012-05-09 11:32:01.627658222 +0200
-@@ -67,11 +67,17 @@
-     WebKit::WebRuntimeFeatures::enableDeviceMotion(false);
-     WebKit::WebRuntimeFeatures::enableDeviceOrientation(false);
+diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webkit_init.cc cef/libcef/browser_webkit_init.cc
+--- libcef/browser_webkit_init.cc	2012-05-09 11:27:19.088674201 +0200
++++ libcef/browser_webkit_init.cc	2012-05-09 11:32:01.627658222 +0200
+@@ -42,11 +42,17 @@
+   WebKit::WebRuntimeFeatures::enableDeviceMotion(false);
+   WebKit::WebRuntimeFeatures::enableDeviceOrientation(false);
  
 +#ifdef OS_LINUX
 +    // Load only the libraries we want Desura to use
 +    media::InitializeMediaLibrary(FilePath("./lib/"));
 +    WebKit::WebRuntimeFeatures::enableMediaPlayer(true);
 +#else
-     // Load libraries for media and enable the media player.
-     FilePath module_path;
-     WebKit::WebRuntimeFeatures::enableMediaPlayer(
-         PathService::Get(base::DIR_MODULE, &module_path) &&
-         media::InitializeMediaLibrary(module_path));
+   // Load libraries for media and enable the media player.
+   FilePath module_path;
+   WebKit::WebRuntimeFeatures::enableMediaPlayer(
+       PathService::Get(base::DIR_MODULE, &module_path) &&
+       media::InitializeMediaLibrary(module_path));
 +#endif
  
-     // Construct and initialize an appcache system for this scope.
-     // A new empty temp directory is created to house any cached
+   // Construct and initialize an appcache system for this scope.
+   // A new empty temp directory is created to house any cached
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_gtk.cc cef/libcef/browser_webview_delegate_gtk.cc
 --- libcef/browser_webview_delegate_gtk.cc	2012-05-09 11:27:19.063674202 +0200
 +++ libcef/browser_webview_delegate_gtk.cc	2012-05-09 11:32:01.628658222 +0200
@@ -6141,10 +6130,11 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate.h cef/libcef
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_win.cc cef/libcef/browser_webview_delegate_win.cc
 --- libcef/browser_webview_delegate_win.cc	2012-05-09 11:27:19.046674203 +0200
 +++ libcef/browser_webview_delegate_win.cc	2012-05-09 11:32:01.628658222 +0200
-@@ -496,8 +496,65 @@
-     cef_string_set(securityInfoStr.c_str(), securityInfoStr.length(),
-         &menuInfo.securityInfo, false);
+@@ -448,6 +448,66 @@
+   if (client.get())
+     handler = client->GetMenuHandler();
  
++  if(handler.get()) {
 +	std::vector<std::string> customItemLabel;
 +	std::vector<cef_handler_menuitem_t> customItems;
 +
@@ -6199,16 +6189,15 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_win.cc cef/l
 +	}
 +	
 +	
-     // Notify the handler that a context menu is requested
--    if (handler->OnBeforeMenu(browser_, menuInfo))
 +    bool res = handler->OnBeforeMenu(browser_, menuInfo);
 +	delete [] menuInfo.customItems;
 +	
 +	if (res)
-       goto end;
-   }
- 
-@@ -546,6 +603,28 @@
++    return;
+   if (client.get() && browser_->IsWindowRenderingDisabled()) {
+     // Retrieve the screen coordinates.
+     CefRefPtr<CefRenderHandler> render_handler = client->GetRenderHandler();
+@@ -494,6 +554,28 @@
        true, label_list);
    }
  
@@ -6234,20 +6223,19 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_win.cc cef/l
 +			break;
 +		}
 +  }
-   if (menu) {
-     // show the context menu
-     int selected_id = TrackPopupMenu(menu,
-@@ -566,6 +645,10 @@
-         // Execute the action
-         browser_->UIT_HandleAction(menuId, browser_->GetFocusedFrame());
-       }
-+
-+	  if (!handled) {
-+		browser_->UIT_GetWebViewHost()->webview()->performCustomContextMenuAction(menuId - MENU_ID_CUSTOM);
-+	  }
+   if (!menu)
+     return;
+ 
+@@ -516,6 +598,9 @@
+       // Execute the action
+       browser_->UIT_HandleAction(menuId, browser_->GetFocusedFrame());
      }
++  if (!handled) {
++    browser_->UIT_GetWebViewHost()->webview()->performCustomContextMenuAction(menuId - MENU_ID_CUSTOM);
++  }
    }
  
+   DestroyMenu(menu);
 @@ -731,3 +814,18 @@
    return result;
  }
@@ -6704,14 +6692,6 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/webwidget_host_gtk.cc cef/libcef/webw
  
      gtk_box_pack_start(GTK_BOX(parent_view), widget, TRUE, TRUE, 0);
  
-@@ -75,6 +98,7 @@
-                                   GDK_BUTTON_RELEASE_MASK |
-                                   GDK_KEY_PRESS_MASK |
-                                   GDK_KEY_RELEASE_MASK);
-+
-     GTK_WIDGET_SET_FLAGS(widget, GTK_CAN_FOCUS);
-     g_signal_connect(widget, "size-request",
-                      G_CALLBACK(&HandleSizeRequest), host);
 @@ -107,6 +131,72 @@
  
      g_object_set_data(G_OBJECT(widget), kWebWidgetHostKey, host);
@@ -6978,15 +6958,13 @@ diff '--exclude=.svn' -aurN cef.ori/libcef_dll/version.h cef/libcef_dll/version.
 +#define MAKE_STRING(p) DO_MAKE_STRING(p)
 +
 +#endif
-diff '--exclude=.svn' -aurN cef.ori/patch/patch_build.cfg cef/patch/patch_build.cfg
---- patch/patch_build.cfg	2012-05-09 11:27:15.411674409 +0200
-+++ patch/patch_build.cfg	2012-05-09 11:32:01.667658219 +0200
-@@ -1,5 +1,9 @@
- # An element of this array associates a patch file with a target directory.
- # All paths in the patch file must be relative to that directory.
- patches = {
--  'build' : '../build/'
-+  'build' : '../build/',
+diff '--exclude=.svn' -aurN cef.ori/patch/patch.cfg cef/patch/patch.cfg
+--- patch/patch.cfg	2012-05-09 11:27:15.411674409 +0200
++++ patch/patch.cfg	2012-05-09 11:32:01.667658219 +0200
+@@ -6,4 +6,8 @@
+   'build' : '../build/',
+   # http://codereview.chromium.org/6730028/
+   'base' : '../base/',
 +  'webkit' : '../third_party/WebKit/Source/WebCore/',
 +  'root' : '../',
 +  'resources' : '../',
@@ -6995,49 +6973,12 @@ diff '--exclude=.svn' -aurN cef.ori/patch/patch_build.cfg cef/patch/patch_build.
 diff '--exclude=.svn' -aurN cef.ori/patch/patches/desura.patch cef/patch/patches/desura.patch
 --- patch/patches/desura.patch	1970-01-01 01:00:00.000000000 +0100
 +++ patch/patches/desura.patch	2012-05-09 11:32:01.668658220 +0200
-@@ -0,0 +1,64 @@
+@@ -0,0 +1,27 @@
 +Index: net/proxy/proxy_service.cc
 +===================================================================
 +--- net/proxy/proxy_service.cc	(revision 91424)
 ++++ net/proxy/proxy_service.cc	(working copy)
-+@@ -452,7 +452,7 @@
-+   DCHECK(proxy_config_service);
-+ 
-+   if (!ProxyResolverFactoryForSystem::IsSupported()) {
-+-    LOG(WARNING) << "PAC support disabled because there is no "
-++    DLOG(WARNING) << "PAC support disabled because there is no "
-+                     "system implementation";
-+     return CreateWithoutProxyResolver(proxy_config_service, net_log);
-+   }
-+Index: cef/libcef/browser_webkit_init.h
-+===================================================================
-+--- cef/libcef/browser_webkit_init.h	(revision 1048)
-++++ cef/libcef/browser_webkit_init.h	(working copy)
-+@@ -67,11 +67,17 @@
-+     WebKit::WebRuntimeFeatures::enableDeviceMotion(false);
-+     WebKit::WebRuntimeFeatures::enableDeviceOrientation(false);
-+ 
-++#ifdef OS_LINUX
-++    // Load only the libraries we want Desura to use
-++    media::InitializeMediaLibrary("./lib/");
-++    WebKit::WebRuntimeFeatures::enableMediaPlayer(true);
-++#else
-+     // Load libraries for media and enable the media player.
-+     FilePath module_path;
-+     WebKit::WebRuntimeFeatures::enableMediaPlayer(
-+-      PathService::Get(base::DIR_MODULE, &module_path) &&
-+-      media::InitializeMediaLibrary(module_path));
-++        PathService::Get(base::DIR_MODULE, &module_path) &&
-++        media::InitializeMediaLibrary(module_path));
-++#endif
-+ 
-+     // Construct and initialize an appcache system for this scope.
-+     // A new empty temp directory is created to house any cached
-+Index: net/proxy/proxy_service.cc
-+===================================================================
-+--- net/proxy/proxy_service.cc	(revision 91424)
-++++ net/proxy/proxy_service.cc	(working copy)
-+@@ -452,7 +452,7 @@
++@@ -478,7 +478,7 @@
 +   DCHECK(proxy_config_service);
 + 
 +   if (!ProxyResolverFactoryForSystem::IsSupported()) {
@@ -7081,24 +7022,23 @@ diff '--exclude=.svn' -aurN cef.ori/patch/patches/resources.patch cef/patch/patc
 diff '--exclude=.svn' -aurN cef.ori/patch/patches/root.patch cef/patch/patches/root.patch
 --- patch/patches/root.patch	1970-01-01 01:00:00.000000000 +0100
 +++ patch/patches/root.patch	2012-05-09 11:32:01.668658220 +0200
-@@ -0,0 +1,13 @@
+@@ -0,0 +1,12 @@
 +Index: base/message_loop.h
 +===================================================================
 +--- base/message_loop.h	(revision 91424)
 ++++ base/message_loop.h	(working copy)
-+@@ -650,7 +650,7 @@
++@@ -671,7 +671,6 @@
 +   // Returns the MessageLoopForIO of the current thread.
 +   static MessageLoopForIO* current() {
 +     MessageLoop* loop = MessageLoop::current();
 +-    DCHECK_EQ(MessageLoop::TYPE_IO, loop->type());
-++    //DCHECK_EQ(MessageLoop::TYPE_IO, loop->type());
 +     return static_cast<MessageLoopForIO*>(loop);
 +   }
 + 
 diff '--exclude=.svn' -aurN cef.ori/patch/patches/webkit.patch cef/patch/patches/webkit.patch
 --- patch/patches/webkit.patch	1970-01-01 01:00:00.000000000 +0100
 +++ patch/patches/webkit.patch	2012-05-09 11:32:01.668658220 +0200
-@@ -0,0 +1,138 @@
+@@ -0,0 +1,95 @@
 +Index: bindings/v8/custom/V8DOMWindowCustom.cpp
 +===================================================================
 +--- bindings/v8/custom/V8DOMWindowCustom.cpp	(revision 90274)
@@ -7120,33 +7060,15 @@ diff '--exclude=.svn' -aurN cef.ori/patch/patches/webkit.patch cef/patch/patches
 +===================================================================
 +--- html/HTMLAnchorElement.cpp	(revision 90274)
 ++++ html/HTMLAnchorElement.cpp	(working copy)
-+@@ -149,7 +149,11 @@
-+         if (isLinkClick(event) && treatLinkAsLiveForEventType(eventType(event))) {
-+             String url = stripLeadingAndTrailingHTMLSpaces(getAttribute(hrefAttr));
-+             appendServerMapMousePosition(url, event);
-++#if 0
-+             handleLinkClick(event, document(), url, getAttribute(targetAttr), hasRel(RelationNoReferrer));
-++#else
-++			handleLinkClick(event, document(), url, target(), hasRel(RelationNoReferrer));
-++#endif
-+             sendPings(document()->completeURL(url));
-+             return;
-+         }
-+@@ -298,7 +302,16 @@
++@@ -296,7 +296,10 @@
 + 
 + String HTMLAnchorElement::target() const
 + {
 +-    return getAttribute(targetAttr);
-++#if 0 //Desura
-++     return getAttribute(targetAttr);
-++#else
-++	String res = getAttribute(targetAttr); 
-++
-++	if (res == "_blank")
-++		res = "_self";
-++
-++	return res;
-++#endif
+++    String res = getAttribute(targetAttr); 
+++    if (res == "_blank")
+++        res = "_self";
+++    return res;
 + }
 + 
 + String HTMLAnchorElement::hash() const
@@ -7189,44 +7111,19 @@ diff '--exclude=.svn' -aurN cef.ori/patch/patches/webkit.patch cef/patch/patches
 + #endif
 +     event->setDefaultHandled();
 + }
-+Index: platform/ScrollbarThemeComposite.cpp
-+===================================================================
-+--- platform/ScrollbarThemeComposite.cpp	(revision 90274)
-++++ platform/ScrollbarThemeComposite.cpp	(working copy)
-+@@ -269,7 +269,19 @@
-+ int ScrollbarThemeComposite::thumbPosition(Scrollbar* scrollbar)
-+ {
-+     if (scrollbar->enabled())
-+-        return max(0.0f, scrollbar->currentPos()) * (trackLength(scrollbar) - thumbLength(scrollbar)) / (usedTotalSize(scrollbar) - scrollbar->visibleSize());
-++#if 0 //DESURA: Fixes issue with 0/x
-++		return max(0.0f, scrollbar->currentPos()) * (trackLength(scrollbar) - thumbLength(scrollbar)) / (usedTotalSize(scrollbar) - scrollbar->visibleSize());
-++#else
-++	{
-++		int length = trackLength(scrollbar) - thumbLength(scrollbar);
-++
-++		if (length == 0)
-++			return 0;
-++
-++        return scrollbar->currentPos() * length / scrollbar->maximum();
-++	}
-++#endif
-++
-+     return 0;
-+ }
-+ 
 +Index: svg/SVGAElement.cpp
 +===================================================================
 +--- svg/SVGAElement.cpp	(revision 90274)
 ++++ svg/SVGAElement.cpp	(working copy)
-+@@ -220,6 +220,7 @@
++@@ -175,6 +175,7 @@
++                     return;
 +             }
-+ #endif
 + 
 ++#if 0 //Desura
 +             // FIXME: Why does the SVG anchor element have this special logic
 +             // for middle click that the HTML anchor element does not have?
 +             // Making a middle click open a link in a new window or tab is
-+@@ -231,7 +232,9 @@
++@@ -186,7 +186,9 @@
 +             // helpful.
 +             if (target.isEmpty())
 +                 target = (fastGetAttribute(XLinkNames::showAttr) == "new") ? "_blank" : "_self";
@@ -8544,7 +8441,7 @@ diff '--exclude=.svn' -aurN cef.ori/tests/wxclient/main.cpp cef/tests/wxclient/m
 diff '--exclude=.svn' -aurN cef.ori/tools/gclient_hook.py cef/tools/gclient_hook.py
 --- tools/gclient_hook.py	2012-05-09 11:27:16.865674327 +0200
 +++ tools/gclient_hook.py	2012-05-09 11:32:01.703658217 +0200
-@@ -54,5 +54,22 @@
+@@ -54,5 +54,23 @@
  
  print "\nGenerating CEF project files..."
  os.environ['CEF_DIRECTORY'] = os.path.basename(cef_dir);
@@ -8554,6 +8451,7 @@ diff '--exclude=.svn' -aurN cef.ori/tools/gclient_hook.py cef/tools/gclient_hook
 +gyper = [ 'python', 'tools/gyp_cef', 'cef.gyp',
 +	'-I', 'cef.gypi',
 +	'-Dwerror=',
++	'-Duse_kerberos=0',
 +	'-Duse_system_bzip2=1',
 +	'-Duse_system_flac=1',
 +	'-Duse_system_icu=0',
