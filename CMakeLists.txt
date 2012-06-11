@@ -20,6 +20,8 @@
 #                                       SINGLE:   in a single dir in $HOME
 #                                       XDG:      like the official xdg specification
 #                                       PORTABLE: in the desura installaion dir
+#   INSTALL_DESKTOP_FILE                INSTALL a desktop file in /usr/share/applications
+#                   OFF
 #
 # windows-only options:
 #
