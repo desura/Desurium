@@ -90,7 +90,7 @@ include(Package)
 # SVN, Git, HTTP stuff
 ###############################################################################
 
-if(SET_OWN_EXT_SRC)
+if(NOT SET_OWN_EXT_SRC)
   set(BOOST_URL http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip)
   set(BOOST_MD5 854dcbbff31b896c85c38247060b7713)
   set(CHROMIUM_URL http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2)
