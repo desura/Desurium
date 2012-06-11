@@ -29,8 +29,8 @@ endif()
 
 ExternalProject_Add(
     chromium
-    URL ${CHROMIUM_DOWNLOAD_PATH}
-    URL_MD5 ${CHROMIUM_DOWNLOAD_MD5}
+    URL ${CHROMIUM_URL}
+    URL_MD5 ${CHROMIUM_MD5}
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""

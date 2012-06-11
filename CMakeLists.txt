@@ -12,6 +12,12 @@
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
 #   PACKAGE_TYPE    DEB                 Which packages should be created with "make package"
+#   SET_OWN_EXT_SRC OFF                 useful for ebuild or saving traffic,
+#                                       but you have to set all of the following
+#                                       vars via cmake -D..
+#                                           BOOST_URL
+#                                           CHROMIUM_URL
+#                                           WXWIDGET_URL
 #
 # unix-only options:
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
@@ -84,18 +90,21 @@ include(Package)
 # SVN, Git, HTTP stuff
 ###############################################################################
 
-set(BOOST_DOWNLOAD_PATH http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip)
-set(BOOST_DOWNLOAD_MD5 854dcbbff31b896c85c38247060b7713)
+if(SET_OWN_EXT_SRC)
+  set(BOOST_URL http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip)
+  set(BOOST_MD5 854dcbbff31b896c85c38247060b7713)
+  set(CHROMIUM_URL http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2)
+  set(CHROMIUM_MD5 22c8e1db4d1c4b474c600dffbb5fdd0c)
+  set(WXWIDGET_URL ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
+  set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
+endif()
+
 set(BREAKPAD_SVN http://google-breakpad.googlecode.com/svn/trunk -r 850)
 set(CEF_SVN http://chromiumembedded.googlecode.com/svn/trunk/@291)
-set(CHROMIUM_DOWNLOAD_PATH http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2)
-set(CHROMIUM_DOWNLOAD_MD5 22c8e1db4d1c4b474c600dffbb5fdd0c)
 set(CURL_GIT git://github.com/bagder/curl.git)
 set(CURL_VERSION tags/curl-7_25_0)
 set(DEPOT_TOOLS_SVN http://src.chromium.org/svn/trunk/tools/depot_tools)
 set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.9/)
-set(WXWIDGET_URL ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
-set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
 
 ###############################################################################
 # find all packages which are needed

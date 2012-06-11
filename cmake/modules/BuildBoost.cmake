@@ -5,8 +5,8 @@ endif()
 if(DEBUG) 
 ExternalProject_Add(
   boost
-  URL ${BOOST_DOWNLOAD_PATH}
-  URL_MD5 ${BOOST_DOWNLOAD_MD5}
+  URL ${BOOST_URL}
+  URL_MD5 ${BOOST_MD5}
   UPDATE_COMMAND ""
   BUILD_IN_SOURCE 1
   CONFIGURE_COMMAND bootstrap.bat
@@ -18,8 +18,8 @@ ExternalProject_Add(
 else()
 ExternalProject_Add(
   boost
-  URL ${BOOST_DOWNLOAD_PATH}
-  URL_MD5 ${BOOST_DOWNLOAD_MD5}
+  URL ${BOOST_URL}
+  URL_MD5 ${BOOST_MD5}
   UPDATE_COMMAND ""
   BUILD_IN_SOURCE 1
   CONFIGURE_COMMAND bootstrap.bat
