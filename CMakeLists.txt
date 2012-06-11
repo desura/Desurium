@@ -81,6 +81,23 @@ include(ProcessorCount)
 include(Package)
 
 ###############################################################################
+# SVN, Git, HTTP stuff
+###############################################################################
+
+set(BOOST_DOWNLOAD_PATH http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip)
+set(BOOST_DOWNLOAD_MD5 854dcbbff31b896c85c38247060b7713)
+set(BREAKPAD_SVN http://google-breakpad.googlecode.com/svn/trunk -r 850)
+set(CEF_SVN http://chromiumembedded.googlecode.com/svn/trunk/@291)
+set(CHROMIUM_DOWNLOAD_PATH http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2)
+set(CHROMIUM_DOWNLOAD_MD5 22c8e1db4d1c4b474c600dffbb5fdd0c)
+set(CURL_GIT git://github.com/bagder/curl.git)
+set(CURL_VERSION tags/curl-7_25_0)
+set(DEPOT_TOOLS_SVN http://src.chromium.org/svn/trunk/tools/depot_tools)
+set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.9/)
+set(WXWIDGET_URL ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
+set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
+
+###############################################################################
 # find all packages which are needed
 ###############################################################################
 

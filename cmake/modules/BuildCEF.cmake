@@ -1,12 +1,11 @@
 set(DEPOT_TOOLS_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/depot_tools)
 set(DEPOT_TOOLS_BIN_DIR ${DEPOT_TOOLS_INSTALL_DIR}/src/depot_tools)
-set(CEF_SVN http://chromiumembedded.googlecode.com/svn/trunk/@291)
 
 ProcessorCount(CPU_COUNT)
 
 ExternalProject_Add(
     depot_tools
-    SVN_REPOSITORY http://src.chromium.org/svn/trunk/tools/depot_tools
+    SVN_REPOSITORY ${DEPOT_TOOLS_SVN}
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
@@ -30,8 +29,8 @@ endif()
 
 ExternalProject_Add(
     chromium
-    URL http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2
-    URL_MD5 22c8e1db4d1c4b474c600dffbb5fdd0c
+    URL ${CHROMIUM_DOWNLOAD_PATH}
+    URL_MD5 ${CHROMIUM_DOWNLOAD_MD5}
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""

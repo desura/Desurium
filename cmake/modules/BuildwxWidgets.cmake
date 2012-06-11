@@ -1,6 +1,3 @@
-set(WXWIDGET_URL ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
-set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
-
 if(WIN32)
   ExternalProject_Add(
     wxWidget-2-9

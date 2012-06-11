@@ -8,9 +8,6 @@ else()
   set(BUILD_WITH_ARES --disable-ares)
 endif()
 
-set(CURL_GIT git://github.com/bagder/curl.git)
-set(CURL_VERSION tags/curl-7_25_0)
-
 if(WIN32)
   ExternalProject_Add(
     curl
