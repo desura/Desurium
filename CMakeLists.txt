@@ -7,7 +7,7 @@
 # global options:
 #   BUILD_TESTS     ON                  Build various unit tests
 #   OFFICIAL_BUILD  OFF                 for official build only
-#   BRANDING        depends on          ehich branding should be used?
+#   BRANDING        depends on          which branding should be used?
 #                   OFFICIAL_BUILD
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
@@ -15,7 +15,7 @@
 #   SET_OWN_EXT_SRC OFF                 useful for ebuild or saving traffic,
 #                                       but you have to set all of the following
 #                                       vars via cmake -D..
-#                                           BOOST_URL
+#                                           BOOST_URL (Windows only)
 #                                           CHROMIUM_URL
 #                                           WXWIDGET_URL
 #
@@ -34,7 +34,7 @@
 # some dev notes:
 #
 #   if you want to port desura to another compiler on UNIX bases systems,
-#   please create a files for compiler flags in:
+#   please create a file for compiler flags in:
 #
 #     cmake/platform/unix/compiler/${CMAKE_C_COMPILER_ID}.cmake
 #
@@ -52,7 +52,6 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX
    ${CMAKE_SOURCE_DIR}/cmake/scripts/cxx_flag_overrides.cmake)
 
 # TODO: silent output for externel dependencies
-# TODO: get libs automatically for externel builds, maybe make desura a external build itself?
 project(Desura)
 cmake_minimum_required(VERSION 2.8.5)
 

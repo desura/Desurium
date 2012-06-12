@@ -35,8 +35,8 @@ else()
 endif()
 
 ExternalProject_Get_Property(
-    breakpad
-    source_dir
+  breakpad
+  source_dir
 )
 set(BREAKPAD_EXCEPTION_HANDLER_INCLUDE_DIR ${source_dir}/src)
 

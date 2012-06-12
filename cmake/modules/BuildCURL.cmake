@@ -11,21 +11,21 @@ endif()
 if(WIN32)
   ExternalProject_Add(
     curl
-	GIT_REPOSITORY ${CURL_GIT}
-	GIT_TAG ${CURL_VERSION}
-	UPDATE_COMMAND ""
-	CONFIGURE_COMMAND buildconf.bat
-	BUILD_IN_SOURCE 1
-	BUILD_COMMAND ""
-	INSTALL_COMMAND ""
+    GIT_REPOSITORY ${CURL_GIT}
+    GIT_TAG ${CURL_VERSION}
+    UPDATE_COMMAND ""
+    CONFIGURE_COMMAND buildconf.bat
+    BUILD_IN_SOURCE 1
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
   )
   ExternalProject_Add_Step(
     curl
-	custom_build
-	DEPENDEES configure
-	DEPENDERS build
-	COMMAND nmake /f Makefile.vc MODE=static WITH_SSL=no DEBUG=no GEN_PDB=no RTLIBCFG=static USE_SSPI=no USE_IPV6=no ENABLE_IDN=no
-	WORKING_DIRECTORY <SOURCE_DIR>/winbuild
+    custom_build
+    DEPENDEES configure
+    DEPENDERS build
+    COMMAND nmake /f Makefile.vc MODE=static WITH_SSL=no DEBUG=no GEN_PDB=no RTLIBCFG=static USE_SSPI=no USE_IPV6=no ENABLE_IDN=no
+    WORKING_DIRECTORY <SOURCE_DIR>/winbuild
   )
   
   ExternalProject_Get_Property(
@@ -38,7 +38,7 @@ else()
   ExternalProject_Add(
     curl
     GIT_REPOSITORY ${CURL_GIT}
-	GIT_TAG ${CURL_VERSION}
+    GIT_TAG ${CURL_VERSION}
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND sh <SOURCE_DIR>/configure
         --without-librtmp --disable-ldap --disable-curldebug
@@ -70,7 +70,6 @@ if(WIN32)
   list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl_a.lib")
 else()
   list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl.a")
-  
   list(APPEND CURL_LIBRARIES "rt")
 endif()
 

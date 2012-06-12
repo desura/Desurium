@@ -4,13 +4,13 @@ set(DEPOT_TOOLS_BIN_DIR ${DEPOT_TOOLS_INSTALL_DIR}/src/depot_tools)
 ProcessorCount(CPU_COUNT)
 
 ExternalProject_Add(
-    depot_tools
-    SVN_REPOSITORY ${DEPOT_TOOLS_SVN}
-    UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ""
-    BUILD_COMMAND ""
-    INSTALL_COMMAND ""
-    PREFIX ${DEPOT_TOOLS_INSTALL_DIR}
+  depot_tools
+  SVN_REPOSITORY ${DEPOT_TOOLS_SVN}
+  UPDATE_COMMAND ""
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND ""
+  INSTALL_COMMAND ""
+  PREFIX ${DEPOT_TOOLS_INSTALL_DIR}
 )
 
 if(PYTHON_VERSION_MAJOR EQUAL 3)
@@ -28,45 +28,45 @@ if(NOT WIN32)
 endif()
 
 ExternalProject_Add(
-    chromium
-    URL ${CHROMIUM_URL}
-    URL_MD5 ${CHROMIUM_MD5}
-    UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ""
-    BUILD_COMMAND ""
-    BUILD_IN_SOURCE 1
-    INSTALL_COMMAND "${chromium_INSTALL_COMMAND}"
+  chromium
+  URL ${CHROMIUM_URL}
+  URL_MD5 ${CHROMIUM_MD5}
+  UPDATE_COMMAND ""
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND ""
+  BUILD_IN_SOURCE 1
+  INSTALL_COMMAND "${chromium_INSTALL_COMMAND}"
 )
 
 ExternalProject_Add(
-	fetch_cef
-    SVN_REPOSITORY ${CEF_SVN}
-    UPDATE_COMMAND ""
-    PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/patch.${SCRIPT_PREFIX} ${CMAKE_SOURCE_DIR}/cmake/patches/cef.patch
-    CONFIGURE_COMMAND ""
-    BUILD_COMMAND "" 
-    INSTALL_COMMAND ""
+  fetch_cef
+  SVN_REPOSITORY ${CEF_SVN}
+  UPDATE_COMMAND ""
+  PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/patch.${SCRIPT_PREFIX} ${CMAKE_SOURCE_DIR}/cmake/patches/cef.patch
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND "" 
+  INSTALL_COMMAND ""
 )
 
 
 ExternalProject_Add(
-    cef
-    DOWNLOAD_COMMAND ""
-    UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ""
-    BUILD_COMMAND "" 
-    BUILD_IN_SOURCE 1
-    INSTALL_COMMAND ""
+  cef
+  DOWNLOAD_COMMAND ""
+  UPDATE_COMMAND ""
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND "" 
+  BUILD_IN_SOURCE 1
+  INSTALL_COMMAND ""
 )
 
 ExternalProject_Get_Property(
-    chromium
-    source_dir
+  chromium
+  source_dir
 )
 set(CHROMIUM_SOURCE_DIR ${source_dir})
 ExternalProject_Get_Property(
-    fetch_cef
-    source_dir
+  fetch_cef
+  source_dir
 )
 set(CEF_SOURCE_DIR ${source_dir})
 
@@ -94,7 +94,6 @@ if(NOT WIN32)
     DEPENDERS patch
     WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
   )
-
 
   ExternalProject_Add_Step(
     cef

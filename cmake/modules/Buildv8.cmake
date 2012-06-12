@@ -28,8 +28,8 @@ ExternalProject_Add(
 )
 
 ExternalProject_Get_Property(
-    v8
-    source_dir
+  v8
+  source_dir
 )
 
 set(V8_INSTALL_DIR ${source_dir})
