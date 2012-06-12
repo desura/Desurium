@@ -35,10 +35,12 @@ if(WIN32)
   set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-release-static/)
 else()
   set(CURL_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/curl)
+#    GIT_REPOSITORY ${CURL_GIT}
+#    GIT_TAG ${CURL_VERSION}
   ExternalProject_Add(
     curl
-    GIT_REPOSITORY ${CURL_GIT}
-    GIT_TAG ${CURL_VERSION}
+    URL ${CURL_URL}
+    URL_MD5 ${CURL_MD5}
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND sh <SOURCE_DIR>/configure
         --without-librtmp --disable-ldap --disable-curldebug
@@ -52,14 +54,14 @@ else()
         --prefix=${CURL_INSTALL_DIR}
   )
   
-  ExternalProject_Add_Step(
-    curl
-    preconfigure
-    COMMAND sh buildconf
-    DEPENDEES download
-    DEPENDERS configure
-    WORKING_DIRECTORY <SOURCE_DIR>
-  )
+#  ExternalProject_Add_Step(
+#    curl
+#    preconfigure
+#    COMMAND sh buildconf
+#    DEPENDEES download
+#    DEPENDERS configure
+#    WORKING_DIRECTORY <SOURCE_DIR>
+#  )
 endif()
 
 set(CURL_BIN_DIRS ${CURL_INSTALL_DIR}/bin)

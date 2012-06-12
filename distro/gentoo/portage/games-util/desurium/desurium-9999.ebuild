@@ -17,9 +17,11 @@ else
 fi
 CHROMIUM_ARC="chromium-15.0.876.0.tar.bz2"
 CHROMIUM_URI="http://commondatastorage.googleapis.com/chromium-browser-official/${CHROMIUM_ARC}"
+CURL_ARC="curl-7.26.0.tar.bz2"
+CURL_URI="http://curl.haxx.se/download/${CURL_ARC}"
 WX_ARC="wxWidgets-2.9.3.tar.bz2"
 WX_URI="ftp://ftp.wxwidgets.org/pub/2.9.3/${WX_ARC}"
-SRC_URI+=" ${CHROMIUM_URI} ${WX_URI}"
+SRC_URI+=" ${CHROMIUM_URI} ${CURL_URI} ${WX_URI}"
 
 inherit check-reqs cmake-utils eutils ${GIT_ECLASS} games
 
@@ -128,6 +130,7 @@ src_configure() {
 		-DSET_OWN_EXT_SRC=ON
 		-DCHROMIUM_URL="file://${DISTDIR}/${CHROMIUM_ARC}"
 		-DWXWIDGET_URL="file://${DISTDIR}/${WX_ARC}"
+		-DCURL_URL="file://${DISTDIR}/${CURL_ARC}"
 	)
 	cmake-utils_src_configure
 }
