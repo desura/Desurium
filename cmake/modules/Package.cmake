@@ -13,8 +13,8 @@ set(CPACK_SOURCE_GENERATOR "TBZ2;TGZ;ZIP")
 
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Desura is a gaming client that allows users to one click download and install games and game modification.")
 set(CPACK_PACKAGE_VERSION_MAJOR 0)
-set(CPACK_PACKAGE_VERSION_MINOR 8)
-set(CPACK_PACKAGE_VERSION_PATCH 0)
+set(CPACK_PACKAGE_VERSION_MINOR 0)
+set(CPACK_PACKAGE_VERSION_PATCH 1)
 
 ###############################################################################
 # some internal variables
@@ -31,10 +31,18 @@ set(CPACK_SOURCE_PACKAGE_FILE_NAME "${PROJECT_NAME}-${CPACK_PACKAGE_VERSION}")
 # deb specific values
 ###############################################################################
 
-set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Karol Herbst")
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "flex gperf xdg-utils yasm")
+set(CPACK_DEBIAN_PACKAGE_NAME "desurium")
+set(CPACK_DEBIAN_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION}")
+if(64BIT)
+ set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
+else(64BIT)
+ set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "i386")
+endif(64BIT)
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Tomasz Makarewicz <makson96@gmail.com>")
 set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}")
-set(CPACK_DEBIAN_PACKAGE_NAME "desura")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libboost-filesystem-dev, libboost-thread-dev, libc-ares2, libjpeg62, libtinyxml-dev")
+set(CPACK_DEBIAN_PACKAGE_SECTION "games")
+set(CPACK_DEBIAN_PACKAGE_PRIORITY "extra")
 
 ###############################################################################
 # rpm specific values

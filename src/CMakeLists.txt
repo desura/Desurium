@@ -131,7 +131,16 @@ add_subdirectory(tests)
 set(DESURA_SYMLINK_RULES
     /usr/share/desura->/usr/bin;
     /usr/local/share/desura->/usr/local/bin;
-    /usr/games/desura->/usr/games/bin;)
+    /usr/games/desura->/usr/games/bin;
+    /opt/desura->/usr/bin;)
+
+# configure our desktop file
+configure_file(${CMAKE_SCRIPT_PATH}/desura.desktop ${CMAKE_BINARY_DIR}/desura.desktop)
+if(INSTALL_DESKTOP_FILE)
+  # install it only if the option is turned on
+  install(FILES ${CMAKE_BINARY_DIR}/desura.desktop
+          DESTINATION /usr/share/applications/)
+endif()
 
 # create symlink and install it
 foreach(item ${DESURA_SYMLINK_RULES})
@@ -148,6 +157,7 @@ foreach(item ${DESURA_SYMLINK_RULES})
     break()
   endif()
 endforeach()
+
 
 ###############################################################################
 # we need some dependencies 

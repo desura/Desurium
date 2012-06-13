@@ -26,6 +26,7 @@ endif()
 if(UNIX)
   option(WITH_ARES "build cURL with c-ares support" ON)
   option(DEBUG_EXTERNAL "build external libs with debug support" OFF)
+  option(INSTALL_DESKTOP_FILE "install the generated desktop file to /usr/share/applications/" OFF)
 endif()
 
 ###############################################################################

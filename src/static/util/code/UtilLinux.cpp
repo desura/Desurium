@@ -272,10 +272,6 @@ std::wstring getAppPath(std::wstring extra)
 
 	gcWString dirW(UTIL::STRING::toWStr(dir));
 
-	// Convert std::string to std::wstring using std::copy
-	/*std::wstring dirW(dir.length(),L' ');
-	std::copy(dir.begin(), dir.end(), dirW.begin());*/
-
 	if (extra.size() > 0)
 	{
 		dirW += DIRS_WSTR;

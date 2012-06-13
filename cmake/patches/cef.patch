@@ -6130,10 +6130,11 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate.h cef/libcef
 diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_win.cc cef/libcef/browser_webview_delegate_win.cc
 --- libcef/browser_webview_delegate_win.cc	2012-05-09 11:27:19.046674203 +0200
 +++ libcef/browser_webview_delegate_win.cc	2012-05-09 11:32:01.628658222 +0200
-@@ -496,8 +496,65 @@
-     cef_string_set(securityInfoStr.c_str(), securityInfoStr.length(),
-         &menuInfo.securityInfo, false);
+@@ -448,6 +448,66 @@
+   if (client.get())
+     handler = client->GetMenuHandler();
  
++  if(handler.get()) {
 +	std::vector<std::string> customItemLabel;
 +	std::vector<cef_handler_menuitem_t> customItems;
 +
@@ -6188,16 +6189,15 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_win.cc cef/l
 +	}
 +	
 +	
-     // Notify the handler that a context menu is requested
--    if (handler->OnBeforeMenu(browser_, menuInfo))
 +    bool res = handler->OnBeforeMenu(browser_, menuInfo);
 +	delete [] menuInfo.customItems;
 +	
 +	if (res)
-       goto end;
-   }
- 
-@@ -546,6 +603,28 @@
++    return;
+   if (client.get() && browser_->IsWindowRenderingDisabled()) {
+     // Retrieve the screen coordinates.
+     CefRefPtr<CefRenderHandler> render_handler = client->GetRenderHandler();
+@@ -494,6 +554,28 @@
        true, label_list);
    }
  
@@ -6223,20 +6223,19 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_win.cc cef/l
 +			break;
 +		}
 +  }
-   if (menu) {
-     // show the context menu
-     int selected_id = TrackPopupMenu(menu,
-@@ -566,6 +645,10 @@
-         // Execute the action
-         browser_->UIT_HandleAction(menuId, browser_->GetFocusedFrame());
-       }
-+
-+	  if (!handled) {
-+		browser_->UIT_GetWebViewHost()->webview()->performCustomContextMenuAction(menuId - MENU_ID_CUSTOM);
-+	  }
+   if (!menu)
+     return;
+ 
+@@ -516,6 +598,9 @@
+       // Execute the action
+       browser_->UIT_HandleAction(menuId, browser_->GetFocusedFrame());
      }
++  if (!handled) {
++    browser_->UIT_GetWebViewHost()->webview()->performCustomContextMenuAction(menuId - MENU_ID_CUSTOM);
++  }
    }
  
+   DestroyMenu(menu);
 @@ -731,3 +814,18 @@
    return result;
  }

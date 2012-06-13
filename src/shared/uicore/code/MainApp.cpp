@@ -141,7 +141,6 @@ const char* g_szSafeList[] =
 
 bool isSafeUrl(const char* url)
 {
-
 	if (!url)
 		return false;
 

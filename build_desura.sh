@@ -1,5 +1,5 @@
 #!/bin/sh
-printf  'Make sure to run \033[1;31msudo install-deps.sh\033[0m before compiling!\n'
+printf  'Make sure to run \033[1;31msudo ./install-deps.sh\033[0m before compiling!\n'
 if [ ! -d "build" ] ; then
  mkdir build
 fi

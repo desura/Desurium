@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Desurium
+Type=Application
+Comment=Free software version of Desura game client
+Exec=@CMAKE_INSTALL_PREFIX@/run.sh
+TryExec=@CMAKE_INSTALL_PREFIX@/run.sh
+Icon=@CMAKE_INSTALL_PREFIX@/desura.png
+Categories=Game;
