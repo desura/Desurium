@@ -192,7 +192,7 @@ void WebCoreClass::clearNameCache()
 
 gcString WebCoreClass::getUrl(WebCoreUrl id)
 {
-	gcString url("http://www.");
+	gcString url("http://");
 	url += g_szRootDomain;
 
 	switch (id)

@@ -54,6 +54,7 @@ if(WIN32)
 endif()
 
 if(UNIX)
+
   if(NOT DIR_TYPE)
     set(DIR_TYPE "SINGLE" CACHE STRING "The directories for Desura's settings. Options: XDG SINGLE PORTABLE")
   endif()

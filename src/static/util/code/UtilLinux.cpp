@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include <cstdlib>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <pwd.h>
 #include <dirent.h>
 #include <utime.h>
@@ -164,7 +165,7 @@ bool readFile(const char* file, char *buff, size_t size)
 
 
 
-class ExeDir
+/*class ExeDir
 {
 public:
 	ExeDir()
@@ -191,13 +192,38 @@ public:
 	}
 
 	gcWString path;
-};
+};*/
 
 namespace UTIL
 {
 namespace LIN
 {
 #include <cstdio>
+
+// Go to UtilLinux.h for documentation on this function
+std::string getExecuteDir(void) {
+	
+	// Read path the link /proc/self/exe links to
+	// We are making the array a size of PATH_MAX, which is the maximum amount of bytes a Linux path can be
+	char result[PATH_MAX];
+	//std::cout << "Size of result: " << PATH_MAX << std::endl;
+	ssize_t amountRead = readlink("/proc/self/exe", (char *)result, PATH_MAX);
+	//std::cout << "amountRead = " << amountRead;
+
+	if(amountRead == -1) {
+		ERROR_OUTPUT("Failed to read /proc/self/exe!");
+		return "";
+	}
+	
+	// Convert result to a std::string
+	std::string r(result, amountRead);
+	// Remove anything before the last /
+	r.resize(r.find_last_of('/'));
+	// Add the null byte
+	r.push_back('\0');
+
+	return r;
+}
 
 // This is copied here due to bootloader not having util::fs (due to boost dep)
 std::string expandPath(const char* file)
@@ -242,17 +268,17 @@ bool is64OS()
 
 std::wstring getAppPath(std::wstring extra)
 {
-	ExeDir dir;
+	std::string dir = getExecuteDir();
 
-	gcWString wresult(dir.path);
+	gcWString dirW(UTIL::STRING::toWStr(dir));
 
 	if (extra.size() > 0)
 	{
-		wresult += DIRS_WSTR;
-		wresult += extra;
+		dirW += DIRS_WSTR;
+		dirW += extra;
 	}
 
-	return wresult;
+	return dirW;
 }
 
 void setConfigValue(const std::string &configKey, const std::string &value)
@@ -635,7 +661,7 @@ std::string getOSString()
 	distro = "Unknown (debug build)";
 	arch = "XXX";
 #else
-	std::string lsbInfo = getCmdStdout("lsb_release -a", 1);
+	std::string lsbInfo = getCmdStdout("lsb_release -a", 2);
 	
 	arch = getCmdStdout("uname -m", 1);
 	
@@ -659,7 +685,7 @@ std::string getCmdStdout(const char* command, int stdErrDest)
 	ERROR_OUTPUT("\ngetCmdStdout() is being called from inside a debug build. This should be avoided as GDB promptly packs it in. See appstaff ticket #711 for more information\n");
 
 	if (!command)
-		return "";
+		return "No command - error";
 
 	std::string newCommand(command);
 	
@@ -673,13 +699,14 @@ std::string getCmdStdout(const char* command, int stdErrDest)
 	if (!fd)
 	{
 		ERROR_OUTPUT(gcString("Failed to run command: [{0}]\n", command).c_str());
-		return "";
+		return "Failed to run - error";
 	}
+
+	std::string output = "";
+	const unsigned int size = 512;
+	char buffer[size];
 	
-	char buffer[512];
-	std::string output;
-	
-	while (fgets(buffer, 512, fd) != NULL)
+	while (fgets(buffer, size, fd) != NULL)
 		output.append(buffer);
 
 	pclose(fd);
@@ -705,7 +732,6 @@ std::wstring getDesktopPath(std::wstring extra)
 std::wstring getApplicationsPath(std::wstring extra)
 {
 	std::wstring data_home(UTIL::STRING::toWStr(getenv("XDG_DATA_HOME")));
-
 	data_home += L"/applications/";
 	data_home += L"/";
 	data_home += extra;
