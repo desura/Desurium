@@ -1,6 +1,7 @@
 #define BOOST_TEST_MODULE gcBuff_test
 #include <boost/test/unit_test.hpp>
 
+#include "Common.h"
 #include "util/gcBuff.h"
 
 #define TEST_SIZE 20
