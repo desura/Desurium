@@ -40,7 +40,7 @@ else(64BIT)
 endif(64BIT)
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Tomasz Makarewicz <makson96@gmail.com>")
 set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}")
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "libboost-filesystem-dev, libboost-thread-dev, libc-ares2, libjpeg62, libtinyxml-dev")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libboost-filesystem-dev, libboost-thread-dev, libc-ares2, libevent-dev, libjpeg62, libtinyxml-dev")
 set(CPACK_DEBIAN_PACKAGE_SECTION "games")
 set(CPACK_DEBIAN_PACKAGE_PRIORITY "extra")
 
