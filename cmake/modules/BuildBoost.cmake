@@ -5,8 +5,8 @@ endif()
 if(DEBUG) 
 ExternalProject_Add(
   boost
-  URL http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip
-  URL_MD5 854dcbbff31b896c85c38247060b7713
+  URL ${BOOST_URL}
+  URL_MD5 ${BOOST_MD5}
   UPDATE_COMMAND ""
   BUILD_IN_SOURCE 1
   CONFIGURE_COMMAND bootstrap.bat
@@ -18,8 +18,8 @@ ExternalProject_Add(
 else()
 ExternalProject_Add(
   boost
-  URL http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip
-  URL_MD5 854dcbbff31b896c85c38247060b7713
+  URL ${BOOST_URL}
+  URL_MD5 ${BOOST_MD5}
   UPDATE_COMMAND ""
   BUILD_IN_SOURCE 1
   CONFIGURE_COMMAND bootstrap.bat
