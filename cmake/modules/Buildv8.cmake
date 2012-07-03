@@ -2,7 +2,6 @@ if(64BIT)
   set(EXTRA_OPTS "arch=x64")
 endif()
 
-set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.9/)
 set(TEST "%")
 
 if(WIN32)
@@ -29,8 +28,8 @@ ExternalProject_Add(
 )
 
 ExternalProject_Get_Property(
-    v8
-    source_dir
+  v8
+  source_dir
 )
 
 set(V8_INSTALL_DIR ${source_dir})
