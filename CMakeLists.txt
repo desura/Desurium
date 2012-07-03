@@ -88,32 +88,6 @@ include(ProcessorCount)
 include(Package)
 
 ###############################################################################
-# SVN, Git, HTTP stuff
-###############################################################################
-
-if(NOT SET_OWN_EXT_SRC)
-  set(BOOST_URL http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip)
-  set(BOOST_MD5 854dcbbff31b896c85c38247060b7713)
-
-  set(CHROMIUM_URL http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2)
-  set(CHROMIUM_MD5 22c8e1db4d1c4b474c600dffbb5fdd0c)
-
-  set(CURL_URL http://curl.haxx.se/download/curl-7.26.0.tar.bz2)
-  set(CURL_MD5 bfa80f01b3d300359cfb4d409b6136a3)
-
-  set(WXWIDGET_URL ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
-  set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
-endif()
-
-set(BREAKPAD_SVN http://google-breakpad.googlecode.com/svn/trunk -r 850)
-set(CEF_SVN http://chromiumembedded.googlecode.com/svn/trunk/@291)
-# for windows
-set(CURL_GIT git://github.com/bagder/curl.git)
-set(CURL_VERSION tags/curl-7_25_0)
-set(DEPOT_TOOLS_SVN http://src.chromium.org/svn/trunk/tools/depot_tools)
-set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.9/)
-
-###############################################################################
 # find all packages which are needed
 ###############################################################################
 
@@ -150,6 +124,48 @@ find_package(PythonInterp REQUIRED)
 if(WIN32)
   find_package(PythonLibs REQUIRED)
 endif()
+
+###############################################################################
+# SVN, Git, HTTP stuff
+###############################################################################
+
+if(NOT SET_OWN_EXT_SRC)
+  set(BOOST_URL http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip)
+  set(BOOST_MD5 854dcbbff31b896c85c38247060b7713)
+
+  set(CHROMIUM_URL http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2)
+  set(CHROMIUM_MD5 22c8e1db4d1c4b474c600dffbb5fdd0c)
+
+  set(CURL_URL http://curl.haxx.se/download/curl-7.26.0.tar.bz2)
+  set(CURL_MD5 bfa80f01b3d300359cfb4d409b6136a3)
+
+  set(WXWIDGET_URL ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
+  set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
+else()
+  if(NOT BOOST_URL)
+    message(FATAL_ERROR "you have to specify a path to your boost archive via -DBOOST_URL=")
+  endif()
+
+  if(NOT CHROMIUM_URL)
+    message(FATAL_ERROR "you have to specify a path to your chromium archive via -DCHROMIUM_URL=")
+  endif()
+
+  if(NOT WXWIDGET_URL)
+    message(FATAL_ERROR "you have to specify a path to your wxWidgets archive via -DWXWIDGET_URL=")
+  endif()
+
+  if(WIN32 OR NOT CURL_FOUND AND NOT CURL_URL)
+    message(FATAL_ERROR "you have to specify a path to your curl archive via -DCURL_URL=")
+  endif()
+endif()
+
+set(BREAKPAD_SVN http://google-breakpad.googlecode.com/svn/trunk -r 850)
+set(CEF_SVN http://chromiumembedded.googlecode.com/svn/trunk/@291)
+# for windows
+set(CURL_GIT git://github.com/bagder/curl.git)
+set(CURL_VERSION tags/curl-7_25_0)
+set(DEPOT_TOOLS_SVN http://src.chromium.org/svn/trunk/tools/depot_tools)
+set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.9/)
 
 ###############################################################################
 # build some externel projects
