@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI=4
 
 unset GIT_ECLASS
 
@@ -105,10 +105,6 @@ DEPEND="
 if [[ $PV != 9999* ]]; then
 	S="${WORKDIR}/Desura-${PV}"
 fi
-
-pkg_setup() {
-	check-reqs_pkg_setup
-}
 
 src_unpack() {
 	if [[ ${PV} = 9999* ]]; then
