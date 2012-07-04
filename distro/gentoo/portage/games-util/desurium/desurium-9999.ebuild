@@ -7,7 +7,7 @@ EAPI=4
 unset GIT_ECLASS
 
 if [[ ${PV} = 9999* ]]; then
-	EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
+	EGIT_REPO_URI="mirror://github.com/lodle/Desurium.git"
 	GIT_ECLASS="git-2"
 	SRC_URI=""
 	EGIT_NOUNPACK="true"
