@@ -1,11 +1,16 @@
 #!/bin/sh
 
+# check if we have given a patch file
+if [ ! -f $1 ]; then
+	echo "=== no patch file specified ==="
+	exit 1
+fi
+
 # define a location for the patch file backup
 PATCH_BAK=$(pwd)/bak_$(basename $1)
 
 # creating a backup if not exist
-if [ ! -f $PATCH_BAK ]
-then
+if [ ! -f $PATCH_BAK ]; then
 	echo "=== creating patch backup to $PATCH_BAK ==="
 	cp $1 $PATCH_BAK
 fi
