@@ -13,7 +13,7 @@ depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'curl' 'c-ares' 'libnotify' 'nss' 'bison'
          'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
          'gconf' 'xdg-user-dirs' 'flac' 'libpng' 'speex' 'zlib' 'gperf'
-         'xdg-utils' 'libwebp' 'libevent' 'libxslt' 'yasm' 'libxxf86vm')
+         'xdg-utils' 'libevent' 'libxslt' 'yasm' 'libxxf86vm')
 provides=('desura')
 conflicts=('desura')
 
