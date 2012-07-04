@@ -4587,12 +4587,12 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
 +			}],
 +			[ 'OS=="linux" or OS=="freebsd" or OS=="openbsd"', {
 +				'cflags': [
-+					'<!(../../../../../external/wxWidgets/bin/wx-config --cppflags)',
++					'<!(wx-config --cppflags)',
 +					'-B /usr/bin/ld.bfd',
 +					'<!(pkg-config --cflags gtk+-2.0)',
 +				],
 +				'ldflags' : [
-+					'<!(../../../../../external/wxWidgets/bin/wx-config --libs)',
++					'<!(wx-config --libs)',
 +					'-B /usr/bin/ld.bfd',
 +					'<!(pkg-config --libs gtk+-2.0)',
 +				],
