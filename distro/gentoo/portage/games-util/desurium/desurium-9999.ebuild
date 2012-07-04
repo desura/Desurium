@@ -140,8 +140,22 @@ src_install() {
 
 	dosym "${GAMES_PREFIX}/${PN}/run.sh" "${GAMES_BINDIR}/${PN}.sh"
 
-	doicon "${FILESDIR}/${PN}.png"
+	doicon -s 256 "${FILESDIR}/${PN}.png"
 	make_desktop_entry "${PN}.sh" "Desurium"
 
 	prepgamesdirs
+}
+
+pkg_preinst() {
+	games_pkg_preinst
+	gnome2_icon_savelist
+}
+
+pkg_postinst() {
+	games_pkg_postinst
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
