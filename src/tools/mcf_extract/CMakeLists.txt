@@ -4,10 +4,15 @@ include_directories(
 
 file(GLOB Sources code/*.cpp )
 
+if(UNIX)
+  set(LINUX_LIBRARIES ld)
+endif()
+
 add_executable(mcf_extract ${Sources})
 target_link_libraries(mcf_extract
-    mcfcore
-    ${OPENSSL_LIBRARIES}
+  mcfcore
+  ${OPENSSL_LIBRARIES}
+  ${LINUX_LIBRARIES}
 )
 
 install(TARGETS mcf_extract
