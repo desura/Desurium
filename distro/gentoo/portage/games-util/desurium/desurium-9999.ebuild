@@ -21,7 +21,7 @@ WX_ARC="wxWidgets-2.9.3.tar.bz2"
 WX_URI="ftp://ftp.wxwidgets.org/pub/2.9.3/${WX_ARC}"
 SRC_URI+=" ${CHROMIUM_URI} ${WX_URI}"
 
-inherit check-reqs cmake-utils eutils ${GIT_ECLASS} games
+inherit check-reqs cmake-utils eutils ${GIT_ECLASS} games gnome2-utils
 
 CHECKREQS_DISK_BUILD="3G"
 
