@@ -89,9 +89,9 @@ Special notes for advanced users
 =====================
 
 Desura is using the cmake build system for configuration on prject files for several build systems (make, VS, nmake, ...).
-In the CMakeFile.txt you see at the top a documentated list of options.
+At the top of CMakeFile.txt is a documented list of options
 
-a "normal" way to configure cmake would be somethink like this:
+a "normal" way to configure cmake would be something like this:
   * UNIX-based systems:
     1. mkdir build
     2. cd build
@@ -109,4 +109,4 @@ Closing Remarks
 =====================
 
 If you need help, want to give some suggestions or
-just want to talk, feel free to join our IRC channel #desura on chat.freenode.net
+just want to talk, feel free to join our IRC channel #desura on irc.freenode.net
