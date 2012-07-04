@@ -29,7 +29,7 @@ DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="+32bit debug +games-deps"
+IUSE="+32bit debug +games-deps tools"
 
 if [[ ${PV} != 9999* ]]; then
 	KEYWORDS="~amd64 ~x86"
@@ -124,6 +124,7 @@ src_configure() {
 		-DWITH_ARES=FALSE
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
+		$(cmake-utils_use tools BUILD_TOOLS)
 		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}/${PN}"
 		-DSET_OWN_EXT_SRC=ON
 		-DCHROMIUM_URL="file://${DISTDIR}/${CHROMIUM_ARC}"
