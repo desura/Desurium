@@ -6,6 +6,7 @@
 #
 # global options:
 #   BUILD_TESTS     ON                  Build various unit tests
+#   BUILD_TOOLS     ON                  Build various Desura tools
 #   OFFICIAL_BUILD  OFF                 for official build only
 #   BRANDING        depends on          which branding should be used?
 #                   OFFICIAL_BUILD
