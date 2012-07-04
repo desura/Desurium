@@ -12,7 +12,7 @@ if [[ ${PV} = 9999* ]]; then
 	SRC_URI=""
 	EGIT_NOUNPACK="true"
 else
-	DESURA_ARC="${Desura-${PV}.tar.bz2}"
+	DESURA_ARC="Desura-${PV}.tar.bz2"
 	SRC_URI="mirror://github.com/downloads/lodle/Desurium/${DESURA_ARC}"
 fi
 CHROMIUM_ARC="chromium-15.0.876.0.tar.bz2"
@@ -29,8 +29,11 @@ DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 IUSE="+32bit debug +games-deps"
+
+if [[ ${PV} != 9999* ]]; then
+	KEYWORDS="~amd64 ~x86"
+fi
 
 # some deps needed by some games
 GAMESDEPEND="
