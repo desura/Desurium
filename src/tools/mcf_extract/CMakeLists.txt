@@ -5,7 +5,7 @@ include_directories(
 file(GLOB Sources code/*.cpp )
 
 if(UNIX)
-  set(LINUX_LIBRARIES ld)
+  set(LINUX_LIBRARIES dl)
 endif()
 
 add_executable(mcf_extract ${Sources})
