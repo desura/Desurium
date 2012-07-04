@@ -13,7 +13,7 @@ if [[ ${PV} = 9999* ]]; then
 	EGIT_NOUNPACK="true"
 else
 	DESURA_ARC="${Desura-${PV}.tar.bz2}"
-	SRC_URI="https://github.com/downloads/lodle/Desurium/${DESURA_ARC}"
+	SRC_URI="mirror://github.com/downloads/lodle/Desurium/${DESURA_ARC}"
 fi
 CHROMIUM_ARC="chromium-15.0.876.0.tar.bz2"
 CHROMIUM_URI="http://commondatastorage.googleapis.com/chromium-browser-official/${CHROMIUM_ARC}"
