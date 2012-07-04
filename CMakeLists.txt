@@ -142,7 +142,7 @@ if(NOT SET_OWN_EXT_SRC)
   set(WXWIDGET_URL ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
   set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
 else()
-  if(NOT BOOST_URL)
+  if(WIN32 AND NOT BOOST_URL)
     message(FATAL_ERROR "you have to specify a path to your boost archive via -DBOOST_URL=")
   endif()
 
