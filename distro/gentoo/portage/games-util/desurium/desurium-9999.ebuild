@@ -82,6 +82,7 @@ COMMON_DEPEND="
 	media-libs/libwebp
 	media-libs/speex
 	net-misc/curl[ares]
+	net-print/cups
 	>=sys-devel/gcc-4.5
 	sys-libs/zlib
 	virtual/jpeg
