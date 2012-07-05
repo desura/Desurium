@@ -5,6 +5,8 @@ Content
  * Build Desura on Linux
  * Build Desura on Windows
  * Create Packages
+ * Special notes for advanced users
+ * Closing Remarks
 
 Desura
 ===================
@@ -82,3 +84,29 @@ Supported Values for PACKAGE_TYPE are:
   * RPM
 
 You can also mix them like: DEB;RPM
+
+Special notes for advanced users
+=====================
+
+Desura is using the cmake build system for configuration on prject files for several build systems (make, VS, nmake, ...).
+At the top of CMakeFile.txt is a documented list of options
+
+a "normal" way to configure cmake would be something like this:
+  * UNIX-based systems:
+    1. mkdir build
+    2. cd build
+    3. cmake ..
+    4. make
+    5. sudo make install (optionally)
+
+  * win32 based systems:
+    1. md build
+    2. cd build
+    3. cmake ..
+    4. open project files and compile them
+
+Closing Remarks
+=====================
+
+If you need help, want to give some suggestions or
+just want to talk, feel free to join our IRC channel #desura on irc.freenode.net
