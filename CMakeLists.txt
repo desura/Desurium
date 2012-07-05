@@ -169,7 +169,7 @@ if(WIN32 OR NOT CURL_FOUND)
   endif()
 endif()
 
-set(DEPOT_TOOLS_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/depot_tools-145556.tar.gz")
+set(DEPOT_TOOLS_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/depot_tools-145556-2.tar.gz")
 set(DEPOT_TOOLS_URL ${DEPOT_TOOLS_URL_DEFAULT}
     CACHE STRING "URL to depot_tools")
 if(DEPOT_TOOLS_URL STREQUAL DEPOT_TOOLS_URL_DEFAULT)
