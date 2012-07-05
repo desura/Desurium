@@ -119,14 +119,13 @@ src_unpack() {
 }
 
 src_configure() {
-	# -DWITH_ARES=FALSE will use system curl, because we force curl[ares] we have ares support
+	# -DWITH_ARES=FALSE will use system curl, because we force curl[ares] to have ares support
 	local mycmakeargs=(
 		-DWITH_ARES=FALSE
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
 		$(cmake-utils_use tools BUILD_TOOLS)
 		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}/${PN}"
-		-DSET_OWN_EXT_SRC=ON
 		-DCHROMIUM_URL="file://${DISTDIR}/${CHROMIUM_ARC}"
 		-DWXWIDGET_URL="file://${DISTDIR}/${WX_ARC}"
 	)
