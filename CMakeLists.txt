@@ -173,7 +173,7 @@ set(DEPOT_TOOLS_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/depot_t
 set(DEPOT_TOOLS_URL ${DEPOT_TOOLS_URL_DEFAULT}
     CACHE STRING "URL to depot_tools")
 if(DEPOT_TOOLS_URL STREQUAL DEPOT_TOOLS_URL_DEFAULT)
-  set(DEPOT_TOOLS_MD5 7f5f36f9833a79c2cdf73bf25f363ed2)
+  set(DEPOT_TOOLS_MD5 30288a55dde0ce81ca2c3c76de292cea)
 else()
   unset(DEPOT_TOOLS_MD5)
 endif()
