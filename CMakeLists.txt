@@ -140,6 +140,16 @@ if(WIN32)
   endif()
 endif()
 
+set(BREAKPAD_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/breakpad-850.tar.gz")
+set(BREAKPAD_URL ${BREAKPAD_URL_DEFAULT}
+    CACHE STRING "URL to breakpad")
+if(BREAKPAD_URL STREQUAL BREAKPAD_URL_DEFAULT)
+  set(BREAKPAD_MD5 724df3d361dd503e47e5fb9a7ff86e1b)
+else()
+  unset(BREAKPAD_MD5)
+endif()
+
+
 set(CEF_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/cef-291.tar.gz")
 set(CEF_URL ${CEF_URL_DEFAULT}
     CACHE STRING "URL to cef, has to be revision 291")

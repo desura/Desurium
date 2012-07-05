@@ -15,6 +15,8 @@ else
 	DESURA_ARC="Desura-${PV}.tar.bz2"
 	SRC_URI="mirror://github.com/downloads/lodle/Desurium/${DESURA_ARC}"
 fi
+BREAKPAD_ARC="breakpad-850.tar.gz"
+BREAKPAD_URI="https://github.com/downloads/lodle/Desurium/${BREAKPAD_ARC}"
 CEF_ARC="cef-291.tar.gz"
 CEF_URI="http://github.com/downloads/lodle/Desurium/${CEF_ARC}"
 CHROMIUM_ARC="chromium-15.0.876.0.tar.bz2"
@@ -23,7 +25,7 @@ DEPOT_TOOLS_ARC="depot_tools-145556-2.tar.gz"
 DEPOT_TOOLS_URI="https://github.com/downloads/lodle/Desurium/${DEPOT_TOOLS_ARC}"
 WX_ARC="wxWidgets-2.9.3.tar.bz2"
 WX_URI="ftp://ftp.wxwidgets.org/pub/2.9.3/${WX_ARC}"
-SRC_URI+="${CEF_URI} ${CHROMIUM_URI} ${DEPOT_TOOLS_URI} ${WX_URI}"
+SRC_URI+="${BREAKPAD_URI} ${CEF_URI} ${CHROMIUM_URI} ${DEPOT_TOOLS_URI} ${WX_URI}"
 
 inherit check-reqs cmake-utils eutils ${GIT_ECLASS} games gnome2-utils
 
@@ -130,6 +132,7 @@ src_configure() {
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
 		$(cmake-utils_use tools BUILD_TOOLS)
 		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}/${PN}"
+		-DBREAKPAD_URL="file://${DISTDIR}/${BREAKDPAD_ARC}"
 		-DCEF_URL="file://${DISTDIR}/${CEF_ARC}"
 		-DCHROMIUM_URL="file://${DISTDIR}/${CHROMIUM_ARC}"
 		-DDEPOT_TOOLS_URL="file://${DISTDIR}/${DEPOT_TOOLS_ARC}"
