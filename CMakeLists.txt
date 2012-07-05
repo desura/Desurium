@@ -13,13 +13,13 @@
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
 #   PACKAGE_TYPE    DEB                 Which packages should be created with "make package"
-#   SET_OWN_EXT_SRC OFF                 useful for ebuild or saving traffic,
-#                                       but you have to set all of the following
-#                                       vars via cmake -D..
-#                                           BOOST_URL (Windows only)
-#                                           CHROMIUM_URL
-#                                           CURL_URL (Linux only)
-#                                           WXWIDGET_URL
+#
+#   BREAKPAD_URL                        URL to breakdpad archive, should be rev. 850
+#   CEF_URL                             URL to cef archive, should be rev. 291
+#   CHROMIUM_URL                        URL to chromium archive, has to be 15.0.876.0
+#   CURL_URL                            URL to curl archive
+#   DEPOT_TOOLS_URL                     URL to depot_tools archive
+#   WXWIDGET_URL                        URL to wxWidget archive, has to be 2.9.3
 #
 # unix-only options:
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
@@ -32,6 +32,7 @@
 #                   OFF
 #
 # windows-only options:
+#   BOOST_URL                           URL to boost archive
 #
 # some dev notes:
 #
