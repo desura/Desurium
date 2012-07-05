@@ -169,6 +169,15 @@ if(WIN32 OR NOT CURL_FOUND)
   endif()
 endif()
 
+set(DEPOT_TOOLS_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/depot_tools-145556.tar.gz")
+set(DEPOT_TOOLS_URL ${DEPOT_TOOLS_URL_DEFAULT}
+    CACHE STRING "URL to depot_tools")
+if(DEPOT_TOOLS_URL STREQUAL DEPOT_TOOLS_URL_DEFAULT)
+  set(DEPOT_TOOLS_MD5 7f5f36f9833a79c2cdf73bf25f363ed2)
+else()
+  unset(DEPOT_TOOLS_MD5)
+endif()
+
 set(WXWIDGET_URL_DEFAULT ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
 set(WXWIDGET_URL ${WXWIDGET_URL_DEFAULT}
     CACHE STRING "URL to wxWidget 2.9.3 archive")
