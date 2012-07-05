@@ -132,7 +132,7 @@ src_configure() {
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
 		$(cmake-utils_use tools BUILD_TOOLS)
 		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}/${PN}"
-		-DBREAKPAD_URL="file://${DISTDIR}/${BREAKDPAD_ARC}"
+		-DBREAKPAD_URL="file://${DISTDIR}/${BREAKPAD_ARC}"
 		-DCEF_URL="file://${DISTDIR}/${CEF_ARC}"
 		-DCHROMIUM_URL="file://${DISTDIR}/${CHROMIUM_ARC}"
 		-DDEPOT_TOOLS_URL="file://${DISTDIR}/${DEPOT_TOOLS_ARC}"
