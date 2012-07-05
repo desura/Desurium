@@ -197,12 +197,9 @@ else()
   unset(WXWIDGET_MD5)
 endif()
 
-set(BREAKPAD_SVN http://google-breakpad.googlecode.com/svn/trunk -r 850)
-set(CEF_SVN http://chromiumembedded.googlecode.com/svn/trunk/@291)
 # for windows
 set(CURL_GIT git://github.com/bagder/curl.git)
 set(CURL_VERSION tags/curl-7_25_0)
-set(DEPOT_TOOLS_SVN http://src.chromium.org/svn/trunk/tools/depot_tools)
 set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.9/)
 
 ###############################################################################
