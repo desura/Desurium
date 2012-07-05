@@ -129,34 +129,44 @@ endif()
 # SVN, Git, HTTP stuff
 ###############################################################################
 
-if(NOT SET_OWN_EXT_SRC)
-  set(BOOST_URL http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip)
-  set(BOOST_MD5 854dcbbff31b896c85c38247060b7713)
+if(WIN32)
+  set(BOOST_URL_DEFAULT "http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip")
+  set(BOOST_URL ${BOOST_URL_DEFAULT}
+      CACHE STRING "URL to boost archive")
+  if(BOOST_URL STREQUAL BOOST_URL_DEFAULT)
+    set(BOOST_MD5 854dcbbff31b896c85c38247060b7713)
+  else()
+    unset(BOOST_MD5)
+  endif()
+endif()
 
-  set(CHROMIUM_URL http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2)
+set(CHROMIUM_URL_DEFAULT "http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2")
+set(CHROMIUM_URL ${CHROMIUM_URL_DEFAULT}
+    CACHE STRING "URL to chromium, has to be 15.0.876.0")
+if(CHROMIUM_URL STREQUAL CHROMIUM_URL_DEFAULT)
   set(CHROMIUM_MD5 22c8e1db4d1c4b474c600dffbb5fdd0c)
+else()
+  unset(CHROMIUM_MD5)
+endif()
 
-  set(CURL_URL http://curl.haxx.se/download/curl-7.26.0.tar.bz2)
-  set(CURL_MD5 bfa80f01b3d300359cfb4d409b6136a3)
+if(WIN32 OR NOT CURL_FOUND)
+  set(CURL_URL_DEFAULT http://curl.haxx.se/download/curl-7.26.0.tar.bz2)
+  set(CURL_URL ${CURL_URL_DEFAULT}
+      CACHE STRING "URL to curl archive")
+  if(CURL_URL STREQUAL CURL_URL_DEFAULT)
+    set(CURL_MD5 bfa80f01b3d300359cfb4d409b6136a3)
+  else()
+    unset(CURL_MD5)
+  endif()
+endif()
 
-  set(WXWIDGET_URL ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
+set(WXWIDGET_URL_DEFAULT ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
+set(WXWIDGET_URL ${WXWIDGET_URL_DEFAULT}
+    CACHE STRING "URL to wxWidget 2.9.3 archive")
+if(WXWIDGET_URL STREQUAL WXWIDGET_URL_DEFAULT)
   set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
 else()
-  if(WIN32 AND NOT BOOST_URL)
-    message(FATAL_ERROR "you have to specify a path to your boost archive via -DBOOST_URL=")
-  endif()
-
-  if(NOT CHROMIUM_URL)
-    message(FATAL_ERROR "you have to specify a path to your chromium archive via -DCHROMIUM_URL=")
-  endif()
-
-  if(NOT WXWIDGET_URL)
-    message(FATAL_ERROR "you have to specify a path to your wxWidgets archive via -DWXWIDGET_URL=")
-  endif()
-
-  if(WIN32 OR NOT CURL_FOUND AND NOT CURL_URL)
-    message(FATAL_ERROR "you have to specify a path to your curl archive via -DCURL_URL=")
-  endif()
+  unset(WXWIDGET_MD5)
 endif()
 
 set(BREAKPAD_SVN http://google-breakpad.googlecode.com/svn/trunk -r 850)
