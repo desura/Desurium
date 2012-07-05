@@ -40,7 +40,8 @@ ExternalProject_Add(
 
 ExternalProject_Add(
   fetch_cef
-  SVN_REPOSITORY ${CEF_SVN}
+  URL ${CEF_URL}
+  URL_MD5 ${CEF_MD5}
   UPDATE_COMMAND ""
   PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/patch.${SCRIPT_PREFIX} ${CMAKE_SOURCE_DIR}/cmake/patches/cef.patch
   CONFIGURE_COMMAND ""

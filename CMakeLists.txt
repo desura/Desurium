@@ -140,6 +140,15 @@ if(WIN32)
   endif()
 endif()
 
+set(CEF_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/cef-291.tar.gz")
+set(CEF_URL ${CEF_URL_DEFAULT}
+    CACHE STRING "URL to cef, has to be revision 291")
+if(CEF_URL STREQUAL CEF_URL_DEFAULT)
+  set(CEF_MD5 97e925e33f2d48cd50172247dbe40f30)
+else()
+  unset(CEF_MD5)
+endif()
+
 set(CHROMIUM_URL_DEFAULT "http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2")
 set(CHROMIUM_URL ${CHROMIUM_URL_DEFAULT}
     CACHE STRING "URL to chromium, has to be 15.0.876.0")
