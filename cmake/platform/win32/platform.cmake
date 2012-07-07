@@ -5,7 +5,7 @@
 set(SCRIPT_PREFIX bat)
 
 # some boost options
-add_definitions(-DBOOST_FILESYSTEM_VERSION=2)
+add_definitions(-DBOOST_FILESYSTEM_VERSION=3)
 
 # some wxWidget options
 macro(use_unicode_here)
