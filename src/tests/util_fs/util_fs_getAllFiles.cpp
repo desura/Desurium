@@ -19,11 +19,8 @@ BOOST_AUTO_TEST_CASE( setup_env )
 	fillWithTestData(TEST_DIR);
 }
 
-BOOST_AUTO_TEST_CASE( test_dir_without_files )
+BOOST_AUTO_TEST_CASE( getAllFiles_without_extsFilter )
 {
-	createTestDirectory();
-	fillWithTestData(TEST_DIR);
-
 	std::vector<Path> content;
 	std::vector<Path> content0;
 	std::vector<Path> content1;
@@ -31,7 +28,7 @@ BOOST_AUTO_TEST_CASE( test_dir_without_files )
 	Path path( (getTestDirectory()/TEST_DIR).string(), "", false);
 	Path path0( (getTestDirectory()/TEST_DIR/"0").string(), "", false);
 	Path path1( (getTestDirectory()/TEST_DIR/"1").string(), "", false);
-	
+
 	getAllFiles(path, content, nullptr);
 	getAllFiles(path0, content0, nullptr);
 	getAllFiles(path1, content1, nullptr);
