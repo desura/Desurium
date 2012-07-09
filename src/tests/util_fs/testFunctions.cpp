@@ -13,9 +13,6 @@ template <typename StringType>
  *  ./0/0
  *  ./0/1.txt
  *  ./0/2.png
- *  ./1/0
- *  ./1/1.txt
- *  ./1/2.png
  */
 void fillWithTestData(const StringType&);
 
@@ -41,7 +38,7 @@ void fillWithTestData(const STR& str)
 	fs::path testDir = getTestDirectory() / str;
 	fs::create_directories(testDir);
 
-	std::vector<std::string> firstLevel = {"0", "1"};
+	std::vector<std::string> firstLevel = {"0"};
 	std::vector<std::string> secondLevel = {"0", "1.txt", "2.png"};
 
 	for (const std::string& i : firstLevel)

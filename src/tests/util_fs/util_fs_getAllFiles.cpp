@@ -23,26 +23,19 @@ BOOST_AUTO_TEST_CASE( getAllFiles_without_extsFilter )
 {
 	std::vector<Path> content;
 	std::vector<Path> content0;
-	std::vector<Path> content1;
 
 	Path path( (getTestDirectory()/TEST_DIR).string(), "", false);
 	Path path0( (getTestDirectory()/TEST_DIR/"0").string(), "", false);
-	Path path1( (getTestDirectory()/TEST_DIR/"1").string(), "", false);
 
 	getAllFiles(path, content, nullptr);
 	getAllFiles(path0, content0, nullptr);
-	getAllFiles(path1, content1, nullptr);
 
 	BOOST_REQUIRE_EQUAL(content.size(), 0);
 	BOOST_REQUIRE_EQUAL(content0.size(), 3);
-	BOOST_REQUIRE_EQUAL(content1.size(), 3);
 
 	BOOST_REQUIRE_EQUAL(content0[0].getFullPath(), (getTestDirectory()/TEST_DIR/"0"/"0").string());
 	BOOST_REQUIRE_EQUAL(content0[1].getFullPath(), (getTestDirectory()/TEST_DIR/"0"/"1.txt").string());
 	BOOST_REQUIRE_EQUAL(content0[2].getFullPath(), (getTestDirectory()/TEST_DIR/"0"/"2.png").string());
-	BOOST_REQUIRE_EQUAL(content1[0].getFullPath(), (getTestDirectory()/TEST_DIR/"1"/"0").string());
-	BOOST_REQUIRE_EQUAL(content1[1].getFullPath(), (getTestDirectory()/TEST_DIR/"1"/"1.txt").string());
-	BOOST_REQUIRE_EQUAL(content1[2].getFullPath(), (getTestDirectory()/TEST_DIR/"1"/"2.png").string());
 }
 
 BOOST_AUTO_TEST_CASE( getAllFiles_with_extsfiler )
