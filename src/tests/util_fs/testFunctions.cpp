@@ -11,9 +11,11 @@ template <typename StringType>
 /*
  * this will create the following directory tree:
  *  ./0/0
- *  ./0/1
+ *  ./0/1.txt
+ *  ./0/2.png
  *  ./1/0
- *  ./1/1
+ *  ./1/1.txt
+ *  ./1/2.png
  */
 void fillWithTestData(const StringType&);
 
@@ -39,10 +41,13 @@ void fillWithTestData(const STR& str)
 	fs::path testDir = getTestDirectory() / str;
 	fs::create_directories(testDir);
 
-	for (int i = 0; i < 2; i++)
+	std::vector<std::string> firstLevel = {"0", "1"};
+	std::vector<std::string> secondLevel = {"0", "1.txt", "2.png"};
+
+	for (const std::string& i : firstLevel)
 	{
 		fs::create_directory(testDir / lexical_cast<std::string>(i) );
-		for(int j = 0; j < 2; j++)
+		for (const std::string& j : secondLevel)
 		{
 			fs::path newFilePath = testDir / lexical_cast<std::string>(i) / lexical_cast<std::string>(j);
 			fs::ofstream newFileStream(newFilePath);

@@ -34,13 +34,15 @@ BOOST_AUTO_TEST_CASE( getAllFiles_without_extsFilter )
 	getAllFiles(path1, content1, nullptr);
 
 	BOOST_REQUIRE_EQUAL(content.size(), 0);
-	BOOST_REQUIRE_EQUAL(content0.size(), 2);
-	BOOST_REQUIRE_EQUAL(content1.size(), 2);
+	BOOST_REQUIRE_EQUAL(content0.size(), 3);
+	BOOST_REQUIRE_EQUAL(content1.size(), 3);
 
 	BOOST_REQUIRE_EQUAL(content0[0].getFullPath(), (getTestDirectory()/TEST_DIR/"0"/"0").string());
-	BOOST_REQUIRE_EQUAL(content0[1].getFullPath(), (getTestDirectory()/TEST_DIR/"0"/"1").string());
+	BOOST_REQUIRE_EQUAL(content0[1].getFullPath(), (getTestDirectory()/TEST_DIR/"0"/"1.txt").string());
+	BOOST_REQUIRE_EQUAL(content0[2].getFullPath(), (getTestDirectory()/TEST_DIR/"0"/"2.png").string());
 	BOOST_REQUIRE_EQUAL(content1[0].getFullPath(), (getTestDirectory()/TEST_DIR/"1"/"0").string());
-	BOOST_REQUIRE_EQUAL(content1[1].getFullPath(), (getTestDirectory()/TEST_DIR/"1"/"1").string());
+	BOOST_REQUIRE_EQUAL(content1[1].getFullPath(), (getTestDirectory()/TEST_DIR/"1"/"1.txt").string());
+	BOOST_REQUIRE_EQUAL(content1[2].getFullPath(), (getTestDirectory()/TEST_DIR/"1"/"2.png").string());
 }
 
 BOOST_AUTO_TEST_CASE( destroy_env )
