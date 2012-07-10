@@ -17,6 +17,26 @@ const fs::path& getTestDirectory();
  */
 void fillWithTestData();
 
+#define BOOST_REQUIRE_EQUAL_FILES(/* const fs::path& */ file1, /* const fs::path& */ file2) \
+{ \
+	fs::ifstream file1_stream(file1); \
+	fs::ifstream file2_stream(file2); \
+ \
+	std::string file1_string; \
+	std::string file2_string; \
+ \
+	for (std::string file1_string_buf; std::getline(file1_stream, file1_string_buf);) \
+		file1_string += file1_string_buf; \
+	for (std::string file2_string_buf; std::getline(file2_stream, file2_string_buf);) \
+		file2_string += file2_string_buf; \
+ \
+	BOOST_REQUIRE_EQUAL( file1_string, file2_string ); \
+ \
+	file1_stream.close(); \
+	file2_stream.close(); \
+}
+
+
 // some macros
 #define START_UTIL_FS_TEST_CASE BOOST_AUTO_TEST_CASE( setup_env ) \
 { \
