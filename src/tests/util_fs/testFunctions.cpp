@@ -1,24 +1,36 @@
+#ifndef TEST_DIR
+#error you have to define TEST_DIR first
+#endif
+
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
-#include <boost/lexical_cast.hpp>
 namespace fs = boost::filesystem;
-using boost::lexical_cast;
 
 void createTestDirectory();
 void deleteTestDirectory();
 const fs::path& getTestDirectory();
-template <typename StringType>
 /*
  * this will create the following directory tree:
  *  ./0/0
  *  ./0/1.txt
  *  ./0/2.png
  */
-void fillWithTestData(const StringType&);
+void fillWithTestData();
+
+// some macros
+#define START_UTIL_FS_TEST_CASE BOOST_AUTO_TEST_CASE( setup_env ) \
+{ \
+	createTestDirectory(); \
+}
+#define END_UTIL_FS_TEST_CASE BOOST_AUTO_TEST_CASE( destroy_env ) \
+{ \
+	deleteTestDirectory(); \
+}
 
 void createTestDirectory()
 {
 	fs::create_directories(getTestDirectory());
+	fillWithTestData();
 }
 
 void deleteTestDirectory()
@@ -28,14 +40,13 @@ void deleteTestDirectory()
 
 const fs::path& getTestDirectory()
 {
-	static const fs::path TEST_DIR_ROOT = fs::current_path()/"unit_test"/"util_fs";
+	static const fs::path TEST_DIR_ROOT = fs::current_path()/"unit_test"/"util_fs"/TEST_DIR;
 	return TEST_DIR_ROOT;
 }
 
-template <typename STR>
-void fillWithTestData(const STR& str)
+void fillWithTestData()
 {
-	fs::path testDir = getTestDirectory() / str;
+	const fs::path &testDir = getTestDirectory();
 	fs::create_directories(testDir);
 
 	std::vector<std::string> firstLevel = {"0"};
@@ -43,10 +54,10 @@ void fillWithTestData(const STR& str)
 
 	for (const std::string& i : firstLevel)
 	{
-		fs::create_directory(testDir / lexical_cast<std::string>(i) );
+		fs::create_directory(testDir / i );
 		for (const std::string& j : secondLevel)
 		{
-			fs::path newFilePath = testDir / lexical_cast<std::string>(i) / lexical_cast<std::string>(j);
+			fs::path newFilePath = testDir / i / j;
 			fs::ofstream newFileStream(newFilePath);
 			newFileStream << "this is a test file" << std::endl;
 			newFileStream.close();
