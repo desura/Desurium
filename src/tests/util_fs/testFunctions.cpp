@@ -6,6 +6,8 @@
 #include <boost/filesystem/fstream.hpp>
 namespace fs = boost::filesystem;
 
+#define UNICODE_EXAMPLE_FILE "ʨʬжװᇪ"
+
 void createTestDirectory();
 void deleteTestDirectory();
 const fs::path& getTestDirectory();
@@ -14,6 +16,7 @@ const fs::path& getTestDirectory();
  *  ./0/0
  *  ./0/1.txt
  *  ./0/2.png
+ *  ./0/UNICODE_EXAMPLE_FILE
  */
 void fillWithTestData();
 
@@ -70,7 +73,7 @@ void fillWithTestData()
 	fs::create_directories(testDir);
 
 	std::vector<std::string> firstLevel = {"0"};
-	std::vector<std::string> secondLevel = {"0", "1.txt", "2.png"};
+	std::vector<std::string> secondLevel = {"0", "1.txt", "2.png", UNICODE_EXAMPLE_FILE};
 
 	for (const std::string& i : firstLevel)
 	{

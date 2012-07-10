@@ -26,11 +26,12 @@ BOOST_AUTO_TEST_CASE( getAllFiles_without_extsFilter )
 	getAllFiles(path0, content0, nullptr);
 
 	BOOST_REQUIRE_EQUAL(content.size(), 0);
-	BOOST_REQUIRE_EQUAL(content0.size(), 3);
+	BOOST_REQUIRE_EQUAL(content0.size(), 4);
 
 	BOOST_REQUIRE_EQUAL(content0[0].getFullPath(), (getTestDirectory()/"0"/"0").string());
 	BOOST_REQUIRE_EQUAL(content0[1].getFullPath(), (getTestDirectory()/"0"/"1.txt").string());
 	BOOST_REQUIRE_EQUAL(content0[2].getFullPath(), (getTestDirectory()/"0"/"2.png").string());
+	BOOST_REQUIRE_EQUAL(content0[3].getFullPath(), (getTestDirectory()/"0"/UNICODE_EXAMPLE_FILE).string());
 }
 
 BOOST_AUTO_TEST_CASE( getAllFiles_with_extsfiler )
