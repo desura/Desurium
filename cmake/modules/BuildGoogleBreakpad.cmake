@@ -3,7 +3,8 @@ set(BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/breakpad
 if(WIN32)
   ExternalProject_Add(
     breakpad
-    SVN_REPOSITORY ${BREAKPAD_SVN}
+    URL ${BREAKPAD_URL}
+    URL_MD5 ${BREAKPAD_MD5}
     UPDATE_COMMAND ""
     PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/Patch.bat ${CMAKE_PATCH_DIR}/breakpad.patch
     CONFIGURE_COMMAND ${PYTHON_EXECUTABLE} ../breakpad/src/tools/gyp/gyp ../breakpad/src/client/windows/breakpad_client.gyp
@@ -20,7 +21,8 @@ if(WIN32)
 else()
   ExternalProject_Add(
     breakpad
-    SVN_REPOSITORY ${BREAKPAD_SVN}
+    URL ${BREAKPAD_URL}
+    URL_MD5 ${BREAKPAD_MD5}
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --enable-shared=no --enable-static=yes --prefix=${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR}
   )

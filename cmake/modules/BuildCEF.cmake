@@ -5,7 +5,8 @@ ProcessorCount(CPU_COUNT)
 
 ExternalProject_Add(
   depot_tools
-  SVN_REPOSITORY ${DEPOT_TOOLS_SVN}
+  URL ${DEPOT_TOOLS_URL}
+  URL_MD5 ${DEPOT_TOOLS_MD5}
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
@@ -40,7 +41,8 @@ ExternalProject_Add(
 
 ExternalProject_Add(
   fetch_cef
-  SVN_REPOSITORY ${CEF_SVN}
+  URL ${CEF_URL}
+  URL_MD5 ${CEF_MD5}
   UPDATE_COMMAND ""
   PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/patch.${SCRIPT_PREFIX} ${CMAKE_SOURCE_DIR}/cmake/patches/cef.patch
   CONFIGURE_COMMAND ""
