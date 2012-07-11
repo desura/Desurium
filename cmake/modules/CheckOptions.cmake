@@ -20,6 +20,13 @@ else()
       CACHE STRING "The branding to use for Desura.")
 endif()
 
+option(FORCE_SYS_DEPS "Force the use of system libs")
+if(FORCE_SYS_DEPS)
+  set(REQUIRED_IF_OPTION REQUIRED)
+else()
+  unset(REQUIRED_IF_OPTION)
+endif()
+
 ###############################################################################
 # unix-only options
 ###############################################################################
