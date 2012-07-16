@@ -8,7 +8,7 @@ fi
 
 if [ -f /etc/debian_version ]; then # Debian  (untested!)
 	DEPS="autoconf automake binutils bison build-essential cmake flex gcc gperf libasound2-dev libboost-dev libboost-date-time-dev libboost-filesystem-dev libboost-system-dev libboost-test-dev libboost-thread-dev libbz2-dev libc-ares-dev libcups2-dev libdbus-glib-1-dev libevent-dev libflac-dev libgconf2-dev libgnome-keyring-dev libgtk2.0-dev libjpeg62-dev libnotify-dev libnss3-dev libpng12-dev libspeex-dev libsqlite3-dev libssl-dev libtinyxml-dev libtool libv8-dev libx11-dev libxml2-dev libxpm-dev libxslt1-dev m4 scons xdg-utils yasm"
-	if [ `uname -m` == 'x86_64' ]; then # 64 bit dependencies for 32BIT_SUPPORT
+	if [ `uname -m` = 'x86_64' ]; then # 64 bit dependencies for 32BIT_SUPPORT
 		DEPS=$DEPS" libc6-dev-i386 gcc-multilib"
 	fi
 	ST=`dpkg -l ${DEPS} 2>/dev/null | grep "^ii\ "  | cut -d' ' -f2`
