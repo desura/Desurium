@@ -5,6 +5,8 @@ Content
  * Build Desura on Linux
  * Build Desura on Windows
  * Create Packages
+ * Special notes for advanced users
+ * Closing Remarks
 
 Desura
 ===================
@@ -42,7 +44,7 @@ curl (while building without ares support)
 sqlite
 tinyxml
 
-Finally run Desura using ./run_desura.sh
+Finally run Desura using ./install/run.sh
 
 If you're on a 64bit system and want 32bit support, abort building it and go to
 the 'build' folder, and edit the CMake cache as to enable 32BIT_SUPPORT.
@@ -74,7 +76,7 @@ You can simply run the following commands to create packages for installing desu
 
  1. mkdir package
  2. cd package
- 3. cmake .. -DPACKAGE_TYPE="{PACKAGE_TYPE}" -DCMAKE_INSTALL_PREFIX="/opt/desura"
+ 3. cmake -DPACKAGE_TYPE="{PACKAGE_TYPE}" -DINSTALL_DESKTOP_FILE=ON -DCMAKE_INSTALL_PREFIX="/opt/desura" ..
  4. make package
 
 Supported Values for PACKAGE_TYPE are:
@@ -82,3 +84,29 @@ Supported Values for PACKAGE_TYPE are:
   * RPM
 
 You can also mix them like: DEB;RPM
+
+Special notes for advanced users
+=====================
+
+Desura is using the cmake build system for configuration on prject files for several build systems (make, VS, nmake, ...).
+At the top of CMakeFile.txt is a documented list of options
+
+a "normal" way to configure cmake would be something like this:
+  * UNIX-based systems:
+    1. mkdir build
+    2. cd build
+    3. cmake ..
+    4. make
+    5. sudo make install (optionally)
+
+  * win32 based systems:
+    1. md build
+    2. cd build
+    3. cmake ..
+    4. open project files and compile them
+
+Closing Remarks
+=====================
+
+If you need help, want to give some suggestions or
+just want to talk, feel free to join our IRC channel #desura on irc.freenode.net

@@ -6,12 +6,20 @@
 #
 # global options:
 #   BUILD_TESTS     ON                  Build various unit tests
+#   BUILD_TOOLS     ON                  Build various Desura tools
 #   OFFICIAL_BUILD  OFF                 for official build only
-#   BRANDING        depends on          ehich branding should be used?
+#   BRANDING        depends on          which branding should be used?
 #                   OFFICIAL_BUILD
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
 #   PACKAGE_TYPE    DEB                 Which packages should be created with "make package"
+#
+#   BREAKPAD_URL                        URL to breakdpad archive, should be rev. 850
+#   CEF_URL                             URL to cef archive, should be rev. 291
+#   CHROMIUM_URL                        URL to chromium archive, has to be 15.0.876.0
+#   CURL_URL                            URL to curl archive
+#   DEPOT_TOOLS_URL                     URL to depot_tools archive
+#   WXWIDGET_URL                        URL to wxWidget archive, has to be 2.9.3
 #
 # unix-only options:
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
@@ -24,11 +32,12 @@
 #                   OFF
 #
 # windows-only options:
+#   BOOST_URL                           URL to boost archive
 #
 # some dev notes:
 #
 #   if you want to port desura to another compiler on UNIX bases systems,
-#   please create a files for compiler flags in:
+#   please create a file for compiler flags in:
 #
 #     cmake/platform/unix/compiler/${CMAKE_C_COMPILER_ID}.cmake
 #
@@ -46,7 +55,6 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX
    ${CMAKE_SOURCE_DIR}/cmake/scripts/cxx_flag_overrides.cmake)
 
 # TODO: silent output for externel dependencies
-# TODO: get libs automatically for externel builds, maybe make desura a external build itself?
 project(Desura)
 cmake_minimum_required(VERSION 2.8.5)
 
@@ -117,6 +125,83 @@ find_package(PythonInterp REQUIRED)
 if(WIN32)
   find_package(PythonLibs REQUIRED)
 endif()
+
+###############################################################################
+# SVN, Git, HTTP stuff
+###############################################################################
+
+if(WIN32)
+  set(BOOST_URL_DEFAULT "http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip")
+  set(BOOST_URL ${BOOST_URL_DEFAULT}
+      CACHE STRING "URL to boost archive")
+  if(BOOST_URL STREQUAL BOOST_URL_DEFAULT)
+    set(BOOST_MD5 854dcbbff31b896c85c38247060b7713)
+  else()
+    unset(BOOST_MD5)
+  endif()
+endif()
+
+set(BREAKPAD_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/breakpad-850.tar.gz")
+set(BREAKPAD_URL ${BREAKPAD_URL_DEFAULT}
+    CACHE STRING "URL to breakpad")
+if(BREAKPAD_URL STREQUAL BREAKPAD_URL_DEFAULT)
+  set(BREAKPAD_MD5 724df3d361dd503e47e5fb9a7ff86e1b)
+else()
+  unset(BREAKPAD_MD5)
+endif()
+
+
+set(CEF_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/cef-291.tar.gz")
+set(CEF_URL ${CEF_URL_DEFAULT}
+    CACHE STRING "URL to cef, has to be revision 291")
+if(CEF_URL STREQUAL CEF_URL_DEFAULT)
+  set(CEF_MD5 97e925e33f2d48cd50172247dbe40f30)
+else()
+  unset(CEF_MD5)
+endif()
+
+set(CHROMIUM_URL_DEFAULT "http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2")
+set(CHROMIUM_URL ${CHROMIUM_URL_DEFAULT}
+    CACHE STRING "URL to chromium, has to be 15.0.876.0")
+if(CHROMIUM_URL STREQUAL CHROMIUM_URL_DEFAULT)
+  set(CHROMIUM_MD5 22c8e1db4d1c4b474c600dffbb5fdd0c)
+else()
+  unset(CHROMIUM_MD5)
+endif()
+
+if(WIN32 OR NOT CURL_FOUND)
+  set(CURL_URL_DEFAULT http://curl.haxx.se/download/curl-7.26.0.tar.bz2)
+  set(CURL_URL ${CURL_URL_DEFAULT}
+      CACHE STRING "URL to curl archive")
+  if(CURL_URL STREQUAL CURL_URL_DEFAULT)
+    set(CURL_MD5 bfa80f01b3d300359cfb4d409b6136a3)
+  else()
+    unset(CURL_MD5)
+  endif()
+endif()
+
+set(DEPOT_TOOLS_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/depot_tools-145556-2.tar.gz")
+set(DEPOT_TOOLS_URL ${DEPOT_TOOLS_URL_DEFAULT}
+    CACHE STRING "URL to depot_tools")
+if(DEPOT_TOOLS_URL STREQUAL DEPOT_TOOLS_URL_DEFAULT)
+  set(DEPOT_TOOLS_MD5 30288a55dde0ce81ca2c3c76de292cea)
+else()
+  unset(DEPOT_TOOLS_MD5)
+endif()
+
+set(WXWIDGET_URL_DEFAULT ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
+set(WXWIDGET_URL ${WXWIDGET_URL_DEFAULT}
+    CACHE STRING "URL to wxWidget 2.9.3 archive")
+if(WXWIDGET_URL STREQUAL WXWIDGET_URL_DEFAULT)
+  set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
+else()
+  unset(WXWIDGET_MD5)
+endif()
+
+# for windows
+set(CURL_GIT git://github.com/bagder/curl.git)
+set(CURL_VERSION tags/curl-7_25_0)
+set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.9/)
 
 ###############################################################################
 # build some externel projects

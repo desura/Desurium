@@ -1,6 +1,3 @@
-set(WXWIDGET_URL ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
-set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
-
 if(WIN32)
   ExternalProject_Add(
     wxWidget-2-9
@@ -9,27 +6,27 @@ if(WIN32)
     UPDATE_COMMAND ""
     PATCH_COMMAND ${CMAKE_SOURCE_DIR}/cmake/scripts/Patch.bat ${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch
     CONFIGURE_COMMAND ""
-	BUILD_COMMAND ""
-	INSTALL_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
   )
   
 if(DEBUG) 
   ExternalProject_Add_Step(
     wxWidget-2-9
-	custom_build
-	DEPENDEES configure
-	DEPENDERS build
-	COMMAND nmake /nologo -f makefile.vc BUILD=debug MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=static
-	WORKING_DIRECTORY <SOURCE_DIR>/build/msw
+    custom_build
+    DEPENDEES configure
+    DEPENDERS build
+    COMMAND nmake /nologo -f makefile.vc BUILD=debug MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=static
+    WORKING_DIRECTORY <SOURCE_DIR>/build/msw
   )
 else()
   ExternalProject_Add_Step(
     wxWidget-2-9
-	custom_build
-	DEPENDEES configure
-	DEPENDERS build
-	COMMAND nmake /nologo -f makefile.vc BUILD=release MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=static
-	WORKING_DIRECTORY <SOURCE_DIR>/build/msw
+    custom_build
+    DEPENDEES configure
+    DEPENDERS build
+    COMMAND nmake /nologo -f makefile.vc BUILD=release MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=static
+    WORKING_DIRECTORY <SOURCE_DIR>/build/msw
   )
 endif()
   
@@ -46,7 +43,7 @@ endif()
     set(wxWidgets_LIBRARIES ${wxWidgets_LIBRARY_DIRS}/wxmsw29ud.lib)
   else()
     set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include ${wxWidgets_INSTALL_DIR}/include/msvc)
-	set(wxWidgets_LIBRARIES ${wxWidgets_LIBRARY_DIRS}/wxmsw29u.lib)
+    set(wxWidgets_LIBRARIES ${wxWidgets_LIBRARY_DIRS}/wxmsw29u.lib)
   endif()
   
 else()

@@ -1,3 +1,5 @@
 if(NOT WIN32)
   add_desura_test(UtilLinux_test util "util")
+  add_desura_test(gcBuff_test util "util")
+  add_desura_test(MD5_test util "util")
 endif()
