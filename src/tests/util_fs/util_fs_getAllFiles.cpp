@@ -6,6 +6,7 @@
 // set up test env for util_fs testing
 #define TEST_DIR "getAllFiles"
 #include "testFunctions.cpp"
+#include "helper_functions.h"
 
 #include "Common.h"
 #include "util/UtilFs.h"
@@ -28,10 +29,11 @@ BOOST_AUTO_TEST_CASE( getAllFiles_without_extsFilter )
 	BOOST_REQUIRE_EQUAL(content.size(), 0);
 	BOOST_REQUIRE_EQUAL(content0.size(), 4);
 
-	BOOST_REQUIRE_EQUAL(content0[0].getFullPath(), (getTestDirectory()/"0"/"0").string());
-	BOOST_REQUIRE_EQUAL(content0[1].getFullPath(), (getTestDirectory()/"0"/"1.txt").string());
-	BOOST_REQUIRE_EQUAL(content0[2].getFullPath(), (getTestDirectory()/"0"/"2.png").string());
-	BOOST_REQUIRE_EQUAL(content0[3].getFullPath(), (getTestDirectory()/"0"/UNICODE_EXAMPLE_FILE).string());
+
+	BOOST_REQUIRE( isInVector(Path((getTestDirectory()/"0"/"0").string(), "", true), content0) );
+	BOOST_REQUIRE( isInVector(Path((getTestDirectory()/"0"/"1.txt").string(), "", true), content0) );
+	BOOST_REQUIRE( isInVector(Path((getTestDirectory()/"0"/"2.png").string(), "", true), content0) );
+	BOOST_REQUIRE( isInVector(Path((getTestDirectory()/"0"/UNICODE_EXAMPLE_FILE).string(), "", true), content0) );
 }
 
 BOOST_AUTO_TEST_CASE( getAllFiles_with_extsfiler )
