@@ -77,6 +77,8 @@ set(CMAKE_THIRD_PARTY_DIR "${CMAKE_SOURCE_DIR}/third_party")
 set(CMAKE_SCRIPT_PATH "${CMAKE_SOURCE_DIR}/cmake/scripts")
 set(CMAKE_PATCH_DIR "${CMAKE_SOURCE_DIR}/cmake/patches")
 set(CMAKE_GEN_SRC_DIR "${CMAKE_BINARY_DIR}/gen")
+set(CMAKE_TEST_PROJECTS "${CMAKE_SOURCE_DIR}/cmake/tests")
+set(CMAKE_TEST_PROJECTS_BIN "${CMAKE_BINARY_DIR}/cmake_test")
 
 if(DEBUG)
   set(CMAKE_BUILD_TYPE Debug)
@@ -128,6 +130,20 @@ find_package(TinyXML ${REQUIRED_IF_OPTION})
 find_package(v8 ${REQUIRED_ON_UNIX})
 # we patch wxWidgets so we will build it on our own
 find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
+if(wxWidgets_FOUND)
+  try_compile(
+    WXWIDGET_2_9_TEST_COMPILE
+    "${CMAKE_TEST_PROJECTS_BIN}/wxWidget_2.9_test"
+    "${CMAKE_TEST_PROJECTS}/wxWidget_2.9_test"
+    "wxWidget_2_9_test"
+    "wxWidget_2_9_test")
+  if(NOT WXWIDGET_2_9_TEST_COMPILE)
+    unset(wxWidgets_FOUND)
+    if(REQUIRED_IF_OPTION)
+      message(FATAL_ERROR "no wxWidget-2.9 found")
+    endif()
+  endif()
+endif()
 
 find_package(PythonInterp REQUIRED)
 
