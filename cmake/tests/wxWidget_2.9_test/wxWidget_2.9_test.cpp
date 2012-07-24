@@ -1,4 +1,4 @@
-#include <wx/wx.h>
+#include <wx/bitmap.h>
 
 int main()
 {
