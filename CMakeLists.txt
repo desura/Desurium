@@ -13,6 +13,7 @@
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
 #   PACKAGE_TYPE    DEB                 Which packages should be created with "make package"
+#   FORCE_SYS_DEPS  OFF                 Force the use of system libs
 #
 #   BREAKPAD_URL                        URL to breakdpad archive, should be rev. 850
 #   CEF_URL                             URL to cef archive, should be rev. 291
@@ -100,25 +101,28 @@ if(NOT WIN32)
   find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
   find_package(Notify REQUIRED)
 endif()
-find_package(BZip2)
+find_package(BZip2 ${REQUIRED_IF_OPTION})
 
 if(NOT WITH_ARES)
-  find_package(CURL)
+  find_package(CURL ${REQUIRED_IF_OPTION})
 endif()
 
 # we patch google breakpad, so we will build it on our own
-# find_package(GoogleBreakpad REQUIRED)
+# patching is only needed on windows, so we can use system breakpad on other OS
+if(NOT WIN32)
+  find_package(GoogleBreakpad ${REQUIRED_IF_OPTION})
+endif()
 if(NOT WIN32)
   find_package(GTK2 REQUIRED)
 endif()
 if(NOT WIN32)
   find_package(OpenSSL REQUIRED)
 endif()
-find_package(Sqlite)
-find_package(TinyXML)
+find_package(Sqlite ${REQUIRED_IF_OPTION})
+find_package(TinyXML ${REQUIRED_IF_OPTION})
 find_package(v8 ${REQUIRED_ON_UNIX})
 # we patch wxWidgets so we will build it on our own
-# find_package(wxWidgets 2.9 COMPONENTS richtext REQUIRED)
+find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
 
 find_package(PythonInterp REQUIRED)
 
