@@ -128,7 +128,6 @@ endif()
 find_package(Sqlite ${REQUIRED_IF_OPTION})
 find_package(TinyXML ${REQUIRED_IF_OPTION})
 find_package(v8 ${REQUIRED_ON_UNIX})
-# we patch wxWidgets so we will build it on our own
 find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
 if(wxWidgets_FOUND)
   try_compile(
