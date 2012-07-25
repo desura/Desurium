@@ -425,7 +425,7 @@ void getAllFiles(Path path, std::vector<Path> &outList, std::vector<std::string>
 	{
 		if (!bf::is_directory(dirIt->status()))
 		{
-			std::wstring filePath(dirIt->path().filename().wstring());
+			std::string filePath(dirIt->path().filename().string());
 
 			Path subPath(path);
 			subPath += File(gcString(filePath));
