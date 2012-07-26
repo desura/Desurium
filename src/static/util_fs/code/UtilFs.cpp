@@ -91,16 +91,16 @@ void FileHandle::readCB(uint64 size, UTIL::CB::CallbackI* callback)
 //////////////////////////
 
 
-void printError( bf::wfilesystem_error e);
+void printError( bf::filesystem_error e);
 
 uint64 getFileSize(Path szfile)
 {
 	try
 	{
-		boost::uintmax_t fs = bf::file_size(bf::wpath(gcWString(szfile.getFullPath())));
+		boost::uintmax_t fs = bf::file_size(bf::path(szfile.getFullPath()));
 		return (uint64)fs;
 	}
-	catch (bf::wfilesystem_error e)
+	catch (bf::filesystem_error e)
 	{
 		printError(e);
 	}
@@ -113,10 +113,10 @@ uint64 getFolderSize(Path folder)
 
 	try
 	{
-		bf::wpath path(gcWString(folder.getFolderPath()));
+		bf::path path(folder.getFolderPath());
 
-		bf::wrecursive_directory_iterator endIter; 
-		bf::wrecursive_directory_iterator dirIter( path );  
+		bf::recursive_directory_iterator endIter; 
+		bf::recursive_directory_iterator dirIter( path );  
 
 		while (endIter != dirIter)
 		{
@@ -126,7 +126,7 @@ uint64 getFolderSize(Path folder)
 			++dirIter;
 		}
 	}
-	catch (bf::wfilesystem_error e)
+	catch (bf::filesystem_error e)
 	{
 		printError(e);
 	}
@@ -138,9 +138,9 @@ void makeFolder(Path name)
 {
 	try
 	{
-		bf::create_directory( bf::wpath(gcWString(name.getFolderPath())) );
+		bf::create_directory( bf::path(name.getFolderPath()));
 	}
-	catch (bf::wfilesystem_error e)
+	catch (bf::filesystem_error e)
 	{
 		printError(e);
 	}
@@ -150,9 +150,9 @@ void recMakeFolder(Path name)
 {
 	try
 	{
-		bf::create_directories( bf::wpath(gcWString(name.getFolderPath())) );
+		bf::create_directories( bf::path(name.getFolderPath()));
 	}
-	catch (bf::wfilesystem_error e)
+	catch (bf::filesystem_error e)
 	{
 		printError(e);
 	}
@@ -168,9 +168,9 @@ void moveFolder(Path src, Path dest)
 
 	try
 	{
-		bf::rename(bf::wpath(gcWString(src.getFolderPath())), bf::wpath(gcWString(dest.getFolderPath())) );
+		bf::rename(bf::path(src.getFolderPath()), bf::path(dest.getFolderPath()) );
 	}
-	catch (bf::wfilesystem_error e)
+	catch (bf::filesystem_error e)
 	{
 	}
 }
@@ -184,9 +184,9 @@ void moveFile(Path src, Path dest)
 
 	try
 	{
-		bf::rename(bf::wpath(gcWString(src.getFullPath())), bf::wpath(gcWString(dest.getFullPath())));
+		bf::rename(bf::path(src.getFullPath()), bf::path(dest.getFullPath()));
 	}
-	catch (bf::wfilesystem_error e)
+	catch (bf::filesystem_error e)
 	{
 	}
 }
@@ -195,9 +195,9 @@ void eraseFolder(Path src)
 {
 	try
 	{
-		bf::remove_all( bf::wpath(gcWString(src.getFolderPath())) );
+		bf::remove_all( bf::path(src.getFolderPath()) );
 	}
-	catch (bf::wfilesystem_error e)
+	catch (bf::filesystem_error e)
 	{
 		printError(e);
 	}
@@ -208,9 +208,9 @@ bool isValidFile(Path file)
 {
 	try
 	{
-		return (bf::exists( bf::wpath(gcWString(file.getFullPath())) ) && !bf::is_directory( bf::wpath(gcWString(file.getFullPath())) ));
+		return (bf::exists( bf::path(file.getFullPath()) ) && !bf::is_directory( bf::path(file.getFullPath()) ));
 	}
-	catch (bf::wfilesystem_error e)
+	catch (bf::filesystem_error e)
 	{
 		printError(e);
 	}
@@ -222,9 +222,9 @@ bool isValidFolder(Path folder)
 {
 	try
 	{
-		return bf::is_directory( bf::wpath(gcWString(folder.getFolderPath())) );
+		return bf::is_directory( bf::path(folder.getFolderPath()) );
 	}
-	catch (bf::wfilesystem_error e)
+	catch (bf::filesystem_error e)
 	{
 		printError(e);
 	}
@@ -237,9 +237,9 @@ void delFile(Path file)
 	{
 		try
 		{
-			bf::remove(bf::wpath(gcWString(file.getFullPath())));
+			bf::remove(bf::path(file.getFullPath()));
 		}
-		catch (bf::wfilesystem_error e)
+		catch (bf::filesystem_error e)
 		{
 			printError(e);
 		}
@@ -252,9 +252,9 @@ void delFolder(Path filePath)
 	{
 		try
 		{
-			bf::remove_all(bf::wpath(gcWString(filePath.getFolderPath())));
+			bf::remove_all(bf::path(filePath.getFolderPath()));
 		}
-		catch (bf::wfilesystem_error e)
+		catch (bf::filesystem_error e)
 		{
 			printError(e);
 		}
@@ -265,7 +265,7 @@ bool isFolderEmpty(Path filePath)
 {
 	if (isValidFolder(filePath))
 	{
-		return bf::is_empty(bf::wpath(gcWString(filePath.getFolderPath())));
+		return bf::is_empty(bf::path(filePath.getFolderPath()));
 	}
 
 	return true;
@@ -284,7 +284,7 @@ void delEmptyFolders(Path filePath)
 	{
 		
 #ifdef NIX
-		if (bf::is_symlink(bf::wpath(gcWString(filePath.getFolderPath()))))
+		if (bf::is_symlink(bf::path(filePath.getFolderPath())))
 			continue;
 #endif
 
@@ -295,7 +295,7 @@ void delEmptyFolders(Path filePath)
 		delFolder(filePath);
 };
 
-void printError( bf::wfilesystem_error e)
+void printError( bf::filesystem_error e)
 {
 #ifndef NIX
 	const char* what = e.what();
@@ -347,10 +347,10 @@ void copyFile(Path src, Path dest)
 {
 	try
 	{
-		bf::remove(bf::wpath(gcWString(dest.getFullPath())));
-		bf::copy_file(bf::wpath(gcWString(src.getFullPath())), bf::wpath(gcWString(dest.getFullPath())));
+		bf::remove(bf::path(dest.getFullPath()));
+		bf::copy_file(bf::path(src.getFullPath()), bf::path(dest.getFullPath()));
 	}
-	catch (bf::wfilesystem_error e)
+	catch (bf::filesystem_error e)
 	{
 		printError(e);
 	}
@@ -359,16 +359,16 @@ void copyFile(Path src, Path dest)
 void copyFolder(Path src, Path dest, std::vector<std::string> *vIgnoreList, bool copyOverExisting)
 {
 	UTIL::FS::recMakeFolder(dest);
-	bf::wdirectory_iterator end_itr;
+	bf::directory_iterator end_itr;
 
 	try
 	{
-		for (bf::wdirectory_iterator itr(gcWString(src.getFolderPath())); itr!=end_itr; ++itr)
+		for (bf::directory_iterator itr(src.getFolderPath()); itr!=end_itr; ++itr)
 		{
-			bf::wpath path(itr->path());
+			bf::path path(itr->path());
 
-			std::string szPath = gcString(path.directory_string().c_str());
-			std::string szNode = gcString(path.leaf());
+			std::string szPath = path.string();
+			std::string szNode = path.filename().string();
 
 			bool found = false;
 			bool isDir = bf::is_directory(itr->status());
@@ -402,7 +402,7 @@ void copyFolder(Path src, Path dest, std::vector<std::string> *vIgnoreList, bool
 			}
 		}
 	}
-	catch (bf::wfilesystem_error e)
+	catch (bf::filesystem_error e)
 	{
 		printError(e);
 	}
@@ -410,22 +410,22 @@ void copyFolder(Path src, Path dest, std::vector<std::string> *vIgnoreList, bool
 
 time_t lastWriteTime(Path path)
 {
-	return boost::filesystem::last_write_time(bf::wpath(gcWString(path.getFullPath())));
+	return boost::filesystem::last_write_time(bf::path(path.getFullPath()));
 }
 
 void getAllFiles(Path path, std::vector<Path> &outList, std::vector<std::string> *extsFilter)
 {
-	bf::wpath full_path(gcWString(path.getFolderPath()), bf::native);
+	bf::path full_path(path.getFolderPath());
 
 	if (!isValidFolder(path))
 		return;
 
-	bf::wdirectory_iterator end_iter;
-	for (bf::wdirectory_iterator dirIt(full_path); dirIt!=end_iter; ++dirIt)
+	bf::directory_iterator end_iter;
+	for (bf::directory_iterator dirIt(full_path); dirIt!=end_iter; ++dirIt)
 	{
 		if (!bf::is_directory(dirIt->status()))
 		{
-			std::wstring filePath(dirIt->path().leaf().c_str());
+			std::string filePath(dirIt->path().filename().string());
 
 			Path subPath(path);
 			subPath += File(gcString(filePath));
@@ -450,13 +450,13 @@ void getAllFiles(Path path, std::vector<Path> &outList, std::vector<std::string>
 
 void getAllFolders(Path path, std::vector<Path> &outList)
 {
-	bf::wpath full_path(gcWString(path.getFolderPath()), bf::native);
+	bf::path full_path(path.getFolderPath());
 
 	if (!isValidFolder(path))
 		return;
 
-	bf::wdirectory_iterator end_iter;
-	for (bf::wdirectory_iterator dirIt(full_path); dirIt!=end_iter; ++dirIt)
+	bf::directory_iterator end_iter;
+	for (bf::directory_iterator dirIt(full_path); dirIt!=end_iter; ++dirIt)
 	{
 		if (bf::is_directory(dirIt->status()))
 		{
