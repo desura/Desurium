@@ -3,11 +3,6 @@
 
 #warning todo: add boost checks for all util calls
 
-#ifdef BOOST_FILESYSTEM_VERSION
-#  undef BOOST_FILESYSTEM_VERSION
-#  define BOOST_FILESYSTEM_VERSION 3
-#endif
-
 #include <boost/filesystem.hpp>
 
 #include "Common.h"

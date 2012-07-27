@@ -51,7 +51,7 @@ bool ThemeLoaderScheme::processRequest(ChromiumDLL::SchemeRequestI* request, boo
 #ifdef WIN32
 	gcString localUrl("file:///{0}", path.getFullPath());
 #else
-	gcString localUrl("file://{1}/{0}", path.getFullPath(), UTIL::OS::getCurrentDir().c_str());
+	gcString localUrl("file://{0}", path.getFullPath());
 #endif
 
 	m_szRedirectUrl = UTIL::STRING::sanitizeFilePath(localUrl.c_str(), '/');
