@@ -32,6 +32,7 @@ static UINT gs_msgRestartTaskbar = 0;
 
 #ifdef NIX
 #include <libnotify/notify.h>
+#include <libnotify/notification.h>
 #include <branding/branding.h>
 #endif
 
@@ -304,8 +305,8 @@ bool gcTaskBarIcon::ShowBalloon(const wxString& title, const wxString& text, uns
 	
 	NotifyNotification* notification =
 		notify_notification_new(
-			title.wx_str(),
-			text.wx_str(),
+			title.c_str(),
+			text.c_str(),
 			icon);
 	
 	notify_notification_show(notification, NULL);

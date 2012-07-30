@@ -722,7 +722,7 @@ void LoginForm::onStartLogin()
 #ifdef WIN32
 	m_pLogThread = new LoginThread(gcString(user.wc_str()).c_str(), gcString(pass.wc_str()).c_str(), this);
 #else
-	m_pLogThread = new LoginThread(gcString(user.wc_str().data()).c_str(), gcString(pass.wc_str().data()).c_str(), this);
+	m_pLogThread = new LoginThread(user.c_str(), pass.c_str(), this);
 #endif
 
 	m_tbPassword->SetValue("****************");
