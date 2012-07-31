@@ -8,6 +8,8 @@
 #include "Common.h"
 #include "util/UtilLinux.h"
 #include <iostream>
+#include <fstream>
+#include <stdexcept>
 
 using namespace boost;
 using namespace boost::unit_test;
@@ -55,5 +57,4 @@ BOOST_AUTO_TEST_CASE (Util_Lin_String_Output)
 	std::cout << "-- Testing UTIL::LIN::getAppPath(...) --\n";
 	std::wcout << L"UTIL::LIN::getAppPath(L\"\") result: " << getAppPath(L"") << std::endl;
 	std::wcout << L"UTIL::LIN::getAppPath(L\"test/path\") result: " << getAppPath(L"test/path") << std::endl;
-	
 }

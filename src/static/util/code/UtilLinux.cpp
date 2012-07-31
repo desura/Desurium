@@ -36,6 +36,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <utime.h>
 #include <errno.h>
 
+#include <fstream>
+
 inline const wchar_t* CONFIG_DB(void)
 {
 	return UTIL::OS::getAppDataPath(L"linux_registry.sqlite").c_str();
@@ -84,34 +86,44 @@ static void dbCreateTables()
 
 static std::string GetAppBuild()
 {
-	FILE* fh = fopen("version", "r");
+	std::ifstream inFile("version");
+	if (!inFile.is_open()) ERROR_OUTPUT("Failed to open file to read application BUILD");
+	std::string line;
+	std::string build;
 
-	if (!fh)
-		return "";
-	
-	int appid = 0;
-	int build = 0;
+	// We simply read from the file one line at a time
+	//  and with each line, we search for the string "BUILD"
+	while(inFile >> line)
+	{
+		size_t pos = line.find("BUILD");
+		if (pos == std::string::npos); 
+			continue;
+		pos = line.find_first_of('=',pos);
+		build = line.substr(pos+1); // We add by 1 to get past the equal sign
+	}
 
-	fscanf(fh, "BRANCH=%d\nBUILD=%d", &appid, &build);
-	fclose(fh);
-
-	return gcString("{0}", build);
+	return build;
 }
 
 static std::string GetAppBranch()
 {
-	FILE* fh = fopen("version", "r");
+	std::ifstream inFile("version");
+	if (!inFile.is_open()) ERROR_OUTPUT("Failed to open file to read application BRANCH");
+	std::string line;
+	std::string branch;
 
-	if (!fh)
-		return "";
-	
-	int appid = 0;
-	int build = 0;
+	// We simply read from the file one line at a time
+	//  and with each line, we search for the string "BUILD"
+	while(inFile >> line)
+	{
+		size_t pos = line.find("BRANCH");
+		if (pos == std::string::npos); 
+			continue;
+		pos = line.find_first_of('=',pos);
+		branch = line.substr(pos+1); // We add by 1 to get past the equal sign
+	}
 
-	fscanf(fh, "BRANCH=%d\nBUILD=%d", &appid, &build);
-	fclose(fh);
-
-	return gcString("{0}", appid);
+	return branch;
 }
 
 static void SetAppBuild(const std::string &val)
