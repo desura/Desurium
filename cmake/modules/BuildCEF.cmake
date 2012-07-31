@@ -99,6 +99,14 @@ if(NOT WIN32)
 
   ExternalProject_Add_Step(
     cef
+    bison-2-6-patch
+    COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/chromium-bison-2.6.patch
+    DEPENDERS patch
+    WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
+  )
+
+  ExternalProject_Add_Step(
+    cef
     config_cef
     COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} ./cef_create_projects.sh
     DEPENDEES download
