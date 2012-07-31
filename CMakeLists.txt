@@ -110,7 +110,10 @@ if(NOT WITH_ARES)
 endif()
 
 # we patch google breakpad, so we will build it on our own
-# find_package(GoogleBreakpad REQUIRED)
+# patching is only needed on windows, so we can use system breakpad on other OS
+if(NOT WIN32)
+  find_package(GoogleBreakpad ${REQUIRED_IF_OPTION})
+endif()
 if(NOT WIN32)
   find_package(GTK2 REQUIRED)
 endif()
