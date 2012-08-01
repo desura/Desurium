@@ -2,7 +2,7 @@
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20120524
+pkgver=20120801
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -56,6 +56,11 @@ build() {
   cmake -D32BIT_SUPPORT=$MULTILIB -DCMAKE_INSTALL_PREFIX=/usr/share/desurium ..
   msg "Running make..."
   make
+}
+
+check() {
+  cd "$srcdir/Desurium/build"
+  make test
 }
 
 package() {
