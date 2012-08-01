@@ -25,7 +25,7 @@ if [ -f /etc/debian_version ]; then # Debian  (untested!)
 		echo "everything installed"
 	fi
 elif [ -f /etc/redhat-release ]; then
-	yum install m4 autoconf gcc-c++ libstdc++-static glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel libnotify-devel scons xdg-user-dirs v8-devel c-ares-devel sqlite-devel libxslt-devel yasm-devel libevent-devel boost-devel boost-static 
+	yum install m4 autoconf gcc-c++ libstdc++-static glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel libnotify-devel scons xdg-user-dirs v8-devel c-ares-devel sqlite-devel libxslt-devel yasm-devel libevent-devel boost-devel boost-static patch
 elif [ -f /etc/arch-release ]; then
 	echo -e "\e[1;31mArch Linux detected!\e[0m"
 	echo -e "\e[1;31mNote: there is a pkgbuild in ./distro/archlinux/\e[0m"
