@@ -13,13 +13,13 @@
 #   DEBUG           OFF                 will add debug symbols and other
 #                                       debugging stuff
 #   PACKAGE_TYPE    DEB                 Which packages should be created with "make package"
-#   SET_OWN_EXT_SRC OFF                 useful for ebuild or saving traffic,
-#                                       but you have to set all of the following
-#                                       vars via cmake -D..
-#                                           BOOST_URL (Windows only)
-#                                           CHROMIUM_URL
-#                                           CURL_URL (Linux only)
-#                                           WXWIDGET_URL
+#
+#   BREAKPAD_URL                        URL to breakdpad archive, should be rev. 850
+#   CEF_URL                             URL to cef archive, should be rev. 291
+#   CHROMIUM_URL                        URL to chromium archive, has to be 15.0.876.0
+#   CURL_URL                            URL to curl archive
+#   DEPOT_TOOLS_URL                     URL to depot_tools archive
+#   WXWIDGET_URL                        URL to wxWidget archive, has to be 2.9.3
 #
 # unix-only options:
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
@@ -32,6 +32,7 @@
 #                   OFF
 #
 # windows-only options:
+#   BOOST_URL                           URL to boost archive
 #
 # some dev notes:
 #
@@ -88,32 +89,6 @@ include(ProcessorCount)
 include(Package)
 
 ###############################################################################
-# SVN, Git, HTTP stuff
-###############################################################################
-
-if(NOT SET_OWN_EXT_SRC)
-  set(BOOST_URL http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip)
-  set(BOOST_MD5 854dcbbff31b896c85c38247060b7713)
-
-  set(CHROMIUM_URL http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2)
-  set(CHROMIUM_MD5 22c8e1db4d1c4b474c600dffbb5fdd0c)
-
-  set(CURL_URL http://curl.haxx.se/download/curl-7.26.0.tar.bz2)
-  set(CURL_MD5 bfa80f01b3d300359cfb4d409b6136a3)
-
-  set(WXWIDGET_URL ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
-  set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
-endif()
-
-set(BREAKPAD_SVN http://google-breakpad.googlecode.com/svn/trunk -r 850)
-set(CEF_SVN http://chromiumembedded.googlecode.com/svn/trunk/@291)
-# for windows
-set(CURL_GIT git://github.com/bagder/curl.git)
-set(CURL_VERSION tags/curl-7_25_0)
-set(DEPOT_TOOLS_SVN http://src.chromium.org/svn/trunk/tools/depot_tools)
-set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.9/)
-
-###############################################################################
 # find all packages which are needed
 ###############################################################################
 
@@ -150,6 +125,83 @@ find_package(PythonInterp REQUIRED)
 if(WIN32)
   find_package(PythonLibs REQUIRED)
 endif()
+
+###############################################################################
+# SVN, Git, HTTP stuff
+###############################################################################
+
+if(WIN32)
+  set(BOOST_URL_DEFAULT "http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip")
+  set(BOOST_URL ${BOOST_URL_DEFAULT}
+      CACHE STRING "URL to boost archive")
+  if(BOOST_URL STREQUAL BOOST_URL_DEFAULT)
+    set(BOOST_MD5 854dcbbff31b896c85c38247060b7713)
+  else()
+    unset(BOOST_MD5)
+  endif()
+endif()
+
+set(BREAKPAD_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/breakpad-850.tar.gz")
+set(BREAKPAD_URL ${BREAKPAD_URL_DEFAULT}
+    CACHE STRING "URL to breakpad")
+if(BREAKPAD_URL STREQUAL BREAKPAD_URL_DEFAULT)
+  set(BREAKPAD_MD5 724df3d361dd503e47e5fb9a7ff86e1b)
+else()
+  unset(BREAKPAD_MD5)
+endif()
+
+
+set(CEF_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/cef-291.tar.gz")
+set(CEF_URL ${CEF_URL_DEFAULT}
+    CACHE STRING "URL to cef, has to be revision 291")
+if(CEF_URL STREQUAL CEF_URL_DEFAULT)
+  set(CEF_MD5 97e925e33f2d48cd50172247dbe40f30)
+else()
+  unset(CEF_MD5)
+endif()
+
+set(CHROMIUM_URL_DEFAULT "http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2")
+set(CHROMIUM_URL ${CHROMIUM_URL_DEFAULT}
+    CACHE STRING "URL to chromium, has to be 15.0.876.0")
+if(CHROMIUM_URL STREQUAL CHROMIUM_URL_DEFAULT)
+  set(CHROMIUM_MD5 22c8e1db4d1c4b474c600dffbb5fdd0c)
+else()
+  unset(CHROMIUM_MD5)
+endif()
+
+if(WIN32 OR NOT CURL_FOUND)
+  set(CURL_URL_DEFAULT http://curl.haxx.se/download/curl-7.26.0.tar.bz2)
+  set(CURL_URL ${CURL_URL_DEFAULT}
+      CACHE STRING "URL to curl archive")
+  if(CURL_URL STREQUAL CURL_URL_DEFAULT)
+    set(CURL_MD5 bfa80f01b3d300359cfb4d409b6136a3)
+  else()
+    unset(CURL_MD5)
+  endif()
+endif()
+
+set(DEPOT_TOOLS_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/depot_tools-145556-2.tar.gz")
+set(DEPOT_TOOLS_URL ${DEPOT_TOOLS_URL_DEFAULT}
+    CACHE STRING "URL to depot_tools")
+if(DEPOT_TOOLS_URL STREQUAL DEPOT_TOOLS_URL_DEFAULT)
+  set(DEPOT_TOOLS_MD5 30288a55dde0ce81ca2c3c76de292cea)
+else()
+  unset(DEPOT_TOOLS_MD5)
+endif()
+
+set(WXWIDGET_URL_DEFAULT ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
+set(WXWIDGET_URL ${WXWIDGET_URL_DEFAULT}
+    CACHE STRING "URL to wxWidget 2.9.3 archive")
+if(WXWIDGET_URL STREQUAL WXWIDGET_URL_DEFAULT)
+  set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
+else()
+  unset(WXWIDGET_MD5)
+endif()
+
+# for windows
+set(CURL_GIT git://github.com/bagder/curl.git)
+set(CURL_VERSION tags/curl-7_25_0)
+set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.9/)
 
 ###############################################################################
 # build some externel projects

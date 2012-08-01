@@ -3,7 +3,8 @@
 ###############################################################################
 
 add_definitions(
-  -DBOOST_FILESYSTEM_VERSION=2
+  -DBOOST_FILESYSTEM_VERSION=3
+  -DBOOST_NO_SCOPED_ENUMS=1
   -D_LARGE_FILES
   -D_FILE_OFFSET_BITS=64
 )

@@ -116,7 +116,7 @@ void SFTWorker::finishFile()
 	try
 	{
 		ptime t(from_iso_string(str));
-		bfs::wpath spath(gcWString(file), bfs::native);
+		bfs::path spath(file);
 
 		tm pt_tm = to_tm(t);
 		last_write_time(spath, mktime(&pt_tm));
