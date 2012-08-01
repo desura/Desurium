@@ -8,8 +8,7 @@ pkgdesc="A community-driven digital distribution service for gamers (open source
 url="http://github.com/lodle/Desurium"
 license=('GPL3')
 arch=('i686' 'x86_64')
-makedepends=('cmake' 'git' 'boost' 'subversion' 'scons' 'gendesk' 'sed'
-			 'yasm' 'flex')
+makedepends=('cmake' 'boost' 'scons' 'gendesk' 'sed' 'yasm' 'flex')
 depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'c-ares' 'libnotify' 'nss' 'bison'
          'cups' 'alsa-lib' 'libjpeg-turbo' 'libx11'
