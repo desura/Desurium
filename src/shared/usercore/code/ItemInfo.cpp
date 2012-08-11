@@ -177,9 +177,12 @@ void ItemInfo::saveDb(sqlite3x::sqlite3_connection* db)
 		cmd.bind(9, (long long int)m_iId.toInt64()); //internal id
 		cmd.executenonquery();
 
-		for (size_t x=0; x<m_vBranchList.size(); x++)
-		{
-			m_vBranchList[x]->saveDb(db);
+		// Don't bother saving TYPE_LINKs, they don't have a proper BranchID anyway.
+		if(getId().getType() != DesuraId::TYPE_LINK) {
+			for (size_t x=0; x<m_vBranchList.size(); x++)
+			{
+				m_vBranchList[x]->saveDb(db);
+			}
 		}
 
 		std::for_each(m_mBranchInstallInfo.begin(), m_mBranchInstallInfo.end(), [&db](std::pair<uint32, BranchInstallInfo*> p)
@@ -225,9 +228,12 @@ void ItemInfo::saveDbFull(sqlite3x::sqlite3_connection* db)
 
 	cmd.executenonquery();
 
-	for (size_t x=0; x<m_vBranchList.size(); x++)
-	{
-		m_vBranchList[x]->saveDbFull(db);
+	// Don't bother saving TYPE_LINKs, they don't have a proper BranchID anyway.
+	if(getId().getType() != DesuraId::TYPE_LINK) {
+		for (size_t x=0; x<m_vBranchList.size(); x++)
+		{
+			m_vBranchList[x]->saveDbFull(db);
+		}
 	}
 
 	std::for_each(m_mBranchInstallInfo.begin(), m_mBranchInstallInfo.end(), [&db](std::pair<uint32, BranchInstallInfo*> p)
