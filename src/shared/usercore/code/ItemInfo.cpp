@@ -347,6 +347,22 @@ void ItemInfo::loadDb(sqlite3x::sqlite3_connection* db)
 
 			m_vBranchList.push_back(bi);
 		}
+
+		// A TYPE_LINK may or may not have branches stored on disk, but will need one at runtime.
+		if(getId().getType() == DesuraId::TYPE_LINK && m_vBranchList.size() == 0) {
+#ifdef WIN32
+			BranchInfo* bi = new BranchInfo(MCFBranch::BranchFromInt(m_INBranch), m_iId, m_mBranchInstallInfo[100]);
+#else
+#ifdef NIX64
+			BranchInfo* bi = new BranchInfo(MCFBranch::BranchFromInt(m_INBranch), m_iId, m_mBranchInstallInfo[120]);
+#else
+			BranchInfo* bi = new BranchInfo(MCFBranch::BranchFromInt(m_INBranch), m_iId, m_mBranchInstallInfo[110]);
+#endif
+#endif
+			bi->setLinkInfo(getName());
+			m_vBranchList.push_back(bi);
+			m_INBranchIndex = 0;
+		}
 	}
 
 	setIconUrl(m_szIconUrl.c_str());
