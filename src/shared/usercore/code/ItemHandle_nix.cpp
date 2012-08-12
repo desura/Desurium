@@ -127,7 +127,8 @@ void ItemHandle::doLaunch(bool useXdgOpen, const char* globalExe, const char* gl
 	UserCore::Item::BranchInfoI* branch = getItemInfo()->getCurrentBranch();
 
 #ifdef NIX64
-	if (!useXdgOpen && branch && branch->is32Bit())
+	// Branches can be marked simultaneously 32- and 64-bit, be sure it isn't.
+	if (!useXdgOpen && branch && !branch->is64Bit())
 	{
 		#ifdef USE_BITTEST
 			int testRet = system("desura_bittest");
