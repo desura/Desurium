@@ -356,15 +356,7 @@ void ItemInfo::loadDb(sqlite3x::sqlite3_connection* db)
 
 		// A TYPE_LINK may or may not have branches stored on disk, but will need one at runtime.
 		if(getId().getType() == DesuraId::TYPE_LINK && m_vBranchList.size() == 0) {
-#ifdef WIN32
-			BranchInfo* bi = new BranchInfo(MCFBranch::BranchFromInt(m_INBranch), m_iId, m_mBranchInstallInfo[100]);
-#else
-#ifdef NIX64
-			BranchInfo* bi = new BranchInfo(MCFBranch::BranchFromInt(m_INBranch), m_iId, m_mBranchInstallInfo[120]);
-#else
-			BranchInfo* bi = new BranchInfo(MCFBranch::BranchFromInt(m_INBranch), m_iId, m_mBranchInstallInfo[110]);
-#endif
-#endif
+			BranchInfo* bi = new BranchInfo(MCFBranch::BranchFromInt(m_INBranch), m_iId, m_mBranchInstallInfo[BUILDID_PUBLIC]);
 			bi->setLinkInfo(getName());
 			m_vBranchList.push_back(bi);
 			m_INBranchIndex = 0;
@@ -1249,20 +1241,10 @@ void ItemInfo::setLinkInfo(const char* exe, const char* args)
 
 	UTIL::FS::Path path = UTIL::FS::PathWithFile(exe);
 
-#ifdef WIN32
-	uint32 platform = 100;
-#else
-#ifdef NIX64
-	uint32 platform = 120;
-#else
-	uint32 platform = 110;
-#endif
-#endif
-
 	if (m_mBranchInstallInfo.size() == 0)
-		m_mBranchInstallInfo[platform] = new UserCore::Item::BranchInstallInfo(platform, this);
+		m_mBranchInstallInfo[BUILDID_PUBLIC] = new UserCore::Item::BranchInstallInfo(BUILDID_PUBLIC, this);
 
-	BranchInstallInfo *bii = m_mBranchInstallInfo[platform];
+	BranchInstallInfo *bii = m_mBranchInstallInfo[BUILDID_PUBLIC];
 
 	if (m_vBranchList.size() == 0)
 		m_vBranchList.push_back(new UserCore::Item::BranchInfo(MCFBranch::BranchFromInt(0), getId(), bii));

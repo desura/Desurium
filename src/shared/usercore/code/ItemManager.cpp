@@ -99,16 +99,6 @@ ItemManager::~ItemManager()
 
 void ItemManager::migrateOldItemInfo(const char* olddb, const char* newdb)
 {
-#ifdef WIN32
-	uint32 biid = 100;
-#else
-#ifdef NIX64
-	uint32 biid = 120;
-#else
-	uint32 biid = 110;
-#endif
-#endif
-
 	sqlite3x::sqlite3_connection db(olddb);
 	sqlite3x::sqlite3_connection ndb(newdb);
 
@@ -225,7 +215,7 @@ void ItemManager::migrateOldItemInfo(const char* olddb, const char* newdb)
 				sqlite3x::sqlite3_command cmd(ndb, "INSERT OR IGNORE INTO installinfo VALUES (?,?,?,?,?, ?,?,?);");
 
 				cmd.bind(1, reader.getstring(0));
-				cmd.bind(2, (int)biid);
+				cmd.bind(2, BUILDID_PUBLIC);
 
 				cmd.bind(3, reader.getstring(14));
 				cmd.bind(4, reader.getstring(15));
@@ -259,7 +249,7 @@ void ItemManager::migrateOldItemInfo(const char* olddb, const char* newdb)
 			cmd.bind(9, reader.getstring(8));
 			cmd.bind(10, reader.getstring(9));
 			cmd.bind(11, reader.getstring(10));
-			cmd.bind(12, (int)biid);
+			cmd.bind(12, BUILDID_PUBLIC);
 
 			cmd.executenonquery();
 		}
@@ -274,7 +264,7 @@ void ItemManager::migrateOldItemInfo(const char* olddb, const char* newdb)
 			sqlite3x::sqlite3_command cmd(ndb, "INSERT OR IGNORE INTO exe VALUES (?,?,?,?,?, ?,?);");
 
 			cmd.bind(1, reader.getstring(0));
-			cmd.bind(2, (int)biid);
+			cmd.bind(2, BUILDID_PUBLIC);
 			cmd.bind(3, reader.getstring(1));
 			cmd.bind(4, reader.getstring(2));
 			cmd.bind(5, reader.getstring(3));
