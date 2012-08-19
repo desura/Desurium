@@ -249,6 +249,9 @@ void WGTWorker::doDownload()
 
 	try
 	{
+		if (m_szUrl.size() == 0 || m_szUrl == "NULL")
+			throw gcException(ERR_MCFSERVER, "No more download servers to use.");
+
 		if (!m_pMcfCon->isConnected())
 			m_pMcfCon->connect(m_szUrl.c_str(), m_pFileAuth);
 

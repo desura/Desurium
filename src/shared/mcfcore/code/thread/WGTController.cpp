@@ -613,6 +613,9 @@ bool WGTController::fillBlockList()
 
 bool WGTController::stealBlocks()
 {
+	//Disable this for now as it causes mcf download issues
+	return false;
+
 	size_t largestIndex = -1;
 	size_t largestCount = 0;
 
