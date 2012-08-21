@@ -67,6 +67,165 @@ class VoidEventArg
 {
 };
  
+#ifdef WIN32
+	typedef DWORD ThreadId;
+	typedef CRITICAL_SECTION MutexType;
+
+#else
+	typedef pthread_mutex_t MutexType;
+	typedef pthread_t ThreadId;
+
+	inline pthread_t GetCurrentThreadId()
+	{
+		return pthread_self();
+	}
+
+	inline void InitializeCriticalSection(MutexType *_mutex)
+	{
+		  pthread_mutexattr_t attr;
+		  pthread_mutexattr_init(&attr);
+		  pthread_mutexattr_settype(&attr,PTHREAD_MUTEX_ERRORCHECK);
+		  pthread_mutex_init(_mutex, &attr);
+		  pthread_mutexattr_destroy(&attr);
+	}
+
+	inline void DeleteCriticalSection(MutexType *_mutex)
+	{
+		pthread_mutex_unlock(_mutex);
+		pthread_mutex_destroy(_mutex);
+	}
+
+	inline void EnterCriticalSection(MutexType *_mutex)
+	{
+		pthread_mutex_trylock(_mutex);
+	}
+
+	inline void LeaveCriticalSection(MutexType *_mutex)
+	{
+		pthread_mutex_unlock(_mutex);
+	}
+
+	inline bool TryEnterCriticalSection(MutexType *_mutex)
+	{
+		return pthread_mutex_trylock(_mutex) == 0;
+	}
+#endif
+
+//Use this instead of thread::mutex so we dont depend on the boost threading libs
+class QuickMutex
+{
+public:
+	QuickMutex()
+	{
+		memset(&_mutex, 0, sizeof(MutexType));
+		InitializeCriticalSection(&_mutex);
+	}
+
+	virtual ~QuickMutex()
+	{
+		DeleteCriticalSection(&_mutex);
+	}
+ 
+	void lock()
+	{
+		EnterCriticalSection(&_mutex);
+	}
+ 
+	void unlock()
+	{
+		LeaveCriticalSection(&_mutex);
+	}
+
+	bool tryLock()
+	{
+		return !!TryEnterCriticalSection(&_mutex);
+	}
+
+private:
+	 MutexType _mutex;
+};
+
+class QuickThreadMutex
+{
+public:
+	QuickThreadMutex()
+	{
+		m_LockCount = 0;
+		m_ThreadId = 0;
+	}
+
+	void lock()
+	{
+		bool locked = false;
+
+		m_CountLock.lock();
+
+			if (m_ThreadId == GetCurrentThreadId())
+			{
+				m_LockCount++;
+				locked = true;
+			}
+			else if (m_RealLock.tryLock())
+			{
+				m_ThreadId = GetCurrentThreadId();
+				locked = true;
+			}
+
+		m_CountLock.unlock();
+
+		if (locked)
+			return;
+
+		m_RealLock.lock();
+		m_ThreadId = GetCurrentThreadId();
+	}
+ 
+	void unlock()
+	{
+		m_CountLock.lock();
+
+			if (m_LockCount == 0)
+			{
+				m_ThreadId = 0;
+				m_RealLock.unlock();
+			}
+
+			if (m_LockCount > 0 && m_ThreadId == GetCurrentThreadId())
+				m_LockCount--;
+
+		m_CountLock.unlock();
+	}
+
+	bool tryLock()
+	{
+		bool locked = false;
+
+		m_CountLock.lock();
+
+			if (m_ThreadId == GetCurrentThreadId())
+			{
+				m_LockCount++;
+				locked = true;
+			}
+			else if (m_RealLock.tryLock())
+			{
+				m_ThreadId = GetCurrentThreadId();
+				locked = true;
+			}
+
+		m_CountLock.unlock();
+
+		return locked;
+	}
+
+private:
+	QuickMutex m_CountLock;
+	QuickMutex m_RealLock;
+
+	ThreadId m_ThreadId;
+	int m_LockCount;
+};
+
 template <typename TArg>
 class DelegateI
 {
@@ -137,6 +296,9 @@ public:
 		//cant use this with void event
 		assert( typeid(TArg) != typeid(VoidEventArg) );
 
+		m_Lock.lock();
+		migratePending();
+
 		for (size_t x=0; x<m_vDelegates.size(); x++)
 		{
 			if (!m_vDelegates[x])
@@ -149,10 +311,16 @@ public:
 			if (m_bCancel)
 				break;
 		}
+
+		migratePending();
+		m_Lock.unlock();
 	}
 
 	void operator()()
 	{
+		m_Lock.lock();
+		migratePending();
+
 		for (size_t x=0; x<m_vDelegates.size(); x++)
 		{
 			if (!m_vDelegates[x])
@@ -165,23 +333,34 @@ public:
 			if (m_bCancel)
 				break;
 		}
+
+		migratePending();
+		m_Lock.unlock();
 	}
 
 	EventBase<TArg, TDel>& operator=(const EventBase<TArg, TDel>& e)
 	{
-		m_vDelegates = e.m_vDelegates;
+		m_Lock.lock();
 
-		std::for_each(e.m_vDelegates.begin(), e.m_vDelegates.end(), [&](TDel* pDel)
-		{
-			this->m_vDelegates.push_back(pDel->clone());
-		});
+		std::vector<TDel*> temp = m_vDelegates;
+		std::vector<TDel*> eTemp = e.m_vDelegates;
 
+		m_vDelegates.clear();
 
+		for (size_t x=0; x<eTemp.size(); x++)
+			m_vDelegates.push_back(eTemp[x]->clone());
+
+		for (size_t x=0; x<temp.size(); x++)
+			temp[x]->destroy();
+
+		m_Lock.unlock();
 		return *this;
 	}
 
 	EventBase<TArg, TDel>& operator+=(const EventBase<TArg, TDel>& e)
 	{
+		m_Lock.lock();
+
 		for (size_t x=0; x<e.m_vDelegates.size(); x++)
 		{
 			TDel* d = e.m_vDelegates[x];
@@ -190,11 +369,14 @@ public:
 				m_vDelegates.push_back(d->clone());
 		}
 
+		m_Lock.unlock();
 		return *this;
 	}
 
 	EventBase<TArg, TDel>& operator-=(const EventBase<TArg, TDel>& e)
 	{
+		m_Lock.lock();
+
 		std::vector<size_t> del;
 
 		for (size_t x=0; x<e.m_vDelegates.size(); x++)
@@ -213,6 +395,7 @@ public:
 		for (size_t x=del.size(); x>0; x--)
 			m_vDelegates.erase(m_vDelegates.begin()+del[x]);
 
+		m_Lock.unlock();
 		return *this;
 	}
 
@@ -222,8 +405,15 @@ public:
 		if (!d)
 			return *this;
 
-		if (findInfo(d) == UNKNOWN_ITEM)
-			m_vDelegates.push_back(d->clone());
+		m_PendingLock.lock();
+		m_vPendingDelegates.push_back(std::pair<bool, TDel*>(true, d->clone()));
+		m_PendingLock.unlock();
+
+		if (m_Lock.tryLock())
+		{
+			migratePending();
+			m_Lock.unlock();
+		}
 
 		d->destroy();
 		return *this;
@@ -234,17 +424,16 @@ public:
 		if (!d)
 			return *this;
 
-		for (auto it=m_vDelegates.begin(); it != m_vDelegates.end(); ++it)
-		{
-			if ((*it)->equals(d) == false)
-				continue;
+		m_PendingLock.lock();
+		m_vPendingDelegates.push_back(std::pair<bool, TDel*>(false, d->clone()));
+		m_PendingLock.unlock();
 
-			(*it)->destroy();
-			m_vDelegates.erase(it);
-			break;
+		if (m_Lock.tryLock())
+		{
+			migratePending();
+			m_Lock.unlock();
 		}
 
-		d->destroy();
 		return *this;
 	}
 
@@ -259,6 +448,8 @@ public:
 		if (i)
 			i->cancel();
 
+		m_Lock.lock();
+
 		for (size_t x=0; x<m_vDelegates.size(); x++)
 		{
 			if (m_vDelegates[x])
@@ -266,7 +457,26 @@ public:
 		}
 
 		m_vDelegates.clear();
+		m_Lock.unlock();
+
+		m_PendingLock.lock();
+
+		for (size_t x=0; x<m_vPendingDelegates.size(); x++)
+		{
+			if (m_vPendingDelegates[x].second)
+				m_vPendingDelegates[x].second->destroy();
+		}
+
+		m_PendingLock.unlock();
+
 		m_bCancel = false;
+	}
+
+	void flush()
+	{
+		m_Lock.lock();
+		migratePending();
+		m_Lock.unlock();
 	}
 
 protected:
@@ -281,8 +491,40 @@ protected:
 		return UNKNOWN_ITEM;
 	}
 
+	void migratePending()
+	{
+		m_PendingLock.lock();
+		
+		for (size_t x=0; x<m_vPendingDelegates.size(); x++)
+		{
+			if (m_vPendingDelegates[x].first)
+			{
+				if (findInfo(m_vPendingDelegates[x].second) == UNKNOWN_ITEM)
+					m_vDelegates.push_back(m_vPendingDelegates[x].second);
+				else
+					m_vPendingDelegates[x].second->destroy();
+			}
+			else
+			{
+				size_t index = findInfo(m_vPendingDelegates[x].second);
+				m_vPendingDelegates[x].second->destroy();
+
+				if (index != UNKNOWN_ITEM)
+					m_vDelegates.erase(m_vDelegates.begin()+index);
+			}
+		}
+
+		m_vPendingDelegates.clear();
+		m_PendingLock.unlock();
+	}
+
 private:
+	QuickThreadMutex m_Lock;
+	QuickThreadMutex m_PendingLock;
+
 	std::vector<TDel*> m_vDelegates;
+	std::vector<std::pair<bool, TDel*> > m_vPendingDelegates;
+	
 	bool m_bCancel;
 
 	TDel* m_pCurDelegate;

@@ -214,11 +214,15 @@ ItemTabPage::~ItemTabPage()
 			UserCore::Misc::UploadInfoThreadI* item = GetUploadMng()->getItem(x);
 
 			gcString key = item->getKey();
-			*item->getUploadProgressEvent()  -= guiExtraDelegate(this, &ItemTabPage::onUploadProgress, key);
+			*item->getUploadProgressEvent() -= guiExtraDelegate(this, &ItemTabPage::onUploadProgress, key);
 			*item->getActionEvent() -= guiExtraDelegate(this, &ItemTabPage::onUploadAction, key);
+
+			item->getUploadProgressEvent()->flush();
+			item->getActionEvent()->flush();
 		}
 
 		*GetUploadMng()->getUpdateEvent() -= guiDelegate(this, &ItemTabPage::onUploadUpdate);
+		GetUploadMng()->getUpdateEvent()->flush();
 	}
 }
 

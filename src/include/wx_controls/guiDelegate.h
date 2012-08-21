@@ -133,7 +133,7 @@ public:
 
 	void registerDelegate(wxDelegate* d)
 	{
-		deregisterDelegate(d);
+		doDeregisterDelegate(d);
 
 		m_ListLock.lock();
 		m_vDelgateList.push_back(d);
@@ -142,18 +142,8 @@ public:
 
 	void deregisterDelegate(wxDelegate* d)
 	{
-		m_ListLock.lock();
-
-		for (size_t x=0; x<m_vDelgateList.size(); x++)
-		{
-			if (m_vDelgateList[x] == d)
-			{
-				m_vDelgateList.erase(m_vDelgateList.begin()+x);
-				break;
-			}
-		}
-
-		m_ListLock.unlock();		
+		bool bFound = doDeregisterDelegate(d);
+		assert( bFound );
 	}
 
 	void cleanUpEvents()
@@ -169,6 +159,24 @@ public:
 	}
 
 private:
+	bool doDeregisterDelegate(wxDelegate* d)
+	{
+		bool bFound = false;
+		m_ListLock.lock();
+
+		for (size_t x=0; x<m_vDelgateList.size(); x++)
+		{
+			if (m_vDelgateList[x] == d)
+			{
+				m_vDelgateList.erase(m_vDelgateList.begin()+x);
+				bFound = true;
+				break;
+			}
+		}
+
+		m_ListLock.unlock();	
+		return bFound;
+	}
 
 	void onEventCallBack(wxGuiDelegateEvent& event)
 	{
@@ -290,10 +298,19 @@ public:
 			ObjDelegate<TObj, TArg>::m_pObj->registerDelegate(this);
 	}
 
+protected:
+	GuiDelegate(MODE mode) : ObjDelegate<TObj, TArg>()
+	{
+		m_Mode = mode;
+		m_pInvoker = NULL;
+	}
+
+public:
 	~GuiDelegate()
 	{
 		if (ObjDelegate<TObj, TArg>::m_pObj)
 			ObjDelegate<TObj, TArg>::m_pObj->deregisterDelegate(this);
+
 	}
 
 	virtual void destroy()
@@ -359,11 +376,6 @@ protected:
 		m_InvokerMutex.lock();
 		m_pInvoker = i;
 		m_InvokerMutex.unlock();	
-	}
-
-	GuiDelegate(MODE mode) : ObjDelegate<TObj, TArg>()
-	{
-		m_Mode = mode;
 	}
 
 	void init(TObj* t, TFunct f)
@@ -594,6 +606,14 @@ public:
 			ObjDelegateV<TObj>::m_pObj->registerDelegate(this);
 	}
 
+protected:
+	GuiDelegateV(MODE mode) : ObjDelegateV<TObj>()
+	{
+		m_Mode = mode;
+		m_pInvoker = NULL;
+	}
+
+public:
 	~GuiDelegateV()
 	{
 		if (ObjDelegateV<TObj>::m_pObj)
@@ -661,11 +681,6 @@ protected:
 		m_InvokerMutex.lock();
 		m_pInvoker = i;
 		m_InvokerMutex.unlock();
-	}
-
-	GuiDelegateV(MODE mode) : ObjDelegateV<TObj>()
-	{
-		m_Mode = mode;
 	}
 
 	void init(TObj* t, TFunct f)
