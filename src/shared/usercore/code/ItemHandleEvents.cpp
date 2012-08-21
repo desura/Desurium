@@ -33,6 +33,7 @@ class EventItemI
 {
 public:
 	virtual void post(Helper::ItemHandleHelperI* helper)=0;
+	virtual ~EventItemI(){}
 };
 
 class VoidEventItem : public EventItemI

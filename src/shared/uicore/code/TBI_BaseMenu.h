@@ -31,6 +31,7 @@ public:
 	virtual void onMenuSelect(wxCommandEvent& event)=0;
 
 	virtual const wchar_t* getMenuName()=0;
+	virtual ~TBIBaseMenu(){}
 
 protected:
 	void loadIcon(wxMenuItem* item, const char* icon);
