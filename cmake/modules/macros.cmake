@@ -101,7 +101,7 @@ macro(add_desura_test name category neededLibs)
     add_executable(${name} ${${name}_SRC})
     include_directories(
       ${CMAKE_SOURCE_DIR}/src/tests
-      ${Boost_INCLUDE_DIRECTORY}
+      ${Boost_INCLUDE_DIR}
     )
     target_link_libraries(${name}
       ${Boost_LIBRARIES}
