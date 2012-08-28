@@ -81,7 +81,7 @@ install(FILES ${IMAGES}
 )
 
 install(FILES run.sh
-        DESTINATION ${DATA_INSTALL_DIR}
+        DESTINATION ${BIN_INSTALL_DIR}
         PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
                     GROUP_READ             GROUP_EXECUTE
                     WORLD_READ             WORLD_EXECUTE
