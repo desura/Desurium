@@ -38,6 +38,17 @@ namespace LIN
 		BT_SCRIPT,	// Launch using xdg-open
 		BT_UNKNOWN,	// Error
 	};
+
+	/*! \brief Gets the path from which the executable was launched.
+	 *  \return Returns a std::string for the path without an ending '/'
+	 *  \attention Currently this function serves the same purpose as getAppPath()
+	 *
+	 *  Uses /proc/self/exe to get the path, from which the executable was launched.
+	 *  Uses readlink() - Read more about readlink at http://linux.die.net/man/2/readlink
+	 *  Contrary to readlink(), this function appends a null byte to the string.
+	 *  This function was implemented to replace a previous ExeDir class
+	 */
+	std::string getExecuteDir(void);
 	
 	//! Returns a std::string of the path expanded
 	//!
