@@ -81,14 +81,14 @@ install(FILES ${IMAGES}
 )
 
 install(FILES run.sh
-        DESTINATION ${INSTALL_DIR}
+        DESTINATION ${DATA_INSTALL_DIR}
         PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
                     GROUP_READ             GROUP_EXECUTE
                     WORLD_READ             WORLD_EXECUTE
 )
 
 install(FILES util.sh
-        DESTINATION ${INSTALL_DIR}
+        DESTINATION ${DATA_INSTALL_DIR}
         PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
                     GROUP_READ             GROUP_EXECUTE
                     WORLD_READ             WORLD_EXECUTE
