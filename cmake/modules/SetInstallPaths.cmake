@@ -1,9 +1,3 @@
-# set this with cmake -DCMAKE_INSTALL_PREFIX=/where/to/install
-set(INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
-set(BIN_INSTALL_DIR ${INSTALL_DIR})
-set(LIB_INSTALL_DIR ${INSTALL_DIR}/lib)
-set(DATA_INSTALL_DIR ${INSTALL_DIR})
-
 set(UNIX_DEFAULT_INSTALL_DIR "/usr/share/desura")
 set(WIN_DEFAULT_INSTALL_DIR "")
 
@@ -15,3 +9,10 @@ endif()
 
 set(CMAKE_INSTALL_PREFIX ${DEFAULT_INSTALL_DIR}
     CACHE STRING "Desura Install Prefix")
+
+# set this with cmake -DCMAKE_INSTALL_PREFIX=/where/to/install
+set(INSTALL_DIR ${CMAKE_INSTALL_PREFIX})
+set(BIN_INSTALL_DIR ${INSTALL_DIR})
+set(LIB_INSTALL_DIR ${INSTALL_DIR}/lib)
+set(DATA_INSTALL_DIR ${INSTALL_DIR})
+
