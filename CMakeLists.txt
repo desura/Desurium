@@ -21,6 +21,12 @@
 #   DEPOT_TOOLS_URL                     URL to depot_tools archive
 #   WXWIDGET_URL                        URL to wxWidget archive, has to be 2.9.3
 #
+# installation options:
+#   BINDIR          ./bin               the directory where binaries should be installed, a relative path will be
+#                                       relative to CMAKE_INSTALL_PREFIX, an absolute will stay absolute
+#   RUNTIME_LIBDIR  ./lib/desura        the directory where runtime loaded libs should be stored
+#   DATADIR         ./share/desura      same as RUNTIME_LIBDIR only for data files
+#
 # unix-only options:
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
 #   WITH_ARES       ON                  build CURL with ares support (c-ares REQUIRED)

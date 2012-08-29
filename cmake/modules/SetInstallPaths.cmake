@@ -8,7 +8,7 @@ set(CMAKE_INSTALL_PREFIX ${DEFAULT_INSTALL_DIR}
     CACHE STRING "Desura Install Prefix")
 set(BINDIR "./bin"
     CACHE STRING "Desura Bin Install Dir")
-set(LIBDIR "./bin/lib"
+set(RUNTIME_LIBDIR "./bin/lib" # TODO: move to ./lib/desura
     CACHE STRING "Desura Lib Dir")
 set(DATADIR "./share/desura"
     CACHE STRING "Desura Data Install Dir")
@@ -20,10 +20,10 @@ else()
   set(BIN_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${BINDIR})
 endif()
 
-if(IS_ABSOLUTE ${LIBDIR})
-  set(LIB_INSTALL_DIR ${LIBDIR})
+if(IS_ABSOLUTE ${RUNTIME_LIBDIR})
+  set(LIB_INSTALL_DIR ${RUNTIME_LIBDIR})
 else()
-  set(LIB_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${LIBDIR})
+  set(LIB_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${RUNTIME_LIBDIR})
 endif()
 
 if(IS_ABSOLUTE ${DATADIR})
