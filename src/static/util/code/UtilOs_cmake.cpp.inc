@@ -19,16 +19,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Common.h"
 #include "util/UtilOs.h"
 
+#include <boost/filesystem.hpp>
+
 namespace UTIL
 {
 namespace OS
 {
 
+using namespace boost::filesystem;
+
 std::wstring getDataPath(std::wstring extra)
 {
-	std::wstring dataDir = L"@DATA_INSTALL_DIR@/"; // Use to be 'data'.
+	path dataDir = L"@DATA_INSTALL_DIR@";
 	
-	return dataDir + extra;
+	// we need this for windows, where all files are relativ in the desura application folder or for local Linux
+	// installations (if you want to move it around your Document directory)
+	if (dataDir.is_relative())
+		dataDir = getCurrentDir() / dataDir;
+
+	return (dataDir / extra).wstring();
 }
 
 }
