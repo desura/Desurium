@@ -26,6 +26,7 @@
 #                                       relative to CMAKE_INSTALL_PREFIX, an absolute will stay absolute
 #   RUNTIME_LIBDIR  ./lib/desura        the directory where runtime loaded libs should be stored
 #   DATADIR         ./share/desura      same as RUNTIME_LIBDIR only for data files
+#   DESKTOPDIR      depends on OS       the directory where the desktop file or link should be installed
 #
 # unix-only options:
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps

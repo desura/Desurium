@@ -12,6 +12,8 @@ set(RUNTIME_LIBDIR "./lib/desura"
     CACHE STRING "Desura Lib Dir")
 set(DATADIR "./share/desura"
     CACHE STRING "Desura Data Install Dir")
+set(DESKTOPDIR "/usr/share/application"
+    CACHE STRING "Desktop installation direcoty")
 
 # set variables used by cmake
 if(IS_ABSOLUTE ${BINDIR})
@@ -36,5 +38,11 @@ if(IS_ABSOLUTE ${DATADIR})
 else()
   set(DATA_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${DATADIR})
   file(RELATIVE_PATH DATA_INSOURCE_DIR ${LIB_INSTALL_DIR} ${DATA_INSTALL_DIR})
+endif()
+
+if(IS_ABSOLUTE ${DESKTOPDIR})
+  set(DESKTOP_INSTALL_DIR ${DESKTOPDIR})
+else()
+  message(FATAL_ERROR "DESKTOPDIR has to be absolute, anything else doesn't make sense")
 endif()
 
