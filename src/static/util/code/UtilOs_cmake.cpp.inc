@@ -40,6 +40,17 @@ std::wstring getDataPath(std::wstring extra)
 	return (dataDir / extra).wstring();
 }
 
+gcString getRuntimeLibPath()
+{
+//	path runtimeLibDir = L"@RUNTIME_LIB_INSOURCE_DIR@/";
+	
+//	if (runtimeLibDir.is_relative())
+//		runtimeLibDir = getCurrentDir() / runtimeLibDir;
+	
+	//return runtimeLibDir.string();
+	return getCurrentDir() + L"/";
+}
+
 }
 }
 
