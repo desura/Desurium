@@ -94,7 +94,7 @@ COMMON_DEPEND="
 	sys-libs/zlib
 	virtual/jpeg
 	x11-libs/gtk+:2
-	=x11-libs/wxGTK-2.9.3:2.9
+	=x11-libs/wxGTK-2.9.3.1
 
 	amd64? ( 32bit? (
 		sys-devel/gcc[multilib]
