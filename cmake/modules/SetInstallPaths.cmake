@@ -13,7 +13,7 @@ set(RUNTIME_LIBDIR "lib"
 set(DATADIR ""
     CACHE STRING "Desura Data Install Dir")
 set(DESKTOPDIR "/usr/share/application"
-    CACHE STRING "Desktop installation direcoty")
+    CACHE STRING "Desktop installation directory")
 
 # set variables used by cmake
 if(IS_ABSOLUTE ${BINDIR})
