@@ -6,11 +6,11 @@ endif()
 
 set(CMAKE_INSTALL_PREFIX ${DEFAULT_INSTALL_DIR}
     CACHE STRING "Desura Install Prefix")
-set(BINDIR "./bin"
+set(BINDIR ""
     CACHE STRING "Desura Bin Install Dir")
-set(RUNTIME_LIBDIR "./lib/desura"
+set(RUNTIME_LIBDIR "lib"
     CACHE STRING "Desura Lib Dir")
-set(DATADIR "./share/desura"
+set(DATADIR ""
     CACHE STRING "Desura Data Install Dir")
 set(DESKTOPDIR "/usr/share/application"
     CACHE STRING "Desktop installation direcoty")
