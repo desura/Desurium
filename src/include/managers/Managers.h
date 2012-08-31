@@ -52,6 +52,7 @@ public:
 	virtual bool parseFile(const char* file)=0;
 
 	virtual void destroy()=0;
+	virtual ~ThemeStubI(){}
 };
 
 class ThemeManagerI

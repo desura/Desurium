@@ -56,6 +56,7 @@ class OutValI
 {
 public:
 	virtual bool isOperand()=0;
+	virtual ~OutValI(){}
 };
 
 class Operand : public OutValI
