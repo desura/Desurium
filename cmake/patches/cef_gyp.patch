@@ -1,0 +1,360 @@
+diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
+--- cef.gyp	2012-05-09 11:27:19.094674201 +0200
++++ cef.gyp	2012-05-09 11:32:01.267658243 +0200
+@@ -129,6 +129,7 @@
+                   '<(SHARED_INTERMEDIATE_DIR)/webkit/webkit_chromium_resources.pak',
+                   '<(SHARED_INTERMEDIATE_DIR)/webkit/webkit_strings_en-US.pak',
+                   '<(SHARED_INTERMEDIATE_DIR)/webkit/webkit_resources.pak',
++                  '<(SHARED_INTERMEDIATE_DIR)/cef/cef_resources.pak',
+                 ],
+               },
+               'inputs': [
+@@ -172,9 +173,48 @@
+           ],
+         }],
+         [ 'OS=="linux" or OS=="freebsd" or OS=="openbsd"', {
++         'variables': {
++            'repack_path': '../tools/data_pack/repack.py',
++          },
++          'actions': [
++            {
++              # TODO(mark): Make this work with more languages than the
++              # hardcoded en-US.
++              'action_name': 'repack_locale',
++              'variables': {
++                'pak_inputs': [
++                  '<(SHARED_INTERMEDIATE_DIR)/net/net_resources.pak',
++                  '<(SHARED_INTERMEDIATE_DIR)/ui/gfx/gfx_resources.pak',
++                  '<(SHARED_INTERMEDIATE_DIR)/webkit/webkit_chromium_resources.pak',
++                  '<(SHARED_INTERMEDIATE_DIR)/webkit/webkit_strings_en-US.pak',
++                  '<(SHARED_INTERMEDIATE_DIR)/webkit/webkit_resources.pak',
++                  '<(SHARED_INTERMEDIATE_DIR)/cef/cef_resources.pak',
++                ],
++              },
++              'inputs': [
++                '<(repack_path)',
++                '<@(pak_inputs)',
++              ],
++              'outputs': [
++                '<(INTERMEDIATE_DIR)/repack/cefclient.pak',
++              ],
++              'action': ['python', '<(repack_path)', '<@(_outputs)', '<@(pak_inputs)'],
++            },
++          ],
+           'sources': [
+             'tests/cefclient/cefclient_gtk.cpp',
+           ],
++          'dependencies': [
++            '<(DEPTH)/build/linux/system.gyp:gtk',
++            '<(DEPTH)/tools/xdisplaycheck/xdisplaycheck.gyp:xdisplaycheck',
++	        '../build/linux/system.gyp:gtk',
++	        '../third_party/WebKit/Source/WebKit/chromium/WebKit.gyp:webkit',
++			'../media/media.gyp:media',
++          ],
++          # for:  cefclient_gtk.cc
++          'cflags': [
++				'-Wno-multichar',
++          ],
+         }],
+       ],
+     },
+@@ -442,6 +482,9 @@
+             'include/internal/cef_win.h',
+             'libcef_dll/libcef_dll.rc',
+           ],
++          'resource_include_dirs': [
++            '$(OutDir)/obj/global_intermediate/webkit',
++          ], 		  
+           'link_settings': {
+             'libraries': [
+               '-lcomctl32.lib',
+@@ -571,6 +614,15 @@
+         'libcef_dll/wrapper/cef_zip_archive.cc',
+         'libcef_dll/wrapper/libcef_dll_wrapper.cc',
+       ],
++      'conditions': [
++        [ 'OS=="linux" or OS=="freebsd" or OS=="openbsd"', {
++           'dependencies' : [
++              '<(DEPTH)/build/linux/system.gyp:gtk',
++              '<(DEPTH)/tools/xdisplaycheck/xdisplaycheck.gyp:xdisplaycheck',
++	          '../build/linux/system.gyp:gtk'
++           ],
++        }],
++      ],
+     },
+     {
+       'target_name': 'libcef_static',
+@@ -620,6 +672,7 @@
+         '../webkit/support/webkit_support.gyp:webkit_gpu',
+         '../webkit/support/webkit_support.gyp:webkit_resources',
+         '../webkit/support/webkit_support.gyp:webkit_strings',
++        'cef_resources',
+       ],
+       'sources': [
+         'include/cef.h',
+@@ -734,10 +787,11 @@
+         'libcef/v8_impl.h',
+         'libcef/web_urlrequest_impl.cc',
+         'libcef/web_urlrequest_impl.h',
+-        'libcef/webview_host.cc',
+         'libcef/webview_host.h',
+         'libcef/webwidget_host.cc',
+         'libcef/webwidget_host.h',
++        'libcef/cef_paths.cc',
++        'libcef/cef_paths.h',	
+         'libcef/xml_reader_impl.cc',
+         'libcef/xml_reader_impl.h',
+         'libcef/zip_reader_impl.cc',
+@@ -807,6 +861,9 @@
+           ],
+         }],
+         [ 'OS=="linux" or OS=="freebsd" or OS=="openbsd"', {
++          'dependencies' : [
++            '../build/linux/system.gyp:gtk',
++          ],
+           'sources': [
+             'include/internal/cef_types_linux.h',
+             'include/internal/cef_linux.h',
+@@ -818,8 +875,241 @@
+             'libcef/webview_host_gtk.cc',
+             'libcef/webwidget_host_gtk.cc',
+           ],
++          'cflags_cc': [
++            '-Wno-conversion-null',
++          ],
+         }],
+       ],
+     },
+-  ]
++	{
++		'target_name': 'cef_desura',
++		'type': 'shared_library',
++		'msvs_guid': '6DDD4763-2525-02FD-1CB2-5B5021AC5E96',
++		'dependencies': [
++		        '../base/base.gyp:base',
++		        '../base/base.gyp:base_i18n',
++		        '../build/temp_gyp/googleurl.gyp:googleurl',
++		        '../media/media.gyp:media',
++		        '../net/net.gyp:net',
++		        '../net/net.gyp:net_resources',
++		        '../printing/printing.gyp:printing',
++		        '../sdch/sdch.gyp:sdch',
++		        '../skia/skia.gyp:skia',
++		        '../third_party/bzip2/bzip2.gyp:bzip2',
++		        '../third_party/ffmpeg/ffmpeg.gyp:ffmpeg',
++		        '../third_party/icu/icu.gyp:icui18n',
++		        '../third_party/icu/icu.gyp:icuuc',
++		        '../third_party/libjpeg_turbo/libjpeg.gyp:libjpeg',
++		        '../third_party/libpng/libpng.gyp:libpng',
++		        '../third_party/libxml/libxml.gyp:libxml',
++		        '../third_party/libxslt/libxslt.gyp:libxslt',
++		        '../third_party/modp_b64/modp_b64.gyp:modp_b64',
++		        '../third_party/WebKit/Source/WebCore/WebCore.gyp/WebCore.gyp:webcore',
++		        '../third_party/WebKit/Source/WebKit/chromium/WebKit.gyp:concatenated_devtools_css',
++		        '../third_party/WebKit/Source/WebKit/chromium/WebKit.gyp:concatenated_devtools_js',
++		        '../third_party/WebKit/Source/WebKit/chromium/WebKit.gyp:devtools_html',
++		        '../third_party/WebKit/Source/WebKit/chromium/WebKit.gyp:inspector_resources',
++		        '../third_party/WebKit/Source/WebKit/chromium/WebKit.gyp:webkit',
++		        '../third_party/zlib/zlib.gyp:zlib',
++		        '../ui/ui.gyp:gfx_resources',
++		        '../ui/ui.gyp:ui',
++		        '../webkit/support/webkit_support.gyp:appcache',
++		        '../webkit/support/webkit_support.gyp:blob',
++		        '../webkit/support/webkit_support.gyp:database',
++		        '../webkit/support/webkit_support.gyp:fileapi',
++		        '../webkit/support/webkit_support.gyp:glue',
++		        '../webkit/support/webkit_support.gyp:quota',
++		        '../webkit/support/webkit_support.gyp:webkit_gpu',
++		        '../webkit/support/webkit_support.gyp:webkit_resources',
++		        '../webkit/support/webkit_support.gyp:webkit_strings',
++		        'libcef_static',
++		],
++		'defines': [
++			'BUILDING_CEF_SHARED',
++			'IGNORE_C_API',
++		],
++		'include_dirs' : [
++			'.',
++			'..',
++			'cef_desura',
++			'cef_desura_includes',
++		],
++		'resource_include_dirs' :  [
++			'.',
++			'..',
++		],		
++		'sources' : [
++			'cef_desura/ChromiumBrowser.cpp',
++			'cef_desura/ChromiumBrowser.h',
++			'cef_desura/ChromiumBrowserEvents.cpp',
++			'cef_desura/ChromiumBrowserEvents.h',
++			'cef_desura/Cookie.cpp',
++			'cef_desura/JavaScriptExtender.cpp',
++			'cef_desura/JavaScriptExtender.h',
++			'cef_desura/JavaScriptFactory.cpp',
++			'cef_desura/JavaScriptFactory.h',
++			'cef_desura/JavaScriptObject.cpp',
++			'cef_desura/JavaScriptObject.h',
++			'cef_desura/JavaScriptContext.cpp',
++			'cef_desura/JavaScriptContext.h',			
++			'cef_desura/MenuInfo.cpp',
++			'cef_desura/MenuInfo.h',
++			'cef_desura/SchemeExtender.cpp',
++			'cef_desura/SchemeExtender.h',
++			'cef_desura/SchemePost.cpp',
++			'cef_desura/SchemePost.h',
++			'cef_desura/SchemeRequest.cpp',
++			'cef_desura/SchemeRequest.h',
++		],
++		'all_dependent_settings': {
++			'cflags_cc': [
++				'-std=c++98',
++			],
++		},
++		'conditions' : [
++			['OS=="win"', {
++				'dependencies': [
++			            '../breakpad/breakpad.gyp:breakpad_handler',
++			            '../third_party/angle/src/build_angle.gyp:libEGL',
++			            '../third_party/angle/src/build_angle.gyp:libGLESv2',
++			            '../views/views.gyp:views',
++				],
++				'sources': [
++			            '$(OutDir)/obj/global_intermediate/webkit/webkit_chromium_resources.rc',
++			            '$(OutDir)/obj/global_intermediate/webkit/webkit_resources.rc',
++			            '$(OutDir)/obj/global_intermediate/webkit/webkit_strings_en-US.rc',
++			            'include/cef_types_win.h',
++			            'include/cef_win.h',
++			            'libcef_dll/libcef_dll.rc',
++				],
++				'resource_include_dirs': [
++					'$(OutDir)/obj/global_intermediate/webkit',
++				], 		  
++				'link_settings': {
++					'libraries': [
++						'-lcomctl32.lib',
++					],
++				},
++			}],
++			[ 'OS=="linux" or OS=="freebsd" or OS=="openbsd"', {
++				'dependencies' : [
++					'<(DEPTH)/build/linux/system.gyp:gtk',
++					'<(DEPTH)/tools/xdisplaycheck/xdisplaycheck.gyp:xdisplaycheck',
++					'../build/linux/system.gyp:gtk',
++				],
++				'variables': {
++					'repack_path': '../tools/data_pack/repack.py',
++				  },
++				  'actions': [
++					{
++					  # TODO(mark): Make this work with more languages than the
++					  # hardcoded en-US.
++					  'action_name': 'repack_locale',
++					  'variables': {
++						'pak_inputs': [
++						  '<(SHARED_INTERMEDIATE_DIR)/net/net_resources.pak',
++						  '<(SHARED_INTERMEDIATE_DIR)/ui/gfx/gfx_resources.pak',
++						  '<(SHARED_INTERMEDIATE_DIR)/webkit/webkit_chromium_resources.pak',
++						  '<(SHARED_INTERMEDIATE_DIR)/webkit/webkit_strings_en-US.pak',
++						  '<(SHARED_INTERMEDIATE_DIR)/webkit/webkit_resources.pak',
++			              '<(SHARED_INTERMEDIATE_DIR)/cef/cef_resources.pak',
++						],
++					  },
++					  'inputs': [
++						'<(repack_path)',
++						'<@(pak_inputs)',
++					  ],
++					  'outputs': [
++						'<(INTERMEDIATE_DIR)/repack/cef_data.pak',
++					  ],
++					  'action': ['python', '<(repack_path)', '<@(_outputs)', '<@(pak_inputs)'],
++					},
++				  ],
++			}],
++		],
++	},
++    {
++      'target_name': 'cef_resources',
++      'type': 'none',
++      'actions': [
++        {
++          'action_name': 'cef_resources',
++          'variables': {
++            'grit_path': '../tools/grit/grit.py',
++            'input_path': './cef_resources.grd',
++            'out_dir': '<(SHARED_INTERMEDIATE_DIR)/cef',
++          },
++          'inputs': [
++            '<(input_path)',
++          ],
++          'outputs': [
++            '<(out_dir)/grit/cef_resources.h',
++            '<(out_dir)/cef_resources.pak',
++          ],
++          'action': ['python', '<(grit_path)',
++              '-i', '<(input_path)',
++              'build', '-o', '<(out_dir)',
++              '<@(grit_defines)'],
++          'message': 'Generating resources from <(input_path)',
++        },
++      ],
++    },
++	{
++		'target_name': 'wxclient',
++		'type': 'executable',
++		'msvs_guid': '0330D7E8-22A6-827F-D2D3-7660A75E73E1',
++		'dependencies': [
++			'cef_desura',
++		],
++		'include_dirs' : [
++			'cef_desura_includes',
++		],
++		'defines': [
++			'NIX',
++		],
++		'sources': [
++			'tests/wxclient/main.cpp',
++		],
++		'conditions' : [
++			['OS=="win"', {
++			}],
++			[ 'OS=="linux" or OS=="freebsd" or OS=="openbsd"', {
++				'cflags': [
++					'<!(wx-config --cppflags)',
++					'-B /usr/bin/ld.bfd',
++					'<!(pkg-config --cflags gtk+-2.0)',
++				],
++				'ldflags' : [
++					'<!(wx-config --libs)',
++					'-B /usr/bin/ld.bfd',
++					'<!(pkg-config --libs gtk+-2.0)',
++				],
++			}],
++		],		
++	}],
++	'conditions' : [
++		[ 'OS=="linux" or OS=="freebsd" or OS=="openbsd"', {
++			'targets' : [
++			{
++				'target_name': 'gtkclient',
++				'type': 'executable',
++				'msvs_guid': '0330D7E8-22A6-827F-D2D3-7660A75E73E1',
++				'dependencies': [
++					'cef_desura',
++					'<(DEPTH)/build/linux/system.gyp:gtk',
++					'<(DEPTH)/tools/xdisplaycheck/xdisplaycheck.gyp:xdisplaycheck',
++					'../build/linux/system.gyp:gtk',
++				],
++				'include_dirs' : [
++					'cef_desura_includes',
++				],
++				'defines': [
++					'NIX',
++				],
++				'sources': [
++					'tests/gtkclient/cefclient_gtk.cpp',
++				],		
++			}] 
++		}],
++	],
+ }
