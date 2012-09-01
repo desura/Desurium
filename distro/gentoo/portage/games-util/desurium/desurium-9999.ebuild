@@ -87,7 +87,10 @@ COMMON_DEPEND="
 	media-libs/libpng:0
 	media-libs/libwebp
 	media-libs/speex
-	net-misc/curl[ares]
+	|| (
+		net-misc/curl[adns]
+		net-misc/curl[ares]
+	)
 	net-print/cups
 	>=sys-devel/gcc-4.5
 	sys-libs/zlib
