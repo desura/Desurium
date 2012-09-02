@@ -100,6 +100,8 @@ public:
 		return m_szRedirectUrl.c_str();
 	}
 
+	virtual ~DesuraSchemeBase(){}
+
 protected:
 	size_t m_uiResponseSize;
 	gcString m_szMimeType;

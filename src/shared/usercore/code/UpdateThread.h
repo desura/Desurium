@@ -35,6 +35,7 @@ public:
 	virtual void doRun()=0;
 	virtual void onStop()=0;
 	virtual bool onMessageReceived(const char* resource, TiXmlNode* root)=0;
+	virtual ~UpdateThreadI(){}
 
 	Event<bool> isStoppedEvent;
 

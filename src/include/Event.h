@@ -234,6 +234,7 @@ public:
 	virtual bool equals(DelegateI<TArg>* d)=0;
 	virtual DelegateI<TArg>* clone()=0;
 	virtual void destroy()=0;
+	virtual ~DelegateI(){}
 };
 
 class DelegateVI
@@ -243,6 +244,7 @@ public:
 	virtual bool equals(DelegateVI* d)=0;
 	virtual DelegateVI* clone()=0;
 	virtual void destroy()=0;
+	virtual ~DelegateVI(){}
 };
 
 

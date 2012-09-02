@@ -59,7 +59,7 @@ public:
 		m_pScriptCore = scriptInternal;
 	}
 
-	~ScriptTask()
+	virtual ~ScriptTask()
 	{
 		m_DelLock.lock();
 		m_DelLock.unlock();
