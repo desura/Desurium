@@ -20,6 +20,9 @@ target_link_libraries(util_web
     ${CURL_LIBRARIES}
 )
 
+# configure source file to hardcode paths
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/code/UtilOs_cmake.cpp.inc ${CMAKE_GEN_SRC_DIR}/util/UtilOs_cmake.cpp)
+
 file(GLOB Sources code/gcBuff.cpp
                   code/MD5Progressive.cpp
                   code/MD5Wrapper.cpp
@@ -32,7 +35,8 @@ file(GLOB Sources code/gcBuff.cpp
                   code/UtilOs.cpp
                   code/UtilString.cpp
                   code/third_party/GeneralHashFunctions.cpp
-                  code/third_party/md5.cpp)
+                  code/third_party/md5.cpp
+                  ${CMAKE_GEN_SRC_DIR}/util/UtilOs_cmake.cpp)
 
 if(WIN32)
   file(GLOB PlattformSources code/gcDDE.cpp

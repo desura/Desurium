@@ -30,6 +30,8 @@ typedef void* (*FactoryFn)(const char*);
 	#include <dlfcn.h>
 #endif
 
+#include "util/UtilOs.h"
+
 class SharedObjectLoader
 {
 public:
@@ -67,7 +69,7 @@ public:
 		m_bHasFailed = false;
 
 #ifdef NIX
-		m_hHandle = dlopen(module, RTLD_NOW);
+		m_hHandle = dlopen((UTIL::OS::getRuntimeLibPath() + module).c_str(), RTLD_NOW);
 
 		if (!m_hHandle)
 			fprintf(stderr, "%s:%d - Error loading library %s: '%s' [LD_LIBRARY_PATH=%s]\n", __FILE__, __LINE__, module, dlerror(), getenv("LD_LIBRARY_PATH"));
