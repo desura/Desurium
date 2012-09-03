@@ -117,6 +117,9 @@ namespace OS
 	
 	gcString getAbsPath(const gcString& path);
 	
+	//! Gets the folder for runtime lib loading
+	//!
+	gcString getRuntimeLibPath();
 	
 	gcString getRelativePath(const gcString &path);
 }

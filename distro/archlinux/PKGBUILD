@@ -53,7 +53,13 @@ build() {
   fi
   cd build
   msg "Running cmake..."
-  cmake -D32BIT_SUPPORT=$MULTILIB -DCMAKE_INSTALL_PREFIX=/usr/share/desurium ..
+  CMAKE_ARGS="
+    -D32BIT_SUPPORT=$MULTILIB
+    -DCMAKE_INSTALL_PREFIX=/usr
+    -DBINDIR=/usr/bin
+    -DDATADIR=/usr/share/
+    -DRUNTIME_LIBDIR=/usr/lib/"
+  cmake $CMAKE_ARGS ..
   msg "Running make..."
   make
 }
@@ -73,8 +79,8 @@ package() {
 
   gendesk -n ../PKGBUILD
   sed -i \
-    -e 's/Icon=.*$/Icon=desurium/' \
-    -e 's/Exec=.*$/Exec=desurium/' \
+    -e 's/Icon=.*$/Icon=desura/' \
+    -e 's/Exec=.*$/Exec=desura/' \
     -e 's/Categories=.*$/Categories=Game;/' \
     -e 's/Name=.*$/Name=Desurium/' ${pkgname}.desktop
 
@@ -89,7 +95,6 @@ package() {
   msg "Compiling done"
   
   mkdir -p ${pkgdir}/usr/bin
-  ln -sf /usr/share/desurium/run.sh ${pkgdir}/usr/bin/desurium
 }
 
 # vim:set ts=2 sw=2 et:
