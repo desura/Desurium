@@ -8,7 +8,11 @@ include_directories(
 )
 file(GLOB Sources *.cpp)
 # wxWidgets config
-add_definitions(-D__WXGTK__)
+add_definitions(
+  -D__WXGTK__
+  -D_LARGE_FILES
+  -D_FILE_OFFSET_BITS=64
+)
 add_executable(wxWidget_2_9_test ${Sources})
 target_link_libraries(
   wxWidget_2_9_test
