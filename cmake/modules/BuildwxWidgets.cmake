@@ -10,25 +10,25 @@ if(WIN32)
     INSTALL_COMMAND ""
   )
   
-if(DEBUG) 
-  ExternalProject_Add_Step(
-    wxWidget-2-9
-    custom_build
-    DEPENDEES configure
-    DEPENDERS build
-    COMMAND nmake /nologo -f makefile.vc BUILD=debug MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=static
-    WORKING_DIRECTORY <SOURCE_DIR>/build/msw
-  )
-else()
-  ExternalProject_Add_Step(
-    wxWidget-2-9
-    custom_build
-    DEPENDEES configure
-    DEPENDERS build
-    COMMAND nmake /nologo -f makefile.vc BUILD=release MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=static
-    WORKING_DIRECTORY <SOURCE_DIR>/build/msw
-  )
-endif()
+  if(DEBUG) 
+    ExternalProject_Add_Step(
+      wxWidget-2-9
+      custom_build
+      DEPENDEES configure
+      DEPENDERS build
+      COMMAND nmake /nologo -f makefile.vc BUILD=debug MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=static
+      WORKING_DIRECTORY <SOURCE_DIR>/build/msw
+    )
+  else()
+    ExternalProject_Add_Step(
+      wxWidget-2-9
+      custom_build
+      DEPENDEES configure
+      DEPENDERS build
+      COMMAND nmake /nologo -f makefile.vc BUILD=release MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=static
+      WORKING_DIRECTORY <SOURCE_DIR>/build/msw
+    )
+  endif()
   
   ExternalProject_Get_Property(
     wxWidget-2-9
@@ -54,7 +54,6 @@ else()
     URL ${WXWIDGET_URL}
     URL_MD5 ${WXWIDGET_MD5}
     UPDATE_COMMAND ""
-    PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --enable-shared --enable-unicode ${CONFIGURE_DEBUG}
         --enable-monolithic --with-flavour=desura --enable-threads --with-opengl=no --disable-palette
         --disable-joystick --disable-mediactrl --prefix=${wxWidgets_INSTALL_DIR} --enable-permissive
@@ -75,4 +74,5 @@ else()
             DESTINATION ${LIB_INSTALL_DIR})
   endif()
   set(wxWidgets_BIN_DIR ${wxWidgets_INSTALL_DIR}/bin)
+  set(wxWidgets_CONFIG_EXECUTABLE ${wxWidgets_BIN_DIR}/wx-config)
 endif()
