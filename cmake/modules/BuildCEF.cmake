@@ -50,6 +50,20 @@ ExternalProject_Add(
   INSTALL_COMMAND ""
 )
 
+ExternalProject_Get_Property(
+  fetch_cef
+  source_dir
+)
+set(FETCH_CEF_SOURCE_DIR ${source_dir})
+
+configure_file(${CMAKE_PATCH_DIR}/cef_gyp.patch.inc ${CMAKE_BINARY_DIR}/gen/patches/cef_gyp.patch)
+ExternalProject_Add_Step(
+  fetch_cef
+  cef_gyp-patch
+  COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_BINARY_DIR}/gen/patches/cef_gyp.patch
+  DEPENDEES patch
+  WORKING_DIRECTORY ${FETCH_CEF_SOURCE_DIR}
+)
 
 ExternalProject_Add(
   cef

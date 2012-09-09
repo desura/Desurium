@@ -275,7 +275,7 @@ void MainApp::Init(int argc, wxCmdLineArgsArray &argv)
 				m_bQuiteMode = true;
 
 			if (str.StartsWith("desura://"))
-				m_szDesuraCache = gcString((const char*)argv[x]);
+				m_szDesuraCache = gcString(argv[x].ToStdString());
 		}
 	}
 

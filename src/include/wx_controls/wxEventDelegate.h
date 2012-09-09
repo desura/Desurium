@@ -42,7 +42,7 @@ public:
 		m_pMainCustFrame = NULL;
 	}
 
-	wxEventDelegate(wxWindow *parent, const wxString& label, const wxSize& size = wxDefaultSize) : T(parent, label, size)
+	wxEventDelegate(wxWindow *parent, const wxString& label, const wxSize& size = wxDefaultSize) : T(parent, label.c_str(), size)
 	{
 		m_pMainCustFrame = NULL;
 	}
