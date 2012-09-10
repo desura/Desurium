@@ -5,6 +5,7 @@
 #   name            default             description
 #
 # global options:
+#   BUILD_CEF       ON                  Build cef
 #   BUILD_TESTS     ON                  Build various unit tests
 #   BUILD_TOOLS     ON                  Build various Desura tools
 #   OFFICIAL_BUILD  OFF                 for official build only
@@ -275,8 +276,6 @@ add_subdirectory(third_party/sqlite3x)
 if(NOT Boost_FOUND)
   add_dependencies(sqlite3x boost)
 endif()
-
-add_dependencies(cef wxWidget-2-9)
 
 ###############################################################################
 # build desura

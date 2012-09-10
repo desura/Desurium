@@ -11,6 +11,7 @@ endif()
 option(DEBUG "enable debug build" OFF)
 option(OFFICIAL_BUILD "do you want to compile an official build?" OFF)
 option(SET_OWN_EXT_SRC "useful for ebuild or saving traffic" OFF)
+option(BUILD_CEF "Build cef" ON)
 
 if(OFFICIAL_BUILD)
   set(BRANDING "branding_desura"
