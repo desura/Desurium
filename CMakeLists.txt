@@ -108,27 +108,30 @@ if(NOT WIN32)
   set(REQUIRED_ON_UNIX REQUIRED)
 endif()
 
-if(NOT WIN32)
-  find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
-  find_package(Notify REQUIRED)
-endif()
-find_package(BZip2 ${REQUIRED_IF_OPTION})
+if(NOT BUILD_ONLY_CEF)
+  if(NOT WIN32)
+    find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
+    find_package(Notify REQUIRED)
+  endif()
+  find_package(BZip2 ${REQUIRED_IF_OPTION})
 
-if(NOT WITH_ARES)
-  find_package(CURL ${REQUIRED_IF_OPTION})
+  if(NOT WITH_ARES)
+    find_package(CURL ${REQUIRED_IF_OPTION})
+  endif()
+
+  # we patch google breakpad, so we will build it on our own
+  # find_package(GoogleBreakpad REQUIRED)
+  if(NOT WIN32)
+    find_package(GTK2 REQUIRED)
+  endif()
+  if(NOT WIN32)
+    find_package(OpenSSL REQUIRED)
+  endif()
+  find_package(Sqlite ${REQUIRED_IF_OPTION})
+  find_package(TinyXML ${REQUIRED_IF_OPTION})
+  find_package(v8 ${REQUIRED_ON_UNIX})
 endif()
 
-# we patch google breakpad, so we will build it on our own
-# find_package(GoogleBreakpad REQUIRED)
-if(NOT WIN32)
-  find_package(GTK2 REQUIRED)
-endif()
-if(NOT WIN32)
-  find_package(OpenSSL REQUIRED)
-endif()
-find_package(Sqlite ${REQUIRED_IF_OPTION})
-find_package(TinyXML ${REQUIRED_IF_OPTION})
-find_package(v8 ${REQUIRED_ON_UNIX})
 find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
 if(wxWidgets_FOUND)
   try_compile(
@@ -236,49 +239,54 @@ if(NOT wxWidgets_FOUND)
   include(BuildwxWidgets)
 endif()
 
-if(NOT Boost_FOUND)
-  include(BuildBoost)
-endif()
+if(NOT BUILD_ONLY_CEF)
+  if(NOT Boost_FOUND)
+    include(BuildBoost)
+  endif()
 
-if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
-  include(BuildGoogleBreakpad)
-endif()
+  if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
+    include(BuildGoogleBreakpad)
+  endif()
 
-if(NOT CURL_FOUND)
-  include(BuildCURL)  
-endif()
+  if(NOT CURL_FOUND)
+    include(BuildCURL)  
+  endif()
 
-if(NOT V8_FOUND)
-  include(Buildv8)
+  if(NOT V8_FOUND)
+    include(Buildv8)
+  endif()
 endif()
 
 include(BuildCEF)
 
-###############################################################################
-# build third_party
-###############################################################################
+if(NOT BUILD_ONLY_CEF)
+  ###############################################################################
+  # build third_party
+  ###############################################################################
 
-if(NOT BZIP2_FOUND)
-  add_subdirectory(third_party/bzip2)
+  if(NOT BZIP2_FOUND)
+    add_subdirectory(third_party/bzip2)
+  endif()
+
+  add_subdirectory(third_party/courgette) # for headers only, build via ExternalProject
+
+  if(NOT TINYXML_FOUND)
+    add_subdirectory(third_party/tinyxml)
+  endif()
+
+  if(NOT SQLITE_FOUND)
+    add_subdirectory(third_party/sqlite)
+  endif()
+  add_subdirectory(third_party/sqlite3x)
+
+  if(NOT Boost_FOUND)
+    add_dependencies(sqlite3x boost)
+  endif()
+
+  ###############################################################################
+  # build desura
+  ###############################################################################
+  add_subdirectory(src)
+  add_subdirectory(build_out)
 endif()
 
-add_subdirectory(third_party/courgette) # for headers only, build via ExternalProject
-
-if(NOT TINYXML_FOUND)
-  add_subdirectory(third_party/tinyxml)
-endif()
-
-if(NOT SQLITE_FOUND)
-  add_subdirectory(third_party/sqlite)
-endif()
-add_subdirectory(third_party/sqlite3x)
-
-if(NOT Boost_FOUND)
-  add_dependencies(sqlite3x boost)
-endif()
-
-###############################################################################
-# build desura
-###############################################################################
-add_subdirectory(src)
-add_subdirectory(build_out)
