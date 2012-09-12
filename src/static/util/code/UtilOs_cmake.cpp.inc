@@ -54,3 +54,15 @@ gcString getRuntimeLibPath()
 }
 }
 
+#ifndef DESURA_OFFICAL_BUILD
+	std::string GetAppBuild()
+	{
+		return "@CPACK_PACKAGE_VERSION_PATCH@@CPACK_PACKAGE_VERSION_ADDITION@";
+	}
+
+	std::string GetAppBranch()
+	{
+		return "@CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@";
+	}
+#endif
+
