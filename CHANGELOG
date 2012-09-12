@@ -1,6 +1,9 @@
 version 0.8.0:
 --------------
 
+important stuff:
+ * desurium has it's own mascott: desubot
+
 fixed issues:
  * Add create menu shortcut on linux (https://github.com/lodle/Desurium/issues/29)
  * Tooltips (https://github.com/lodle/Desurium/issues/31)
