@@ -30,4 +30,6 @@ fixed issues:
 other stuff:
  * many translations
  * some optimizations of picture files
+ * desurium build system was ported to cmake (currently Linux only)
+ * PKGBUILD (archLinux) and ebuild (gentoo) available
 
