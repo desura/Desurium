@@ -44,7 +44,7 @@ curl (while building without ares support)
 sqlite
 tinyxml
 
-Finally run Desura using ./install/run.sh
+Finally run Desura using ./install/desura
 
 If you're on a 64bit system and want 32bit support, abort building it and go to
 the 'build' folder, and edit the CMake cache as to enable 32BIT_SUPPORT.
