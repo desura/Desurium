@@ -26,10 +26,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "AboutPageDev.h"
 
 #ifdef WIN32
-AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, "About " PRODUCT_NAME, wxDefaultPosition, wxSize(295,412), wxDEFAULT_DIALOG_STYLE)
+	constexpr int ABOUT_FORM_WIDTH = 295;
+	constexpr int ABOUT_FORM_HEIGHT = 412;
 #else
-AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, "About " PRODUCT_NAME, wxDefaultPosition, wxSize(280,462), wxDEFAULT_DIALOG_STYLE)
-#endif
+	#ifdef DESURA_OFFICAL_BUILD
+		constexpr int ABOUT_FORM_WIDTH = 287;
+		constexpr int ABOUT_FORM_HEIGHT = 462;
+	#else
+		constexpr int ABOUT_FORM_WIDTH = 275;
+		constexpr int ABOUT_FORM_HEIGHT = 462;
+	#endif
+#endif	
+	
+AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, "About " PRODUCT_NAME, wxDefaultPosition, wxSize(ABOUT_FORM_WIDTH,ABOUT_FORM_HEIGHT), wxDEFAULT_DIALOG_STYLE)
 {
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &AboutForm::onButtonClicked, this);
 	Bind(wxEVT_CLOSE_WINDOW, &AboutForm::onFormClose, this);
