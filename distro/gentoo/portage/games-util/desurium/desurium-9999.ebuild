@@ -19,15 +19,9 @@ BREAKPAD_ARC="breakpad-850.tar.gz"
 BREAKPAD_URI="https://github.com/downloads/lodle/Desurium/${BREAKPAD_ARC}"
 CEF_ARC="cef-291.tar.gz"
 CEF_URI="http://github.com/downloads/lodle/Desurium/${CEF_ARC}"
-CHROMIUM_ARC="chromium-15.0.876.0.tar.bz2"
-CHROMIUM_URI="http://commondatastorage.googleapis.com/chromium-browser-official/${CHROMIUM_ARC}"
-DEPOT_TOOLS_ARC="depot_tools-145556-2.tar.gz"
-DEPOT_TOOLS_URI="https://github.com/downloads/lodle/Desurium/${DEPOT_TOOLS_ARC}"
-SRC_URI+="${BREAKPAD_URI} ${CEF_URI} ${CHROMIUM_URI} ${DEPOT_TOOLS_URI} ${WX_URI}"
+SRC_URI+="${BREAKPAD_URI} ${CEF_URI}"
 
-inherit check-reqs cmake-utils eutils ${GIT_ECLASS} games gnome2-utils
-
-CHECKREQS_DISK_BUILD="3G"
+inherit cmake-utils eutils ${GIT_ECLASS} games gnome2-utils
 
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
@@ -71,8 +65,6 @@ COMMON_DEPEND="
 	app-arch/bzip2
 	dev-db/sqlite
 	>=dev-libs/boost-1.47
-	dev-libs/libevent
-	dev-libs/libxml2
 	dev-libs/openssl:0
 
 	|| ( <dev-libs/tinyxml-2.6.2-r2[-stl]
@@ -80,19 +72,11 @@ COMMON_DEPEND="
 	)
 
 	dev-lang/v8
-	gnome-base/libgnome-keyring
-	media-libs/flac
-	media-libs/libpng:0
-	media-libs/libwebp
-	media-libs/speex
 	|| (
 		net-misc/curl[adns]
 		net-misc/curl[ares]
 	)
-	net-print/cups
 	>=sys-devel/gcc-4.5
-	sys-libs/zlib
-	virtual/jpeg
 	x11-libs/gtk+:2
 	=x11-libs/wxGTK-2.9.3.1
 
@@ -102,6 +86,7 @@ COMMON_DEPEND="
 "
 
 RDEPEND="
+	media-libs/desurium-cef
 	x11-misc/xdg-user-dirs
 	x11-misc/xdg-utils
 	${COMMON_DEPEND}
@@ -109,8 +94,6 @@ RDEPEND="
 "
 
 DEPEND="
-	dev-lang/yasm
-	dev-vcs/subversion
 	${COMMON_DEPEND}
 "
 
@@ -131,14 +114,14 @@ src_configure() {
 	local mycmakeargs=(
 		-DWITH_ARES=FALSE
 		-DFORCE_SYS_DEPS=TRUE
+		-DBUILD_CEF=FALSE
+		-BUILD_ONLY_CEF=FALSE
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
 		$(cmake-utils_use tools BUILD_TOOLS)
 		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}"
 		-DBREAKPAD_URL="file://${DISTDIR}/${BREAKPAD_ARC}"
 		-DCEF_URL="file://${DISTDIR}/${CEF_ARC}"
-		-DCHROMIUM_URL="file://${DISTDIR}/${CHROMIUM_ARC}"
-		-DDEPOT_TOOLS_URL="file://${DISTDIR}/${DEPOT_TOOLS_ARC}"
 		
 		-DBINDIR="${GAMES_BINDIR}"
 		-DDATADIR="${GAMES_DATADIR}"
