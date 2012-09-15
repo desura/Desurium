@@ -22,8 +22,9 @@ CHROMIUM_URI="http://commondatastorage.googleapis.com/chromium-browser-official/
 DEPOT_TOOLS_ARC="depot_tools-145556-2.tar.gz"
 DEPOT_TOOLS_URI="https://github.com/downloads/lodle/Desurium/${DEPOT_TOOLS_ARC}"
 SRC_URI+="${CEF_URI} ${CHROMIUM_URI} ${DEPOT_TOOLS_URI}"
+WX_GTK_VER="2.9"
 
-inherit check-reqs cmake-utils eutils games ${GIT_ECLASS}
+inherit check-reqs cmake-utils eutils games ${GIT_ECLASS} wxwidgets
 
 CHECKREQS_DISK_BUILD="3G"
 
@@ -51,7 +52,7 @@ COMMON_DEPEND="
 	net-print/cups
 	sys-libs/zlib
 	virtual/jpeg
-	=x11-libs/wxGTK-2.9.3.1
+	=x11-libs/wxGTK-2.9.3.1[X]
 "
 
 RDEPEND="
@@ -96,4 +97,3 @@ src_compile() {
 src_install() {
 	cmake-utils_src_install
 }
-

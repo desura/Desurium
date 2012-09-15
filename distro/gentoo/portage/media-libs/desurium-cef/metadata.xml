@@ -1,0 +1,10 @@
+<pkgmetadata>
+  <herd>games</herd>
+  <maintainer>
+    <email>git@karolherbst.de</email>
+    <name>Karol Herbst</name>
+  </maintainer>
+  <longdescription lang="en">
+    Chromium Embedded Framework implementation for the Desurium client.
+  </longdescription>
+</pkgmetadata>
