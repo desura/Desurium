@@ -20,8 +20,9 @@ BREAKPAD_URI="https://github.com/downloads/lodle/Desurium/${BREAKPAD_ARC}"
 CEF_ARC="cef-291.tar.gz"
 CEF_URI="http://github.com/downloads/lodle/Desurium/${CEF_ARC}"
 SRC_URI+="${BREAKPAD_URI} ${CEF_URI}"
+WX_GTK_VER="2.9"
 
-inherit cmake-utils eutils ${GIT_ECLASS} games gnome2-utils
+inherit cmake-utils eutils ${GIT_ECLASS} games gnome2-utils wxwidgets
 
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
@@ -78,7 +79,7 @@ COMMON_DEPEND="
 	)
 	>=sys-devel/gcc-4.5
 	x11-libs/gtk+:2
-	=x11-libs/wxGTK-2.9.3.1
+	=x11-libs/wxGTK-2.9.3.1[X]
 
 	amd64? ( 32bit? (
 		sys-devel/gcc[multilib]
@@ -122,7 +123,6 @@ src_configure() {
 		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}"
 		-DBREAKPAD_URL="file://${DISTDIR}/${BREAKPAD_ARC}"
 		-DCEF_URL="file://${DISTDIR}/${CEF_ARC}"
-		
 		-DBINDIR="${GAMES_BINDIR}"
 		-DDATADIR="${GAMES_DATADIR}"
 		-DRUNTIME_LIBDIR="${GAMES_PREFIX}/lib"
@@ -157,4 +157,3 @@ pkg_postinst() {
 pkg_postrm() {
 	gnome2_icon_cache_update
 }
-
