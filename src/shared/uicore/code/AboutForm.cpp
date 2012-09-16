@@ -52,7 +52,7 @@ AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, "About " PRO
 	fgSizer6->SetFlexibleDirection( wxBOTH );
 	fgSizer6->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-	m_imgLogo = new gcImageControl( this, wxID_ANY, wxDefaultPosition, wxSize( -1,200 ), 0 );
+	m_imgLogo = new gcImageControl( this, wxID_ANY, wxDefaultPosition, wxSize( 291,200 ), 0 );
 	m_imgLogo->setImage("#about_logo");
 	m_imgLogo->setTile(true);
 
