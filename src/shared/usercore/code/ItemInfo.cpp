@@ -177,9 +177,12 @@ void ItemInfo::saveDb(sqlite3x::sqlite3_connection* db)
 		cmd.bind(9, (long long int)m_iId.toInt64()); //internal id
 		cmd.executenonquery();
 
-		for (size_t x=0; x<m_vBranchList.size(); x++)
-		{
-			m_vBranchList[x]->saveDb(db);
+		// Don't bother saving TYPE_LINKs, they don't have a proper BranchID anyway.
+		if(getId().getType() != DesuraId::TYPE_LINK) {
+			for (size_t x=0; x<m_vBranchList.size(); x++)
+			{
+				m_vBranchList[x]->saveDb(db);
+			}
 		}
 
 		std::for_each(m_mBranchInstallInfo.begin(), m_mBranchInstallInfo.end(), [&db](std::pair<uint32, BranchInstallInfo*> p)
@@ -225,9 +228,12 @@ void ItemInfo::saveDbFull(sqlite3x::sqlite3_connection* db)
 
 	cmd.executenonquery();
 
-	for (size_t x=0; x<m_vBranchList.size(); x++)
-	{
-		m_vBranchList[x]->saveDbFull(db);
+	// Don't bother saving TYPE_LINKs, they don't have a proper BranchID anyway.
+	if(getId().getType() != DesuraId::TYPE_LINK) {
+		for (size_t x=0; x<m_vBranchList.size(); x++)
+		{
+			m_vBranchList[x]->saveDbFull(db);
+		}
 	}
 
 	std::for_each(m_mBranchInstallInfo.begin(), m_mBranchInstallInfo.end(), [&db](std::pair<uint32, BranchInstallInfo*> p)
@@ -346,6 +352,14 @@ void ItemInfo::loadDb(sqlite3x::sqlite3_connection* db)
 				m_INBranchIndex = x;
 
 			m_vBranchList.push_back(bi);
+		}
+
+		// A TYPE_LINK may or may not have branches stored on disk, but will need one at runtime.
+		if(getId().getType() == DesuraId::TYPE_LINK && m_vBranchList.size() == 0) {
+			BranchInfo* bi = new BranchInfo(MCFBranch::BranchFromInt(m_INBranch), m_iId, m_mBranchInstallInfo[BUILDID_PUBLIC]);
+			bi->setLinkInfo(getName());
+			m_vBranchList.push_back(bi);
+			m_INBranchIndex = 0;
 		}
 	}
 
@@ -1227,20 +1241,10 @@ void ItemInfo::setLinkInfo(const char* exe, const char* args)
 
 	UTIL::FS::Path path = UTIL::FS::PathWithFile(exe);
 
-#ifdef WIN32
-	uint32 platform = 100;
-#else
-#ifdef NIX64
-	uint32 platform = 120;
-#else
-	uint32 platform = 110;
-#endif
-#endif
-
 	if (m_mBranchInstallInfo.size() == 0)
-		m_mBranchInstallInfo[platform] = new UserCore::Item::BranchInstallInfo(platform, this);
+		m_mBranchInstallInfo[BUILDID_PUBLIC] = new UserCore::Item::BranchInstallInfo(BUILDID_PUBLIC, this);
 
-	BranchInstallInfo *bii = m_mBranchInstallInfo[platform];
+	BranchInstallInfo *bii = m_mBranchInstallInfo[BUILDID_PUBLIC];
 
 	if (m_vBranchList.size() == 0)
 		m_vBranchList.push_back(new UserCore::Item::BranchInfo(MCFBranch::BranchFromInt(0), getId(), bii));
