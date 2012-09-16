@@ -24,7 +24,7 @@ DEPOT_TOOLS_URI="https://github.com/downloads/lodle/Desurium/${DEPOT_TOOLS_ARC}"
 SRC_URI+="${CEF_URI} ${CHROMIUM_URI} ${DEPOT_TOOLS_URI}"
 WX_GTK_VER="2.9"
 
-inherit check-reqs cmake-utils eutils games ${GIT_ECLASS} wxwidgets
+inherit check-reqs cmake-utils eutils ${GIT_ECLASS} wxwidgets games
 
 CHECKREQS_DISK_BUILD="3G"
 

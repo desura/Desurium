@@ -22,7 +22,7 @@ CEF_URI="http://github.com/downloads/lodle/Desurium/${CEF_ARC}"
 SRC_URI+="${BREAKPAD_URI} ${CEF_URI}"
 WX_GTK_VER="2.9"
 
-inherit cmake-utils eutils ${GIT_ECLASS} games gnome2-utils wxwidgets
+inherit cmake-utils eutils ${GIT_ECLASS} gnome2-utils wxwidgets games
 
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
