@@ -82,37 +82,44 @@ static void dbCreateTables()
 	}
 }
 
-static std::string GetAppBuild()
-{
-	FILE* fh = fopen("version", "r");
+// the non official build will use generated files by cmake, so we don't need a version file at all
+// see UtilOs_cmake.cpp.inc
+#ifdef DESURA_OFFICAL_BUILD
+	extern std::string GetAppBuild()
+	{
+		FILE* fh = fopen("version", "r");
 
-	if (!fh)
-		return "";
+		if (!fh)
+			return "";
 	
-	int appid = 0;
-	int build = 0;
+		int appid = 0;
+		int build = 0;
 
-	fscanf(fh, "BRANCH=%d\nBUILD=%d", &appid, &build);
-	fclose(fh);
+		fscanf(fh, "BRANCH=%d\nBUILD=%d", &appid, &build);
+		fclose(fh);
 
-	return gcString("{0}", build);
-}
+		return gcString("{0}", build);
+	}
 
-static std::string GetAppBranch()
-{
-	FILE* fh = fopen("version", "r");
+	extern std::string GetAppBranch()
+	{
+		FILE* fh = fopen("version", "r");
 
-	if (!fh)
-		return "";
+		if (!fh)
+			return "";
 	
-	int appid = 0;
-	int build = 0;
+		int appid = 0;
+		int build = 0;
 
-	fscanf(fh, "BRANCH=%d\nBUILD=%d", &appid, &build);
-	fclose(fh);
+		fscanf(fh, "BRANCH=%d\nBUILD=%d", &appid, &build);
+		fclose(fh);
 
-	return gcString("{0}", appid);
-}
+		return gcString("{0}", appid);
+	}
+#else
+std::string GetAppBuild();
+std::string GetAppBranch();
+#endif
 
 static void SetAppBuild(const std::string &val)
 {

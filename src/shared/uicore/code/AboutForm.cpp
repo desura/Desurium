@@ -26,10 +26,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "AboutPageDev.h"
 
 #ifdef WIN32
-AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, "About " PRODUCT_NAME, wxDefaultPosition, wxSize(295,412), wxDEFAULT_DIALOG_STYLE)
+	constexpr int ABOUT_FORM_WIDTH = 295;
+	constexpr int ABOUT_FORM_HEIGHT = 412;
 #else
-AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, "About " PRODUCT_NAME, wxDefaultPosition, wxSize(283,462), wxDEFAULT_DIALOG_STYLE)
-#endif
+	#ifdef DESURA_OFFICAL_BUILD
+		constexpr int ABOUT_FORM_WIDTH = 287;
+		constexpr int ABOUT_FORM_HEIGHT = 462;
+	#else
+		constexpr int ABOUT_FORM_WIDTH = 320;
+		constexpr int ABOUT_FORM_HEIGHT = 502;
+	#endif
+#endif	
+	
+AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, "About " PRODUCT_NAME, wxDefaultPosition, wxSize(ABOUT_FORM_WIDTH,ABOUT_FORM_HEIGHT), wxDEFAULT_DIALOG_STYLE)
 {
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &AboutForm::onButtonClicked, this);
 	Bind(wxEVT_CLOSE_WINDOW, &AboutForm::onFormClose, this);
@@ -43,11 +52,11 @@ AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, "About " PRO
 	fgSizer6->SetFlexibleDirection( wxBOTH );
 	fgSizer6->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-	m_imgLogo = new gcImageControl( this, wxID_ANY, wxDefaultPosition, wxSize( -1,200 ), 0 );
+	m_imgLogo = new gcImageControl( this, wxID_ANY, wxDefaultPosition, wxSize( 291,200 ), 0 );
 	m_imgLogo->setImage("#about_logo");
 	m_imgLogo->setTile(true);
 
-	fgSizer6->Add( m_imgLogo, 0, wxEXPAND, 5 );
+	fgSizer6->Add( m_imgLogo, 0, wxALIGN_RIGHT, 5 );
 	
 	m_pMainPage = new AboutMainPage(this);
 

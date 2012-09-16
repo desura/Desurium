@@ -72,7 +72,7 @@ AboutMainPage::AboutMainPage(wxWindow* parent) : gcPanel(parent, wxID_ANY)
 	offsetY = 50;
 #else
 	gcWString copy("Desurium is open source software GPL v3. \nGet source from: http://github.com/lodle/Desurium");
-	offsetY = 65;
+	offsetY = 85;
 #endif
 
 	m_labCopyRight = new wxStaticText( this, wxID_ANY, copy.c_str(), wxDefaultPosition, wxSize( -1,offsetY ), 0 );
