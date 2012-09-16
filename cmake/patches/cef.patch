@@ -8081,7 +8081,7 @@ diff '--exclude=.svn' -aurN cef.ori/tests/wxclient/main.cpp cef/tests/wxclient/m
 diff '--exclude=.svn' -aurN cef.ori/tools/gclient_hook.py cef/tools/gclient_hook.py
 --- tools/gclient_hook.py	2012-05-09 11:27:16.865674327 +0200
 +++ tools/gclient_hook.py	2012-05-09 11:32:01.703658217 +0200
-@@ -54,5 +54,23 @@
+@@ -54,5 +54,26 @@
  
  print "\nGenerating CEF project files..."
  os.environ['CEF_DIRECTORY'] = os.path.basename(cef_dir);
@@ -8091,6 +8091,9 @@ diff '--exclude=.svn' -aurN cef.ori/tools/gclient_hook.py cef/tools/gclient_hook
 +gyper = [ 'python', 'tools/gyp_cef', 'cef.gyp',
 +	'-I', 'cef.gypi',
 +	'-Dwerror=',
++	'-Duse_cups=0',
++	'-Duse_gconf=0',
++	'-Duse_gnome_keyring=0',
 +	'-Duse_kerberos=0',
 +	'-Duse_system_bzip2=1',
 +	'-Duse_system_flac=1',
