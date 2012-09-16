@@ -38,7 +38,7 @@ if [[ ${PV} != 9999* ]]; then
 	KEYWORDS="~amd64 ~x86"
 fi
 
-# some deps needed by some games
+# wxGTK-2.9.4.1 does not work!
 COMMON_DEPEND="
 	app-arch/bzip2
 	dev-libs/libevent

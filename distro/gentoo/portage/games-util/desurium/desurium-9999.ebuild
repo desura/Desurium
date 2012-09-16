@@ -62,6 +62,7 @@ GAMESDEPEND="
 	)
 "
 
+# wxGTK-2.9.4.1 does not work!
 COMMON_DEPEND="
 	app-arch/bzip2
 	dev-db/sqlite
