@@ -41,7 +41,7 @@ GAMESDEPEND="
 		gnome-base/libglade
 		media-libs/libogg
 		media-libs/libpng:1.2
-		media-libs/libsdl
+		media-libs/libsdl[X,audio,joystick,opengl,video]
 		media-libs/libtheora
 		media-libs/libvorbis
 		media-libs/openal
@@ -79,6 +79,7 @@ COMMON_DEPEND="
 		net-misc/curl[ares]
 	)
 	>=sys-devel/gcc-4.5
+	virtual/pkgconfig
 	x11-libs/gtk+:2
 	=x11-libs/wxGTK-2.9.3.1[X]
 
