@@ -22,7 +22,7 @@ CEF_URI="http://github.com/downloads/lodle/Desurium/${CEF_ARC}"
 SRC_URI+="${BREAKPAD_URI} ${CEF_URI}"
 WX_GTK_VER="2.9"
 
-inherit cmake-utils eutils ${GIT_ECLASS} games gnome2-utils wxwidgets
+inherit cmake-utils eutils ${GIT_ECLASS} gnome2-utils wxwidgets games
 
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
@@ -41,7 +41,7 @@ GAMESDEPEND="
 		gnome-base/libglade
 		media-libs/libogg
 		media-libs/libpng:1.2
-		media-libs/libsdl
+		media-libs/libsdl[X,audio,joystick,opengl,video]
 		media-libs/libtheora
 		media-libs/libvorbis
 		media-libs/openal
@@ -62,6 +62,7 @@ GAMESDEPEND="
 	)
 "
 
+# wxGTK-2.9.4.1 does not work!
 COMMON_DEPEND="
 	app-arch/bzip2
 	dev-db/sqlite
@@ -78,6 +79,7 @@ COMMON_DEPEND="
 		net-misc/curl[ares]
 	)
 	>=sys-devel/gcc-4.5
+	virtual/pkgconfig
 	x11-libs/gtk+:2
 	=x11-libs/wxGTK-2.9.3.1[X]
 
@@ -125,7 +127,7 @@ src_configure() {
 		-DCEF_URL="file://${DISTDIR}/${CEF_ARC}"
 		-DBINDIR="${GAMES_BINDIR}"
 		-DDATADIR="${GAMES_DATADIR}"
-		-DRUNTIME_LIBDIR="${GAMES_PREFIX}/lib"
+		-DRUNTIME_LIBDIR="$(games_get_libdir)"
 		-DDESKTOPDIR="/usr/share/applications"
 	)
 	cmake-utils_src_configure
