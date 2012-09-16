@@ -44,12 +44,10 @@ COMMON_DEPEND="
 	dev-libs/libevent
 	dev-libs/libxml2
 	dev-libs/openssl:0
-	gnome-base/libgnome-keyring
 	media-libs/flac
 	media-libs/libpng:0
 	media-libs/libwebp
 	media-libs/speex
-	net-print/cups
 	sys-libs/zlib
 	virtual/jpeg
 	=x11-libs/wxGTK-2.9.3.1[X]
