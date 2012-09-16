@@ -83,7 +83,7 @@ src_configure() {
 		-DCHROMIUM_URL="file://${DISTDIR}/${CHROMIUM_ARC}"
 		-DDEPOT_TOOLS_URL="file://${DISTDIR}/${DEPOT_TOOLS_ARC}"
 		-DBUILD_ONLY_CEF=TRUE
-		-DRUNTIME_LIBDIR="${GAMES_PREFIX}/lib"
+		-DRUNTIME_LIBDIR="$(games_get_libdir)"
 	)
 	cmake-utils_src_configure
 }
