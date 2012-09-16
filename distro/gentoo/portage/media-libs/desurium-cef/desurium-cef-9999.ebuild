@@ -24,7 +24,7 @@ DEPOT_TOOLS_URI="https://github.com/downloads/lodle/Desurium/${DEPOT_TOOLS_ARC}"
 SRC_URI+="${CEF_URI} ${CHROMIUM_URI} ${DEPOT_TOOLS_URI}"
 WX_GTK_VER="2.9"
 
-inherit check-reqs cmake-utils eutils games ${GIT_ECLASS} wxwidgets
+inherit check-reqs cmake-utils ${GIT_ECLASS} wxwidgets games
 
 CHECKREQS_DISK_BUILD="3G"
 
@@ -38,18 +38,16 @@ if [[ ${PV} != 9999* ]]; then
 	KEYWORDS="~amd64 ~x86"
 fi
 
-# some deps needed by some games
+# wxGTK-2.9.4.1 does not work!
 COMMON_DEPEND="
 	app-arch/bzip2
 	dev-libs/libevent
 	dev-libs/libxml2
 	dev-libs/openssl:0
-	gnome-base/libgnome-keyring
 	media-libs/flac
 	media-libs/libpng:0
 	media-libs/libwebp
 	media-libs/speex
-	net-print/cups
 	sys-libs/zlib
 	virtual/jpeg
 	=x11-libs/wxGTK-2.9.3.1[X]
@@ -85,7 +83,7 @@ src_configure() {
 		-DCHROMIUM_URL="file://${DISTDIR}/${CHROMIUM_ARC}"
 		-DDEPOT_TOOLS_URL="file://${DISTDIR}/${DEPOT_TOOLS_ARC}"
 		-DBUILD_ONLY_CEF=TRUE
-		-DRUNTIME_LIBDIR="${GAMES_PREFIX}/lib"
+		-DRUNTIME_LIBDIR="$(games_get_libdir)"
 	)
 	cmake-utils_src_configure
 }
