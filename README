@@ -74,10 +74,8 @@ Create Packages
 
 You can simply run the following commands to create packages for installing desura with your package manager:
 
- 1. mkdir package
- 2. cd package
- 3. cmake -DPACKAGE_TYPE="{PACKAGE_TYPE}" -DINSTALL_DESKTOP_FILE=ON -DCMAKE_INSTALL_PREFIX="/opt/desura" ..
- 4. make package
+ 1. cmake -DPACKAGE_TYPE="{PACKAGE_TYPE}" -DINSTALL_DESKTOP_FILE=ON -DCMAKE_INSTALL_PREFIX="/opt/desura"
+ 2. make package
 
 Supported Values for PACKAGE_TYPE are:
   * DEB
