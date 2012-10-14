@@ -10,3 +10,8 @@ distro/archlinux/pkg
 distro/archlinux/src
 distro/archlinux/Desura.desktop
 distro/archlinux/Desura.png
+
+# some qt-creator stuff
+qtcreator-build/
+qtcreator-install/
+CMakeLists.txt.user
