@@ -4,6 +4,7 @@ CMakeCache.txt
 CMakeFiles/
 Makefile
 build/
+build_cef/
 install/
 ceflibs/
 distro/archlinux/pkg
