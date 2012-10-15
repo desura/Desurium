@@ -1057,16 +1057,23 @@ void ItemManager::parseLoginXml2(TiXmlElement* gamesNode, TiXmlElement* platform
 
 	ParseInfo pi(UM::ItemInfoI::STATUS_ONACCOUNT, 0, false, &maps);
 
-	XML::for_each_child("platform", platformNodes, [this, &pi](TiXmlElement* platform)
+	try
 	{
-		XML::GetAtt("id", pi.platform, platform);
-		pi.rootNode = platform->FirstChildElement("games");
+		XML::for_each_child("platform", platformNodes, [this, &pi](TiXmlElement* platform)
+		{
+			XML::GetAtt("id", pi.platform, platform);
+			pi.rootNode = platform->FirstChildElement("games");
 
-		if (!m_pUser->platformFilter(platform, PlatformType::PT_Item))
-			parseGamesXml(pi);
+			if (!m_pUser->platformFilter(platform, PlatformType::PT_Item))
+				parseGamesXml(pi);
 
-		parseKnownBranches(platform->FirstChildElement("games"));
-	});
+			parseKnownBranches(platform->FirstChildElement("games"));
+		});
+	}
+	catch (boost::thread_interrupted)
+	{
+		// do we have to do something here?
+	}
 
 	processLeftOvers(maps, false);
 
@@ -1112,6 +1119,7 @@ void ItemManager::parseGamesXml(ParseInfo& pi)
 		parseGameXml(gid, gamePi);
 	});
 
+	boost::this_thread::interruption_point();
 	uint32 afterCount = BaseManager::getCount() - beforeCount;
 
 	if (afterCount > 0)
