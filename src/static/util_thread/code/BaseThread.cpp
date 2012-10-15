@@ -326,7 +326,10 @@ void BaseThread::stop()
 	nonBlockStop();
 
 	if (m_pPrivates->m_pThread)
+	{
+		m_pPrivates->m_pThread->interrupt();
 		m_pPrivates->m_pThread->join();
+	}
 }
 
 void BaseThread::nonBlockStop()
