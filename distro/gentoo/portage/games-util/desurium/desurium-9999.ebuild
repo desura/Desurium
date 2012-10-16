@@ -19,7 +19,7 @@ BREAKPAD_ARC="breakpad-850.tar.gz"
 BREAKPAD_URI="https://github.com/downloads/lodle/Desurium/${BREAKPAD_ARC}"
 CEF_ARC="cef-291.tar.gz"
 CEF_URI="http://github.com/downloads/lodle/Desurium/${CEF_ARC}"
-SRC_URI+="${BREAKPAD_URI} ${CEF_URI}"
+SRC_URI="${SRC_URI} ${BREAKPAD_URI} ${CEF_URI}"
 WX_GTK_VER="2.9"
 
 inherit cmake-utils eutils ${GIT_ECLASS} gnome2-utils wxwidgets games
