@@ -14,9 +14,9 @@ set(CPACK_SOURCE_GENERATOR "TBZ2;TGZ;ZIP")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Desura is a gaming client that allows users to one click download and install games and game modification.")
 set(CPACK_PACKAGE_VERSION_MAJOR 0)
 set(CPACK_PACKAGE_VERSION_MINOR 8)
-set(CPACK_PACKAGE_VERSION_PATCH 0)
+set(CPACK_PACKAGE_VERSION_PATCH 0_rc1)
 # used only for builds, not by cpack!
-set(CPACK_PACKAGE_VERSION_ADDITION -devel)
+set(CPACK_PACKAGE_VERSION_ADDITION)
 
 ###############################################################################
 # some internal variables
