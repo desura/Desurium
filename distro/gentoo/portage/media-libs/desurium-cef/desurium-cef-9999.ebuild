@@ -13,14 +13,14 @@ if [[ ${PV} = 9999* ]]; then
 	EGIT_NOUNPACK="true"
 else
 	DESURA_ARC="Desura-${PV}.tar.bz2"
-	SRC_URI="mirror://github.com/downloads/lodle/Desurium/${DESURA_ARC}"
+	SRC_URI="mirror://github/lodle/Desurium/${DESURA_ARC}"
 fi
 CEF_ARC="cef-291.tar.gz"
-CEF_URI="http://github.com/downloads/lodle/Desurium/${CEF_ARC}"
+CEF_URI="mirror://github/lodle/Desurium/${CEF_ARC}"
 CHROMIUM_ARC="chromium-15.0.876.0.tar.bz2"
 CHROMIUM_URI="http://commondatastorage.googleapis.com/chromium-browser-official/${CHROMIUM_ARC}"
 DEPOT_TOOLS_ARC="depot_tools-145556-2.tar.gz"
-DEPOT_TOOLS_URI="https://github.com/downloads/lodle/Desurium/${DEPOT_TOOLS_ARC}"
+DEPOT_TOOLS_URI="mirror://github/lodle/Desurium/${DEPOT_TOOLS_ARC}"
 SRC_URI+="${CEF_URI} ${CHROMIUM_URI} ${DEPOT_TOOLS_URI}"
 WX_GTK_VER="2.9"
 
