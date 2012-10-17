@@ -6,25 +6,29 @@ EAPI=4
 
 unset GIT_ECLASS
 
+GITHUB_MAINTAINER="lodle"
+GITHUB_PROJECT="Desurium"
+DESURIUM_VERSION="0.8.0_rc1"
+
 if [[ ${PV} = 9999* ]]; then
-	EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
+	EGIT_REPO_URI="git://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git"
 	GIT_ECLASS="git-2"
 	SRC_URI=""
 	EGIT_NOUNPACK="true"
 else
-	DESURA_ARC="Desura-${PV}.tar.bz2"
-	SRC_URI="mirror://github/lodle/Desurium/${DESURA_ARC}"
+	DESURIUM_ARC="desurium-${DESURIUM_VERSION}.tar.gz"
+	SRC_URI="http://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/tarball/${DESURIUM_VERSION} -> ${DESURIUM_ARC}"
 fi
 CEF_ARC="cef-291.tar.gz"
-CEF_URI="mirror://github/lodle/Desurium/${CEF_ARC}"
+CEF_URI="mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${CEF_ARC}"
 CHROMIUM_ARC="chromium-15.0.876.0.tar.bz2"
 CHROMIUM_URI="http://commondatastorage.googleapis.com/chromium-browser-official/${CHROMIUM_ARC}"
 DEPOT_TOOLS_ARC="depot_tools-145556-2.tar.gz"
-DEPOT_TOOLS_URI="mirror://github/lodle/Desurium/${DEPOT_TOOLS_ARC}"
-SRC_URI+="${CEF_URI} ${CHROMIUM_URI} ${DEPOT_TOOLS_URI}"
+DEPOT_TOOLS_URI="mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${DEPOT_TOOLS_ARC}"
+SRC_URI="${SRC_URI} ${CEF_URI} ${CHROMIUM_URI} ${DEPOT_TOOLS_URI}"
 WX_GTK_VER="2.9"
 
-inherit check-reqs cmake-utils ${GIT_ECLASS} wxwidgets games
+inherit check-reqs cmake-utils eutils ${GIT_ECLASS} wxwidgets games
 
 CHECKREQS_DISK_BUILD="3G"
 
@@ -62,15 +66,12 @@ DEPEND="
 	${COMMON_DEPEND}
 "
 
-if [[ $PV != 9999* ]]; then
-	S="${WORKDIR}/Desura-${PV}"
-fi
-
 src_unpack() {
 	if [[ ${PV} = 9999* ]]; then
 		git-2_src_unpack
 	else
-		unpack ${DESURA_ARC}
+		unpack ${DESURIUM_ARC}
+		S="${WORKDIR}/$(ls ${WORKDIR})"
 	fi
 }
 
