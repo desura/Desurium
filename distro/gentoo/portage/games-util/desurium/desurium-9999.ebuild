@@ -6,19 +6,22 @@ EAPI=4
 
 unset GIT_ECLASS
 
+GITHUB_MAINTAINER="lodle"
+GITHUB_PROJECT="${PN^}"
+
 if [[ ${PV} = 9999* ]]; then
-	EGIT_REPO_URI="git://github.com/lodle/Desurium.git"
+	EGIT_REPO_URI="git://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git"
 	GIT_ECLASS="git-2"
 	SRC_URI=""
 	EGIT_NOUNPACK="true"
 else
-	DESURA_ARC="Desura-${PV}.tar.bz2"
-	SRC_URI="mirror://github/lodle/Desurium/${DESURA_ARC}"
+	DESURIUM_ARC="${P}.tar.gz"
+	SRC_URI="http://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/tarball/${PV} -> ${DESURIUM_ARC}"
 fi
 BREAKPAD_ARC="breakpad-850.tar.gz"
-BREAKPAD_URI="mirror://github/lodle/Desurium/${BREAKPAD_ARC}"
+BREAKPAD_URI="mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${BREAKPAD_ARC}"
 CEF_ARC="cef-291.tar.gz"
-CEF_URI="mirror://github/lodle/Desurium/${CEF_ARC}"
+CEF_URI="mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${CEF_ARC}"
 SRC_URI="${SRC_URI} ${BREAKPAD_URI} ${CEF_URI}"
 WX_GTK_VER="2.9"
 
@@ -100,15 +103,12 @@ DEPEND="
 	${COMMON_DEPEND}
 "
 
-if [[ $PV != 9999* ]]; then
-	S="${WORKDIR}/Desura-${PV}"
-fi
-
 src_unpack() {
 	if [[ ${PV} = 9999* ]]; then
 		git-2_src_unpack
 	else
-		unpack ${DESURA_ARC}
+		unpack ${DESURIUM_ARC}
+		S="${WORKDIR}/$(ls ${WORKDIR})"
 	fi
 }
 
