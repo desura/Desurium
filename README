@@ -69,10 +69,11 @@ Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a f
 run ./build_desura.bat
 wait
 
-Create Packages
+Building and Create Packages
 =====================
 
-You can simply run the following commands to create packages for installing desura with your package manager:
+If you also need to create an installable package for your distribution, then you can simply 
+run the following commands to build and create packages for installing desura with your package manager:
 
  1. mkdir package
  2. cd package
