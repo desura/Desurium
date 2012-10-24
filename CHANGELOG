@@ -18,6 +18,7 @@ fixed issues:
  * Updated Branding - desurium (https://github.com/lodle/Desurium/pull/99)
  * Make finding cd keys easier (https://github.com/lodle/Desurium/issues/102)
  * Failed to select value for key (https://github.com/lodle/Desurium/issues/110)
+ * "Exit" just hides the window (https://github.com/lodle/Desurium/issues/121)
  * Desurium console unreadable with oxygen-gtk (https://github.com/lodle/Desurium/issues/127)
  * Change 'play' and 'games' to 'games' and 'store' (https://github.com/lodle/Desurium/issues/134)
  * Active region for "Home" button is counter-productively tight (https://github.com/lodle/Desurium/issues/160)
