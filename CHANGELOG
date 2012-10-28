@@ -24,6 +24,7 @@ fixed issues:
  * Active region for "Home" button is counter-productively tight (https://github.com/lodle/Desurium/issues/160)
  * Automatically Delete MCFs (https://github.com/lodle/Desurium/issues/162)
  * update to wxWidgets-2.9.3 (https://github.com/lodle/Desurium/pull/167)
+ * No language loaded (https://github.com/lodle/Desurium/issues/190)
  * Upload bar is thin. (https://github.com/lodle/Desurium/issues/191)
  * in offline mode I'm only able to launch a game (https://github.com/lodle/Desurium/issues/215)
  * Give an option to be FHS compliant (https://github.com/lodle/Desurium/issues/296)
