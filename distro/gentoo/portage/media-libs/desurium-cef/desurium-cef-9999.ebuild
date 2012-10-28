@@ -45,6 +45,7 @@ fi
 # wxGTK-2.9.4.1 does not work!
 COMMON_DEPEND="
 	app-arch/bzip2
+	dev-libs/dbus-glib
 	dev-libs/libevent
 	dev-libs/libxml2
 	dev-libs/openssl:0
