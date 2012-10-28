@@ -84,6 +84,7 @@ COMMON_DEPEND="
 	>=sys-devel/gcc-4.5
 	virtual/pkgconfig
 	x11-libs/gtk+:2
+	x11-libs/libnotify
 	=x11-libs/wxGTK-2.9.3.1[X]
 
 	amd64? ( 32bit? (

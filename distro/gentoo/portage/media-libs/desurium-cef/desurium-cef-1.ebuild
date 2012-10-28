@@ -52,6 +52,7 @@ COMMON_DEPEND="
 	media-libs/libpng:0
 	media-libs/libwebp
 	media-libs/speex
+	sys-apps/dbus
 	sys-libs/zlib
 	virtual/jpeg
 	=x11-libs/wxGTK-2.9.3.1[X]
