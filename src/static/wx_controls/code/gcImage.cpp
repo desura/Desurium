@@ -39,6 +39,7 @@ void gcImage::setImage(const char* image, bool alpha)
 	{
 		Warning(gcString("Failed to load image {0}\n", image));
 	}
+#ifdef WIN32
 	else
 	{
 		if (alpha)
@@ -46,6 +47,7 @@ void gcImage::setImage(const char* image, bool alpha)
 			ConvertAlphaToMask();
 		}
 	}
+#endif
 }
 
 void gcImage::tileImg( wxBitmap &target, wxBitmap src, wxColor* fillBg, TILE_DIR dir)
