@@ -96,9 +96,6 @@ void gcImageControl::doPaint(wxDC* dc)
 		dc->DrawRectangle(0, 0, sz.GetWidth(), sz.GetHeight());
 	}
 
-
-	wxMemoryDC memDC;
-
 	if (m_uiXPro == 0 || m_uiYPro == 0)
 	{
 		wxBitmap temp(sz.GetWidth(), sz.GetHeight());
@@ -158,6 +155,7 @@ void gcImageControl::doPaint(wxDC* dc)
 
 		wxBitmap temp(m_imgHandle->Scale(w, h, wxIMAGE_QUALITY_HIGH));
 		
+		wxMemoryDC memDC;
 		memDC.SelectObject(temp);
 
 		dc->Blit(x, y,			// Draw at (100, 100)
@@ -166,9 +164,9 @@ void gcImageControl::doPaint(wxDC* dc)
 				0, 0,			// Draw from bitmap origin
 				wxCOPY,			// Logical operation
 				true);			// Take mask into account
-	}
 
-	memDC.SelectObject(wxNullBitmap);
+		memDC.SelectObject(wxNullBitmap);
+	}
 }
 
 #ifdef NIX
