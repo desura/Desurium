@@ -1,42 +1,72 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<lang name="Spanish" skip="true">
+<?xml version="1.0" encoding="UTF-8"?>
+<lang name="Español (Spanish)" skip="true">
 	<author>
 		<username>jack_wade</username>
 		<profile>http://www.moddb.com/members/jack-wade</profile>
 
 		<username>El Hombre Sin Nombre</username>
 		<profile>http://www.desura.com/members/elhombresinnombre</profile>
+
+		<username>Lugonu</username>
+		<profile>http://www.desura.com/members/lugonu</profile>
 	</author>
 	<strings>
-		<str name="#CRASH_TITLE">Desura: Herramienta de Informe de Errores</str>
-		<str name="#CRASH_UPLOADINFO">Subiendo Informe(s) de Error(es)...</str>
-		<str name="#CRASH_GENERATEINFO">Generando Informe(s) de Error(es)...</str>
-		<str name="#CRASH_ERROR">Error al procesar el/los informe(s) de error(es).</str>
+		<str name="#CRASH_TITLE">Desura: Herramienta de informes de error</str>
+		<str name="#CRASH_UPLOADINFO">Enviando informe(s) de error ...</str>
+		<str name="#CRASH_GENERATEINFO">Generando informe de error ...</str>
+		<str name="#CRASH_ERROR">Error al procesar el/los informe(s).</str>
 
-		<str name="#CRASH_BUTGENERATE">Generar Informe de Errores</str>
-		<str name="#CRASH_BUTUPLOAD">Subir Informes de Errores</str>
+		<str name="#CRASH_BUTGENERATE">Generar informe de error</str>
+		<str name="#CRASH_BUTUPLOAD">Enviar informes de error</str>
 
-		<str name="#CRASH_LABGENERATE">Cuando Desura no responda o realice algo inesperado, esta herramienta informará a los desarrolladores del actual estado de la aplicación para ayudarles a solucionar el problema.</str>
-		<str name="#CRASH_LABUPLOAD">Enviar los informes de errores existentes. P.ej. Informes de errores que se generaron antes de que Desura se iniciara.</str>
-
-
-		<str name="#CLEANUP_LABTOTAL">Total:</str>
-		<str name="#CLEANUP_LABCURRENT">Elemento actual:</str>
-
-
-		<str name="#CLEANUP_TITLE">Desura: Herramienta de Limpieza</str>
-
-		<str name="#CLEANUP_SELECTALL">Seleccionar Todos</str>
-		<str name="#CLEANUP_SELECTNONE">No Seleccionar Ninguno</str>
-		<str name="#CLEANUP_LABEL">Por favor, selecciona los juegos y los mods que quieras desinstalar con Desura.</str>
+		<str name="#CRASH_LABGENERATE">Cuando Desura no responda o haga algo inesperado, esta herramienta informará a los desarrolladores del estado actual de la aplicación para ayudar a solucionar el problema.</str>
+		<str name="#CRASH_LABUPLOAD">Enviar los informes de error existentes. P.ej. Informes de error que se generaron antes de que Desura se iniciara.</str>
 
 
 		<str name="#CDF_TITLE">Moviendo el archivo de datos de Desura</str>
-		<str name="#CDF_STARTUP">Analizando archivos de datos...</str>
+		<str name="#CDF_STARTUP">Analizando el archivo de datos...</str>
 		<str name="#CDF_MOVEFILE">Moviendo archivos...</str>
-		<str name="#CDF_DBCHANGES">Actualizando base de datos...</str>
+		<str name="#CDF_DBCHANGES">Actualizando la base de datos...</str>
 
 		<str name="#CDF_GERRTITLE">Error de Desura</str>
 		<str name="#CDF_GERROR">Error al mover el archivo de datos de Desura.</str>
+
+
+		<str name="#DUN_TOTAL">Progreso total:</str>
+		<str name="#DUN_CURRENT">Progreso actual:</str>
+		<str name="#DUN_COMPLETED">Recuerde: Los elementos comprados y los regalos no se borran nunca de su cuenta, puede acceder a ellos en cualquier momento reinstalando el cliente de Desura.</str>
+
+		<str name="#DUN_UNINSTALL_INFO">Al desinstalar Desura se borrarán todos los juegos instalados, mods y contenido. Para mantener el contenido instalado y reparar su instalación de Desura, pulse el botón reparar que hay abajo.</str>
+		<str name="#DUN_UNINSTALL_OPT">Opciones de desinstalación:</str>
+		<str name="#DUN_UNINSTALL_LOC">Desura será desinstalado del siguiente directorio:</str>
+
+		<str name="#DUN_REMOVE_DESURA">Borrar Desura</str>
+		<str name="#DUN_REMOVE_DESURA_TT">Borra todos los archivos de Desura instalados.</str>
+		<str name="#DUN_REMOVE_SETTINGS">Borrar configuración</str>
+		<str name="#DUN_REMOVE_SETTINGS_TT">Borra los archivos de configuración utilizados por Desura.</str>
+		<str name="#DUN_REMOVE_CACHE">Borrar la caché descargada</str>
+		<str name="#DUN_REMOVE_CACHE_TT">Borra los archivos de caché utilizados por Desura.</str>
+		<str name="#DUN_REMOVE_SIMPLE">Borrar juegos y mods simples</str>
+		<str name="#DUN_REMOVE_SIMPLE_TT">Borra todos los juegos y mods que han sido instalados por Desura.</str>
+		<str name="#DUN_REMOVE_COMPLEX">Borrar mods complejos</str>
+		<str name="#DUN_REMOVE_COMPLEX_TT">Borra todos los mods que se instalan sobre los archivos del juego original.</str>
+		<str name="#DUN_REMOVE_ACCOUNT">Borrar elementos gratuitos de la cuenta</str>
+		<str name="#DUN_REMOVE_ACCOUNT_TT">Borra todos los elementos gratuitos (como enlaces y demos) que se han instalado en este ordenador desde su cuenta.</str>
+
+		<str name="#DUN_UNINSTALL_HEADER">Desinstalar Desura</str>
+		<str name="#DUN_UNINSTALL_SUBHEADER">Borra Desura de su ordenador</str>
+		<str name="#DUN_REPAIR">Reparar</str>
+		<str name="#DUN_UNINSTALL">Desinstalar</str>
+
+		<str name="#DUN_THREAD_UNINSTALL">Borrando juegos y mods...</str>
+		<str name="#DUN_THREAD_UNINSTALL_SUB">Desinstalando: {0}</str><!-- {0} item name -->
+		<str name="#DUN_THREAD_FINAL">Limpieza final...</str>
+		<str name="#DUN_THREAD_UNINSTALL">Borrando entradas del desinstalador...</str>
+		<str name="#DUN_THREAD_GAMEEXPLORER">Borrando entradas del explorador de juegos...</str>
+		<str name="#DUN_THREAD_CACHE">Borrando la caché de Desura...</str>
+		<str name="#DUN_THREAD_SETTINGS">Borrando la configuración de desura...</str>
+		<str name="#DUN_THREAD_ACCOUNT">Limpiando elementos de la cuenta...</str>
+		<str name="#DUN_THREAD_ACCOUNT_SUB">Borrando {0} de la cuenta</str><!-- {0} item name -->
+
 	</strings>
 </lang>
