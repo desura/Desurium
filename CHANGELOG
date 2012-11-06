@@ -28,6 +28,7 @@ fixed issues:
  * Upload bar is thin. (https://github.com/lodle/Desurium/issues/191)
  * in offline mode I'm only able to launch a game (https://github.com/lodle/Desurium/issues/215)
  * Give an option to be FHS compliant (https://github.com/lodle/Desurium/issues/296)
+ * User avatar not respecting proper alpha (https://github.com/lodle/Desurium/issues/329)
  
 other stuff:
  * many translations
