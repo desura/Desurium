@@ -328,7 +328,10 @@ void BaseThread::stop()
 	if (m_pPrivates->m_pThread)
 	{
 		m_pPrivates->m_pThread->interrupt();
-		m_pPrivates->m_pThread->join();
+		if (m_pPrivates->m_pThread->joinable())
+		{
+			m_pPrivates->m_pThread->join();
+		}
 	}
 }
 
