@@ -48,7 +48,7 @@ COMMON_DEPEND="
 	dev-libs/dbus-glib
 	dev-libs/libevent
 	dev-libs/libxml2
-	dev-libs/openssl:0
+	dev-libs/nss
 	media-libs/flac
 	media-libs/libpng:0
 	media-libs/libwebp
