@@ -48,7 +48,8 @@ COMMON_DEPEND="
 	dev-libs/dbus-glib
 	dev-libs/libevent
 	dev-libs/libxml2
-	dev-libs/openssl:0
+	dev-libs/nss
+	media-libs/alsa-lib
 	media-libs/flac
 	media-libs/libpng:0
 	media-libs/libwebp
@@ -65,6 +66,7 @@ RDEPEND="
 
 DEPEND="
 	dev-lang/yasm
+	dev-util/gperf
 	${COMMON_DEPEND}
 "
 
