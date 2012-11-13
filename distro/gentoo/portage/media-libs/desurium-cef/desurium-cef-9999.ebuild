@@ -66,6 +66,7 @@ RDEPEND="
 
 DEPEND="
 	dev-lang/yasm
+	dev-util/gperf
 	${COMMON_DEPEND}
 "
 
