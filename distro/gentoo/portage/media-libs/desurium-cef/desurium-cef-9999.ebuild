@@ -49,6 +49,7 @@ COMMON_DEPEND="
 	dev-libs/libevent
 	dev-libs/libxml2
 	dev-libs/nss
+	media-libs/alsa-lib
 	media-libs/flac
 	media-libs/libpng:0
 	media-libs/libwebp
