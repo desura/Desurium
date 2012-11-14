@@ -147,6 +147,7 @@ if(wxWidgets_FOUND)
     "-DwxWidgets_CONFIG_EXECUTABLE=${wxWidgets_CONFIG_EXECUTABLE}"
     "-DwxWidgets_wxrc_EXECUTABLE=${wxWidgets_wxrc_EXECUTABLE}")
   if(NOT WXWIDGET_2_9_TEST_COMPILE)
+    message(STATUS "no working wxWidgets-2.9.3 found")
     unset(wxWidgets_FOUND)
     if(REQUIRED_IF_OPTION)
       message(FATAL_ERROR "no wxWidget-2.9.3 found")
