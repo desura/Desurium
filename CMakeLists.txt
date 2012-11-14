@@ -142,7 +142,10 @@ if(wxWidgets_FOUND)
     "${CMAKE_TEST_PROJECTS_BIN}/wxWidget_2.9_test"
     "${CMAKE_TEST_PROJECTS}/wxWidget_2.9_test"
     "wxWidget_2_9_test"
-    "wxWidget_2_9_test")
+    "wxWidget_2_9_test"
+    CMAKE_FLAGS
+    "-DwxWidgets_CONFIG_EXECUTABLE=${wxWidgets_CONFIG_EXECUTABLE}"
+    "-DwxWidgets_wxrc_EXECUTABLE=${wxWidgets_wxrc_EXECUTABLE}")
   if(NOT WXWIDGET_2_9_TEST_COMPILE)
     unset(wxWidgets_FOUND)
     if(REQUIRED_IF_OPTION)
