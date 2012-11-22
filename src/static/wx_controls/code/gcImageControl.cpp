@@ -29,9 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	#include "gtk/gtk.h"
 #endif
 
-#ifdef __WXGTK__
-	#include "wx/gtk/private/win_gtk.h"
-#elif defined(__WXMAC__)
+#ifdef __WXMAC__
 	#include "wx/mac/private.h"
 #endif
 
