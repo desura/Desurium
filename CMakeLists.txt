@@ -40,6 +40,10 @@
 #   INSTALL_DESKTOP_FILE                INSTALL a desktop file in /usr/share/applications
 #                   OFF
 #
+# wxWidgets select correct  version
+#   wxWidgets_CONFIG_EXECUTABLE         path to wx-config (version 2.9.3)
+#   wxWidgets_wxrc_EXECUTABLE           path to wxrc (version 2.9.3)
+#
 # windows-only options:
 #   BOOST_URL                           URL to boost archive
 #
@@ -142,8 +146,12 @@ if(wxWidgets_FOUND)
     "${CMAKE_TEST_PROJECTS_BIN}/wxWidget_2.9_test"
     "${CMAKE_TEST_PROJECTS}/wxWidget_2.9_test"
     "wxWidget_2_9_test"
-    "wxWidget_2_9_test")
+    "wxWidget_2_9_test"
+    CMAKE_FLAGS
+    "-DwxWidgets_CONFIG_EXECUTABLE=${wxWidgets_CONFIG_EXECUTABLE}"
+    "-DwxWidgets_wxrc_EXECUTABLE=${wxWidgets_wxrc_EXECUTABLE}")
   if(NOT WXWIDGET_2_9_TEST_COMPILE)
+    message(STATUS "no working wxWidgets-2.9.3 found")
     unset(wxWidgets_FOUND)
     if(REQUIRED_IF_OPTION)
       message(FATAL_ERROR "no wxWidget-2.9.3 found")
