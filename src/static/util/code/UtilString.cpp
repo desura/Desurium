@@ -225,7 +225,11 @@ std::string sanitizeFilePath(const std::string &str, char slash)
 		}
 
 		if (str[x] == '.' && x+1<size && str[x+1] == '.')
+		{
+			out += "..";
+			x++;
 			continue;
+		}
 
 		out += str[x];
 	}
