@@ -20,11 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "gcHyperlinkCtrl.h"
 #include "gcManagers.h"
 
-#ifdef WIN32
-	#include "wx/msw/private/button.h"
-#else
-	#include "wx/button.h"
-#endif
+#include "wx/button.h"
 
 gcHyperlinkCtrl::gcHyperlinkCtrl(wxWindow *parent, wxWindowID id, const wxString& label, const wxString& url, const wxPoint& pos, const wxSize& size, long style) : wxHyperlinkCtrl(parent, id, label, url, pos, size, wxHL_ALIGN_LEFT|wxHL_CONTEXTMENU|wxNO_BORDER)
 {
