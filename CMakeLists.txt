@@ -240,7 +240,7 @@ endif()
 # for windows
 set(CURL_GIT git://github.com/bagder/curl.git)
 set(CURL_VERSION tags/curl-7_25_0)
-set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.9/)
+set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.15/)
 
 ###############################################################################
 # build some externel projects
