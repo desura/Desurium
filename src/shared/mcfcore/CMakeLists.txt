@@ -13,7 +13,11 @@ file(GLOB Sources code/*.cpp
 add_definitions(-DNEED_STRDUP -DNEED_MEMCCPY)
 
 if(WIN32)
-  set(PLATFORM_LIBRARIES dnsapi rpcrt4 wininet winmm ws2_32)
+  if(NOT MINGW)
+    set(PLATFORM_LIBRARIES dnsapi rpcrt4 wininet winmm ws2_32)
+  else()
+    set(PLATFORM_LIBRARIES ${WINDOWS_LIBRARIES} msi winhttp wintrust)
+  endif()
 #  add_linker_flags(/NOD:LIBCMT)
 else()
   set(PLATFORM_LIBRARIES dl)

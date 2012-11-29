@@ -142,9 +142,13 @@ if(WIN32)
 				  -DINCLUDE_WXWIDGETS
 				  -DDESURA_CLIENT
 				  -DWXUSINGDLL)
-  set(WINDOWS_LIBRARIES comctl32 comsuppwd odbc32 rpcrt4 Wininet winmm wsock32)
+  set(WINDOWS_LIBRARIES )
+  if(MINGW)
+    set(WINDOWS_LIBRARIES ${WINDOWS_LIBRARIES})
+  else()
+    set(WINDOWS_LIBRARIES ${WINDOWS_LIBRARIES} comctl32 comsuppwd odbc32 rpcrt4 Wininet winmm wsock32)
+  endif()
   use_unicode_here()
-  add_linker_flags(/FORCE)
 endif()
 
 add_library(uicore SHARED ${Sources} ${PlattformSources} ${BROWSER_PIPE_SPOURCES})

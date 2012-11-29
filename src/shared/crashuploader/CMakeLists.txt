@@ -6,6 +6,9 @@ include_directories(
 file(GLOB Sources code/*.cpp)
 
 if(WIN32)
+  if(MINGW)
+    set(PLATFORM_LIBRARIES winhttp wintrust msi)
+  endif()
 #  add_linker_flags(/NODEFAULTLIB:LIBCMT)
 endif()
 
@@ -19,6 +22,7 @@ target_link_libraries(crashuploader
     ${GTK2_LIBRARIES}
     ${TINYXML_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
+    ${PLATFORM_LIBRARIES}
 )
 
 install(TARGETS crashuploader
