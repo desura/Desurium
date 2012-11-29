@@ -142,6 +142,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	#define BUILDID_PUBLIC 100
 	
 	void inline gcSleep(uint32 miliSecs) { Sleep(miliSecs); }
+	
+	// mingw needs some imports
+	#ifdef __MINGW32__
+		#include <limits.h>
+		#include <algorithm>
+	#endif
 #endif
 
 #ifdef NIX // LINUX 
@@ -595,7 +601,7 @@ inline bool HasAllFlags(uint32 value, uint32 flags)
 
 #include <memory>
 
-#ifdef NIX
+#if defined(NIX) || defined(__MINGW32__)
 #  ifdef __ICC
 #    include <boost/weak_ptr.hpp>
 #    include <boost/shared_ptr.hpp>
@@ -653,7 +659,7 @@ namespace Safe
 		va_list args;
 		va_start(args, format);
 
-	#ifdef WIN32
+	#if defined(WIN32) && !defined(__MINGW32__)
 		_vsnprintf_s(dest, destSize, _TRUNCATE, format, args);
 	#else
 		::vsnprintf(dest, destSize, format, args);
@@ -716,7 +722,7 @@ namespace Safe
 
 	inline void strcat(char* dest, size_t destSize, const char* source)
 	{
-	#ifdef WIN32
+	#if defined(WIN32) && !defined(__MINGW32__)
 		strcat_s(dest, destSize, source);
 	#else
 		::strncat(dest, source, destSize);
@@ -725,7 +731,7 @@ namespace Safe
 
 	inline size_t strlen(const char* str, size_t strSize)
 	{
-	#ifdef WIN32
+	#if defined(WIN32) && !defined(__MINGW32__)
 		return strnlen_s(str, strSize);
 	#else
 		return ::strnlen(str, strSize);
@@ -734,7 +740,7 @@ namespace Safe
 
 	inline size_t wcslen(const wchar_t* str, size_t strSize)
 	{
-	#ifdef WIN32
+	#if defined(WIN32) && !defined(__MINGW32__)
 		return wcsnlen_s(str, strSize);
 	#else
 		return ::wcsnlen(str, strSize);
@@ -782,7 +788,7 @@ namespace Safe
 template <typename T>
 T Clamp(T val, T minVal, T maxVal)
 {
-#ifdef WIN32
+#if defined(WIN32) && !defined(__MINGW32__)
 	return max(min(val, maxVal), minVal);
 #else
 	return std::max(std::min(val, maxVal), minVal);

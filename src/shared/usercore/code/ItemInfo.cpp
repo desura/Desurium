@@ -913,10 +913,9 @@ void ItemInfo::setPercent(uint8 percent)
 	if (m_iPercent == percent)
 		return;
 
-#ifdef WIN32
+#if defined(WIN32) && !defined(__MINGW32__)
 	m_iPercent = min(max(percent,0),100);
-#endif
-#ifdef NIX
+#else
 	m_iPercent = std::min(std::max((int)percent,0),100);
 #endif
 

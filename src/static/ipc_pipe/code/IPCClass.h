@@ -34,7 +34,7 @@ namespace IPC
 
 class IPCManager;
 
-#ifdef WIN32
+#if defined(WIN32) && !defined(__MINGW32__)
 #define REG_FUNCTION_VOID( class, name ) registerFunction( networkFunctionV(this, &class##::##name ), #name );
 #define REG_FUNCTION( class, name ) registerFunction( networkFunction(this, &class##::##name ), #name );
 #else

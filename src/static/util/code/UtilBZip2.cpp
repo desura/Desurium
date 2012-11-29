@@ -75,7 +75,7 @@ public:
 		if (size > m_DataOutStream.size())
 			size = m_DataOutStream.size();
 
-#ifdef WIN32
+#if defined(WIN32) && !defined(__MINGW32__)
 		std::copy(m_DataOutStream.begin(), m_DataOutStream.begin() + size, stdext::checked_array_iterator<char*>(buff, size));
 #else
 		std::copy(m_DataOutStream.begin(), m_DataOutStream.begin() + size, buff);
