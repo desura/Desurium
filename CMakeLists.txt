@@ -170,11 +170,11 @@ endif()
 ###############################################################################
 
 if(WIN32)
-  set(BOOST_URL_DEFAULT "http://downloads.sourceforge.net/project/boost/boost/1.49.0/boost_1_49_0.zip")
+  set(BOOST_URL_DEFAULT "http://downloads.sourceforge.net/project/boost/boost/1.51.0/boost_1_51_0.zip")
   set(BOOST_URL ${BOOST_URL_DEFAULT}
       CACHE STRING "URL to boost archive")
   if(BOOST_URL STREQUAL BOOST_URL_DEFAULT)
-    set(BOOST_MD5 854dcbbff31b896c85c38247060b7713)
+    set(BOOST_MD5 ee8112e48088b05c248d68329cd5d908)
   else()
     unset(BOOST_MD5)
   endif()
