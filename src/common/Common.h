@@ -147,6 +147,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	#ifdef __MINGW32__
 		#include <limits.h>
 		#include <algorithm>
+		
+		// this is missing in the mingw headers
+		// shellapi.h:
+		#ifndef SEE_MASK_DEFAULT
+			#define SEE_MASK_DEFAULT 0x00000000
+		#endif
+		// on mingw we have the XP version of NOTIFYICONDATA*
+		#ifndef NOTIFYICONDATA_V3_SIZE
+			#define NOTIFYICONDATAA_V3_SIZE sizeof(NOTIFYICONDATAA)
+			#define NOTIFYICONDATAW_V3_SIZE sizeof(NOTIFYICONDATAW)
+			#define NOTIFYICONDATA_V3_SIZE __MINGW_NAME_AW_EXT(NOTIFYICONDATA,_V3_SIZE)
+		#endif
+		
+		// mscoree.h:
+		#ifndef STARTUP_LOADER_OPTIMIZATION_MULTI_DOMAIN_HOST
+			#define STARTUP_LOADER_OPTIMIZATION_MULTI_DOMAIN_HOST 0x3<<1
+		#endif
+		// netfw.h:
+		// included in projects directly
 	#endif
 #endif
 
