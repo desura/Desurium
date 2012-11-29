@@ -1,5 +1,6 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
+  ${CMAKE_CURRENT_SOURCE_DIR}/code/third_party
   ${Boost_INCLUDE_DIR}
   ${BZIP2_INCLUDE_DIR}
   ${CURL_INCLUDE_DIRS}
