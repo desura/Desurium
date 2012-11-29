@@ -386,22 +386,22 @@ template <typename T>
 class AutoDeleteLocal : public AutoDelete<T>
 {
 public:
-	AutoDeleteLocal(T* t) : AutoDelete(t)
+	AutoDeleteLocal(T* t) : AutoDelete<T>(t)
 	{
 	}
 
 	~AutoDeleteLocal()
 	{
-		LocalFree(*m_pPointer);
-		m_pPointer = NULL;
+		LocalFree(*AutoDelete<T>::m_pPointer);
+		AutoDelete<T>::m_pPointer = NULL;
 	}
 
 	AutoDeleteLocal<T>& operator=(AutoDeleteLocal<T>& o)
 	{
 		if (this != &o)
 		{
-			LocalFree(*m_pPointer);
-			m_pPointer = o.m_pPointer;
+			LocalFree(*AutoDelete<T>::m_pPointer);
+			AutoDelete<T>::m_pPointer = o.m_pPointer;
 			o.m_pPointer = NULL;
 		}
 
