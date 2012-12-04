@@ -39,25 +39,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include <vector>
 
-#ifndef DONT_DEFINE_OS_VERSION
-
-enum OS_VERSION
-{
-	WINDOWS_UNKNOWN,
-	WINDOWS_SERVER2008,
-	WINDOWS_SERVER2003,
-	WINDOWS_SERVER2000,
-	WINDOWS_HOMESERVER,
-	WINDOWS_VISTA,
-	WINDOWS_XP64,
-	WINDOWS_XP,
-	WINDOWS_2000,
-	WINDOWS_PRE2000,
-	WINDOWS_7,
-};
-
-#endif
-
 namespace BootLoaderUtil
 {
 	class CMDArgInternal;
