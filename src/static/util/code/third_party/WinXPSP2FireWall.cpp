@@ -23,7 +23,7 @@ FW_ERROR_CODE WinXPSP2FireWall::Initialize()
 			throw FW_ERR_INITIALIZED;
 
 		// Create an instance of the firewall settings manager.
-		hr = CoCreateInstance( __uuidof(NetFwMgr), NULL, CLSCTX_INPROC_SERVER, __uuidof( INetFwMgr), (void**)&fwMgr );
+		hr = CoCreateInstance( CLSID_NetFwMgr, NULL, CLSCTX_INPROC_SERVER, IID_INetFwMgr, (void**)&fwMgr );
 
 		if( FAILED( hr ))
 			throw FW_ERR_CREATE_SETTING_MANAGER;
@@ -241,7 +241,7 @@ FW_ERROR_CODE WinXPSP2FireWall::AddApplication( const wchar_t* lpszProcessImageF
 				throw FW_ERR_AUTH_APPLICATIONS;
 
 			// Create an instance of an authorized application
-			hr = CoCreateInstance( __uuidof(NetFwAuthorizedApplication), NULL, CLSCTX_INPROC_SERVER, __uuidof(INetFwAuthorizedApplication), (void**)&pFWApp);
+			hr = CoCreateInstance( CLSID_NetFwAuthorizedApplication, NULL, CLSCTX_INPROC_SERVER, IID_INetFwAuthorizedApplication, (void**)&pFWApp);
 			if( FAILED( hr ))
 				throw FW_ERR_CREATE_APP_INSTANCE;
 
@@ -403,7 +403,7 @@ FW_ERROR_CODE WinXPSP2FireWall::AddPort( LONG lPortNumber, NET_FW_IP_PROTOCOL ip
 				throw FW_ERR_GLOBAL_OPEN_PORTS;
 
 			// Create an instance of an open port
-			hr = CoCreateInstance( __uuidof(NetFwOpenPort), NULL, CLSCTX_INPROC_SERVER, __uuidof(INetFwOpenPort), (void**)&pFWOpenPort);
+			hr = CoCreateInstance( CLSID_NetFwOpenPort, NULL, CLSCTX_INPROC_SERVER, IID_INetFwOpenPort, (void**)&pFWOpenPort);
 			if( FAILED( hr ))
 				throw FW_ERR_CREATE_PORT_INSTANCE;
 
