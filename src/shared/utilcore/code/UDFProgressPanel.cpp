@@ -79,7 +79,8 @@ void UDFProgressPanel::onComplete()
 	m_pbTotal->setProgress(100);
 	m_pbCurrent->setProgress(100);
 
-	onLog(gcString("\n\n{0}", Managers::GetString("#DUN_COMPLETED")));
+	gcString str("\n\n{0}", Managers::GetString("#DUN_COMPLETED"));
+	onLog(str);
 
 	UninstallForm* uf = dynamic_cast<UninstallForm*>(GetParent());
 

@@ -68,14 +68,18 @@ void UninstallAllThread::run()
 		if (removeSimple && game->isInstalled())
 			uninstallList.push_back(m_pUser->getItemManager()->findItemHandle(game->getId()));
 	}
-
-	onLogEvent(gcString("{0}\n", Managers::GetString("#DUN_THREAD_UNINSTALL")));
+	
+	{
+		gcString str("{0}\n", Managers::GetString("#DUN_THREAD_UNINSTALL"));
+		onLogEvent(str);
+	}
 	m_iTotal = uninstallList.size() + (removeCache?1:0) + (removeSettings?1:0) + 2;
 
 	for (size_t x=0; x<uninstallList.size(); x++)
 	{
 		m_iTotalPos++;
-		onProgressEvent(std::pair<uint32,uint32>(m_iTotalPos*100/m_iTotal, 0));
+		std::pair<uint32,uint32> pair(m_iTotalPos*100/m_iTotal, 0);
+		onProgressEvent(pair);
 
 		if (isStopped())
 			break;
@@ -85,7 +89,8 @@ void UninstallAllThread::run()
 		if (!itemHandle)
 			continue;
 
-		onLogEvent(gcString("\t{0}\n", gcString(Managers::GetString("#DUN_THREAD_UNINSTALL_SUB"), itemHandle->getItemInfo()->getName())));
+		gcString logStr("\t{0}\n", gcString(Managers::GetString("#DUN_THREAD_UNINSTALL_SUB"), itemHandle->getItemInfo()->getName()));
+		onLogEvent(logStr);
 	
 		itemHandle->addHelper(this);
 		itemHandle->uninstall(this, true, false);
@@ -106,7 +111,8 @@ void UninstallAllThread::run()
 	if (removeSettings)
 		removeDesuraSettings();
 
-	onLogEvent(gcString("{0}\n", Managers::GetString("#DUN_THREAD_FINAL")));
+	gcString finalLogStr("{0}\n", Managers::GetString("#DUN_THREAD_FINAL"));
+	onLogEvent(finalLogStr);
 
 	UTIL::WIN::delRegValue(APPID);
 	UTIL::WIN::delRegValue(APPBUILD);
@@ -142,12 +148,14 @@ void UninstallAllThread::onComplete(gcString& string)
 void UninstallAllThread::onMcfProgress(MCFCore::Misc::ProgressInfo& info)
 {
 	uint32 prog = info.percent;
-	onProgressEvent(std::pair<uint32,uint32>(m_iTotalPos*100/m_iTotal, prog));
+	std::pair<uint32,uint32> pair(m_iTotalPos*100/m_iTotal, prog);
+	onProgressEvent(pair);
 }
 
 void UninstallAllThread::onProgressUpdate(uint32 progress)
 {
-	onProgressEvent(std::pair<uint32,uint32>(m_iTotalPos*100/m_iTotal, progress));
+	std::pair<uint32,uint32> pair(m_iTotalPos*100/m_iTotal, progress);
+	onProgressEvent(pair);
 }
 
 
@@ -186,10 +194,12 @@ void UninstallAllThread::onPause(bool state)
 
 void UninstallAllThread::removeUninstallInfo()
 {
-	onLogEvent(gcString("{0}\n", Managers::GetString("#DUN_THREAD_UNINSTALL")));
+	gcString logStr("{0}\n", Managers::GetString("#DUN_THREAD_UNINSTALL"));
+	onLogEvent(logStr);
 
 	m_iTotalPos++;
-	onProgressEvent(std::pair<uint32,uint32>(m_iTotalPos*100/m_iTotal, 0));
+	std::pair<uint32,uint32> pair(m_iTotalPos*100/m_iTotal, 0);
+	onProgressEvent(pair);
 
 	std::vector<std::string> regKeys;
 	UTIL::WIN::getAllRegKeys("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall", regKeys);
@@ -208,10 +218,12 @@ void UninstallAllThread::removeUninstallInfo()
 
 void UninstallAllThread::removeGameExplorerInfo()
 {
-	onLogEvent(gcString("{0}\n", Managers::GetString("#DUN_THREAD_GAMEEXPLORER")));
+	gcString logStr("{0}\n", Managers::GetString("#DUN_THREAD_GAMEEXPLORER"));
+	onLogEvent(logStr);
 
 	m_iTotalPos++;
-	onProgressEvent(std::pair<uint32,uint32>(m_iTotalPos*100/m_iTotal, 0));
+	std::pair<uint32,uint32> pair(m_iTotalPos*100/m_iTotal, 0);
+	onProgressEvent(pair);
 
 	std::vector<std::string> regKeys;
 	UTIL::WIN::getAllRegKeys("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\GameUX\\Games", regKeys, true);
@@ -237,10 +249,12 @@ void UninstallAllThread::removeGameExplorerInfo()
 
 void UninstallAllThread::removeDesuraCache()
 {
-	onLogEvent(gcString("{0}\n", Managers::GetString("#DUN_THREAD_CACHE")));
+	gcString logStr("{0}\n", Managers::GetString("#DUN_THREAD_CACHE"));
+	onLogEvent(logStr);
 
 	m_iTotalPos++;
-	onProgressEvent(std::pair<uint32,uint32>(m_iTotalPos*100/m_iTotal, 0));
+	std::pair<uint32,uint32> pair(m_iTotalPos*100/m_iTotal, 0);
+	onProgressEvent(pair);
 
 	UTIL::FS::Path path(getCachePath(), "", false);
 	std::vector<std::string> extList;
@@ -269,10 +283,12 @@ void UninstallAllThread::removeDesuraCache()
 
 void UninstallAllThread::removeDesuraSettings()
 {
-	onLogEvent(gcString("{0}\n", Managers::GetString("#DUN_THREAD_SETTINGS")));
+	gcString logStr("{0}\n", Managers::GetString("#DUN_THREAD_SETTINGS"));
+	onLogEvent(logStr);
 
 	m_iTotalPos++;
-	onProgressEvent(std::pair<uint32,uint32>(m_iTotalPos*100/m_iTotal, 0));
+	std::pair<uint32,uint32> pair(m_iTotalPos*100/m_iTotal, 0);
+	onProgressEvent(pair);
 
 	UTIL::FS::Path dbDir(UTIL::OS::getAppDataPath(), L"", false);
 	

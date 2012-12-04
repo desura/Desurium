@@ -111,7 +111,8 @@ void ToolInstallThread::doInstall()
 	if (res == false)
 	{
 		m_bActiveInstall = false;
-		onErrorEvent(gcException(ERR_LAUNCH, GetLastError(), gcString("Failed to start exe {0} for tools install. [P: {1}]", exe, params)));
+		gcException gce(ERR_LAUNCH, GetLastError(), gcString("Failed to start exe {0} for tools install. [P: {1}]", exe, params));
+		onErrorEvent(gce);
 	}
 	else
 	{
