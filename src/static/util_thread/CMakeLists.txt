@@ -7,6 +7,12 @@ file(GLOB Sources code/*.cpp)
 
 add_library(threads STATIC ${Sources})
 
+if(WIN32)
+  set(PLATFORM_LIBRARIES ${Boost_CHRONO_LIBRARY})
+endif()
+
 target_link_libraries(threads
-    ${Boost_LIBRARIES}
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  ${PLATFORM_LIBRARIES}
 )

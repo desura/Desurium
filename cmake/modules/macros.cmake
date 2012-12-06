@@ -100,8 +100,9 @@ macro(add_desura_test name category neededLibs)
       ${Boost_INCLUDE_DIR}
     )
     target_link_libraries(${name}
-      ${Boost_LIBRARIES}
       ${neededLibs}
+      ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+      ${Boost_TEST_EXEC_MONITOR_LIBRARY}
     )
     add_test(${name} ${CMAKE_BINARY_DIR}/src/tests/${name})
   endif()
