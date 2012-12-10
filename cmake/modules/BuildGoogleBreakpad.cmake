@@ -1,6 +1,6 @@
 set(BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/breakpad)
 
-if(WIN32)
+if(WIN32 AND NOT MINGW)
   ExternalProject_Add(
     breakpad
     URL ${BREAKPAD_URL}
@@ -16,7 +16,7 @@ if(WIN32)
     update_project_files
     DEPENDEES configure
     DEPENDERS build
-    COMMAND devenv /upgrade <SOURCE_DIR>/src/client/windows/breakpad_client.sln
+    COMMAND vcupgrade <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcproj
   )
 else()
   ExternalProject_Add(
@@ -34,6 +34,24 @@ else()
     DEPENDEES download
     DEPENDERS configure
   )
+  if(MINGW)
+    ExternalProject_Add_Step(
+      breakpad
+      patch-mingw
+      COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_PATCH_DIR}/breakpad-mingw.patch
+      WORKING_DIRECTORY <SOURCE_DIR>
+      DEPENDEES download
+      DEPENDERS configure
+    )
+    ExternalProject_Add_Step(
+      breakpad
+      patch-windows
+      COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_PATCH_DIR}/breakpad.patch
+      WORKING_DIRECTORY <SOURCE_DIR>
+      DEPENDEES download
+      DEPENDERS configure
+    )
+  endif()
 endif()
 
 ExternalProject_Get_Property(
@@ -42,10 +60,13 @@ ExternalProject_Get_Property(
 )
 set(BREAKPAD_EXCEPTION_HANDLER_INCLUDE_DIR ${source_dir}/src)
 
-if(WIN32)
+if(WIN32 AND NOT MINGW)
   set(BREAKPAD_EXCEPTION_HANDLER_LIBRARY_DIR ${source_dir}/src/client/windows/handler/Release/lib)
   set(BREAKPAD_EXCEPTION_HANDLER_LIBRARIES "${BREAKPAD_EXCEPTION_HANDLER_LIBRARY_DIR}/exception_handler.lib")
 else()
   set(BREAKPAD_EXCEPTION_HANDLER_LIBRARY_DIR ${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR}/lib)
-  set(BREAKPAD_EXCEPTION_HANDLER_LIBRARIES "${BREAKPAD_EXCEPTION_HANDLER_LIBRARY_DIR}/libbreakpad.a;${BREAKPAD_EXCEPTION_HANDLER_LIBRARY_DIR}/libbreakpad_client.a")
+  set(BREAKPAD_EXCEPTION_HANDLER_LIBRARIES "${BREAKPAD_EXCEPTION_HANDLER_LIBRARY_DIR}/libbreakpad.a")
+  if(NOT MINGW)
+    set(BREAKPAD_EXCEPTION_HANDLER_LIBRARIES "${BREAKPAD_EXCEPTION_HANDLER_LIBRARIES};${BREAKPAD_EXCEPTION_HANDLER_LIBRARY_DIR}/libbreakpad_client.a")
+  endif()
 endif()

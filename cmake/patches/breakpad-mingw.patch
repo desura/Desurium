@@ -1,0 +1,390 @@
+from https://code.google.com/p/google-breakpad/issues/attachmentText?id=436&aid=4360000000&name=breakpad-mingw.diff&token=BILM2aLwxVgW28wlgIYAne95BaY%3A1354620263555
+Index: src/common/windows/guid_string.h
+===================================================================
+--- src/common/windows/guid_string.h	(revisjon 813)
++++ src/common/windows/guid_string.h	(arbeidskopi)
+@@ -33,6 +33,7 @@
+ #define COMMON_WINDOWS_GUID_STRING_H__
+ 
+ #include <Guiddef.h>
++#include <ObjBase.h>
+ 
+ #include <string>
+ 
+Index: src/client/windows/crash_generation/crash_generation_client.h
+===================================================================
+--- src/client/windows/crash_generation/crash_generation_client.h	(revisjon 813)
++++ src/client/windows/crash_generation/crash_generation_client.h	(arbeidskopi)
+@@ -30,10 +30,11 @@
+ #ifndef CLIENT_WINDOWS_CRASH_GENERATION_CRASH_GENERATION_CLIENT_H_
+ #define CLIENT_WINDOWS_CRASH_GENERATION_CRASH_GENERATION_CLIENT_H_
+ 
+-#include <windows.h>
+-#include <dbghelp.h>
+ #include <string>
+ #include <utility>
++
++#include <Windows.h>
++#include <DbgHelp.h>
+ #include "client/windows/common/ipc_protocol.h"
+ #include "processor/scoped_ptr.h"
+ 
+Index: src/client/windows/crash_generation/minidump_generator.h
+===================================================================
+--- src/client/windows/crash_generation/minidump_generator.h	(revisjon 813)
++++ src/client/windows/crash_generation/minidump_generator.h	(arbeidskopi)
+@@ -30,9 +30,12 @@
+ #ifndef CLIENT_WINDOWS_CRASH_GENERATION_MINIDUMP_GENERATOR_H_
+ #define CLIENT_WINDOWS_CRASH_GENERATION_MINIDUMP_GENERATOR_H_
+ 
+-#include <windows.h>
+-#include <dbghelp.h>
+ #include <list>
++#include <string>
++
++#include <Windows.h>
++#include <DbgHelp.h>
++
+ #include "google_breakpad/common/minidump_format.h"
+ 
+ namespace google_breakpad {
+Index: src/client/windows/handler/exception_handler.cc
+===================================================================
+--- src/client/windows/handler/exception_handler.cc	(revisjon 813)
++++ src/client/windows/handler/exception_handler.cc	(arbeidskopi)
+@@ -56,7 +56,11 @@
+ vector<ExceptionHandler*>* ExceptionHandler::handler_stack_ = NULL;
+ LONG ExceptionHandler::handler_stack_index_ = 0;
+ CRITICAL_SECTION ExceptionHandler::handler_stack_critical_section_;
++#ifdef __MINGW32__
++LONG ExceptionHandler::instance_count_ = 0;
++#else
+ volatile LONG ExceptionHandler::instance_count_ = 0;
++#endif
+ 
+ ExceptionHandler::ExceptionHandler(const wstring& dump_path,
+                                    FilterCallback filter,
+@@ -116,7 +120,9 @@
+ #if _MSC_VER >= 1400  // MSVC 2005/8
+   previous_iph_ = NULL;
+ #endif  // _MSC_VER >= 1400
++#ifdef _MSC_VER
+   previous_pch_ = NULL;
++#endif
+   handler_thread_ = NULL;
+   is_shutdown_ = false;
+   handler_start_semaphore_ = NULL;
+@@ -223,8 +229,10 @@
+       previous_iph_ = _set_invalid_parameter_handler(HandleInvalidParameter);
+ #endif  // _MSC_VER >= 1400
+ 
++#ifdef _MSC_VER
+     if (handler_types & HANDLER_PURECALL)
+       previous_pch_ = _set_purecall_handler(HandlePureVirtualCall);
++#endif  // _MSC_VER
+ 
+     LeaveCriticalSection(&handler_stack_critical_section_);
+   }
+@@ -250,8 +258,10 @@
+       _set_invalid_parameter_handler(previous_iph_);
+ #endif  // _MSC_VER >= 1400
+ 
++#ifdef _MSC_VER
+     if (handler_types_ & HANDLER_PURECALL)
+       _set_purecall_handler(previous_pch_);
++#endif  // _MSC_VER
+ 
+     if (handler_stack_->back() == this) {
+       handler_stack_->pop_back();
+@@ -380,7 +390,9 @@
+ #if _MSC_VER >= 1400  // MSVC 2005/8
+     _set_invalid_parameter_handler(handler_->previous_iph_);
+ #endif  // _MSC_VER >= 1400
++#ifdef _MSC_VER
+     _set_purecall_handler(handler_->previous_pch_);
++#endif  // _MSC_VER
+   }
+ 
+   ~AutoExceptionHandler() {
+@@ -389,7 +401,9 @@
+ #if _MSC_VER >= 1400  // MSVC 2005/8
+     _set_invalid_parameter_handler(ExceptionHandler::HandleInvalidParameter);
+ #endif  // _MSC_VER >= 1400
++#ifdef _MSC_VER
+     _set_purecall_handler(ExceptionHandler::HandlePureVirtualCall);
++#endif  // _MSC_VER
+ 
+     --ExceptionHandler::handler_stack_index_;
+     LeaveCriticalSection(&ExceptionHandler::handler_stack_critical_section_);
+@@ -567,6 +581,7 @@
+ }
+ #endif  // _MSC_VER >= 1400
+ 
++#ifdef _MSC_VER
+ // static
+ void ExceptionHandler::HandlePureVirtualCall() {
+   // This is an pure virtual function call, not an exception.  It's safe to
+@@ -639,6 +654,7 @@
+   // the behavior of "swallowing" exceptions.
+   exit(0);
+ }
++#endif  // _MSC_VER
+ 
+ bool ExceptionHandler::WriteMinidumpOnHandlerThread(
+     EXCEPTION_POINTERS* exinfo, MDRawAssertionInfo* assertion) {
+Index: src/client/windows/handler/exception_handler.h
+===================================================================
+--- src/client/windows/handler/exception_handler.h	(revisjon 813)
++++ src/client/windows/handler/exception_handler.h	(arbeidskopi)
+@@ -252,9 +252,11 @@
+                                      uintptr_t reserved);
+ #endif  // _MSC_VER >= 1400
+ 
++#ifdef _MSC_VER
+   // This function will be called by the CRT when a pure virtual
+   // function is called.
+   static void HandlePureVirtualCall();
++#endif  // _MSC_VER
+ 
+   // This is called on the exception thread or on another thread that
+   // the user wishes to produce a dump from.  It calls
+@@ -340,9 +342,11 @@
+   _invalid_parameter_handler previous_iph_;
+ #endif  // _MSC_VER >= 1400
+ 
++#ifdef _MSC_VER
+   // The CRT allows you to override the default handler for pure
+   // virtual function calls.
+   _purecall_handler previous_pch_;
++#endif
+ 
+   // The exception handler thread.
+   HANDLE handler_thread_;
+@@ -408,7 +412,11 @@
+   static CRITICAL_SECTION handler_stack_critical_section_;
+ 
+   // The number of instances of this class.
++#ifdef __MINGW32__
++  static LONG instance_count_;
++#else
+   volatile static LONG instance_count_;
++#endif
+ 
+   // disallow copy ctor and operator=
+   explicit ExceptionHandler(const ExceptionHandler &);
+Index: src/processor/source_line_resolver_base_types.h
+===================================================================
+--- src/processor/source_line_resolver_base_types.h	(revisjon 813)
++++ src/processor/source_line_resolver_base_types.h	(arbeidskopi)
+@@ -39,6 +39,7 @@
+ // Author: Siyang Xie (lambxsy@google.com)
+ 
+ #include <stdio.h>
++#include <stdint.h>
+ 
+ #include <map>
+ #include <string>
+Index: src/processor/basic_source_line_resolver.cc
+===================================================================
+--- src/processor/basic_source_line_resolver.cc
++++ src/processor/basic_source_line_resolver.cc
+@@ -34,6 +34,9 @@
+ 
+ 
+ #include <stdio.h>
++#ifndef MINGW_HAS_SECURE_API
++  #define MINGW_HAS_SECURE_API 1
++#endif
+ #include <string.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+@@ -78,7 +81,7 @@
+   }
+ 
+   char *buffer;
+-  buffer = strtok_r(memory_buffer, "\r\n", &save_ptr);
++  buffer = strtok_s(memory_buffer, "\r\n", &save_ptr);
+ 
+   while (buffer != NULL) {
+     ++line_number;
+@@ -141,7 +144,7 @@
+       cur_func->lines.StoreRange(line->address, line->size,
+                                  linked_ptr<Line>(line));
+     }
+-    buffer = strtok_r(NULL, "\r\n", &save_ptr);
++    buffer = strtok_s(NULL, "\r\n", &save_ptr);
+   }
+   return true;
+ }
+@@ -418,19 +421,19 @@
+   char *cursor;
+ 
+   // Is this an INIT record or a delta record?
+-  char *init_or_address = strtok_r(stack_info_line, " \r\n", &cursor);
++  char *init_or_address = strtok_s(stack_info_line, " \r\n", &cursor);
+   if (!init_or_address)
+     return false;
+ 
+   if (strcmp(init_or_address, "INIT") == 0) {
+     // This record has the form "STACK INIT <address> <size> <rules...>".
+-    char *address_field = strtok_r(NULL, " \r\n", &cursor);
++    char *address_field = strtok_s(NULL, " \r\n", &cursor);
+     if (!address_field) return false;
+ 
+-    char *size_field = strtok_r(NULL, " \r\n", &cursor);
++    char *size_field = strtok_s(NULL, " \r\n", &cursor);
+     if (!size_field) return false;
+ 
+-    char *initial_rules = strtok_r(NULL, "\r\n", &cursor);
++    char *initial_rules = strtok_s(NULL, "\r\n", &cursor);
+     if (!initial_rules) return false;
+ 
+     MemAddr address = strtoul(address_field, NULL, 16);
+@@ -441,7 +444,7 @@
+ 
+   // This record has the form "STACK <address> <rules...>".
+   char *address_field = init_or_address;
+-  char *delta_rules = strtok_r(NULL, "\r\n", &cursor);
++  char *delta_rules = strtok_s(NULL, "\r\n", &cursor);
+   if (!delta_rules) return false;
+   MemAddr address = strtoul(address_field, NULL, 16);
+   cfi_delta_rules_[address] = delta_rules;
+Index: src/processor/cfi_frame_info.cc
+===================================================================
+--- src/processor/cfi_frame_info.cc
++++ src/processor/cfi_frame_info.cc
+@@ -32,6 +32,9 @@
+ // cfi_frame_info.cc: Implementation of CFIFrameInfo class.
+ // See cfi_frame_info.h for details.
+ 
++#ifndef MINGW_HAS_SECURE_API
++  #define MINGW_HAS_SECURE_API 1
++#endif
+ #include "processor/cfi_frame_info.h"
+ 
+ #include <string.h>
+@@ -130,7 +133,7 @@
+ 
+   char *cursor;
+   static const char token_breaks[] = " \t\r\n";
+-  char *token = strtok_r(working_copy.get(), token_breaks, &cursor);
++  char *token = strtok_s(working_copy.get(), token_breaks, &cursor);
+ 
+   for (;;) {
+     // End of rule set?
+@@ -154,7 +157,7 @@
+         expression_ += ' ';
+       expression_ += token;
+     }
+-    token = strtok_r(NULL, token_breaks, &cursor);
++    token = strtok_s(NULL, token_breaks, &cursor);
+   }
+ }
+ 
+Index: src/processor/tokenize.cc
+===================================================================
+--- src/processor/tokenize.cc
++++ src/processor/tokenize.cc
+@@ -27,6 +27,9 @@
+ // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
++#ifndef MINGW_HAS_SECURE_API
++  #define MINGW_HAS_SECURE_API 1
++#endif
+ #include <string.h>
+ 
+ #include <string>
+@@ -49,16 +52,16 @@
+   // Split tokens on the separator character.
+   // strip them out before exhausting max_tokens.
+   char *save_ptr;
+-  char *token = strtok_r(line, separators, &save_ptr);
++  char *token = strtok_s(line, separators, &save_ptr);
+   while (token && --remaining > 0) {
+     tokens->push_back(token);
+     if (remaining > 1)
+-      token = strtok_r(NULL, separators, &save_ptr);
++      token = strtok_s(NULL, separators, &save_ptr);
+   }
+ 
+   // If there's anything left, just add it as a single token.
+   if (!remaining > 0) {
+-    if ((token = strtok_r(NULL, "\r\n", &save_ptr))) {
++    if ((token = strtok_s(NULL, "\r\n", &save_ptr))) {
+       tokens->push_back(token);
+     }
+   }
+Index: src/processor/minidump.cc
+===================================================================
+--- src/processor/minidump.cc
++++ src/processor/minidump.cc
+@@ -33,6 +33,9 @@
+ //
+ // Author: Mark Mentovai
+ 
++#ifndef MINGW_HAS_SECURE_API
++  #define MINGW_HAS_SECURE_API 1
++#endif
+ #include "google_breakpad/processor/minidump.h"
+ 
+ #include <assert.h>
+@@ -43,7 +46,6 @@
+ 
+ #ifdef _WIN32
+ #include <io.h>
+-typedef SSIZE_T ssize_t;
+ #define PRIx64 "llx"
+ #define PRIx32 "lx"
+ #define snprintf _snprintf
+Index: src/processor/logging.cc
+===================================================================
+--- src/processor/logging.cc
++++ src/processor/logging.cc
+@@ -33,6 +33,9 @@
+ //
+ // Author: Mark Mentovai
+ 
++#ifndef MINGW_HAS_SECURE_API
++  #define MINGW_HAS_SECURE_API 1
++#endif
+ #include <assert.h>
+ #include <errno.h>
+ #include <stdio.h>
+Index: src/processor/binarystream.cc
+===================================================================
+--- src/processor/binarystream.cc
++++ src/processor/binarystream.cc
+@@ -27,7 +27,6 @@
+ // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
+-#include <arpa/inet.h>
+ #include <limits.h>
+ 
+ #include <vector>
+Index: src/processor/disassembler_x86.cc
+===================================================================
+--- src/processor/disassembler_x86.cc
++++ src/processor/disassembler_x86.cc
+@@ -27,7 +27,6 @@
+ #include "processor/disassembler_x86.h"
+ 
+ #include <string.h>
+-#include <unistd.h>
+ 
+ namespace google_breakpad {
+ 
+Index: Makefile.in
+===================================================================
+--- Makefile.in
++++ Makefile.in
+@@ -1836,7 +1836,7 @@
+ @DISABLE_PROCESSOR_FALSE@	src/processor/stackwalker_sparc.o \
+ @DISABLE_PROCESSOR_FALSE@	src/processor/stackwalker_x86.o \
+ @DISABLE_PROCESSOR_FALSE@	src/processor/tokenize.o \
+-@DISABLE_PROCESSOR_FALSE@	src/third_party/libdisasm/libdisasm.a
++@DISABLE_PROCESSOR_FALSE@	src/third_party/libdisasm/libdisasm.a -lws2_32
+ 
+ EXTRA_DIST = \
+ 	$(SCRIPTS) \

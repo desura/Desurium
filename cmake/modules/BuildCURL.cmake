@@ -8,7 +8,7 @@ else()
   set(BUILD_WITH_ARES --disable-ares)
 endif()
 
-if(WIN32)
+if(WIN32 AND NOT MINGW)
   ExternalProject_Add(
     curl
     GIT_REPOSITORY ${CURL_GIT}
@@ -24,7 +24,7 @@ if(WIN32)
     custom_build
     DEPENDEES configure
     DEPENDERS build
-    COMMAND nmake /f Makefile.vc MODE=static WITH_SSL=no DEBUG=no GEN_PDB=no RTLIBCFG=static USE_SSPI=no USE_IPV6=no ENABLE_IDN=no
+    COMMAND nmake /f Makefile.vc MODE=static WITH_SSL=yes DEBUG=no GEN_PDB=no RTLIBCFG=static USE_SSPI=no USE_IPV6=no ENABLE_IDN=no
     WORKING_DIRECTORY <SOURCE_DIR>/winbuild
   )
   
@@ -36,14 +36,13 @@ if(WIN32)
 else()
   find_package(OpenSSL REQUIRED)
   set(CURL_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/curl)
-#    GIT_REPOSITORY ${CURL_GIT}
-#    GIT_TAG ${CURL_VERSION}
   ExternalProject_Add(
     curl
     URL ${CURL_URL}
     URL_MD5 ${CURL_MD5}
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND sh <SOURCE_DIR>/configure
+    BUILD_IN_SOURCE 1
+    CONFIGURE_COMMAND ./configure
         --without-librtmp --disable-ldap --disable-curldebug
         --without-zlib --disable-rtsp --disable-manual --enable-static=yes 
         --enable-shared=no --disable-pop3 --disable-imap --disable-dict
@@ -54,27 +53,22 @@ else()
         --disable-manual --enable-optimize=-O2 ${BUILD_WITH_ARES} ${CONFIGURE_DEBUG}
         --prefix=${CURL_INSTALL_DIR}
   )
-  
-#  ExternalProject_Add_Step(
-#    curl
-#    preconfigure
-#    COMMAND sh buildconf
-#    DEPENDEES download
-#    DEPENDERS configure
-#    WORKING_DIRECTORY <SOURCE_DIR>
-#  )
 endif()
 
 set(CURL_BIN_DIRS ${CURL_INSTALL_DIR}/bin)
 set(CURL_LIBRARY_DIR ${CURL_INSTALL_DIR}/lib)
 set(CURL_INCLUDE_DIRS ${CURL_INSTALL_DIR}/include)
 
-if(WIN32)
+if(WIN32 AND NOT MINGW)
   list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl_a.lib")
 else()
   list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl.a")
-  list(APPEND CURL_LIBRARIES "rt")
   list(APPEND CURL_LIBRARIES "${OPENSSL_LIBRARIES}")
+  if(MINGW)
+    list(APPEND CURL_LIBRARIES "ws2_32")
+  else()
+    list(APPEND CURL_LIBRARIES "rt")
+  endif()
 endif()
 
 if(WITH_ARES)
