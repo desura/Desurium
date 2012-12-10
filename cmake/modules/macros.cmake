@@ -87,10 +87,6 @@ endmacro()
 
 macro(add_desura_test name category neededLibs)
   if(BUILD_TESTS)
-    if(NOT BUILD_ENV_UILT_UP)
-      find_package(Boost COMPONENTS date_time filesystem thread system prg_exec_monitor test_exec_monitor unit_test_framework REQUIRED)
-      set(BUILD_ENV_UILT_UP TRUE)
-    endif()
     file(GLOB ${name}_SRC ${CMAKE_SOURCE_DIR}/src/tests/${category}/${name}*.c
                           ${CMAKE_SOURCE_DIR}/src/tests/${category}/${name}*.C
                           ${CMAKE_SOURCE_DIR}/src/tests/${category}/${name}*.cc
