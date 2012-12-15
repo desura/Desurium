@@ -11,7 +11,6 @@ file(GLOB SourcesWEB code/UtilWeb.cpp)
 
 if(WIN32 AND NOT MINGW)
   set(WINDOWS_LIBRARIES msi Winhttp wintrust)
-  add_linker_flags(/NOD:MSVCRTD)
   use_unicode_here()
 endif()
 
