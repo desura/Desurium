@@ -64,11 +64,6 @@
 # some overrides
 ###############################################################################
 
-set(CMAKE_USER_MAKE_RULES_OVERRIDE
-   ${CMAKE_SOURCE_DIR}/cmake/scripts/c_flag_overrides.cmake)
-set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX
-   ${CMAKE_SOURCE_DIR}/cmake/scripts/cxx_flag_overrides.cmake)
-
 # TODO: silent output for externel dependencies
 project(Desura)
 
