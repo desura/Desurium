@@ -56,7 +56,7 @@ namespace BootLoaderUtil
 {
 
 
-#ifndef DONT_INCLUDE_AFXWIN
+#if !defined(DONT_INCLUDE_AFXWIN) && defined(MFC_FOUND)
 
 CDummyWindow::CDummyWindow(HWND hWnd)
 {

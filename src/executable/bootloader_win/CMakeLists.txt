@@ -12,10 +12,10 @@ file(GLOB Sources code/AppUpdateInstall.cpp
                   code/UpdateFunctions.cpp
                   ${RC_DIR}/desura_exe.rc)
 
-if(MINGW)
-  file(GLOB AdditionalSources code/DesuraMainMingw.cpp)
-else()
+if(MFC_FOUND)
   file(GLOB AdditionalSources code/DesuraMain.cpp)
+else()
+  file(GLOB AdditionalSources code/DesuraMainMingw.cpp)
 endif()
 set(Sources "${Sources};${AdditionalSources}")
 

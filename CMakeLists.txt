@@ -171,6 +171,7 @@ endif()
 find_package(PythonInterp REQUIRED)
 
 if(WIN32)
+  find_package(MFC)
   find_package(PythonLibs REQUIRED)
 endif()
 

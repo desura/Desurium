@@ -55,7 +55,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 
 #ifdef _WIN32
-#ifndef DONT_INCLUDE_AFXWIN
+#if !defined(DONT_INCLUDE_AFXWIN) && defined(MFC_FOUND)
 
 #include <afxwin.h>         // MFC core and standard components
 #include <afxext.h>         // MFC extensions

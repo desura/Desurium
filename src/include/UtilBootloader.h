@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #define _WIN32_WINNT 0x0501	// Change this to the appropriate value to target other versions of Windows.
 #endif	
 
-#ifndef DONT_INCLUDE_AFXWIN
+#if !defined(DONT_INCLUDE_AFXWIN) && defined(MFC_FOUND)
 #ifdef _WIN32
 #include <afxwin.h> 
 #endif
@@ -43,7 +43,7 @@ namespace BootLoaderUtil
 {
 	class CMDArgInternal;
 
-#ifndef DONT_INCLUDE_AFXWIN
+#if !defined(DONT_INCLUDE_AFXWIN) && defined(MFC_FOUND)
 #ifdef _WIN32
 	class CDummyWindow : public CWnd
 	{

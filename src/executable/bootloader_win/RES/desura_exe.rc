@@ -7,14 +7,16 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
+#if !defined(DONT_INCLUDE_AFXWIN) && defined(MFC_FOUND)
 #include "afxres.h"
+#endif
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
 // English (U.S.) resources
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#if (!defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)) && !defined(DONT_INCLUDE_AFXWIN) && defined(MFC_FOUND)
 #ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
@@ -123,7 +125,9 @@ IDR_RT_MANIFEST1        RT_MANIFEST             "rt_manif.bin"
 LANGUAGE 9, 1
 #pragma code_page(1252)
 #include "@BRANDING_DIR@/desura_exe.rc2"  // non-Microsoft Visual C++ edited resources
+#if !defined(DONT_INCLUDE_AFXWIN) && defined(MFC_FOUND)
 #include "afxres.rc"     // Standard components
+#endif
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
