@@ -1,357 +1,422 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<lang name="Magyar (Hungarian)">
+<?xml version="1.0" encoding="UTF-8"?>
+<lang name="Magyar (HU)">
 	<author>
-		<username>NSD4rKn3SS</username>
-		<profile>http://www.desura.com/members/nsd4rkn3ss</profile>
+		<username>AllenWalkerHU</username>
+		<profile>http://www.desura.com/members/allenwalkerhu</profile>
 	</author>
 	<linux>
-	<!-- havnt been translated
-		<str name="#IF_WINDOWS_LAUNCH_WARNING">WARNING: You are attempting to launch a Windows program. This relies on your system recognising the format and launching the appropriate tools (eg: WINE). If you do not, the application/game may not launch correctly or at all.&#xA;&#xA;This warning can be disabled in Settings.</str>
-		<str name="#IF_SHOWFILES">Show Files</str>
-		<str name="#MF_ERROR_NO32LIBS">The item you tried to launch is 32 bit but it appears that you do not have 32 bit libs Installed.&#xA;&#xA;Please see http://www.desura.com/groups/desura/linux for more information.</str>
+		<str name="#MW_PROMPT">Ez a varázsló megtalálja az erre a számítógépre feltelepített játékokat és módokat, melyeket a Desura támogat. Kérlek vedd figyelembe: Ez frissíteni fog minden megtalált tételt a Desura-n fellelhető legfrissebb verzióra.</str>
+		<str name="#MW_FINISH">A varázsló immáron befejeződött, és az összes, számítógépeden megtalált, a Desura által támogatott játék hozzá lett adva a fiókodhoz. &#xA;&#xA;Ha a Desura nem volt képes megtalálni egy, a PC-den telepített játékot, akkor te manuálisan is hozzáadhatod azt az alábbi "Egyéni telepítés" gombra való kattintásal.</str>		
 
-		<str name="#PLAY_EMPTY">You have no Linux {1}games{0} in your account.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
+		<str name="#IF_WINDOWS_LAUNCH_WARNING">FIGYELMEZTETÉS: Egy Windows programot kísérelsz meg elindítani. Ez azon alapul, hogy rendszered felismeri a formátumot és elindítja a megfelelő eszközt (pl: WINE). Ha te nem, az alkalmazás/játék esetleg nem indul el megfelelően, vagy egyáltalán nem.&#xA;&#xA;Ez a figyelmeztetés letiltható a Beállításokban.</str>
+		<str name="#IF_SHOWFILES">Fájlok megjelenítése</str>
+		<str name="#MF_ERROR_NO32LIBS">A tétel, amit megpróbáltál elindítani, 32 bites, ám olybá tűnik te nem rendelkezel telepített 32 bites függvénytárakkal.&#xA;&#xA;Kérlek tekintsd meg a http://www.desura.com/groups/desura/linux címet további információért.</str>
+		<str name="#MF_ERROR_NOBITTEST">Az a Desura verzió, amit futtatsz, nem támogatja a 32 bites játékok futását.</str>
 
-	<!-- havnt been translated
-		<str name="#SET_CV_LIN_DIS_WIN_WRN">Disable Windows executable warning.</str>
-		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Doesn't warn you every time you launch a Windows executable.</str>
-		<str name="#SET_CV_ALLOW_WM_POS">Use window manager positioning.</str>
-		<str name="#SET_CV_ALLOW_WM_POS_TOOLTIP">Allows the system window manager to position the main form as opposed to Desura saving and restoring position and size.</str>
-	-->
+		<str name="#PLAY_EMPTY">Nem rendelkezel Linux-os {1}játékokkal{0} fiókodban.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
+
+		<str name="#SET_CV_LIN_DIS_WIN_WRN">Windows végrehajtható figyelmeztetés tiltása.</str>
+		<str name="#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP">Nem figyelmeztet minden alkalommal, mikor elindítasz egy Windows végrehajtható fájlt.</str>
+		<str name="#SET_CV_ALLOW_WM_POS">Ablakkezelő elhelyezés használata.</str>
+		<str name="#SET_CV_ALLOW_WM_POS_TOOLTIP">Lehetővé teszi a rendszer ablakkezelő számára a fő űrlap elhelyezését, ellentétben azzal, ahogy a Desura menti és állítja helyre a pozíciót és a méretet.</str>
+
+		<str name="#SET_CV_GLOBALBIN">Globális játékindítási bináris</str>
+		<str name="#SET_CV_GLOBALBIN_TOOLTIP">Minden játék futtatása ezen bináris fájl révén</str>
+		<str name="#SET_CV_GLOBALARGS">Globális játékparaméterek</str>
+		<str name="#SET_CV_GLOBALARGS_TOOLTIP">Ezen argók hozzátoldása minden játékhoz, mikor azok elindulnak</str>		
+
+		<str name="#SET_CV_DISABLE_FORCESHORTCUT">Az erőltető parancsikon letiltása a menüben</str>
+		<str name="#SET_CV_DISABLE_FORCESHORTCUT_TOOLTIP">Megállítja a Desurat erőltető frissítési parancsikon létrehozásában a főmenüben</str>
+
+		<str name="#IF_GERROR_TOOL">A Desura nem találja a(z) {0}-t, amit a(z) {1} igényel.</str>
+		<str name="#IF_GERROR_TOOL_Q">Szeretnéd folytatni a telepítést?</str>
+		<str name="#HELP">Súgó</str>
 	</linux>
 	<windows>
-		<str name="#IF_SHOWFILES">Fájlok mutatása Böngészőben</str>
+		<str name="#IF_SHOWFILES">Fájlok megjelenítése az Intézőben</str>
+		<str name="#PLAY_EMPTY">Nem rendelkezel windows-os {1}játékokkal{0} vagy {2}módokkal{0} a fiókodban. Érdemes lenne futtatnod a {3}telepített játékok keresése varázsló{0}t, mely átkutatja PC-det a Desura által is támogatott játékok után.</str><!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
 
-	<!-- havnt been translated
-        <str name="#PLAY_EMPTY">Vi ne havas iu ajn {1}ludoj{0} aŭ {2}ludŝanĝoj{0} en via konto. Vi devas rulu la {3}instalita asistanto{0} kio serĉos via komputilo por ludoj kio Desuro subtenata.</str>
-        <!-- {0} = </a> {1}, {2} and {3} = <a href="..."> -->
+		<str name="#SET_CV_DISABLE_FS_PERMS">Minden telepítési mappa írhatóvá tétele a normál felhasználók által</str>
+		<str name="#SET_CV_DISABLE_FS_PERMS_TOOLTIP">Annak köszönhetően, hogy a játékfejlesztők nem tudják a windows-os szabványokat nyomonkövetni, több játék is a telepítési mappába ír, és omlik össze, ha erre nem képes. Figyelmeztetés: Ennek a letiltása működésképtelenné tehet egyes játékokat</str>
 
-	<!-- havnt been translated
-		<str name="#SET_CV_DISABLE_FS_PERMS">Make all install folders writable by normal users</str>
-		<str name="#SET_CV_DISABLE_FS_PERMS_TOOLTIP">Due to game developers not being able to follow windows standards many games write to the install folder and crash if they cant. Warning: Disabling this might make some games not work</str>
+		<str name="#IF_LOWSPACE_SYS">A rendszerlemezen ({0}:\\) kevés a szabad hely, a Desura pedig teljesítménnyel kapcsolatos problémáktól fog elkezdeni szenvedni. &lt;a href=&quot;desura://settings/cache&quot;&gt;Áthelyezheted Desura gyorsítótár mappádat új lemezre, hogy területet szabadíts fel.&lt;/a&gt;</str>
+		<str name="#IF_LOWSPACE_CACHE">A merevlemezen, melyre a Desura gyorsítótár mentődik ({0}:\\), kevés a szabad hely. Ajánlatos a helyfelszabadítás a Desura részére ahhoz, hogy megfelelően teljesítsen.</str>
 
-		<str name="#IF_LOWSPACE_SYS">The system harddisk ({0}:\\) is low on free space and Desura will start having performance issues. &lt;a href=&quot;desura://settings/cache&quot;&gt;You can move your Desura cache folder to a new disk to free up space.&lt;/a&gt;</str>
-		<str name="#IF_LOWSPACE_CACHE">The harddisk that Desura cache saves to ({0}:\\) is low on free space. It is recommended that you free up space for Desura to perfom correctly.</str>
-	-->
+		<str name="#MW_PROMPT">Ezen varázsló megkeresi az erre a számítógépre telepített azon játékokat, melyek a Desura által is támogatottak. Kérlek vedd figyelembe: Ez frissíteni fog minden megtalált tételt a Desura-n fellelhető legfrissebb verzióra.</str>
+		<str name="#MW_FINISH">A varázsló immáron befejeződött, és az összes, számítógépeden megtalált, a Desura által támogatott játék hozzá lett adva a fiókodhoz. &#xA;&#xA;Ha a Desura nem volt képes megtalálni egy, a PC-den telepített játékot, akkor te manuálisan is hozzáadhatod azt az alábbi "Egyéni telepítés" gombra való kattintásal.</str>		
 	</windows>
 	<strings>
-		<str name="#DESURA_UPDATE">Új Desura frissítés elérhető, és készen áll a telepítésre.</str>
-
+		<str name="#DESURA_UPDATE">Ki lett adva egy frissítés a Desura számára, és készen áll a telepítésre.</str>
 
 		<!-- Update Item -->
-		<str name="#UI_LABEL">Új frissítés érhető el. Akarsz most frissíteni?</str>
-		<str name="#UI_NO_REMINDER">Ne emlékeztessen újra</str>
-		<str name="#UI_TITLE">Új frissítés érhető el</str>
+		<str name="#UI_LABEL">Elérhető egy frissítés. Szeretnél most frissíteni?</str>
+		<str name="#UI_NO_REMINDER">Ne emlékeztessen újra induláskor</str>
+		<str name="#UI_TITLE">Frissítés érhető el</str>
 
 		<!-- Launch item -->
-		<str name="#LI_LABEL">már telepítve van. El akarod indítani?</str>
+		<str name="#LI_LABEL">már telepítve van. Szeretnéd most elindítani?</str>
 
 		<!-- Login Form -->
-		<str name="#LF_TITLE">Desura Bejelentkezés</str>
-		<str name="#LF_USER">Felhasználónév vagy Email</str>
+		<str name="#LF_TITLE">Desura - Bejelentkezés</str>
+		<str name="#LF_USER">Felhasználónév vagy email</str>
 		<str name="#LF_PASS">Jelszó</str>
-		<str name="#LF_AUTO">Emlékezzen</str>
-		<str name="#LF_AUTO_TOOLTIP">Automatikus bejelentkezés következő indításnál</str>
-		<str name="#LF_LOSTPASS">Jelszó Emlékeztető</str>
-		<str name="#LF_NEWACCOUNT">Új Felhasználói Fiók</str>
-		<str name="#LF_OFFLINE">Offline Mód</str>
-
-		<str name="#LF_ERRTITLE">Desura Bejelentkezési Hiba</str>
-		<str name="#LF_ERROR">Sikertelen bejelentkezés</str>
-		<str name="#LF_VALDERROR">Hiba lépett fel belépéskor:</str>
-		<str name="#LF_ERRBLANKNAME">Felhasználónév nincs kitöltve</str>
-		<str name="#LF_ERRPASSWORD">Jelszó nincs kitöltve</str>
-		<str name="#LF_ERRPLEASE">Töltsd ki az összes mezőt, majd próbálkozz újra.</str>
-
+		<str name="#LF_AUTO">Automata</str>
+		<str name="#LF_AUTO_TOOLTIP">Automatikus bejelentkezés a Desura-ba legközelebb, mikor elindul</str>
+		<str name="#LF_LOSTPASS">Elfelejtett jelszó</str>
+		<str name="#LF_NEWACCOUNT">Új fiók</str>
+		<str name="#LF_OFFLINE">Offline mód</str>
+		<str name="#LF_ERRTITLE">Desura - Bejelentkezési hiba</str>
+		<str name="#LF_ERROR">Nem sikerült bejelentkezni</str>
+		<str name="#LF_VALDERROR">Hiba történt a bejelentkezés során:</str>
+		<str name="#LF_ERRBLANKNAME">Üres a felhasználóneved</str>
+		<str name="#LF_ERRPASSWORD">Üres a jelszavad</str>
+		<str name="#LF_ERRPLEASE">Kérlek orvosold ez(eke)t a hibá(ka)t és próbálj meg újra bejelentkezni.</str>
 
 		<!-- Main Page -->
-		<str name="#MP_PLAY">Indítás</str>
-		<str name="#MP_GAMES">Játékok</str>
-		<str name="#MP_MODS">Modok</str>
+		<str name="#MP_PLAY">Szórakozás</str>
+		<str name="#MP_GAMES">Üzlet</str>
+		<str name="#MP_MODS">Módok</str>
 		<str name="#MP_COMMUNITY">Közösség</str>
 		<str name="#MP_DEVELOPMENT">Fejlesztés</str>
-		<str name="#MP_SUPPORT">Segítség</str>
-		<str name="#MP_TITLE_OFFLINE">Desura Offline</str>
+		<str name="#MP_SUPPORT">Támogatás</str>
+		<str name="#MP_TITLE_OFFLINE">Desura - Offline</str>
+		<str name="#MP_CHAT">Csevegő</str>
 
 		<!-- News Form -->
-		<str name="#NF_JUMPTO">Ugrás: </str>
-		<str name="#NF_PREV">Előző &lt;&lt;</str>
-		<str name="#NF_NEXT">Következő &gt;&gt;</str>
-		<str name="#NF_TITLE">Desura Hírek:</str>
-		<str name="#NF_LOADING">Töltés ...</str>
-		<str name="#NF_LOADING_UNKNOWN">Ismeretlen Oldal Töltése ...</str>
-		<str name="#GF_TITLE">Desura Ajándékok:</str>
-
+		<str name="#NF_JUMPTO">Ugrás ide: </str>
+		<str name="#NF_PREV">Előző</str>
+		<str name="#NF_NEXT">Következő</str>
+		<str name="#NF_TITLE">Desura - Hírek:</str>
+		<str name="#NF_LOADING">Betöltés ...</str>
+		<str name="#NF_LOADING_UNKNOWN">Ismeretlen oldal betöltése ...</str>
+		<str name="#GF_TITLE">Desura - Ajándékok:</str>
 
 		<!-- Properties -->
-		<str name="#P_VERIFY">Fájlok Ellenőrzése</str>
-		<str name="#P_UNINSTALL">Eltávolítás</str>
-		<str name="#P_UPDATEREMINDER">Frissítés Emlékeztető:</str>
-		<str name="#P_URLABEL">Ne emlékeztessen frissítésekre indításkor</str>
-		<str name="#P_FIXEDLO">Fix Futtatási Parancs:</str>
-		<str name="#P_USERLO">Egyéni Futtatási Parancs:</str>
-		<str name="#P_VERSION">Telepített Verzió</str>
-		<str name="#P_RETAIL">Eredeti</str>
+		<str name="#P_VERIFY">Fájlok megerősítése</str>
+		<str name="#P_TITLE">Tulajdonságok</str>
+		<str name="#P_URLABEL">Ne emlékeztessen frissítésekkel kapcsolatban indításkor</str>
+		<str name="#P_FIXEDLO">Javított indítási opciók:</str>
+		<str name="#P_USERLO">Felhasználói indítási opciók:</str>
+		<str name="#P_EXE">Az exe helye:</str>
+		<str name="#P_VERSION">Telepített verzió</str>
+		<str name="#P_RETAIL">Dobozos</str>
 
 		<!-- Uninstall Form -->
-		<str name="#UNF_REMOVEFILES">Desura Fájlok Eltávolítása</str>
-		<str name="#UNF_REMOVEFILES_TOOLTIP">Desura által használt MCF és kapcsolódó fájlok törlése</str>
-		<str name="#UNF_REMOVEACCOUNT">Törlés a Felhasználóról</str>
-		<str name="#UNF_REMOVEACCOUNT_TOOLTIP">Eltávolítja ezt az elemet a Felhasználói Fiókról</str>
-		<str name="#UNF_ERRTITLE">Eltávolítási Hiba</str>
-		<str name="#UNF_ERROR">Hiba lépett fel eltávolítás közben, ezért a folyamat leállt.</str>
+		<str name="#UNF_REMOVEFILES">Desura fájlok törlése</str>
+		<str name="#UNF_REMOVEFILES_TOOLTIP">Az ehhez kapcsolódó MCF és fájlok törlése, melyeket a Desura használ</str>
+		<str name="#UNF_REMOVEACCOUNT">Törlés a listáról</str>
+		<str name="#UNF_REMOVEACCOUNT_TOOLTIP">Törli ezt a tételt a játéklistáról</str>
+		<str name="#UNF_ERRTITLE">Eltávolítás - Hiba</str>
+		<str name="#UNF_ERROR">Hiba történt az eltávolítási folyamat során, és az le is állt.</str>
 		<!-- {0} repersents item name -->
-		<str name="#UNF_CONFIRM">Biztos, hogy eltávolítod a gépről: {0}? Ha a folyamat elindult már nem lehet visszavonni.</str>
+		<str name="#UNF_CONFIRM">Biztos vagy benne, hogy eltávolítod a(z) {0}-t számítógépedről? Amint elindul a folyamat, annak megszakítása nem lehetséges.</str>
 
 		<!-- ALL ones above here are checked to be used in desura -->
 
 		<!-- Upload form -->
-		<str name="#UDF_PROMPT">Válaszd ki az MCF fájlt, amit szeretnél feltölteni.</str>
-		<str name="#UDF_ERROR_VALIDATION">Ellenőrzési hiba lépett fel</str>
-		<str name="#UDF_ERRTITLE">MCF Feltöltési Hiba</str>
-		<str name="#UDF_NOFILE">Nem találom a feltöltés folytatásához szükséges fájlt. Tallózd be a fájlt, vagy indítsd újra a feltöltést.</str>
-		<str name="#UDF_RESUME_ERRTITLE">Feltöltés Folytatási hiba.</str>
-		<str name="#UDF_NONMATCHING_FILE">A fájl nem egyezik, a Feltöltött fájlal. Válaszd ki a helyes fájlt és próbáld újra.</str>
-		<str name="#UDF_UPLOAD_ERRTITLE">Fájl Feltöltési Hiba</str>
-		<str name="#UDF_ERROR">Hiba lépett fel az MCF feltöltés folyamatában, ezért az leállt.</str>
-		<str name="#UDF_ETIME">Hátralévő Idő:</str>
-		<str name="#UDF_NOTSTARTED">A feltöltés még nem indult el.</str>
+		<str name="#UDF_PROMPT">Kérlek válaszd ki a feltölteni kívánt MCF fájlt.</str>
+		<str name="#UDF_ERROR_VALIDATION">Nem sikerült érvényesíteni a fájlt a feltöltéshez</str>
+		<str name="#UDF_ERRTITLE">MCF feltöltési hiba</str>
+		<str name="#UDF_NOFILE">Nem sikerült megtalálni a feltöltéshez szükséges fájlt. Kérlek keresd elő ezt a fájlt vagy kezdd újra.</str>
+		<str name="#UDF_RESUME_ERRTITLE">Feltöltés folytatási hiba.</str>
+		<str name="#UDF_NONMATCHING_FILE">A fájl nem egyezik a feltöltött fájllal. Kérlek válaszd ki a megfelelő fájlt vagy kezdd újra.</str>
+		<str name="#UDF_UPLOAD_ERRTITLE">Fájlfeltöltési hiba</str>
+		<str name="#UDF_ERROR">Hiba történt az MCF feltöltési folyamat során, és az le is állt.</str>
+		<str name="#UDF_ERROR_LABEL">Feltöltési hiba</str>
+		<str name="#UDF_ETIME">Becsült hátralévő idő:</str>
+		<str name="#UDF_NOTSTARTED">A feltöltés nem kezdődött el.</str>
 		<str name="#UDF_DELETE">MCF törlése befejezéskor</str>
-		<str name="#UDF_DELETE_TOOLTIP">Fájl törlése, ha a befejezés elkészült</str>
-		<str name="#UDF_COMPLETE">Feltöltés kész.</str>
-		<str name="#UDF_UNKNOWNPAUSE">Szünet</str>
-		<str name="#UDF_REMINDER">Ne Emlékeztessen</str>
-		<str name="#UDF_PROMPTINFO">A feltöltést bármikor folytathatod a "Játékok" fül alatt, ahol az összes többi projected is megtalálható.&#xA;</str>
-		<str name="#UDF_RESUMEDIR">MCF-ek Keresése ...</str>
+		<str name="#UDF_DELETE_TOOLTIP">Fájl törlése, miután a feltöltés befejeződött</str>
+		<str name="#UDF_COMPLETE">A feltöltés befejezve.</str>
+		<str name="#UDF_UNKNOWNPAUSE">Szüneteltetve</str>
+		<str name="#UDF_REMINDER">Ne emlékeztessen megint</str>
+		<str name="#UDF_PROMPTINFO">Bármikor folytathatod ezt a feltöltést a "játékok" fül révén, mely felsorolja az összes projektet, amit fejlesztesz, és az aktuális feltöltéseket.&#xA;</str>
+		<str name="#UDF_RESUMEDIR">MCF megkeresése ...</str>
 
 		<!-- Create Form -->
-		<str name="#CF_PROMPT">Válaszd ki azt a mappát amiről MCF-et szeretnél készíteni.</str>
-		<str name="#CF_DIRPROMPT">Válaszd ki a mappát, ami a fájlokat tartalmazza az MCF-ed készítéséhez.</str>
-		<str name="#CF_VIEWFILES">Fáj Megtekintése</str>
+		<str name="#CF_PROMPT">Kérlek válassz mappán, mely játékod egy tiszta telepítését tartalmazza.</str>
+		<str name="#CF_DIRPROMPT">Válaszd ki a mappát, a Desura pedig becsomagolja annak tartalmát egy MCF archívumba a feltöltéshez.</str>
+		<str name="#CF_VIEWFILES">Fájl megtekintése</str>
 		<str name="#CF_PROG">Folyamat: </str>
-		<str name="#CF_NOTSTARTED">Feldolgozás ...</str>
-		<str name="#CF_ERROR">Hiba lépett fel az MCF készítési folyamat során, ezért az leállt.</str>
-		<str name="#CF_ERRTITLE">MCF Készítési Hiba</str>
+		<str name="#CF_NOTSTARTED">Inicializálás ...</str>
+		<str name="#CF_ERROR">Hiba történt az MCF létrehozási folyamat során, és az le is állt.</str>
+		<str name="#CF_ERRTITLE">MCF létrehozási hiba</str>
 
 		<!-- note the {0} will be replaced with the item name! -->
-		<str name="#CF_COMPLETE">MCF készítés Befejezve a következőről: {0}.</str>
-
-
+		<str name="#CF_COMPLETE">Befejeződött a(z) {0} számára az MCF létrehozása.</str> 
 
 		<!-- Item Form -->
-		<str name="#IF_TITLE">Előkészítés:</str>
-		<str name="#IF_VERIFY">Ellenőrzés:</str>
-		<str name="#IF_DOWNLOAD">Letöltés:</str>
-		<str name="#IF_INSTALL">Telepítés:</str>
-		<str name="#IF_UPDATE">Frissítés:</str>
-		<str name="#IF_UNINSTALL">Eltávolítás: </str>
-		<str name="#IF_UNINSTALL_BRANCH">Régi fájlok Eltávolítása: </str>
-		<str name="#IF_UNINSTALL_PATCH">Régi fájlok Eltávolítása: </str>
-		<str name="#IF_UNINSTALL_COMPLEX">Mod Eltávolítása</str>
-		<str name="#IF_INSTALL_CHECK">Telepítés Ellenőrzés</str>
+		<str name="#IF_BROUGHT">Megvásárolt</str>
+		<str name="#IF_FREE">Ingyenes</str>
+		<str name="#IF_PREPARE_INFO">Előkészülés a következőre: {1} {0}</str>
+		<str name="#IF_PREPARE_INFO_NOITEM">Előkészítés...</str>		
+
+		<str name="#IF_TITLE">Előkészítés alatt:</str>
+		<str name="#IF_VERIFY">Ellenőrzés alatt:</str>
+		<str name="#IF_DOWNLOAD">Letöltés alatt:</str>
+		<str name="#IF_INSTALL">Telepítés alatt:</str>
+		<str name="#IF_UPDATE">Frissítés alatt:</str>	
+		<str name="#IF_UNINSTALL">Eltávolítás alatt: </str>
+		<str name="#IF_UNINSTALL_BRANCH">Régi fájlok törlése: </str>
+		<str name="#IF_UNINSTALL_PATCH">Régi fájlok törlése: </str>
+		<str name="#IF_UNINSTALL_COMPLEX">Összetett mód eltávolítása</str>
+		<str name="#IF_INSTALL_CHECK">Telepítésellenőrzés</str>
 
 		<str name="#IF_UNINSTALL_LABEL">Eltávolítás ...</str>
-		<str name="#IF_UNINSTALL_BRANCH_LABEL">Régi fájlok Eltávolítása ... </str>
-		<str name="#IF_UNINSTALL_PATCH_LABEL">Régi fájlok Eltávolítása ... </str>
-		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Mod Eltávolítása ... </str>
+		<str name="#IF_UNINSTALL_BRANCH_LABEL">Régi fájlok törlése ... </str>
+		<str name="#IF_UNINSTALL_PATCH_LABEL">Régi fájlok törlése ... </str>
+		<str name="#IF_UNINSTALL_COMPLEX_LABEL">Összetett mód eltávolítása ... </str>	
 
 		<!-- Install check -->
-
-		<str name="#IC_ERRTITLE">Telepítés Ellenőrzési Hiba</str>
-		<!-- <str name="#IC_LABEL">Tepepíés Ellenőrzése:</str> -->
-		<str name="#IC_ERROR">Hiba lépett fel az Ellenőrzés folyamata közben, ezért az leállt.</str>
-		<str name="#IC_FOUND">megtalálva és indításra készen áll.</str>
-		<str name="#IC_NOTFOUND">nem található a gépeden. Ellenőrizd, hogy telepítve van és hogy legalább egyszer futtattad már, majd próbáld újra. Esetleg válaszd az Egyéni Telepítési Utat és állítsd be hol található.</str>
-		<str name="#IC_CHECK">Desura Telepítési Ellenőrzés</str>
-		<str name="#IC_CIP">Egyéni Telepítés</str> <!-- custom install path -->
-
+		<str name="#IC_ERRTITLE">Telepítésellenőrzési hiba</str>
+		<!-- <str name="#IC_LABEL">Checking Install for:</str> -->
+		<str name="#IC_ERROR">Hiba történt a telepítésellenőrzési folyamat során, és az le is állt.</str>
+		<str name="#IC_FOUND">megtalálva, és menetre kész.</str>
+		<str name="#IC_NOTFOUND">nem található meg számítógépeden. Kérlek bizonyosodj meg affelöl, hogy telepítve van, és hogy futtattad már legalább egyszer, majd próbáld újra. Ellenkező esetben alább rákattinthatsz az "egyéni telepítés" gombra, és elárulhatod nekünk, hova lett telepítve.</str>
+		<str name="#IC_CHECK">Desura Telepítésellenőrzés</str>
+		<str name="#IC_CIP">Egyéni telepítés</str>
 
 		<!-- Install form -->
-		<str name="#IF_BRANCHTITLE">Indítás {0}</str>
-		<str name="#IF_BRANCHINFO">{0} nincs telepítve. Válaszd ki, amivel szeretnél játszani.</str>
-		<str name="#IF_PARENTTITLE">Hiányzó szülő {0}</str><!-- first {0} is mod name second is game name -->
-		<str name="#IF_NOTFOUND">{0} egy mod ehhez a játékhoz {1}. Először telepítened kell a játékot hogy játszass a moddal.</str>
-		<str name="#IF_INSTALL_REMOVE">Telepítés és szükségtelen fájlok eltávolítása (ajánlott)</str>
-		<str name="#IF_INSTALL_LEAVE">Telepítés és fájlok megtartása</str>
-		<str name="#IF_INSTALL_VERIFY">Telepített fájlok ellenőrzése és hiányzó fájlok pótlása</str>
-		<str name="#IF_EXISTINGFILES">Már léteznek fájlok ott ahova {0} ezt telepítenéd. Mit választasz?</str>
-		<str name="#IF_ETIME">Hátralévő Idő:</str>
-		<str name="#IF_INITDOWNLOAD">Letöltés Előkészítése</str>
-		<str name="#IF_PROVIDEDBY">Szolgáltató:</str>
-		<str name="#IF_DLERROR">Hiba lépett fel az MCF letöltési folyamatban, ezért az leállt.</str>
-		<str name="#IF_DLERRTITLE">MCF Letöltési Hiba</str>
-		<str name="#IF_GATHERINFO">Információ gyűjtése ...</str>
-		<str name="#IF_GERROR">Hiba lépett fel a gyűjtési folyamatban, ezért az leállt.</str>
-		<str name="#IF_GERRTITLE">Információ Gyűjtési Hiba</str>
+		<str name="#IF_ONCOMPUTER">Az ezen a számítógépen telepített verzió használata</str>
+		<str name="#IF_FINDONCOMPUTER">Telepítés megkeresése ezen a számítógépen</str>
+		<str name="#IF_BRANCHTITLE">{0} lejátszása</str>
+		<str name="#IF_BRANCHINFO">A(z) {0} nincs telepítve. Kérlek válaszd ki a játszani kívánt kiadást.</str>
+		<str name="#IF_PARENTTITLE">Hiányzó előd a(z) {0} számára</str><!-- first {0} is mod name second is game name -->
+		<str name="#IF_NOTFOUND">A(z) {0} egy módosítás a(z) {1} c. játékhoz. A játék fel kell, hogy legyen telepítve, mielőtt játszani tudnál.&#xA;&#xA;Kérlek válassz egy telepítési módszert a(z) {1} számára:</str>
+		<str name="#IF_NOTFOUND_GAME">A(z) {0} egy bővítmény a(z) {1} c. játékhoz. A játék fel kell, hogy legyen telepítve, mielőtt játszani tudnál.&#xA;&#xA;Kérlek válassz egy telepítési módszert a(z) {1} számára:</str>		
+		<str name="#IF_INSTALL_REMOVE">Telepítés, és a nem kapcsolódó fájlok törlése (ajánlott)</str>
+		<str name="#IF_INSTALL_LEAVE">Telepítés, és a nem kapcsolódó fájlok meghagyása</str>
+		<str name="#IF_INSTALL_VERIFY">Telepített fájlok megerősítése és a hiányzók telepítése</str>
+		<str name="#IF_EXISTINGFILES">Már vannak meglévő fájlok ott, ahová a(z) {0} éppen települ. Mit szeretnél tenni?</str>
+		<str name="#IF_ETIME">Becsült hátralévő idő:</str>
+		<str name="#IF_INITDOWNLOAD">Letöltések inicializálása</str>
+		<str name="#IF_PROVIDEDBY">Biztosította:</str>
+		<str name="#IF_DLERROR">Hiba történt az MCF letöltési folyamat során, és az le is lállt.</str>
+		<str name="#IF_DLERRTITLE">MCF letöltési hiba</str>
+		<str name="#IF_GATHERINFO">Információgyűjtés folyamatban ...</str>
+		<str name="#IF_GERROR_PLATFORM">A(z) {0} ezen a platformon nem támogatott.</str><!-- {0} item name -->
+		<str name="#IF_GERROR_BRANCH_PLATFORM">Az az ágazat, amit kiválasztottál a(z) {0} számára, ezen a platformon nem támogatott.</str><!-- {0} item name -->
+		<str name="#IF_GERROR_BRANCH_PLATFORM_Q">Szeretnél egy másik ágazatot választani?</str>
+
+		<str name="#IF_GERROR">Hiba történt az információgyűjtési folyamat során, és az le is állt.</str>
+		<str name="#IF_GERRTITLE">Információgyűjtési hiba</str>
+		<str name="#IF_VALIDATE_ERROR">Hiba történt az érvényesítési folyamat során, és az le is állt.</str>
+		<str name="#IF_VALIDATE_TITLE">Érvényesítési hiba</str>	
 		<str name="#IF_GERROR_LABEL">Hiba lépett fel. A folyamat leállt.</str>
-		<str name="#IF_CHECKINGIR">Telepítési Követelmények Ellenőrzése ...</str>
-		<str name="#IF_INITINSTALL">Telepítés Előkészítése</str>
-		<str name="#IF_IERROR">Hiba lépett fel az MCF telepítési folyamatban, ezért az leállt.</str>
-		<str name="#IF_IERRTITLE">MCF Telepítési Hiba</str>
+		<str name="#IF_CHECKINGIR">Telepítési követelmények ellenőrzése ...</str>
+		<str name="#IF_INITINSTALL">Telepítés inicializálása</str>
+		<str name="#IF_IERROR">Hiba történt az MCF telepítési folyamat során, és az le is állt.</str>
+		<str name="#IF_IERRTITLE">MCF telepítési hiba</str>
 		<str name="#IF_DEVELOPER">Fejlesztő</str>
 		<str name="#IF_VERSION">Verzió</str>
 		<str name="#IF_TYPE">Játék</str>
 		<str name="#IF_DOWNLOADSIZE">Letöltés</str>
-		<str name="#IF_INSTALLSIZE">Telepítendő Méret</str>
-		<str name="#IF_INSTALLPATH">Telepítési Út</str>
-		<str name="#IF_IIPARENT">A szükséges játék ehhez az elemhez nincs telepítve vagy nem található. Ellenőrizd, hogy a játék telepítve van-e.</str>
-		<str name="#IF_IIPATH">Az elemhez tartozó út nem található.</str>
-		<str name="#IF_IIFREESPACE">Nincs elegendő lemezterület a telepítéshez.</str>
-		<str name="#IF_IIUNKNOWN">Ismeretlen Hiba.</str>
-		<str name="#IF_IIERRTITLE">Telepítési Hiba</str>
-		<str name="#IF_IINOBRANCHES">Nincsenek megjelent alkalmazások, amikkel játszhatsz.</str>
-		<str name="#IF_VERIFYLABEL">Ellenőrzés ...</str>
-		<str name="#IF_VERIFYCOMPLETE">Az Ellenőrzés Elkészült</str>
-		<str name="#IF_VERROR">Hiba lépett fel a telepítés ellenőrzési folyamatában, ezért az leállt.</str>
-		<str name="#IF_VERRTITLE">Telepítés Ellenőrzési Hiba</str>
+		<str name="#IF_INSTALLSIZE">Telepítési mérte</str>
+		<str name="#IF_INSTALLPATH">Telepítés elérési útja</str>
+		<str name="#IF_IIPARENT">Nincs telepítve vagy nem található a szülőjáték ehhez a tételhez. Kérlek ellenőrizd, hogy biztos telepítve legyen, majd próbáld újra.</str>
+		<str name="#IF_IIPATH">Nem sikerült értelmezni az elérési utat ehhez a tételhez.</str>
+		<str name="#IF_IIFREESPACE">Nincs elég szabad hely a meghajtón ahhoz, hogy ezt telepíteni lehessen.</str>
+		<str name="#IF_IIUNKNOWN">Ismeretlen hiba lépett fel.</str>
+		<str name="#IF_IIERRTITLE">Telepítési hiba</str>
+		<str name="#IF_IINOBRANCHES">Nincsenek elérhető kiadások a számodra játszani.</str>
+		<str name="#IF_VERIFYLABEL">Megerősítés ...</str>
+		<str name="#IF_VERIFYCOMPLETE">Megerősítés befejezve</str>
+		<str name="#IF_VERROR">Hiba történt a telepítés megerősítési folyamat során, és az le is állt.</str>
+		<str name="#IF_VERRTITLE">Telepítés megerősítési hiba</str>
 
-		<str name="#IF_VERIFYMCF">MCF Ellenőrzése ...</str>
-		<str name="#IF_VERIFYINSTALL">Telepítés Ellenőrzése ...</str>
-		<str name="#IF_VERIFYDOWNLOADF">Hiányzó Fájlok Letöltése ...</str>
-		<str name="#IF_VERIFYINSTALLF">Hiányzó Fájlok Telepítése ...</str>
-		<str name="#IF_VERIFYBRANCH">Letöltési Szál Váltása ...</str>
+		<str name="#IF_VERIFYFILES">Fájlok megerősítése</str>
+		<str name="#IF_VERIFYTOOLS">Eszközök újratelepítése</str>
+		<str name="#IF_VERIFYHOOKS">Telepítés utáni kapaszkodópontok újrafuttatása</str>		
+		<str name="#IF_VERIFYCONFIRM">Ha nehézségeid vannak a(z) {0} futtatásával, a megerősítő folyamat megkísérel megoldani minden problémát.</str>
 
+		<str name="#IF_VERIFYMCF">MCF megerősítése ...</str>
+		<str name="#IF_VERIFYINSTALL">Telepítés megerősítése ...</str>
+		<str name="#IF_VERIFYDOWNLOADF">Hiányzó fájlok letöltése ...</str>
+		<str name="#IF_VERIFYINSTALLF">Hiányzó fájlok telepítése ...</str>	
+		<str name="#IF_VERIFYBRANCH">Ágazatok átváltása ...</str>	
 
-		<str name="#IF_IIBADINFO">Hiba lépett fel az információk lekérdezése közben</str>
-		<str name="#IF_INVALIDBRANCH">A megadott letöltési szál a telepítéshez érvénytelen</str>
+		<str name="#IF_IIBADINFO">Hiba történt az információk lekérésénél ehhez a tételhez</str>
+		<str name="#IF_INVALIDBRANCH">Az ennek a tételnek a telepítéséhez meghatározott ágazat érvénytelen</str>
 
+		<str name="#IF_FREESPACE_DL">A letöltéshez nincs elég szabad hely a HDD-n.</str>
+		<str name="#IF_FREESPACE_IN">A telepítéshez nincs elég szabad hely a HDD-n.</str>
+		<str name="#IF_PATHERR">Az elérési útat nem lehet értelmezni.</str>
+		<str name="#IF_FILEERR">Már léteznek fájlok ezen a helyen.</str>
+		<str name="#IF_NOTINSTALLED">Ez a tétel nincs telepítve.</str>
+		<str name="#IF_IHASHFAIL">Egy vagy több fájl megbukott az md5 hasító ellenőrzésen a telepítés folyamata során. Szeretnéd megerősíteni a telepítést annak hiánytalanságának biztosításához?</str>
 
+		<str name="#IF_CONFLICT">A Desura észlelte, hogy a(z) {0} már telepítve van. Mivel a(z) {0} összetett telepítést igényel, a tartalmi ütközésekkel kapcsolatos problémák elkerülése végett ajánlatos a(z) {0} manuális eltávolítása, mielőtt folytatnád a Desura telepítésével.</str>
+		<str name="#IF_CONFLICTTITLE">Összetett telepítési ütközés</str>
 
-		<str name="#IF_FREESPACE_DL">Nincs elegendő szabad hely a letöltéshez.</str>
-		<str name="#IF_FREESPACE_IN">Nincs elegendő szabad hely a telepítéshez.</str>
-		<str name="#IF_PATHERR">A telepítési hely nem megfelelő.</str>
-		<str name="#IF_FILEERR">Már léteznek fájlok a telepítés helyén.</str>
-		<str name="#IF_NOTINSTALLED">Ez az elem nincs telepítve.</str>
-		<str name="#IF_IHASHFAIL">Egy vagy több fájl hibásnak minősült az md5 hash ellenőrzés folyamata alatt. Ellenőrizni szeretnéd a telepítést hogy teljes lett-e.</str>
+		<str name="#IF_COMPLETEPREORDER">Előbetöltés befejezve</str>
 
-		<str name="#IF_CONFLICT">A Desura észlelte, hogy a(z) {0} már telepítve van. A(z) {0} komplex telepítést igényel. Ajánljuk, hogy távolítsd el manuálisan a(z) {0}-t mielőtt folytatnád a Desura-val való telepítést.</str>
-		<str name="#IF_CONFLICTTITLE">Komplex Telepítési Hiba</str>
-
-		<str name="#IF_COMPLETEPREORDER">Elő Töltés Kész</str>
-		<str name="#IF_PRELOADLAUNCH">{0} előtöltve, de még nem futtatható. Várj türelemmel a megjelenésig.</str>
+		<str name="#IF_PRELOADLAUNCH">A(z) {0} {2} és ez alkalommal nem lehet elindítani. {1} napon belül elérhető lesz a játékra.</str>
 		<str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
+		<str name="#IF_PRELOADLAUNCH_PREORDERED">elő lett rendelve</str>
+		<str name="#IF_PRELOADLAUNCH_PRELOADED">elő lett töltve</str>
+		<str name="#IF_PRELOADLAUNCH_INSTALLDEMO">Demó telepítése</str>
+		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER">Egyéb telepítése</str>
+		<str name="#IF_PRELOADLAUNCH_INSTALLOTHER_INFO">&#xA;&#xA;Vannak más, játékra elérhető verziók is.</str>
 
+
+		<str name="#IF_COMPLEXREMOVE">Régi fájlok törlése</str>
+		<str name="#IF_COMPLEXBACKUP">Játékfájlok biztonsági mentése</str>
+		<str name="#IF_COMPLEXINSTALL">Fájlok telepítése</str>	
+		<str name="#IF_COMPLEXLABEL">{0}...</str>
+		<str name="#IF_COMPLEXLABEL_INIT">{0} (Inicializálás)</str>
+
+		<str name="#IF_DOWNLOADTOOL">Tartozékok letöltése:</str>
+		<str name="#IF_DOWNLOADTOOL_LABEL">Letöltés...</str>
+
+		<str name="#IF_INSTALLTOOL">Eszközök telepítés alatt:</str>
+		<str name="#IF_INTOOL_WAIT_OTHER">Várakozás más telepítések befejeződésére...</str>
+		<str name="#IF_INTOOL_WAIT_HELPER">Várakozás a telepítési súgóra...</str>
+		<str name="#IF_INTOOL_LABEL">Eszköz telepítés alatt: {0}</str><!-- {0}: tool name -->
+
+		<str name="#IF_VALIDATE_DEFAULT">Meglévő fájlok érvényesítése...</str>
+		<str name="#IF_VALIDATE_LOCALMCFS">Régi adatfájlok ellenőrzése...</str>
+		<str name="#IF_VALIDATE_EXISTINGMCF">Jelenlegi adatfájlok ellenőrzése...</str>
+		<str name="#IF_VALIDATE_LOCALFILES">Régi telepítési fájlok ellenőrzése...</str>
+		<str name="#IF_VALIDATE_PREALLOCATING">Letöltési fájl előlefoglalása...</str>
+		<str name="#IF_VALIDATE_TITLE">Letöltés érvényesítés alatt:</str>	
+		<str name="#IF_VALIDATE_LABEL">{2}. fázis: {0} kész a(z) {1} lépésből</str><!-- {0}: done, {1}: total {2}:Stage number-->
+
+		<str name="#IF_PREORDERED_NORELEASE">Előrendelve: Nem jelent meg</str>
+		<str name="#IF_PREORDERED">Előrendelve: Előtöltésre kész</str>		
+
+		<str name="#IF_WAIT_TITLE">Várakozás a következő tételekre:</str>
+		<str name="#IF_WAIT_FORCE">Eröltetés</str>
+		<str name="#IF_WAIT_CANCELALL">Mind megszakítása</str>	
+		<str name="#IF_WAIT_INFO">A(z) {0} más tételekre vár, hogy befejeződjenek, mielőtt elkezdené {1}.</str><!-- {0}: item name, {1}: action -->
+		<str name="#IF_WAIT_ACTION_UNINSTALL">eltávolítani a tételt</str>
+		<str name="#IF_WAIT_ACTION_VERIFY">megerősíteni a tételfájlokat</str>	
 
 		<!-- Install Wizard -->
-		<str name="#MW_PROMPT">A varázsló segít megtalálni azokat a telepített játékokat és modokat, amiket a Desura támogat. Figyelem: A talált elemeket a Desura-n található legfrissebb verzióra fogja frissíteni.</str>
-		<str name="#MW_ERROR">Hiba lépett fel a telepítési varázsló folyamata közben, ezért az leállt.</str>
-		<str name="#MW_ERRTITLE">Telepítés Varázslói Hiba</str>
-		<str name="#MW_ADDACCOUNT">Talált elemek társítása a felhasználóhoz</str>
-		<str name="#MW_FINISH">A varázsló végzett, minden játék és mod társításra került a felhasználódhoz</str>
+		<str name="#MW_TITLE">Telepített játékok keresése</str>
+		<str name="#MW_ERROR">Hiba történt a varázsló folyamat során, és az le is állt.</str>
+		<str name="#MW_CUSTOM">Egyéni telepítés</str>
+		<str name="#MW_ERRTITLE">Telepített játékok keresése - Hiba</str>
+		<str name="#MW_ADDACCOUNT">Talált tételek hozzáadása a fiókhoz</str>
 
 		<!-- Main Form -->
-		<str name="#MF_OFFLINE">Biztos offline módra akarsz váltani?</str>
-		<str name="#MF_OFFLINE_TITLE">Offline Mód</str>
-		<str name="#MF_OFFLINEWARN">A Desura offline módban van, ezért nem tud linkeket megjeleníteni. Be kell jelentkezned</str>
-		<str name="#MF_IPERMISSION_ERROR">Nincs engedélyed az MCF telepítésére</str>
-		<str name="#MF_PERMISSION_ERRTITLE">Engedély Hiba</str>
-		<str name="#MF_IBADBUILD">Hibás Build Szám a Telepítésben</str>
-		<str name="#MF_IBADBRANCH">Hibás Szál Szám a Telepítésben</str>
-		<str name="#MF_IMIDDLEINSTALL">Az elemet egy másik folyamat használja. Előbb annak kell befejeződnie.</str>
-		<str name="#MF_UPERMISSION_ERROR">Nincs jogosultságod MCF-et feltölteni erről az elemről.</str>
-		<str name="#MF_CPERMISSION_ERROR">Nincs jogosultságod, hogy MCF-et készíts erről az elemről.</str>
-		<str name="#MF_UPDATELOG_ITEMERROR">A változások nem megtekinthetőek. Ez az elem nem található a fiókodon.</str>
-		<str name="#MF_ERRTITLE">Desura Hiba</str>
-		<str name="#MF_ERROR">Az elem nem futtatható.</str>
-		<str name="#MF_NONDEV_ERROR">Nem vagy a fejlesztője ennek az elemnek, ezért nincs jogosultságod az adatainak módosítására.</str>
-		<str name="#MF_NAMERESOLVE">Nincs megoldás az elem nevére az id számából.</str>
-		<str name="#MF_BADLINK">Ismeretlen Desura Link</str>
-		<str name="#MF_OLNOTINSTALLED">A Desura offline módban van, ezért nem tudod ezt az elemet telepíteni, így futtatni sem.</str>
-		<str name="#MF_UNINSTALLPROMPT">{0} telepítési folyamatban van. A folyamatot meg kell szakítanod, ha elakarod távolítani. Biztosan folytatod az eltávolítást?</str>
-		<str name="#MF_UNINSTALLTITLE">{0} Eltávolítása</str>
+		<str name="#MF_OFFLINE">Biztos vagy benne, hogy offline állapotra akarsz váltani?</str>
+		<str name="#MF_OFFLINE_TITLE">Offline mód</str>
+		<str name="#MF_OFFLINEWARN">A Desura offline módban van és nem tud linkeket feldolgozni. Kérlek jelentkezz be</str>
+		<str name="#MF_IPERMISSION_ERROR">Nincs jogosultságod telepíteni egy engedéllyen nem rendelkező MCF-et</str>
+		<str name="#MF_PERMISSION_ERRTITLE">Helytelen jogosultsági hiba</str>
+		<str name="#MF_IBADBUILD">Rossz szerkezeti szám a tételfelhatalmazás telepítéshez</str>
+		<str name="#MF_IBADBRANCH">Rossz ágazati szám a tételfelhatalmazás telepítéshez</str>
+		<str name="#MF_IMIDDLEINSTALL">A tétel épp egy másik folyamat közepén van (nem lehet telepíteni a felhatalmazott tételt). Kérlek előbb fejezd be azt.</str>
+		<str name="#MF_UPERMISSION_ERROR">Nincs jogosultságot MCF fájlt feltölteni ehhez a tételhez.</str>
+		<str name="#MF_CPERMISSION_ERROR">Nincs jogosultságot MCF létrehozására ehhez a tételhez.</str>
+		<str name="#MF_UPDATELOG_ITEMERROR">Nem lehet megjeleníteni a változásnaplót. A tétel nem található fiókodban.</str>
+		<str name="#MF_ERRTITLE">Desura - Hiba</str>
+		<str name="#MF_ERROR">Nem sikerült elindítani a tételt.</str>
+		<str name="#MF_NONDEV_ERROR">Nem vagy e tétel fejlesztője, így nincs jogosultságod tartalmat készíteni hozzá.</str>
+		<str name="#MF_NAMERESOLVE">Nem sikerült a tétel nevét feloldani az azonosító számból.</str>
+		<str name="#MF_BADLINK">Ismeretlen Desura link</str>
+		<str name="#MF_OLNOTINSTALLED">A Desura offline módban van, és ez a tétel nincs telepítve, ennélfogva pedig nem indítható el.</str>
+		<str name="#MF_UNINSTALLPROMPT">A(z) {0} jelenleg a telepítés folyamatában van. Annak érdekében, hogy eltávolítsd a Desura-nak le kell állítania a telepítési folyamatot. Folytatod az eltávolítással?</str>
+		<str name="#MF_UNINSTALLTITLE">Desura - {0} eltávolítás</str>
+		<str name="#MF_LUANCH_ERROR_VERIFY_TOOLTIP">Telepítési fájlok megerősítése</str>
 
 		<!-- Buttons -->
-		<str name="#RESTART_NOW">Újraindítás Most</str>
-		<str name="#RESTART_LATER">Újraindítás Később</str>
+		<str name="#RESTART_NOW">Újraindítás most</str>
+		<str name="#RESTART_LATER">Újraindítás később</str>
 		<str name="#DOWNLOAD">Letöltés</str>
-		<str name="#VERIFY">Ellenőrzés</str>
+		<str name="#VERIFY">Megerősít</str>
 		<str name="#START">Indítás</str>
 		<str name="#STOP">Leállítás</str>
 		<str name="#UPLOAD">Feltöltés</str>
 		<str name="#CANCEL">Mégse</str>
 		<str name="#OK">Ok</str>
 		<str name="#CLOSE">Bezárás</str>
+		<str name="#SAVE">Mentés</str>
 		<str name="#UPDATE">Frissítés</str>
-		<str name="#LAUNCH">Indítás</str>
-		<str name="#LOGIN">Belépés</str>
+		<str name="#LAUNCH">Elindítás</str>
+		<str name="#LOGIN">Bejelentkezés</str>
 		<str name="#PAUSE">Szünet</str>
 		<str name="#RESUME">Folytatás</str>
 		<str name="#APPLY">Alkalmaz</str>
 		<str name="#UNKNOWN">Ismeretlen</str>
-		<str name="#ACCEPT">Elfogad</str>
+		<str name="#ACCEPT">Elfogadom</str>
 		<str name="#BACK">Vissza</str>
-		<str name="#AGREE">Elfogadom</str>
+		<str name="#AGREE">Egyetértek</str>
 		<str name="#SEND">Küldés</str>
-		<str name="#BROWSE">Böngészés</str>
-		<str name="#MOREINFO">További Infók</str>
+		<str name="#BROWSE">Tallózás</str>
+		<str name="#MOREINFO">További információk</str>
 		<str name="#YES">Igen</str>
 		<str name="#NO">Nem</str>
-		<str name="#SUBMIT">Beküldés</str>
+		<str name="#SUBMIT">Beküld</str>
 		<str name="#ADD">Hozzáadás</str>
 		<str name="#CONTINUE">Folytatás</str>
-		<str name="#PLAY">Indítás</str>
-		<str name="#PURCHASE">Kocsiba</str>
-		<str name="#TBA">TBA</str> <!-- to be advertised -->
-		<str name="#TRYAGAIN">Próbáld Újra</str> <!-- to be advertised -->
+		<str name="#PLAY">Játék indítása</str>
+		<str name="#PURCHASE">Kosárba vele</str>
+		<str name="#TBA">TBA</str><!-- to be advertised -->
+		<str name="#TRYAGAIN">Újra</str>
 		<str name="#LINK">Link</str>
 		<str name="#PREORDER">Előrendelés</str>
+		<str name="#HIDE">Elrejtés</str>
+		<str name="#FIND">Keresés</str>
 
 		<!-- Misc -->
 		<str name="#NAME">Név</str>
 		<str name="#SIZE">Méret</str>
-		<str name="#PATH">Út</str>
-		<str name="#FINALIZING">Befejezés</str>
+		<str name="#PATH">Elérési út</str>
+		<str name="#FINALIZING">Véglegesítés</str>
 		<str name="#COMPLTETED">Befejezve</str>
 		<str name="#SEARCH">Keresés ...</str>
-		<str name="#LOADINGPAGE">Oldal Töltése ...</str>
-		<str name="#CONFIRM">Elfogadás ...</str>
-		<str name="#CONFIRM_PROMPT">Ha bezárod, a folyamat megszakad. Biztos vagy benne?</str>
-		<str name="#INITIALIZING">Előkészítés ...</str>
-		<str name="#PROCESSING">Folyamatban:</str>
-		<str name="#STEAMWARN">Hogy telepíthess elemeket, a Desura-nak tudnia kell a Steam Fiók Nevedet, amit használsz. &#xA;&#xA;Ezt bármikor beállíthatod a Beállítások menüben.&#xA;&#xA;Figyelem: A Desura alkalmazottjai nem kérik ki soha a Steam Jelszavad. </str>
+		<str name="#LOADINGPAGE">Oldal betöltése ...</str>
+		<str name="#CONFIRM">Megerősítés ...</str>
+		<str name="#CONFIRM_PROMPT">Ha bezárod ezt az űrlapot, az leállítja a jelenlegi folyamatot. Biztos vagy benne, hogy ezt akarod?</str>
+		<str name="#INITIALIZING">Inicializálás ...</str>
+		<str name="#PROCESSING">Feldolgozás:</str>
+		<str name="#STEAMWARN">Néhány tétel telepítésének érdekében a Desura-nak tudnia kell, milyen steam-es fiókot használsz. &#xA;&#xA;Ezt bármikor megváltoztathatod a beállítások űrlapba lépéssel.&#xA;&#xA;Kérlek vedd figyelembe: Soha, senki sem fogja elkérni steam-es jelszavadat a Desura-tól. </str>
 		<str name="#GAMES">Játékok</str>
-		<str name="#MODS">Modok</str>
-		<str name="#UPDATEAVL">Frissítés Elérhető</str>
+		<str name="#MODS">Módok</str>
+		<str name="#UPDATEAVL">Frissítés elérhető</str>
 		<str name="#UNINSTALL">Eltávolítás</str>
 		<str name="#INSTALL">Telepítés</str>
-		<str name="#UNINSTALLING">Eltávolítás ...</str>
-
-
+		<str name="#UNINSTALLING">Eltávolítás alatt ...</str>
+		<str name="#REMOVE">Törlés</str>
 
 		<!-- Main Menu -->
-		<str name="#MENU_OFFLINE">Offline Mód</str>
-		<str name="#MENU_OFFLINE_TOOLTIP">Offline Módra váltás (nincs internet kapcsolat)</str>
+		<str name="#MENU_OFFLINE">Irány offline</str>
+		<str name="#MENU_OFFLINE_TOOLTIP">Átváltás offline módba (semmi internet hozzáférés)</str>
 		<str name="#MENU_LOGOUT">Kijelentkezés</str>
-		<str name="#MENU_LOGOUT_TOOLTIP">Kijelentkezés Desura-ról</str>
-		<str name="#MENU_SETTINGS">Beállítások</str>
-		<str name="#MENU_SETTINGS_TOOLTIP">Beállítások megjelenítése</str>
-		<str name="#MENU_CONSOLE">Konzol</str>
-		<str name="#MENU_WIZZARD">Telepítés Varázsló</str>
-		<str name="#MENU_WIZZARD_TOOLTIP">Ezzel megtalálhatod a már telepített játékokat és modokat a gépeden</str>
-		<str name="#MENU_CHANGELOG">Desura Újítások</str>
-		<str name="#MENU_CHANGELOG_TOOLTIP">Desura fejlesztési változásainak megtekintése</str>
-		<str name="#MENU_ABOUT">Rólunk</str>
+		<str name="#MENU_LOGOUT_TOOLTIP">Kijelentkezés a Desura-ból</str>
+		<str name="#MENU_SETTINGS">Beállítás</str>
+		<str name="#MENU_SETTINGS_TOOLTIP">Beállítások űrlap megjelenítése</str>
+		<str name="#MENU_CONSOLE">Kezelőpult</str>
+		<str name="#MENU_WIZZARD">Telepített játékok megkeresése</str>
+		<str name="#MENU_WIZZARD_TOOLTIP">Varázsló az erre a PC-re telepített játékok és módok megtalálására</str>
+		<str name="#MENU_CHANGELOG">Alkalmazás változásnapló</str>
+		<str name="#MENU_CHANGELOG_TOOLTIP">Változásnapló megjelenítése a Desura részéről</str>
+		<str name="#MENU_ABOUT">Névjegy</str>
 		<str name="#MENU_EXIT_TOOLTIP">Kilépés a Desura-ból</str>
 		<str name="#MENU_TOOLS">Eszközök</str>
 		<str name="#MENU_HISTORY">Előzmények</str>
-		<str name="#MENU_HELP">Segítség</str>
-		<str name="#MENU_ONLINE">Online Mód</str>
-		<str name="#MENU_INSTALLPATH">Egyéni Telepítés</str>
-		<str name="#MENU_INSTALLPATH_TOOLTIP">Beállíthatsz saját telepítési utat a játékoknak</str>
-		<str name="#MENU_ACTIVATEGAME">Játék Aktiválása</str>
-		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Telepítési kulcs beírása egy játék aktiválásához a fiókodon</str>
+		<str name="#MENU_HELP">Súgó</str>
+		<str name="#MENU_ONLINE">Irány online</str>
+		<str name="#MENU_INSTALLPATH">Telepített játékok hozzáadása</str>
+		<str name="#MENU_INSTALLPATH_TOOLTIP">Egyéni telepítési elérési út beálíltása a játékokhoz</str>
+		<str name="#MENU_LISTKEYS">Játékok és CD kulcsok kilistázása</str>
+		<str name="#MENU_LISTKEYS_TOOLTIP">Shows a web page containing your games and their CD keys</str>
+		<str name="#MENU_ACTIVATEGAME">Játék CD kulcs vagy ajándék aktiválása</str>
+		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Fiókodban való játék aktiválásához írj be egy CD kulcsot vagy ajándékkódot</str>	
 		<str name="#MENU_VERSION">Verzió</str>
 		<str name="#MENU_EXIT">Kilépés</str>
 
-		<str name="#MENU_DOWNLOADREPORT">Átviteli Monitor</str>
-		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Átvitel adatainak kimutatása</str>
+		<str name="#MENU_DOWNLOADREPORT">Sávszélesség-figyelő</str>
+		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Megjeleníti a sávszélesség-figyelőt</str>	
 
-		<str name="#MENU_CART">Vásárlások</str>
-		<str name="#MENU_CART_TOOLTIP">Elemek átnézése a kocsidban</str>
-		<str name="#MENU_PURCHASE">Tranzakciók</str>
-		<str name="#MENU_PURCHASE_TOOLTIP">Elemek átnézése, amiket megvásároltál</str>
-		<str name="#MENU_GIFTS">Ajándékok</str>
-		<str name="#MENU_GIFTS_TOOLTIP">Ajándékok átnézése, amiket kaptál</str>
+		<str name="#MENU_CART">Bevásárlókosár</str>
+
+		<str name="#MENU_CART_TOOLTIP">Keresgélj bevásárlókosaradban levő tételek között</str>
+		<str name="#MENU_PURCHASE">Vásárlási előzmények</str>
+		<str name="#MENU_PURCHASE_TOOLTIP">Keresgélj az általad megvásárolt tételek között</str>
+		<str name="#MENU_GIFTS">Ajándékok előzményei</str>
+		<str name="#MENU_GIFTS_TOOLTIP">Keresgélj a neked ajándékozott tételek között</str>
 
 		<!-- Headers -->
 		<str name="#HEAD_NAME">Név</str>
@@ -360,229 +425,346 @@
 		<str name="#HEAD_THEME">Téma</str>
 		<str name="#HEAD_RATING">Értékelés</str>
 		<str name="#HEAD_DEV">Fejlesztő</str>
+		<str name="#HEAD_FAV">Kedv.</str>
+
+		<!-- Play page -->
+		<str name="#PLAY_UPDATE_AVAILABLE">Elérhető egy frissítés</str>
+		<str name="#PLAY_UPDATE_DEMO">Demó bővítése teljes példányra</str>
+		<str name="#PLAY_UPDATE_PRELOAD">Előbetöltés elérhető</str>
+		<str name="#PLAY_EDIT_FAV">Kedvencek szerkesztése</str>
+		<str name="#PLAY_UPLOAD">Jelenlegi feltöltések</str>
+		<str name="#PLAY_RECENT">Nemrég játszott</str>
+		<str name="#PLAY_TOOL">Fejlszető</str>
+		<str name="#PLAY_FAVORITES">Kedvencek</str>
+		<str name="#PLAY_NEWITEMS">Új</str>
+		<str name="#PLAY_INVALID_UPLOAD">Érvénytelen feltöltés</str>
+		<str name="#PLAY_INVALID_ITEM">Érvénytelen elem</str>
+		<str name="#PLAY_BRANCH_AUTO">le legyen játszva automatikusen ez a verzió legközelebb?</str>
+		<str name="#PLAY_UPDATE_POLL">Lejátszási lista átkutatása frissítésekért...</str>
+		<str name="#PLAY_ADD_GAME">{0} {1} hozzáadva</str><!-- {0} = mod or game {1} = name -->
+		<str name="#PLAY_PREORDER">Előrendelés</str>
+		<str name="#PLAY_DELAY_LOADING">Lejátszási lista lekérése...</str>
+		<str name="#PLAY_GAMES">Játékok</str>
+		<str name="#PLAY_DEVELOPMENT">Fejlesztés</str>	
 
 		<!-- Pop up menu -->
-		<str name="#PM_VIEWPROFILE">Profil Megtekintése</str>
-		<str name="#PM_MODLIST">Modok Listája</str>
-		<str name="#PM_UPDATELOG">Fejlesztések</str>
-		<str name="#PM_REMOVEACCOUNT">Eltávolítás</str>
-		<str name="#PM_DESURAPAGE">Desura Oldalán</str>
-		<str name="#PM_CREATEMCF">MCF Készítése</str>
-		<str name="#PM_UPLOADMCF">MCF Feltöltése</str>
-		<str name="#PM_ADDACCOUNT">Fiókhoz Rendelés</str>
-		<str name="#PM_INSTALLCHECK">Ellenőrzés</str>
-		<str name="#PM_INSTALLCHECK_TOOLTIP">Megnézheted, hogy az elem telepítve van-e a gépeden.</str>
+		<str name="#PM_VIEWPROFILE">Profil megtekintése</str>
+		<str name="#PM_MODLIST">Módlista megtekintése</str>
+		<str name="#PM_UPDATELOG">Változásnapló megtekintése</str>
+		<str name="#PM_REMOVEACCOUNT">Törlés a listáról</str>
+		<str name="#PM_DESURAPAGE">Desura Oldal</str>
+		<str name="#PM_CREATEMCF">MCF létrehozása</str>
+		<str name="#PM_UPLOADMCF">MCF feltöltése</str>
+		<str name="#PM_ADDACCOUNT">Hozzáadás a fiókhoz</str>
+		<str name="#PM_INSTALLCHECK">Telepítés ellenőrzés</str>
+		<str name="#PM_INSTALLCHECK_TOOLTIP">Ellenőrizd, hogy megtudd, telepítve van-e ez a tétel ezen a PC-n.</str>
 		<str name="#PM_PROPERTIES">Tulajdonságok</str>
-		<str name="#PM_FAVORITE">Kedvencek</str>
-		<str name="#PM_DEVPROFILE">Fejlesztési Profil</str>
-		<str name="#PM_DELMCF">MCF Törlése</str>
-		<str name="#PM_SHOWMCF">MCF Megtekintése</str>
-		<str name="#PM_REVERTCOMPLEX">Játék Visszaállítása</str>
+		<str name="#PM_FAVORITE">Hozzáadás a kedvencekhez</str>
+		<str name="#PM_FAVORITE_REMOVE">Kedvenc törlése</str>
+		<str name="#PM_DEVPROFILE">Fejlesztési profil</str>
+		<str name="#PM_DELMCF">MCF törlése</str>
+		<str name="#PM_SHOWMCF">MCF megjelenítése</str>
+		<str name="#PM_REVERTCOMPLEX">Játékfájlok visszaállítása</str>
+		<str name="#PM_SHOWCDKEY">CD kulcs megtekintése</str>
+		<str name="#PM_REMOVEFROMACCOUNT">Törlés a listárólól</str>
+		<str name="#PM_SHORTCUT">Asztali parancsikon látrehozása</str>
+		<str name="#PM_MENU_ENTRY">Alkalmazás menübejegyzésének létrehozása</str>
 
 		<!-- Settings -->
-		<str name="#SET_TITLE">Desura Beállítások</str>
-		<str name="#SET_BETA_LABEL">Desura Nyílt Bétában való részvétel</str>
-		<str name="#SET_BETA_INFO">Mielőtt megjelenik egy új Desura verzió, nyílt béta tesztel segítheted annak tökéletesítését. Mint a Desura felhasználója, részt vehetsz az új fejlesztések kipróbálásában, javításában és nyílt visszajelzést adhatsz minderről. &#xA;&#xA;A bétában előfordulhatnak hibák, program leállások, amikről automatikusan jelentés készül és elküldésre kerül a fejlesztőknek, akik kapcsolatba léphetnek veled emailben hogy segíthess megoldást találni a felmerülő problémákra. &#xA;&#xA;Figyelem: A nyílt béta tartalmazhat hibákat, amik adatvesztést okozhatnak. Csak tapasztalt felhasználóknak ajánlott a bétában való részt vétel.&#xA;</str>
-		<str name="#SET_NOTE">Figyelem: Ha új témát választasz, akkor újra kell indítanod a Desura-t.</str>
-		<str name="#SET_THEME_VERSION">Téma:</str>
-		<str name="#SET_THEME_AUTHOR">Készítő:</str>
-		<str name="#SET_THEME">Verzió:</str>
-		<str name="#SET_CV_THEME">Témák</str>
-		<str name="#SET_CV_BETA">Részt vétel a Bétában</str>
+		<str name="#SET_TITLE">Desura - Beállítások</str>
+		<str name="#SET_BETA_LABEL">Részvétel a Desura Nyilvános Bétájában</str>
+		<str name="#SET_BETA_INFO">Az új funkciók és a Desura új szerkezeteinek kiadása előtt, egy nyilvános bétát adunk ki az új verzióban fellelhető programhibák tesztelése és javítása érdekében. Desura felhasználóként közreműködhetsz és segítheted tesztelni a nyilvános béta új funkcióit a programhibajavítások elősegítésének- és visszajelzés biztosításának céljából. &#xA;&#xA;Ha részt veszel és összeomlást tapasztalsz, összeomlási memóriaképed automatikusan feltöltődik, veled pedig lehet, hogy felvesszük a kapcsolatot email-en keresztül, hogy segíts a hibakeresésben és a programhibák javításában, melyekkel összefutsz. &#xA;&#xA;Kérlek vedd figyelembe: A nyilvános béták olyan programhibákat tartalmazhatnak, melyek adatvesztést vagy alkalmazás összeomlást okozhatnak. Ajánlatos, hogy csakis haladó felhasználók vegyenek részt nyilvános bétákban.&#xA;</str>
+		<str name="#SET_NOTE">Kérlek vedd figyelembe: Ha kiválasztasz egy új témát, újra kell indítanod a Desura-t, hogy használatba vedd azt.</str>
+		<str name="#SET_THEME_VERSION">verziója:</str>
+		<str name="#SET_THEME_AUTHOR">Készítője:</str>
+		<str name="#SET_CV_THEME">Téma</str>
+		<str name="#SET_CV_BETA">Béta</str>
 		<str name="#SET_CV_LANG">Nyelv</str>
-		<str name="#SET_CV_LANG_TOOLTIP">Válaszd ki a nyelvet, amit használni szeretnél</str>
-		<str name="#SET_CV_STEAM">Steam Fiókod</str>
-		<str name="#SET_CV_STEAM_TOOLTIP">Jelenlegi Steam Felhasználónév (mod telepítésekhez)</str>
-		<str name="#SET_CV_AUTOLOGIN">Automatikus belépés</str>
-		<str name="#SET_CV_AUTOLOGIN_TOOLTIP">Bejelentkezési információk elmentése az automatikus induláshoz</str>
-		<str name="#SET_CV_AUTOSTART">Automatikus indítás</str>
-		<str name="#SET_CV_AUTOSTART_TOOLTIP">Desura indítása rendszerindításkor</str>
-		<str name="#SET_CV_CRASH">Hibák automatikus feltöltése</str>
-		<str name="#SET_CV_CRASH_TOOLTIP">Automatikusan feltölti a dumpolt hibákat (debuggoláshoz)</str>
-		<str name="#SET_CV_MCFCLEAN">MCF-ek törlése használat után</str>
-		<str name="#SET_CV_MCFCLEAN_TOOLTIP">Eltávolítja a nem használt adatokat szabad helyért. De, ez hosszabb letöltési időket okozhat.</str>
-		<str name="#SET_CV_USER">Felhasználói Név mentése belépéskor</str>
-		<str name="#SET_CV_USER_TOOLTIP">Elmenti a felhasználói neved a következő belépésig</str>
-		<str name="#SET_CV_CONSOLE">Konzol megjelenítése hiba esetén</str>
-		<str name="#SET_CV_CONSOLE_TOOLTIP">Előhozza a konzol ablakot, ha hiba lép fel a program működése közben</str>
-		<str name="#SET_CV_WORKER">Dolgozó Szálak</str>
-		<str name="#SET_CV_WORKER_TOOLTIP">Ez befolyásolja hány szál dolgozzon bizonyos folyamatokon (pl: MCF készítés).</str>
-		<str name="#SET_CV_DESTMAIN">Kinézet elfelejtése bezáráskor</str>
-		<str name="#SET_CV_DESTMAIN_TOOLTIP">A Desura kinézetének eltávolítása a memóriából ablak bezárásakor, ez sebességvesztést okozhat, de több memória lesz szabad.</str>
-		<str name="#SET_CV_NOTAB">Ne töltse be a böngésző oldalakat belépéskor automatikusan</str>
-		<str name="#SET_CV_NOTAB_TOOLTIP">A böngésző oldalait nem fogja betölteni belépéskor ezért a belépés gyorsabb, de az utána lévő folyamatok lassabbak lehetnek.</str>
-		<str name="#SET_LAB_GENERAL">Alap Beállítások</str>
+		<str name="#SET_CV_LANG_TOOLTIP">Válaszd ki a használni kívánt nyelvet</str>
+		<str name="#SET_CV_STEAM">Steam felhasználónév</str>
+		<str name="#SET_CV_STEAM_TOOLTIP">Jelenlegi Steam felhasználónév (módok telepítéséhez)</str>
+		<str name="#SET_CV_AUTOLOGIN">Automatikus bejelentkezés indításkor</str>
+		<str name="#SET_CV_AUTOLOGIN_TOOLTIP">Bejelentkezési adatok elmentése és automatikus bejelentkezés a Desura indulásakor</str>
+		<str name="#SET_CV_AUTOSTART">Desura automatikus indítása</str>
+		<str name="#SET_CV_AUTOSTART_TOOLTIP">A Desura együttindítása a Windows-val</str>
+		<str name="#SET_CV_CRASH">Összeomlásjelentések automatikus feltöltése</str>
+		<str name="#SET_CV_CRASH_TOOLTIP">Összeomlási jelentések automatikus feltöltése, mikor a Desura elindul (hibakereséshez van felhasználva)</str>
+		<str name="#SET_CV_MCFCLEAN">MCF-ek eltakarítása használat után</str>
+		<str name="#SET_CV_MCFCLEAN_TOOLTIP">Ez törli a szükségtelen adatokat az MCF-ekből, helyet felszabadítva ezzel a merevlemezen. Ez azonban még többnek a letöltését okozza.</str>
+		<str name="#SET_CV_USER">Felhasználónév mentése bejelentkezéskor</str>
+		<str name="#SET_CV_USER_TOOLTIP">Elmenti felhasználónevedet a legközelebbi bejelentkezéshez</str>
+		<str name="#SET_CV_CONSOLE">Kezelőpult megjelenítése hiba esetén</str>
+		<str name="#SET_CV_CONSOLE_TOOLTIP">Megnyitja a kezelőpultot hiba felléptekor</str>
+		<str name="#SET_CV_DISABLE_WGE">Windows Játékintéző letiltása</str>
+		<str name="#SET_CV_DISABLE_WGE_TOOLTIP">Megállítja a Desura-t a játékok Windows Játékintézőbe történő elhelyezésében</str>		
+
+		<str name="#SET_CV_WORKER">Munkavégző szálak</str>
+		<str name="#SET_CV_WORKER_TOOLTIP">Ez a folyamatvégrehajtásokra (,mint egy MCF létrehozásának folyamatára) használt munkavégzők száma.</str>
+		<str name="#SET_CV_DESTMAIN">Fő űrlap eltávolítása bezáráskor</str>
+		<str name="#SET_CV_DESTMAIN_TOOLTIP">Bezáráskor memóriát felszabadítva eltávolítja a fő űrlapot a memóriából, ám a sebesség (és az előzmények) árán.</str>
+		<str name="#SET_CV_NOTAB">Ne töltődjenek be automatikusan bejelentkezéskor a böngészőoldalak</str>
+		<str name="#SET_CV_NOTAB_TOOLTIP">Bejelentkezéskor nem töltődnek be a kevesebb memóriához vezető böngészőoldalak (,ám így lassabb a betöltések ideje).</str>
+		<str name="#SET_LAB_GENERAL">Általános</str>
 		<str name="#SET_LAB_PERFORMANCE">Teljesítmény</str>
 		<str name="#SET_LAB_THEME">Téma</str>
-		<str name="#SET_LAB_BETA">Béta Részt vétel</str>
-		<str name="#SET_WARNING">Néhány beállítás alkalmazásához a program újraindítása szükséges.</str>
+		<str name="#SET_LAB_BETA">Béta</str>
+		<str name="#SET_LAB_CACHE">Gyorsítótár</str>
+		<str name="#SET_LAB_GAMES">Játékok</str>
+		<str name="#SET_LAB_CHAT">Csevegő</str>
+		<str name="#SET_WARNING">Néhány olyan beállítás, mely meg lett változtatva, az életbelépéshez újraindítást igényel.</str>
 
-		<str name="#SET_CV_SILENTLAUNCH">Csendes bejelentkezés</str>
-		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Automatikus bejelentkezéskor nem jön fel a fő ablak.</str>
+		<str name="#SET_CV_SILENTLAUNCH">Csöndes Önbejelentkezés</str>
+		<str name="#SET_CV_SILENTLAUNCH_TOOLTIP">Ne jelenjen meg a főablak automatikus bejelentkezéskor</str>	
+		<str name="#SET_CACHE_BROWSE">Kérlek válassz új mappát a Desura számára, amit gyorsítótárként használhat</str>
+
+		<str name="#SET_CV_CHAT_ENABLED">Desura csevegő engedélyezése</str>
+		<str name="#SET_CV_CHAT_ENABLED_TOOLTIP">Egedélyezi a csevegést a Desura Kliensben</str>	
+		<str name="#SET_CV_CHAT_BREAKOUT">Csevegő kliens külön ablakként</str>
+		<str name="#SET_CV_CHAT_BREAKOUT_TOOLTIP">Alapértelmezés szerint a csevegő klienst különálló ablakká teszi</str>	
+		<str name="#SET_CV_CHAT_SHOWCONTACTS">Csevegési kapcsolatok megjelenítése bejelentkezéskor</str>
+		<str name="#SET_CV_CHAT_SHOWCONTACTS_TOOLTIP">Mikor a Desura bejelentkezik, megjeleníti a csevegési kapcsolatablakot (Megjegyzés: Csak akkor, ha a csevegő klienst egy különálló ablak)</str>	
+		<str name="#SET_CV_CHAT_SHOWOFFLINE">Offline kapcsolatok megjelenítése</str>
+		<str name="#SET_CV_CHAT_SHOWOFFLINE_TOOLTIP">Offline kapcsolatok megjelenítése alapértelmezés szerint</str>	
+		<str name="#SET_CV_CHAT_REMEMBERSTATUS">Utolsó csevegési állapot megjegyzése</str>
+		<str name="#SET_CV_CHAT_REMEMBERSTATUS_TOOLTIP">Aktuális állapotodat mindig ahhoz az állapothoz igazítja, ami legutóbbi bejelentkezésedkor volt</str>			
+
+		<str name="#SET_CIP_UPDATE">Játéklista frissítés alatt</str>
+		<str name="#SET_CIP_BUT_BROWSE">Tallózás</str>
+		<str name="#SET_CIP_BUT_REFRESH">Játékok frissítése</str>
+		<str name="#SET_CIP_BUT_DELETE">Törlés</str>
+		<str name="#SET_CIP_BUT_ACTIVATE">Aktiválás</str>
+		<str name="#SET_CIP_ERR_GAME">Kérlek érvényes elérési utat írj be minden játékhoz változtatásaid mentésének érdekében.</str>
+		<str name="#SET_CIP_ERR_CACHE">Kérlek érvényes gyorsítótár elérési utat írj be változtatásaid mentésének érdekében.</str>
+		<str name="#SET_CIP_SUCCESS">Beállításaid frissítésre kerültek.</str>
+		<str name="#SET_CIP_SUCCESS_GAMES">Beállításaid frissítésre kerültek. Mivel frissítetted játéklistádat, a {1}telepítő varázsló{0} futtatására lesz szükséged, hogy megerősítsd a beírt elérési utakat, játékaid {2}szórakozási oldaladon{0} való megjelenítése végett.</str>
+		<str name="#SET_CIP_CDKEY">Kérlek írj be egy érvényes CD kulcsot vagy ajándékkódot.</str>
+		<str name="#SET_CIP_CDKEY_VALIDATING">Kulcs érvényesítés alatt...</str>
+		<str name="#SET_CIP_CDKEY_ERR">Hiba jelentkezett kulcsod aktiválásánál. Kérlek rövidesen próbálkozz újra.</str>
+		<str name="#SET_CIP_INFO">Ha dobozos játékot vásároltál, vagy {1}ajándékot kaptál{0}, annak Desura-val való regisztrálásához írd be ide a CD/DVD kulcsot, amivel együtt került forgalmazásba:</str><!-- {0} = </a> {1} = <a href="..."> -->
+		<str name="#SET_CIP_CDKEY">CD kulcs / ajándék</str>
+		<str name="#SET_CIP_CDKEY_INFO">A termékkulcsok, CD kulcsok és ajándékkódok jellemzően így néznek ki:{0}{0}AAAAA-BBBBB-CCCCC-DDDDD-EEEEE{0}0123456789ABCDEFGHIJKLMNOPQRSTUV{0}00000 11111111</str><!-- {0} = <br /> -->
+		<str name="#SET_CIP_INFO_ADD">Ha rendelkezel már játékokkal PC-den, melyeket szeretnéd, hogy a Desura megtaláljon és listára vegyen, lefuttathatod a {1}telepített játékok keresése{0} varázslót, mely automatikusan hozzáadja őket fiókodhoz. Ha a Desura nem talál egy játékot, amit feltelepítettél, alább manuálisan is meghatározhatod a mappát, ahova telepítetted azt:</str><!-- {0} = </a> {1} = <a href="..."> -->
+		<str name="#SET_CIP_MANUAL">Játék manuális hozzáadása</str>
+
+		<str name="#SET_CIP_LINK">Parancsikonokat a rendszereden lévő más játékokhoz és alkalmazásokhoz az alábbi űrlap használata révén adhatsz hozzá. Indítási paramétereket a jobb-klikk menüben található tulajdonságok segítségével adhatsz hozzá, és távolíthatsz is el ugyanazon menüben az eltávolítás kiválasztásával. Figyelmeztetés: Ezen funkció Béta állapotban van. Számíthatsz programhibákra!</str>
+		<str name="#SET_CIP_LINK_NAME">Hivatkozási név:</str>
+		<str name="#SET_CIP_LINK_EXE">Hivatkozás az exe-re:</str>
+
+		<str name="#CIP_BROWSE">Kérlek válaszd ki a gyökérmappát a játékhoz:</str>
+		<str name="#CIP_LINK_BROWSE">Kérlek válaszd ki a binárist a linkhez:</str>
 
 
 		<!-- Browser controls -->
-		<str name="#BC_HOME">Weboldal megnyitása</str>
-		<str name="#BC_STOP">Jelenlegi oldal töltésének leállítása</str>
-		<str name="#BC_REFRESH">Jelenlegi oldal újratöltése</str>
-		<str name="#BC_BACK">Vissza</str>
-		<str name="#BC_FORWARD">Előre</str>
-		<str name="#BC_BREAK">Oldal nyitása lapértelmezett böngészőben</str>
-
+		<str name="#BC_HOME">Kezdőoldal megnyitása</str>
+		<str name="#BC_STOP">Jelenlegi oldal betöltésének leállítása</str>
+		<str name="#BC_REFRESH">Jelenlegi oldal frissítése</str>
+		<str name="#BC_BACK">Visszatérés a legutóbbi oldalra</str>
+		<str name="#BC_FORWARD">Előrelépés az előző oldalra</str>
+		<str name="#BC_BREAK">Betöltés az alapértelmezett böngészőbe</str>
 
 		<!-- Button Strip -->
-		<str name="#BS_MAIN">Főmenü nyitása</str>
+		<str name="#BS_MAIN">Főmenü megnyitása</str>
 		<str name="#BS_UPDATE">Frissítések</str>
-		<str name="#BS_PLUS">Fórumok Megtekintése</str>
-		<str name="#BS_CART">Kocsiban</str>
-		<str name="#BS_PMESSAGE">Privát Üzenetek</str>
+		<str name="#BS_PLUS">Témakövetés</str>
+		<str name="#BS_CART">Termékek a kosárban</str>
+		<str name="#BS_PMESSAGE">Privát üzenetek</str>
 
 		<!-- New Account -->
-		<str name="#NA_TITLE">Új Desura Felhasználói Fiók</str>
-		<str name="#NA_VALDERROR">Hiba lépett fel az adatok ellenőrzésében:</str>
-		<str name="#NA_ERRBLANKNAME">Felhasználónév nincs kitöltve</str>
-		<str name="#NA_ERRPASSWORD">A jelszavak nem egyeznek</str>
-		<str name="#NA_ERREMAIL">Az email cím üres vagy nem érvényes</str>
-		<str name="#NA_ERRNAME">Nem írtad be a neved</str>
-		<str name="#NA_ERRBIRTHDATE">Túl fiatal vagy</str>
-		<str name="#NA_ERRPLEASE">Javítsd ki a hibákat, majd próbáld újra.</str>
-		<str name="#NA_ERRTITLE">Fiók Készítési Hiba</str>
-		<str name="#NA_ERROR">Hiba lépett fel a felhasználói fiókod készítése során.</str>
-		<str name="#NA_GENDER">Nemed:</str>
-		<str name="#NA_DOB">Születésnapod:</str>
-		<str name="#NA_CONFIRM">Jelszó Újra:</str>
+		<str name="#NA_TITLE">Desura - Új fiók</str>
+		<str name="#NA_VALDERROR">Hiba történt adataid érvényesítésekor:</str>
+		<str name="#NA_ERRBLANKNAME">Üres a felhasználóneved</str>
+		<str name="#NA_ERRPASSWORD">Jelszavaid nem egyeznek</str>
+		<str name="#NA_ERREMAIL">Üres vagy érvénytelen az email-ed</str>
+		<str name="#NA_ERRNAME">Üres a neved</str>
+		<str name="#NA_ERRBIRTHDATE">Születési dátumod érvénytelen, vagy túl fiatal vagy még.</str>
+		<str name="#NA_ERRPLEASE">Kérlek javítsd ezeket, majd próbálkozz újra.</str>
+		<str name="#NA_ERRTITLE">Desura Új fiók Hiba</str>
+		<str name="#NA_ERROR">Hiba lépett fel fiókod létrehozása során.</str>
+		<str name="#NA_GENDER">Nemiség:</str>
+		<str name="#NA_DOB">Születési nap:</str>
+		<str name="#NA_CONFIRM">Jelszó megerősítése:</str>
 		<str name="#NA_PASS">Jelszó:</str>
-		<str name="#NA_NAME">Rendes Neved:</str>
+		<str name="#NA_NAME">Neved:</str>
 		<str name="#NA_EMAIL">Email:</str>
-		<str name="#NA_USER">Felhasználó Név:</str>
-		<str name="#NA_FIN">A megerősítő emailt kiküldtük a megadott címre, ami pár percen belül megérkezik. Ha ez megtörtént kövesd a leírt lépéseket, hogy véglegesíthesd a regisztrációdat és beléphess a Desura-ba.&#xA;&#xA;Nem kaptál emailt?&#xA; - Légy türelemmel, néha nem érkezik meg időben a kiküldött levél&#xA; - Ellenőrizd, hogy a support@desura.com nincs tiltva a címeden&#xA; - Ellenőrizd, hogy a spam/szemét/egyéb üzeneteid között nincs-e&#xA; - Próbálj újra regisztrálni a www.desura.com oldalon&#xA; - Lépj kapcsolatba velünk a support@desura.com címen, ha további hibákba ütközöl</str>
-		<str name="#NA_INFOPROMPT">Írd be a regisztrációs adataidat és kattints az Elfogadásra. Az email címedre szükség lesz az aktiváláshoz. Ha van MODDB vagy INDIEDB felhasználód nincs szükséged a regisztrálásra, beléphetsz velük a Desura-ba.</str>
+		<str name="#NA_USER">Felhasználónév:</str>
+		<str name="#NA_FIN">Elküldtünk neked egy email-t fiókod megerősítéséhez. A következő néhány perben meg kell, hogy kapd ezt az email-t. Mikor ez bekövetkezik, kövesd az email-ben szereplő utasításokat regisztrációd befejezéséhez és a Desura-ba való bejelentkezéshez.&#xA;&#xA;Nem kaptad meg az Email-t?&#xA; - Légy türelemmel, időnként eltart egy darabig, mire megérkezik&#xA; - Biztosítsd, hogy a support@desura.com címről érkező email-ek nincsenek blokkolva&#xA; - Ellenőrizd kéretlen leveleid ládáját&#xA; - próbálj újraregisztrálni itt, vagy a www.desura.com segítségével&#xA; - Vedd fel velünk a kapcsolatot a support@desura.com címen, ha továbbra is tapasztalsz problémákat</str>
+		<str name="#NA_INFOPROMPT">Kérlek alább írd be regisztrációs adataidat és kattints az elfogadásra a továbblépéshez. Email-ed a fiókod aktiválásához lesz felhasználva. Ha rendelkezel MODDB vagy INDIEDB fiókkal, akkor nem kell megint regisztrálnod, azzal be tudsz lépni.</str>
 
-		<str name="#PR_TITLE">Desura Jelszó Emlékeztető</str>
-		<str name="#PR_PROMPT">Add meg a regisztrálásnál használt email címed, hogy kiküldhessünk egy emailt amivel meg tudod változtatni a jelszavad.</str>
+		<str name="#PR_TITLE">Desura - Jelszóemlékeztető</str>
+		<str name="#PR_PROMPT">Kérlek írd be a regisztrálásnál használt email címedet, és kapni fogsz egy email-t, melyet felhasználhatsz jelszavad alaphelyzetbe állításához.</str>
 		<str name="#PR_EMAIL">Email: </str>
-		<str name="#PR_SENT">Az üzenetet elküldtük. Ellenőrizd az email fiókod és kövesd a levélben leírtakat.</str>
-		<str name="#PR_TITLE">Desura Jelszó Emlékeztető</str>
-		<str name="#PR_ERRTITLE">Desura Jelszó Emlékeztető Hiba</str>
-		<str name="#PR_ERROR">Hiba lépett fel az emlékeztetőben.</str>
-		<str name="#PR_VALIDEMAIL">Írj be egy valós email címet.</str>
+		<str name="#PR_SENT">Emlékeztető elküldve. Kérlek ellenőrizd emailed postaládáját az utasításokért, hogy mi a következő teendő.</str>
+		<str name="#PR_TITLE">Desura - Jelszóemlékeztető</str>
+		<str name="#PR_ERRTITLE">Desura - Jelszóemlékeztető hiba</str>
+		<str name="#PR_ERROR">Hiba lépett fel a jelszóemlékeztetőben.</str>
+		<str name="#PR_VALIDEMAIL">Kérlek érvényes email címet írj be.</str>
 
 		<!-- Items menu -->
-		<str name="#DM_EXPAND">Minden elem megjelenítése</str>
-		<str name="#DM_CONTRACT">Minden elem összecsukása</str>
-
+		<str name="#DM_EXPAND">Minden elem kibontása</str>
+		<str name="#DM_CONTRACT">Minden elem összevonása</str>
 
 		<!-- Item status -->
 		<str name="#IS_INSTALLED">Telepítve</str>
-		<str name="#IS_NOTINSTALLED">Nincs Telepítve</str>
-		<str name="#IS_READY">Kész</str>
-		<str name="#IS_VERIFY">Ellenőrzés</str>
-		<str name="#IS_UPDATING">Frissítés</str>
-		<str name="#IS_DOWNLOADING">Letöltés</str>
-		<str name="#IS_INSTALLING">Telepítés</str>
-		<str name="#IS_DEVSTUB">Fejlesztői Stáb</str>
-		<str name="#IS_NOTAVAIL">Nincs Kész</str>
-		<str name="#IS_PAUSED">Szünet</str>
-		<str name="#IS_PREORDER">Elérhető {0} múlva</str>
-		<str name="#IS_PREORDER_DAYS">{0} nap {1} óra</str>
-		<str name="#IS_PREORDER_HOURS">{0} óra</str>
-		<str name="#IS_PREORDER_MINS">kevesebb, mint egy óra</str>
+		<str name="#IS_NOTINSTALLED">Nincs telepítve</str>
+		<str name="#IS_READY">Készen áll</str>
+		<str name="#IS_VERIFY">Megerősítés alatt</str>
+		<str name="#IS_UPDATING">Frissítés alatt</str>
+		<str name="#IS_DOWNLOADING">Letöltés alatt</str>
+		<str name="#IS_INSTALLING">Telepítés alatt</str>
+		<str name="#IS_DEVSTUB">Fejlesztői ág</str>
+		<str name="#IS_NOTAVAIL">Nem üzemkész</str>
+		<str name="#IS_PAUSED">Megállítva</str>
+		<str name="#IS_PREORDER_STATUS">Előrendelt</str>
+		<str name="#IS_PRELOADED_STATUS">Előtöltött</str>
 
-		<str name="#IH_DEV">Fejlesztői Elemek</str>
-		<str name="#IH_MISC">Egyéb Elemek</str>
-		<str name="#IH_UPLOAD">Friss Feltöltések</str>
-		<str name="#IH_RECENT">Friss Elemek</str>
-		<str name="#IH_TOOL">Eszközök</str>
-		<str name="#IH_FAVORITE">Kedvenc Elemek</str>
+		<str name="#IS_PREORDER">Elérhető lesz: </str>
+		<str name="#IS_PREORDER_DAYS">nap</str>
+		<str name="#IS_PREORDER_HOURS">óra</str>
+		<str name="#IS_PREORDER_MINS">perc múlva</str>
+		<str name="#IS_PREORDER_DAY">nap</str>
+		<str name="#IS_PREORDER_HOUR">óra</str>
+		<str name="#IS_PREORDER_MIN">perc múlva</str>
 
-		<str name="#AB_ABOUTINFO">A Desura egy közösségi digitális terjesztési szolgáltatás játékosoknak, a legjobb játékokkal, modokkal és letölthető tartalmakkal, amik megvételre és játszásra várnak.</str>
-		<str name="#AB_CREDITS">Készítők</str>
-		<str name="#AB_ABOUT">Desura-ról</str>
+		<str name="#IS_LAUNCHING">Indítás</str>
+		<str name="#IS_DOWNLOADINGTOOL">LET eszközök</str>
+		<str name="#IS_INSTALLINGTOOL">TEL eszközök</str>		
+		<str name="#IS_VALIDATE">Megerősítés</str>
+		<str name="#IS_WAIT">Várakozás ({0} db-ból {1})</str>
 
-		<str name="#UF_TITLE">Desura Frissítés Elérhető</str>
-		<str name="#CL_TITLE">Desura Újítások</str>
-		<str name="#CS_TITLE">Desura Konzol</str>
+		<str name="#AB_ABOUTINFO">A Desura egy közösség irányította digitális forgalmazói szolgáltatás játékosok részére, a fejlesztők legjobb játékait, módjait és letölthető tartalmait karnyújtásnyi közelségbe hozva, vásárlásra és játékra készen.</str>
+		<str name="#AB_CREDITS">Stáblista</str>
+		<str name="#AB_ABOUT">A Desura-ról</str>
 
-		<str name="#DL_LOADING">Töltés ...</str>
+		<str name="#UF_TITLE">Desura - Frissítés elérhető</str>
+		<str name="#CL_TITLE">Desura - Változásnapló</str>
+		<str name="#CS_TITLE">Desura - Kezelőpult</str>
+		<str name="#CL_ITEM_TITLE">{0}: Változásnapló</str><!-- {0} is item name -->
 
-
-		<str name="#CIP_TITLE">Egyéni Telepítés</str>
-		<str name="#CIP_GETLIST">Játék Lista Frissítése</str>
-		<str name="#CIP_ERRTITLE">Egyéni Telepítés Hiba</str>
-		<str name="#CIP_ERROR">Hiba lépett fel a Játék Lista elérésében</str>
-		<str name="#CIP_HELP">Ha a Desura nem találja automatikusan a telepített játékodat (a varázsló használatával), akkor itt manuálisan felismertetheted.</str>
-		<str name="#CIP_BROWSE">Válaszd ki a játék fő mappáját</str>
+		<str name="#DL_LOADING">Betöltés ...</str>
 
 		<str name="#CL_LABEL">Indítás...</str>
-		<str name="#CL_REMOVING">Régi fájlok eltávolítása</str>
-		<str name="#CL_BACKUP">Játék fájljainak biztonsági mentése</str>
+		<str name="#CL_REMOVING">Régi fájlok törlése</str>
+		<str name="#CL_BACKUP">Játékfájlok archiválása</str>
 		<str name="#CL_INSTALL">Új fájlok telepítése</str>
-		<str name="#CL_ERRTITLE">Komplex Indítási Hiba</str>
-		<str name="#CL_ERROR">Sikertelen Játék/Mod Indítás</str>
+		<str name="#CL_ERRTITLE">Összetett indítási hiba</str>
+		<str name="#CL_ERROR">Nem sikerült elindítani a játékot/módot</str>
 
-
-		<str name="#CR_TITLE">Játék fájlok visszaállítása</str>
-		<str name="#CR_ERRTITLE">Komplex Visszaállítási Hiba</str>
-		<str name="#CR_ERROR">Sikertelen Fájlvisszaállítás</str>
-
+		<str name="#CR_TITLE">Játékfájlok visszaálíltása</str>
+		<str name="#CR_ERRTITLE">Összetett visszaálíltási hiba</str>
+		<str name="#CR_ERROR">Nem sikerült visszaállítani a játékfájlokat</str>
 
 		<!-- Taskbar menu -->
 		<str name="#TB_WINDOWS">Ablakok</str>
-		<str name="#TB_NOWINDOWS">Nincsenek nyitott ablakok</str>
-		<str name="#TB_NOITEMS">Nincsenek Elemek</str>
-		<str name="#TB_EXIT">Kilépés</str>
-		<str name="#TB_STATUS">Állapot</str>
+		<str name="#TB_NOWINDOWS">Nincsenek megniytott ablakok</str>
+		<str name="#TB_NOITEMS">Nincsenek elemek</str>
+		<str name="#TB_EXIT">Kilépés</str>	
+		<str name="#TB_STATUS">Állapot</str>	
 
-		<str name="#TB_CART">Kocsi</str>
+		<str name="#TB_CART">Termékek a kosárban</str>
 		<str name="#TB_MESSAGE">Üzenetek</str>
 		<str name="#TB_UPDATES">Frissítések</str>
-		<str name="#TB_GAMES">Játékok</str>
-		<str name="#TB_MODS">Modok</str>
+		<str name="#TB_GAMES">Játékok</str>	
+		<str name="#TB_MODS">Módok</str>	
 
-		<str name="#TB_TITLE">Desura Játék Frissítések Elérhetőek</str>
-		<str name="#TB_GIFTTITLE">Kaptál egy ajándékot!</str>
-		<str name="#TB_APPUPDATE_TITLE">Desura Alkalmazás Frissítés</str>
-		<str name="#TB_APPUPDATE">Desura alkalmazás frissítés letöltése (Build {0}).</str>
+		<str name="#TB_TITLE">Desura - Játékfrissítések érhetőek el</str>
+		<str name="#TB_GIFTTITLE">Új termékkel lettél megajándékozva!</str>
+		<str name="#TB_APPUPDATE_TITLE">Desura - Fissítés</str>
+		<str name="#TB_APPUPDATE">Desura frissítés letölrése (Szerkezet {0}).</str>
 
-		<str name="#DS_ERROR">Desura Szolgáltatás váratlanul megszakadt.&#xA;&#xA;Újracsatlakozási Kísérlet...</str>
-		<str name="#DS_ERRORFAILED">Desura Szolgáltatás váratlanul megszakadt.&#xA;&#xA;Újracsatlakozás Sikertelen:</str>
+		<str name="#DS_ERROR">A Desura szolgáltatás váratlanul szétkapcsolt.&#xA;&#xA;Kísérlet újracsatlakozásra...</str>
+		<str name="#DS_ERRORFAILED">A Desura szolgáltatás váratlanul szétkapcsolt.&#xA;&#xA;Újraindítás sikertelen:</str>
 
+		<str name="#DR_TITLE">Sávszélesség-figyelő</str>	
 
-		<str name="#DR_TITLE">Átviteli Monitor</str>
-
-		<str name="#EULA_LABEL">Mielőtt játszhatnál, el kell fogadnod a végfelhasználói szerződést és a benne foglaltakat.</str>
-		<str name="#EULA_TITLE">Végfelhasználói Szerződés: {0}</str>
-
+		<str name="#EULA_LABEL">Mielőtt belefognál a játékba, el kell fogadnod a licencfeltételeket.</str>
+		<str name="#EULA_TITLE">Végfelhasználói licencszerződés: {0}</str>
 
 		<!-- browser menu -->
 		<str name="#CHROME_UNDO">Visszavonás</str>
-		<str name="#CHROME_REDO">Újra</str>
+		<str name="#CHROME_REDO">Megismétlés</str>
 		<str name="#CHROME_CUT">Kivágás</str>
 		<str name="#CHROME_COPY">Másolás</str>
 		<str name="#CHROME_PASTE">Beillesztés</str>
-		<str name="#CHROME_DELETE">Törlés</str>
-		<str name="#CHROME_SELECTALL">Mindent Kijelöl</str>
+		<str name="#CHROME_DELETE">Trölés</str>
+		<str name="#CHROME_SELECTALL">Összes kijelölése</str>
 		<str name="#CHROME_BACK">Vissza</str>
 		<str name="#CHROME_FORWARD">Előre</str>
 		<str name="#CHROME_RELOAD">Újratöltés</str>
-		<str name="#CHROME_ZOOMIN">Közelítés</str>
-		<str name="#CHROME_ZOOMOUT">Távolítás</str>
-		<str name="#CHROME_ZOOMNORMAL">Normál</str>
+		<str name="#CHROME_ZOOMIN">Nagytás</str>
+		<str name="#CHROME_ZOOMOUT">Kicsinyítés</str>
+		<str name="#CHROME_ZOOMNORMAL">Normál nagyítás</str>
 		<str name="#CHROME_PRINT">Nyomtatás</str>
-		<str name="#CHROME_VIEWSOURCE">Forrás megtekintése</str>
-		<str name="#CHROME_VIEWPAGE">Oldal nyitása Böngészőben</str>
-		<str name="#CHROME_VIEWLINK">Link nyitása Böngészőben</str>
-		<str name="#CHROME_VIEWIMAGE">Kép nyitása Böngészőben</str>
-		<str name="#CHROME_INSPECTELEMENT">Elem megtekintése</str>
-		<str name="#CHROME_NORMALMENU">Normál Menü</str>
+		<str name="#CHROME_VIEWSOURCE">Forráskód megtekintése</str>
+		<str name="#CHROME_VIEWPAGE">Oldal megtekintése böngészőben</str>
+		<str name="#CHROME_VIEWLINK">Link megtekintése böngészőben</str>
+		<str name="#CHROME_VIEWIMAGE">Kép megtekintése böngészőben</str>
+		<str name="#CHROME_INSPECTELEMENT">Elem megvizsgálása</str>
+		<str name="#CHROME_NORMALMENU">Normál menü</str>	
 
 		<!-- cd key form -->
-		<str name="#CDK_ERRTITLE">Sikertelen CD-kulcs lekérés</str>
-		<str name="#CDK_ERROR">A Desura nem találja a CD-kulcsot</str>
+		<str name="#CDK_ERRTITLE">Nem sikerült CD kulcsot szerezni</str>
+		<str name="#CDK_ERROR">A Desura-nak nem sikerült CD kulcsot behatárolnia</str>	
 
-		<str name="#CDK_PROGRESSINFO">CD-kulcs Lekérése ...</str>
-		<str name="#CDK_COPYALL">Mindent Másol</str>
-		<str name="#CDK_COPYPART">Részben Másol</str>
-		<str name="#CDK_COPYPART_X">Rész Másolása {0}</str><!-- {0} is the part number -->
+		<str name="#CDK_PROGRESSINFO">CD kulcs összegyűjtés alatt ...</str>
+		<str name="#CDK_COPYALL">Mind másolása</str>
+		<str name="#CDK_COPYPART">1. rész másolása</str>
+		<str name="#CDK_COPYPART_X">{0} rész másolása</str><!-- {0} is the part number -->
+		<str name="#CDK_INFO">Majd be kell írnod ezt a CD kulcsot, hogy játszhass:</str>
+		<str name="#CDK_INFO_STEAM">A(z) {0}-t aktiválni szükséges a Steam-en, mielőtt tudnál vele játszani. Ezt a kulcsot majd be kell írnod a Steam-be:</str>
+		<str name="#CDK_COUNTDOWN">Indítás {0} belül</str>
+		<str name="#CDK_LAUNCHNOW">Indítás most</str>
+		<str name="#CDK_ACTIVATE">Aktiválás</str>
+
+		<str name="#CDK_REGKEY">A CD kulcs automatikusan telepítve lett</str>
+		<str name="#CDK_REGKEY_TOOLTIP">A CD kulcs ehhez a termékhez automatikusan telepítve lett, így neked nem kell lemásolnod.</str>
+
+		<!-- exe select form -->
+		<str name="#ES_TITLE">Verzió kiválasztása: {0}</str>
+		<str name="#ES_LABEL">Kérlek válaszd ki a(z) {0} játszani kívánt verzióját:</str>	
+
+		<!-- change cache dir -->
+		<str name="#MCFCD_ID">A Desura abba a mappába telepíti a játékokat és programokat, ahova őt magát is telepítetted; ez nem változtatható meg:</str>
+		<str name="#MCFCD_CD">Minden gyorsítótárbéli fájl az alábbi mappába mentődik, beleírhatsz ammappába, amiben tárolni kívánod ezen fájlokat:</str>
+		<str name="#MCFCD_NOTE">Kérlek vedd figyelembe: A mappa megváltoztatásakor, a Desura kilép, áthelyezi a fájlokat, majd újraindul. Ez beletelhet egy kis időbe.</str>
+
+		<str name="#MCFCD_CURRENT">jelenleg</str>
+		<str name="#MCFCD_INVALIDFOLDER">Hiba: A mappa nem létezik</str>
+		<str name="#MCFCD_CANTWRITE">Hiba: Nem lehet a mappába írni</str>
+		<str name="#MCFCD_GETTINGSIZE">Betöltés...</str>
+
+		<str name="#CC_EDITPROFILE">Szerkeszd felhasználói profilod</str>
+		<str name="#CC_ADDFRIEND">Adj hozzá barátot csevegési fiókodhoz</str>
+		<str name="#CC_SHOWCONTACTS">Offline kapcsolatok mutatása</str>
+		<str name="#CC_HIDECONTACTS">Offline kapcsolatok elrejtése</str>
+		<str name="#CC_BREAKOUT">Csevegő kilökése új ablakba</str>
+
+		<str name="#CHAT_ADDFRIEND_TITLE">Adj hozzá barátot a fiókodhoz</str>
+		<str name="#CHAT_ADDFRIEND_SEARCH">Hozzáadás keresés szerint:</str>
+		<str name="#CHAT_ADDFRIEND_BYUSER">Hozzáadás felhasználónév szerint:</str>
+		<str name="#CHAT_ADDFRIEND_NOTE">Vedd figyelembe: A keresés csakis az első 25 elemet adja vissza. Mélyrehatóbb keresésért kérlek menj a {0}tagok oldalára{1}.</str><!-- {0} is start of link {1} is end of link</a>-->		
+
+		<str name="#CHAT_MENU_CHATWITH">Csevegés vele:</str>
+		<str name="#CHAT_MENU_UNBLOCK">Barát engedélyezése</str>
+		<str name="#CHAT_MENU_BLOCK">Barát blokkolása</str>
+		<str name="#CHAT_MENU_ACCEPT">Baráti felkérés elfogadása</str>
+		<str name="#CHAT_MENU_REJECT">Baráti felkérés elutasítása</str>
+		<str name="#CHAT_MENU_RESEND">Baráti felkérés újraküldése</str>
+		<str name="#CHAT_MENU_REMOVE">Barát törlése</str>	
+
+		<str name="#CHAT_SEARCH_ADD">Hozzáadás</str>
+		<str name="#CHAT_SEARCH_ADDED">Hozzáadva</str>
+		<str name="#CHAT_SEARCH_PENDING">Függőben</str>
+
+		<str name="#CHAT_DISCONNECT">A Desura csevegő szétkapcsolt.</str>
+		<str name="#CHAT_DISCONNECT_MSG">Kísérlet az újracsatlakozásra {0} belül {1}(Újrapróbálás most){2}.</str>	
+
+		<str name="#GD_TITLE">{0}: Játéklemez szükséges</str>
+		<str name="#GD_INFO">A(z) {0} megköveteli, hogy a(z) {1} lemez benne legyen számítógépedben annak érdekében, hogy játszhass. &#xA;&#xA;Kérlek folytatás előtt győződj meg, hogy a lemez be van helyezve.</str>			
+		<str name="#GD_REMINDER">Ne emlékeztess megint</str>
+		<str name="#SB_DEFAULT">Keresés...</str>
+		<str name="#SB_FULL_SEARCH">Teljes keresés elvégzése</str>
+
+		<str name="#BH_CRASH">A böngésző meghalt. (Klikk az újratöltéshez)</str>
+		<str name="#BH_NO_LOAD">Nem sikerült betölteni a böngésző könyvtárát. A hibaüzenetért kérlek tekintsd meg a kezelőpultot.</str>
 	</strings>
 </lang>
