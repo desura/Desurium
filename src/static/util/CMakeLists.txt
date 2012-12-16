@@ -77,7 +77,8 @@ endif()
 add_library(util STATIC ${Sources} ${PlattformSources})
 
 target_link_libraries(util
-    ${Boost_LIBRARIES}
-    ${BZIP2_LIBRARIES}
-    ${SQLITE3X_LIBRARIES}
+  ${BZIP2_LIBRARIES}
+  ${SQLITE3X_LIBRARIES}
+  ${Boost_FILESYSTEM_LIBRARY}
+  ${Boost_SYSTEM_LIBRARY}  
 )

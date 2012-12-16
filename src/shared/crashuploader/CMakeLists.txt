@@ -15,7 +15,6 @@ target_link_libraries(crashuploader
     util
     util_fs
     util_web
-    ${Boost_LIBRARIES}
     ${CURL_LIBRARIES}
     ${GTK2_LIBRARIES}
     ${OPENSSL_LIBRARIES}
