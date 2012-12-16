@@ -1,30 +1,66 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<lang name="Magyar (Hungarian)" skip="true">
+<?xml version="1.0" encoding="UTF-8"?>
+<lang name="Magyar (HU)" skip="true">
 	<author>
-		<username>NSD4rKn3SS</username>
-		<profile>http://www.desura.com/members/nsd4rkn3ss</profile>
+		<username>AllenWalkerHU</username>
+		<profile>http://www.desura.com/members/allenwalkerhu</profile>
 	</author>
 	<strings>
-		<str name="#CRASH_TITLE">Desura: CrashDump Eszköz</str>
-		<str name="#CRASH_UPLOADINFO">Crash Dump(ok) Feltöltése ...</str>
-		<str name="#CRASH_GENERATEINFO">Crash Dump Gyûjtése ...</str>
-		<str name="#CRASH_ERROR">Nem sikerült feldolgozni a Dumpokat .</str>
+		<str name="#CRASH_TITLE">Desura: CrashDump Segédprogram</str>
+		<str name="#CRASH_UPLOADINFO">Összeomlási memóriakép(ek) feltöltése ...</str>
+		<str name="#CRASH_GENERATEINFO">Összeomlási memóriakép generálása ...</str>
+		<str name="#CRASH_ERROR">Nem sikerült feldolgozni a memóriaképe(ke)t.</str>
+		
+		<str name="#CRASH_BUTGENERATE">Összeomlási memóriakép generálása</str>
+		<str name="#CRASH_BUTUPLOAD">Összeomlási memóriaképek feltöltése</str>
+		
+		<str name="#CRASH_LABGENERATE">Mikor a Desura nem válaszol, vagy valami váratlan dolgot művel, ez majd jelenti aktuális állapotát a fejlesztők felé, hogy segítsen nekik a probléma megoldásában.</str>
+		<str name="#CRASH_LABUPLOAD">A már létező összeomlási memóriaképek jelentése. Úgymint azok, melyek a Desura indulása előtt fordulnak elő.</str>
+		
+		
+		<str name="#CDF_TITLE">A Desura adatmappájának áthelyezése</str>
+		<str name="#CDF_STARTUP">Adatmappa elemzés alatt...</str>
+		<str name="#CDF_MOVEFILE">Fájlok áthelyezése...</str>
+		<str name="#CDF_DBCHANGES">Adatbázis frissítése...</str>
+		
+		<str name="#CDF_GERRTITLE">Desura Hiba</str>
+		<str name="#CDF_GERROR">Nem sikerült áthelyezni a Desura adatmappáját.</str>
 
-		<str name="#CRASH_BUTGENERATE">Crash Dump Készítése</str>
-		<str name="#CRASH_BUTUPLOAD">Crash Dumps Feltöltése</str>
 
-		<str name="#CRASH_LABGENERATE">Ha a Desura nem válaszol vagy nem megfelelõen mûködik, ez az eszköz elküldi a jelenlegi helyzetét a fejlesztõknek hogy javíthassák a hibát.</str>
-		<str name="#CRASH_LABUPLOAD">Létezõ crash dumpok jelentése. Azaz a Desura indulása elõtt meglévõ Crash Dumpok feltöltése.</str>
+		<str name="#DUN_TOTAL">Teljes folyamat:</str>
+		<str name="#DUN_CURRENT">Aktuális folyamat:</str>
+		<str name="#DUN_COMPLETED">Ne feledd: A fizetett tételek és ajándékok sosem törlődnek fiókodból, bármikor hozzájuk férhetsz a Desura kliens újratelepítése révén.</str>
+		
+		<str name="#DUN_UNINSTALL_INFO">A Desura eltávolításával törlődik minden telepített játék, mód, illetve tartalom.Telepített tartalmaid megtartásához és Desura telepítésed javításához kattints alább a javítás gombra.</str>
+		<str name="#DUN_UNINSTALL_OPT">Eltávolítási opciók:</str>
+		<str name="#DUN_UNINSTALL_LOC">A Desura el lesz távolítva a következő mappából:</str>
+		
+		<str name="#DUN_REMOVE_DESURA">A Desura törlése</str>
+		<str name="#DUN_REMOVE_DESURA_TT">Eltávolít minden telepített Desura fájlt.</str>
+		<str name="#DUN_REMOVE_SETTINGS">Beálíltások törlése</str>
+		<str name="#DUN_REMOVE_SETTINGS_TT">Eltávolítja a Desura által használt beálíltási fájlokat.</str>		
+		<str name="#DUN_REMOVE_CACHE">Letöltési gyorsítótár törlése</str>
+		<str name="#DUN_REMOVE_CACHE_TT">Eltávolítja a Desura által hasznlát letöltési gyorsítótárat.</str>
+		<str name="#DUN_REMOVE_SIMPLE">Egyszerű játék és módok törlése</str>
+		<str name="#DUN_REMOVE_SIMPLE_TT">Eltávolít minden játékot és módot, ami a Desura révén lett telepítve.</str>
+		<str name="#DUN_REMOVE_COMPLEX">Összetett módok törlése</str>
+		<str name="#DUN_REMOVE_COMPLEX_TT">Eltávolít minden olyan módot, mely az eredeti játékfájlokon át települ.</str>
+		<str name="#DUN_REMOVE_ACCOUNT">Ingyenes tételek törlése a fiókból</str>
+		<str name="#DUN_REMOVE_ACCOUNT_TT">Eltávolít minden ingyenes tételt (úgymint a linkeket és demókat), melyek ezen a számítógépen lettek telepítve fiókodból.</str>
+		
+		<str name="#DUN_UNINSTALL_HEADER">Desura eltávolítása</str>
+		<str name="#DUN_UNINSTALL_SUBHEADER">A Desura törlése számítógépedről</str>	
+		<str name="#DUN_REPAIR">Javítás</str>
+		<str name="#DUN_UNINSTALL">Eltávolítás</str>
 
-
-		<str name="#CLEANUP_LABTOTAL">Összes:</str>
-		<str name="#CLEANUP_LABCURRENT">Jelenleg:</str>
-
-
-		<str name="#CLEANUP_TITLE">Desura: Tisztító Eszköz</str>
-
-		<str name="#CLEANUP_SELECTALL">Mindent Kijelöl</str>
-		<str name="#CLEANUP_SELECTNONE">Kijelölések Törlése</str>
-		<str name="#CLEANUP_LABEL">Válaszd ki azokat a játékokat vagy modokat amiket törélni szeretnél a Desura-val.</str>
+		<str name="#DUN_THREAD_UNINSTALL">Játékok és módok törlése...</str>
+		<str name="#DUN_THREAD_UNINSTALL_SUB">A következő eltávolítása: {0}</str><!-- {0} item name -->	
+		<str name="#DUN_THREAD_FINAL">Végső tisztítás...</str>
+		<str name="#DUN_THREAD_UNINSTALL">Eltávolítási bejegyzések törlése...</str>
+		<str name="#DUN_THREAD_GAMEEXPLORER">Játék Intézőbejegyzések törlése...</str>
+		<str name="#DUN_THREAD_CACHE">Desura gyorsítótár törlése...</str>
+		<str name="#DUN_THREAD_SETTINGS">Desura beálíltások törlése...</str>
+		<str name="#DUN_THREAD_ACCOUNT">Fióktételek eltakarítása...</str>	
+		<str name="#DUN_THREAD_ACCOUNT_SUB">{0} törlése a fiókból</str><!-- {0} item name -->	
+		
 	</strings>
 </lang>
