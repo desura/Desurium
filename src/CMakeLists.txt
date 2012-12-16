@@ -9,14 +9,14 @@ file(COPY ${BRANDING} DESTINATION ${BIN_INCLUDE_DIR})
 file(REMOVE_RECURSE ${BIN_INCLUDE_DIR}/branding)
 file(RENAME ${BIN_INCLUDE_DIR}/${BRANDING} ${BIN_INCLUDE_DIR}/branding)
 
-set(BR ${BIN_INCLUDE_DIR}/branding)
-set(APP ${BR}/data/themes/default/images/app)
+set(BRANDING_DIR ${BIN_INCLUDE_DIR}/branding)
+set(APP ${BRANDING_DIR}/data/themes/default/images/app)
 
-install(FILES ${BR}/data/desura_lin.png
+install(FILES ${BRANDING_DIR}/data/desura_lin.png
         DESTINATION ${DATA_INSTALL_DIR}
         RENAME desura.png
 )
-install(FILES ${BR}/data/themes/default/images/html/default/logo.png
+install(FILES ${BRANDING_DIR}/data/themes/default/images/html/default/logo.png
         DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/html/default/)
 install(FILES ${APP}/about_logo.png
               ${APP}/icon_download.png
