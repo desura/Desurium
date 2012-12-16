@@ -15,5 +15,6 @@ endif()
 add_library(util_fs STATIC ${Sources} ${PlattFormSources})
 
 target_link_libraries(util_fs
-    ${Boost_LIBRARIES}
+  ${Boost_FILESYSTEM_LIBRARY}
+  ${Boost_SYSTEM_LIBRARY}
 )

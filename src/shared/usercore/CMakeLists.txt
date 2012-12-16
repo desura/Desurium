@@ -105,21 +105,22 @@ endif()
 
 add_library(usercore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES} ${TOOL_PIPE_SPOURCES})
 target_link_libraries(usercore
-    gcJSBase
-    ipc_pipe
-    managers
-    managers_window
-    mcfcore
-    threads
-    util
-    util_fs
-    util_web
-    webcore
-    ${CURL_LIBRARIES}
-    ${SQLITE_LIBRARIES}
-    ${SQLITE3X_LIBRARIES}
-    ${TINYXML_LIBRARIES}
-	${WINDOWS_LIBRARIES}
+  gcJSBase
+  ipc_pipe
+  managers
+  managers_window
+  mcfcore
+  threads
+  util
+  util_fs
+  util_web
+  webcore
+  ${Boost_DATE_TIME_LIBRARY}
+  ${CURL_LIBRARIES}
+  ${SQLITE_LIBRARIES}
+  ${SQLITE3X_LIBRARIES}
+  ${TINYXML_LIBRARIES}
+  ${WINDOWS_LIBRARIES}
 )
 
 install(TARGETS usercore

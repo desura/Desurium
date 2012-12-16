@@ -17,7 +17,6 @@ endif()
 add_library(wx_controls STATIC ${Sources})
 
 target_link_libraries(wx_controls
-    ${Boost_LIBRARIES}
     ${GTK2_LIBRARIES}
     ${wxWidgets_LIBRARIES}
 )
