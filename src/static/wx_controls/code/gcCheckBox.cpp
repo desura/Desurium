@@ -30,7 +30,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #ifdef WIN32
 	#include "wx/msw/dc.h"          // for wxDCTemp
 	#include "wx/msw/uxtheme.h"
-	#include "wx/msw/private/button.h"
 #else
 	#include "wx/dc.h"
 	#include "wx/button.h" // NOT SURE
@@ -86,7 +85,7 @@ bool gcCheckBox::MSWOnDraw(WXDRAWITEMSTRUCT *item)
     }
 
     // show we draw a focus rect?
-    const bool isFocused = m_isPressed || FindFocus() == this;
+    const bool isFocused = IsChecked() || FindFocus() == this;
 
 
     // draw the checkbox itself
