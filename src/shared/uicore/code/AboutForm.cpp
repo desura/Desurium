@@ -26,15 +26,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "AboutPageDev.h"
 
 #ifdef WIN32
-	constexpr int ABOUT_FORM_WIDTH = 295;
-	constexpr int ABOUT_FORM_HEIGHT = 412;
+	static const int ABOUT_FORM_WIDTH = 295;
+	static const int ABOUT_FORM_HEIGHT = 412;
 #else
 	#ifdef DESURA_OFFICAL_BUILD
-		constexpr int ABOUT_FORM_WIDTH = 287;
-		constexpr int ABOUT_FORM_HEIGHT = 462;
+		static const int ABOUT_FORM_WIDTH = 287;
+		static const int ABOUT_FORM_HEIGHT = 462;
 	#else
-		constexpr int ABOUT_FORM_WIDTH = 320;
-		constexpr int ABOUT_FORM_HEIGHT = 502;
+		static const int ABOUT_FORM_WIDTH = 320;
+		static const int ABOUT_FORM_HEIGHT = 502;
 	#endif
 #endif	
 	
