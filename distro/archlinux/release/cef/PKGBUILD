@@ -1,7 +1,7 @@
 # Contributor: Sven-Hendrik Haase <sh@lutzhaase.com>
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
-pkgname=cef
+pkgname=desurium-cef
 pkgver=0.8.0_rc4
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
