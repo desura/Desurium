@@ -85,7 +85,7 @@ package() {
     -e 's/Name=.*$/Name=Desurium/' ${pkgname}.desktop
 
   install -m644 -D \
-    ${srcdir}/${_gitname}/src/branding_desurium/data/desura_lin.png \
+    ${srcdir}/Desurium/src/branding_desurium/data/desura_lin.png \
     ${pkgdir}/usr/share/pixmaps/desura.png
 
   install -m644 -D \
