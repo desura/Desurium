@@ -81,7 +81,7 @@ COMMON_DEPEND="
 		net-misc/curl[adns]
 		net-misc/curl[ares]
 	)
-	>=sys-devel/gcc-4.5
+	>=sys-devel/gcc-4.6
 	virtual/pkgconfig
 	x11-libs/gtk+:2
 	x11-libs/libnotify
