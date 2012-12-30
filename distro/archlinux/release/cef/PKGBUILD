@@ -14,8 +14,6 @@ depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'cups' 'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
          'gconf' 'xdg-user-dirs' 'flac' 'libpng' 'speex' 'zlib' 'gperf'
          'xdg-utils' 'libwebp' 'libevent' 'libxslt' 'yasm' 'libxxf86vm')
-provides=('desura')
-conflicts=('desura')
 
 
 build() {
@@ -77,26 +75,8 @@ package() {
   msg "Compiling into pkgdir this time..."
   make DESTDIR="$pkgdir/" install
 
-  cd $srcdir
-
-  gendesk -n ../PKGBUILD
-  sed -i \
-    -e 's/Icon=.*$/Icon=desura/' \
-    -e 's/Exec=.*$/Exec=desura/' \
-    -e 's/Categories=.*$/Categories=Game;/' \
-    -e 's/Name=.*$/Name=Desurium/' ${pkgname}.desktop
-
-  install -m644 -D \
-    ${srcdir}/Desurium/src/branding_desurium/data/desura_lin.png \
-    ${pkgdir}/usr/share/pixmaps/desura.png
-
-  install -m644 -D \
-    ${pkgname}.desktop \
-    ${pkgdir}/usr/share/applications/desura.desktop
-
   msg "Compiling done"
   
-  mkdir -p ${pkgdir}/usr/bin
 }
 
 # vim:set ts=2 sw=2 et:
