@@ -1,8 +1,8 @@
 # Contributor: Sven-Hendrik Haase <sh@lutzhaase.com>
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
-pkgname=desurium-git
-pkgver=20121022
+pkgname=desurium
+pkgver=0.8.0_rc4
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -17,25 +17,25 @@ depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
 provides=('desura')
 conflicts=('desura')
 
-_gitroot=git://github.com/lodle/Desurium.git
-_gitname=Desurium
 
 build() {
   cd "$srcdir"
   msg "Connecting to GIT server...."
 
-  if [[ -d "$_gitname" ]]; then
-    cd "$_gitname"
+  if [[ -d "Desurium" ]]; then
+    cd "Desurium"
     msg "Removing build files..."
     # if this fails, git clean -dfx
     rm build -rf
     msg "Updating..."
-    git pull --no-tags
+    git pull
     msg "The local files are updated."
   else
     msg "Cloning..."
-    git clone "$_gitroot" "$_gitname" --depth 1
+    git clone git://github.com/lodle/Desurium.git "Desurium"
   fi
+
+  git checkout $pkgver
 
   msg "GIT checkout done or server timeout"
   msg "Starting build..."
@@ -46,7 +46,7 @@ build() {
     MULTILIB=1
   fi
 
-  cd "$srcdir/$_gitname"
+  cd "$srcdir/Desurium"
   if [ ! -d build ] ; then
     mkdir build
   fi
@@ -70,7 +70,7 @@ check() {
 }
 
 package() {
-  cd "$srcdir/$_gitname/build"
+  cd "$srcdir/Desurium/build"
 
   msg "Compiling into pkgdir this time..."
   make DESTDIR="$pkgdir/" install
