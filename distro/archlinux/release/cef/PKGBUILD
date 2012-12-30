@@ -1,7 +1,7 @@
 # Contributor: Sven-Hendrik Haase <sh@lutzhaase.com>
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
-pkgname=desurium
+pkgname=cef
 pkgver=0.8.0_rc4
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
@@ -26,7 +26,7 @@ build() {
     cd "Desurium"
     msg "Removing build files..."
     # if this fails, git clean -dfx
-    rm build -rf
+    rm build_cef -rf
     msg "Updating..."
     git pull
     msg "The local files are updated."
@@ -48,30 +48,31 @@ build() {
   fi
 
   cd "$srcdir/Desurium"
-  if [ ! -d build ] ; then
-    mkdir build
+  if [ ! -d build_cef ] ; then
+    mkdir build_cef
   fi
-  cd build
+  cd build_cef
   msg "Running cmake..."
+
   CMAKE_ARGS="
     -D32BIT_SUPPORT=$MULTILIB
     -DCMAKE_INSTALL_PREFIX=/usr
     -DBINDIR=/usr/bin
     -DDATADIR=/usr/share/
     -DRUNTIME_LIBDIR=/usr/lib/
-    -DBUILD_CEF=ON"
+    -DBUILD_ONLY_CEF=ON"
   cmake $CMAKE_ARGS ..
   msg "Running make..."
   make
 }
 
-check() {
-  cd "$srcdir/Desurium/build"
-  make test
-}
+#check() {
+#  cd "$srcdir/Desurium/build"
+#  make test
+#}
 
 package() {
-  cd "$srcdir/Desurium/build"
+  cd "$srcdir/Desurium/build_cef"
 
   msg "Compiling into pkgdir this time..."
   make DESTDIR="$pkgdir/" install
