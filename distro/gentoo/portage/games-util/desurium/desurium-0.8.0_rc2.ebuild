@@ -25,7 +25,7 @@ CEF_URI="mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${CEF_ARC}"
 SRC_URI="${SRC_URI} ${BREAKPAD_URI} ${CEF_URI}"
 WX_GTK_VER="2.9"
 
-inherit cmake-utils eutils ${GIT_ECLASS} gnome2-utils wxwidgets games
+inherit cmake-utils eutils ${GIT_ECLASS} gnome2-utils wxwidgets games toolchain-funcs
 
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
@@ -103,6 +103,17 @@ RDEPEND="
 DEPEND="
 	${COMMON_DEPEND}
 "
+
+pkg_pretend() {
+	if [[ ${MERGE_TYPE} != binary ]]; then
+		if [[ $(tc-getCC) =~ gcc ]]; then
+			if [[ $(gcc-major-version) == 4 && $(gcc-minor-version) -lt 6 || $(gcc-major-version) -lt 4 ]] ; then
+				eerror "You need at least sys-devel/gcc-4.6.0"
+				die "You need at least sys-devel/gcc-4.6.0"
+			fi
+		fi
+	fi
+}
 
 src_unpack() {
 	if [[ ${PV} = 9999* ]]; then
