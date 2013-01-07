@@ -6,6 +6,7 @@
 #include <boost/filesystem.hpp>
 
 #include "Common.h"
+#include "util/UtilString.h"
 #include "util/UtilLinux.h"
 #include <iostream>
 
@@ -13,10 +14,19 @@ using namespace boost;
 using namespace boost::unit_test;
 using namespace UTIL::LIN;
 
+// should be removed later
+namespace std
+{
+	std::ostream &operator<<(std::ostream &os, const std::wstring &ws) 
+	{ 
+		return os << UTIL::STRING::toStr(ws); 
+	} 
+}
+
 BOOST_AUTO_TEST_CASE (UTIL_LIN_getAppPath)
 {
-	BOOST_REQUIRE(getAppPath(L"") == filesystem::current_path().wstring() );
-	BOOST_REQUIRE(getAppPath(L"test/path") == (filesystem::current_path() / "test/path").wstring() );
+	BOOST_REQUIRE_EQUAL(getAppPath(L""), filesystem::current_path().wstring());
+	BOOST_REQUIRE_EQUAL(getAppPath(L"test/path"), (filesystem::current_path() / "test/path").wstring());
 }
 
 BOOST_AUTO_TEST_CASE (Util_Lin_String_Output)
@@ -49,7 +59,7 @@ BOOST_AUTO_TEST_CASE (Util_Lin_String_Output)
 	std::cout<< "UTIL::LIN::getExecuteDir(L\"\") result: " << execpath << std::endl;
 	// Secondly check if getExecuteDir() returns a consistent path
 	for(int i = 0; i < 100; ++i) {
-		BOOST_REQUIRE(getExecuteDir() == execpath);
+		BOOST_REQUIRE_EQUAL(getExecuteDir(), execpath);
 	}
 
 	std::cout << "-- Testing UTIL::LIN::getAppPath(...) --\n";
