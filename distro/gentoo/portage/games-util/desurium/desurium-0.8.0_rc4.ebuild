@@ -7,7 +7,7 @@ EAPI=4
 unset GIT_ECLASS
 
 GITHUB_MAINTAINER="lodle"
-GITHUB_PROJECT="${PN^}"
+GITHUB_PROJECT="Desurium"
 
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git"
