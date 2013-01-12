@@ -24,6 +24,12 @@ notifications:
   recipients:
     - desurium@karolherbst.de
     - matthias.krueger@famsik.de
+    irc:
+        channels:
+            - "irc.freenode.org#desura"
+            template:
+            - "[%{commit} : %{author}] %{message} "
+            skip_join: true
   email:
     on_success: change
     on_failure: always
