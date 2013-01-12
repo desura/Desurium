@@ -23,6 +23,7 @@ script:
 notifications:
   recipients:
     - desurium@karolherbst.de
+    - matthias.krueger@famsik.de
   email:
     on_success: change
     on_failure: always
