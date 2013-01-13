@@ -32,7 +32,7 @@ notifications:
       - "%{repository} (%{commit}) by %{author} : %{message} %{foo} "
       - "Build details: %{build_url}"
       - "Latest commit: %{compare_url}"
-    on_success: always
+    on_success: change
     on_failure: always
   recipients:
   #  - desurium@karolherbst.de
