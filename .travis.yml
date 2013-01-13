@@ -1,7 +1,9 @@
 language: cpp
 compiler: gcc
 before_install:
-  - sudo apt-get install libnotify-dev libtinyxml-dev libv8-dev libboost-dev libboost-date-time-dev libboost-filesystem-dev libboost-thread-dev libboost-system-dev libboost-test-dev
+  - sudo apt-get update
+  - sudo apt-get upgrade
+  - sudo ./install-deps.sh
   - wget "http://ppa.launchpad.net/fransschreuder1/usbpicprog-stable/ubuntu/pool/main/w/wxwidgets2.9/libwxgtk2.9-dev_2.9.3-1_i386.deb"
   - wget "http://ppa.launchpad.net/fransschreuder1/usbpicprog-stable/ubuntu/pool/main/w/wxwidgets2.9/wx2.9-headers_2.9.3-1_i386.deb"
   - wget "http://ppa.launchpad.net/fransschreuder1/usbpicprog-stable/ubuntu/pool/main/w/wxwidgets2.9/libwxgtk2.9-0_2.9.3-1_i386.deb"
@@ -18,11 +20,23 @@ before_script:
 script:
   - cmake .. -DBUILD_CEF=off -DWITH_ARES=off -DFORCE_SYS_DEPS=on -DDEBUG=on
   - make -j4
-  - src/tests/UtilLinux_test 
-  - ctest --output-on-failure .
+#  - src/tests/UtilLinux_test
+#  - make test
+#  - ctest --output-on-failure .
+  - make clean
 notifications:
+  irc:
+    channels:
+      - "irc.freenode.org#desura"
+    template:
+      - "%{repository} (%{commit}) by %{author} : %{message} %{foo} "
+      - "Build details: %{build_url}"
+      - "Latest commit: %{compare_url}"
+    on_success: change
+    on_failure: always
   recipients:
-    - desurium@karolherbst.de
+  #  - desurium@karolherbst.de
+    - matthias.krueger@famsik.de
   email:
     on_success: change
     on_failure: always
