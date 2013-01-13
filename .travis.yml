@@ -21,6 +21,7 @@ script:
 #  - src/tests/UtilLinux_test
 #  - make test
 #  - ctest --output-on-failure .
+  - make clean
 notifications:
   irc:
     channels:
