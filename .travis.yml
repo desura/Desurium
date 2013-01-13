@@ -27,8 +27,6 @@ notifications:
     template:
       - "%{repository} (%{commit}) by %{author} : %{message} %{foo} "
       - "Build details: %{build_url}"
-    use_notice: true
-    skip_join: true
     on_success: always
     on_failure: always
   recipients:
