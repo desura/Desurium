@@ -1,6 +1,6 @@
 language: cpp
 compiler: gcc
-rake --verbose
+rake --trace
 before_install:
   - sudo ./install-deps.sh
   - wget "http://ppa.launchpad.net/fransschreuder1/usbpicprog-stable/ubuntu/pool/main/w/wxwidgets2.9/libwxgtk2.9-dev_2.9.3-1_i386.deb"
