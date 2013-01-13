@@ -7,18 +7,11 @@ build/
 build_cef/
 install/
 ceflibs/
-distro/archlinux/pkg
-distro/archlinux/src
-distro/archlinux/Desura.desktop
-distro/archlinux/Desura.png
-distro/archlinux/release/cef/cef-*
-distro/archlinux/release/cef/desurium-cef-*
-distro/archlinux/release/cef/pkg/
-distro/archlinux/release/cef/src/
-distro/archlinux/release/desurium/desurium-*
-distro/archlinux/release/desurium/pkg/
-distro/archlinux/release/desurium/src/
 
+distro/archlinux/*
+!distro/archlinux/git/PKGBUILD
+!distro/archlinux/release/cef/PKGBUILD
+!distro/archlinux/release/desurium/PKGBUID
 
 # some qt-creator stuff
 qtcreator-build/
