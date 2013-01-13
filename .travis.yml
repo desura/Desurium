@@ -19,7 +19,7 @@ script:
   - cmake .. -DBUILD_CEF=off -DWITH_ARES=off -DFORCE_SYS_DEPS=on -DDEBUG=on
   - make -j4
 #  - src/tests/UtilLinux_test
-  - make test
+#  - make test
 #  - ctest --output-on-failure .
 notifications:
   irc:
