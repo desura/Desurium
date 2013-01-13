@@ -68,6 +68,8 @@ build() {
 check() {
   cd "$srcdir/Desurium/build"
   make test
+  #./src/tests/UtilLinux_test
+
 }
 
 package() {
