@@ -28,6 +28,7 @@ notifications:
     template:
       - "%{repository} (%{commit}) by %{author} : %{message} %{foo} "
       - "Build details: %{build_url}"
+      - "Bad commit: %{compare_url}"
     on_success: always
     on_failure: always
   recipients:
