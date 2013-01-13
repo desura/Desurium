@@ -22,12 +22,6 @@ script:
 #  - make test
 #  - ctest --output-on-failure .
   - make clean
-  - cd ../
-  - mkdir build_cef
-  - cd build_cef
-  - cmake .. -DBUILD_ONLY_CEF=ON
-  - make -j 4
-  - make clean
 notifications:
   irc:
     channels:
