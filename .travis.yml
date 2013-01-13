@@ -27,6 +27,8 @@ notifications:
     template:
       - "%{repository} (%{commit}) [%{author}] : %{message} %{foo} "
       - "Build details: %{build_url}"
+    use_notice: true
+    skip_join: true
   recipients:
     - desurium@karolherbst.de
     - matthias.krueger@famsik.de
