@@ -21,7 +21,12 @@ script:
   - src/tests/UtilLinux_test
   - ctest --output-on-failure .
 notifications:
-  irc: "irc.freenode.org#desura"
+  irc:
+    channels:
+      - "irc.freenode.org#desura"
+    template:
+      - "%{repository} (%{commit}) [%{author}] : %{message} %{foo} "
+      - "Build details: %{build_url}"
   recipients:
     - desurium@karolherbst.de
     - matthias.krueger@famsik.de
