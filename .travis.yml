@@ -21,12 +21,10 @@ script:
 #  - src/tests/UtilLinux_test 
   - ctest --output-on-failure .
 notifications:
-  recipients:
-    - desurium@karolherbst.de
-    - matthias.krueger@famsik.de
   email:
-    on_success: change
-    on_failure: always
+    recipients:
+        - desurium@karolherbst.de
+        - matthias.krueger@famsik.de
   irc:
     channels:
         - "irc.freenode.org#desura"
