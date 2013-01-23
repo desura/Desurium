@@ -14,21 +14,6 @@ using namespace boost;
 using namespace boost::unit_test;
 using namespace UTIL::LIN;
 
-// should be removed later
-namespace std
-{
-	std::ostream &operator<<(std::ostream &os, const std::wstring &ws) 
-	{ 
-		return os << UTIL::STRING::toStr(ws); 
-	} 
-}
-
-BOOST_AUTO_TEST_CASE (UTIL_LIN_getAppPath)
-{
-	BOOST_REQUIRE_EQUAL(getAppPath(L""), filesystem::current_path().wstring());
-	BOOST_REQUIRE_EQUAL(getAppPath(L"test/path"), (filesystem::current_path() / "test/path").wstring());
-}
-
 BOOST_AUTO_TEST_CASE (Util_Lin_String_Output)
 {
 	std::cout << "-- Testing UTIL::LIN::getDesktopPath(...) --\n";
