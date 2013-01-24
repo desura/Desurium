@@ -18,11 +18,14 @@ before_script:
 script:
   - cmake .. -DBUILD_CEF=off -DWITH_ARES=off -DFORCE_SYS_DEPS=on -DDEBUG=on
   - make -j4
-  - src/tests/UtilLinux_test 
   - ctest --output-on-failure .
 notifications:
-  recipients:
-    - desurium@karolherbst.de
-  email:
+  irc:
+    channels:
+      - "irc.freenode.org#desura"
+    template:
+      - "%{repository} (%{commit}) by %{author} : %{message} %{foo} "
+      - "Build details: %{build_url}"
+      - "Latest commit: %{compare_url}"
     on_success: change
-    on_failure: always
+    on_failure: change
