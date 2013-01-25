@@ -69,7 +69,12 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX
 
 # TODO: silent output for externel dependencies
 project(Desura)
-cmake_minimum_required(VERSION 2.8.5)
+
+if(APPLE) # see #418
+  cmake_minimum_required(VERSION 2.8.10)
+else()
+  cmake_minimum_required(VERSION 2.8.5)
+endif()
 
 ###############################################################################
 # some globale variables
@@ -138,6 +143,14 @@ if(NOT BUILD_ONLY_CEF)
   find_package(BZip2 ${REQUIRED_IF_OPTION})
   find_package(Sqlite ${REQUIRED_IF_OPTION})
   find_package(TinyXML ${REQUIRED_IF_OPTION})
+  if(NOT TINYXML_HAS_2_6_API)
+    if(REQUIRED_IF_OPTION)
+      message(FATAL_ERROR "tinyxml >= 2.6 is required")
+    else()
+      message("tinyxml >= 2.6 is required. Using builtin")
+      set(TINYXML_FOUND FALSE)
+    endif()
+  endif()
   find_package(v8 ${REQUIRED_ON_UNIX})
 endif()
 
