@@ -9,4 +9,4 @@ set_up_32bit_env()
 add_executable(desura_bittest ${Sources})
 
 install(TARGETS desura_bittest
-        DESTINATION "${BIN_INSTALL_DIR}")
+        DESTINATION "${LIB_INSTALL_DIR}")
