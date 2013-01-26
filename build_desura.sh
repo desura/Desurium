@@ -5,8 +5,9 @@ BINDIR=""
 LIBDIR="lib"
 DATADIR=""
 
-if [[ $@ == "check" ]] ; then
+if [[ "$@" == *check* ]] ; then
 	check="true"
+	printf "'make check' will be called.\n"
 	args=`echo "$args" | sed -e 's/check//'`
 else
 	args=$@
