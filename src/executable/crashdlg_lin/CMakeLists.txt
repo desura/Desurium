@@ -14,4 +14,4 @@ target_link_libraries(crashdlg
 )
 
 install(TARGETS crashdlg
-        DESTINATION "${BIN_INSTALL_DIR}")
+        DESTINATION "${LIB_INSTALL_DIR}")
