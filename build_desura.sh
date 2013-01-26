@@ -34,6 +34,5 @@ if [[ "$check" == "true" ]] ; then
 	printf "Running 'make check'\n"
 	# already in /build
 	make test
-	./src/tests/UtilLinux_test
 fi
 printf 'Run \033[1;31m./install/desura\033[0m to start Desura!\n'
