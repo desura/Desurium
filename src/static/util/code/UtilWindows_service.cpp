@@ -193,7 +193,7 @@ BOOL doStartService(SC_HANDLE Service, const char* szName, std::vector<std::stri
 {
 	BOOL res;
 
-	if (args.size() == 0)
+	if (args.empty())
 	{
 		res = StartService(Service, 0, NULL);
 	}

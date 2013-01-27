@@ -116,7 +116,7 @@ File Path::getFile() const
 
 std::string Path::getLastFolder() const
 {
-	if (m_vPath.size() == 0)
+	if (m_vPath.empty())
 		return "";
 
 	return m_vPath.back();
@@ -226,7 +226,7 @@ void Path::parsePath(std::string p, bool lastIsFolder)
 		m_vPath.erase(m_vPath.begin()+delList[x-1]);
 	}
 
-	if (lastIsFolder && m_vPath.size() > 0)
+	if (lastIsFolder && !m_vPath.empty())
 	{
 		m_File = File(m_vPath.back().c_str());
 		m_vPath.pop_back();

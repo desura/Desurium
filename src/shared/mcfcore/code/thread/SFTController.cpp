@@ -300,7 +300,7 @@ SFTWorkerBuffer* SFTController::getBlock(uint32 id, uint32 &status)
 	worker->mutex.lock();
 		status = worker->status;
 
-		if (worker->vBuffer.size() > 0)
+		if (!worker->vBuffer.empty())
 		{
 			temp = worker->vBuffer.front();
 			worker->vBuffer.erase(worker->vBuffer.begin());

@@ -426,13 +426,13 @@ bool ToolInfo::processResultString()
 		}
 		else if (c == ')')
 		{
-			while (opStack.size() > 0 && opStack.back() != "(")
+			while (!opStack.empty() && opStack.back() != "(")
 			{
 				if (!processStack(m_vRPN, valStack, opStack))
 					return false;
 			}
 
-			if (opStack.size() == 0)
+			if (opStack.empty())
 				return false;
 
 			opStack.pop_back();
@@ -471,7 +471,7 @@ bool ToolInfo::processResultString()
 			c = *it;
 
 
-			while (opStack.size() > 0 && opStack.back() != "(" && (getOperatorOrder(val) > getOperatorOrder(opStack.back())))
+			while (!opStack.empty() && opStack.back() != "(" && (getOperatorOrder(val) > getOperatorOrder(opStack.back())))
 			{
 				if (!processStack(m_vRPN, valStack, opStack))
 					return false;
@@ -487,7 +487,7 @@ bool ToolInfo::processResultString()
 	}
 
 
-	while (opStack.size() > 0)
+	while (!opStack.empty())
 	{
 		if (opStack.back() == "(")
 			return false;
@@ -496,7 +496,7 @@ bool ToolInfo::processResultString()
 			return false;
 	}
 
-	while (valStack.size() > 0)
+	while (!valStack.empty())
 	{
 		m_vRPN.push_back(new Operand(valStack.back()));
 		valStack.pop_back();
@@ -507,10 +507,10 @@ bool ToolInfo::processResultString()
 
 bool ToolInfo::checkExpectedResult(uint32 res)
 {
-	if (m_szResult.size() == 0)
+	if (m_szResult.empty())
 		return true;
 
-	if (m_vRPN.size() == 0)
+	if (m_vRPN.empty())
 	{
 		if (!processResultString())
 		{
@@ -526,7 +526,7 @@ bool ToolInfo::checkExpectedResult(uint32 res)
 	std::deque<OutValI*> vList = m_vRPN;
 	std::vector<int32> stack;
 
-	while (vList.size() > 0)
+	while (!vList.empty())
 	{
 		OutValI* item = vList.front();
 		vList.pop_front();
@@ -602,10 +602,10 @@ bool ToolInfo::checkExpectedResult(uint32 res)
 		}
 	}
 
-	if (stack.size() > 1)
+	if (!stack.empty())
 		Warning(gcString("To many items left on stack after results calc for tool {0}.", getName()));
 
-	if (stack.size() == 0)
+	if (stack.empty())
 		return true;
 
 	return stack.front()?true:false;

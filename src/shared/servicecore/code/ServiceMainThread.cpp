@@ -64,7 +64,7 @@ void ServiceMainThread::run()
 
 		m_vLock.lock();
 
-		if (m_vJobList.size() > 0)
+		if (!m_vJobList.empty())
 		{
 			task = m_vJobList.front();
 			m_vJobList.pop_front();

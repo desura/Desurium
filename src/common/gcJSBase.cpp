@@ -283,7 +283,7 @@ void DesuraJSBaseNonTemplate::registerFunction(const char* name, JSDelegateI *de
 
 uint32 DesuraJSBaseNonTemplate::find(uint32 hash)
 {
-	if (m_mDelegateList.size() == 0)
+	if (m_mDelegateList.empty())
 		return -1;
 
 	return find(hash, 0, m_mDelegateList.size()-1);

@@ -156,7 +156,7 @@ protected:
 		else
 			strm.next_in = &m_DataInStream[0];
 
-		if (m_bWriteEnd && strm.total_in_lo32 == 0 && strm.total_in_hi32 == 0 && m_DataInStream.size() == 0)
+		if (m_bWriteEnd && strm.total_in_lo32 == 0 && strm.total_in_hi32 == 0 && m_DataInStream.empty())
 		{
 			m_bEnd = true;
 			m_iLastError = BZ_STREAM_END;
@@ -200,7 +200,7 @@ protected:
 	{
 		const size_t buffsize = 10*1024;
 
-		if (m_bWriteEnd && strm.total_in_lo32 == 0 && strm.total_in_hi32 == 0 && m_DataInStream.size() == 0)
+		if (m_bWriteEnd && strm.total_in_lo32 == 0 && strm.total_in_hi32 == 0 && m_DataInStream.empty())
 		{
 			m_bEnd = true;
 			m_iLastError = BZ_STREAM_END;
@@ -227,7 +227,7 @@ protected:
 			}
 			else
 			{
-				if (m_bWriteEnd && m_DataInStream.size() == 0 && strm.total_out_hi32 == 0 && strm.total_out_lo32 == 0)
+				if (m_bWriteEnd && m_DataInStream.empty() && strm.total_out_hi32 == 0 && strm.total_out_lo32 == 0)
 					m_iLastError = BZ_STREAM_END;
 				
 				m_DataInStream.erase(m_DataInStream.begin(), m_DataInStream.end()-strm.avail_in);

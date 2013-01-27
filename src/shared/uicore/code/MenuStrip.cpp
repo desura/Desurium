@@ -104,7 +104,7 @@ int32 MenuStrip::addButton(const char* name)
 	temp->SetWindowStyle(wxALIGN_CENTER);
 	temp->setBold(true);
 
-	if (m_vButtons.size() == 0)
+	if (m_vButtons.empty())
 		m_vButtons.push_back(newSerperator());
 
 	m_vButtons.push_back(temp);

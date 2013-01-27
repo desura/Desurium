@@ -118,7 +118,7 @@ void PipeBase::processLoopback()
 {
 	m_LoopbackLock.lock();
 
-	if (m_vLoopback.size() > 0)
+	if (!m_vLoopback.empty())
 	{
 		LoopbackInfo* info = m_vLoopback.front();
 		m_vLoopback.pop_front();
