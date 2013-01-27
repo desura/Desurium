@@ -130,7 +130,7 @@ public:
 
 	gcString getTypeString() const
 	{
-		return DesuraId::getTypeString(m_uiType);
+		return getTypeString(m_uiType);
 	}
 
 	uint64 toInt64() const
