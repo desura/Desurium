@@ -36,8 +36,8 @@ public:
 	}
 
 	BaseItem(const char* name)
+	:	m_szName(name)
 	{
-		m_szName =  gcString(name);
 		m_uiHash = UTIL::MISC::RSHash_CSTR(name);
 	}
 

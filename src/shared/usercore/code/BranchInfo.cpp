@@ -30,12 +30,11 @@ namespace Item
 {
 
 BranchInfo::BranchInfo(MCFBranch branchId, DesuraId itemId, BranchInstallInfo* bii, uint32 platformId)
+:	m_InstallInfo(bii),
+	m_ItemId(itemId),
+	m_uiBranchId(branchId),
+	m_uiFlags(0)
 {
-	m_InstallInfo = bii;
-	m_ItemId = itemId;
-	m_uiBranchId = branchId;
-	m_uiFlags = 0;
-
 	if (platformId != 0)
 	{
 		switch (platformId)

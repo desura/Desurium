@@ -59,11 +59,13 @@ void SaveCVars()
 #define COUNT_CVAR "SELECT count(*) FROM sqlite_master WHERE name='cvar';"
 
 
-CVarManager::CVarManager() : BaseManager<CVar>()
+CVarManager::CVarManager() : BaseManager<CVar>(),
+	m_uiUserId(-1),
+	m_szCVarDb(UTIL::OS::getAppDataPath(L"settings_b.sqlite")),
+	m_bUserLoaded(false),
+	m_bWinUserLoaded(false),
+	m_bNormalLoaded(false)
 {
-	m_uiUserId = -1;
-
-	m_szCVarDb = UTIL::OS::getAppDataPath(L"settings_b.sqlite");
 	UTIL::FS::recMakeFolder(UTIL::FS::Path(m_szCVarDb, "", true));
 
 	try
@@ -83,10 +85,6 @@ CVarManager::CVarManager() : BaseManager<CVar>()
 	{
 		Warning(gcString("Failed to create cvar tables: {0}\n", e.what()));
 	}
-
-	m_bUserLoaded = false;
-	m_bWinUserLoaded = false;
-	m_bNormalLoaded = false;
 }
 
 CVarManager::~CVarManager()

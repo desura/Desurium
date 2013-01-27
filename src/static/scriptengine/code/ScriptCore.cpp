@@ -142,11 +142,11 @@ public:
 class RunScript : public ScriptTask
 {
 public:
-	RunScript(ScriptCoreInternal* scriptInternal, const char* file, char* buff, uint32 size) : ScriptTask(scriptInternal), m_AutoDelBuff(buff)
-	{
-		m_szFile = file;
-		m_uiSize = size;
-	}
+	RunScript(ScriptCoreInternal* scriptInternal, const char* file, char* buff, uint32 size) : ScriptTask(scriptInternal),
+		m_AutoDelBuff(buff),
+		m_szFile(file),
+		m_uiSize(size)
+	{}
 
 	virtual void run()
 	{
@@ -162,10 +162,9 @@ public:
 class RunString : public ScriptTask
 {
 public:
-	RunString(ScriptCoreInternal* scriptInternal, const char* string) : ScriptTask(scriptInternal)
-	{
-		m_szString = string;
-	}
+	RunString(ScriptCoreInternal* scriptInternal, const char* string) : ScriptTask(scriptInternal),
+		m_szString(string)
+	{}
 
 	virtual void run()
 	{

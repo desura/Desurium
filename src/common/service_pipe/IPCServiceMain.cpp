@@ -503,10 +503,9 @@ class AddToWGETask : public TaskI
 {
 public:
 	AddToWGETask(const char* name, const char* dllPath)
-	{
-		m_szDllPath = dllPath;
-		m_szName = name;
-	}
+	:	m_szDllPath(dllPath),
+		m_szName(name)
+	{}
 
 	void doTask()
 	{
@@ -527,10 +526,9 @@ class RemoveFromWGETask : public TaskI
 {
 public:
 	RemoveFromWGETask(const char* dllPath, bool deleteDll)
-	{
-		m_szDllPath = dllPath;
-		m_bDelete = deleteDll;
-	}
+	:	m_szDllPath(dllPath),
+		m_bDelete(deleteDll)
+	{}
 
 	void doTask()
 	{

@@ -23,14 +23,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 class ItemPanel : public gcPanel
 {
 public:
-	ItemPanel(wxWindow* parent, UserCore::Item::ItemInfoI* item, bool last) : gcPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL)
+	ItemPanel(wxWindow* parent, UserCore::Item::ItemInfoI* item, bool last) : gcPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL),
+		m_Id(item->getId()),
+		m_imgIcon(new gcImageControl(this, wxID_ANY, wxDefaultPosition, wxSize( 22,22 ), 0)),
+		m_labTitle(new wxStaticText(this, wxID_ANY, item->getName(), wxDefaultPosition, wxDefaultSize, 0)),
+		m_pbProgress(new gcProgressBar(this, wxID_ANY, wxDefaultPosition, wxSize( 150,18 )))
 	{
-		m_Id = item->getId();
-
-		m_imgIcon = new gcImageControl(this, wxID_ANY, wxDefaultPosition, wxSize( 22,22 ), 0);
-		m_labTitle = new wxStaticText(this, wxID_ANY, item->getName(), wxDefaultPosition, wxDefaultSize, 0);
-		m_pbProgress = new gcProgressBar(this, wxID_ANY, wxDefaultPosition, wxSize( 150,18 ));
-
 		const char* ico = item->getIcon();
 
 		if (ico && UTIL::FS::isValidFile(ico))

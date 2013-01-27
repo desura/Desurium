@@ -36,9 +36,8 @@ File::File(const char* file)
 }
 
 File::File(std::string file)
-{
-	m_szFile = file;
-}
+:	m_szFile(file)
+{}
 
 std::string File::getFile() const
 {
@@ -103,14 +102,12 @@ Path::Path(std::string path, std::string file, bool lastIsFolder)
 }
 
 Path::Path(const Path& path)
-{
+:	m_File(path.getFile()),
+	m_vPath(path.m_vPath)
 #ifdef NIX
-	m_absolutePath = (path.getFullPath().size() > 0 && path.getFullPath()[0] == '/');
+	,m_absolutePath((path.getFullPath().size() > 0 && path.getFullPath()[0] == '/'))
 #endif
-
-	m_File = path.getFile();
-	m_vPath = path.m_vPath;
-}
+{}
 
 File Path::getFile() const
 {

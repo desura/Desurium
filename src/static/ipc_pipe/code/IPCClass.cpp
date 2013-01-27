@@ -103,9 +103,9 @@ uint32 deserializeList(std::vector<IPCParameterI*> &list, const char* buffer, ui
 
 
 IPCClass::IPCClass(IPCManager* mang, uint32 id, DesuraId itemId)
+:	m_uiItemId(itemId),
+	m_pManager(mang)
 {
-	m_uiItemId = itemId;
-	m_pManager = mang;
 	m_uiId = id;
 }
 

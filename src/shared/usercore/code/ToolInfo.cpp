@@ -85,9 +85,8 @@ class Operator : public OutValI
 {
 public:
 	Operator(std::string val)
-	{
-		m_szVal = val;
-	}
+	:	m_szVal(val)
+	{}
 
 	virtual bool isOperand()
 	{
@@ -131,12 +130,11 @@ namespace UserCore
 {
 
 ToolInfo::ToolInfo(DesuraId id)
+:	m_ToolId(id),
+	m_uiDownloadSize(0),
+	m_uiFlags(0)
 {
-	m_ToolId = id;
 	m_uiHash = id.toInt64();
-
-	m_uiDownloadSize = 0;
-	m_uiFlags = 0;
 }
 
 ToolInfo::~ToolInfo()

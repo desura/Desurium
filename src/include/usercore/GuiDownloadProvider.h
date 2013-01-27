@@ -41,16 +41,14 @@ public:
 	}
 
 	GuiDownloadProvider(uint32 a, MCFCore::Misc::DownloadProvider* dp)
-	{
-		action = a;
-		provider = dp;
-	}
+	:	action(a),
+		provider(dp)
+	{}
 
 	GuiDownloadProvider(GuiDownloadProvider& dp)
-	{
-		action = dp.action;
-		provider = dp.provider;
-	}
+	:	action(dp.action),
+		provider(dp.provider)
+	{}
 
 	uint32 action;
 	MCFCore::Misc::DownloadProvider provider;
