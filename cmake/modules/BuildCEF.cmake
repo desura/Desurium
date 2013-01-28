@@ -150,7 +150,6 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
   add_dependencies(cef depot_tools)
   add_dependencies(cef chromium)
   add_dependencies(cef fetch_cef)
-  add_dependencies(cef wxWidget-2-9)
 
   set(CEF_LIB_DIR ${CHROMIUM_SOURCE_DIR}/src/out/Release/lib.target)
   set(CEF_LIBRARIES "${CEF_LIB_DIR}/libcef_desura.so")
