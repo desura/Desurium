@@ -115,7 +115,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
            'sources': [
              'include/internal/cef_types_linux.h',
              'include/internal/cef_linux.h',
-@@ -818,8 +875,241 @@
+@@ -818,8 +875,209 @@
              'libcef/webview_host_gtk.cc',
              'libcef/webwidget_host_gtk.cc',
            ],
@@ -299,39 +299,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
 +        },
 +      ],
 +    },
-+	{
-+		'target_name': 'wxclient',
-+		'type': 'executable',
-+		'msvs_guid': '0330D7E8-22A6-827F-D2D3-7660A75E73E1',
-+		'dependencies': [
-+			'cef_desura',
-+		],
-+		'include_dirs' : [
-+			'cef_desura_includes',
-+		],
-+		'defines': [
-+			'NIX',
-+		],
-+		'sources': [
-+			'tests/wxclient/main.cpp',
-+		],
-+		'conditions' : [
-+			['OS=="win"', {
-+			}],
-+			[ 'OS=="linux" or OS=="freebsd" or OS=="openbsd"', {
-+				'cflags': [
-+					'<!(@wxWidgets_CONFIG_EXECUTABLE@ --cppflags)',
-+					'-B /usr/bin/ld.bfd',
-+					'<!(pkg-config --cflags gtk+-2.0)',
-+				],
-+				'ldflags' : [
-+					'<!(@wxWidgets_CONFIG_EXECUTABLE@ --libs)',
-+					'-B /usr/bin/ld.bfd',
-+					'<!(pkg-config --libs gtk+-2.0)',
-+				],
-+			}],
-+		],		
-+	}],
++  ],
 +	'conditions' : [
 +		[ 'OS=="linux" or OS=="freebsd" or OS=="openbsd"', {
 +			'targets' : [
