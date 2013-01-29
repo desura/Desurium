@@ -9,7 +9,7 @@ DATADIR=""
 case "$@" in
 	*check* )
 		printf "'make check' will be called.\n"
-		args=`echo "$args" | sed -e 's/check//'`
+		args=`echo "$@" | sed -e 's/check//'`
 		check="true"
 		;;
 	* )
