@@ -31,6 +31,8 @@
 #   DESKTOPDIR      depends on OS       the directory where the desktop file or link should be installed
 #
 # unix-only options:
+#   FORCE_BUNDLED_WXGTK					bundle wxGTK
+#					ON
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
 #   WITH_ARES       ON                  build CURL with ares support (c-ares REQUIRED)
 #   DIR_TYPE        SINGLE              how should game data be stored?
@@ -144,7 +146,9 @@ if(NOT BUILD_ONLY_CEF)
 
   find_package(v8 ${REQUIRED_ON_UNIX})
 
-  find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
+  if(NOT FORCE_BUNDLED_WXGTK)
+    find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
+  endif()
   if(wxWidgets_FOUND)
     try_compile(
       WXWIDGET_2_9_TEST_COMPILE
