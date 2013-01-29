@@ -151,25 +151,26 @@ if(NOT BUILD_ONLY_CEF)
       set(TINYXML_FOUND FALSE)
     endif()
   endif()
-  find_package(v8 ${REQUIRED_ON_UNIX})
-endif()
 
-find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
-if(wxWidgets_FOUND)
-  try_compile(
-    WXWIDGET_2_9_TEST_COMPILE
-    "${CMAKE_TEST_PROJECTS_BIN}/wxWidget_2.9_test"
-    "${CMAKE_TEST_PROJECTS}/wxWidget_2.9_test"
-    "wxWidget_2_9_test"
-    "wxWidget_2_9_test"
-    CMAKE_FLAGS
-    "-DwxWidgets_CONFIG_EXECUTABLE=${wxWidgets_CONFIG_EXECUTABLE}"
-    "-DwxWidgets_wxrc_EXECUTABLE=${wxWidgets_wxrc_EXECUTABLE}")
-  if(NOT WXWIDGET_2_9_TEST_COMPILE)
-    message(STATUS "no working wxWidgets-2.9.3 found")
-    unset(wxWidgets_FOUND)
-    if(REQUIRED_IF_OPTION)
-      message(FATAL_ERROR "no wxWidget-2.9.3 found")
+  find_package(v8 ${REQUIRED_ON_UNIX})
+
+  find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
+  if(wxWidgets_FOUND)
+    try_compile(
+      WXWIDGET_2_9_TEST_COMPILE
+      "${CMAKE_TEST_PROJECTS_BIN}/wxWidget_2.9_test"
+      "${CMAKE_TEST_PROJECTS}/wxWidget_2.9_test"
+      "wxWidget_2_9_test"
+      "wxWidget_2_9_test"
+      CMAKE_FLAGS
+      "-DwxWidgets_CONFIG_EXECUTABLE=${wxWidgets_CONFIG_EXECUTABLE}"
+      "-DwxWidgets_wxrc_EXECUTABLE=${wxWidgets_wxrc_EXECUTABLE}")
+    if(NOT WXWIDGET_2_9_TEST_COMPILE)
+      message(STATUS "no working wxWidgets-2.9.3 found")
+      unset(wxWidgets_FOUND)
+      if(REQUIRED_IF_OPTION)
+        message(FATAL_ERROR "no wxWidget-2.9.3 found")
+      endif()
     endif()
   endif()
 endif()
@@ -261,11 +262,11 @@ set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.15/)
 # build some externel projects
 ###############################################################################
 
-if(NOT wxWidgets_FOUND)
-  include(BuildwxWidgets)
-endif()
-
 if(NOT BUILD_ONLY_CEF)
+  if(NOT wxWidgets_FOUND)
+    include(BuildwxWidgets)
+  endif()
+
   if(NOT Boost_FOUND)
     include(BuildBoost)
   endif()
@@ -315,4 +316,3 @@ if(NOT BUILD_ONLY_CEF)
   add_subdirectory(src)
   add_subdirectory(build_out)
 endif()
-
