@@ -5,13 +5,18 @@ BINDIR=""
 LIBDIR="lib"
 DATADIR=""
 
-if [[ "$@" == *check* ]] ; then
-	check="true"
-	printf "'make check' will be called.\n"
-	args=`echo "$args" | sed -e 's/check//'`
-else
-	args=$@
-fi
+
+case "$@" in
+	*check* )
+		printf "'make check' will be called.\n"
+		args=`echo "$args" | sed -e 's/check//'`
+		check="true"
+		;;
+	* )
+		args=$@
+		;;
+esac
+
 printf 'Make sure to run \033[1;31msudo ./install-deps.sh\033[0m before compiling!\n\n'
 printf 'We are compiling CEF first\n'
 if [ ! -d "build_cef" ] ; then
