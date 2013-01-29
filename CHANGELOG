@@ -1,6 +1,10 @@
 version 0.8.0:
 --------------
 
+notes:
+ * please note that only issues are included in this list, which improve behaviour compared with desura.
+   This means if something broke while developing on desurium, but worked with desura, it won't be listed here.
+
 important stuff:
  * desurium has it's own mascott: desubot
 
