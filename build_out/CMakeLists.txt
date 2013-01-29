@@ -95,3 +95,10 @@ install(FILES util.sh
                     GROUP_READ             GROUP_EXECUTE
                     WORLD_READ             WORLD_EXECUTE
 )
+
+install(FILES findlib.sh
+        DESTINATION ${LIB_INSTALL_DIR}
+        PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                    GROUP_READ             GROUP_EXECUTE
+                    WORLD_READ             WORLD_EXECUTE
+)

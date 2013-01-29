@@ -94,11 +94,14 @@ void ToolManager::onSpecialCheck(WCSpecialInfo &info)
 		
 		bool is64 = (out[0] == "64");
 
-		gcString cmd("./bin/findlib.sh {0} {1}", out[1], is64?"64":"32");
+		gcString cmd("findlib.sh {0} {1}", out[1], is64?"64":"32");
 		std::string res = UTIL::LIN::getCmdStdout(cmd.c_str(), 2);
 
 		if (res.size() == 0 || !UTIL::FS::isValidFile(res.c_str()))
+		{
+			Debug(gcString("Failed findlib.sh call: {0} {1}\n", out[1], is64?"64":"32"));
 			return;
+		}
 
 		UTIL::FS::Path filePath(gcString(UTIL::OS::getAppDataPath()).c_str(), "", false);
 		filePath += gcString("game_lib{0}", out[0]);
