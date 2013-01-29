@@ -26,9 +26,8 @@ CHROMIUM_URI="http://commondatastorage.googleapis.com/chromium-browser-official/
 DEPOT_TOOLS_ARC="depot_tools-145556-2.tar.gz"
 DEPOT_TOOLS_URI="mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${DEPOT_TOOLS_ARC}"
 SRC_URI="${SRC_URI} ${CEF_URI} ${CHROMIUM_URI} ${DEPOT_TOOLS_URI}"
-WX_GTK_VER="2.9"
 
-inherit check-reqs cmake-utils eutils ${GIT_ECLASS} wxwidgets games
+inherit check-reqs cmake-utils eutils ${GIT_ECLASS} games
 
 CHECKREQS_DISK_BUILD="3G"
 
@@ -57,7 +56,6 @@ COMMON_DEPEND="
 	sys-apps/dbus
 	sys-libs/zlib
 	virtual/jpeg
-	=x11-libs/wxGTK-2.9.3.1[X]
 "
 
 RDEPEND="
