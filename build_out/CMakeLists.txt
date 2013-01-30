@@ -80,15 +80,6 @@ install(FILES ${IMAGES}
         DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app
 )
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/run.sh ${CMAKE_GEN_SRC_DIR}/build_out/run.sh @ONLY)
-install(FILES ${CMAKE_GEN_SRC_DIR}/build_out/run.sh
-        RENAME desura
-        DESTINATION ${BIN_INSTALL_DIR}
-        PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-                    GROUP_READ             GROUP_EXECUTE
-                    WORLD_READ             WORLD_EXECUTE
-)
-
 install(FILES util.sh
         DESTINATION ${DATA_INSTALL_DIR}
         PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
