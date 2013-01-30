@@ -21,5 +21,5 @@ target_link_libraries(desura
   ${LIBNOTIFY_LIBRARIES}
 )
 
-install(TARGETS desura
-        DESTINATION "${LIB_INSTALL_DIR}")
+install_executable(desura)
+        
