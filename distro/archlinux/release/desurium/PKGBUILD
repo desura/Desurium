@@ -44,7 +44,7 @@ build() {
 
   MULTILIB=0
 
-  if pacman -Qsq binutils-multilib ; then
+  if pacman -Qsq binutils-multilib > /dev/null ; then
     MULTILIB=1
   fi
 
