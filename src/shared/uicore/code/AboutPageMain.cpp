@@ -71,7 +71,7 @@ AboutMainPage::AboutMainPage(wxWindow* parent) : gcPanel(parent, wxID_ANY)
 	gcWString copy("\u00A9 {0} Desura Pty Ltd. All rights reserved. \nDesura is a trademark of Desura Pty Ltd.", reduced[2]);
 	offsetY = 50;
 #else
-	gcWString copy("Desurium is open source software GPL v3. \nGet sources at: http://github.com/lodle/Desurium");
+	gcWString copy("Desurium is open source software GPL v3. \nGet source from: http://github.com/lodle/Desurium");
 	offsetY = 85;
 #endif
 
