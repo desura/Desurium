@@ -15,5 +15,4 @@ target_link_libraries(mcf_extract
   ${LINUX_LIBRARIES}
 )
 
-install(TARGETS mcf_extract
-        DESTINATION "${BIN_INSTALL_DIR}")
+install_executable(mcf_extract)

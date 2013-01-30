@@ -107,3 +107,16 @@ macro(add_desura_test name category neededLibs)
     add_test(${name} ${CMAKE_BINARY_DIR}/src/tests/${name})
   endif()
 endmacro()
+
+function(install_executable target)
+  set(CURRENT_TARGET "${target}")
+  install(TARGETS "${CURRENT_TARGET}"
+          DESTINATION "${LIB_INSTALL_DIR}")
+  
+  configure_file("${CMAKE_SCRIPT_PATH}/run.sh" "${CMAKE_GEN_SRC_DIR}/build_out/${CURRENT_TARGET}" @ONLY)
+  install(FILES "${CMAKE_GEN_SRC_DIR}/build_out/${CURRENT_TARGET}"
+          DESTINATION "${BIN_INSTALL_DIR}"
+          PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                      GROUP_READ             GROUP_EXECUTE
+                      WORLD_READ             WORLD_EXECUTE)
+endfunction()
