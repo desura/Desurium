@@ -28,6 +28,7 @@ build() {
     # if this fails, git clean -dfx
     rm -rf build
     msg "Updating..."
+    git checkout master
     git pull
     msg "The local files are updated."
   else
