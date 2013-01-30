@@ -37,7 +37,8 @@ build() {
   fi
 
   cd "$srcdir/Desurium"
-  git checkout $pkgver
+  echo "Note: checkingout '$pkgver'."
+  git checkout --quiet $pkgver
 
   msg "GIT checkout done or server timeout"
   msg "Starting build..."
