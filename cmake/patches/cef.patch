@@ -4321,15 +4321,6 @@ diff '--exclude=.svn' -aurN cef.ori/include/cef_capi.h cef/include/cef_capi.h
 diff '--exclude=.svn' -aurN cef.ori/include/cef.h cef/include/cef.h
 --- include/cef.h	2012-05-09 11:27:17.735674278 +0200
 +++ include/cef.h	2012-05-09 11:32:01.269658243 +0200
-@@ -38,6 +38,8 @@
- #ifndef _CEF_H
- #define _CEF_H
- 
-+//#define IGNORE_DESURA //if compiling cefclient uncomment this
-+
- #include <map>
- #include <string>
- #include <vector>
 @@ -119,6 +121,10 @@
  /*--cef()--*/
  void CefRunMessageLoop();
@@ -4494,14 +4485,6 @@ diff '--exclude=.svn' -aurN cef.ori/include/internal/cef_string.h cef/include/in
 diff '--exclude=.svn' -aurN cef.ori/include/internal/cef_types.h cef/include/internal/cef_types.h
 --- include/internal/cef_types.h	2012-05-09 11:27:17.742674276 +0200
 +++ include/internal/cef_types.h	2012-05-09 11:32:01.610658223 +0200
-@@ -578,6 +578,7 @@
-   V8_ACCESS_CONTROL_PROHIBITS_OVERWRITING = 1 << 2
- };
- 
-+
- ///
- // V8 property attribute values.
- ///
 @@ -590,6 +591,26 @@
    V8_PROPERTY_ATTRIBUTE_DONTDELETE = 1 << 2   // Not configurable
  };
@@ -5656,16 +5639,6 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_gtk.cc cef/l
      gtk_window_get_position(GTK_WINDOW(window), &x, &y);
      gtk_window_get_size(GTK_WINDOW(window), &width, &height);
      return WebRect(x, y, width, height);
-@@ -182,8 +524,8 @@
-     WebDragOperationsMask mask,
-     const WebImage& image,
-     const WebPoint& image_offset) {
--  // TODO(port): Support drag and drop.
-   browser_->UIT_GetWebView()->dragSourceSystemDragEnded();
-+//  NOTIMPLEMENTED();
- }
- 
- void BrowserWebViewDelegate::runModal() {
 @@ -226,13 +568,23 @@
  
  void BrowserWebViewDelegate::ShowJavaScriptAlert(
@@ -6286,15 +6259,6 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/webview_host_win.cc cef/libcef/webvie
 diff '--exclude=.svn' -aurN cef.ori/libcef/webwidget_host_gtk.cc cef/libcef/webwidget_host_gtk.cc
 --- libcef/webwidget_host_gtk.cc	2012-05-09 11:27:19.078674202 +0200
 +++ libcef/webwidget_host_gtk.cc	2012-05-09 11:32:01.635658222 +0200
-@@ -13,6 +13,8 @@
- #include "skia/ext/bitmap_platform_device.h"
- #include "skia/ext/platform_canvas.h"
- #include "skia/ext/platform_device.h"
-+//#include "chrome/browser/ui/gtk/gtk_util.h"
-+//#include "ui/gfx/gtk_preserve_window.h"
- #include "third_party/WebKit/Source/WebKit/chromium/public/gtk/WebInputEventFactory.h"
- #include "third_party/WebKit/Source/WebKit/chromium/public/x11/WebScreenInfoFactory.h"
- #include "third_party/WebKit/Source/WebKit/chromium/public/WebInputEvent.h"
 @@ -20,6 +22,11 @@
  #include "third_party/WebKit/Source/WebKit/chromium/public/WebScreenInfo.h"
  #include "third_party/WebKit/Source/WebKit/chromium/public/WebSize.h"
@@ -6405,20 +6369,6 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/webwidget_host_gtk.cc cef/libcef/webw
    }
  
   private:
-@@ -260,13 +350,11 @@
-   DISALLOW_IMPLICIT_CONSTRUCTORS(WebWidgetHostGtkWidget);
- };
- 
--// Return an Xlib Display pointer for the given widget.
- Display* GtkWidgetGetDisplay(GtkWidget* widget) {
-   GdkDisplay* gdk_display = gtk_widget_get_display(widget);
-   return gdk_x11_display_get_xdisplay(gdk_display);
- }
- 
--// Return the screen number for the given widget.
- int GtkWidgetGetScreenNum(GtkWidget* widget) {
-   GdkDisplay* gdk_display = gtk_widget_get_display(widget);
-   GdkScreen* gdk_screen = gdk_display_get_default_screen(gdk_display);
 @@ -286,12 +374,35 @@
  WebWidgetHost* WebWidgetHost::Create(GtkWidget* parent_view,
                                       WebWidgetClient* client,
