@@ -17,5 +17,4 @@ target_link_libraries(mfc_upload_cli
     ${OPENSSL_LIBRARIES}
 )
 
-install(TARGETS mfc_upload_cli
-        DESTINATION "${BIN_INSTALL_DIR}")
+install_executable(mfc_upload_cli)
