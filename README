@@ -24,7 +24,7 @@ In order to make use of multiple CPU cores while compiling, run
 ./build_desura.sh -j8
 which will invoke "make -j8" so the build is sped up extremely
 and takes only 7 minutes on a modern machine (intel core i7 2635QM)
-"8" will be the number of compile-thread to run at a time.
+"8" will be the number of compile-threads to run at a time.
 
 You can find out the number of cores you have running:
 getconf _NPROCESSORS_ONLN
