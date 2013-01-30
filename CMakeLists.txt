@@ -32,7 +32,7 @@
 #
 # unix-only options:
 #   FORCE_BUNDLED_WXGTK					bundle wxGTK
-#					ON
+#                   ON
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
 #   WITH_ARES       ON                  build CURL with ares support (c-ares REQUIRED)
 #   DIR_TYPE        SINGLE              how should game data be stored?
