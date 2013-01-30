@@ -16,7 +16,7 @@ before_script:
   - mkdir build
   - cd build
 script:
-  - cmake .. -DBUILD_CEF=off -DWITH_ARES=off -DFORCE_SYS_DEPS=on -DDEBUG=on
+  - cmake .. -DBUILD_CEF=off -DWITH_ARES=off -DFORCE_SYS_DEPS=on -DDEBUG=on -FORCE_BUNDLED_WXGTK=off
   - make -j4
   - ctest --output-on-failure .
 notifications:
