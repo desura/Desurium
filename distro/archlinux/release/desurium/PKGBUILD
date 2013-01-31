@@ -27,8 +27,7 @@ build() {
     msg "Removing build files..."
     rm -rf build
     msg "Updating..."
-    git checkout master
-    git pull
+    git fetch
     msg "The local files are updated."
   else
     msg "Cloning..."
