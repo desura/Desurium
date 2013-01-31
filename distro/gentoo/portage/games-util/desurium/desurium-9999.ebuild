@@ -155,10 +155,10 @@ src_configure() {
 		-DDATADIR="${GAMES_DATADIR}"
 		-DRUNTIME_LIBDIR="$(games_get_libdir)"
 		-DDESKTOPDIR="/usr/share/applications"
+		$( if use bundled-wxgtk ; then
+			echo -DWXWIDGET_URL="file://${DISTDIR}/${WX_ARC}"
+		fi )
 	)
-	if use bundled-wxgtk; then
-		mycmakeargs+=" -DWXWIDGET_URL=file://${DISTDIR}/${WX_ARC}"
-	fi
 	cmake-utils_src_configure
 }
 
