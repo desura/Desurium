@@ -28,7 +28,7 @@ build() {
     rm -rf build
     msg "Updating..."
     git fetch
-    msg "The local files are updated."
+    msg "The repo has been updated."
   else
     msg "Cloning..."
     git clone git://github.com/lodle/Desurium.git "Desurium"
