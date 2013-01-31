@@ -2,7 +2,7 @@
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20121230
+pkgver=20130131
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -42,7 +42,7 @@ build() {
 
   MULTILIB=0
 
-  if pacman -Qsq binutils-multilib ; then
+  if pacman -Qsq binutils-multilib > /dev/null ; then
     MULTILIB=1
   fi
 
@@ -67,6 +67,7 @@ build() {
 check() {
   cd "$srcdir/Desurium/build"
   make test
+  #./src/tests/UtilLinux_test
 }
 
 package() {
