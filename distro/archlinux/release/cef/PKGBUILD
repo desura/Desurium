@@ -63,11 +63,6 @@ build() {
   make
 }
 
-check() {
-  cd "$srcdir/Desurium/build"
-  make test
-}
-
 package() {
   cd "$srcdir/Desurium/build_cef"
 
