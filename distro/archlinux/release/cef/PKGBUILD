@@ -24,10 +24,9 @@ build() {
     cd "Desurium"
     msg "Removing build files..."
     # if this fails, git clean -dfx
-    rm build_cef -rf
+#    rm build_cef -rf
     msg "Updating..."
-    git checkout master
-    git pull
+    git fetch
     msg "The local files are updated."
   else
     msg "Cloning..."
@@ -65,10 +64,10 @@ build() {
   make
 }
 
-#check() {
-#  cd "$srcdir/Desurium/build"
-#  make test
-#}
+check() {
+  cd "$srcdir/Desurium/build"
+  make test
+}
 
 package() {
   cd "$srcdir/Desurium/build_cef"
