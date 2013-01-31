@@ -155,10 +155,10 @@ src_configure() {
 		-DDATADIR="${GAMES_DATADIR}"
 		-DRUNTIME_LIBDIR="$(games_get_libdir)"
 		-DDESKTOPDIR="/usr/share/applications"
+		$( if use bundled-wxgtk ; then
+			echo -DWXWIDGET_URL="file://${DISTDIR}/${WX_ARC}"
+		fi )
 	)
-	if use bundled-wxgtk; then
-		mycmakeargs+=" -DWXWIDGET_URL=file://${DISTDIR}/${WX_ARC}"
-	fi
 	cmake-utils_src_configure
 }
 
@@ -169,8 +169,10 @@ src_compile() {
 src_install() {
 	cmake-utils_src_install
 
-	doicon -s 256 "${FILESDIR}/${PN}.png"
-	make_desktop_entry "${GAMES_BINDIR}/desura" "Desurium"
+	for size in 16 22 24 32 36 48 64 72 96 128 192 256 scalable ; do
+        newicon -s ${size} "${S}/src/branding_${PN}/sources/desubot.svg" "${PN}.png"
+    done
+	make_desktop_entry "${GAMES_BINDIR}/desura" "Desurium" "${PN}"
 
 	prepgamesdirs
 }
