@@ -1,8 +1,11 @@
 [Desktop Entry]
-Name=Desurium
+Version=1.0
 Type=Application
-Comment=Free software version of Desura game client
-Exec=@BIN_INSOURCE_DIR@/desura
-TryExec=@BIN_INSOURCE_DIR@/desura
-Icon=@DATA_INSOURCE_DIR@/desura.png
-Categories=Game;
+Name=Desurium
+GenericName=Digital games distribution client
+Comment=Free software version of Desura digital distribution client
+Exec=desura
+TryExec=desura
+Icon=desura
+Categories=Game;Amusement;
+Terminal=false
