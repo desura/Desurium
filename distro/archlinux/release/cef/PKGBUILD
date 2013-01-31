@@ -23,25 +23,24 @@ build() {
   if [[ -d "Desurium" ]]; then
     cd "Desurium"
     msg "Removing build files..."
-    # if this fails, git clean -dfx
     rm build_cef -rf
     msg "Updating..."
-    git pull
-    msg "The local files are updated."
+    git fetch
+    msg "The repo has been updated."
   else
     msg "Cloning..."
     git clone git://github.com/lodle/Desurium.git "Desurium"
   fi
 
   cd "$srcdir/Desurium"
-  git checkout $pkgver
-
+  echo "Note: checking out '$pkgver'."
+  git checkout --quiet $pkgver
   msg "GIT checkout done or server timeout"
   msg "Starting build..."
 
   MULTILIB=0
 
-  if pacman -Qsq binutils-multilib ; then
+  if pacman -Qsq binutils-multilib > /dev/null ; then
     MULTILIB=1
   fi
 
@@ -63,11 +62,6 @@ build() {
   msg "Running make..."
   make
 }
-
-#check() {
-#  cd "$srcdir/Desurium/build"
-#  make test
-#}
 
 package() {
   cd "$srcdir/Desurium/build_cef"
