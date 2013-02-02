@@ -1,7 +1,7 @@
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowser.cpp cef/cef_desura/ChromiumBrowser.cpp
 --- cef_desura/ChromiumBrowser.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/ChromiumBrowser.cpp	2012-05-09 11:32:01.267658243 +0200
-@@ -0,0 +1,557 @@
+@@ -0,0 +1,553 @@
 +///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : minimal
@@ -75,11 +75,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowser.cpp cef/cef_desur
 +#if defined(_WIN32)
 +		CefRegisterFlashPlugin("gcswf32.dll");
 +#else
-+	#ifdef NIX64
-+		CefRegisterFlashPlugin("libdesura_flashwrapper_64.so");
-+	#else
-+		CefRegisterFlashPlugin("libdesura_flashwrapper_32.so");
-+	#endif
++	CefRegisterFlashPlugin("libdesura_flashwrapper.so");
 +#endif
 +
 +		return true;

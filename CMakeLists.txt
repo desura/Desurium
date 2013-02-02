@@ -110,6 +110,9 @@ include(CheckCompiler)
 include(SetInstallPaths)
 include(ProcessorCount)
 include(Package)
+if(UNIX)
+  include(FindPkgConfig)
+endif()
 
 ###############################################################################
 # find all packages which are needed
@@ -134,6 +137,8 @@ if(NOT BUILD_ONLY_CEF)
 
   if(NOT WIN32)
     find_package(GTK2 REQUIRED)
+    find_package(X11 REQUIRED)
+    pkg_check_modules(GTHREAD2 REQUIRED gthread-2.0)
     find_package(Notify REQUIRED)
     if(NOT HAVE_LIBNOTIFY_0_7)
       message(FATAL_ERROR "libnotify >= 0.7 is required")
@@ -296,6 +301,7 @@ if(NOT BUILD_ONLY_CEF)
     add_dependencies(sqlite3x boost)
   endif()
 
+  add_subdirectory(third_party/npwrapper)
   ###############################################################################
   # build desura
   ###############################################################################
