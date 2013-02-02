@@ -105,6 +105,9 @@ include(CheckCompiler)
 include(SetInstallPaths)
 include(ProcessorCount)
 include(Package)
+if(UNIX)
+  include(FindPkgConfig)
+endif()
 
 ###############################################################################
 # find all packages which are needed
@@ -117,10 +120,6 @@ endif()
 if(NOT BUILD_ONLY_CEF)
   if(NOT WIN32)
     find_package(Boost COMPONENTS date_time filesystem thread system REQUIRED)
-    find_package(Notify REQUIRED)
-    if(NOT HAVE_LIBNOTIFY_0_7)
-      message(FATAL_ERROR "libnotify >= 0.7 is required")
-    endif()
   endif()
   find_package(BZip2 ${REQUIRED_IF_OPTION})
 
@@ -132,6 +131,12 @@ if(NOT BUILD_ONLY_CEF)
   # find_package(GoogleBreakpad REQUIRED)
   if(NOT WIN32)
     find_package(GTK2 REQUIRED)
+    find_package(X11 REQUIRED)
+    pkg_check_modules(GTHREAD2 REQUIRED gthread-2.0)
+    find_package(Notify REQUIRED)
+    if(NOT HAVE_LIBNOTIFY_0_7)
+      message(FATAL_ERROR "libnotify >= 0.7 is required")
+    endif()
   endif()
   if(NOT WIN32)
     find_package(OpenSSL REQUIRED)
@@ -307,6 +312,7 @@ if(NOT BUILD_ONLY_CEF)
     add_dependencies(sqlite3x boost)
   endif()
 
+  add_subdirectory(third_party/npwrapper)
   ###############################################################################
   # build desura
   ###############################################################################

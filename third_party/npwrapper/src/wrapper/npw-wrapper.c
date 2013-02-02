@@ -59,22 +59,22 @@
 #ifdef NIX32
 const NPW_PluginInfo NPW_PluginDesura = {
   NPW_PLUGIN_IDENT,
-  "libflashplayer_32_chrome.so",
+  "libflashplayer.so",
   0,
   "",
   "",
   NPW_PLUGIN_INFO_VERSION,
-  "./bin/desura_flashhost_32"
+  "desura_flashhost"
 };
 #else
 const NPW_PluginInfo NPW_PluginDesura = {
   NPW_PLUGIN_IDENT,
-  "libflashplayer_64.so",
+  "libflashplayer.so",
   0,
   "",
   "",
   NPW_PLUGIN_INFO_VERSION,
-  "./bin/desura_flashhost_64"
+  "desura_flashhost"
 };
 #endif
 
