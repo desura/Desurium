@@ -1936,95 +1936,6 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptFactory.h cef/cef_desur
 +ChromiumDLL::JavaScriptFactoryI* GetJSFactory();
 +
 +#endif //DESURA_JAVASCRIPTFACTORY_H
-diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptFactory.h.edited cef/cef_desura/JavaScriptFactory.h.edited
---- cef_desura/JavaScriptFactory.h.edited	1970-01-01 01:00:00.000000000 +0100
-+++ cef_desura/JavaScriptFactory.h.edited	2012-05-09 11:32:01.268658243 +0200
-@@ -0,0 +1,85 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
-+//
-+//   Project     : desura_libcef_dll_wrapper
-+//   File        : JavaScriptFactory.h
-+//   Description :
-+//      [TODO: Write the purpose of JavaScriptFactory.h.]
-+//
-+//   Created On: 5/28/2010 2:01:09 PM
-+//   Created By: Mark Chandler <mailto:mark@moddb.com>
-+////////////////////////////////////////////////////////////////////////////
-+
-+#ifndef DESURA_JAVASCRIPTFACTORY_H
-+#define DESURA_JAVASCRIPTFACTORY_H
-+#ifdef _WIN32
-+#pragma once
-+#endif
-+
-+#include "ChromiumBrowserI.h"
-+<<<<<<< .mine
-+#include "include/cef.h"
-+=======
-+#include "cef/include/cef.h"
-+>>>>>>> .r3009
-+
-+class ObjectWrapper : public CefBase
-+{
-+public:
-+	ObjectWrapper(void* data)
-+	{
-+		m_pData = data;
-+		m_RefCount = 1;
-+	}
-+
-+	void* getData()
-+	{
-+		return m_pData;
-+	}
-+
-+	virtual int AddRef()
-+	{
-+		m_RefCount++;
-+		return m_RefCount;
-+	}
-+
-+	virtual int Release()
-+	{
-+		m_RefCount--;
-+
-+		if (m_RefCount == 0)
-+			delete this;
-+
-+		return m_RefCount;
-+	}
-+
-+	virtual int GetRefCt()
-+	{
-+		return m_RefCount;
-+	}
-+
-+private:
-+	int m_RefCount;
-+	void* m_pData;
-+};
-+
-+class JavaScriptFactory : public ChromiumDLL::JavaScriptFactoryI
-+{
-+public:
-+	JavaScriptFactory();
-+	~JavaScriptFactory();
-+
-+	virtual ChromiumDLL::JSObjHandle CreateUndefined();
-+	virtual ChromiumDLL::JSObjHandle CreateNull();
-+	virtual ChromiumDLL::JSObjHandle CreateBool(bool value);
-+	virtual ChromiumDLL::JSObjHandle CreateInt(int value);
-+	virtual ChromiumDLL::JSObjHandle CreateDouble(double value);
-+	virtual ChromiumDLL::JSObjHandle CreateString(const char* value);
-+	virtual ChromiumDLL::JSObjHandle CreateArray();
-+	virtual ChromiumDLL::JSObjHandle CreateObject();
-+	virtual ChromiumDLL::JSObjHandle CreateObject(void* userData);
-+	virtual ChromiumDLL::JSObjHandle CreateFunction(const char* name, ChromiumDLL::JavaScriptExtenderI* handler);
-+};
-+
-+ChromiumDLL::JavaScriptFactoryI* GetJSFactory();
-+
-+#endif //DESURA_JAVASCRIPTFACTORY_H
 diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptObject.cpp cef/cef_desura/JavaScriptObject.cpp
 --- cef_desura/JavaScriptObject.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/JavaScriptObject.cpp	2012-05-09 11:32:01.268658243 +0200
@@ -4321,15 +4232,6 @@ diff '--exclude=.svn' -aurN cef.ori/include/cef_capi.h cef/include/cef_capi.h
 diff '--exclude=.svn' -aurN cef.ori/include/cef.h cef/include/cef.h
 --- include/cef.h	2012-05-09 11:27:17.735674278 +0200
 +++ include/cef.h	2012-05-09 11:32:01.269658243 +0200
-@@ -38,6 +38,8 @@
- #ifndef _CEF_H
- #define _CEF_H
- 
-+//#define IGNORE_DESURA //if compiling cefclient uncomment this
-+
- #include <map>
- #include <string>
- #include <vector>
 @@ -119,6 +121,10 @@
  /*--cef()--*/
  void CefRunMessageLoop();
@@ -4494,14 +4396,6 @@ diff '--exclude=.svn' -aurN cef.ori/include/internal/cef_string.h cef/include/in
 diff '--exclude=.svn' -aurN cef.ori/include/internal/cef_types.h cef/include/internal/cef_types.h
 --- include/internal/cef_types.h	2012-05-09 11:27:17.742674276 +0200
 +++ include/internal/cef_types.h	2012-05-09 11:32:01.610658223 +0200
-@@ -578,6 +578,7 @@
-   V8_ACCESS_CONTROL_PROHIBITS_OVERWRITING = 1 << 2
- };
- 
-+
- ///
- // V8 property attribute values.
- ///
 @@ -590,6 +591,26 @@
    V8_PROPERTY_ATTRIBUTE_DONTDELETE = 1 << 2   // Not configurable
  };
@@ -5656,16 +5550,6 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webview_delegate_gtk.cc cef/l
      gtk_window_get_position(GTK_WINDOW(window), &x, &y);
      gtk_window_get_size(GTK_WINDOW(window), &width, &height);
      return WebRect(x, y, width, height);
-@@ -182,8 +524,8 @@
-     WebDragOperationsMask mask,
-     const WebImage& image,
-     const WebPoint& image_offset) {
--  // TODO(port): Support drag and drop.
-   browser_->UIT_GetWebView()->dragSourceSystemDragEnded();
-+//  NOTIMPLEMENTED();
- }
- 
- void BrowserWebViewDelegate::runModal() {
 @@ -226,13 +568,23 @@
  
  void BrowserWebViewDelegate::ShowJavaScriptAlert(
@@ -6286,15 +6170,6 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/webview_host_win.cc cef/libcef/webvie
 diff '--exclude=.svn' -aurN cef.ori/libcef/webwidget_host_gtk.cc cef/libcef/webwidget_host_gtk.cc
 --- libcef/webwidget_host_gtk.cc	2012-05-09 11:27:19.078674202 +0200
 +++ libcef/webwidget_host_gtk.cc	2012-05-09 11:32:01.635658222 +0200
-@@ -13,6 +13,8 @@
- #include "skia/ext/bitmap_platform_device.h"
- #include "skia/ext/platform_canvas.h"
- #include "skia/ext/platform_device.h"
-+//#include "chrome/browser/ui/gtk/gtk_util.h"
-+//#include "ui/gfx/gtk_preserve_window.h"
- #include "third_party/WebKit/Source/WebKit/chromium/public/gtk/WebInputEventFactory.h"
- #include "third_party/WebKit/Source/WebKit/chromium/public/x11/WebScreenInfoFactory.h"
- #include "third_party/WebKit/Source/WebKit/chromium/public/WebInputEvent.h"
 @@ -20,6 +22,11 @@
  #include "third_party/WebKit/Source/WebKit/chromium/public/WebScreenInfo.h"
  #include "third_party/WebKit/Source/WebKit/chromium/public/WebSize.h"
@@ -6405,20 +6280,6 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/webwidget_host_gtk.cc cef/libcef/webw
    }
  
   private:
-@@ -260,13 +350,11 @@
-   DISALLOW_IMPLICIT_CONSTRUCTORS(WebWidgetHostGtkWidget);
- };
- 
--// Return an Xlib Display pointer for the given widget.
- Display* GtkWidgetGetDisplay(GtkWidget* widget) {
-   GdkDisplay* gdk_display = gtk_widget_get_display(widget);
-   return gdk_x11_display_get_xdisplay(gdk_display);
- }
- 
--// Return the screen number for the given widget.
- int GtkWidgetGetScreenNum(GtkWidget* widget) {
-   GdkDisplay* gdk_display = gtk_widget_get_display(widget);
-   GdkScreen* gdk_screen = gdk_display_get_default_screen(gdk_display);
 @@ -286,12 +374,35 @@
  WebWidgetHost* WebWidgetHost::Create(GtkWidget* parent_view,
                                       WebWidgetClient* client,
@@ -7684,182 +7545,6 @@ diff '--exclude=.svn' -aurN cef.ori/tests/cefclient/cefclient_gtk.cpp cef/tests/
 +
 +std::string AppGetWorkingDirectory() {
 +    return szWorkingDir;
-+}
-diff '--exclude=.svn' -aurN cef.ori/tests/gtkclient/cefclient_gtk.cpp cef/tests/gtkclient/cefclient_gtk.cpp
---- tests/gtkclient/cefclient_gtk.cpp	1970-01-01 01:00:00.000000000 +0100
-+++ tests/gtkclient/cefclient_gtk.cpp	2012-05-09 11:32:01.701658216 +0200
-@@ -0,0 +1,172 @@
-+#include <unistd.h>
-+#include <gtk/gtk.h>
-+#include "ChromiumBrowserI.h"
-+#include "SharedObjectLoader.h"
-+
-+#define TEST_SINGLE_THREADED_MESSAGE_LOOP
-+#define MAX_PATH 1024
-+char szWorkingDir[MAX_PATH];   // The current working directory
-+
-+GtkWidget* g_pWindow = NULL; 
-+GtkWidget* g_pEditWnd = NULL;
-+
-+static gboolean delete_event(GtkWidget *widget, GdkEvent *event, gpointer data)
-+{
-+    return FALSE;
-+}
-+
-+static void destroy(GtkWidget *widget, gpointer data)
-+{
-+    gtk_main_quit();
-+}
-+typedef bool (*CEF_InitFn)(bool, const char*, const char*, const char*);
-+typedef void (*CEF_StopFn)();
-+
-+typedef void (*CEF_DeleteCookieFn)(const char*, const char*);
-+typedef ChromiumDLL::CookieI* (*CEF_CreateCookieFn)();
-+typedef void (*CEF_SetCookieFn)(const char* ulr, ChromiumDLL::CookieI*);
-+typedef ChromiumDLL::ChromiumBrowserI* (*CEF_NewChromiumBrowserFn)(int*, const char *,  const char*);
-+
-+typedef void (*CEF_DoWorkFn)();
-+
-+bool g_bLoaded = false;
-+SharedObjectLoader g_CEFDll;
-+
-+CEF_InitFn CEF_Init = NULL;
-+CEF_StopFn CEF_Stop = NULL;
-+CEF_DeleteCookieFn CEF_DeleteCookie = NULL;
-+CEF_CreateCookieFn CEF_CreateCookie = NULL;
-+CEF_SetCookieFn CEF_SetCookie = NULL;
-+CEF_NewChromiumBrowserFn CEF_NewChromiumBrowser = NULL;
-+CEF_DoWorkFn CEF_DoWork = NULL;
-+
-+void UnloadCEFDll()
-+{
-+	CEF_Init = NULL;
-+	CEF_Stop = NULL;
-+	CEF_DeleteCookie = NULL;
-+	CEF_CreateCookie = NULL;
-+	CEF_SetCookie = NULL;
-+	CEF_NewChromiumBrowser = NULL;
-+
-+	g_CEFDll.unload();
-+}
-+
-+bool LoadCEFDll()
-+{
-+	if (!g_CEFDll.load("libcef_desura.so"))
-+	{
-+		printf("Failed to load so\n");
-+		return false;
-+	}
-+
-+	CEF_Init = g_CEFDll.getFunction<CEF_InitFn>("CEF_Init");
-+	CEF_Stop = g_CEFDll.getFunction<CEF_StopFn>("CEF_Stop");
-+	CEF_DeleteCookie = g_CEFDll.getFunction<CEF_DeleteCookieFn>("CEF_DeleteCookie");
-+	CEF_CreateCookie = g_CEFDll.getFunction<CEF_CreateCookieFn>("CEF_CreateCookie");
-+	CEF_SetCookie = g_CEFDll.getFunction<CEF_SetCookieFn>("CEF_SetCookie");
-+	CEF_NewChromiumBrowser = g_CEFDll.getFunction<CEF_NewChromiumBrowserFn>("CEF_NewChromiumBrowser");
-+
-+	CEF_DoWork = g_CEFDll.getFunction<CEF_DoWorkFn>("CEF_DoMsgLoop");
-+
-+	if (g_CEFDll.hasFailed())
-+	{
-+		printf("Failed to load functions\n");
-+		UnloadCEFDll();
-+		return false;
-+	}
-+
-+	return true;
-+}
-+
-+bool InitWebControl()
-+{
-+	if (g_bLoaded)
-+		return true;
-+
-+	if (!LoadCEFDll())
-+	{
-+		printf("Failed to load cef dll\n");
-+		return false;
-+	}
-+
-+	if (!CEF_Init(false, "", "", "Chrome Test"))
-+	{
-+		printf("Failed to init cef\n");
-+		return false;
-+	}
-+
-+	g_bLoaded = true;
-+	return true;
-+}
-+
-+void ShutdownWebControl()
-+{
-+	g_bLoaded = false;
-+
-+	if (CEF_Stop)
-+		CEF_Stop();
-+
-+	UnloadCEFDll();
-+}
-+
-+
-+bool LoadBinaryResource(const char* name, int &size, unsigned char* buff)
-+{
-+	size = 0;
-+	buff = NULL;
-+	printf("Need to implement Load BinaryResource for item: %s\n", name);
-+
-+
-+	return false;
-+} 
-+
-+ChromiumDLL::ChromiumBrowserI* NewChromiumBrowser(int* gtkWidget, const char* name, const char* loadUrl)
-+{
-+	if (!g_bLoaded && !InitWebControl())
-+	{
-+		printf("Failed to load web control: %s\n", dlerror());
-+		return NULL;
-+	}
-+
-+	return CEF_NewChromiumBrowser(gtkWidget, name, loadUrl);
-+}
-+
-+int main(int argc, char *argv[])
-+{
-+    gtk_init(&argc, &argv);
-+    
-+	if(getcwd(szWorkingDir, MAX_PATH) == NULL)
-+		szWorkingDir[0] = 0;
-+
-+	InitWebControl();
-+
-+    g_pWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-+	gtk_window_set_title(GTK_WINDOW(g_pWindow), "CEF Test");
-+	gtk_window_set_default_size(GTK_WINDOW(g_pWindow), 800, 600);
-+    gtk_container_set_border_width(GTK_CONTAINER(g_pWindow), 10);
-+
-+	GtkWidget* vbox = gtk_vbox_new(FALSE, 0);
-+
-+
-+	gtk_container_add(GTK_CONTAINER(g_pWindow), vbox);
-+	gtk_widget_show_all(GTK_WIDGET(g_pWindow));
-+
-+    g_signal_connect(g_pWindow, "delete-event", G_CALLBACK(delete_event), NULL);
-+    g_signal_connect(g_pWindow, "destroy", G_CALLBACK(destroy), NULL);
-+
-+	NewChromiumBrowser((int*)vbox, "", "https://encrypted.google.com");
-+
-+    gtk_widget_show(g_pWindow);
-+
-+	while (gtk_main_iteration_do(false))
-+	{
-+		CEF_DoWork();
-+	}
-+
-+
-+	// Shut down the CEF
-+	CEF_Stop();
-+    
-+    return 0;
 +}
 diff '--exclude=.svn' -aurN cef.ori/tools/gclient_hook.py cef/tools/gclient_hook.py
 --- tools/gclient_hook.py	2012-05-09 11:27:16.865674327 +0200

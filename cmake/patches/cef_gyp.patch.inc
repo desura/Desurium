@@ -115,7 +115,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
            'sources': [
              'include/internal/cef_types_linux.h',
              'include/internal/cef_linux.h',
-@@ -818,8 +875,209 @@
+@@ -818,8 +875,184 @@
              'libcef/webview_host_gtk.cc',
              'libcef/webwidget_host_gtk.cc',
            ],
@@ -300,29 +300,4 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
 +      ],
 +    },
 +  ],
-+	'conditions' : [
-+		[ 'OS=="linux" or OS=="freebsd" or OS=="openbsd"', {
-+			'targets' : [
-+			{
-+				'target_name': 'gtkclient',
-+				'type': 'executable',
-+				'msvs_guid': '0330D7E8-22A6-827F-D2D3-7660A75E73E1',
-+				'dependencies': [
-+					'cef_desura',
-+					'<(DEPTH)/build/linux/system.gyp:gtk',
-+					'<(DEPTH)/tools/xdisplaycheck/xdisplaycheck.gyp:xdisplaycheck',
-+					'../build/linux/system.gyp:gtk',
-+				],
-+				'include_dirs' : [
-+					'cef_desura_includes',
-+				],
-+				'defines': [
-+					'NIX',
-+				],
-+				'sources': [
-+					'tests/gtkclient/cefclient_gtk.cpp',
-+				],		
-+			}] 
-+		}],
-+	],
  }
