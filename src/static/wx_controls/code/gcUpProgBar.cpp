@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 
 
-gcULProgressBar::gcULProgressBar(wxWindow *parent, int id) : gcProgressBar(parent, id)
+gcULProgressBar::gcULProgressBar(wxWindow *parent, int id) : gcProgressBar(parent, id, wxDefaultPosition, wxSize( -1,22 ))
 {
 	m_uiLastMS = 0;
 }
