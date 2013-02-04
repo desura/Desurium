@@ -159,24 +159,6 @@ if(NOT BUILD_ONLY_CEF)
   if(NOT FORCE_BUNDLED_WXGTK)
     find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
   endif()
-  if(wxWidgets_FOUND)
-    try_compile(
-      WXWIDGET_2_9_TEST_COMPILE
-      "${CMAKE_TEST_PROJECTS_BIN}/wxWidget_2.9_test"
-      "${CMAKE_TEST_PROJECTS}/wxWidget_2.9_test"
-      "wxWidget_2_9_test"
-      "wxWidget_2_9_test"
-      CMAKE_FLAGS
-      "-DwxWidgets_CONFIG_EXECUTABLE=${wxWidgets_CONFIG_EXECUTABLE}"
-      "-DwxWidgets_wxrc_EXECUTABLE=${wxWidgets_wxrc_EXECUTABLE}")
-    if(NOT WXWIDGET_2_9_TEST_COMPILE)
-      message(STATUS "no working wxWidgets-2.9.3 found")
-      unset(wxWidgets_FOUND)
-      if(REQUIRED_IF_OPTION)
-        message(FATAL_ERROR "no wxWidget-2.9.3 found")
-      endif()
-    endif()
-  endif()
 endif()
 
 find_package(PythonInterp REQUIRED)
