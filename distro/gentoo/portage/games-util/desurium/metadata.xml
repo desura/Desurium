@@ -10,6 +10,7 @@
   </longdescription>
   <use>
     <flag name="32bit">add support for 32bit games in desurium</flag>
+    <flag name="bundled-wxgtk>build own wxGTK+-2.9.3 (recommended)</flag>
     <flag name="games-deps">RUNTIME USE FLAG install known dependencies of games in desura</flag>
     <flag name="tools">install useful tools e.g. uploader</flag>
   </use>
