@@ -1,8 +1,14 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
+Version=1.0
 Name=Desurium
+GenericName=Game Manager
 Type=Application
 Comment=Free software version of Desura game client
 Exec=@BIN_INSOURCE_DIR@/desura
 TryExec=@BIN_INSOURCE_DIR@/desura
+MimeType=x-scheme-handler/desura;
 Icon=@DATA_INSOURCE_DIR@/desura.png
+Terminal=false
 Categories=Game;
+StartupNotify=false
