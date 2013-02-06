@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 
 unset GIT_ECLASS
 
@@ -76,7 +76,7 @@ COMMON_DEPEND="
 	    >=dev-libs/tinyxml-2.6.2-r2
 	)
 
-	dev-lang/v8
+	<dev-lang/v8-3.16.5:=
 	|| (
 		net-misc/curl[adns]
 		net-misc/curl[ares]

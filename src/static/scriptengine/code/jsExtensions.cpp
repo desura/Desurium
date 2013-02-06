@@ -212,7 +212,7 @@ public:
 		v8::Local<v8::String> key = v8::String::New("ScriptCore::UserData");
 
 		if(obj->Has(key))
-			return v8::External::Unwrap(obj->Get(key));
+			return v8::External::Cast(*(obj->Get(key)))->Value();
 
 		return NULL;
 	}
@@ -290,7 +290,7 @@ public:
 	{
 		v8::HandleScope handle_scope;
 		v8::Local<v8::Object> obj = v8::Object::New();
-		v8::Local<v8::Value> data = v8::External::Wrap(userData);
+		v8::Local<v8::Value> data = v8::External::New(userData);
 
 		obj->Set(v8::String::New("ScriptCore::UserData"), data);
 
@@ -339,7 +339,7 @@ public:
 	static v8::Handle<v8::Value> FunctionCallbackImpl(const v8::Arguments& args)
 	{
 		v8::HandleScope handle_scope;
-		JSExtension* handler = static_cast<JSExtension*>(v8::External::Unwrap(args.Data()));
+		JSExtension* handler = static_cast<JSExtension*>(v8::External::Cast(*(args.Data()))->Value());
 
 		ChromiumDLL::JSObjHandle* argv = new ChromiumDLL::JSObjHandle[args.Length()];
 
