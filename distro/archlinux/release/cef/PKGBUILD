@@ -2,7 +2,7 @@
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-cef
-pkgver=0.8.0_rc4
+pkgver=0.8.0_rc5
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
