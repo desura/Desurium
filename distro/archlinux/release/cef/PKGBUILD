@@ -70,8 +70,7 @@ package() {
   make DESTDIR="$pkgdir/" install
 
   msg "Compiling done"
-  
-  rm ${pkgdir}/usr/lib/desura/libwx_gtk2u_desura-2.9.so.3 # ugly hack to avoid file conflicts
+
 }
 
 # vim:set ts=2 sw=2 et:
