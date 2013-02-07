@@ -59,7 +59,7 @@
 #ifdef NIX32
 const NPW_PluginInfo NPW_PluginDesura = {
   NPW_PLUGIN_IDENT,
-  "libflashplayer.so",
+  "/usr/lib32/nsbrowser/plugins/libflashplayer.so",
   0,
   "",
   "",
@@ -69,7 +69,7 @@ const NPW_PluginInfo NPW_PluginDesura = {
 #else
 const NPW_PluginInfo NPW_PluginDesura = {
   NPW_PLUGIN_IDENT,
-  "libflashplayer.so",
+  "/usr/lib64/nsbrowser/plugins/libflashplayer.so",
   0,
   "",
   "",
