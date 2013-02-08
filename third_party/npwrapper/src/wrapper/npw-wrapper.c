@@ -54,35 +54,65 @@
 // (i.e. not running through npviewer.bin)
 #define ALLOW_DIRECT_EXECUTION 1
 
+#ifndef FLASH_FALLBACK_PATH
+#define FLASH_FALLBACK_PATH ""
+#endif
 
 // Globally exported plugin ident, used by the "npconfig" tool
 #ifdef NIX32
 const NPW_PluginInfo NPW_PluginDesura = {
   NPW_PLUGIN_IDENT,
-  "libflashplayer_32_chrome.so",
+  "libflashplayer.so",
   0,
   "",
   "",
   NPW_PLUGIN_INFO_VERSION,
-  "./bin/desura_flashhost_32"
+  "desura_flashhost"
 };
+#define ARCH_LIB lib32
 #else
 const NPW_PluginInfo NPW_PluginDesura = {
   NPW_PLUGIN_IDENT,
-  "libflashplayer_64.so",
+  "libflashplayer.so",
   0,
   "",
   "",
   NPW_PLUGIN_INFO_VERSION,
-  "./bin/desura_flashhost_64"
+  "desura_flashhost"
 };
+#define ARCH_LIB "lib64"
 #endif
-
-// Path to plugin to use
-static const char *plugin_path = NPW_PluginDesura.path;
+const char *flashPluginPaths[] = {
+  FLASH_FALLBACK_PATH,
+  "/usr/" ARCH_LIB "/nsbrowser/plugins/libflashplayer.so",
+  "/usr/" ARCH_LIB "/adobe-flashplugin/libflashplayer.so",
+  "/usr/" ARCH_LIB "/mozilla/plugins/libflashplayer.so",
+};
 
 // Path to associated plugin viewer
 static const char *plugin_viewer_path = NPW_PluginDesura.viewer_path;
+
+static const char *getPluginPath()
+{
+  static const char *plugin_path = NULL;
+
+  if (plugin_path == NULL)
+  {
+    for (int i = 0; i < sizeof(flashPluginPaths) / sizeof(const char); i++)
+    {
+      FILE *file;
+      if ((file = fopen(flashPluginPaths[i], "r")) != NULL)
+      {
+        fclose(file);
+        plugin_path = flashPluginPaths[i];
+        return plugin_path;
+      }
+      plugin_path = "";
+    }
+  }
+
+  return plugin_path;
+}
 
 // Netscape exported functions
 static NPNetscapeFuncs mozilla_funcs;
@@ -278,7 +308,7 @@ static bool plugin_load_native(void)
 {
   void *handle;
   const char *error;
-  if ((handle = dlopen(plugin_path, RTLD_LOCAL|RTLD_LAZY)) == NULL) {
+  if ((handle = dlopen(getPluginPath(), RTLD_LOCAL|RTLD_LAZY)) == NULL) {
 	npw_printf("ERROR: %s\n", dlerror());
 	return false;
   }
@@ -3791,7 +3821,7 @@ NP_Shutdown(void)
 
 static bool plugin_init_info()
 {
-	char *command = g_strdup_printf("%s --info --plugin %s", plugin_viewer_path, plugin_path);
+	char *command = g_strdup_printf("%s --info --plugin %s", plugin_viewer_path, getPluginPath());
 	D(bug("command [%s]\n", command));
 	
 	FILE *viewer_fp = popen(command, "r");
@@ -3851,9 +3881,9 @@ static void plugin_init(int is_NP_Initialize)
 
   g_plugin.initialized = -1;
 
-  D(bug("plugin_init for %s [%s]\n", plugin_path, NPW_DEFAULT_PLUGIN_PATH));
+  D(bug("plugin_init for %s [%s]\n", getPluginPath(), NPW_DEFAULT_PLUGIN_PATH));
   
-  if (strcmp(plugin_path, NPW_DEFAULT_PLUGIN_PATH) == 0) {
+  if (strcmp(getPluginPath(), NPW_DEFAULT_PLUGIN_PATH) == 0) {
 	g_plugin.is_wrapper = 1;
 	g_plugin.initialized = 1 + is_NP_Initialize;
 	return;
@@ -3867,10 +3897,10 @@ static void plugin_init(int is_NP_Initialize)
   static const char *plugin_file_name = NULL;
   if (plugin_file_name == NULL) {
 	  
-	plugin_file_name = plugin_path;
+	plugin_file_name = getPluginPath();
 	  
 	const char *p;
-	for (p = &plugin_path[strlen(plugin_path) - 1]; p > plugin_path; p--) {
+	for (p = &getPluginPath()[strlen(getPluginPath()) - 1]; p > getPluginPath(); p--) {
 	  if (*p == '/') {
 		plugin_file_name = p + 1;
 		break;
@@ -3907,7 +3937,7 @@ static void plugin_init(int is_NP_Initialize)
 
 	argv[argc++] = NPW_VIEWER;
 	argv[argc++] = "--plugin";
-	argv[argc++] = (char *)plugin_path;
+	argv[argc++] = (char *)getPluginPath();
 	argv[argc++] = "--connection";
 	argv[argc++] = connection_path;
 	argv[argc] = NULL;
