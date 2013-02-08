@@ -82,6 +82,7 @@ COMMON_DEPEND="
 	app-arch/bzip2
 	dev-db/sqlite
 	>=dev-libs/boost-1.47
+	dev-libs/glib:2
 	dev-libs/openssl:0
 
 	|| ( <dev-libs/tinyxml-2.6.2-r2[-stl]
@@ -97,6 +98,7 @@ COMMON_DEPEND="
 	virtual/pkgconfig
 	x11-libs/gtk+:2
 	x11-libs/libnotify
+	x11-libs/libXt
 	!bundled-wxgtk? (
 		=x11-libs/wxGTK-2.9.3.1[X]
 	)
@@ -107,6 +109,12 @@ COMMON_DEPEND="
 "
 
 RDEPEND="
+	x86? (
+		www-plugins/adobe-flash[32bit]
+	)
+	amd64? (
+		www-plugins/adobe-flash[64bit]
+	)
 	media-libs/desurium-cef
 	x11-misc/xdg-user-dirs
 	x11-misc/xdg-utils
