@@ -7,8 +7,28 @@ DATADIR=""
 
 
 case "$@" in
+
+	*clean* )
+		printf "Making clean...\n"
+		if [ -d "build" ] ; then
+			cd ./build/
+			make clean
+			cd ../
+		fi
+		if [ -d "build_cef" ] ; then
+			cd ./build_cef/
+			make clean
+			cd ../
+		fi
+		if [ -d install ] ; then
+			printf "Removing install directory...\n"
+			rm -rf install
+		fi
+		printf "Done\n"
+		exit
+		;;
 	*check* )
-		printf "'make check' will be called.\n"
+		echo "'make check' will be called."
 		args=`echo "$@" | sed -e 's/check//'`
 		check="true"
 		;;
