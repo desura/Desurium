@@ -82,11 +82,15 @@ const NPW_PluginInfo NPW_PluginDesura = {
 };
 #define ARCH_LIB "lib64"
 #endif
+// first search in lib32 and lib64
 const char *flashPluginPaths[] = {
   FLASH_FALLBACK_PATH,
   "/usr/" ARCH_LIB "/nsbrowser/plugins/libflashplayer.so",
   "/usr/" ARCH_LIB "/adobe-flashplugin/libflashplayer.so",
   "/usr/" ARCH_LIB "/mozilla/plugins/libflashplayer.so",
+  "/usr/lib/nsbrowser/plugins/libflashplayer.so",
+  "/usr/lib/adobe-flashplugin/libflashplayer.so",
+  "/usr/lib/mozilla/plugins/libflashplayer.so",
 };
 
 // Path to associated plugin viewer
