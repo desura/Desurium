@@ -97,4 +97,9 @@ case "$@" in
 		;;
 esac
 
-printf 'Run \033[1;31m./install/desura\033[0m to start Desura!\n'
+if [ -d "build" ] && [ -d "build_cef" ] && [ -d "install" ] ; then
+	printf 'Run \033[1;31m./install/desura\033[0m to start Desura!\n'
+else
+	echo "In order to run Desura, we need cef as well as desurium compiled."
+	echo "Please re-run the script to automatically compile both."
+fi
