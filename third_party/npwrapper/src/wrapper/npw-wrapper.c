@@ -69,7 +69,7 @@ const NPW_PluginInfo NPW_PluginDesura = {
   NPW_PLUGIN_INFO_VERSION,
   "desura_flashhost"
 };
-#define ARCH_LIB lib32
+#define ARCH_LIB "lib32"
 #else
 const NPW_PluginInfo NPW_PluginDesura = {
   NPW_PLUGIN_IDENT,
@@ -82,11 +82,23 @@ const NPW_PluginInfo NPW_PluginDesura = {
 };
 #define ARCH_LIB "lib64"
 #endif
+// first search in lib32 and lib64
 const char *flashPluginPaths[] = {
   FLASH_FALLBACK_PATH,
+  // gentoo
   "/usr/" ARCH_LIB "/nsbrowser/plugins/libflashplayer.so",
+  // arch
   "/usr/" ARCH_LIB "/adobe-flashplugin/libflashplayer.so",
+  // ubuntu
   "/usr/" ARCH_LIB "/mozilla/plugins/libflashplayer.so",
+  // ubuntu
+  "/usr/" ARCH_LIB "/flashplugin-installer/libflashplayer.so",
+
+  // for plain 32bit systems (same as above without 32/64 suffix)
+  "/usr/lib/nsbrowser/plugins/libflashplayer.so",
+  "/usr/lib/adobe-flashplugin/libflashplayer.so",
+  "/usr/lib/mozilla/plugins/libflashplayer.so",
+  "/usr/lib/flashplugin-installer/libflashplayer.so",
 };
 
 // Path to associated plugin viewer
