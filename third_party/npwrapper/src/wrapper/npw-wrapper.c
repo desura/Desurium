@@ -69,7 +69,7 @@ const NPW_PluginInfo NPW_PluginDesura = {
   NPW_PLUGIN_INFO_VERSION,
   "desura_flashhost"
 };
-#define ARCH_LIB lib32
+#define ARCH_LIB "lib32"
 #else
 const NPW_PluginInfo NPW_PluginDesura = {
   NPW_PLUGIN_IDENT,
