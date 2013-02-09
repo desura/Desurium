@@ -6,8 +6,28 @@ LIBDIR="lib"
 DATADIR=""
 
 
-case "$@" in
+compile_cef() {
+	if [ ! -d "build_cef" ] ; then
+		mkdir build_cef
+	fi
+	cd build_cef
+	cmake .. -DCMAKE_INSTALL_PREFIX=$PREFIX -DRUNTIME_LIBDIR=$LIBDIR -DBUILD_ONLY_CEF=ON || exit 1
+	make install $args || exit 2
+	cd -
+	printf "\n"
+	}
 
+compile_desurium() {
+	if [ ! -d "build" ] ; then
+		mkdir build
+	fi
+	cd build
+	cmake .. -DCMAKE_INSTALL_PREFIX=$PREFIX -DBINDIR=$BINDIR -DRUNTIME_LIBDIR=$LIBDIR -DDATADIR=$DATADIR -DBUILD_CEF=OFF || exit 3
+	make install $args || exit 4
+}
+
+
+case "$@" in
 	*clean* )
 		printf "Making clean...\n"
 		if [ -d "build" ] ; then
@@ -39,21 +59,9 @@ esac
 
 printf 'Make sure to run \033[1;31msudo ./install-deps.sh\033[0m before compiling!\n\n'
 printf 'We are compiling CEF first\n'
-if [ ! -d "build_cef" ] ; then
- mkdir build_cef
-fi
-cd build_cef
-cmake .. -DCMAKE_INSTALL_PREFIX=$PREFIX -DRUNTIME_LIBDIR=$LIBDIR -DBUILD_ONLY_CEF=ON || exit 1
-make install $args || exit 2
-cd -
-printf "\n"
+compile_cef
 printf 'Now we are compiling desurium\n'
-if [ ! -d "build" ] ; then
- mkdir build
-fi
-cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=$PREFIX -DBINDIR=$BINDIR -DRUNTIME_LIBDIR=$LIBDIR -DDATADIR=$DATADIR -DBUILD_CEF=OFF || exit 3
-make install $args || exit 4
+compile_desurium
 
 if [[ "$check" == "true" ]] ; then
 	printf "Running 'make check'\n"
