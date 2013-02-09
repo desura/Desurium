@@ -31,24 +31,48 @@ compile_desurium() {
 }
 
 
-case "$@" in
-	*clean* )
-		printf "Making clean...\n"
-		if [ -d "build" ] ; then
-			cd ./build/
-			make clean
-			cd ../
-		fi
+
+clean_cef() {
+		printf "Making clean for cef...\n"
 		if [ -d "build_cef" ] ; then
 			cd ./build_cef/
 			make clean
 			cd ../
 		fi
-		if [ -d install ] ; then
+		if [ ! -d "build" ] ; then
 			printf "Removing install directory...\n"
-			rm -rf install
+			rm -rf "install"
+		fi
+		echo "Done"
+}
+
+clean_desurium() {
+		printf "Making clean for desurium...\n"
+		if [ -d "build" ] ; then
+			cd ./build/
+			make clean
+			cd ../
+		fi
+		if [ ! -d "build_cef" ] ; then
+			printf "Removing install directory...\n"
+			rm -rf "install"
 		fi
 		printf "Done\n"
+}
+
+
+case "$@" in
+	"clean_cef" )
+		clean_cef
+		exit
+		;;
+	"clean_desurium" )
+		clean_desurium
+		exit
+		;;
+	"clean" )
+		clean_cef
+		clean_desurium
 		exit
 		;;
 	*check* )
