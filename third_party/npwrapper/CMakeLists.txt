@@ -23,6 +23,10 @@ file(GLOB HostSources
   src/host/npw-viewer.c
 )
 
+if(UNIX)
+  set(PLATFORM_LIBS dl)
+endif()
+
 if(64BIT)
   add_definitions(-DNIX64)
 else()
@@ -43,6 +47,8 @@ target_link_libraries(desura_flashhost
   ${CMAKE_THREAD_LIBS_INIT}
   ${GTK2_LIBRARIES}
   ${X11_Xt_LIB}
+  ${X11_X11_LIB}
+  ${PLATFORM_LIBS}
 )
 
 install(TARGETS desura_flashwrapper
