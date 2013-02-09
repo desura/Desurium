@@ -5819,7 +5819,7 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/cef_context.cc cef/libcef/cef_context
 diff '--exclude=.svn' -aurN cef.ori/libcef/cef_paths.cc cef/libcef/cef_paths.cc
 --- libcef/cef_paths.cc	1970-01-01 01:00:00.000000000 +0100
 +++ libcef/cef_paths.cc	2012-05-09 11:32:01.629658221 +0200
-@@ -0,0 +1,68 @@
+@@ -0,0 +1,65 @@
 +// Copyright (c) 2006-2010 The Chromium Authors. All rights reserved.
 +// Use of this source code is governed by a BSD-style license that can be
 +// found in the LICENSE file.
@@ -5859,9 +5859,6 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/cef_paths.cc cef/libcef/cef_paths.cc
 +  // The rest of the world expects plugins in the module directory.
 +
 +  bool res = PathService::Get(base::DIR_MODULE, result);
-+#ifdef OS_LINUX
-+  *result = result->Append("../lib");
-+#endif
 +  return res;
 +}
 +
