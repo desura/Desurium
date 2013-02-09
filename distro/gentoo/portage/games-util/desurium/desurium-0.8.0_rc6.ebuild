@@ -115,7 +115,7 @@ RDEPEND="
 	amd64? (
 		www-plugins/adobe-flash[64bit]
 	)
-	media-libs/desurium-cef
+	>=media-libs/desurium-cef-3
 	x11-misc/xdg-user-dirs
 	x11-misc/xdg-utils
 	${COMMON_DEPEND}
