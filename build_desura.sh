@@ -1,4 +1,6 @@
 #!/bin/sh
+printf 'Make sure to run \033[1;31msudo ./install-deps.sh\033[0m before compiling!\n\n'
+
 
 PREFIX="../install"
 BINDIR=""
@@ -7,17 +9,19 @@ DATADIR=""
 
 
 compile_cef() {
+	printf 'We are compiling CEF first\n'
 	if [ ! -d "build_cef" ] ; then
 		mkdir build_cef
 	fi
 	cd build_cef
 	cmake .. -DCMAKE_INSTALL_PREFIX=$PREFIX -DRUNTIME_LIBDIR=$LIBDIR -DBUILD_ONLY_CEF=ON || exit 1
 	make install $args || exit 2
-	cd -
+	cd ../
 	printf "\n"
 	}
 
 compile_desurium() {
+	printf 'Now we are compiling desurium\n'
 	if [ ! -d "build" ] ; then
 		mkdir build
 	fi
@@ -57,10 +61,7 @@ case "$@" in
 		;;
 esac
 
-printf 'Make sure to run \033[1;31msudo ./install-deps.sh\033[0m before compiling!\n\n'
-printf 'We are compiling CEF first\n'
 compile_cef
-printf 'Now we are compiling desurium\n'
 compile_desurium
 
 if [[ "$check" == "true" ]] ; then
