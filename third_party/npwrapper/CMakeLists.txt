@@ -40,6 +40,7 @@ add_executable(desura_flashhost ${CommonSources} ${HostSources})
 set_target_properties(desura_flashhost PROPERTIES COMPILE_DEFINITIONS BUILD_VIEWER)
 target_link_libraries(desura_flashhost
   ${GTHREAD2_LIBRARIES}
+  ${CMAKE_THREAD_LIBS_INIT}
   ${GTK2_LIBRARIES}
   ${X11_Xt_LIB}
 )
