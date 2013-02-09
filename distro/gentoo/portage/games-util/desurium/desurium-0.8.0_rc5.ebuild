@@ -81,7 +81,7 @@ GAMESDEPEND="
 COMMON_DEPEND="
 	app-arch/bzip2
 	dev-db/sqlite
-	>=dev-libs/boost-1.47
+	>=dev-libs/boost-1.47:=
 	dev-libs/openssl:0
 
 	|| ( <dev-libs/tinyxml-2.6.2-r2[-stl]
