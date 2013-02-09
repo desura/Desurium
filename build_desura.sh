@@ -62,6 +62,12 @@ clean_desurium() {
 
 
 case "$@" in
+	"compile_desurium" )
+		compile_desurium
+		;;
+	"compile_cef" )
+		compile_cef
+		;;
 	"clean_cef" )
 		clean_cef
 		exit
@@ -78,19 +84,17 @@ case "$@" in
 	*check* )
 		echo "'make check' will be called."
 		args=`echo "$@" | sed -e 's/check//'`
-		check="true"
+		compile_cef
+		compile_desurium
+		printf "Running 'make check'\n"
+		# already in /build
+		make test
 		;;
 	* )
 		args=$@
+		compile_cef
+		compile_desurium
 		;;
 esac
 
-compile_cef
-compile_desurium
-
-if [[ "$check" == "true" ]] ; then
-	printf "Running 'make check'\n"
-	# already in /build
-	make test
-fi
 printf 'Run \033[1;31m./install/desura\033[0m to start Desura!\n'
