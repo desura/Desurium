@@ -9,7 +9,6 @@ DATADIR=""
 
 
 compile_cef() {
-	printf 'We are compiling CEF first\n'
 	if [ ! -d "build_cef" ] ; then
 		mkdir build_cef
 	fi
@@ -21,7 +20,6 @@ compile_cef() {
 	}
 
 compile_desurium() {
-	printf 'Now we are compiling desurium\n'
 	if [ ! -d "build" ] ; then
 		mkdir build
 	fi
@@ -62,11 +60,13 @@ clean_desurium() {
 
 
 case "$@" in
-	"compile_desurium" )
-		compile_desurium
+	*compile_desurium* )
+		args=`echo "$@" | sed -e 's/compile_desurium//'`
+		compile_desurium || exit
 		;;
-	"compile_cef" )
-		compile_cef
+	*compile_cef* )
+		args=`echo "$@" | sed -e 's/compile_cef//'`
+		compile_cef || exit
 		;;
 	"clean_cef" )
 		clean_cef
@@ -92,7 +92,9 @@ case "$@" in
 		;;
 	* )
 		args=$@
+		printf 'We are compiling CEF first\n'
 		compile_cef
+		printf 'Now we are compiling desurium\n'
 		compile_desurium
 		;;
 esac
