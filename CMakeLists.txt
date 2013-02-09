@@ -247,7 +247,7 @@ else()
   unset(DEPOT_TOOLS_MD5)
 endif()
 
-set(WXWIDGET_URL_DEFAULT ftp://ftp.wxwidgets.org/pub/2.9.3/wxWidgets-2.9.3.tar.bz2)
+set(WXWIDGET_URL_DEFAULT http://garr.dl.sourceforge.net/project/wxwindows/2.9.3/wxWidgets-2.9.3.tar.bz2)
 set(WXWIDGET_URL ${WXWIDGET_URL_DEFAULT}
     CACHE STRING "URL to wxWidget 2.9.3 archive")
 if(WXWIDGET_URL STREQUAL WXWIDGET_URL_DEFAULT)
