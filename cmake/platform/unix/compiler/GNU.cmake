@@ -4,7 +4,7 @@ add_compiler_flags(DEBUG -fno-omit-frame-pointer -g3)
 add_compiler_flags(RELEASE -O2)
 add_compiler_flags(CXX -fpermissive -std=c++0x)
 
-add_linker_flags(-Bsymbolic-functions -lpthread)
+add_linker_flags(-Wl,--as-needed -Bsymbolic-functions -lpthread)
 if(DEBUG)
   add_linker_flags(-rdynamic)
 endif()
