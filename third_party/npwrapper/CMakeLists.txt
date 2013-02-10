@@ -37,7 +37,7 @@ add_definitions(-std=c99)
 add_library(desura_flashwrapper SHARED ${CommonSources} ${WrapperSources})
 set_target_properties(desura_flashwrapper PROPERTIES COMPILE_DEFINITIONS BUILD_WRAPPER)
 target_link_libraries(desura_flashwrapper
-    ${SQLITE_LIBRARIES}
+    ${GLIB2_LIBRARIES}
 )
 
 add_executable(desura_flashhost ${CommonSources} ${HostSources})
