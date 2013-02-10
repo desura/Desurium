@@ -9,7 +9,7 @@ DATADIR=""
 
 
 compile_cef() {
-	#args=`echo "$@" | sed -e 's/compile_cef//'`
+	echo "Compiling cef..."
 	if [ ! -d "build_cef" ] ; then
 		mkdir build_cef
 	fi
@@ -21,7 +21,7 @@ compile_cef() {
 }
 
 compile_desurium() {
-	#args=`echo "$@" | sed -e 's/compile_desurium//'`
+	echo "Compiling desurium..."
 	if [ ! -d "build" ] ; then
 		mkdir build
 	fi
@@ -31,28 +31,28 @@ compile_desurium() {
 }
 
 clean_cef() {
-	printf "Making clean for cef...\n"
+	echo "Making clean for cef..."
 	if [ -d "build_cef" ] ; then
 		cd ./build_cef/
 		make clean
 		cd ../
 	fi
 	if [ ! -d "build" ] ; then
-		printf "Removing install directory...\n"
+		echo "Removing install directory..."
 		rm -rf "install"
 	fi
 	echo "Done"
 }
 
 clean_desurium() {
-	printf "Making clean for desurium...\n"
+	echo "Making clean for desurium..."
 	if [ -d "build" ] ; then
 		cd ./build/
 		make clean
 		cd ../
 	fi
 	if [ ! -d "build_cef" ] ; then
-		printf "Removing install directory...\n"
+		echo "Removing install directory..."
 		rm -rf "install"
 	fi
 	printf "Done\n"
@@ -60,24 +60,38 @@ clean_desurium() {
 
 
 case "$@" in
+	"help" )
+		echo "\"desurium\" refers to the actual client."
+		echo "\"cef\" is Chormium Embedded Framework, a runtime dependency."
+		echo "\"all\" refers to both."
+		echo ""
+		echo "\"rebuild\" performs make clean and rebuild the respective targets."
+		echo "\"compile\" compiles the respective target."
+		echo "\"clean\" performs make clean for the respective target."
+		echo ""
+		echo "\"check\" performs make check for desurium."
+		echo ""
+		echo "\"help\" displays this text."
+		echo ""
+		echo "Everything but \"help\" and the \"clean\" commands accept arguments."
+		echo "Example:      ./build_desura.sh rebuild_all -j `getconf _NPROCESSORS_ONLN`"
+		finished="nope"
+		;;
 	*rebuild_all* )
 		args=`echo "$@" | sed -e 's/rebuild_all//'`
-		clean
-		printf 'We are compiling CEF first...\n'
+		clean_cef
+		clean_desurium
 		compile_cef
-		printf 'Now we are compiling desurium...\n'
 		compile_desurium
 		;;
 	*rebuild_cef* )
 		args=`echo "$@" | sed -e 's/rebuild_cef//'`
 		clean_cef
-		echo "Compiling cef..."
 		compile_cef || exit 1
 		;;
 	*rebuild_desurium* )
 		args=`echo "$@" | sed -e 's/rebuild_desurium//'`
 		clean_desurium
-		echo "Compiling desurium..."
 		compile_desurium || exit 2
 		;;
 	*compile_desurium* )
@@ -96,7 +110,7 @@ case "$@" in
 		clean_desurium
 		exit
 		;;
-	"clean" )
+	"clean_all" )
 		clean_cef
 		clean_desurium
 		exit
@@ -112,16 +126,17 @@ case "$@" in
 		;;
 	* )
 		args=$@
-		printf 'We are compiling CEF first...\n'
 		compile_cef
-		printf 'Now we are compiling desurium...\n'
 		compile_desurium
 		;;
 esac
+
 cd "${initial_dir}"
-if [ -d "build" ] && [ -d "build_cef" ] && [ -d "install" ] ; then
+
+if [ -d "build" ] && [ -d "build_cef" ] && [ -d "install" ] && [ -z $finished ] ; then
 	printf 'Run \033[1;31m./install/desura\033[0m to start Desura!\n'
-else
+elif [ -z $finished ] ; then
+	echo ""
 	echo "In order to run Desura, we need cef as well as desurium compiled."
 	echo "Please re-run the script to automatically compile both."
 fi
