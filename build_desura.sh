@@ -37,10 +37,12 @@ clean_cef() {
 		make clean
 		cd ../
 	fi
-	if [ ! -d "build" ] ; then
+	if [ -d "build" ] ; then # desurium has been build
+		find install/ -type f -iname libcef_desura.so -delete # remove only cef lib
+	else # desurium has not been build, there are only cef related files in /install
 		echo "Removing install directory..."
 		rm -rf "install"
-	fi
+	else
 	echo "Done"
 }
 
@@ -51,7 +53,9 @@ clean_desurium() {
 		make clean
 		cd ../
 	fi
-	if [ ! -d "build_cef" ] ; then
+	if [  -d "build_cef" ] ; then # cef has been build
+		find install/ -type f ! -iname libcef_desura.so -delete
+	else # cef has not been build, there are only desurium related files in /install
 		echo "Removing install directory..."
 		rm -rf "install"
 	fi
