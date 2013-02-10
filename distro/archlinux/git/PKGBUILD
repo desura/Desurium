@@ -4,7 +4,7 @@
 pkgname=desurium-git
 pkgver=20130131
 pkgrel=1
-pkgdesc="A community-driven digital distribution service for gamers (open source version)"
+pkgdesc="A community-driven digital distribution service for gamers (open source and development version)."
 url="http://github.com/lodle/Desurium"
 license=('GPL3')
 arch=('i686' 'x86_64')
@@ -14,7 +14,7 @@ depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'cups' 'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
          'gconf' 'xdg-user-dirs' 'flac' 'libpng' 'speex' 'zlib' 'gperf'
          'xdg-utils' 'libwebp' 'libevent' 'libxslt' 'yasm' 'libxxf86vm'
-         'flashplugin')
+         'flashplugin' 'libx11')
 provides=('desura')
 conflicts=('desura')
 
