@@ -37,18 +37,22 @@ add_definitions(-std=c99)
 add_library(desura_flashwrapper SHARED ${CommonSources} ${WrapperSources})
 set_target_properties(desura_flashwrapper PROPERTIES COMPILE_DEFINITIONS BUILD_WRAPPER)
 target_link_libraries(desura_flashwrapper
-    ${GLIB2_LIBRARIES}
+  ${GLIB2_LIBRARIES}
+  ${X11_Xt_LIB}
+  ${X11_X11_LIB}
+  ${PLATFORM_LIBS}
+  ${CMAKE_THREAD_LIBS_INIT}
 )
 
 add_executable(desura_flashhost ${CommonSources} ${HostSources})
 set_target_properties(desura_flashhost PROPERTIES COMPILE_DEFINITIONS BUILD_VIEWER)
 target_link_libraries(desura_flashhost
-  ${GTHREAD2_LIBRARIES}
-  ${CMAKE_THREAD_LIBS_INIT}
   ${GTK2_LIBRARIES}
+  ${GTHREAD2_LIBRARIES}
   ${X11_Xt_LIB}
   ${X11_X11_LIB}
   ${PLATFORM_LIBS}
+  ${CMAKE_THREAD_LIBS_INIT}
 )
 
 install(TARGETS desura_flashwrapper
