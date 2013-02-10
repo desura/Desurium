@@ -1,7 +1,7 @@
 #!/bin/sh
 printf 'Make sure to run \033[1;31msudo ./install-deps.sh\033[0m before compiling!\n\n'
 
-
+initial_dir=`pwd`
 PREFIX="../install"
 BINDIR=""
 LIBDIR="lib"
@@ -14,10 +14,10 @@ compile_cef() {
 	fi
 	cd build_cef
 	cmake .. -DCMAKE_INSTALL_PREFIX=$PREFIX -DRUNTIME_LIBDIR=$LIBDIR -DBUILD_ONLY_CEF=ON || exit 1
-	make install $args || exit 2
+	make install $args
 	cd ../
 	printf "\n"
-	}
+}
 
 compile_desurium() {
 	if [ ! -d "build" ] ; then
@@ -25,10 +25,8 @@ compile_desurium() {
 	fi
 	cd build
 	cmake .. -DCMAKE_INSTALL_PREFIX=$PREFIX -DBINDIR=$BINDIR -DRUNTIME_LIBDIR=$LIBDIR -DDATADIR=$DATADIR -DBUILD_CEF=OFF || exit 3
-	make install $args || exit 4
+	make install $args
 }
-
-
 
 clean_cef() {
 		printf "Making clean for cef...\n"
@@ -62,11 +60,11 @@ clean_desurium() {
 case "$@" in
 	*compile_desurium* )
 		args=`echo "$@" | sed -e 's/compile_desurium//'`
-		compile_desurium || exit
+		compile_desurium || exit 1
 		;;
 	*compile_cef* )
 		args=`echo "$@" | sed -e 's/compile_cef//'`
-		compile_cef || exit
+		compile_cef || exit 2
 		;;
 	"clean_cef" )
 		clean_cef
@@ -98,7 +96,7 @@ case "$@" in
 		compile_desurium
 		;;
 esac
-
+cd "${initial_dir}"
 if [ -d "build" ] && [ -d "build_cef" ] && [ -d "install" ] ; then
 	printf 'Run \033[1;31m./install/desura\033[0m to start Desura!\n'
 else
