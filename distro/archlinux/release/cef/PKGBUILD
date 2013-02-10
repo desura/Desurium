@@ -4,7 +4,7 @@
 pkgname=desurium-cef
 pkgver=0.8.0_rc7
 pkgrel=1
-pkgdesc="A community-driven digital distribution service for gamers (open source version)"
+pkgdesc="Chromium Embedded Framework, runtime dependency for desurium."
 url="http://github.com/lodle/Desurium"
 license=('GPL3')
 arch=('i686' 'x86_64')
