@@ -42,7 +42,7 @@ clean_cef() {
 	else # desurium has not been build, there are only cef related files in /install
 		echo "Removing install directory..."
 		rm -rf "install"
-	else
+	fi
 	echo "Done"
 }
 
@@ -137,10 +137,15 @@ esac
 
 cd "${initial_dir}"
 
-if [ -d "build" ] && [ -d "build_cef" ] && [ -d "install" ] && [ -z $finished ] ; then
-	printf 'Run \033[1;31m./install/desura\033[0m to start Desura!\n'
-elif [ -z $finished ] ; then
-	echo ""
-	echo "In order to run Desura, we need cef as well as desurium compiled."
-	echo "Please re-run the script to automatically compile both."
+
+if [ -f "install/lib/desura" ] ; then #desura has been build
+	if [ -f "install/lib/libcef_desura.so" ] ; then # cef has been build
+		if [ -z ${finished} ] ; then # we did not call "help"
+			printf 'Run \033[1;31m./install/desura\033[0m to start Desura!\n'
+		fi
+	else # cef not build
+		echo "Please make sure to have cef compiled (run './build_desura.sh compile_cef') if you want to run Desura."
+	fi
+else # desurium not build
+	echo "Please make sure to have desurium compiled (run './build_desura.sh compile_desurium') if you want to run Desura."
 fi
