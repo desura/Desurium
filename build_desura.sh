@@ -9,6 +9,7 @@ DATADIR=""
 
 
 compile_cef() {
+	#args=`echo "$@" | sed -e 's/compile_cef//'`
 	if [ ! -d "build_cef" ] ; then
 		mkdir build_cef
 	fi
@@ -20,6 +21,7 @@ compile_cef() {
 }
 
 compile_desurium() {
+	#args=`echo "$@" | sed -e 's/compile_desurium//'`
 	if [ ! -d "build" ] ; then
 		mkdir build
 	fi
@@ -29,42 +31,62 @@ compile_desurium() {
 }
 
 clean_cef() {
-		printf "Making clean for cef...\n"
-		if [ -d "build_cef" ] ; then
-			cd ./build_cef/
-			make clean
-			cd ../
-		fi
-		if [ ! -d "build" ] ; then
-			printf "Removing install directory...\n"
-			rm -rf "install"
-		fi
-		echo "Done"
+	printf "Making clean for cef...\n"
+	if [ -d "build_cef" ] ; then
+		cd ./build_cef/
+		make clean
+		cd ../
+	fi
+	if [ ! -d "build" ] ; then
+		printf "Removing install directory...\n"
+		rm -rf "install"
+	fi
+	echo "Done"
 }
 
 clean_desurium() {
-		printf "Making clean for desurium...\n"
-		if [ -d "build" ] ; then
-			cd ./build/
-			make clean
-			cd ../
-		fi
-		if [ ! -d "build_cef" ] ; then
-			printf "Removing install directory...\n"
-			rm -rf "install"
-		fi
-		printf "Done\n"
+	printf "Making clean for desurium...\n"
+	if [ -d "build" ] ; then
+		cd ./build/
+		make clean
+		cd ../
+	fi
+	if [ ! -d "build_cef" ] ; then
+		printf "Removing install directory...\n"
+		rm -rf "install"
+	fi
+	printf "Done\n"
 }
 
 
 case "$@" in
+	*rebuild_all* )
+		args=`echo "$@" | sed -e 's/rebuild_all//'`
+		clean
+		printf 'We are compiling CEF first...\n'
+		compile_cef
+		printf 'Now we are compiling desurium...\n'
+		compile_desurium
+		;;
+	*rebuild_cef* )
+		args=`echo "$@" | sed -e 's/rebuild_cef//'`
+		clean_cef
+		echo "Compiling cef..."
+		compile_cef || exit 1
+		;;
+	*rebuild_desurium* )
+		args=`echo "$@" | sed -e 's/rebuild_desurium//'`
+		clean_desurium
+		echo "Compiling desurium..."
+		compile_desurium || exit 2
+		;;
 	*compile_desurium* )
 		args=`echo "$@" | sed -e 's/compile_desurium//'`
-		compile_desurium || exit 1
+		compile_desurium || exit 3
 		;;
 	*compile_cef* )
 		args=`echo "$@" | sed -e 's/compile_cef//'`
-		compile_cef || exit 2
+		compile_cef || exit 4
 		;;
 	"clean_cef" )
 		clean_cef
@@ -90,9 +112,9 @@ case "$@" in
 		;;
 	* )
 		args=$@
-		printf 'We are compiling CEF first\n'
+		printf 'We are compiling CEF first...\n'
 		compile_cef
-		printf 'Now we are compiling desurium\n'
+		printf 'Now we are compiling desurium...\n'
 		compile_desurium
 		;;
 esac
