@@ -14,7 +14,7 @@ depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'cups' 'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
          'gconf' 'xdg-user-dirs' 'flac' 'libpng' 'speex' 'zlib' 'gperf'
          'xdg-utils' 'libwebp' 'libevent' 'libxslt' 'yasm' 'libxxf86vm'
-         'flashplugin' 'libx11')
+         'flashplugin' 'libx11' 'binutils-multilib')
 provides=('desura')
 conflicts=('desura')
 
@@ -41,12 +41,6 @@ build() {
   msg "GIT checkout done or server timeout"
   msg "Starting build..."
 
-  MULTILIB=0
-
-  if pacman -Qsq binutils-multilib > /dev/null ; then
-    MULTILIB=1
-  fi
-
   cd "$srcdir/$_gitname"
   if [ ! -d build ] ; then
     mkdir build
@@ -54,7 +48,7 @@ build() {
   cd build
   msg "Running cmake..."
   CMAKE_ARGS="
-    -D32BIT_SUPPORT=$MULTILIB
+    -D32BIT_SUPPORT=1
     -DCMAKE_INSTALL_PREFIX=/usr
     -DBINDIR=/usr/bin
     -DDATADIR=/usr/share/
