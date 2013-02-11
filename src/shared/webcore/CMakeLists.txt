@@ -23,6 +23,7 @@ target_link_libraries(webcore
     ${TINYXML_LIBRARIES}
     ${SQLITE3X_LIBRARIES}
 	${WINDOWS_LIBRARIES}
+	${CMAKE_THREAD_LIBS_INIT}
 )
 
 install(TARGETS webcore

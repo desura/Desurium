@@ -20,7 +20,7 @@ target_link_libraries(crashuploader
     ${GTK2_LIBRARIES}
     ${OPENSSL_LIBRARIES}
     ${TINYXML_LIBRARIES}
-    ${windows_libs}
+    ${CMAKE_THREAD_LIBS_INIT}
 )
 
 install(TARGETS crashuploader
