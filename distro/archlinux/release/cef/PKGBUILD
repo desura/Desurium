@@ -16,6 +16,7 @@ depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'xdg-utils' 'libwebp' 'libevent' 'libxslt' 'yasm' 'libxxf86vm'
          'binutils-multilib' )
 
+conflicts=('desurium-git')
 
 build() {
   cd "$srcdir"
