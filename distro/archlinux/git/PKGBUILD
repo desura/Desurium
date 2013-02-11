@@ -14,7 +14,7 @@ depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'cups' 'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
          'gconf' 'xdg-user-dirs' 'flac' 'libpng' 'speex' 'zlib' 'gperf'
          'xdg-utils' 'libwebp' 'libevent' 'libxslt' 'yasm' 'libxxf86vm'
-         'flashplugin' 'libx11' 'binutils-multilib')
+         'flashplugin' 'libx11' 'binutils-multilib' 'libxt')
 provides=('desura' 'desurium' 'desurium-cef')
 conflicts=('desura' 'desurium' 'desurium-cef')
 
