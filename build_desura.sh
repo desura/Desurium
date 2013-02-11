@@ -1,6 +1,12 @@
 #!/bin/sh
 printf 'Make sure to run \033[1;31msudo ./install-deps.sh\033[0m before compiling!\n\n'
 
+
+echo $@  | sed -e 's/\-\-/\n/g'
+
+
+
+exit
 initial_dir=`pwd`
 PREFIX="../install"
 BINDIR=""
