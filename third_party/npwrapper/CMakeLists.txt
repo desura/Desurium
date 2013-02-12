@@ -34,9 +34,12 @@ else()
 endif()
 add_definitions(-std=c99)
 
+add_linker_flags(-Wl,--no-as-needed)
+
 add_library(desura_flashwrapper SHARED ${CommonSources} ${WrapperSources})
 set_target_properties(desura_flashwrapper PROPERTIES COMPILE_DEFINITIONS BUILD_WRAPPER)
 target_link_libraries(desura_flashwrapper
+  ${GTK2_LIBRARIES}
   ${GLIB2_LIBRARIES}
   ${X11_Xt_LIB}
   ${X11_X11_LIB}
