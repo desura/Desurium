@@ -2,10 +2,20 @@
 printf 'Make sure to run \033[1;31msudo ./install-deps.sh\033[0m before compiling!\n\n'
 
 
-echo $@  | sed -e 's/\-\-/\n/g'
+filename=`date +%s` # get unique name
+echo $@ | sed -e 's/\-\-/\n/g' > $filename
 
+IFS=$'\n'
+set -f
+for i in $(<$filename); do
+	echo $i | awk '{print $1}' # action
+	echo $i | awk '{print $2,$3}' #whatever
 
-
+done
+set +f
+unset IFS
+rm $filename
+	
 exit
 initial_dir=`pwd`
 PREFIX="../install"
