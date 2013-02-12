@@ -163,7 +163,6 @@ target_link_libraries(uicore
     wx_controls
     ${Boost_LIBRARIES}
     ${LIBNOTIFY_LIBRARIES}
-    ${OPENSSL_LIBRARIES}
     ${SQLITE_LIBRARIES}
     ${SQLITE3X_LIBRARIES}
     ${TINYXML_LIBRARIES}

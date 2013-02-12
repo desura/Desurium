@@ -34,6 +34,7 @@ if(WIN32)
   )
   set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-release-static/)
 else()
+  find_package(OpenSSL REQUIRED)
   set(CURL_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/curl)
 #    GIT_REPOSITORY ${CURL_GIT}
 #    GIT_TAG ${CURL_VERSION}
@@ -73,6 +74,7 @@ if(WIN32)
 else()
   list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl.a")
   list(APPEND CURL_LIBRARIES "rt")
+  list(APPEND CURL_LIBRARIES "${OPENSSL_LIBRARIES}")
 endif()
 
 if(WITH_ARES)
