@@ -8,8 +8,11 @@ echo $@ | sed -e 's/\-\-/\n/g' > $filename
 IFS=$'\n'
 set -f
 for i in $(<$filename); do
-	echo $i | awk '{print $1}' # action
-	echo $i | awk '{print $2,$3}' #whatever
+	action=`echo $i | cut -d\  -f1`
+	target=`echo $i | cut -d\  -f2`
+	build_options=`echo $i | cut -d\  -f3-`
+	
+	echo $action $target $build_options
 
 done
 set +f
