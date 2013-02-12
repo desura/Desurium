@@ -162,7 +162,6 @@ target_link_libraries(uicore
     webcore
     wx_controls
     ${LIBNOTIFY_LIBRARIES}
-    ${OPENSSL_LIBRARIES}
     ${SQLITE_LIBRARIES}
     ${SQLITE3X_LIBRARIES}
     ${TINYXML_LIBRARIES}

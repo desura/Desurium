@@ -17,7 +17,6 @@ target_link_libraries(crashuploader
     util_web
     ${CURL_LIBRARIES}
     ${GTK2_LIBRARIES}
-    ${OPENSSL_LIBRARIES}
     ${TINYXML_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
 )
