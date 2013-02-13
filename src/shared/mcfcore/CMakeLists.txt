@@ -13,8 +13,10 @@ file(GLOB Sources code/*.cpp
 add_definitions(-DNEED_STRDUP -DNEED_MEMCCPY)
 
 if(WIN32)
-  set(WINDOWS_LIBRARIES dnsapi rpcrt4 wininet winmm ws2_32)
+  set(PLATFORM_LIBRARIES dnsapi rpcrt4 wininet winmm ws2_32)
 #  add_linker_flags(/NOD:LIBCMT)
+else()
+  set(PLATFORM_LIBRARIES dl)
 endif()
 
 add_library(mcfcore SHARED ${Sources})
@@ -30,7 +32,8 @@ target_link_libraries(mcfcore
   ${SQLITE_LIBRARIES}
   ${SQLITE3X_LIBRARIES}
   ${TINYXML_LIBRARIES}
-  ${WINDOWS_LIBRARIES}
+  ${PLATFORM_LIBRARIES}
+  ${CMAKE_THREAD_LIBS_INIT}
 )
 
 install(TARGETS mcfcore

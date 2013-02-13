@@ -8,3 +8,6 @@ file (GLOB Common Common.cpp)
 set(COMMON_SOURCE ${Common} PARENT_SCOPE)
 
 add_library(gcJSBase STATIC ${Sources})
+target_link_libraries(gcJSBase
+  util
+)

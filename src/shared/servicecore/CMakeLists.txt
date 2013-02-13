@@ -27,10 +27,11 @@ if(WIN32)
   file(GLOB PlattformSources
                   code/WindowsGameExplorer.cpp
   )
-  set(WINDOWS_LIBRARIES msi Wintrust)
+  set(PLATFORM_LIBRARIES msi Wintrust)
 #  add_linker_flags(/NOD:LIBCMT)
 else()
   file(GLOB PlattformSources)
+  set(PLATFORM_LIBRARIES dl)
 endif()
 
 add_library(servicecore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES})
@@ -45,7 +46,8 @@ target_link_libraries(servicecore
     ${SQLITE_LIBRARIES}
     ${SQLITE3X_LIBRARIES}
     ${TINYXML_LIBRARIES}
-	${WINDOWS_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}
+	${PLATFORM_LIBRARIES}
 )
 
 install(TARGETS servicecore
