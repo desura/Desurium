@@ -13,7 +13,6 @@ target_link_libraries(mcf_upload_cli
     util
     util_fs
     ${CURL_LIBRARIES}
-    ${OPENSSL_LIBRARIES}
 )
 
 install_executable(mcf_upload_cli)
