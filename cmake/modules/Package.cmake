@@ -16,7 +16,7 @@ set(CPACK_PACKAGE_VERSION_MAJOR 0)
 set(CPACK_PACKAGE_VERSION_MINOR 8)
 set(CPACK_PACKAGE_VERSION_PATCH 0)
 # used only for builds, not by cpack!
-set(CPACK_PACKAGE_VERSION_ADDITION _rc7)
+set(CPACK_PACKAGE_VERSION_ADDITION _rc8-devel)
 
 ###############################################################################
 # some internal variables
