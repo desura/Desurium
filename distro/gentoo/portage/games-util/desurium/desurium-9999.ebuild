@@ -32,7 +32,7 @@ SRC_URI="${SRC_URI}
 		${WX_URI}
 	)"
 
-inherit cmake-utils eutils flag-o-matic ${GIT_ECLASS} gnome2-utils ${WX_ECLASS} games toolchain-funcs
+inherit cmake-utils eutils ${GIT_ECLASS} gnome2-utils ${WX_ECLASS} games toolchain-funcs
 
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
@@ -147,9 +147,6 @@ src_unpack() {
 }
 
 src_configure() {
-	# on some systems -Wl,--as-needed breaks the flashplayer
-	filter-ldflags -Wl,--as-needed
-
 	# -DWITH_ARES=FALSE will use system curl, because we force curl[ares] to have ares support
 	local mycmakeargs=(
 		-DWITH_ARES=FALSE
