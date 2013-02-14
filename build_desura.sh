@@ -1,6 +1,25 @@
 #!/bin/sh
 printf 'Make sure to run \033[1;31msudo ./install-deps.sh\033[0m before compiling!\n\n'
 
+
+filename=`date +%s` # get unique name
+echo $@ | sed -e 's/\-\-/\n/g' > $filename
+
+IFS=$'\n'
+set -f
+for i in $(<$filename); do
+	action=`echo $i | cut -d\  -f1`
+	target=`echo $i | cut -d\  -f2`
+	build_options=`echo $i | cut -d\  -f3-`
+	
+	echo $action $target $build_options
+
+done
+set +f
+unset IFS
+rm $filename
+	
+exit
 initial_dir=`pwd`
 PREFIX="../install"
 BINDIR=""
