@@ -45,7 +45,8 @@ void ChangeDirThread::run()
 {
 	if (!m_pUser)
 	{
-		onErrorEvent(gcException(ERR_NULLHANDLE, "User Core is null!"));
+		gcException gce(ERR_NULLHANDLE, "User Core is null!");
+		onErrorEvent(gce);
 		onCompleteEvent();
 		return;
 	}
@@ -54,7 +55,8 @@ void ChangeDirThread::run()
 
 	if (!UTIL::FS::isValidFolder(m_szDest))
 	{
-		onErrorEvent(gcException(ERR_BADPATH, "Could not create destination folder"));
+		gcException gce(ERR_BADPATH, "Could not create destination folder");
+		onErrorEvent(gce);
 		onCompleteEvent();
 		return;
 	}

@@ -25,8 +25,8 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
     )
   endif()
 
-  if(NOT WIN32)
-    set(chromium_INSTALL_COMMAND "${CMAKE_SCRIPT_PATH}/fix_chromium_path.${SCRIPT_PREFIX}")
+  if(NOT WIN32 OR MINGW)
+    set(chromium_INSTALL_COMMAND "${CMAKE_SCRIPT_PATH}/fix_chromium_path.sh")
   endif()
 
   ExternalProject_Add(
@@ -37,7 +37,22 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     BUILD_IN_SOURCE 1
-    INSTALL_COMMAND "${chromium_INSTALL_COMMAND}"
+    INSTALL_COMMAND ""
+  )
+  
+  ExternalProject_Get_Property(
+    chromium
+    source_dir
+  )
+  set(CHROMIUM_SOURCE_DIR ${source_dir})
+  
+  ExternalProject_Add_Step(
+    chromium
+    chromium_move
+    COMMAND "${chromium_INSTALL_COMMAND}"
+    DEPENDERS install
+	DEPENDEES download
+	WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/..
   )
 
   ExternalProject_Add(
@@ -77,17 +92,12 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
   )
 
   ExternalProject_Get_Property(
-    chromium
-    source_dir
-  )
-  set(CHROMIUM_SOURCE_DIR ${source_dir})
-  ExternalProject_Get_Property(
     fetch_cef
     source_dir
   )
   set(CEF_SOURCE_DIR ${source_dir})
 
-  if(NOT WIN32)
+  if(NOT WIN32 OR MINGW)
     ExternalProject_Add_Step(
     cef
     copy_files

@@ -156,7 +156,7 @@ void GameExplorerInfo::loadFromDb(sqlite3x::sqlite3_connection *db)
 		return;
 
 	sqlite3x::sqlite3_command cmd(*db, "SELECT dllpath, guid, flags FROM gameexplorer WHERE internalid=?;");
-	cmd.bind(1, (_int64)m_Id.toInt64());
+	cmd.bind(1, (int64)m_Id.toInt64());
 
 	sqlite3x::sqlite3_reader reader = cmd.executereader();
 	reader.read();
@@ -179,7 +179,7 @@ void GameExplorerInfo::saveToDb(sqlite3x::sqlite3_connection *db)
 
 	sqlite3x::sqlite3_command cmd(*db, "REPLACE INTO gameexplorer VALUES (?,?,?,?);");
 
-	cmd.bind(1, (_int64)m_Id.toInt64());
+	cmd.bind(1, (int64)m_Id.toInt64());
 	cmd.bind(2, m_szDllPath);				//name
 	cmd.bind(3, m_szGuid);		//flags
 	cmd.bind(4, (int)m_uiFlags);

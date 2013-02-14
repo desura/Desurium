@@ -209,7 +209,7 @@ bool UploadDump(const char* file, const char* user, int build, int branch, Deleg
 	ltime=time(NULL); /* get current cal time */
 
 	
-#ifdef WIN32
+#if defined(WIN32) && !defined(__MINGW32__)
 	char buff[255] = {0};
 
 	struct tm t;

@@ -4,7 +4,10 @@ endif()
 
 set(TEST "%")
 
-if(WIN32)
+if(MINGW)
+  set(SCONS_COMMAND scons.py snapshot=on ${MODE_DEBUG} library=shared ${EXTRA_OPTS} toolchain=gcc)
+  set(V8_LIB_SUFFIX dll)
+elseif(WIN32)
   if(DEBUG)
     set(SCONS_COMMAND ${CMAKE_SCRIPT_PATH}/Buildv8.bat ${PYTHON_INCLUDE_DIRS}/../Scripts/scons.bat debug ${EXTRA_OPTS})
   else()

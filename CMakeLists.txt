@@ -64,11 +64,6 @@
 # some overrides
 ###############################################################################
 
-set(CMAKE_USER_MAKE_RULES_OVERRIDE
-   ${CMAKE_SOURCE_DIR}/cmake/scripts/c_flag_overrides.cmake)
-set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX
-   ${CMAKE_SOURCE_DIR}/cmake/scripts/cxx_flag_overrides.cmake)
-
 # TODO: silent output for externel dependencies
 project(Desura)
 
@@ -123,11 +118,17 @@ if(NOT WIN32)
 endif()
 
 if(NOT BUILD_ONLY_CEF)
-  if(MINGW)
+  if(WIN32)
     set(Boost_ADDITION_LIBS ${Boost_ADDITION_LIBS} chrono)
   endif()
   if(BUILD_TESTS)
-    set(Boost_ADDITION_LIBS ${Boost_ADDITION_LIBS} prg_exec_monitor test_exec_monitor unit_test_framework)
+    set(Boost_ADDITION_LIBS ${Boost_ADDITION_LIBS} test_exec_monitor unit_test_framework)
+  endif()
+  
+  set(Boost_USE_MULTITHREADED ON)
+  if(WIN32)
+    set(Boost_USE_STATIC_LIBS OFF)
+    set(Boost_USE_STATIC_RUNTIME OFF)
   endif()
   find_package(Boost COMPONENTS date_time filesystem thread system ${Boost_ADDITION_LIBS})
   
@@ -170,6 +171,7 @@ endif()
 find_package(PythonInterp REQUIRED)
 
 if(WIN32)
+  find_package(MFC)
   find_package(PythonLibs REQUIRED)
 endif()
 

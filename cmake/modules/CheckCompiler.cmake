@@ -1,4 +1,4 @@
-if(UNIX)
+if(UNIX OR MINGW)
   # does it makes sense to use different compiler suites at the same time for compiling?
   if(CMAKE_C_COMPILER_ID STREQUAL CMAKE_CXX_COMPILER_ID)
     if(EXISTS ${CMAKE_PLATFORM_PATH}/unix/compiler/${CMAKE_C_COMPILER_ID}.cmake)

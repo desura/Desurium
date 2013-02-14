@@ -8,8 +8,12 @@ include_directories(
 file(GLOB Sources code/*.cpp)
 
 if(WIN32)
-  set(WINDOWS_LIBRARIES crypt32 dnsapi rpcrt4 wininet winmm ws2_32)
-#  add_linker_flags(/NOD:LIBCMT)
+  set(WINDOWS_LIBRARIES )
+  if(NOT MINGW)
+    set(WINDOWS_LIBRARIES ${WINDOWS_LIBRARIES} crypt32 dnsapi rpcrt4 wininet winmm ws2_32)
+  else()
+    set(WINDOWS_LIBRARIES ${WINDOWS_LIBRARIES} msi wintrust winhttp)
+  endif()
 endif()
 
 add_library(webcore SHARED ${Sources})
@@ -22,6 +26,7 @@ target_link_libraries(webcore
     ${CURL_LIBRARIES}
     ${TINYXML_LIBRARIES}
     ${SQLITE3X_LIBRARIES}
+	${Boost_LIBRARIES}
 	${WINDOWS_LIBRARIES}
 	${CMAKE_THREAD_LIBS_INIT}
 )

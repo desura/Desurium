@@ -398,13 +398,16 @@ void BaseThread::setThreadName(const char* nameOveride)
 	info.dwThreadID = (DWORD)GetCurrentThreadId();;
 	info.dwFlags = 0;
 
-   __try
-   {
-	  RaiseException( MS_VC_EXCEPTION, 0, sizeof(info)/sizeof(DWORD), (DWORD*)&info );
-   }
-   __except(EXCEPTION_CONTINUE_EXECUTION)
-   {
-   }
+  #ifndef __MINGW32__
+   // what the hell is happening here?
+	__try
+	{
+		RaiseException( MS_VC_EXCEPTION, 0, sizeof(info)/sizeof(DWORD), (DWORD*)&info );
+	}
+	__except(EXCEPTION_CONTINUE_EXECUTION)
+	{
+	}
+	#endif
 #else
 	char name[16];
 	

@@ -3,6 +3,8 @@
 ###############################################################################
 
 set(BIN_INCLUDE_DIR ${CMAKE_BINARY_DIR}/include)
+set(RC_DIR ${CMAKE_BINARY_DIR}/rc_files)
+
 file(MAKE_DIRECTORY ${BIN_INCLUDE_DIR})
 
 file(COPY ${BRANDING} DESTINATION ${BIN_INCLUDE_DIR})
@@ -102,6 +104,10 @@ add_subdirectory(shared/webcore)
 
 if(WIN32)
   add_subdirectory(executable/bootloader_win)
+  add_subdirectory(executable/desura_browserhost)
+  add_subdirectory(executable/service_win)
+  add_subdirectory(executable/toolhelper)
+  add_subdirectory(executable/utilhelper)
 else()
   add_subdirectory(executable/bootloader_lin)
   add_subdirectory(executable/crashdlg_lin)
@@ -170,6 +176,7 @@ add_dependencies(servicecore fetch_cef)
 add_dependencies(uicore fetch_cef)
 add_dependencies(usercore fetch_cef)
 if(WIN32)
+  add_dependencies(desura_browserhost fetch_cef)
   add_dependencies(utilcore fetch_cef)
 endif()
 
