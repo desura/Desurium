@@ -44,7 +44,7 @@ gcProgressBar::~gcProgressBar()
 void gcProgressBar::setProgress(uint8 prog)
 {
 	uint8 oldProg = m_uiProg;
-#ifdef WIN32
+#if defined(WIN32) && !defined(__MINGW32__)
 	m_uiProg = min(max(prog, 0), 100);
 #else
 	m_uiProg = std::min(std::max((int)prog, 0), 100);

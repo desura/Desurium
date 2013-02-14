@@ -51,7 +51,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON                    "..\\..\\..\\branding\\desura.ico"
+IDI_ICON1               ICON                    "@BRANDING_DIR@/desura.ico"
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -62,7 +62,7 @@ IDI_ICON1               ICON                    "..\\..\\..\\branding\\desura.ic
 //
 // Generated from the TEXTINCLUDE 3 resource.
 //
-#include "..\..\branding\desura_service.rc2"
+#include "@BRANDING_DIR@/desura_service.rc2"
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
 

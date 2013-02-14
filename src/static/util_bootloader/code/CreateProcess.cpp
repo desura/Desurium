@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
+#include "Common.h"
+#include "util/UtilWindows.h"
 #include "UtilBootloader.h"
 
 #ifndef SECURITY_MANDATORY_UNTRUSTED_RID

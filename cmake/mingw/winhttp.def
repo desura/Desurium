@@ -1,0 +1,6 @@
+LIBRARY Winhttp.dll
+EXPORTS
+WinHttpGetIEProxyConfigForCurrentUser@4
+WinHttpOpen@20
+WinHttpGetProxyForUrl@16
+WinHttpCloseHandle@4

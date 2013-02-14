@@ -7,14 +7,16 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
+#if !defined(DONT_INCLUDE_AFXWIN) && defined(MFC_FOUND)
 #include "afxres.h"
+#endif
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
 // English (U.S.) resources
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#if (!defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)) && !defined(DONT_INCLUDE_AFXWIN) && defined(MFC_FOUND)
 #ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
@@ -62,19 +64,19 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON                ICON                    "..\\..\\..\\branding\\desura.ico"
-IDI_ICONSMALL           ICON                    "..\\..\\..\\branding\\desura_16.ico"
-IDI_ICONSMALL_1         ICON                    "..\\..\\..\\branding\\desura_16_1.ico"
-IDI_ICONSMALL_2         ICON                    "..\\..\\..\\branding\\desura_16_2.ico"
-IDI_ICONSMALL_3         ICON                    "..\\..\\..\\branding\\desura_16_3.ico"
-IDI_ICONSMALL_4         ICON                    "..\\..\\..\\branding\\desura_16_4.ico"
-IDI_ICONSMALL_5         ICON                    "..\\..\\..\\branding\\desura_16_5.ico"
-IDI_ICONSMALL_6         ICON                    "..\\..\\..\\branding\\desura_16_6.ico"
-IDI_ICONSMALL_7         ICON                    "..\\..\\..\\branding\\desura_16_7.ico"
-IDI_ICONSMALL_8         ICON                    "..\\..\\..\\branding\\desura_16_8.ico"
-IDI_ICONSMALL_9         ICON                    "..\\..\\..\\branding\\desura_16_9.ico"
-IDI_ICONSMALL_P         ICON                    "..\\..\\..\\branding\\desura_16_plus.ico"
-IDI_ICONNORMAL          ICON                    "..\\..\\..\\branding\\desura.ico"
+IDI_ICON                ICON                    "@BRANDING_DIR@/desura.ico"
+IDI_ICONSMALL           ICON                    "@BRANDING_DIR@/desura_16.ico"
+IDI_ICONSMALL_1         ICON                    "@BRANDING_DIR@/desura_16_1.ico"
+IDI_ICONSMALL_2         ICON                    "@BRANDING_DIR@/desura_16_2.ico"
+IDI_ICONSMALL_3         ICON                    "@BRANDING_DIR@/desura_16_3.ico"
+IDI_ICONSMALL_4         ICON                    "@BRANDING_DIR@/desura_16_4.ico"
+IDI_ICONSMALL_5         ICON                    "@BRANDING_DIR@/desura_16_5.ico"
+IDI_ICONSMALL_6         ICON                    "@BRANDING_DIR@/desura_16_6.ico"
+IDI_ICONSMALL_7         ICON                    "@BRANDING_DIR@/desura_16_7.ico"
+IDI_ICONSMALL_8         ICON                    "@BRANDING_DIR@/desura_16_8.ico"
+IDI_ICONSMALL_9         ICON                    "@BRANDING_DIR@/desura_16_9.ico"
+IDI_ICONSMALL_P         ICON                    "@BRANDING_DIR@/desura_16_plus.ico"
+IDI_ICONNORMAL          ICON                    "@BRANDING_DIR@/desura.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -95,7 +97,7 @@ END
 // Bitmap
 //
 
-IDB_BITMAP1             BITMAP                  "..\\..\\..\\branding\\spash.bmp"
+IDB_BITMAP1             BITMAP                  "@BRANDING_DIR@/spash.bmp"
 IDB_BITMAP2             BITMAP                  "loadingbar.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -122,8 +124,10 @@ IDR_RT_MANIFEST1        RT_MANIFEST             "rt_manif.bin"
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE 9, 1
 #pragma code_page(1252)
-#include "..\\..\\branding\\desura_exe.rc2"  // non-Microsoft Visual C++ edited resources
+#include "@BRANDING_DIR@/desura_exe.rc2"  // non-Microsoft Visual C++ edited resources
+#if !defined(DONT_INCLUDE_AFXWIN) && defined(MFC_FOUND)
 #include "afxres.rc"     // Standard components
+#endif
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED

@@ -17,7 +17,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 #include "StdAfx.h"
+#ifdef __MINGW32__
+#include <string>
+#else
 #include <xstring>
+#endif
 
 class Color;
 

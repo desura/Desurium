@@ -6,7 +6,18 @@ include_directories(
   ${TINYXML_INCLUDE_DIR}
 )
 
-file(GLOB Sources code/*.cpp )
+configure_file(RES/desura_exe.rc ${RC_DIR}/desura_exe.rc @ONLY)
+file(GLOB Sources code/AppUpdateInstall.cpp
+                  code/Log.cpp
+                  code/UpdateFunctions.cpp
+                  ${RC_DIR}/desura_exe.rc)
+
+if(MFC_FOUND)
+  file(GLOB AdditionalSources code/DesuraMain.cpp)
+else()
+  file(GLOB AdditionalSources code/DesuraMainMingw.cpp)
+endif()
+set(Sources "${Sources};${AdditionalSources}")
 
 add_definitions(-D_WINDOWS
                 -DGAMECORE_LOG
@@ -15,25 +26,14 @@ add_definitions(-D_WINDOWS
 				-DDESURA_EXE
 				-DDESURA_CLIENT
 				-DNO_UTIL_FS)
-#				-D_AFXDLL)
-add_linker_flags(/FORCE)
 				
 add_executable(desura ${Sources} ${SERVICE_PIPE_IPCUPDATEMAIN})
 target_link_libraries(desura
     ipc_pipe
-    mdump
-	msi
-    sqlite3x
 	threads
     util
-	util_bootloader
-    ${TINYXML_LIBRARIES}
-    ${BZIP2_LIBRARIES}
-    ${CURL_LIBRARIES}
-    ${BREAKPAD_EXCEPTION_HANDLER_LIBRARIES}
-    ${SQLITE_LIBRARIES}
-    ${wxWidgets_LIBRARIES}
-	comctl32 comsuppw odbc32 Psapi rpcrt4 winmm wintrust wsock32
+    util_bootloader
+	comctl32
 )
 
 install(TARGETS desura

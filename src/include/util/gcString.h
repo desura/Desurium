@@ -42,8 +42,12 @@ namespace UTIL
 #include <sstream>
 #include <vector>
 
-#ifdef WIN32
-#include <xstring>
+#if defined(WIN32) && !defined(__MINGW32__)
+	#include <xstring>
+#endif
+
+#ifdef __MINGW32__
+	#include <stdlib.h>
 #endif
 
 #include <ctype.h>

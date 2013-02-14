@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
+#include "Common.h"
+
 #include "UtilBootloader.h"
 
 #include <process.h>
@@ -25,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <map>
 #include <string>
 
+#include <commctrl.h>
 
 #include "SharedObjectLoader.h"
 #include "third_party/PEImage.h"
@@ -53,7 +56,7 @@ namespace BootLoaderUtil
 {
 
 
-#ifndef DONT_INCLUDE_AFXWIN
+#if !defined(DONT_INCLUDE_AFXWIN) && defined(MFC_FOUND)
 
 CDummyWindow::CDummyWindow(HWND hWnd)
 {
@@ -130,7 +133,7 @@ bool RestartAsNormal(const char* args)
 	wchar_t szWorkingDir[255];
 	GetModuleFileNameW(NULL, szWorkingDir, 255);
 
-	size_t exePathLen = wcsnlen_s(szWorkingDir, 255);
+	size_t exePathLen = Safe::wcslen(szWorkingDir, 255);
 	for (size_t x=exePathLen; x>0; x--)
 	{
 		if (szWorkingDir[x] == L'\\')
