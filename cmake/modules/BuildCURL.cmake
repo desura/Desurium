@@ -24,7 +24,7 @@ if(WIN32 AND NOT MINGW)
     custom_build
     DEPENDEES configure
     DEPENDERS build
-    COMMAND nmake /f Makefile.vc MODE=static WITH_SSL=yes DEBUG=no GEN_PDB=no RTLIBCFG=static USE_SSPI=no USE_IPV6=no ENABLE_IDN=no
+    COMMAND nmake /f Makefile.vc MODE=static WITH_SSL=yes DEBUG=no GEN_PDB=no USE_SSPI=no USE_IPV6=no ENABLE_IDN=no
     WORKING_DIRECTORY <SOURCE_DIR>/winbuild
   )
   
