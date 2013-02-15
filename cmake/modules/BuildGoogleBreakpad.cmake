@@ -6,7 +6,7 @@ if(WIN32 AND NOT MINGW)
     URL ${BREAKPAD_URL}
     URL_MD5 ${BREAKPAD_MD5}
     UPDATE_COMMAND ""
-    PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/Patch.bat ${CMAKE_PATCH_DIR}/breakpad.patch
+    PATCH_COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_PATCH_DIR}/breakpad.patch
     CONFIGURE_COMMAND ${PYTHON_EXECUTABLE} ../breakpad/src/tools/gyp/gyp ../breakpad/src/client/windows/breakpad_client.gyp
     BUILD_COMMAND msbuild <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj /nologo /t:rebuild /m:2 /property:Configuration=Release
     INSTALL_COMMAND ""
@@ -38,7 +38,7 @@ else()
   ExternalProject_Add_Step(
     breakpad
     patch-bug-158
-    COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_PATCH_DIR}/bug-158.patch
+    COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_PATCH_DIR}/bug-158.patch
     WORKING_DIRECTORY <SOURCE_DIR>
     DEPENDEES download
     DEPENDERS configure
@@ -47,7 +47,7 @@ else()
     ExternalProject_Add_Step(
       breakpad
       patch-mingw
-      COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_PATCH_DIR}/breakpad-mingw.patch
+      COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_PATCH_DIR}/breakpad-mingw.patch
       WORKING_DIRECTORY <SOURCE_DIR>
       DEPENDEES download
       DEPENDERS configure
@@ -55,7 +55,7 @@ else()
     ExternalProject_Add_Step(
       breakpad
       patch-windows
-      COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_PATCH_DIR}/breakpad.patch
+      COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_PATCH_DIR}/breakpad.patch
       WORKING_DIRECTORY <SOURCE_DIR>
       DEPENDEES download
       DEPENDERS configure

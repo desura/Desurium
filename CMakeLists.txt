@@ -180,6 +180,14 @@ if(WIN32)
   endif()
 endif()
 
+if(MSVC)
+  find_package(Patch REQUIRED)
+  configure_file(${CMAKE_SCRIPT_PATH}/patch.bat ${CMAKE_BINARY_DIR}/scripts/patch.bat)
+  set(PATCH_SCRIPT_PATH ${CMAKE_BINARY_DIR}/scripts/patch.bat)
+else()
+  set(PATCH_SCRIPT_PATH ${CMAKE_SCRIPT_PATH}/patch.sh)
+endif()
+
 ###############################################################################
 # SVN, Git, HTTP stuff
 ###############################################################################
