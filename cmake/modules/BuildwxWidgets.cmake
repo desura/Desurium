@@ -4,7 +4,7 @@ if(WIN32 AND NOT MINGW)
     URL ${WXWIDGET_URL}
     URL_MD5 ${WXWIDGET_MD5}
     UPDATE_COMMAND ""
-    PATCH_COMMAND ${CMAKE_SOURCE_DIR}/cmake/scripts/Patch.bat ${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch
+    PATCH_COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
