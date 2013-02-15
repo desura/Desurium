@@ -62,7 +62,7 @@ else()
   set(wxWidgets_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/wxWidgets)
   
   if(MINGW)
-    set(WX_PATCH_COMMAND "${CMAKE_SOURCE_DIR}/cmake/scripts/Patch.sh" "${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch")
+    set(WX_PATCH_COMMAND "${PATCH_SCRIPT_PATH}" "${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch")
   endif()
   
   ExternalProject_Add(

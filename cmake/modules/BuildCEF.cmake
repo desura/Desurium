@@ -60,7 +60,7 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
     URL ${CEF_URL}
     URL_MD5 ${CEF_MD5}
     UPDATE_COMMAND ""
-    PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/patch.${SCRIPT_PREFIX} ${CMAKE_SOURCE_DIR}/cmake/patches/cef.patch
+    PATCH_COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_SOURCE_DIR}/cmake/patches/cef.patch
     CONFIGURE_COMMAND ""
     BUILD_COMMAND "" 
     INSTALL_COMMAND ""
@@ -76,7 +76,7 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
   ExternalProject_Add_Step(
     fetch_cef
     cef_gyp-patch
-    COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_BINARY_DIR}/gen/patches/cef_gyp.patch
+    COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_BINARY_DIR}/gen/patches/cef_gyp.patch
     DEPENDEES patch
     WORKING_DIRECTORY ${FETCH_CEF_SOURCE_DIR}
   )
@@ -109,7 +109,7 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
     ExternalProject_Add_Step(
     cef
     glib-2-32-patch
-    COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/cef_glib_2_32_compile.patch
+    COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_SOURCE_DIR}/cmake/patches/cef_glib_2_32_compile.patch
     DEPENDERS patch
     WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
     )
@@ -117,7 +117,7 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
     ExternalProject_Add_Step(
     cef
     gcc-4-7-patch
-    COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/cef_gcc47_compile_fix.patch
+    COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_SOURCE_DIR}/cmake/patches/cef_gcc47_compile_fix.patch
     DEPENDERS patch
     WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
     )
@@ -125,7 +125,7 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
     ExternalProject_Add_Step(
     cef
     bison-2-6-patch
-    COMMAND ${CMAKE_SCRIPT_PATH}/patch.sh ${CMAKE_SOURCE_DIR}/cmake/patches/chromium-bison-2.6.patch
+    COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_SOURCE_DIR}/cmake/patches/chromium-bison-2.6.patch
     DEPENDERS patch
     WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
     )
@@ -175,7 +175,7 @@ else(BUILD_CEF)
     URL ${CEF_URL}
     URL_MD5 ${CEF_MD5}
     UPDATE_COMMAND ""
-    PATCH_COMMAND ${CMAKE_SCRIPT_PATH}/patch.${SCRIPT_PREFIX} ${CMAKE_SOURCE_DIR}/cmake/patches/cef.patch
+    PATCH_COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_SOURCE_DIR}/cmake/patches/cef.patch
     CONFIGURE_COMMAND ""
     BUILD_COMMAND "" 
     INSTALL_COMMAND ""

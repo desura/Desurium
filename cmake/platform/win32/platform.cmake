@@ -2,8 +2,6 @@
 # set some windows specific variables
 ################################################################################
 
-set(SCRIPT_PREFIX bat)
-
 # some boost options
 add_definitions(-DBOOST_FILESYSTEM_VERSION=3 -DBOOST_ALL_NO_LIB=1)
 
