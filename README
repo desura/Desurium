@@ -56,7 +56,6 @@ Build Desura on Windows
 Download and install:
  * TortoiseSvn http://tortoisesvn.net/downloads.html. Make sure to install command line tools
  * msysGit https://code.google.com/p/msysgit/downloads/list
- * TortoiseGit http://code.google.com/p/tortoisegit/downloads/list. Make sure to install at least the patch tool
  * Windows Sdk 7.1 http://www.microsoft.com/download/en/details.aspx?id=8279
   (If applicable)
  * Python 2.7 http://www.python.org/getit/
