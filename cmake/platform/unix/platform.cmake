@@ -42,7 +42,7 @@ if(CMAKE_SIZEOF_VOID_P EQUAL 8)
   set(64BIT TRUE)
   message("-- detected 64bit")
   
-  option(32BIT_SUPPORT "enable support for 32bit applications (requires 32bit libraries)" OFF)
+  option(32BIT_SUPPORT "enable support for 32bit applications (requires 32bit libraries)" ON)
 else()
   set(64BIT FALSE)
   message("-- detected 32bit")
