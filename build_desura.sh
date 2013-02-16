@@ -63,9 +63,9 @@ clean_desurium() {
 }
 
 pack() {
-	if [$PACKAGE = "DEB"]; then
+	if [ $PACKAGE = "DEB" ]; then
 		echo "Building DEB package..."
-	elif [$PACKAGE = "RPM"]; then
+	elif [ $PACKAGE = "RPM" ]; then
 		echo "Building RPM package..."
 	fi
 	if [ ! -d "build" ] ; then
