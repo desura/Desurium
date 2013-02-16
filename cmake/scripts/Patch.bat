@@ -1,4 +1,4 @@
-"${PATCH_EXECUTABLE}" -p0 -N -i %1
+"@PATCH_EXECUTABLE@" -p0 -N -i %1
 echo %errorlevel% Error level
 
 REM if we hit one means the patch is all ready applied
