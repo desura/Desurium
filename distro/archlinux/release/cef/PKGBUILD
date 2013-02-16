@@ -2,7 +2,7 @@
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-cef
-pkgver=0.8.0_rc7
+pkgver=0.8.0_rc8
 pkgrel=1
 pkgdesc="Chromium Embedded Framework, runtime dependency for desurium."
 url="http://github.com/lodle/Desurium"
@@ -14,9 +14,9 @@ depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'cups' 'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
          'gconf' 'xdg-user-dirs' 'flac' 'libpng' 'speex' 'zlib' 'gperf'
          'xdg-utils' 'libwebp' 'libevent' 'libxslt' 'yasm' 'libxxf86vm'
-         'binutils-multilib' 'libxt' )
-
+         'libxt' )
 conflicts=('desurium-git')
+
 
 build() {
   cd "$srcdir"
@@ -48,7 +48,6 @@ build() {
   msg "Running cmake..."
 
   CMAKE_ARGS="
-    -D32BIT_SUPPORT=1
     -DCMAKE_INSTALL_PREFIX=/usr
     -DBINDIR=/usr/bin
     -DDATADIR=/usr/share/

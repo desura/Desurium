@@ -2,7 +2,7 @@
 # Contributor: Matthias "matthiaskrgr" Krüger
 # Maintainer: Jookia <166291@gmail.com>
 pkgname=desurium-git
-pkgver=20130211
+pkgver=20130215
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source and development version)."
 url="http://github.com/lodle/Desurium"
@@ -14,12 +14,19 @@ depends=('v8' 'tinyxml' 'sqlite' 'boost-libs' 'bzip2' 'gtk2' 'openssl'
          'cups' 'flex' 'alsa-lib' 'libjpeg-turbo' 'libxpm' 'libx11'
          'gconf' 'xdg-user-dirs' 'flac' 'libpng' 'speex' 'zlib' 'gperf'
          'xdg-utils' 'libwebp' 'libevent' 'libxslt' 'yasm' 'libxxf86vm'
-         'flashplugin' 'libx11' 'binutils-multilib' 'libxt')
-provides=('desura' 'desurium' 'desurium-cef')
+         'flashplugin' 'libx11' 'libxt')
+provides=('desura')
 conflicts=('desura' 'desurium' 'desurium-cef')
 
 _gitroot=git://github.com/lodle/Desurium.git
 _gitname=Desurium
+
+
+if [ "${CARCH}" = "x86_64" ]; then
+    depends+=('binutils-multilib')
+  else  # 32 bit
+    depends+=('binutils')
+fi
 
 build() {
   cd "$srcdir"
@@ -47,13 +54,23 @@ build() {
   fi
   cd build
   msg "Running cmake..."
-  CMAKE_ARGS="
+
+  if [ "${CARCH}" = "x86_64" ]; then
+    CMAKE_ARGS="
     -D32BIT_SUPPORT=1
     -DCMAKE_INSTALL_PREFIX=/usr
     -DBINDIR=/usr/bin
     -DDATADIR=/usr/share/
     -DRUNTIME_LIBDIR=/usr/lib/
     -DBUILD_CEF=ON"
+  else  # 32 bit
+    CMAKE_ARGS="
+    -DCMAKE_INSTALL_PREFIX=/usr
+    -DBINDIR=/usr/bin
+    -DDATADIR=/usr/share/
+    -DRUNTIME_LIBDIR=/usr/lib/
+    -DBUILD_CEF=ON"
+  fi
   cmake $CMAKE_ARGS ..
   msg "Running make..."
   make
