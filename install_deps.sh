@@ -26,12 +26,21 @@ if [ -f /etc/debian_version ]; then # Debian  (untested!)
 	fi
 elif [ -f /etc/redhat-release ]; then
 	yum install m4 autoconf gcc-c++ libstdc++-static glibc-devel binutils autoconf libtool gtk2-devel nss-devel GConf2-devel libgnome-keyring-devel dbus-glib-devel gperf bison cups-devel flex libjpeg-turbo-devel alsa-lib-devel bzip2-devel libXpm-devel libX11-devel openssl-devel libnotify-devel scons xdg-user-dirs v8-devel c-ares-devel sqlite-devel libxslt-devel yasm-devel libevent-devel boost-devel boost-static patch perl-Digest-MD5 libXt-devel
-elif [ -f /etc/arch-release ]; then
+elif [ -f /etc/arch-release ]; then		# Arch Linux
 	echo -e "\e[1;31mArch Linux detected!\e[0m"
 	echo -e "\e[1;31mNote: there are PKGBUILDs in ./distro/archlinux/\e[0m"
 	# By using "pacman -T" to find out needed dependencies, we don't get
 	# conflicts if a package we have installed provides one of the dependencies.
-	DEPS=`pacman -T cmake make boost glib2 pkg-config sqlite m4 autoconf gcc glibc binutils autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify xdg-user-dirs v8 c-ares sed flac libpng speex zlib xdg-utils libevent libxslt yasm libxml2 libxxf86vm flashplugin libx11 libxt | sed -e 's/\n/ /g'`
+	DEPS="cmake make boost glib2 pkg-config sqlite m4 autoconf gcc glibc autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify xdg-user-dirs v8 c-ares sed flac libpng speex zlib xdg-utils libevent libxslt yasm libxml2 libxxf86vm flashplugin libx11 libxt"
+	arch=`uname -m`
+
+	if [ "${arch}" == "x86_64" ] ; then
+		DEPS="${DEPS} binutils-multilib"
+	elif [ "${arch}" == "i386" ] ; then # no extra-32-bit support needed
+		DEPS="${DEPS} binutils"
+	fi
+	DEPS=`pacman -T ${DEPS} | sed -e 's/\n/ /g'`
+
 	if [ -z "${DEPS}" ]; then
 		echo "Dependencies already installed."
 	else
