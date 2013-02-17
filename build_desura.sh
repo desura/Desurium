@@ -68,13 +68,14 @@ pack() {
 	elif [ $PACKAGE = "RPM" ]; then
 		echo "Building RPM package..."
 	fi
-	if [ ! -d "build" ] ; then
-		mkdir build
+	if [ ! -d "build_package" ] ; then
+		mkdir build_package
 	fi
-	cd build
+	cd build_package
 	cmake .. -DPACKAGE_TYPE=$PACKAGE -DINSTALL_DESKTOP_FILE=ON -DCMAKE_INSTALL_PREFIX="/opt/desura" || exit
 	make package $args
 	mv Desura-* ..
+	rm -rf build_package
 }
 
 case "$@" in
