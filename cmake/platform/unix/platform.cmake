@@ -40,9 +40,19 @@ endif()
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
   set(64BIT TRUE)
-  message("-- detected 64bit")
-  
-  option(32BIT_SUPPORT "enable support for 32bit applications (requires 32bit libraries)" ON)
+  message("-- Detected 64bit")
+  try_compile(MULTILIB_TEST_COMPILE
+    "${CMAKE_TEST_PROJECTS_BIN}/multilib_test"
+    "${CMAKE_TEST_PROJECTS}/multilib_test"
+    "multilib_test"
+    "multilib_test")
+  if(MULTILIB_TEST_COMPILE)
+    message("-- Working multilib, enable 32bit support")
+    option(32BIT_SUPPORT "enable support for 32bit applications (requires 32bit libraries)" ON)
+  else()
+    message("-- Not working multilib, disable 32bit support")
+    option(32BIT_SUPPORT "enable support for 32bit applications (requires 32bit libraries)" OFF)
+  endif()
 else()
   set(64BIT FALSE)
   message("-- detected 32bit")
