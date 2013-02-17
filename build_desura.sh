@@ -74,6 +74,7 @@ pack() {
 	cd build
 	cmake .. -DPACKAGE_TYPE=$PACKAGE -DINSTALL_DESKTOP_FILE=ON -DCMAKE_INSTALL_PREFIX="/opt/desura" || exit
 	make package $args
+	mv Desura-* ..
 }
 
 case "$@" in
