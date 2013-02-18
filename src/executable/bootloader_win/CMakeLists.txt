@@ -23,19 +23,20 @@ endif()
 set(Sources "${Sources};${AdditionalSources}")
 
 add_definitions(-D_WINDOWS
-                -DGAMECORE_LOG
-				-DDONT_INCLUDE_WINH
-				-DDONTUSE_PCH
-				-DDESURA_EXE
-				-DDESURA_CLIENT
-				-DNO_UTIL_FS)
+  -DGAMECORE_LOG
+	-DDONT_INCLUDE_WINH
+	-DDONTUSE_PCH
+	-DDESURA_EXE
+	-DDESURA_CLIENT
+	-DNO_UTIL_FS
+)
 				
 add_executable(desura ${Sources} ${SERVICE_PIPE_IPCUPDATEMAIN})
 target_link_libraries(desura
-    ipc_pipe
+  ipc_pipe
 	threads
-    util
-    util_bootloader
+  util
+  util_bootloader
 	comctl32
 )
 
