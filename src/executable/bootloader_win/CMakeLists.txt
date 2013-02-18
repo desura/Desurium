@@ -14,6 +14,9 @@ file(GLOB Sources code/AppUpdateInstall.cpp
 
 if(MFC_FOUND)
   file(GLOB AdditionalSources code/DesuraMain.cpp)
+  # set "Use of MFC" to "Use MFC in a Shared DLL" in VS
+  add_definitions(-D_AFXDLL)
+  set(CMAKE_MFC_FLAG 2)
 else()
   file(GLOB AdditionalSources code/DesuraMainMingw.cpp)
 endif()
