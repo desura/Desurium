@@ -162,12 +162,16 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
   add_dependencies(cef fetch_cef)
 
   set(CEF_LIB_DIR ${CHROMIUM_SOURCE_DIR}/src/out/Release/lib.target)
+  set(CEF_FFMPEG_LIB_DIR ${CHROMIUM_SOURCE_DIR}/src/out/Release)
   set(CEF_LIBRARIES "${CEF_LIB_DIR}/libcef_desura.so")
+  set(CEF_FFMPEG_LIB "${CEF_FFMPEG_LIB_DIR}/libffmpegsumo.so")
   set(CEF_INCLUDE_DIRS "${CEF_SOURCE_DIR}")
 
   if(NOT WIN32)
     install(FILES ${CEF_LIBRARIES}
-          DESTINATION ${LIB_INSTALL_DIR})
+            DESTINATION ${LIB_INSTALL_DIR})
+    install(FILES ${CEF_FFMPEG_LIB}
+            DESTINATION ${LIB_INSTALL_DIR}/lib)
   endif()
 else(BUILD_CEF)
   ExternalProject_Add(
