@@ -62,6 +62,22 @@ clean_desurium() {
 	printf "Done\n"
 }
 
+pack() {
+	echo "Building "$PACKAGE" package..."
+	if [ ! -d "build_package" ] ; then
+		mkdir build_package
+	fi
+	cd build_package
+	cmake .. -DPACKAGE_TYPE=$PACKAGE -DINSTALL_DESKTOP_FILE=ON -DCMAKE_INSTALL_PREFIX="/opt/desura" || exit
+	make package $args
+	if [ $PACKAGE = "DEB" ]; then
+		mv Desura-*.deb ..
+	elif [ $PACKAGE = "RPM" ]; then
+		mv Desura-*.rpm ..
+	fi
+	cd ..
+	rm -rf build_package
+}
 
 case "$@" in
 	"help" )
@@ -72,6 +88,10 @@ case "$@" in
 		echo "\"rebuild\" performs make clean and rebuild the respective targets."
 		echo "\"compile\" compiles the respective target."
 		echo "\"clean\" performs make clean for the respective target."
+		echo ""
+		echo "\"pack_deb\" performs building DEB package of desurium."
+		echo "\"pack_rpm\" performs building RPM package of desurium."
+		echo ""
 		echo ""
 		echo "\"check\" performs make check for desurium."
 		echo ""
@@ -105,6 +125,16 @@ case "$@" in
 	*compile_cef* )
 		args=`echo "$@" | sed -e 's/compile_cef//'`
 		compile_cef || exit 4
+		;;
+	*pack_deb* )
+		args=`echo "$@" | sed -e 's/pack_deb//'`
+		PACKAGE="DEB"
+		pack || exit
+		;;
+	*pack_rpm* )
+		args=`echo "$@" | sed -e 's/pack_rpm//'`
+		PACKAGE="RPM"
+		pack || exit
 		;;
 	"clean_cef" )
 		clean_cef
