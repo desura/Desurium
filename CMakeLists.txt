@@ -171,8 +171,13 @@ endif()
 find_package(PythonInterp REQUIRED)
 
 if(WIN32)
-  find_package(MFC)
   find_package(PythonLibs REQUIRED)
+  # only define this if MFC was found
+  # VC express and mingw doesn't provide MFC, but other versions of VC do
+  find_package(MFC)
+  if(MFC_FOUND)
+    add_definitions(-DMFC_FOUND)
+  endif()
 endif()
 
 ###############################################################################
