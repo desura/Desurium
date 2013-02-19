@@ -171,7 +171,7 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
     install(FILES ${CEF_LIBRARIES}
             DESTINATION ${LIB_INSTALL_DIR})
     install(FILES ${CEF_FFMPEG_LIB}
-            DESTINATION ${LIB_INSTALL_DIR}/lib)
+            DESTINATION ${LIB_INSTALL_DIR}/cefmedia)
   endif()
 else(BUILD_CEF)
   ExternalProject_Add(
