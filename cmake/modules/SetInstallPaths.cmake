@@ -18,7 +18,7 @@ set(RUNTIME_LIBDIR "lib"
     CACHE STRING "Desura Lib Dir")
 set(DATADIR ""
     CACHE STRING "Desura Data Install Dir")
-set(DESKTOPDIR "/usr/share/application"
+set(DESKTOPDIR "/usr/share/applications"
     CACHE STRING "Desktop installation directory")
 
 # set variables used by cmake
