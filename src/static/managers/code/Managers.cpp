@@ -26,13 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "CVarManager.h"
 #include "ConCommandManager.h"
 
-inline const char* LANG_DEF(void)
-{
-	std::wstring path = UTIL::OS::getDataPath(L"language/english.xml");
-	
-	return UTIL::STRING::toStr(path).c_str();
-}
-
 namespace Managers
 {
 
@@ -182,7 +175,7 @@ public:
 	void InitManagers()
 	{
 		//must load lang first as the cvar gc_lang needs it
-		m_pLanguageManager = new LanguageManager(LANG_DEF());
+		m_pLanguageManager = new LanguageManager();
 		
 		InitCVarManger();
 		InitConComManger();
