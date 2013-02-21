@@ -18,6 +18,15 @@ if(WIN32 AND NOT MINGW)
     DEPENDERS build
     COMMAND vcupgrade <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcproj
   )
+  # Breakpad builds with /MT by default but we need /MD. This patch makes it build with /MD
+  ExternalProject_Add_Step(
+    breakpad
+    patch_project_files
+    DEPENDEES update_project_files
+    DEPENDERS build
+    WORKING_DIRECTORY <SOURCE_DIR>
+    COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_PATCH_DIR}/breakpad-VS.patch
+  )
 else()
   ExternalProject_Add(
     breakpad
