@@ -45,7 +45,7 @@ enum
 class LanguageManager : public BaseManager<LanguageString>, public LanguageManagerI
 {
 public:
-	LanguageManager(const char* defaultLangFile);
+	LanguageManager();
 	~LanguageManager();
 
 	virtual const char* getString(const char* name);
