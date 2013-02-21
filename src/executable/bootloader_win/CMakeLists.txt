@@ -38,6 +38,7 @@ target_link_libraries(desura
   util
   util_bootloader
 	comctl32
+  mdump
 )
 
 install(TARGETS desura
