@@ -150,43 +150,17 @@ MutexType & SingletonHolder<Class>::InstanceHolder::mutex()
 class ManagersImpl
 {
 public:
-	ManagersImpl()
-	{
-		m_pLanguageManager = NULL;
-		m_pThemeManager = NULL;
-		m_pWindowManager = NULL;
-	}
-
-	~ManagersImpl()
-	{
-		//destroy theme here as some image handles may still exist after main form is destroyed
-		safe_delete(m_pThemeManager);
-	}
-
 	void DestroyManagers()
 	{
-		safe_delete(m_pLanguageManager);
-		safe_delete(m_pWindowManager);
-
 		DestroyCVarManager();
 		DestroyConComManager();
 	}
 
 	void InitManagers()
 	{
-		//must load lang first as the cvar gc_lang needs it
-		m_pLanguageManager = new LanguageManager();
-		
 		InitCVarManger();
 		InitConComManger();
-
-		m_pThemeManager = new ThemeManager();
-		m_pWindowManager = new WindowManager();
 	}
-
-	LanguageManager	*m_pLanguageManager;
-	ThemeManager	*m_pThemeManager;
-	WindowManager	*m_pWindowManager;
 };
 
 ManagersImpl g_Managers;
@@ -204,17 +178,17 @@ void DestroyManagers()
 
 LanguageManagerI* GetLanguageManager()
 {
-	return g_Managers.m_pLanguageManager;
+	return &SingletonHolder<LanguageManager>::Instance();
 }
 
 ThemeManagerI* GetThemeManager()
 {
-	return g_Managers.m_pThemeManager;
+	return &SingletonHolder<ThemeManager>::Instance();
 }
 
 WindowManagerI* GetWindowManager()
 {
-	return g_Managers.m_pWindowManager;
+	return &SingletonHolder<WindowManager>::Instance();
 }
 
 CVarManagerI* GetCVarManager()
