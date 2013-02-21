@@ -55,7 +55,104 @@ const wchar_t* GetString( const wchar_t* str )
 
 }
 
+/**
+ * a simple thread-safe static storage SingletonHolder implementation
+ */
+template <typename Class>
+class SingletonHolder
+{
+public:
+	static Class &Instance();
 
+private:
+	class InstanceHolder
+	{
+	public:
+		bool operator !();
+		Class & operator *();
+		Class & operator =(Class* ref);
+		InstanceHolder();
+		~InstanceHolder();
+		MutexType & mutex();
+
+	private:
+		Class *_instance;
+		MutexType _mutex;
+	};
+
+	static InstanceHolder instance;
+
+	static void NewInstance();
+
+	// should be never ever called
+	SingletonHolder();
+};
+
+template <typename Class>
+inline Class &SingletonHolder<Class>::Instance()
+{
+	// create instance only if instance is not created
+	if (!instance)
+		NewInstance();
+
+	return *instance;
+}
+
+template <typename Class>
+inline void SingletonHolder<Class>::NewInstance()
+{
+	// enter critical section
+	EnterCriticalSection(&instance.mutex());
+
+	// check again for creation (another thread could accessed the critical section before
+	if (!instance)
+		instance = new Class();
+
+	LeaveCriticalSection(&instance.mutex());
+}
+
+template <typename Class>
+typename SingletonHolder<Class>::InstanceHolder SingletonHolder<Class>::instance;
+
+template <typename Class>
+inline bool SingletonHolder<Class>::InstanceHolder::operator !()
+{
+	return this->_instance == nullptr;
+}
+
+template <typename Class>
+inline Class & SingletonHolder<Class>::InstanceHolder::operator *()
+{
+	return *this->_instance;
+}
+
+template <typename Class>
+inline Class & SingletonHolder<Class>::InstanceHolder::operator =(Class* ref)
+{
+	this->_instance = ref;
+}
+
+template <typename Class>
+SingletonHolder<Class>::InstanceHolder::InstanceHolder()
+:	_instance(nullptr){}
+
+template <typename Class>
+SingletonHolder<Class>::InstanceHolder::~InstanceHolder()
+{
+	EnterCriticalSection(&mutex());
+	if (this->_instance != nullptr)
+	{
+		delete this->_instance;
+		this->_instance = nullptr;
+	}
+	LeaveCriticalSection(&mutex());
+}
+
+template <typename Class>
+MutexType & SingletonHolder<Class>::InstanceHolder::mutex()
+{
+	return this->_mutex;
+}
 
 class ManagersImpl
 {
