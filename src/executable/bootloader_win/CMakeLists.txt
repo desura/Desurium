@@ -14,26 +14,31 @@ file(GLOB Sources code/AppUpdateInstall.cpp
 
 if(MFC_FOUND)
   file(GLOB AdditionalSources code/DesuraMain.cpp)
+  # set "Use of MFC" to "Use MFC in a Shared DLL" in VS
+  add_definitions(-D_AFXDLL)
+  set(CMAKE_MFC_FLAG 2)
 else()
   file(GLOB AdditionalSources code/DesuraMainMingw.cpp)
 endif()
 set(Sources "${Sources};${AdditionalSources}")
 
 add_definitions(-D_WINDOWS
-                -DGAMECORE_LOG
-				-DDONT_INCLUDE_WINH
-				-DDONTUSE_PCH
-				-DDESURA_EXE
-				-DDESURA_CLIENT
-				-DNO_UTIL_FS)
+  -DGAMECORE_LOG
+	-DDONT_INCLUDE_WINH
+	-DDONTUSE_PCH
+	-DDESURA_EXE
+	-DDESURA_CLIENT
+	-DNO_UTIL_FS
+)
 				
 add_executable(desura ${Sources} ${SERVICE_PIPE_IPCUPDATEMAIN})
 target_link_libraries(desura
-    ipc_pipe
+  ipc_pipe
 	threads
-    util
-    util_bootloader
+  util
+  util_bootloader
 	comctl32
+  mdump
 )
 
 install(TARGETS desura

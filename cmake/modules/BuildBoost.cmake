@@ -17,7 +17,7 @@ ExternalProject_Add(
   BUILD_IN_SOURCE 1
   CONFIGURE_COMMAND ${CONFIGURE_COMMAND} ${BOOST_EXTRA_BUILD_OPTS}
   BUILD_COMMAND ${BJAM_BINARY} --layout=system --with-date_time --with-filesystem
-                  --with-thread --with-system variant=debug link=static
+                  --with-thread --with-system --with-test variant=debug link=static
 				  threading=multi runtime-link=shared
   INSTALL_COMMAND ""
 )
@@ -30,7 +30,7 @@ ExternalProject_Add(
   BUILD_IN_SOURCE 1
   CONFIGURE_COMMAND ${CONFIGURE_COMMAND} ${BOOST_EXTRA_BUILD_OPTS}
   BUILD_COMMAND ${BJAM_BINARY} --layout=system --with-date_time --with-filesystem
-                  --with-thread --with-system variant=release link=static
+                  --with-thread --with-system --with-test variant=release link=static
 				  threading=multi runtime-link=shared 
   INSTALL_COMMAND ""
 )
