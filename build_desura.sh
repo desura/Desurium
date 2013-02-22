@@ -129,12 +129,12 @@ case "$@" in
 	*pack_deb* )
 		args=`echo "$@" | sed -e 's/pack_deb//'`
 		PACKAGE="DEB"
-		pack || exit
+		pack || exit 5
 		;;
 	*pack_rpm* )
 		args=`echo "$@" | sed -e 's/pack_rpm//'`
 		PACKAGE="RPM"
-		pack || exit
+		pack || exit 6
 		;;
 	"clean_cef" )
 		clean_cef
@@ -152,16 +152,16 @@ case "$@" in
 	*check* )
 		echo "'make check' will be called."
 		args=`echo "$@" | sed -e 's/check//'`
-		compile_cef
-		compile_desurium
+		compile_cef | exit 1
+		compile_desurium | exit 2
 		printf "Running 'make check'\n"
 		# already in /build
 		make test
 		;;
 	* )
 		args=$@
-		compile_cef
-		compile_desurium
+		compile_cef | exit 1
+		compile_desurium | exit 2
 		;;
 esac
 
