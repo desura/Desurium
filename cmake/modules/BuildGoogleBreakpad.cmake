@@ -25,7 +25,7 @@ if(WIN32 AND NOT MINGW)
     DEPENDEES update_project_files
     DEPENDERS build
     WORKING_DIRECTORY <SOURCE_DIR>
-    COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_PATCH_DIR}/breakpad-VS.patch
+    COMMAND cmake -DVCXPROJ_PATH=<SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj -P ${CMAKE_SCRIPT_PATH}/breakpad_VS_patch.cmake
   )
 else()
   ExternalProject_Add(
