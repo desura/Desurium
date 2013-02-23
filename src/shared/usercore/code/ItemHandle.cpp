@@ -1235,7 +1235,7 @@ void ItemHandle::cancelCurrentStage()
 	m_ThreadMutex.readUnlock();
 }
 
-void ItemHandle::getStatusStr(LanguageManagerI *pLangMng, char* buffer, uint32 buffsize)	
+void ItemHandle::getStatusStr(LanguageManagerI & pLangMng, char* buffer, uint32 buffsize)
 {
 	gcString temp;
 
@@ -1244,9 +1244,9 @@ void ItemHandle::getStatusStr(LanguageManagerI *pLangMng, char* buffer, uint32 b
 	if (!m_pItemInfo->isDownloadable())
 	{
 		if (m_pItemInfo->isInstalled())
-			temp = gcString(pLangMng->getString("#IS_INSTALLED"));
+			temp = gcString(pLangMng.getString("#IS_INSTALLED"));
 		else
-			temp = gcString(pLangMng->getString("#IS_NOTINSTALLED"));
+			temp = gcString(pLangMng.getString("#IS_NOTINSTALLED"));
 	}
 	else
 	{
@@ -1264,16 +1264,16 @@ void ItemHandle::getStatusStr(LanguageManagerI *pLangMng, char* buffer, uint32 b
 		else if (m_uiStage == UserCore::Item::ItemHandleI::STAGE_LAUNCH)
 		{
 			skip = true;
-			temp = pLangMng->getString("#IS_LAUNCHING");
+			temp = pLangMng.getString("#IS_LAUNCHING");
 		}
 		else if (m_uiStage == UserCore::Item::ItemHandleI::STAGE_VALIDATE)
 		{
-			stateMsg = pLangMng->getString("#IS_VALIDATE");
+			stateMsg = pLangMng.getString("#IS_VALIDATE");
 		}
 		else if (m_uiStage == UserCore::Item::ItemHandleI::STAGE_WAIT && m_pGroup)
 		{
 			skip = true;
-			temp = gcString(pLangMng->getString("#IS_WAIT"), m_pGroup->getPos(this), m_pGroup->getCount());
+			temp = gcString(pLangMng.getString("#IS_WAIT"), m_pGroup->getPos(this), m_pGroup->getCount());
 		}
 		else if (status & UserCore::Item::ItemInfoI::STATUS_VERIFING || m_uiStage == UserCore::Item::ItemHandleI::STAGE_VERIFY)
 		{
@@ -1326,7 +1326,7 @@ void ItemHandle::getStatusStr(LanguageManagerI *pLangMng, char* buffer, uint32 b
 			}
 
 			skip = true;
-			temp = pLangMng->getString(stateMsg);
+			temp = pLangMng.getString(stateMsg);
 		}
 
 		if (!skip)
@@ -1334,7 +1334,7 @@ void ItemHandle::getStatusStr(LanguageManagerI *pLangMng, char* buffer, uint32 b
 			if (status & UserCore::Item::ItemInfoI::STATUS_PAUSED)
 				stateMsg = "#IS_PAUSED";
 
-			temp = gcString("{0:u}% - {1}", m_pItemInfo->getPercent(), pLangMng->getString(stateMsg));
+			temp = gcString("{0:u}% - {1}", m_pItemInfo->getPercent(), pLangMng.getString(stateMsg));
 		}
 	}
 
