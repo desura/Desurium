@@ -32,18 +32,12 @@ namespace Managers
 
 const char* GetString( const char* str )
 {
-	if (GetLanguageManager())
-		return GetLanguageManager()->getString( str );
-	
-	return str;
+	return GetLanguageManager().getString( str );
 }
 
 const wchar_t* GetString( const wchar_t* str )
 {
-	if (GetLanguageManager())
-		return GetLanguageManager()->getString( str );
-	
-	return str;
+	return GetLanguageManager().getString( str );
 }
 
 }
@@ -175,20 +169,19 @@ void DestroyManagers()
 	g_Managers.DestroyManagers();
 }
 
-
-LanguageManagerI* GetLanguageManager()
+LanguageManagerI & GetLanguageManager()
 {
-	return &SingletonHolder<LanguageManager>::Instance();
+	return SingletonHolder<LanguageManager>::Instance();
 }
 
-ThemeManagerI* GetThemeManager()
+ThemeManagerI & GetThemeManager()
 {
-	return &SingletonHolder<ThemeManager>::Instance();
+	return SingletonHolder<ThemeManager>::Instance();
 }
 
-WindowManagerI* GetWindowManager()
+WindowManagerI & GetWindowManager()
 {
-	return &SingletonHolder<WindowManager>::Instance();
+	return SingletonHolder<WindowManager>::Instance();
 }
 
 CVarManagerI* GetCVarManager()
@@ -200,10 +193,3 @@ CCommandManagerI* GetCCommandManager()
 {
 	return g_pConComMang;
 }
-
-
-
-
-
-
-
