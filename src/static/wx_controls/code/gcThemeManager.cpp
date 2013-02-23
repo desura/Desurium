@@ -136,40 +136,40 @@ wxBitmap gcThemeManager::getSprite(wxImage& img, const char* spriteId, const cha
 
 const char* gcThemeManager::getWebPage(const char* id)
 {
-	return GetThemeManager()->getWebPage(id);
+	return GetThemeManager().getWebPage(id);
 }
 
 const char* gcThemeManager::getImage(const char* id)
 {
-	return GetThemeManager()->getImage(id);
+	return GetThemeManager().getImage(id);
 }
 
 Color gcThemeManager::getColor(const char* name, const char* id)
 {
-	return GetThemeManager()->getColor(name, id);
+	return GetThemeManager().getColor(name, id);
 }
 
 SpriteRectI* gcThemeManager::getSpriteRect(const char* id, const char* rectId)
 {
-	return GetThemeManager()->getSpriteRect(id, rectId);
+	return GetThemeManager().getSpriteRect(id, rectId);
 }
 
 void gcThemeManager::loadFromFolder(const char* folder)
 {
-	GetThemeManager()->loadFromFolder(folder);
+	GetThemeManager().loadFromFolder(folder);
 }
 
 void gcThemeManager::loadTheme(const char* name)
 {
-	GetThemeManager()->loadTheme(name);
+	GetThemeManager().loadTheme(name);
 }
 
 void gcThemeManager::getThemeStubList(std::vector<ThemeStubI*> &vList)
 {
-	GetThemeManager()->getThemeStubList(vList);
+	GetThemeManager().getThemeStubList(vList);
 }
 
 const char* gcThemeManager::getThemeFolder()
 {
-	return GetThemeManager()->getThemeFolder();
+	return GetThemeManager().getThemeFolder();
 }

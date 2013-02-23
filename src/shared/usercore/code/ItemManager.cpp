@@ -754,19 +754,6 @@ void ItemManager::processLeftOvers(InfoMaps &maps, bool addMissing)
 	});
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 void ItemManager::loadItems()
 {
 	loadDbItems();

@@ -16,7 +16,8 @@ endif()
 
 add_library(managers STATIC ${Sources} ${COMMON_SOURCE})
 target_link_libraries(managers
-    ${SQLITE3X_LIBRARIES}
+  ${SQLITE3X_LIBRARIES}
+  ${CMAKE_THREAD_LIBS_INIT}
 )
 
 include_directories(

@@ -25,11 +25,8 @@ namespace Managers
 
 void LoadTheme(wxWindow* win, const char* name)
 {
-	if (!GetThemeManager())
-		return;
-
-	Color bg = GetThemeManager()->getColor(name, "bg");
-	Color fg = GetThemeManager()->getColor(name, "fg");
+	Color bg = GetThemeManager().getColor(name, "bg");
+	Color fg = GetThemeManager().getColor(name, "fg");
 
 	win->SetForegroundColour(wxColor(fg));
 	win->SetBackgroundColour(wxColor(bg));
