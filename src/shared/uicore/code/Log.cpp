@@ -162,8 +162,7 @@ void InitLogging()
 
 void RegLogWithWindow()
 {
-	if (GetWindowManager())
-			GetWindowManager()->registerWindow(logForm);
+	GetWindowManager().registerWindow(logForm);
 }
 
 void DestroyLogging()

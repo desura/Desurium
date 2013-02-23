@@ -109,11 +109,11 @@ public:
 	virtual void getConCommandList(std::vector<ConCommand*> &vList)=0;
 };
 
-ThemeManagerI*		GetThemeManager();
-LanguageManagerI*	GetLanguageManager();
-WindowManagerI*		GetWindowManager();
-CVarManagerI*		GetCVarManager();
-CCommandManagerI*	GetCCommandManager();
+ThemeManagerI &     GetThemeManager();
+LanguageManagerI &  GetLanguageManager();
+WindowManagerI &    GetWindowManager();
+CVarManagerI*       GetCVarManager();
+CCommandManagerI*   GetCCommandManager();
 
 namespace Managers
 {
@@ -122,17 +122,16 @@ namespace Managers
 	const wchar_t* GetString( const wchar_t* str );
 }
 
-#define WINDOW_REG(){	if (GetWindowManager())							\
-							GetWindowManager()->registerWindow(this);	\
-					}									
+#define WINDOW_REG()                         \
+{                                            \
+	GetWindowManager().registerWindow(this); \
+}
 
-#define WINDOW_UNREG()	virtual bool Destroy()								\
-						{													\
-							if (GetWindowManager())							\
-								GetWindowManager()->unRegisterWindow(this);	\
-																			\
-							return wxFrame::Destroy();						\
-						}
+#define WINDOW_UNREG() virtual bool Destroy()  \
+{                                              \
+	GetWindowManager().unRegisterWindow(this); \
+	return wxFrame::Destroy();                 \
+}
 
 
 #endif //DESURA_MANAGERS_H
