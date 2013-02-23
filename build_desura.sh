@@ -152,16 +152,16 @@ case "$@" in
 	*check* )
 		echo "'make check' will be called."
 		args=`echo "$@" | sed -e 's/check//'`
-		compile_cef | exit 1
-		compile_desurium | exit 2
+		compile_cef || exit 1
+		compile_desurium || exit 2
 		printf "Running 'make check'\n"
 		# already in /build
 		make test
 		;;
 	* )
 		args=$@
-		compile_cef | exit 1
-		compile_desurium | exit 2
+		compile_cef || exit 1
+		compile_desurium || exit 2
 		;;
 esac
 
