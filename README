@@ -46,12 +46,6 @@ tinyxml
 
 Finally run Desura using ./install/desura
 
-If you're on a 64bit system and want 32bit support, abort building it and go to
-the 'build' folder, and edit the CMake cache as to enable 32BIT_SUPPORT.
-(You can use ccmake or cmake-gui for this).
-
-For informations on advanced arguments of the build script, run './build_desura.sh help'.
-
 Build Desura on Windows
 =====================
 
