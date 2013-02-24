@@ -27,10 +27,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <branding/branding.h>
 
 
-LanguageManager::LanguageManager(const char* defaultLangFile) : BaseManager<LanguageString>( true )
+LanguageManager::LanguageManager() : BaseManager<LanguageString>( true )
 {
-	if (defaultLangFile)
-		loadFromFile(defaultLangFile);
+	// load english files by default
+	std::wstring path = UTIL::OS::getDataPath(L"language/english.xml");
+	loadFromFile(UTIL::STRING::toStr(path).c_str());
 }
 
 LanguageManager::~LanguageManager()

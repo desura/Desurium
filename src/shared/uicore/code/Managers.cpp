@@ -35,23 +35,17 @@ inline const char* THEMEFOLDER(void)
 
 bool LangChanged(CVar* var, const char* val)
 {
-	if (GetLanguageManager())
-	{
-		gcString lan("{0}{1}.xml", LANGFOLDER(), val);
+	gcString lan("{0}{1}.xml", LANGFOLDER(), val);
 
-		if (GetLanguageManager()->loadFromFile(lan.c_str()))
-		{
-			Msg(gcString("Loaded Language file: {0}\n", val));
-			return true;
-		}
-		else
-		{
-			Warning(gcString("Failed to Load Language file: {0}\n", val));
-			return false;
-		}
+	if (GetLanguageManager().loadFromFile(lan.c_str()))
+	{
+		Msg(gcString("Loaded Language file: {0}\n", val));
+		return true;
 	}
 
-	return true;
+	Warning(gcString("Failed to Load Language file: {0}\n", val));
+	return false;
+
 }
 
 bool ThemeChanged(CVar* var, const char* val)
@@ -77,7 +71,7 @@ CVar gc_theme("gc_theme", "default", CFLAG_SAVEONEXIT, (CVarCallBackFn)&ThemeCha
 CONCOMMAND(cc_reloadlanguage, "reload_language")
 {
 	gcString lan("{0}{1}.xml", LANGFOLDER(), gc_language.getString());
-	GetLanguageManager()->loadFromFile(lan.c_str());
+	GetLanguageManager().loadFromFile(lan.c_str());
 }
 
 

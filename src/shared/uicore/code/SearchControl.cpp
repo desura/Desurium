@@ -70,7 +70,7 @@ SearchControl::SearchControl(wxWindow* parent) : gcPanel(parent)
 	
 	Managers::LoadTheme(this, "searchBox");
 
-	m_DefaultCol = wxColor(GetThemeManager()->getColor("formlogin", "tb-default-fg"));
+	m_DefaultCol = wxColor(GetThemeManager().getColor("formlogin", "tb-default-fg"));
 	m_NormalCol = m_tbSearchBox->GetForegroundColour();
 
 	m_tbSearchBox->SetForegroundColour(m_DefaultCol);
