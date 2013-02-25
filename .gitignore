@@ -5,6 +5,7 @@ CMakeFiles/
 Makefile
 build/
 build_cef/
+build_package/
 install/
 ceflibs/
 

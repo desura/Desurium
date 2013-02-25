@@ -92,7 +92,7 @@ public:
 	//! @param buffer Buffer to save status into
 	//! @param buffsize Max size of buffer
 	//!
-	virtual void getStatusStr(LanguageManagerI *pLangMng, char* buffer, uint32 buffsize)=0;
+	virtual void getStatusStr(LanguageManagerI & pLangMng, char* buffer, uint32 buffsize)=0;
 	virtual ItemTaskGroupI* getTaskGroup()=0;
 
 	//! If this item is in a task group it will force start it

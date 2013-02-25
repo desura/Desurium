@@ -31,7 +31,7 @@ wxMenu* TBIWindowMenu::createMenu(uint32 &lastMenuId)
 	gcMenu* menu = new gcMenu();
 
 	std::vector<wxFrame*> vList;
-	GetWindowManager()->getWindowList(vList);
+	GetWindowManager().getWindowList(vList);
 
 	int32 count = 0;
 
@@ -76,7 +76,7 @@ void TBIWindowMenu::onMenuSelect(wxCommandEvent& event)
 		return;
 
 	std::vector<wxFrame*> vList;
-	GetWindowManager()->getWindowList(vList);
+	GetWindowManager().getWindowList(vList);
 
 	for (size_t x=0; x<vList.size(); x++)
 	{

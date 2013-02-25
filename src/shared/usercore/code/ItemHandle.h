@@ -94,7 +94,7 @@ public:
 	virtual Event<uint32>* getChangeStageEvent();
 	virtual Event<gcException>* getErrorEvent();
 
-	virtual void getStatusStr(LanguageManagerI *pLangMng, char* buffer, uint32 buffsize);
+	virtual void getStatusStr(LanguageManagerI & pLangMng, char* buffer, uint32 buffsize);
 	virtual ItemTaskGroupI* getTaskGroup();
 	virtual void force();
 
