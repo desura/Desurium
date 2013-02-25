@@ -4,7 +4,6 @@ Content
  * Desura
  * Build Desura on Linux
  * Build Desura on Windows
- * Create Packages
  * Special notes for advanced users
  * Closing Remarks
 
@@ -18,33 +17,50 @@ For more information, visit http://www.moddb.com/groups/desura/forum/thread/open
 Build Desura on Linux
 ===================
 
-Run ./build_desura.sh
+1. Dependencies
 
-In order to make use of multiple CPU cores while compiling, run
-./build_desura.sh -j8
-which will invoke "make -j8" so the build is sped up extremely
-and takes only 7 minutes on a modern machine (intel core i7 2635QM)
-"8" will be the number of compile-threads to run at a time.
-
-You can find out the number of cores you have running:
-getconf _NPROCESSORS_ONLN
-
-Required dependencies (can be installed by package manager or install_deps.sh):
-boost
-c-ares (for ares support in curl)
-cmake
-gtk2
-OpenSSL
-v8
-anything chromium and v8 requires
+Required dependencies:
+- GCC (4.6 or later, multilib support for 32 bit compatibility on 64 bit systems)
+- cmake (2.8.5 or later)
+- PkgConfig (for building DEB and RPM packages)
+- Boost (date_time, filesystem, thread system, test_exec_monitor, unit_test_framework)
+- Freetype
+- GTK2
+- libX11 (with libXt)
+- libEvent
+- libNotify (0.7 or later)
+- GLib2
+- OpenSSL (only for building Curl)
+- BZip2
+- Sqlite3
+- tinyxml (2.6 or later)
+- V8
+- Python
+- C-ares
 
 Optional dependencies (will be built by cmake if not existing):
-bzip2
-curl (while building without ares support)
-sqlite
-tinyxml
+- Curl (if there is no ares support)
+- wxWidgets (2.9.3 or later)
+- Breakpad
+- CEF (Chromium Embedded)
 
-Finally run Desura using ./install/desura
+You can install dependencies by package manager or install_deps.sh
+
+2. Installation
+
+Open Terminal in Desurium source directory.
+Run: ./build_desura.sh
+or
+You can speed up things by running: ./build_desura.sh rebuild_all -j `getconf _NPROCESSORS_ONLN`
+or
+You can build DEB package: ./build_desura.sh pack_deb
+or
+You can build RPM package: ./build_desura.sh pack_rpm
+Finally run Desurium using: ./install/desura
+or
+Install created DEB or RPM package
+
+For informations on advanced arguments of the build script, run: ./build_desura.sh help
 
 Build Desura on Windows
 =====================
@@ -63,23 +79,6 @@ Download and install:
 Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a full build environment)
 run ./build_desura.bat
 wait
-
-Building and Create Packages
-=====================
-
-If you also need to create an installable package for your distribution, then you can simply 
-run the following commands to build and create packages for installing desura with your package manager:
-
- 1. mkdir package
- 2. cd package
- 3. cmake -DPACKAGE_TYPE="{PACKAGE_TYPE}" -DINSTALL_DESKTOP_FILE=ON -DCMAKE_INSTALL_PREFIX="/opt/desura" ..
- 4. make package
-
-Supported Values for PACKAGE_TYPE are:
-  * DEB
-  * RPM
-
-You can also mix them like: DEB;RPM
 
 Special notes for advanced users
 =====================
