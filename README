@@ -19,6 +19,8 @@ Build Desura on Linux
 
 1. Dependencies
 
+You can install dependencies by package manager or install_deps.sh
+
 Required dependencies:
 - GCC (4.6 or later, multilib support for 32 bit compatibility on 64 bit systems)
 - cmake (2.8.5 or later)
@@ -43,8 +45,6 @@ Optional dependencies (will be built by cmake if not existing):
 - wxWidgets (2.9.3 or later)
 - Breakpad
 - CEF (Chromium Embedded)
-
-You can install dependencies by package manager or install_deps.sh
 
 2. Installation
 
