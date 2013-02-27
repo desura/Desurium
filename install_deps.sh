@@ -35,8 +35,15 @@ elif [ -f /etc/arch-release ]; then		# Arch Linux
 	echo -e "\e[1;31mNote: there are PKGBUILDs in ./distro/archlinux/\e[0m"
 	# By using "pacman -T" to find out needed dependencies, we don't get
 	# conflicts if a package we have installed provides one of the dependencies.
-	DEPS=`echo "cmake make boost glib2 pkg-config sqlite m4 autoconf gcc glibc autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify xdg-user-dirs v8 c-ares sed flac libpng speex zlib xdg-utils libevent libxslt yasm libxml2 libxxf86vm flashplugin libx11 libxt binutils-multilib" | sed -e 's/\n/ /g'`
-	DEPS=`pacman -T ${DEPS} `
+	DEPS="cmake make boost glib2 pkg-config sqlite m4 autoconf gcc glibc autoconf libtool gtk2 nss libgnome-keyring dbus-glib gperf bison cups flex libjpeg-turbo alsa-lib bzip2 libxpm libx11 openssl scons gconf libnotify xdg-user-dirs v8 c-ares sed flac libpng speex zlib xdg-utils libevent libxslt yasm libxml2 libxxf86vm flashplugin libx11 libxt"
+	arch=`uname -m`
+
+	if [ "${arch}" == "x86_64" ] ; then
+		DEPS="${DEPS} binutils-multilib"
+	elif [ "${arch}" == "i386" ] ; then # no extra-32-bit support needed
+		DEPS="${DEPS} binutils"
+	fi
+	DEPS=`pacman -T ${DEPS} | sed -e 's/\n/ /g'`
 
 	if [ -z "${DEPS}" ]; then
 		echo "Dependencies already installed."
