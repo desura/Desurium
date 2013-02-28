@@ -152,7 +152,7 @@
 
 		<str name="#IF_TITLE">Preparazione:</str>
 		<str name="#IF_VERIFY">Verifica:</str>
-		<str name="#IF_DOWNLOAD">Scaricamento:</str>
+		<str name="#IF_DOWNLOAD">In dowload:</str>
 		<str name="#IF_INSTALL">Installazione:</str>
 		<str name="#IF_UPDATE">Aggiornamento:</str>
 		<str name="#IF_UNINSTALL">Disinstallazione: </str>
@@ -188,10 +188,10 @@
 		<str name="#IF_INSTALL_VERIFY">Verifica i file installati e installa quelli mancanti</str>
 		<str name="#IF_EXISTINGFILES">Esistono già file nel percorso di installazione di {0}. Come si vuole procedere?</str>
 		<str name="#IF_ETIME">Tempo stimato al completamento:</str>
-		<str name="#IF_INITDOWNLOAD">Inizio scaricamento</str>
+		<str name="#IF_INITDOWNLOAD">Inizio download</str>
 		<str name="#IF_PROVIDEDBY">Fornito da:</str>
-		<str name="#IF_DLERROR">Si è verificato un errore durante la procedura di scaricamento di MCF ed è stata interrotta.</str>
-		<str name="#IF_DLERRTITLE">Errore scaricamento MCF</str>
+		<str name="#IF_DLERROR">Si è verificato un errore durante la procedura di download di MCF ed è stata interrotta.</str>
+		<str name="#IF_DLERRTITLE">Errore del download MCF</str>
 		<str name="#IF_GATHERINFO">Raccolta informazioni ...</str>
 		<str name="#IF_GERROR_PLATFORM">{0} non è supportato su questa piattaforma.</str><!-- {0} item name -->
 		<str name="#IF_GERROR_BRANCH_PLATFORM">il ramo di {0} selezionato non è supportato su questa piattaforma.</str><!-- {0} item name -->
@@ -209,7 +209,7 @@
 		<str name="#IF_DEVELOPER">Sviluppatore</str>
 		<str name="#IF_VERSION">Versione</str>
 		<str name="#IF_TYPE">Gioco</str>
-		<str name="#IF_DOWNLOADSIZE">Scaricamento</str>
+		<str name="#IF_DOWNLOADSIZE">Download</str>
 		<str name="#IF_INSTALLSIZE">Dimensione installazione</str>
 		<str name="#IF_INSTALLPATH">Percorso installazione</str>
 		<str name="#IF_IIPARENT">Il gioco genitore di questo elemento non è installato o non è possibile trovarlo. Verificare che sia installato e riprovare.</str>
@@ -230,7 +230,7 @@
 
 		<str name="#IF_VERIFYMCF">Verifica MCF ...</str>
 		<str name="#IF_VERIFYINSTALL">Verifica installazione ...</str>
-		<str name="#IF_VERIFYDOWNLOADF">Scaricamento file mancanti ...</str>
+		<str name="#IF_VERIFYDOWNLOADF">Download dei File mancanti ...</str>
 		<str name="#IF_VERIFYINSTALLF">Installazione file mancanti ...</str>
 		<str name="#IF_VERIFYBRANCH">Cambio rami ...</str>
 
@@ -264,8 +264,8 @@
 		<str name="#IF_COMPLEXLABEL">{0}...</str>
 		<str name="#IF_COMPLEXLABEL_INIT">{0} (Inizializzazione)</str>
 
-		<str name="#IF_DOWNLOADTOOL">Scaricamento dipendenze:</str>
-		<str name="#IF_DOWNLOADTOOL_LABEL">Scaricamento...</str>
+		<str name="#IF_DOWNLOADTOOL">Download delle dipendenze:</str>
+		<str name="#IF_DOWNLOADTOOL_LABEL">In Download...</str>
 
 		<str name="#IF_INSTALLTOOL">Installazione strumenti:</str>
 		<str name="#IF_INTOOL_WAIT_OTHER">In attesa del completamento di altre installazioni...</str>
@@ -277,7 +277,7 @@
 		<str name="#IF_VALIDATE_EXISTINGMCF">Controllo file di dati correnti...</str>
 		<str name="#IF_VALIDATE_LOCALFILES">Controllo file di dati vecchi...</str>
 		<str name="#IF_VALIDATE_PREALLOCATING">Pre-allocazione file da scaricare...</str>
-		<str name="#IF_VALIDATE_TITLE">Convalida scaricamento:</str>
+		<str name="#IF_VALIDATE_TITLE">Convalida download:</str>
 		<str name="#IF_VALIDATE_LABEL">Fase {2}: Completati {0} di {1}</str><!-- {0}: done, {1}: total {2}:Stage number-->
 
 		<str name="#IF_PREORDERED_NORELEASE">Pre-ordinato: Non rilasciato</str>
@@ -486,7 +486,7 @@
 		<str name="#SET_CV_CRASH">Invia automaticamente il resoconto del crash</str>
 		<str name="#SET_CV_CRASH_TOOLTIP">Invia automaticamente il resoconto del crash all'avvio di Desura (usato per il debugging)</str>
 		<str name="#SET_CV_MCFCLEAN">Ripulire MCF dopo l'uso</str>
-		<str name="#SET_CV_MCFCLEAN_TOOLTIP">Rimuove dati non necessari dall'MCF salvando spazio sul disco rigido. Però causerà scaricamenti maggiori.</str>
+		<str name="#SET_CV_MCFCLEAN_TOOLTIP">Rimuove dati non necessari dall'MCF salvando spazio sul disco rigido. Però causerà download maggiori.</str>
 		<str name="#SET_CV_USER">Salva il nome utente all'accesso</str>
 		<str name="#SET_CV_USER_TOOLTIP">Salva il nome utente per l'accesso successivo</str>
 		<str name="#SET_CV_CONSOLE">Mostra la console in caso di errore</str>
@@ -605,7 +605,7 @@
 		<str name="#IS_READY">Pronto</str>
 		<str name="#IS_VERIFY">Verifica</str>
 		<str name="#IS_UPDATING">Aggiornamento</str>
-		<str name="#IS_DOWNLOADING">Scaricamento</str>
+		<str name="#IS_DOWNLOADING">In Download</str>
 		<str name="#IS_INSTALLING">Installazione</str>
 		<str name="#IS_DEVSTUB">Sviluppatore</str>
 		<str name="#IS_NOTAVAIL">Non pronto</str>
@@ -665,7 +665,7 @@
 		<str name="#TB_TITLE">Disponibili aggiornamenti per giochi Desura</str>
 		<str name="#TB_GIFTTITLE">Ti è stato regalato un nuovo elemento!</str>
 		<str name="#TB_APPUPDATE_TITLE">Aggiornamento Desura</str>
-		<str name="#TB_APPUPDATE">Scaricamento aggiornamento Desura (Build {0}).</str>
+		<str name="#TB_APPUPDATE">Download dell'aggiornamento di desura (Build {0}).</str>
 
 		<str name="#DS_ERROR">Il servizio Desura si è disconnesso inaspettatamente.&#xA;&#xA;tentativo di riconnessione...</str>
 		<str name="#DS_ERRORFAILED">Il servizio Desura si è disconnesso inaspettatamente.&#xA;&#xA;Riavvio fallito:</str>

@@ -38,8 +38,8 @@
 		<str name="#DUN_REMOVE_DESURA_TT">Rimuove tutti i file installati con Desura.</str>
 		<str name="#DUN_REMOVE_SETTINGS">Rimuovi impostazioni</str>
 		<str name="#DUN_REMOVE_SETTINGS_TT">Rimuove i file di impostazione usati da Desura.</str>
-		<str name="#DUN_REMOVE_CACHE">Rimuovi cache scaricamenti</str>
-		<str name="#DUN_REMOVE_CACHE_TT">Rimuove la cache scaricamenti usata da Desura.</str>
+		<str name="#DUN_REMOVE_CACHE">Rimuovi cache download</str>
+		<str name="#DUN_REMOVE_CACHE_TT">Rimuove la cache download usata da Desura.</str>
 		<str name="#DUN_REMOVE_SIMPLE">Rimuovi Giochi e Mod</str>
 		<str name="#DUN_REMOVE_SIMPLE_TT">Rimuove tutti i giochi e i mod installati con Desura.</str>
 		<str name="#DUN_REMOVE_COMPLEX">Rimuovi mod complessi</str>
