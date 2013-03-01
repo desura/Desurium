@@ -329,7 +329,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef.gyp cef/cef.gyp
 diff '--exclude=.svn' -aurN cef.ori/tools/gclient_hook.py cef/tools/gclient_hook.py
 --- tools/gclient_hook.py	2012-05-09 11:27:16.865674327 +0200
 +++ tools/gclient_hook.py	2012-05-09 11:32:01.703658217 +0200
-@@ -54,5 +54,26 @@
+@@ -54,5 +54,28 @@
  
  print "\nGenerating CEF project files..."
  os.environ['CEF_DIRECTORY'] = os.path.basename(cef_dir);
@@ -343,6 +343,8 @@ diff '--exclude=.svn' -aurN cef.ori/tools/gclient_hook.py cef/tools/gclient_hook
 +	'-Duse_gconf=0',
 +	'-Duse_gnome_keyring=0',
 +	'-Duse_kerberos=0',
++	'-Dproprietary_codecs=1',
++	'-Dffmpeg_branding=Chromium',
 +	'-Duse_system_bzip2=1',
 +	'-Duse_system_flac=1',
 +	'-Duse_system_icu=0',
