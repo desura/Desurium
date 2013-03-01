@@ -23,6 +23,9 @@
 #   DEPOT_TOOLS_URL                     URL to depot_tools archive
 #   WXWIDGET_URL                        URL to wxWidget archive, has to be 2.9.3
 #
+# cef options:
+#   H264_SUPPORT    OFF                 build ffmpeg with mpeg-4 support. Be aware of patent and license problems
+#
 # installation options:
 #   BINDIR          ./bin               the directory where binaries should be installed, a relative path will be
 #                                       relative to CMAKE_INSTALL_PREFIX, an absolute will stay absolute
