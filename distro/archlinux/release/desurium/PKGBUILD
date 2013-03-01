@@ -53,22 +53,13 @@ build() {
   fi
   cd build
   msg "Running cmake..."
-  if [ "${CARCH}" = "x86_64" ]; then
-    CMAKE_ARGS="
-    -D32BIT_SUPPORT=1
-    -DCMAKE_INSTALL_PREFIX=/usr
-    -DBINDIR=/usr/bin
-    -DDATADIR=/usr/share/
-    -DRUNTIME_LIBDIR=/usr/lib/
-    -DBUILD_CEF=OFF"
-  else  # 32 bit
-    CMAKE_ARGS="
-    -DCMAKE_INSTALL_PREFIX=/usr
-    -DBINDIR=/usr/bin
-    -DDATADIR=/usr/share/
-    -DRUNTIME_LIBDIR=/usr/lib/
-    -DBUILD_CEF=OFF"
-  fi
+
+  CMAKE_ARGS="
+   -DCMAKE_INSTALL_PREFIX=/usr
+   -DBINDIR=/usr/bin
+   -DDATADIR=/usr/share/
+   -DRUNTIME_LIBDIR=/usr/lib/
+   -DBUILD_CEF=OFF"
 
   cmake $CMAKE_ARGS ..
   msg "Running make..."

@@ -47,11 +47,12 @@ build() {
   msg "Running cmake..."
 
   CMAKE_ARGS="
-    -DCMAKE_INSTALL_PREFIX=/usr
-    -DBINDIR=/usr/bin
-    -DDATADIR=/usr/share/
-    -DRUNTIME_LIBDIR=/usr/lib/
-    -DBUILD_ONLY_CEF=ON"
+   -DCMAKE_INSTALL_PREFIX=/usr
+   -DBINDIR=/usr/bin
+   -DDATADIR=/usr/share/
+   -DRUNTIME_LIBDIR=/usr/lib/
+   -DBUILD_ONLY_CEF=ON"
+
   cmake $CMAKE_ARGS ..
   msg "Running make..."
   make
