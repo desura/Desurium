@@ -1,6 +1,17 @@
 version 0.8.0:
 --------------
 
+rc9:
+----
+ * fixed: desurium: add webm support (https://github.com/lodle/Desurium/issues/136)
+ * fixed: doubled german entries in language selection (https://github.com/lodle/Desurium/issues/503)
+
+rc6:
+----
+ * new version of desurium-cef is required for a working flash playback
+
+rc1:
+----
 notes:
  * please note that only issues are included in this list, which improve behaviour compared with desura.
    This means if something broke while developing on desurium, but worked with desura, it won't be listed here.
