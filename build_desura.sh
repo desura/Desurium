@@ -63,6 +63,7 @@ clean_desurium() {
 }
 
 pack() {
+	finished="nope"
 	echo "Building "$PACKAGE" package..."
 	if [ ! -d "build_package" ] ; then
 		mkdir build_package
