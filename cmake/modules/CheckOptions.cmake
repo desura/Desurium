@@ -56,6 +56,8 @@ if(NOT BUILD_ONLY_CEF)
     message("WW Make sure, that your system installed cURL has ares support.")
     message("WW Ignore this if you are aware of what you do. See #189 for further information.")
   endif()
+
+  option(WITH_FLASH "enable flash support" ON)
 endif()
 
 ###############################################################################
