@@ -89,7 +89,7 @@ COMMON_DEPEND="
 	    >=dev-libs/tinyxml-2.6.2-r2
 	)
 
-	dev-lang/v8:=
+	<dev-lang/v8-3.16.5:=
 	|| (
 		net-misc/curl[adns]
 		net-misc/curl[ares]
