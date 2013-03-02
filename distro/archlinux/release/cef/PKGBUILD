@@ -1,6 +1,7 @@
 # Contributor: Sven-Hendrik Haase <sh@lutzhaase.com>
-# Contributor: Matthias "matthiaskrgr" Krüger
-# Maintainer: Jookia <166291@gmail.com>
+# Contributor: Jookia <166291@gmail.com>
+# Maintainer: Matthias "matthiaskrgr" Krüger
+
 pkgname=desurium-cef
 pkgver=0.8.0_rc8
 pkgrel=1

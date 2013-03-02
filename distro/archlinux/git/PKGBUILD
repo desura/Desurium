@@ -1,6 +1,7 @@
 # Contributor: Sven-Hendrik Haase <sh@lutzhaase.com>
-# Contributor: Matthias "matthiaskrgr" Krüger
-# Maintainer: Jookia <166291@gmail.com>
+# Contributor: Jookia <166291@gmail.com>
+# Maintainer: Matthias "matthiaskrgr" Krüger
+
 pkgname=desurium-git
 pkgver=20130218
 pkgrel=1
@@ -53,22 +54,12 @@ build() {
   cd build
   msg "Running cmake..."
 
-  if [ "${CARCH}" = "x86_64" ]; then
-    CMAKE_ARGS="
-    -D32BIT_SUPPORT=1
+  CMAKE_ARGS="
     -DCMAKE_INSTALL_PREFIX=/usr
     -DBINDIR=/usr/bin
     -DDATADIR=/usr/share/
     -DRUNTIME_LIBDIR=/usr/lib/
     -DBUILD_CEF=ON"
-  else  # 32 bit
-    CMAKE_ARGS="
-    -DCMAKE_INSTALL_PREFIX=/usr
-    -DBINDIR=/usr/bin
-    -DDATADIR=/usr/share/
-    -DRUNTIME_LIBDIR=/usr/lib/
-    -DBUILD_CEF=ON"
-  fi
   cmake $CMAKE_ARGS ..
   msg "Running make..."
   make
