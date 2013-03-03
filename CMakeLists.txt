@@ -15,6 +15,7 @@
 #                                       debugging stuff
 #   PACKAGE_TYPE    DEB                 Which packages should be created with "make package"
 #   FORCE_SYS_DEPS  OFF                 Force the use of system libs
+#   WITH_FLASH      ON                  Build with flash support
 #
 #   BREAKPAD_URL                        URL to breakdpad archive, should be rev. 850
 #   CEF_URL                             URL to cef archive, should be rev. 291
@@ -22,6 +23,9 @@
 #   CURL_URL                            URL to curl archive
 #   DEPOT_TOOLS_URL                     URL to depot_tools archive
 #   WXWIDGET_URL                        URL to wxWidget archive, has to be 2.9.3
+#
+# cef options:
+#   H264_SUPPORT    OFF                 build ffmpeg with mpeg-4 support. Be aware of patent and license problems
 #
 # installation options:
 #   BINDIR          ./bin               the directory where binaries should be installed, a relative path will be
@@ -317,7 +321,9 @@ if(NOT BUILD_ONLY_CEF)
     add_dependencies(sqlite3x boost)
   endif()
 
-  add_subdirectory(third_party/npwrapper)
+  if(WITH_FLASH)
+    add_subdirectory(third_party/npwrapper)
+  endif()
   ###############################################################################
   # build desura
   ###############################################################################

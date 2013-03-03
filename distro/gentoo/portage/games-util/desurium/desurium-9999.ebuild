@@ -38,7 +38,7 @@ DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="+32bit +bundled-wxgtk debug +games-deps tools"
+IUSE="+32bit +bundled-wxgtk debug +flash +games-deps tools"
 
 if ! use bundled-wxgtk ; then
 	WX_GTK_VER="2.9"
@@ -109,11 +109,13 @@ COMMON_DEPEND="
 "
 
 RDEPEND="
-	x86? (
-		www-plugins/adobe-flash[32bit]
-	)
-	amd64? (
-		www-plugins/adobe-flash[64bit]
+	flash? (
+		x86? (
+			www-plugins/adobe-flash[32bit]
+		)
+		amd64? (
+			www-plugins/adobe-flash[64bit]
+		)
 	)
 	>=media-libs/desurium-cef-4
 	x11-misc/xdg-user-dirs
@@ -156,6 +158,7 @@ src_configure() {
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
 		$(cmake-utils_use tools BUILD_TOOLS)
+		$(cmake-utils_use_with flash FLASH)
 		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}"
 		-DBREAKPAD_URL="file://${DISTDIR}/${BREAKPAD_ARC}"
 		-DCEF_URL="file://${DISTDIR}/${CEF_ARC}"
