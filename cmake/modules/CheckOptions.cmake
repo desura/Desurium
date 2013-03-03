@@ -56,4 +56,21 @@ if(NOT BUILD_ONLY_CEF)
     message("WW Make sure, that your system installed cURL has ares support.")
     message("WW Ignore this if you are aware of what you do. See #189 for further information.")
   endif()
+
+  option(WITH_FLASH "enable flash support" ON)
 endif()
+
+###############################################################################
+# cef-only options
+###############################################################################
+
+if(BUILD_CEF OR BUILD_ONLY_CEF)
+  option(H264_SUPPORT "build ffmpeg with mpeg-4 support. Be aware of patent and license problems." OFF)
+  if(H264_SUPPORT)
+    message("H264_SUPPORT is on. Be aware of patent and license problems")
+    set(CEF_FFMPEG_BRANDING "Chrome")
+  else()
+    set(CEF_FFMPEG_BRANDING "Chromium")
+  endif()
+endif()
+
