@@ -5,6 +5,7 @@ rc9:
 ----
  * fixed: desurium: add webm support (https://github.com/lodle/Desurium/issues/136)
  * fixed: doubled german entries in language selection (https://github.com/lodle/Desurium/issues/503)
+ * added: option to disable/enable flash/H.264 support
 
 rc6:
 ----
