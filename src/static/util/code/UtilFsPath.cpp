@@ -36,9 +36,8 @@ File::File(const char* file)
 }
 
 File::File(std::string file)
-{
-	m_szFile = file;
-}
+:	m_szFile(file)
+{}
 
 std::string File::getFile() const
 {
@@ -103,14 +102,12 @@ Path::Path(std::string path, std::string file, bool lastIsFolder)
 }
 
 Path::Path(const Path& path)
-{
+:	m_File(path.getFile()),
+	m_vPath(path.m_vPath)
 #ifdef NIX
-	m_absolutePath = (path.getFullPath().size() > 0 && path.getFullPath()[0] == '/');
+	,m_absolutePath((path.getFullPath().size() > 0 && path.getFullPath()[0] == '/'))
 #endif
-
-	m_File = path.getFile();
-	m_vPath = path.m_vPath;
-}
+{}
 
 File Path::getFile() const
 {
@@ -119,7 +116,7 @@ File Path::getFile() const
 
 std::string Path::getLastFolder() const
 {
-	if (m_vPath.size() == 0)
+	if (m_vPath.empty())
 		return "";
 
 	return m_vPath.back();
@@ -229,7 +226,7 @@ void Path::parsePath(std::string p, bool lastIsFolder)
 		m_vPath.erase(m_vPath.begin()+delList[x-1]);
 	}
 
-	if (lastIsFolder && m_vPath.size() > 0)
+	if (lastIsFolder && !m_vPath.empty())
 	{
 		m_File = File(m_vPath.back().c_str());
 		m_vPath.pop_back();

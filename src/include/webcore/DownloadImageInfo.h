@@ -30,15 +30,13 @@ namespace Misc
 	{
 	public:
 		DownloadImageInfo(DesuraId i, gcString u)
-		{
-			id = i;
-			url = u;
-		}
+		:	id(i),
+			url(u)
+		{}
 
 		DownloadImageInfo(gcString u)
-		{
-			url = u;
-		}
+		:	url(u)
+		{}
 
 		DesuraId id;
 		gcString url;

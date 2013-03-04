@@ -68,7 +68,7 @@ void ScriptTaskThread::run()
 
 		m_LockMutex.lock();
 
-		if (m_TaskQue.size() > 0)
+		if (!m_TaskQue.empty())
 		{
 			curTask = m_TaskQue.front();
 			m_TaskQue.pop_front();

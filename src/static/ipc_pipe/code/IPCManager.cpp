@@ -176,7 +176,7 @@ protected:
 
 			m_mVectorMutex.lock();
 
-				if (m_vItemList.size() > 0)
+				if (!m_vItemList.empty())
 				{
 					e = SmartPtr<ProcessData>(m_vItemList[0]);
 					m_vItemList.erase(m_vItemList.begin());
@@ -586,7 +586,7 @@ bool IPCManager::getMessageToSend(char* buffer, uint32 buffSize, uint32& msgSize
 	PipeMessage *msg = NULL;
 
 	m_mVectorMutex.lock();
-	if (m_vPipeMsgs.size() > 0)
+	if (!m_vPipeMsgs.empty())
 	{
 		msg = m_vPipeMsgs.front();
 		m_vPipeMsgs.erase(m_vPipeMsgs.begin());

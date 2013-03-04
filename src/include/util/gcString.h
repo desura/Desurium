@@ -901,7 +901,7 @@ std::basic_string<CT> FormatString(const CT* format, std::vector<FormatArgI<CT>*
 	CT dot = converToStringType<CT>(".")[0];
 	CT comma = converToStringType<CT>(",")[0];
 
-	while (t.size() > 0)
+	while (!t.empty())
 	{
 		if (t.size() == 1)
 		{
@@ -931,7 +931,7 @@ std::basic_string<CT> FormatString(const CT* format, std::vector<FormatArgI<CT>*
 
 				t.erase(0, 1);
 
-				if (t.size() == 0)
+				if (t.empty())
 				{
 					ret += leftBracket;
 					ret += temp;
@@ -939,14 +939,14 @@ std::basic_string<CT> FormatString(const CT* format, std::vector<FormatArgI<CT>*
 				}
 			}
 
-			if (t.size() == 0)
+			if (t.empty())
 				break;
 
 			orig = temp;
 
 			t.erase(0, 1);
 
-			if (temp.size() == 0)
+			if (temp.empty())
 			{
 				ret += leftBracket;
 				ret += rightBracket;
@@ -990,7 +990,7 @@ std::basic_string<CT> FormatString(const CT* format, std::vector<FormatArgI<CT>*
 				temp.erase(0, 1);
 				std::basic_string<CT> temp2;
 
-				while (temp.size() > 0 && temp[0] != dot && temp[0] != colon)
+				while (!temp.empty() && temp[0] != dot && temp[0] != colon)
 				{
 					if (isdigit(temp[0]) == false)
 					{
@@ -1006,7 +1006,7 @@ std::basic_string<CT> FormatString(const CT* format, std::vector<FormatArgI<CT>*
 					temp.erase(0, 1);
 				} 
 
-				if (temp2.size() > 0)
+				if (!temp2.empty())
 					len = atoi(temp2.c_str());
 			}
 
@@ -1015,7 +1015,7 @@ std::basic_string<CT> FormatString(const CT* format, std::vector<FormatArgI<CT>*
 				temp.erase(0, 1);
 				std::basic_string<CT> temp2;
 
-				while (temp.size() > 0 && temp[0] != colon)
+				while (!temp.empty() && temp[0] != colon)
 				{
 					if (isdigit(temp[0]) == false)
 					{
@@ -1031,7 +1031,7 @@ std::basic_string<CT> FormatString(const CT* format, std::vector<FormatArgI<CT>*
 					temp.erase(0, 1);
 				} 
 
-				if (temp2.size() > 0)
+				if (!temp2.empty())
 					per = atoi(temp2.c_str());
 			}
 
@@ -1040,7 +1040,7 @@ std::basic_string<CT> FormatString(const CT* format, std::vector<FormatArgI<CT>*
 				temp.erase(0, 1);
 				std::basic_string<CT> temp2;
 
-				while (temp.size() > 0 && temp[0] != colon)
+				while (!temp.empty() && temp[0] != colon)
 				{
 					if (isalnum(temp[0]) == false)
 					{

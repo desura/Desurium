@@ -53,14 +53,12 @@ public:
 class WildcardInfo : public BaseItem
 {
 public:
-	WildcardInfo(const char* name, const char* path, const char* type, bool resolved = false) : BaseItem(name)
-	{
-		m_szName = name;
-		m_szPath = path;
-		m_szType = type;
-
-		m_bResolved = resolved;
-	}
+	WildcardInfo(const char* name, const char* path, const char* type, bool resolved = false) : BaseItem(name),
+		m_szName(name),
+		m_szPath(path),
+		m_szType(type),
+		m_bResolved(resolved)
+	{}
 
 	~WildcardInfo()
 	{

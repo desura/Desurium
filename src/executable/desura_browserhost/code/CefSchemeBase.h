@@ -47,13 +47,11 @@ class DesuraSchemeBase : public ChromiumDLL::SchemeExtenderI
 {
 public:
 	DesuraSchemeBase(const char* schemename, const char* hostname)
-	{
-		m_szHostname = hostname;
-		m_szSchemename = schemename;
-
-		m_pCallback = NULL;
-		m_uiResponseSize = 0;
-	}
+	:	m_uiResponseSize(0),
+		m_pCallback(NULL),
+		m_szHostname(hostname),
+		m_szSchemename(schemename)
+	{}
 
 	virtual SchemeExtenderI* clone(const char* scheme)
 	{

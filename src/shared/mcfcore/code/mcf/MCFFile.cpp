@@ -453,7 +453,7 @@ void MCFFile::genXml(XMLSaveAndCompress *sac)
 		sac->save("</diff>", 7);
 	}
 
-	if (m_vCRCList.size() > 0)
+	if (!m_vCRCList.empty())
 	{
 		size_t size = m_vCRCList.size()*4;
 		UTIL::MISC::Buffer data(size, true);
@@ -714,7 +714,7 @@ bool MCFFile::crcCheck(UTIL::FS::FileHandle& file)
 
 bool MCFFile::crcCheck(uint16 blockId, UTIL::FS::FileHandle& file)
 {
-	if (m_vCRCList.size() != 0 && blockId >= m_vCRCList.size())
+	if (!m_vCRCList.empty() && blockId >= m_vCRCList.size())
 	{
 		//corupt MCF header. Cant do much about it
 		return false;
@@ -742,7 +742,7 @@ bool MCFFile::crcCheck(uint16 blockId, UTIL::FS::FileHandle& file)
 
 	bool res = false;
 
-	if ( m_vCRCList.size() == 0 )
+	if ( m_vCRCList.empty() )
 	{
 		res = legacyBlockCheck(buff, todo);
 	}

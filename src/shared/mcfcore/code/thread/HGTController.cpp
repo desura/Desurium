@@ -353,7 +353,7 @@ void HGTController::fillDownloadList(bool &usingDiffs)
 
 	std::sort(vBlockList.begin(), vBlockList.end(), &WGTBlockSort);
 
-	while (vBlockList.size() > 0)
+	while (!vBlockList.empty())
 	{
 		Misc::WGTSuperBlock* sb = new Misc::WGTSuperBlock();
 		sb->offset = vBlockList[0]->webOffset;
@@ -366,7 +366,7 @@ void HGTController::fillDownloadList(bool &usingDiffs)
 			sb->size += block->size;
 			sb->vBlockList.push_back(block);
 		}
-		while (vBlockList.size() > 0 && vBlockList[0]->webOffset == (sb->offset + sb->size));
+		while (!vBlockList.empty() && vBlockList[0]->webOffset == (sb->offset + sb->size));
 
 		m_vSuperBlockList.push_back(sb);
 	}
@@ -399,7 +399,7 @@ bool HGTController::saveData(const char* data, uint32 size)
 	if (size == 0)
 		return false;
 
-	if (!m_pCurBlock || m_pCurBlock->vBlockList.size() == 0)
+	if (!m_pCurBlock || m_pCurBlock->vBlockList.empty())
 		return true;
 
 	MCFCore::Thread::Misc::WGTBlock* block = m_pCurBlock->vBlockList[0];

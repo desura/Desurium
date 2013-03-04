@@ -201,13 +201,10 @@ JSObjHandle ToJSObject(ChromiumDLL::JavaScriptFactoryI* factory, const void* cob
 ////////////////////////////////////////////
 
 DesuraJSBaseNonTemplate::DesuraJSBaseNonTemplate(const char* name, const char* bindingFile)
-{
-	m_szName = gcString(L"Desura/{0}", name);
-	m_szBindingFile = gcString("{2}{1}bindings{1}{0}", bindingFile, DIRS_STR,
-		UTIL::OS::getDataPath());
-
-	m_pContext = NULL;
-}
+:	m_szName(L"Desura/{0}", name),
+	m_szBindingFile("{2}{1}bindings{1}{0}", bindingFile, DIRS_STR, UTIL::OS::getDataPath()),
+	m_pContext(NULL)
+{}
 
 DesuraJSBaseNonTemplate::~DesuraJSBaseNonTemplate()
 {
@@ -286,7 +283,7 @@ void DesuraJSBaseNonTemplate::registerFunction(const char* name, JSDelegateI *de
 
 uint32 DesuraJSBaseNonTemplate::find(uint32 hash)
 {
-	if (m_mDelegateList.size() == 0)
+	if (m_mDelegateList.empty())
 		return -1;
 
 	return find(hash, 0, m_mDelegateList.size()-1);

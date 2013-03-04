@@ -43,10 +43,9 @@ class ExeInfo : public Misc::ExeInfoI
 {
 public:
 	ExeInfo(const char* name)
-	{
-		m_szName = name;
-		m_uiRank = -1;
-	}
+	:	m_szName(name),
+		m_uiRank(-1)
+	{}
 
 	virtual const char* getName()
 	{
