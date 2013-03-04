@@ -65,12 +65,11 @@ public:
 	//! @param p Provider Url
 	//!
 	DownloadProvider(const char* n, const char* u, const char* b, const char* p)
-	{
-		m_szName = gcString(n);
-		m_szUrl = gcString(u);
-		m_szBanner = gcString(b);
-		m_szProvUrl = gcString(p);
-	}
+	:	m_szName(n),
+		m_szUrl(u),
+		m_szBanner(b),
+		m_szProvUrl(p)
+	{}
 
 	//! Alt Constructor from xml
 	//! 

@@ -20,9 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "BaseToolBarControl.h"
 
 
-BaseToolBarControl::BaseToolBarControl(wxWindow* parent) : gcPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(-1,29), wxTAB_TRAVERSAL)
+BaseToolBarControl::BaseToolBarControl(wxWindow* parent) : gcPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(-1,29), wxTAB_TRAVERSAL),
+	m_imgBg(GetGCThemeManager()->getImageHandle("#header_bg"))
 {
-	m_imgBg = GetGCThemeManager()->getImageHandle("#header_bg");
 	SetBackgroundColour( wxColour( 0, 113, 141 ) );
 
 	Bind(wxEVT_ERASE_BACKGROUND, &BaseToolBarControl::onEraseBG, this);

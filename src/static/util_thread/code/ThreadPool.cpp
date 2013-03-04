@@ -195,7 +195,7 @@ void ThreadPool::run()
 
 		runTaskCount = activeThreads();
 
-		if ((runTaskCount == m_uiCount || m_vTaskList.size() == 0) && !isStopped())
+		if ((runTaskCount == m_uiCount || m_vTaskList.empty()) && !isStopped())
 			m_WaitCondition.wait();
 	}
 }
@@ -227,7 +227,7 @@ void ThreadPool::startNewTasks()
 
 	for (size_t x=0; x<m_vThreadList.size(); x++)
 	{
-		if (m_vTaskList.size() == 0)
+		if (m_vTaskList.empty())
 			break;
 
 		if (!m_vThreadList[x])
@@ -293,7 +293,7 @@ void ThreadPool::removedForced()
 {
 	m_ForcedMutex.writeLock();
 
-	if (m_vForcedList.size() > 0)
+	if (!m_vForcedList.empty())
 	{
 		std::vector<size_t> delVect;
 
@@ -334,7 +334,7 @@ BaseTask* ThreadPool::getTask()
 
 	m_TaskMutex.lock();
 
-	if (m_vTaskList.size() > 0)
+	if (!m_vTaskList.empty())
 	{
 		task = m_vTaskList.front();
 		m_vTaskList.pop_front();

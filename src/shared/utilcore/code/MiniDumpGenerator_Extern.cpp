@@ -33,10 +33,9 @@ BOOL CALLBACK MiniDumpCallbackFilter(PVOID pParam, const PMINIDUMP_CALLBACK_INPU
 
 
 MiniDumpGenerator_Extern::MiniDumpGenerator_Extern(const char* exeName, const char* savePath)
+:	m_szExeName(exeName),
+	m_szSavePath(savePath)
 {
-	m_szExeName = exeName;
-	m_szSavePath = savePath;
-
 	UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(m_szSavePath));
 }
 

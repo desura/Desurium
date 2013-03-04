@@ -506,7 +506,7 @@ void HttpHInternal::setUpProxy()
 
 curl_slist_s* HttpHInternal::setUpHeaders()
 {
-	if (m_vHeaders.size() == 0)
+	if (m_vHeaders.empty())
 		return NULL;
 
 	curl_slist_s *headers = NULL;
@@ -608,7 +608,7 @@ uint8 HttpHInternal::postWeb()
 	curl_httppost *formPost = NULL; 
 	curl_httppost *formLast = NULL;
 
-	if (m_vFormPost.size() > 0)
+	if (!m_vFormPost.empty())
 	{
 		for (size_t x=0; x<m_vFormPost.size(); x++)
 			m_vFormPost[x]->addToPost(formPost, formLast);

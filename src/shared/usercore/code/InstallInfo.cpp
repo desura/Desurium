@@ -27,11 +27,10 @@ namespace Misc
 {
 
 InstallInfo::InstallInfo(DesuraId id, DesuraId pid)
-{
-	m_bInstalled = false;
-	m_iID = id;
-	m_iParentID = pid;
-}
+:	m_bInstalled(false),
+	m_iID(id),
+	m_iParentID(pid)
+{}
 
 InstallInfo::~InstallInfo()
 {

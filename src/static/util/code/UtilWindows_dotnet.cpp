@@ -330,16 +330,16 @@ bool CheckNetfxBuildNumber(const char *pszNetfxRegKeyName, const char *pszNetfxR
 		// #.#.#####.##.  Try to parse the 4 parts of
 		// the version here
 
-		if (outList.size() >= 1 && outList[0].size() != 0)
+		if (!outList.empty() && !outList[0].empty())
 			iRegistryVersionMajor = atoi(outList[0].c_str());
 
-		if (outList.size() >= 2 && outList[1].size() != 0)
+		if (outList.size() >= 2 && !outList[1].empty())
 			iRegistryVersionMinor = atoi(outList[1].c_str());
 
-		if (outList.size() >= 3 && outList[2].size() != 0)
+		if (outList.size() >= 3 && !outList[2].empty())
 			iRegistryVersionBuild = atoi(outList[2].c_str());
 
-		if (outList.size() >= 4 && outList[3].size() != 0)
+		if (outList.size() >= 4 && !outList[3].empty())
 			iRegistryVersionRevision = atoi(outList[3].c_str());
 	}
 

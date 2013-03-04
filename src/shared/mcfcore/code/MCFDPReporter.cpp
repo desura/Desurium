@@ -122,34 +122,11 @@ void DPReproter::resetStart()
 	m_uiTotal = 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-DPProvider::DPProvider(const char* name, uint32 id) : BaseItem()
+DPProvider::DPProvider(const char* name, uint32 id) : BaseItem(),
+	m_szName(name),
+	m_uiId(id)
 {
-	m_uiId = id;
 	m_uiHash = id;
-	m_szName = gcString(name);
-	
 	m_tStart = bpt::ptime(bpt::microsec_clock::universal_time());
 
 	clear();

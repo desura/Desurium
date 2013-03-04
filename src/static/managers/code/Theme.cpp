@@ -20,10 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Theme.h"
 #include "XMLMacros.h"
 
-Theme::Theme(const char* name) : ControlList(true), ImageList(true), SpriteList(true), WebList(true)
-{
-	m_szName = gcString(name);
-}
+Theme::Theme(const char* name) : ControlList(true), ImageList(true), SpriteList(true), WebList(true),
+	m_szName(name)
+{}
 
 const char* Theme::getImage(const char* id)
 {

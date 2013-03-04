@@ -36,8 +36,8 @@ public:
 	}
 
 	BaseItem(const char* name)
+	:	m_szName(name)
 	{
-		m_szName =  gcString(name);
 		m_uiHash = UTIL::MISC::RSHash_CSTR(name);
 	}
 
@@ -86,7 +86,7 @@ public:
 
 	T* findItem(uint64 hash)
 	{
-		if (m_mItemMap.size() == 0)
+		if (m_mItemMap.empty())
 			return NULL;
 
 		typename std::map<uint64,T*>::iterator it = m_mItemMap.find(hash);
@@ -150,7 +150,7 @@ protected:
 
 	void removeItem(uint64 hash, bool del = false)
 	{
-		if (m_mItemMap.size() == 0)
+		if (m_mItemMap.empty())
 			return;
 
 		typename std::map<uint64, T*>::iterator it = m_mItemMap.find(hash);

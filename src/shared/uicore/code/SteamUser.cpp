@@ -45,7 +45,7 @@ int GetSteamUsers(wxChoice *cbBox)
 	std::vector<UTIL::FS::Path> fileList;
 	UTIL::FS::getAllFolders(UTIL::FS::Path(searchPath, "", false), fileList);
 
-	if (fileList.size() == 0)
+	if (fileList.empty())
 	{
 		cbBox->Append(wxT(NOSTEAM));
 		return 0;

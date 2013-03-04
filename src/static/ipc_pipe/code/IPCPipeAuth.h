@@ -29,9 +29,8 @@ class PipeItemAuth
 {
 public:
 	PipeItemAuth()
-	{
-		internId = 0;
-	}
+	:	internId(0)
+	{}
 
 	gcString hash;
 	DesuraId internId;

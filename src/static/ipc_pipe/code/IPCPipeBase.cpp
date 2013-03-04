@@ -52,11 +52,10 @@ namespace IPC
 FILE* fh = NULL;
 #endif
 
-PipeBase::PipeBase(const char* pipeName, const char* threadName) : BaseThread(threadName)
+PipeBase::PipeBase(const char* pipeName, const char* threadName) : BaseThread(threadName),
+	m_szRecvName("\\\\.\\pipe\\{0}-r", pipeName),
+	m_szSendName("\\\\.\\pipe\\{0}-s", pipeName)
 {
-	m_szRecvName = gcString("\\\\.\\pipe\\{0}-r", pipeName);
-	m_szSendName = gcString("\\\\.\\pipe\\{0}-s", pipeName);
-
 	for (size_t x=0; x<512; x++)
 	{
 		m_hEventsArr[x] = INVALID_HANDLE_VALUE;
@@ -119,7 +118,7 @@ void PipeBase::processLoopback()
 {
 	m_LoopbackLock.lock();
 
-	if (m_vLoopback.size() > 0)
+	if (!m_vLoopback.empty())
 	{
 		LoopbackInfo* info = m_vLoopback.front();
 		m_vLoopback.pop_front();

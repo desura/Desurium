@@ -543,11 +543,10 @@ public:
 	//! @param ii Item object
 	//!
 	ItemUpdateInfo(DesuraId i, MCFBuild b, ItemInfoI *ii)
-	{
-		id = i;
-		build = b;
-		info = ii;
-	}
+	:	id(i),
+		build(b),
+		info(ii)
+	{}
 
 	DesuraId id;
 	MCFBuild build;

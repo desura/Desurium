@@ -29,9 +29,8 @@ class ThemeStub : public ThemeStubI
 {
 public:
 	ThemeStub(const char* name)
-	{
-		szName = name;
-	}
+	:	szName(name)
+	{}
 
 	virtual const char* getName(){return szName.c_str();}
 
@@ -49,14 +48,6 @@ public:
 	virtual bool parseFile(const char* file);
 	virtual void destroy(){delete this;}
 };
-
-
-
-
-
-
-
-
 
 ThemeManager::ThemeManager()
 {
