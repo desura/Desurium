@@ -336,6 +336,7 @@ inline gcString createDesktopFile(ItemInfoI* i)
 	            << "\nTryExec=" << i->getActiveExe()->getExe()
 	            << "\nExec=" << i->getActiveExe()->getExe() << ' '
 	                         << i->getActiveExe()->getExeArgs()
+	            << "\nPath=" << i->getPath()
 	            << "\nCategories=Game;";
 	// check for the genre first, before writing an empty string ("Categories=Game;;" is invalid)
 	if (std::string(i->getGenre()).size() > 0)
