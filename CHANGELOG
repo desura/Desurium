@@ -1,6 +1,10 @@
 version 0.8.0:
 --------------
 
+rc10:
+-----
+ * fixed: Desktop shortcut missing Path key (https://github.com/lodle/Desurium/issues/511)
+
 rc9:
 ----
  * fixed: desurium: add webm support (https://github.com/lodle/Desurium/issues/136)
