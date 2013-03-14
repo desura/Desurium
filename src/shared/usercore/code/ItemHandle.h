@@ -201,19 +201,21 @@ private:
 	Helper::ItemHandleFactoryI* m_pFactory;
 	ItemHandleEvents* m_pEventHandler;
 	ItemTaskGroup* m_pGroup;
+
+#ifdef NIX
+	/**
+	 * installs a desktop file from the given path with the given tool
+	 * 
+	 * @param file the path to the desktop file
+	 * @param tool the tool to install the desktop file
+	 * @return false on error, true otherwise
+	 */
+	bool installDesktopFileWith(const std::string &file, std::string tool);
+#endif
 };
 
 
 }
 }
-
-
-
-
-
-
-
-
-
 
 #endif //DESURA_ITEMHANDLE_H
