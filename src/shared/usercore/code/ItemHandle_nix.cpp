@@ -315,8 +315,9 @@ void ItemHandle::installLaunchScripts()
 	safe_delete(scriptXdg);
 }
 
-inline gcString createDesktopFile(ItemInfoI* i)
+gcString ItemHandle::createDesktopFile()
 {
+	ItemInfoI* i = getItemInfo();
 	using boost::algorithm::replace_all_copy;
 	// KDE menu doesn't accept files like "Publisher Name-GameName.desktop" so we replace all " " with "_"
 	gcString publisher = replace_all_copy(std::string(i->getPublisher()), " ", "_");
@@ -369,13 +370,13 @@ bool ItemHandle::installDesktopFileWith(const std::string &file, std::string too
 
 bool ItemHandle::createDesktopShortcut()
 {
-	gcString tmpPath = createDesktopFile(getItemInfo());
+	gcString tmpPath = createDesktopFile();
 	return installDesktopFileWith(tmpPath, "xdg-desktop-icon");
 }
 
 bool ItemHandle::createMenuEntry()
 {
-	gcString tmpPath = createDesktopFile(getItemInfo());
+	gcString tmpPath = createDesktopFile();
 	return installDesktopFileWith(tmpPath, "xdg-desktop-menu");
 }
 

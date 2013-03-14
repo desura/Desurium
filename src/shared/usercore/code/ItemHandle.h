@@ -204,6 +204,15 @@ private:
 
 #ifdef NIX
 	/**
+	 * creates a desktop file and returns the path to it
+	 *
+	 * the desktop file will be created in the desura cache directory
+	 *
+	 * @return the path to the created desktop file
+	 */
+	gcString createDesktopFile();
+
+	/**
 	 * installs a desktop file from the given path with the given tool
 	 * 
 	 * @param file the path to the desktop file
