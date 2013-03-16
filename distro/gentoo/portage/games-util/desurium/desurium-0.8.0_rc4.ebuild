@@ -117,7 +117,8 @@ src_configure() {
 }
 
 src_compile() {
-	cmake-utils_src_compile
+	# even autotools does not respect AR properly sometimes
+	cmake-utils_src_compile AR=$(tc-getAR)
 }
 
 src_install() {
