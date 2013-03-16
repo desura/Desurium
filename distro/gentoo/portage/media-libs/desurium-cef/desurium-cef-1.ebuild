@@ -2,7 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
+
+PYTHON_COMPAT=( python2_6 python2_7 )
 
 unset GIT_ECLASS
 
@@ -30,7 +32,7 @@ SRC_URI="${SRC_URI}
 	http://commondatastorage.googleapis.com/chromium-browser-official/${CHROMIUM_ARC}
 	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${DEPOT_TOOLS_ARC}"
 
-inherit check-reqs cmake-utils eutils ${GIT_ECLASS} wxwidgets games
+inherit check-reqs cmake-utils eutils ${GIT_ECLASS} python-any-r1 wxwidgets games
 
 CHECKREQS_DISK_BUILD="3G"
 
@@ -59,18 +61,19 @@ COMMON_DEPEND="
 	sys-apps/dbus
 	sys-libs/zlib
 	virtual/jpeg
-	=x11-libs/wxGTK-2.9.3.1[X]
-"
+	=x11-libs/wxGTK-2.9.3.1[X]"
 
-RDEPEND="
-	${COMMON_DEPEND}
-"
-
+RDEPEND="${COMMON_DEPEND}"
 DEPEND="
 	dev-lang/yasm
 	dev-util/gperf
 	${COMMON_DEPEND}
-"
+	${PYTHON_DEPS}"
+
+pkg_setup() {
+	python-any-r1_pkg_setup
+	games_pkg_setup
+}
 
 src_unpack() {
 	if [[ ${PV} = 9999* ]]; then
@@ -101,4 +104,5 @@ src_compile() {
 
 src_install() {
 	cmake-utils_src_install
+	prepgamesdirs
 }
