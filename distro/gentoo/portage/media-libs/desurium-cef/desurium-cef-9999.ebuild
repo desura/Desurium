@@ -10,6 +10,11 @@ GITHUB_MAINTAINER="lodle"
 GITHUB_PROJECT="Desurium"
 DESURIUM_VERSION="0.8.0_rc9"
 
+# tools versions
+CEF_ARC="cef-291.tar.gz"
+CHROMIUM_ARC="chromium-15.0.876.0.tar.bz2"
+DEPOT_TOOLS_ARC="depot_tools-145556-2.tar.gz"
+
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git"
 	GIT_ECLASS="git-2"
@@ -19,13 +24,10 @@ else
 	DESURIUM_ARC="desurium-${DESURIUM_VERSION}.tar.gz"
 	SRC_URI="http://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/tarball/${DESURIUM_VERSION} -> ${DESURIUM_ARC}"
 fi
-CEF_ARC="cef-291.tar.gz"
-CEF_URI="mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${CEF_ARC}"
-CHROMIUM_ARC="chromium-15.0.876.0.tar.bz2"
-CHROMIUM_URI="http://commondatastorage.googleapis.com/chromium-browser-official/${CHROMIUM_ARC}"
-DEPOT_TOOLS_ARC="depot_tools-145556-2.tar.gz"
-DEPOT_TOOLS_URI="mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${DEPOT_TOOLS_ARC}"
-SRC_URI="${SRC_URI} ${CEF_URI} ${CHROMIUM_URI} ${DEPOT_TOOLS_URI}"
+SRC_URI="${SRC_URI}
+	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${CEF_ARC}
+	http://commondatastorage.googleapis.com/chromium-browser-official/${CHROMIUM_ARC}
+	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${DEPOT_TOOLS_ARC}"
 
 inherit check-reqs cmake-utils eutils ${GIT_ECLASS} games
 
