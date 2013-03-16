@@ -7,7 +7,4 @@
   <longdescription lang="en">
     Chromium Embedded Framework implementation for the Desurium client.
   </longdescription>
-  <use>
-    <flag name="bindist">Disable patent-encumbered HTML5 video codecs</flag>
-  </use>
 </pkgmetadata>

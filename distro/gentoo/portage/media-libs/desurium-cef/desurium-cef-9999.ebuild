@@ -35,7 +35,7 @@ DESCRIPTION="highly patched CEF by desurium."
 HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="BSD"
 SLOT="0"
-IUSE="bindist"
+RESTRICT="bindist"
 
 if [[ ${PV} != 9999* ]]; then
 	KEYWORDS="~amd64 ~x86"
@@ -68,14 +68,6 @@ DEPEND="
 	${COMMON_DEPEND}
 "
 
-pkg_setup() {
-	if use bindist; then
-        elog "bindist enabled: H.264 video support will be disabled."
-    else
-        elog "bindist disabled: Resulting binaries may not be legal to re-distribute."
-    fi
-}
-
 src_unpack() {
 	if [[ ${PV} = 9999* ]]; then
 		git-2_src_unpack
@@ -95,7 +87,7 @@ src_configure() {
 		-DDEPOT_TOOLS_URL="file://${DISTDIR}/${DEPOT_TOOLS_ARC}"
 		-DBUILD_ONLY_CEF=TRUE
 		-DRUNTIME_LIBDIR="$(games_get_libdir)"
-		$(cmake-utils_use !bindist H264_SUPPORT)
+		-DH264_SUPPORT=TRUE
 	)
 	cmake-utils_src_configure
 }
