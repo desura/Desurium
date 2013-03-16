@@ -31,7 +31,7 @@ SRC_URI="${SRC_URI}
 	http://commondatastorage.googleapis.com/chromium-browser-official/${CHROMIUM_ARC}
 	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${DEPOT_TOOLS_ARC}"
 
-inherit check-reqs cmake-utils eutils ${GIT_ECLASS} python-any-r1 games
+inherit check-reqs cmake-utils eutils ${GIT_ECLASS} toolchain-funcs python-any-r1 games
 
 CHECKREQS_DISK_BUILD="3G"
 
@@ -97,7 +97,8 @@ src_configure() {
 }
 
 src_compile() {
-	cmake-utils_src_compile
+	# even autotools does not respect AR properly sometimes
+	cmake-utils_src_compile AR=$(tc-getAR)
 }
 
 src_install() {
