@@ -46,6 +46,10 @@
 #   INSTALL_DESKTOP_FILE                INSTALL a desktop file in /usr/share/applications
 #                   OFF
 #
+# Linux-only options:
+#   DESKTOP_EXE     desura              the value of Exe in the desktop file
+#   DESKTOP_ICON    desura              the value of Icon in the desktop file
+#
 # wxWidgets select correct  version
 #   wxWidgets_CONFIG_EXECUTABLE         path to wx-config (version 2.9.3)
 #   wxWidgets_wxrc_EXECUTABLE           path to wxrc (version 2.9.3)
