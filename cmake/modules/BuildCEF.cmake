@@ -1,3 +1,9 @@
+if(UNIX)
+	set(MY_BUILD_TOOL $(MAKE))
+else()
+	set(MY_BUILD_TOOL ${CMAKE_BUILD_TOOL})
+endif()
+
 if(BUILD_CEF OR BUILD_ONLY_CEF)
   set(DEPOT_TOOLS_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/depot_tools)
   set(DEPOT_TOOLS_BIN_DIR ${DEPOT_TOOLS_INSTALL_DIR}/src/depot_tools)
@@ -139,10 +145,17 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
     WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src/cef
     )
 
+    message(STATUS "the value of env CFLAGS: " $ENV{CFLAGS})
+    message(STATUS "the value of env CXXFLAGS: " $ENV{CXXFLAGS})
+    message(STATUS "the value of env LDFLAGS: " $ENV{LDFLAGS})
+    set(ENV{CFLAGS.host} "$ENV{CFLAGS}")
+    set(ENV{CXXFLAGS.host} "$ENV{CXXFLAGS}")
+    set(ENV{LDFLAGS.host} "$ENV{LDFLAGS}")
+
     ExternalProject_Add_Step(
     cef
     build_cef
-    COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} make cef_desura -j${CPU_COUNT} BUILDTYPE=Release
+    COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} ${MY_BUILD_TOOL} cef_desura V=1 -j${CPU_COUNT} $ENV{MAKEOPTS} CC.host=${CMAKE_C_COMPILER} CXX.host=${CMAKE_CXX_COMPILER} LINK.host=${CMAKE_CXX_COMPILER} AR.host=${CMAKE_AR} BUILDTYPE=Release
     DEPENDEES configure
     DEPENDERS build
     WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
