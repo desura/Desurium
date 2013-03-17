@@ -10,6 +10,16 @@ unset WX_ECLASS
 GITHUB_MAINTAINER="lodle"
 GITHUB_PROJECT="Desurium"
 
+# tools versions
+BREAKPAD_ARC="breakpad-850.tar.gz"
+CEF_ARC="cef-291.tar.gz"
+WX_ARC="wxWidgets-2.9.3.tar.bz2"
+
+if ! use bundled-wxgtk ; then
+	WX_GTK_VER="2.9"
+	WX_ECLASS="wxwidgets"
+fi
+
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git"
 	GIT_ECLASS="git-2"
@@ -19,17 +29,11 @@ else
 	DESURIUM_ARC="${P}.tar.gz"
 	SRC_URI="http://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/tarball/${PV} -> ${DESURIUM_ARC}"
 fi
-BREAKPAD_ARC="breakpad-850.tar.gz"
-BREAKPAD_URI="mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${BREAKPAD_ARC}"
-CEF_ARC="cef-291.tar.gz"
-CEF_URI="mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${CEF_ARC}"
-WX_ARC="wxWidgets-2.9.3.tar.bz2"
-WX_URI="ftp://ftp.wxwidgets.org/pub/2.9.3/${WX_ARC}"
 SRC_URI="${SRC_URI}
-	${BREAKPAD_URI}
-	${CEF_URI}
+	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${BREAKPAD_ARC}
+	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${CEF_ARC}
 	bundled-wxgtk? (
-		${WX_URI}
+		ftp://ftp.wxwidgets.org/pub/2.9.3/${WX_ARC}
 	)"
 
 inherit cmake-utils eutils ${GIT_ECLASS} gnome2-utils ${WX_ECLASS} games toolchain-funcs
@@ -40,18 +44,12 @@ LICENSE="GPL-3"
 SLOT="0"
 IUSE="+32bit +bundled-wxgtk debug tools"
 
-if ! use bundled-wxgtk ; then
-	WX_GTK_VER="2.9"
-	WX_ECLASS="wxwidgets"
-fi
-
 if [[ ${PV} != 9999* ]]; then
 	KEYWORDS="~amd64 ~x86"
 fi
 
 # wxGTK-2.9.4.1 does not work!
-COMMON_DEPEND="
-	app-arch/bzip2
+COMMON_DEPEND="app-arch/bzip2
 	dev-db/sqlite
 	>=dev-libs/boost-1.47:=
 	dev-libs/glib:2
@@ -77,19 +75,12 @@ COMMON_DEPEND="
 
 	amd64? ( 32bit? (
 		sys-devel/gcc[multilib]
-	) )
-"
-
-RDEPEND="
-	>=media-libs/desurium-cef-4
+	) )"
+RDEPEND=">=media-libs/desurium-cef-4
 	x11-misc/xdg-user-dirs
 	x11-misc/xdg-utils
-	${COMMON_DEPEND}
-"
-
-DEPEND="
-	${COMMON_DEPEND}
-"
+	${COMMON_DEPEND}"
+DEPEND="${COMMON_DEPEND}"
 
 pkg_pretend() {
 	if [[ ${MERGE_TYPE} != binary ]]; then
