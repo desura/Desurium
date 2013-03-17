@@ -1,15 +1,18 @@
-#!/bin/bash
+#!/bin/sh
 
 BIT=""
 
-if [ x"$2" == x"64" ]; then
+if [ x"$2" = x"64" ]; then
 	BIT="64"
-	LIBDIRS="/lib64 /lib/x86_64-linux-gnu /lib /usr/lib64 /usr/lib/x86_64-linux-gnu /usr/lib /usr/local/lib /usr/lib/x86_64-linux-gnu/nss /usr/lib/nss"
+	LIBDIRS="$LIBDIRS /lib64 /lib/x86_64-linux-gnu /lib /usr/lib64 /usr/lib/x86_64-linux-gnu /usr/lib /usr/local/lib /usr/lib/x86_64-linux-gnu/nss /usr/lib/nss"
 else
 	BIT="32"
-	LIBDIRS="/lib /lib/i386-linux-gnu /lib/i686-linux-gnu /lib32 /usr/lib /usr/lib32 /usr/lib/i686-linux-gnu /usr/lib/i386-linux-gnu /usr/local/lib /usr/lib/i386-linux-gnu/nss /usr/lib/i686-linux-gnu/nss /usr/lib/nss"
+	LIBDIRS="$LIBDIRS /lib /lib/i386-linux-gnu /lib/i686-linux-gnu /lib32 /usr/lib /usr/lib32 /usr/lib/i686-linux-gnu /usr/lib/i386-linux-gnu /usr/local/lib /usr/lib/i386-linux-gnu/nss /usr/lib/i686-linux-gnu/nss /usr/lib/nss"
 fi
 
+if command -v /sbin/ldconfig >/dev/null; then
+	LIBDIRS="$LIBDIRS `/sbin/ldconfig -v 2>/dev/null | grep -v ^$'\t' | sed 's/:$//'`"
+fi
 
 for DIR in $LIBDIRS; do
 
@@ -18,14 +21,14 @@ for DIR in $LIBDIRS; do
 		BUILD=`file -L "$DIR/$1" | grep 64-bit`
 
 		#check to see if 64 bit lib
-		if [ x"$BIT" == x"64" -a -z "$BUILD" ]; then
+		if [ x"$BIT" = x"64" -a -z "$BUILD" ]; then
 			continue;
 		fi
 
 		BUILD=`file -L "$DIR/$1" | grep 32-bit`
 
 		#check to see if 32 bit lib
-		if [ x"$BIT" == x"32" -a -z "$BUILD" ]; then
+		if [ x"$BIT" = x"32" -a -z "$BUILD" ]; then
 			continue;
 		fi
 
