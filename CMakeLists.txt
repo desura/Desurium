@@ -74,7 +74,7 @@ project(Desura)
 if(APPLE) # see #418
   cmake_minimum_required(VERSION 2.8.10)
 else()
-  cmake_minimum_required(VERSION 2.8.5)
+  cmake_minimum_required(VERSION 2.8.2)
 endif()
 
 ###############################################################################
@@ -107,7 +107,6 @@ include(macros)
 include(parsearguments)
 include(CheckCompiler)
 include(SetInstallPaths)
-include(ProcessorCount)
 include(Package)
 if(UNIX)
   include(FindPkgConfig)
