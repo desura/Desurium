@@ -75,7 +75,7 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE_CXX
 
 # TODO: silent output for externel dependencies
 project(Desura)
-cmake_minimum_required(VERSION 2.8.5)
+cmake_minimum_required(VERSION 2.8.2)
 
 ###############################################################################
 # some globale variables
@@ -107,7 +107,6 @@ include(macros)
 include(parsearguments)
 include(CheckCompiler)
 include(SetInstallPaths)
-include(ProcessorCount)
 include(Package)
 if(UNIX)
   include(FindPkgConfig)

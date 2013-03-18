@@ -8,8 +8,6 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
   set(DEPOT_TOOLS_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/depot_tools)
   set(DEPOT_TOOLS_BIN_DIR ${DEPOT_TOOLS_INSTALL_DIR}/src/depot_tools)
 
-  ProcessorCount(CPU_COUNT)
-
   ExternalProject_Add(
     depot_tools
     URL ${DEPOT_TOOLS_URL}
@@ -145,7 +143,7 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
     ExternalProject_Add_Step(
     cef
     build_cef
-    COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} ${MY_BUILD_TOOL} cef_desura V=1 -j${CPU_COUNT} $ENV{MAKEOPTS} CC.host=${CMAKE_C_COMPILER} CXX.host=${CMAKE_CXX_COMPILER} LINK.host=${CMAKE_CXX_COMPILER} AR.host=${CMAKE_AR} BUILDTYPE=Release
+    COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} ${MY_BUILD_TOOL} cef_desura V=1 $ENV{MAKEOPTS} CC.host=${CMAKE_C_COMPILER} CXX.host=${CMAKE_CXX_COMPILER} LINK.host=${CMAKE_CXX_COMPILER} AR.host=${CMAKE_AR} BUILDTYPE=Release
     DEPENDEES configure
     DEPENDERS build
     WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
