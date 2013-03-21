@@ -52,22 +52,8 @@ public:
 	static Class &Instance();
 
 private:
-	class InstanceHolder
-	{
-	public:
-		bool operator !();
-		Class & operator *();
-		Class & operator =(Class* ref);
-		InstanceHolder();
-		~InstanceHolder();
-		MutexType & mutex();
-
-	private:
-		Class *_instance;
-		MutexType _mutex;
-	};
-
-	static InstanceHolder instance;
+	static Class* instance;
+	static MutexType mutex;
 
 	static void NewInstance();
 
@@ -89,57 +75,20 @@ template <typename Class>
 inline void SingletonHolder<Class>::NewInstance()
 {
 	// enter critical section
-	EnterCriticalSection(&instance.mutex());
+	EnterCriticalSection(&mutex);
 
 	// check again for creation (another thread could accessed the critical section before
 	if (!instance)
 		instance = new Class();
 
-	LeaveCriticalSection(&instance.mutex());
+	LeaveCriticalSection(&mutex);
 }
 
 template <typename Class>
-typename SingletonHolder<Class>::InstanceHolder SingletonHolder<Class>::instance;
+Class *SingletonHolder<Class>::instance = nullptr;
 
 template <typename Class>
-inline bool SingletonHolder<Class>::InstanceHolder::operator !()
-{
-	return this->_instance == nullptr;
-}
-
-template <typename Class>
-inline Class & SingletonHolder<Class>::InstanceHolder::operator *()
-{
-	return *this->_instance;
-}
-
-template <typename Class>
-inline Class & SingletonHolder<Class>::InstanceHolder::operator =(Class* ref)
-{
-	this->_instance = ref;
-}
-
-template <typename Class>
-SingletonHolder<Class>::InstanceHolder::InstanceHolder()
-:	_instance(nullptr){}
-
-template <typename Class>
-SingletonHolder<Class>::InstanceHolder::~InstanceHolder()
-{
-	EnterCriticalSection(&mutex());
-	if (this->_instance != nullptr)
-	{
-		delete this->_instance;
-		this->_instance = nullptr;
-	}
-	LeaveCriticalSection(&mutex());
-}
-
-template <typename Class>
-MutexType & SingletonHolder<Class>::InstanceHolder::mutex()
-{
-	return this->_mutex;
-}
+MutexType SingletonHolder<Class>::mutex;
 
 class ManagersImpl
 {
