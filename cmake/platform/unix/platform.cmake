@@ -34,8 +34,14 @@ endif()
 # wxWidgets config
 if(MINGW)
   add_definitions(-D__WXMSW__)
+elseif(APPLE)
+  add_definitions(-D__WXOSX__ -D__WXOSX_COCOA__)
 else()
   add_definitions(-D__WXGTK__)
+endif()
+
+if(APPLE)
+  add_compiler_flags(-fvisibility=default)
 endif()
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
