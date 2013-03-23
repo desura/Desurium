@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Common.h"
 #include "ToolTransaction.h"
 
-#ifdef NIX
+#if defined NIX || defined MACOS
 #include "ToolInstallThread.h"
 #endif
 

@@ -93,13 +93,18 @@ if(WIN32)
                   code/ToolManager_win.cpp
                   code/User_win.cpp
 )
+elseif(APPLE)
+  file(GLOB PlattformSources
+                  code/ItemHandle_mac.cpp
+                  code/ToolInstallThread_nix.cpp
+                  code/ToolManager_lin.cpp
+                  code/User_nix.cpp)
 else()
   file(GLOB PlattformSources
                   code/ItemHandle_nix.cpp
                   code/ToolInstallThread_nix.cpp
                   code/ToolManager_lin.cpp
-                  code/User_nix.cpp
-)
+                  code/User_nix.cpp)
 endif()
 # TODO: code/InstallHandler.cpp
 

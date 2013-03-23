@@ -318,7 +318,7 @@ bool ToolInfo::isDownloaded()
 	return HasAnyFlags(m_uiFlags, TF_DOWNLOADED);
 }
 
-#ifdef NIX
+#if defined NIX || defined MACOS
 void ToolInfo::overridePath(const char* exe)
 {
 	m_szHash = UTIL::MISC::hashFile(exe);

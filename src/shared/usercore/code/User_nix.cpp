@@ -71,10 +71,13 @@ void User::saveLoginInfo()
 
 void User::getLoginInfo(char** username, char** passhash)
 {
+#ifndef MACOS
 	gcString oldPath = UTIL::LIN::expandPath("~/.desura_autologin");
 	gcString oldPath2 = UTIL::LIN::expandPath("~/.desura/.autologin");
+#endif
 	gcString path = UTIL::OS::getAppDataPath(L"autologin");
 	
+#ifndef MACOS
 	if (UTIL::FS::isValidFile(oldPath.c_str()))
 	{
 		UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(path.c_str()));
@@ -86,6 +89,7 @@ void User::getLoginInfo(char** username, char** passhash)
 		UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(path.c_str()));
 		UTIL::FS::moveFile(oldPath2.c_str(), path.c_str());
 	}
+#endif
 	
 	if (!UTIL::FS::isValidFile(path.c_str()))
 		throw gcException(ERR_BADPATH, "Unable to open password store.");
