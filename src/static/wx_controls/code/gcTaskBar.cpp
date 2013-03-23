@@ -122,7 +122,9 @@ gcTaskBarIcon::gcTaskBarIcon() : wxTaskBarIcon()
 
 	m_pEvents->Bind(wxEVT_CLOSE_WINDOW, &gcTaskBarIcon::onEventClose, this);
 
-	notify_init(PRODUCT_NAME);
+	#ifdef NIX
+		notify_init(PRODUCT_NAME);
+	#endif
 #endif
 }
 
