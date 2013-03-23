@@ -59,6 +59,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	#endif
 	
 	#define fopen64 fopen
+	#define fseeko64 fseeko
 #endif
 
 
