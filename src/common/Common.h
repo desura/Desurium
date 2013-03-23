@@ -54,6 +54,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 		#define MACOS 1
 	#endif
 	
+	#if defined __x86_64 || defined __amd64 || defined __x86_64__
+		#define MACOS64 1
+	#endif
+	
 	#define fopen64 fopen
 #endif
 
@@ -171,7 +175,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	#endif
 #endif
 
-#ifdef NIX // LINUX 
+#if defined NIX || MACOS // UNIX
 	#define _LARGEFILE_SOURCE 1
 	#define _LARGEFILE64_SOURCE 1
 	#define _FILE_OFFSET_BITS   64
@@ -215,7 +219,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	#define OutputDebugString(out)	fprintf(stderr, "%s", out);
 	#define OutputDebugStringW(out)	fprintf(stderr, "%ls", out);
 
-	#ifdef NIX64
+	#ifdef MACOS
+		#define BUILDID_INTERNAL 530
+		#define BUILDID_BETA 330
+		#define BUILDID_PUBLIC 130
+	#elif NIX64
 		#define BUILDID_INTERNAL 520
 		#define BUILDID_BETA 320
 		#define BUILDID_PUBLIC 120
@@ -621,7 +629,7 @@ inline bool HasAllFlags(uint32 value, uint32 flags)
 
 #include <memory>
 
-#if defined(NIX) || defined(__MINGW32__)
+#if defined(NIX) || defined(__MINGW32__) || defined(MACOS)
 #  ifdef __ICC
 #    include <boost/weak_ptr.hpp>
 #    include <boost/shared_ptr.hpp>
