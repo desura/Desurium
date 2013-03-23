@@ -41,22 +41,16 @@ class gcCustomFrame : public T, public FrameIcon
 public:
 	gcCustomFrame(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style) : T(), m_pCustomFrame(NULL)
 	{
-#ifdef NIX	
-		m_uiTitleHeight = 0;
-#endif
-
 		this->Create(parent, id, title, pos, size + wxSize(16, 38), style);
 		
 #ifdef WIN32
 		SetIcon(wxIcon(wxICON(IDI_ICONNORMAL)));
 		m_FrameIcon = wxIcon("IDI_ICONNORMAL",wxBITMAP_TYPE_ICO_RESOURCE,16,16);
 #else
+		m_uiTitleHeight = 0;
 		gcWString path(L"{0}/desura.png", UTIL::OS::getDataPath());
 		wxIcon i(path, wxBITMAP_TYPE_PNG);
 		SetIcon(i);
-#endif
-
-#ifdef NIX
 		wxSize s = this->GetSize() - this->GetClientSize();
 		m_uiTitleHeight = s.GetHeight();
 
@@ -365,7 +359,7 @@ public:
 	Event<bool> onActiveEvent;
 
 private:
-#ifdef NIX
+#if defined NIX || MACOS
 	uint32 m_uiTitleHeight;
 #endif
 
