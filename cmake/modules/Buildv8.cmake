@@ -2,8 +2,6 @@ if(64BIT)
   set(EXTRA_OPTS "arch=x64")
 endif()
 
-set(TEST "%")
-
 if(MINGW)
   set(SCONS_COMMAND scons.py snapshot=on ${MODE_DEBUG} library=shared ${EXTRA_OPTS} toolchain=gcc)
   set(V8_LIB_SUFFIX dll)
