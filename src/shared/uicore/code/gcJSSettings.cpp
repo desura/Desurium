@@ -316,7 +316,7 @@ bool DesuraJSSettings::isValidLinkBinary(gcString path)
 		return false;
 	}
 
-	return UTIL::LIN::getFileType(magicBytes, 5) != UTIL::LIN::BT_UNKNOWN;
+	return UTIL::OS::getFileType(magicBytes, 5) != UTIL::OS::BinType::UNKNOWN;
 #endif
 }
 

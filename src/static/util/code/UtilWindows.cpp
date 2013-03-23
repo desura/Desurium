@@ -906,7 +906,32 @@ bool runAs(const char* command, const char* area)
 	return (res == TRUE);
 }
 
+std::string getCmdStdout(const char* command, int stdErrDest)
+{
+	return "";
 }
+
+std::string getExecuteDir()
+{
+	return "";
+}
+
+bool launchFolder(const char* path)
+{
+	return false;
+}
+
+bool canLaunchBinary(OS::BinType type)
+{
+	if(type == OS::BinType::WIN32
+	#ifdef WIN64
+		|| type == OS::BinType::WIN64
+	#endif
+		|| type == OS::BinType::BAT)
+		return true;
+	return false;
+}
+
 }
 
 #endif

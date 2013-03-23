@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "Common.h"
 #include "util/UtilLinux.h"
+#include "UtilUnix.h"
 
 #include <unistd.h>
 #include <fstream>
@@ -36,15 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <utime.h>
 #include <errno.h>
 
-inline const wchar_t* CONFIG_DB(void)
-{
-	return UTIL::OS::getAppDataPath(L"linux_registry.sqlite").c_str();
-}
-
-#define COUNT_CONFIGTABLE_STRING "SELECT count(*) FROM sqlite_master WHERE name='config_string';"
 #define COUNT_CONFIGTABLE_BLOB "SELECT count(*) FROM sqlite_master WHERE name='config_blob';"
 
-#define CREATE_CONFIGTABLE_STRING "CREATE TABLE config_string(key TEXT primary key, value TEXT);"
 #define CREATE_CONFIGTABLE_BLOB "CREATE TABLE config_blob(key TEXT primary key, value BLOB);"
 
 static inline std::string &ltrim(std::string &input)
@@ -62,89 +56,6 @@ static inline std::string &rtrim(std::string &input)
 static inline std::string &trim(std::string &input)
 {
 	return ltrim(rtrim(input));
-}
-
-static void dbCreateTables()
-{
-	try
-	{
-		sqlite3x::sqlite3_connection db(CONFIG_DB());
-		
-		if (db.executeint(COUNT_CONFIGTABLE_STRING) == 0)
-			db.executenonquery(CREATE_CONFIGTABLE_STRING);
-
-/*		if (db.executeint(COUNT_CONFIGTABLE_BLOB) == 0)
-			db.executenonquery(CREATE_CONFIGTABLE_BLOB);*/
-	}
-	catch (std::exception &e)
-	{
-		ERROR_OUTPUT(gcString("Failed to create config table: \"{0}\"!", e.what()).c_str());
-	}
-}
-
-// the non official build will use generated files by cmake, so we don't need a version file at all
-// see UtilOs_cmake.cpp.inc
-#ifdef DESURA_OFFICAL_BUILD
-	extern std::string GetAppBuild()
-	{
-		FILE* fh = fopen("version", "r");
-
-		if (!fh)
-			return "";
-	
-		int appid = 0;
-		int build = 0;
-
-		fscanf(fh, "BRANCH=%d\nBUILD=%d", &appid, &build);
-		fclose(fh);
-
-		return gcString("{0}", build);
-	}
-
-	extern std::string GetAppBranch()
-	{
-		FILE* fh = fopen("version", "r");
-
-		if (!fh)
-			return "";
-	
-		int appid = 0;
-		int build = 0;
-
-		fscanf(fh, "BRANCH=%d\nBUILD=%d", &appid, &build);
-		fclose(fh);
-
-		return gcString("{0}", appid);
-	}
-#else
-std::string GetAppBuild();
-std::string GetAppBranch();
-#endif
-
-static void SetAppBuild(const std::string &val)
-{
-	std::string branch = GetAppBranch();
-
-	FILE* fh = fopen("version", "w");
-
-	if (!fh)
-		return;
-
-	fprintf(fh, "BRANCH=%s\nBUILD=%s", branch.c_str(), val.c_str());
-	fclose(fh);
-}
-
-static void SetAppBranch(const std::string &val)
-{
-	std::string build = GetAppBuild();
-
-	FILE* fh = fopen("version", "w");
-
-	if (!fh)
-		return;
-
-	fprintf(fh, "BRANCH=%s\nBUILD=%s", val.c_str(), build.c_str());
-	fclose(fh);
 }
 
 bool readFile(const char* file, char *buff, size_t size)
@@ -294,88 +205,17 @@ std::wstring getAppPath(std::wstring extra)
 
 void setConfigValue(const std::string &configKey, const std::string &value)
 {
-	if (configKey == APPBUILD)
-	{
-		SetAppBuild(value);
-		return;
-	}
-	else if (configKey == APPID)
-	{
-		SetAppBranch(value);
-		return;	
-	}
-
-	dbCreateTables();
-
-	sqlite3x::sqlite3_connection db(CONFIG_DB());
-
-	ERROR_OUTPUT(gcString("Setting key \"{0}\" to value \"{1}\"", configKey, value).c_str());
-
-	if(getConfigValue(configKey).length() > 0)
-	{
-		try
-		{
-			sqlite3x::sqlite3_command cmd(db, "UPDATE config_string SET value=? WHERE key=?;");
-			cmd.bind(1, value);
-			cmd.bind(2, configKey);
-			cmd.executenonquery();
-		}
-		catch(std::exception &e)
-		{
-			ERROR_OUTPUT(gcString("Failed to update key \"{0}\" with value \"{1}\": \"{2}\"!\n", configKey, value, e.what()).c_str());
-		}
-	}
-	else
-	{
-		try
-		{
-			sqlite3x::sqlite3_command cmd(db, "INSERT INTO config_string VALUES(?,?);");
-			cmd.bind(1, configKey);
-			cmd.bind(2, value);
-			cmd.executenonquery();
-		}
-		catch(std::exception &e)
-		{
-			ERROR_OUTPUT(gcString("Failed to insert key \"{0}\" with value \"{1}\": \"{2}\"!\n", configKey, value, e.what()).c_str());
-		}
-	}
-
-	return;
+	UTIL::UNIX::setConfigValue(configKey, value);
 }
 
 void setConfigValue(const std::string &configKey, uint32 value)
 {
-	setConfigValue(configKey, gcString("{0}", value).c_str());
-	return;
+	UTIL::UNIX::setConfigValue(configKey, value);
 }
 
 std::string getConfigValue(const std::string &configKey)
 {
-	if (configKey == APPBUILD)
-		return GetAppBuild();
-	else if (configKey == APPID)
-		return GetAppBranch();
-	else if (configKey.find("HKEY_") != std::string::npos)
-		return "";
-
-	std::string result;
-
-	try
-	{
-		dbCreateTables();
-		sqlite3x::sqlite3_connection db(CONFIG_DB());	
-		
-		sqlite3x::sqlite3_command cmd(db, "SELECT value FROM config_string WHERE key=?;");
-		cmd.bind(1, configKey);
-		result = cmd.executestring();
-	}
-	catch(std::exception &e)
-	{
-		result = "";
-		ERROR_OUTPUT(gcString("Failed to select value for key \"{0}\": \"{1}\"!", configKey.c_str(), e.what()).c_str());
-	}
-
-	return result;
+	return UTIL::UNIX::getConfigValue(configKey);
 }
 
 uint64 getFreeSpace(const char* path)
@@ -766,33 +606,6 @@ bool fileExists(const char* file)
 		return false;
 }
 
-BinType getFileType(const char* buff, size_t buffSize)
-{
-	if (buffSize < 2)
-		return BT_UNKNOWN;	
-	
-	if (strncmp(buff, "#!", 2) == 0)
-		return BT_SCRIPT;
-		
-	if (strncmp(buff, "MZ", 2) == 0)
-		return BT_WIN;
-	
-	if (buffSize < 5)
-		return BT_UNKNOWN;
-
-	if (strncmp(buff+1, "ELF", 3) == 0)
-	{
-		if (*(buff + 4) == (char)0x01)
-			return BT_ELF32;
-
-		if (*(buff + 4) == (char)0x02)
-			return BT_ELF64;
-	}
-	
-	return BT_UNKNOWN;	
-}
-
-
 const char g_cBadChars[] = {
 	'\\',
 	'/',
@@ -900,6 +713,17 @@ void setupXDGVars()
 	setenv("HOME", homeDir.c_str(), 1);
 	setenv("XDG_CONFIG_HOME", configDir.c_str(), 1);
 	setenv("XDG_CACHE_HOME", cacheDir.c_str(), 1);
+}
+
+bool canLaunchBinary(OS::BinType type)
+{
+	if(type == OS::BinType::ELF32
+	#ifdef NIX64
+		|| type == OS::BinType::ELF64
+	#endif
+		|| type == OS::BinType::SH)
+		return true;
+	return false;
 }
 
 }

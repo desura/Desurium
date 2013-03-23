@@ -19,6 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "Common.h"
 
+#ifdef MACOS
+  #include <sys/sysctl.h>
+#endif
+
 #include "util/UtilMisc.h"
 #include "string.h"
 
@@ -54,26 +58,17 @@ uint8 getCoreCount()
 #ifdef MACOS
 	uint8 numCPU = 1;
 
-	nt mib[4];
-	size_t len; 
-
-	/* set the mib for hw.ncpu */
-	mib[0] = CTL_HW;
-	mib[1] = HW_AVAILCPU;  // alternatively, try HW_NCPU;
-
-	/* get the number of CPUs from the system */
-	sysctl(mib, 2, &numCPU, &len, NULL, 0);
-
-	if( numCPU < 1 ) 
-	{
-		 mib[1] = HW_NCPU;
-		 sysctl( mib, 2, &numCPU, &len, NULL, 0 );
-
-		 if( numCPU < 1 )
-		 {
-			  numCPU = 1;
-		 }
+	int retstat;
+	size_t len = sizeof(numCPU);
+	int request[2] = {
+		CTL_HW,
+		HW_NCPU
+	};
+	retstat = sysctl(request, 2, &numCPU, &len, NULL, 0);
+	if ( retstat < 0 ) {
+		return 1;
 	}
+	
 	return numCPU;
 #endif
 
