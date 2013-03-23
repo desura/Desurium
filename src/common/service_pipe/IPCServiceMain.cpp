@@ -192,7 +192,11 @@ void IPCServiceMain::registerFunctions()
 
 IPC::PBlob IPCServiceMain::getSpecialPath(int32 key)
 {
+#ifdef MACOS
+	char path[512] = "NOT SUPPORTED";
+#else
 	char path[MAX_PATH] = "NOT SUPPORTED";
+#endif
 
 #ifdef WIN32
 	switch (key)
