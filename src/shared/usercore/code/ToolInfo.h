@@ -66,7 +66,7 @@ public:
 
 	const char* getResultString();
 
-#ifdef NIX
+#if defined NIX || defined MACOS
 	void overridePath(const char* exe);
 #endif
 

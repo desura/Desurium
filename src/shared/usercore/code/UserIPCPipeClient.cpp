@@ -149,7 +149,11 @@ void UserIPCPipeClient::stopService()
 #else
 void UserIPCPipeClient::start()
 {
+#ifdef NIX
 	if (!m_hServiceDll.load("libservicecore.so"))
+#elif defined MACOS
+	if (!m_hServiceDll.load("libservicecore.dylib"))
+#endif
 		throw gcException(ERR_INVALID, gcString("Failed to load service core: {0}", dlerror()));
 	
 	
@@ -160,7 +164,7 @@ void UserIPCPipeClient::start()
 	
 	m_pServer = (IPCServerI*)factory(IPC_SERVER);
 	
-	if (!factory)
+	if (!m_pServer)
 		throw gcException(ERR_INVALID, "Failed to create server");
 	
 	m_pServer->setSendCallback((void*)this, &UserIPCPipeClient::recvMessage);

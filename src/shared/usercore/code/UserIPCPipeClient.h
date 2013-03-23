@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #pragma once
 #endif
 
-#ifdef NIX
+#if defined NIX || defined MACOS
 #include "SharedObjectLoader.h"
 #endif
 
@@ -66,7 +66,7 @@ private:
 	gcString m_szAppDataPath;
 
 	IPCServiceMain *m_pServiceMain;
-#ifdef NIX
+#if defined NIX || defined MACOS
 	SharedObjectLoader m_hServiceDll;
 	IPCServerI *m_pServer;
 #endif
