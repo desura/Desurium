@@ -83,7 +83,7 @@ namespace FS
 		size_t getFolderCount();
 		std::string getFolder(size_t index);
 
-#ifdef NIX
+#if defined NIX || MACOS
 		bool m_absolutePath;
 #endif
 	private:

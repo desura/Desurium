@@ -52,8 +52,14 @@ if(WIN32)
 							 code/third_party/WinXPSP2FireWall.cpp)
   set(PLATFORM_LIBRARIES msi wintrust)
   use_unicode_here()
-else()
-  file(GLOB PlattformSources code/UtilLinux.cpp)
+elseif(APPLE)
+  file(GLOB PlattformSources
+       code/UtilMacos.mm
+       code/UtilUnix.cpp)
+elseif(UNIX)
+  file(GLOB PlattformSources
+       code/UtilLinux.cpp
+       code/UtilUnix.cpp)
 endif()
 
 if(UNIX)
@@ -79,6 +85,8 @@ target_link_libraries(util
   ${Boost_FILESYSTEM_LIBRARY}
   ${Boost_SYSTEM_LIBRARY}
   ${PLATFORM_LIBRARIES}
+  ${FOUNDATION_LIBRARY}
+  ${APPKIT_LIBRARY}
 )
 
 if(WIN32)
