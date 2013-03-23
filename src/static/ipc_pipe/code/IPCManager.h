@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "IPCMessage.h"
 #include "IPCLockable.h"
 #include "IPCPipeAuth.h"
+#include "IPCServerI.h"
 
 #include "util_thread/BaseThread.h"
 
