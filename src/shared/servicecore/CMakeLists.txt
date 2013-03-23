@@ -36,18 +36,18 @@ endif()
 
 add_library(servicecore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES})
 target_link_libraries(servicecore
-    gcJSBase
-    ipc_pipe
-    threads
-    umcf
-    util
-    util_fs
-	${BZIP2_LIBRARIES}
-    ${SQLITE_LIBRARIES}
-    ${SQLITE3X_LIBRARIES}
-    ${TINYXML_LIBRARIES}
-    ${CMAKE_THREAD_LIBS_INIT}
-	${PLATFORM_LIBRARIES}
+  gcJSBase
+  ipc_pipe
+  threads
+  umcf
+  util
+  util_fs
+  ${BZIP2_LIBRARIES}
+  ${SQLITE_LIBRARIES}
+  ${SQLITE3X_LIBRARIES}
+  ${TINYXML_LIBRARIES}
+  ${CMAKE_THREAD_LIBS_INIT}
+  ${PLATFORM_LIBRARIES}
 )
 
 install(TARGETS servicecore
