@@ -13,7 +13,7 @@ else()
   set(BOOST_EXTRA_BUILD_OPTS "")
 endif()
 
-if(DEBUG)
+if(DEBUG_EXTERNAL)
   ExternalProject_Add(
     boost
     URL "${BOOST_URL}"

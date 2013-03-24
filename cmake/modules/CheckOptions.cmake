@@ -40,6 +40,10 @@ if(NOT BUILD_ONLY_CEF)
     option(DEBUG_EXTERNAL "build external libs with debug support" OFF)
     option(INSTALL_DESKTOP_FILE "install the generated desktop file to /usr/share/applications/" OFF)
     option(FORCE_BUNDLED_WXGTK "force building of bundled wxGTK" ON)
+  else()
+    if(DEBUG)
+      set(DEBUG_EXTERNAL ON)
+    endif()
   endif()
 
   ###############################################################################
