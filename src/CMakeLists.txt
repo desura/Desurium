@@ -26,6 +26,12 @@ install(FILES ${APP}/about_logo.png
         DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app/
 )
 
+if(APPLE)
+  install(FILES ${BRANDING_DIR}/desura.icns
+          DESTINATION ${RESOURCES_INSTALL_DIR}
+  )
+endif()
+
 if(WIN32)
   install(FILES ${APP}/menu_button_hover_win.png RENAME menu_button_hover.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
   install(FILES ${APP}/menu_button_nonactive_win.png RENAME menu_button_nonactive.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
