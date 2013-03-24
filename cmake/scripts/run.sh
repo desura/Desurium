@@ -10,13 +10,17 @@ export PATH="$DIR:$PATH"
 
 if [[ "@RUNTIME_LIB_INSOURCE_DIR@" = /* ]]; then
 	export LD_LIBRARY_PATH="@RUNTIME_LIB_INSOURCE_DIR@/"
+	export DYLD_LIBRARY_PATH="@RUNTIME_LIB_INSOURCE_DIR@/"
 	# also add our runtime lib directory to path
 	export PATH="$LD_LIBRARY_PATH:$PATH"
+	export PATH="$DYLD_LIBRARY_PATH:$PATH"
 	@RUNTIME_LIB_INSOURCE_DIR@/@CURRENT_TARGET@ $@
 else
 	export LD_LIBRARY_PATH="$DIR/@RUNTIME_LIB_INSOURCE_DIR@/"
+	export DYLD_LIBRARY_PATH="$DIR/@RUNTIME_LIB_INSOURCE_DIR@/"
 	# also add our runtime lib directory to path
 	export PATH="$LD_LIBRARY_PATH:$PATH"
+	export PATH="$DYLD_LIBRARY_PATH:$PATH"
 	$DIR/@RUNTIME_LIB_INSOURCE_DIR@/@CURRENT_TARGET@ $@
 fi
 
