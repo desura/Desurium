@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <cstring> // strerror()
 #include <cerrno> // errno
 
+#include "Common.h"
 #include "UICoreI.h" // UICoreI
 #include "MiniDumpGenerator.h"
 

@@ -24,6 +24,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	#include "wx/msw/dc.h"
 #endif
 
+#ifdef MACOS
+	#include "wx/osx/dc.h"
+#endif
+
 #ifdef NIX
 	#include <linux/input.h>
 #endif
@@ -100,7 +104,13 @@ const ShortCut_s g_ShortCutList[] =
 	{VK_ADD,		IDC_ZOOM_PLUS,					ControlKey},
 	{'F',			IDC_FIND,						ControlKey},
 };
+#elif defined MACOS
+const uint32 g_uiMaxKeys = 0;
 
+const ShortCut_s g_ShortCutList[] = 
+{
+
+};
 #else
 const uint32 g_uiMaxKeys = 23;
 
@@ -446,7 +456,7 @@ gcMenu* EventHandler::createMenu(ChromiumDLL::ChromiumMenuInfoI* menuInfo)
 	return menu;
 }
 
-#ifdef NIX
+#if defined NIX || defined MACOS
 void EventHandler::displayMenu(ChromiumDLL::ChromiumMenuInfoI* menuInfo, gcMenu *menu, int32 x, int32 y)
 {
 	m_pParent->PopupMenu((wxMenu*)menu);

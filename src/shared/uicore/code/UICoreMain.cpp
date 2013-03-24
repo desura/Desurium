@@ -61,7 +61,7 @@ uint64 GetMainThreadId()
 	return g_uiMainThreadId;
 }
 
-#ifdef NIX
+#if defined NIX || defined MACOS
 
 class ListenThread : public Thread::BaseThread
 {
