@@ -86,7 +86,7 @@ std::map<std::string, std::string> ProcessArgs(int argc, char** argv)
 		if (!argv[x] || argv[x][0] != '-')
 			continue;
 
-		if ((x+1) > argc && argv[x][0] == '-')
+		if ((x+1) < argc && argv[x][0] == '-')
 		{
 			args[argv[x]] = argv[x+1];
 			x++;
