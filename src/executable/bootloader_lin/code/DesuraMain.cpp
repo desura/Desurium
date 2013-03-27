@@ -108,7 +108,7 @@ void ShowHelpDialog(const char* msg, const char* url, const char* type)
 	
 	if (url)
 	{
-		std::string systemString("xdg/xdg-open ");
+		std::string systemString("xdg-open ");
 		systemString += url;
 		
 		system(systemString.c_str());
