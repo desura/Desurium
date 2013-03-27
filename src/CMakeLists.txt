@@ -141,12 +141,18 @@ set(DESURA_SYMLINK_RULES
     /usr/games/desura->/usr/games/bin;
     /opt/desura->/usr/bin;)
 
+set(DESKTOP_EXE desura CACHE STRING "the value of Exe in the desktop file")
+set(DESKTOP_ICON desura CACHE STRING "the value of Icon in the desktop file")
+
 # configure our desktop file
-configure_file(${CMAKE_SCRIPT_PATH}/desura.desktop ${CMAKE_BINARY_DIR}/desura.desktop)
+configure_file(${CMAKE_SCRIPT_PATH}/desura.desktop ${CMAKE_BINARY_DIR}/desura.desktop @ONLY)
 if(INSTALL_DESKTOP_FILE)
   # install it only if the option is turned on
   install(FILES ${CMAKE_BINARY_DIR}/desura.desktop
-          DESTINATION ${DESKTOP_INSTALL_DIR})
+          DESTINATION ${DESKTOP_INSTALL_DIR}
+          PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                      GROUP_READ             GROUP_EXECUTE
+                      WORLD_READ             WORLD_EXECUTE)
 endif()
 
 # create symlink and install it
