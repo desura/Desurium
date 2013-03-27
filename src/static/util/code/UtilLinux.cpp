@@ -509,7 +509,7 @@ bool launchProcessXDG(const char* exe, const char* libPath)
 	(void)chdir(wd.c_str());
 
 	ERROR_OUTPUT("Launching with xdg-open");
-	execlp("xdg/xdg-open", "xdg/xdg-open", fullExe.c_str(), NULL);
+	execlp("xdg-open", "xdg-open", fullExe.c_str(), NULL);
 
 	ERROR_OUTPUT("Must have failed. Launching with gnome-open");
 	execlp("gnome-open", "gnome-open", fullExe.c_str(), NULL);
@@ -543,7 +543,7 @@ bool launchFolder(const char* path)
 
 	setenv("LD_LIBRARY_PATH", "", 1);
 
-	execlp("xdg/xdg-open", "xdg/xdg-open", fullPath.c_str(), NULL);
+	execlp("xdg-open", "xdg-open", fullPath.c_str(), NULL);
 	execlp("gnome-open", "gnome-open", fullPath.c_str(), NULL);
 	
 	//um shit. We shouldnt be here. :(
