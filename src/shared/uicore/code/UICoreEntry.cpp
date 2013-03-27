@@ -241,14 +241,7 @@ public:
 		m_pChecker = new wxSingleInstanceChecker("applock", path);
 
 		if (m_pChecker->IsAnotherRunning())
-		{
-			gcString message("{0} is already running, If it's not, remove \"{1}\".",
-				PRODUCT_NAME, path + "/applock");
-			
-			gtkMessageBox(message.c_str(), "Uh-oh..");
-			
 			return false;
-		}
 
 		return true;
 	}
