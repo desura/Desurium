@@ -6,6 +6,7 @@ rc10:
  * fixed: desurium-cef: build system does not respect CFLAGS (https://github.com/lodle/Desurium/issues/389)
  * fixed: cmake: build cef in jobserver mode (https://github.com/lodle/Desurium/issues/415)
  * fixed: Desktop shortcut missing Path key (https://github.com/lodle/Desurium/issues/511)
+ * fixed: desurium built with clang is broken (https://github.com/lodle/Desurium/issues/516)
 
 rc9:
 ----
