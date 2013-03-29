@@ -125,6 +125,8 @@ const char* g_szSafeList[] =
 	"desura.com",
 	".paypal.com",
 	"paypal.com",
+	".google.com",
+	"google.com",
 	".addthis.com",
 	"addthis.com",
 	".gameura.com",
