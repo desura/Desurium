@@ -369,7 +369,7 @@ void User::onNeedWildCardCB(WCSpecialInfo& info)
 #else
 	if (Safe::stricmp("XDG_OPEN", info.name.c_str()) == 0)
 	{
-		info.result = gcString(UTIL::OS::getCurrentDir(L"xdg/xdg-open"));
+		info.result = gcString(UTIL::OS::getCurrentDir(L"xdg-open"));
 		info.handled = true;
 	}
 #endif
