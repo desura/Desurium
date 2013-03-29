@@ -127,17 +127,6 @@ const char* g_szSafeList[] =
 	"paypal.com",
 	".google.com",
 	"google.com",
-	".addthis.com",
-	"addthis.com",
-	".gameura.com",
-	"gameura.com",
-
-#ifdef DEBUG
-	"gamedev.com",
-	".gamedev.com",
-	"erunways.com",
-#endif
-
 	NULL,
 };
 
