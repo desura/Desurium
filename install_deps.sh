@@ -39,7 +39,8 @@ elif [ -f /etc/arch-release ]; then		# Arch Linux
 	arch=`uname -m`
 
 	if [ "${arch}" == "x86_64" ] ; then
-		DEPS="${DEPS} binutils-multilib"
+		MULTILIB_DEVEL=`pacman -Sg multilib-devel | cut -d' ' -f2`
+		DEPS="${DEPS} binutils-multilib ${MULTILIB_DEVEL}"
 	elif [ "${arch}" == "i386" ] ; then # no extra-32-bit support needed
 		DEPS="${DEPS} binutils"
 	fi
