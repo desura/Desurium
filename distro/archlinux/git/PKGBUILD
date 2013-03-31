@@ -59,16 +59,17 @@ build() {
     -DBINDIR=/usr/bin
     -DDATADIR=/usr/share/
     -DRUNTIME_LIBDIR=/usr/lib/
-    -DBUILD_CEF=ON"
+    -DBUILD_CEF=ON
+    -DBUILD_TESTS=OFF"
   cmake $CMAKE_ARGS ..
   msg "Running make..."
   make
 }
 
-check() {
-  cd "$srcdir/Desurium/build"
-  make test
-}
+#check() {
+#  cd "$srcdir/Desurium/build"
+#  make test
+#}
 
 package() {
   cd "$srcdir/$_gitname/build"
