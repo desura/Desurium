@@ -3,7 +3,7 @@
 # Maintainer: Matthias "matthiaskrgr" Krüger
 
 pkgname=desurium
-pkgver=0.8.0_rc8
+pkgver=0.8.0_rc9
 pkgrel=1
 pkgdesc="A community-driven digital distribution service for gamers (open source version)"
 url="http://github.com/lodle/Desurium"
@@ -19,7 +19,7 @@ conflicts=('desura')
 
 
 if [ "${CARCH}" = "x86_64" ]; then
-    depends+=('binutils-multilib')
+    depends+=('binutils-multilib' 'multilib-devel')
   else  # 32 bit
     depends+=('binutils')
 fi

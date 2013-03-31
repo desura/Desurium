@@ -22,7 +22,7 @@ _gitname=Desurium
 
 
 if [ "${CARCH}" = "x86_64" ]; then
-    depends+=('binutils-multilib')
+    depends+=('binutils-multilib' 'multilib-devel')
   else  # 32 bit
     depends+=('binutils')
 fi

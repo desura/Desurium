@@ -3,7 +3,7 @@
 # Maintainer: Matthias "matthiaskrgr" Krüger
 
 pkgname=desurium-cef
-pkgver=0.8.0_rc8
+pkgver=0.8.0_rc9
 pkgrel=1
 pkgdesc="Chromium Embedded Framework, runtime dependency for desurium."
 url="http://github.com/lodle/Desurium"
