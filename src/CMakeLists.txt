@@ -116,6 +116,7 @@ option(BUILD_TOOLS "Build various Desura tools." ON)
 if(BUILD_TOOLS)
   add_subdirectory(tools/mcf_upload_cli)
   add_subdirectory(tools/mcf_extract)
+  add_subdirectory(tools/mcf_util)
 endif()
 
 ###############################################################################
