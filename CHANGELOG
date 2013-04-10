@@ -9,6 +9,7 @@ rc10:
  * fixed: desura:// links don't work from external browser if client is already opened (https://github.com/lodle/Desurium/issues/515)
  * fixed: desurium built with clang is broken (https://github.com/lodle/Desurium/issues/516)
  * fixed: desurium is launching urls in the external browser (https://github.com/lodle/Desurium/issues/531)
+ * added: mcf_util cli tool on Linux
 
 rc9:
 ----
