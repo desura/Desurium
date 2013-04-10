@@ -14,12 +14,49 @@ rc10:
 rc9:
 ----
  * fixed: desurium: add webm support (https://github.com/lodle/Desurium/issues/136)
+ * fixed: scriptengine: deprecated festures removed since v8-3.16.5 (https://github.com/lodle/Desurium/issues/450)
  * fixed: doubled german entries in language selection (https://github.com/lodle/Desurium/issues/503)
  * added: option to disable/enable flash/H.264 support
 
+rc8:
+----
+ * fixed: separate compiler and linker flags (https://github.com/lodle/Desurium/issues/336)
+ * fixed: compile error of npwrapper on gentoo
+
+rc7:
+----
+ * fixed: desura crash since #485 (https://github.com/lodle/Desurium/issues/459)
+ * fixed: npwrapper issues on some platforms
+
 rc6:
 ----
+ * fixed: cef: can't play flash videos (https://github.com/lodle/Desurium/issues/417)
+ * updated: generated desktop file
  * new version of desurium-cef is required for a working flash playback
+
+rc5:
+----
+ * fixed: Upload Bug - Exit on completion (https://github.com/lodle/Desurium/issues/362)
+ * fixed: findlib.sh missing (https://github.com/lodle/Desurium/issues/370)
+ * fixed: >=tinyxml-2.6 is required (https://github.com/lodle/Desurium/issues/393)
+ * fixed: fix workaround introduced in 3a317cf (https://github.com/lodle/Desurium/issues/408)
+ * fixed: mcf: linking of dependencies fails? (https://github.com/lodle/Desurium/issues/428)
+ * added: option to force bundle wxWidgets
+ * cef doesn't depend on wxWidgets anymore
+
+rc4:
+----
+ * fixed: Styling Issue - Scrollbar colours (https://github.com/lodle/Desurium/issues/239)
+ * updated: hungarian translation
+
+rc3:
+----
+ * fixed: User avatar not respecting proper alpha (https://github.com/lodle/Desurium/issues/329)
+ * fixed: desurium not working with boost-1.52 (https://github.com/lodle/Desurium/issues/348)
+
+rc2:
+----
+ * fixed: "Exit" just hides the window (https://github.com/lodle/Desurium/issues/121)
 
 rc1:
 ----
@@ -44,7 +81,6 @@ fixed issues:
  * Updated Branding - desurium (https://github.com/lodle/Desurium/pull/99)
  * Make finding cd keys easier (https://github.com/lodle/Desurium/issues/102)
  * Failed to select value for key (https://github.com/lodle/Desurium/issues/110)
- * "Exit" just hides the window (https://github.com/lodle/Desurium/issues/121)
  * Desurium console unreadable with oxygen-gtk (https://github.com/lodle/Desurium/issues/127)
  * Change 'play' and 'games' to 'games' and 'store' (https://github.com/lodle/Desurium/issues/134)
  * Active region for "Home" button is counter-productively tight (https://github.com/lodle/Desurium/issues/160)
@@ -54,7 +90,6 @@ fixed issues:
  * Upload bar is thin. (https://github.com/lodle/Desurium/issues/191)
  * in offline mode I'm only able to launch a game (https://github.com/lodle/Desurium/issues/215)
  * Give an option to be FHS compliant (https://github.com/lodle/Desurium/issues/296)
- * User avatar not respecting proper alpha (https://github.com/lodle/Desurium/issues/329)
  
 other stuff:
  * many translations
