@@ -348,7 +348,7 @@ void copyFile(Path src, Path dest)
 	try
 	{
 		bf::remove(bf::path(dest.getFullPath()));
-		bf::copy_file(bf::path(src.getFullPath()), bf::path(dest.getFullPath()));
+		bf::copy(bf::path(src.getFullPath()), bf::path(dest.getFullPath()));
 	}
 	catch (bf::filesystem_error e)
 	{
