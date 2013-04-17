@@ -69,10 +69,14 @@ sortList = function(list) {
 
 		for(item in list) {
 			try {
-				temp[item] = {key: item, value: eval("list[item]."+sortFieldCache+"()")};
+				temp[item] = {key: item, value: list[item][sortFieldCache]()};
 				
 				if (typeof(temp[item].value) == 'string')
 					temp[item].value = temp[item].value.toLowerCase();
+				// rating is the only float attribute, but every attribute is 
+				// typed as a string
+				if (sortFieldCache == 'getRating')
+					temp[item].value = parseFloat(temp[item].value);
 				
 			} catch(e) {}
 		}
