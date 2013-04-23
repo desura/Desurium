@@ -2,9 +2,11 @@
 # some global defines
 ###############################################################################
 
+# boost-1.53 changed the variable to disable native scoped enum detection
 add_definitions(
   -DBOOST_FILESYSTEM_VERSION=3
   -DBOOST_NO_SCOPED_ENUMS=1
+  -DBOOST_NO_CXX11_SCOPED_ENUMS=1
   -D_LARGE_FILES
   -D_FILE_OFFSET_BITS=64
 )
