@@ -238,16 +238,18 @@ void gcWebControl::onPaintBg( wxEraseEvent& event )
 {
 #ifdef WIN32
 	m_pChromeBrowser->onPaintBg();
-#endif
+#else
 	m_pChromeBrowser->onResize(0, 0, GetSize().GetWidth(), GetSize().GetHeight());
+#endif
 }
 
 void gcWebControl::onPaint( wxPaintEvent& event )
 {
 #ifdef WIN32
 	m_pChromeBrowser->onPaint();
-#endif
+#else
 	m_pChromeBrowser->onResize(0, 0, GetSize().GetWidth(), GetSize().GetHeight());
+#endif
 }
 
 void gcWebControl::loadUrl(const gcString& url)

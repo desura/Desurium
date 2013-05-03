@@ -29,6 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "util/UtilLinux.h"
 #endif
 
+#ifdef WIN32
+  #include <Shellapi.h>
+#endif
 
 void FromJSObject(UserCore::Misc::UploadInfoThreadI* &upload, JSObjHandle& arg)
 {

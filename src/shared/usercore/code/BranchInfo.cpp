@@ -24,6 +24,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "BranchInstallInfo.h"
 
+#ifdef WIN32
+  #include <Wincrypt.h>
+#endif
+
 namespace UserCore
 {
 namespace Item

@@ -109,6 +109,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #ifdef WIN32 // WINDOWS DEFINES
 	#ifndef DONT_INCLUDE_WINH
 		#include <windows.h>
+	#else
+		#include <afx.h>
 	#endif
 	
 	#include <sys/stat.h>
