@@ -10,14 +10,12 @@ file(GLOB Sources
 
 add_definitions(
   -Dgamecore_LOG
-  -DDONT_INCLUDE_WINH
   -DDONTUSE_PCH
   -DDESURA_EXE
   -DDESURA_CLIENT
 )
-add_linker_flags(/FORCE)
 				
-add_executable(utilhelper ${Sources})
+add_executable(utilhelper WIN32 ${Sources})
 target_link_libraries(utilhelper
   mdump
   util_bootloader

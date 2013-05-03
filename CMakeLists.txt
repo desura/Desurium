@@ -184,7 +184,10 @@ if(WIN32)
   # VC express and mingw doesn't provide MFC, but other versions of VC do
   find_package(MFC)
   if(MFC_FOUND)
-    add_definitions(-DMFC_FOUND)
+    set(CMAKE_MFC_FLAG 2)
+    add_definitions(-DMFC_FOUND -DDONT_INCLUDE_WINH -D_AFXDLL)
+    # Visual Studio 9 needs this
+    add_definitions(-D_BIND_TO_CURRENT_CRT_VERSION -D_BIND_TO_CURRENT_MFC_VERSION)
   endif()
 endif()
 
