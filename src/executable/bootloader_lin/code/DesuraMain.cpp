@@ -47,7 +47,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #endif
 
 MainApp* g_pMainApp;
-SharedObjectLoader g_CrashObject;
+#ifdef WITH_BREAKPAD
+  SharedObjectLoader g_CrashObject;
+#endif
 UploadCrashFn g_UploadCrashfn;
 
 void SendMessage(const char* msg)
@@ -228,7 +230,7 @@ int MainApp::run()
 	
 	setupSharedMem();
 
-#ifndef DEBUG
+#if !defined(DEBUG) && defined(WITH_BREAKPAD)
 	if (!loadCrashHelper())
 		return -1;
 #endif
@@ -482,6 +484,7 @@ bool MainApp::utf8Test()
 	return !hasUtf8;
 }
 
+#ifdef WITH_BREAKPAD
 bool MainApp::loadCrashHelper()
 {
 	if (!g_CrashObject.load("libcrashuploader.so"))
@@ -500,6 +503,7 @@ bool MainApp::loadCrashHelper()
 	
 	return true;
 }
+#endif
 
 void MainApp::sendArgs()
 {

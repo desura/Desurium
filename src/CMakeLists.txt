@@ -89,7 +89,9 @@ add_subdirectory(static/wx_controls)
 # build shared libs
 ###############################################################################
 
-add_subdirectory(shared/crashuploader)
+if(WITH_BREAKPAD)
+  add_subdirectory(shared/crashuploader)
+endif()
 add_subdirectory(shared/mcfcore)
 add_subdirectory(shared/servicecore)
 add_subdirectory(shared/scriptcore)

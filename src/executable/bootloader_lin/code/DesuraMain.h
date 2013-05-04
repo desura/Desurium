@@ -80,7 +80,9 @@ protected:
 	
 	bool utf8Test();
 
+#ifdef WITH_BREAKPAD
 	bool loadCrashHelper();
+#endif
 	void sendArgs();
 	
 	void checkUnityWhitelist();
