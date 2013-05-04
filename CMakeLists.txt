@@ -15,6 +15,7 @@
 #                                       debugging stuff
 #   PACKAGE_TYPE    DEB                 Which packages should be created with "make package"
 #   FORCE_SYS_DEPS  OFF                 Force the use of system libs
+#   WITH_BREAKPAD   $OFFICIAL_BUILD     enable breakpad exception handling support
 #   WITH_FLASH      ON                  Build with flash support
 #
 #   BREAKPAD_URL                        URL to breakdpad archive, should be rev. 850
@@ -285,8 +286,9 @@ if(NOT BUILD_ONLY_CEF)
     include(BuildBoost)
   endif()
 
-  if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
+  if(WITH_BREAKPAD)
     include(BuildGoogleBreakpad)
+    add_definitions(-DWITH_BREAKPAD)
   endif()
 
   if(NOT CURL_FOUND)

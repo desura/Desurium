@@ -5,10 +5,14 @@ include_directories(
 
 file(GLOB Sources code/*.cpp )
 
+if(WITH_BREAKPAD)
+  set(MDUMP mdump)
+endif()
+
 add_executable(desura ${Sources})
 target_link_libraries(desura
   dl
-  mdump
+  ${MDUMP}
   rt
   sqlite3x
   util
