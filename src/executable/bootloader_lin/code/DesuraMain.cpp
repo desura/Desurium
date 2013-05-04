@@ -29,7 +29,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <cerrno> // errno
 
 #include "UICoreI.h" // UICoreI
-#include "MiniDumpGenerator.h"
+#ifdef WITH_BREAKPAD
+  #include "MiniDumpGenerator.h"
+#endif
 
 #include "DesuraMain.h"
 #include "UtilFile.h"
@@ -272,9 +274,11 @@ int MainApp::runChild(bool usingGDB)
 	}
 	else
 	{
+#ifdef WITH_BREAKPAD
 		MiniDumpGenerator m_MDumpHandle;
 		m_MDumpHandle.showMessageBox(true);
-		m_MDumpHandle.setCrashCallback(&MainApp::onCrash);	
+		m_MDumpHandle.setCrashCallback(&MainApp::onCrash);
+#endif
 		m_pCrashArgs =  (CrashArg_s*)mmap(0, sizeof(RestartArg_s), PROT_READ|PROT_WRITE, MAP_SHARED, m_RestartMem, 0);
 		if (!m_pCrashArgs)
 			fprintf(stderr, "Failed to map crash arguments %s\n", dlerror());

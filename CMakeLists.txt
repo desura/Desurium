@@ -286,8 +286,9 @@ if(NOT BUILD_ONLY_CEF)
     include(BuildBoost)
   endif()
 
-  if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
+  if(WITH_BREAKPAD)
     include(BuildGoogleBreakpad)
+    add_definitions(-DWITH_BREAKPAD)
   endif()
 
   if(NOT CURL_FOUND)
