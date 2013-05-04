@@ -16,6 +16,8 @@ if(NOT BUILD_ONLY_CEF)
   option(SET_OWN_EXT_SRC "useful for ebuild or saving traffic" OFF)
   option(BUILD_CEF "Build cef" ON)
 
+  option(WITH_BREAKPAD "enable breakpad exception handling support" ${OFFICIAL_BUILD})
+
   if(OFFICIAL_BUILD)
     set(BRANDING "branding_desura"
       CACHE STRING "The branding to use for Desura.")
