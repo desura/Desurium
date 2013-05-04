@@ -1,6 +1,7 @@
 language: cpp
 compiler: gcc
 before_install:
+  - sudo apt-get update
   - sudo apt-get install gcc-multilib libnotify-dev libtinyxml-dev libv8-dev libboost-dev libboost-date-time-dev libboost-filesystem-dev libboost-thread-dev libboost-system-dev libboost-test-dev
   - wget "http://ppa.launchpad.net/fransschreuder1/usbpicprog-stable/ubuntu/pool/main/w/wxwidgets2.9/libwxgtk2.9-dev_2.9.3-1_amd64.deb"
   - wget "http://ppa.launchpad.net/fransschreuder1/usbpicprog-stable/ubuntu/pool/main/w/wxwidgets2.9/wx2.9-headers_2.9.3-1_amd64.deb"
