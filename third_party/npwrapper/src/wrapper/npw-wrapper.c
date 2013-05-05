@@ -93,12 +93,15 @@ const char *flashPluginPaths[] = {
   "/usr/" ARCH_LIB "/mozilla/plugins/libflashplayer.so",
   // ubuntu
   "/usr/" ARCH_LIB "/flashplugin-installer/libflashplayer.so",
+  // debian
+  "/usr/" ARCH_LIB "/flashplugin-nonfree/libflashplayer.so",
 
   // for plain 32bit systems (same as above without 32/64 suffix)
   "/usr/lib/nsbrowser/plugins/libflashplayer.so",
   "/usr/lib/adobe-flashplugin/libflashplayer.so",
   "/usr/lib/mozilla/plugins/libflashplayer.so",
   "/usr/lib/flashplugin-installer/libflashplayer.so",
+  "/usr/lib/flashplugin-nonfree/libflashplayer.so",
 };
 
 // Path to associated plugin viewer
