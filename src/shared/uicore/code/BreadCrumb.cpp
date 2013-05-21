@@ -62,7 +62,7 @@ int BreadCrump::addItem(const char* text, uint32 id)
 	temp->setOffset(5);
 
 	if (m_vButtons.size() != 0)
-		m_vButtons.push_back(new MenuSeperator(this, "#breadcrumb_separator", wxSize(7, 19)));
+		m_vButtons.push_back(new MenuSeperator(this, "#breadcrumb_separator", wxSize(7, 21)));
 
 	m_vButtons.push_back(temp);
 	
