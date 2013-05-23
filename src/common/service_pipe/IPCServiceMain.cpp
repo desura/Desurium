@@ -186,17 +186,13 @@ void IPCServiceMain::registerFunctions()
 #include <shlobj.h>
 #endif
 
-#ifdef NIX
+#ifndef MAX_PATH
 #define MAX_PATH 255
 #endif
 
 IPC::PBlob IPCServiceMain::getSpecialPath(int32 key)
 {
-#ifdef MACOS
-	char path[512] = "NOT SUPPORTED";
-#else
 	char path[MAX_PATH] = "NOT SUPPORTED";
-#endif
 
 #ifdef WIN32
 	switch (key)
