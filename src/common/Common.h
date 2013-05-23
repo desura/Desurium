@@ -75,7 +75,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	#error "ERROR_OUTPUT is already defined!"
 #else
 	#ifdef DEBUG
-		#ifdef NIX
+		#if defined NIX || MACOS
 				#define ERROR_OUTPUT(error) fprintf(stdout, "(%d, son of %d) %s:%d - %s\n", getpid(), getppid(), __FILE__, __LINE__, error); fflush(stdout);
 		#else
 				#define ERROR_OUTPUT(error) fprintf(stdout, "%s:%d - %s\n",  __FILE__, __LINE__, error); fflush(stdout);
