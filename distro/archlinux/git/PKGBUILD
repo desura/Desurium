@@ -22,7 +22,7 @@ _gitname=Desurium
 
 
 if [ "${CARCH}" = "x86_64" ]; then
-    depends+=('binutils-multilib' 'multilib-devel')
+	depends+=('binutils-multilib' 'gcc-multilib' 'libtool-multilib')
   else  # 32 bit
     depends+=('binutils')
 fi
@@ -59,16 +59,17 @@ build() {
     -DBINDIR=/usr/bin
     -DDATADIR=/usr/share/
     -DRUNTIME_LIBDIR=/usr/lib/
-    -DBUILD_CEF=ON"
+    -DBUILD_CEF=ON
+    -DBUILD_TESTS=OFF"
   cmake $CMAKE_ARGS ..
   msg "Running make..."
   make
 }
 
-check() {
-  cd "$srcdir/Desurium/build"
-  make test
-}
+#check() {
+#  cd "$srcdir/Desurium/build"
+#  make test
+#}
 
 package() {
   cd "$srcdir/$_gitname/build"
