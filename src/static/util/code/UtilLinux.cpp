@@ -554,6 +554,10 @@ bool launchFolder(const char* path)
 
 bool launchProcess(const char* exe, const std::map<std::string, std::string> &info)
 {
+	if (!exe)
+		return false;
+		
+	ERROR_OUTPUT(__func__);
 	std::string fullExe = expandPath(exe);
 	
 	if (!fileExists(fullExe.c_str()))
@@ -562,19 +566,16 @@ bool launchProcess(const char* exe, const std::map<std::string, std::string> &in
 	//we double fork so that the new process is not a child of this process
 	pid_t pid = fork();
 	
-	if (pid)
+	if (pid != 0)
 	{
 		int status;
 		waitpid(pid, &status, 0);
-		return true;
+		
+		if (WEXITSTATUS(status) == 0)
+			return true;
+		else
+			return false;
 	}
-	
-	//child one
-	pid = fork();
-	
-	if (pid)
-		exit(0);
-	
 	
 	UTIL::FS::Path path(fullExe.c_str(), "", true);
 	
