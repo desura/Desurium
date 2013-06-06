@@ -16,7 +16,7 @@ rc10:
 rc9:
 ----
  * fixed: desurium: add webm support (https://github.com/lodle/Desurium/issues/136)
- * fixed: scriptengine: deprecated festures removed since v8-3.16.5 (https://github.com/lodle/Desurium/issues/450)
+ * fixed: scriptengine: deprecated features removed since v8-3.16.5 (https://github.com/lodle/Desurium/issues/450)
  * fixed: doubled german entries in language selection (https://github.com/lodle/Desurium/issues/503)
  * added: option to disable/enable flash/H.264 support
 
