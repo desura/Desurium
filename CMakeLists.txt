@@ -129,7 +129,7 @@ if(NOT BUILD_ONLY_CEF)
     set(Boost_ADDITION_LIBS ${Boost_ADDITION_LIBS} chrono)
   endif()
   if(BUILD_TESTS)
-    set(Boost_ADDITION_LIBS ${Boost_ADDITION_LIBS} test_exec_monitor unit_test_framework)
+    set(Boost_ADDITION_LIBS ${Boost_ADDITION_LIBS} unit_test_framework)
   endif()
   
   set(Boost_USE_MULTITHREADED ON)
