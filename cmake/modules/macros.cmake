@@ -95,6 +95,8 @@ macro(add_desura_test name category neededLibs)
                           ${CMAKE_SOURCE_DIR}/src/tests/${category}/${name}*.h
                           ${CMAKE_SOURCE_DIR}/src/tests/*.h)
     add_executable(${name} ${${name}_SRC})
+    # have to be defined to generate a main function
+    add_definitions(-DBOOST_TEST_DYN_LINK)
     include_directories(
       ${CMAKE_SOURCE_DIR}/src/tests
       ${Boost_INCLUDE_DIR}
@@ -102,7 +104,6 @@ macro(add_desura_test name category neededLibs)
     target_link_libraries(${name}
       ${neededLibs}
       ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
-      ${Boost_TEST_EXEC_MONITOR_LIBRARY}
     )
     add_test(${name} ${CMAKE_BINARY_DIR}/src/tests/${name})
   endif()
