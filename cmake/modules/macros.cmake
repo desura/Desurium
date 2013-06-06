@@ -88,7 +88,7 @@ endmacro()
 macro(add_desura_test name category neededLibs)
   if(BUILD_TESTS)
     if(NOT BUILD_ENV_UILT_UP)
-      find_package(Boost COMPONENTS date_time filesystem thread system prg_exec_monitor test_exec_monitor unit_test_framework REQUIRED)
+      find_package(Boost COMPONENTS date_time filesystem thread system unit_test_framework REQUIRED)
       set(BUILD_ENV_UILT_UP TRUE)
     endif()
     file(GLOB ${name}_SRC ${CMAKE_SOURCE_DIR}/src/tests/${category}/${name}*.c
@@ -99,6 +99,8 @@ macro(add_desura_test name category neededLibs)
                           ${CMAKE_SOURCE_DIR}/src/tests/${category}/${name}*.h
                           ${CMAKE_SOURCE_DIR}/src/tests/*.h)
     add_executable(${name} ${${name}_SRC})
+    # have to be defined to generate a main function
+    add_definitions(-DBOOST_TEST_DYN_LINK)
     include_directories(
       ${CMAKE_SOURCE_DIR}/src/tests
       ${Boost_INCLUDE_DIR}
