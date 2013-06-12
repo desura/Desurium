@@ -20,7 +20,7 @@
 		<str name="#CDF_TITLE">Déplacement du dossier des données de Desura</str>
 		<str name="#CDF_STARTUP">Analyse du dossier des données...</str>
 		<str name="#CDF_MOVEFILE">Déplacement des fichiers...</str>
-		<str name="#CDF_DBCHANGES">Mise à jour de la base de donnée...</str>
+		<str name="#CDF_DBCHANGES">Mise à jour de la base de données...</str>
 
 		<str name="#CDF_GERRTITLE">Erreur de Desura</str>
 		<str name="#CDF_GERROR">Impossible de bouger le dossier des données de Desura.</str>
