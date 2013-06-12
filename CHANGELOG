@@ -1,6 +1,11 @@
 version 0.8.0:
 --------------
 
+rc11:
+-----
+ * fixed: desurium crashes after starting wyv and keep (https://github.com/lodle/Desurium/issues/558)
+ * fixed: boost-1.53 linking problems
+
 rc10:
 -----
  * fixed: 10.0 rated games not sorted correctly (https://github.com/lodle/Desurium/issues/374)
