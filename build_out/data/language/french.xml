@@ -116,7 +116,7 @@
 		<str name="#UDF_COMPLETE">L'envoi est terminé.</str>
 		<str name="#UDF_UNKNOWNPAUSE">Mis en pause</str>
 		<str name="#UDF_REMINDER">Ne plus me le rappeler</str>
-		<str name="#UDF_PROMPTINFO">Vous pouvez reprendre cet envoi n'importe quand, depuis l'onglet "Games" qui liste tous les projets que vous développez et les envois en cours.&#xA;</str>
+		<str name="#UDF_PROMPTINFO">Vous pouvez reprendre cet envoi n'importe quand, depuis l'onglet "Jeux" qui liste tous les projets que vous développez et les envois en cours.&#xA;</str>
 		<str name="#UDF_RESUMEDIR">Recherche de fichiers MCF ...</str>
 
 		<!-- Create Form -->
@@ -441,7 +441,7 @@
 		<!-- Settings -->
 		<str name="#SET_TITLE">Paramètres de Desura</str>
 		<str name="#SET_BETA_LABEL">Participer à la Beta publique de Desura</str>
-		<str name="#SET_BETA_INFO">Avant de sortir de nouvelles fonctionnalités et de nouvelles versions de Desura, une Beta publique est mise en à disposition pour tester et corriger les bugs des nouvelles versions. En tant qu'utilisateur de Desura, vous pouvez aider à tester les nouvelles fonctionnalités de la Beta publique et fournir des commentaires. &#xA;&#xA;Si vous participez et que vous rencontrez un crash, votre rapport de crash sera automatiquement envoyé et vous serez contacté par email pour aider au debogage et à la correction des bugs rencontrés. &#xA;&#xA;Veuillez noter que la Beta publique peut contenir des bugs pouvant causer des pertes de données ou des crash. La participation à la Beta publique n'est recommandé qu'aux utilisateurs avancés.&#xA;</str>
+		<str name="#SET_BETA_INFO">Avant de sortir de nouvelles fonctionnalités et de nouvelles versions de Desura, une Beta publique est mise  à la disposition pour tester et corriger les bugs des nouvelles versions. En tant qu'utilisateur de Desura, vous pouvez aider à tester les nouvelles fonctionnalités de la Beta publique et fournir des commentaires. &#xA;&#xA;Si vous participez et que vous rencontrez un crash, votre rapport de crash sera automatiquement envoyé et vous serez contacté par email pour aider au débogage et à la correction des bugs rencontrés. &#xA;&#xA;Veuillez noter que la Beta publique peut contenir des bugs pouvant causer des pertes de données ou des crash. La participation à la Beta publique n'est recommandé qu'aux utilisateurs avancés.&#xA;</str>
 		<str name="#SET_NOTE">Veuillez noter que si vous sélectionnez un nouveau thème, vous devrez redémarrer Desura pour voir les changements.</str>
 		<str name="#SET_THEME_VERSION">version</str>
 		<str name="#SET_THEME_AUTHOR">par</str>
@@ -552,7 +552,7 @@
 		<str name="#NA_INFOPROMPT">Entrez vos informations ci-dessous et cliquez sur Accepter pour procéder à l'inscription. Votre adresse email sera utilisé pour activer votre compte. Si vous avez un compte MODDB ou INDIEDB, vous n'avez pas besoin de vous inscrire de nouveau et vous pouvez vous connecter avec celui-ci.</str>
 
 		<str name="#PR_TITLE">Récupération de mot de passe Desura</str>
-		<str name="#PR_PROMPT">Entrez l'addresse email que vous avez utilisé lors de votre inscription, un email vous sera envoyé pour pouvoir réinitialiser votre mot de passe.</str>
+		<str name="#PR_PROMPT">Entrez l’adresse email que vous avez utilisé lors de votre inscription, un email vous sera envoyé pour pouvoir réinitialiser votre mot de passe.</str>
 		<str name="#PR_EMAIL">Adresse email: </str>
 		<str name="#PR_SENT">Un email a été envoyé. Regardez dans votre boîte de réception pour savoir quoi faire ensuite.</str>
 		<str name="#PR_TITLE">Récupération de mot de passe Desura</str>
@@ -592,7 +592,7 @@
 		<str name="#IS_VALIDATE">Validation</str>
 		<str name="#IS_WAIT">Attente ({0} sur {1})</str>
 
-		<str name="#AB_ABOUTINFO">Desura est une communauté de distribution digitale de services pour les joueurs, mettant les meilleurs jeux, Mods and contenus additionnels des développeurs au bout de vos doigts, prêt à acheter et jouer.</str>
+		<str name="#AB_ABOUTINFO">Desura est une communauté de distribution digitale de services pour les joueurs, mettant les meilleurs jeux, Mods et contenus additionnels des développeurs au bout de vos doigts, prêt à acheter et jouer.</str>
 		<str name="#AB_CREDITS">Crédits</str>
 		<str name="#AB_ABOUT">A propos de Desura</str>
 
@@ -718,7 +718,7 @@
 		<str name="#CHAT_DISCONNECT_MSG">Tentative de reconnexion dans {0} {1}(Réessayer maintenant){2}.</str>
 
 		<str name="#GD_TITLE">{0}: Disque de jeu nécessaire</str>
-		<str name="#GD_INFO">{0} require le disque {1} dans votre ordinateur pour jouer. &#xA;&#xA;Assurez-vous que le disque est bien présent avant de continuer.</str>
+		<str name="#GD_INFO">{0} requière le disque {1} dans votre ordinateur pour jouer. &#xA;&#xA;Assurez-vous que le disque est bien présent avant de continuer.</str>
 		<str name="#GD_REMINDER">Ne plus me le rappeler</str>
 		<str name="#SB_DEFAULT">Recherche...</str>
 		<str name="#SB_TOGGLE_HIDE">Cacher le champ de recherche</str>
