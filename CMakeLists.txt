@@ -35,7 +35,7 @@
 #   DESKTOPDIR      depends on OS       the directory where the desktop file or link should be installed
 #
 # unix-only options:
-#   FORCE_BUNDLED_WXGTK			ON: bundle wxGTK 2.9.3
+#   FORCE_BUNDLED_WXGTK  		ON: bundle wxGTK 2.9.3
 #                   ON			OFF: use system wxGTK (has to be 2.9.x, work stable on 2.9.3)
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
 #   WITH_ARES       ON                  build CURL with ares support (c-ares REQUIRED)
@@ -210,7 +210,7 @@ if(WIN32)
   endif()
 endif()
 
-set(BREAKPAD_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/breakpad-850.tar.gz")
+set(BREAKPAD_URL_DEFAULT "https://github.com/downloads/desura/Desurium/breakpad-850.tar.gz")
 set(BREAKPAD_URL ${BREAKPAD_URL_DEFAULT}
     CACHE STRING "URL to breakpad")
 if(BREAKPAD_URL STREQUAL BREAKPAD_URL_DEFAULT)
@@ -220,7 +220,7 @@ else()
 endif()
 
 
-set(CEF_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/cef-291.tar.gz")
+set(CEF_URL_DEFAULT "https://github.com/downloads/desura/Desurium/cef-291.tar.gz")
 set(CEF_URL ${CEF_URL_DEFAULT}
     CACHE STRING "URL to cef, has to be revision 291")
 if(CEF_URL STREQUAL CEF_URL_DEFAULT)
@@ -249,7 +249,7 @@ if(WIN32 OR NOT CURL_FOUND)
   endif()
 endif()
 
-set(DEPOT_TOOLS_URL_DEFAULT "https://github.com/downloads/lodle/Desurium/depot_tools-145556-2.tar.gz")
+set(DEPOT_TOOLS_URL_DEFAULT "https://github.com/downloads/desura/Desurium/depot_tools-145556-2.tar.gz")
 set(DEPOT_TOOLS_URL ${DEPOT_TOOLS_URL_DEFAULT}
     CACHE STRING "URL to depot_tools")
 if(DEPOT_TOOLS_URL STREQUAL DEPOT_TOOLS_URL_DEFAULT)
