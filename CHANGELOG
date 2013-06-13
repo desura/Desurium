@@ -5,6 +5,7 @@ rc11:
 -----
  * fixed: desurium crashes after starting wyv and keep (https://github.com/lodle/Desurium/issues/558)
  * fixed: boost-1.53 linking problems
+ * repository moved to desura github account
 
 rc10:
 -----
