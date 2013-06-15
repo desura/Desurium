@@ -48,6 +48,7 @@ if(NOT BUILD_ONLY_CEF)
 
   if(WIN32)
     option(DEBUG_CEF "turn on/off debugging in CEF" OFF)
+    option(DEBUG_V8 "turn on/off debugging in v8" OFF)
   endif()
 
   ###############################################################################
