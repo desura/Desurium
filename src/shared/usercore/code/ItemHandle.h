@@ -201,19 +201,30 @@ private:
 	Helper::ItemHandleFactoryI* m_pFactory;
 	ItemHandleEvents* m_pEventHandler;
 	ItemTaskGroup* m_pGroup;
+
+#ifdef NIX
+	/**
+	 * creates a desktop file and returns the path to it
+	 *
+	 * the desktop file will be created in the desura cache directory
+	 *
+	 * @return the path to the created desktop file
+	 */
+	gcString createDesktopFile();
+
+	/**
+	 * installs a desktop file from the given path with the given tool
+	 * 
+	 * @param file the path to the desktop file
+	 * @param tool the tool to install the desktop file
+	 * @return false on error, true otherwise
+	 */
+	bool installDesktopFileWith(const std::string &file, std::string tool);
+#endif
 };
 
 
 }
 }
-
-
-
-
-
-
-
-
-
 
 #endif //DESURA_ITEMHANDLE_H
