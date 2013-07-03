@@ -45,7 +45,7 @@ private:
 
 	static void OnFatalError(const char* location, const char* message);
 
-	v8::Persistent<v8::Context> m_v8Context;
+	v8::Handle<v8::Context> m_v8Context;
 };
 
 
