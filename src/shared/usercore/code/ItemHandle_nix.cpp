@@ -315,8 +315,9 @@ void ItemHandle::installLaunchScripts()
 	safe_delete(scriptXdg);
 }
 
-inline gcString createDesktopFile(ItemInfoI* i)
+gcString ItemHandle::createDesktopFile()
 {
+	ItemInfoI* i = getItemInfo();
 	using boost::algorithm::replace_all_copy;
 	// KDE menu doesn't accept files like "Publisher Name-GameName.desktop" so we replace all " " with "_"
 	gcString publisher = replace_all_copy(std::string(i->getPublisher()), " ", "_");
@@ -348,46 +349,35 @@ inline gcString createDesktopFile(ItemInfoI* i)
 	return tmpPath;
 }
 
-bool ItemHandle::createDesktopShortcut()
+bool ItemHandle::installDesktopFileWith(const std::string &file, std::string tool)
 {
-	gcString tmpPath = createDesktopFile(getItemInfo());
-
 	// just in case we pass --novendor to xdg-desktop-icon, so games without a proper publisher entry will accepted
 	std::ostringstream cmd;
-	cmd << "xdg-desktop-icon install --novendor \""
-	    << tmpPath.c_str() << '"';
+	cmd << tool << " install --novendor \"" << file << '"';
 	bool result = system(cmd.str().c_str()) == 0;
 
 	// if something is going wrong, we don't delete the created desktop file
-	if (result) UTIL::FS::delFile(tmpPath);
+	if (result)
+		UTIL::FS::delFile(file);
 	else
 	{
 		Msg("Desktop file could not be installed.\n");
-		Msg(gcString("The file is located here: {0}\n", tmpPath));
+		Msg(gcString("The file is located here: {0}\n", file));
 	}
 
 	return result;
 }
 
+bool ItemHandle::createDesktopShortcut()
+{
+	gcString tmpPath = createDesktopFile();
+	return installDesktopFileWith(tmpPath, "xdg-desktop-icon");
+}
+
 bool ItemHandle::createMenuEntry()
 {
-	gcString tmpPath = createDesktopFile(getItemInfo());
-
-	// just in case we pass --novendor to xdg-desktop-menu, so games without a proper publisher entry will accepted
-	std::ostringstream cmd;
-	cmd << "xdg-desktop-menu install --novendor \""
-	    << tmpPath.c_str() << '"';
-	bool result = system(cmd.str().c_str()) == 0;
-
-	// if something is going wrong, we don't delete the created desktop file
-	if (result) UTIL::FS::delFile(tmpPath);
-	else
-	{
-		Msg("Desktop file could not be installed.\n");
-		Msg(gcString("The file is located here: {0}\n", tmpPath));
-	}
-
-	return result;
+	gcString tmpPath = createDesktopFile();
+	return installDesktopFileWith(tmpPath, "xdg-desktop-menu");
 }
 
 }
