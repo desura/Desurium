@@ -48,7 +48,7 @@ if(ICC)
   include_directories(
     ${GLOBAL_INCLUDE_DIRS}
     ${COMMON_INCLUDE_DIRS}
-    ${TINYXML_INCLUDE_DIR}
+    ${TINYXML_INCLUDEDIR}
     ${BIN_INCLUDE_DIR}
     ${GTK2_INCLUDE_DIRS}
   )
@@ -56,7 +56,7 @@ else()
   include_directories(
     ${GLOBAL_INCLUDE_DIRS}
     ${COMMON_INCLUDE_DIRS}
-    ${TINYXML_INCLUDE_DIR}
+    ${TINYXML_INCLUDEDIR}
     ${BIN_INCLUDE_DIR}
   )
 endif()
