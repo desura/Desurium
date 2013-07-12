@@ -16,6 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
+// we need this for compatibility
+#ifndef V8_USE_UNSAFE_HANDLES
+#define V8_USE_UNSAFE_HANDLES 1
+#endif
 
 #include "Common.h"
 #include "ScriptCoreInternal.h"
@@ -70,7 +74,7 @@ void ScriptCoreInternal::init()
 	global->Set(v8::String::New("Warning"), v8::FunctionTemplate::New(JSWarning));
 	global->Set(v8::String::New("Debug"), v8::FunctionTemplate::New(JSDebug));
 
-	v8::Persistent<v8::Context> context = v8::Context::New(RegisterJSBindings(), global);
+	v8::Handle<v8::Context> context = v8::Context::New(RegisterJSBindings(), global);
 	m_v8Context = context;		
 }
 
@@ -79,7 +83,7 @@ void ScriptCoreInternal::del()
 	if (s_Disabled)
 		return;
 
-	m_v8Context.Dispose();
+	m_v8Context.Clear();
 }
 
 void ScriptCoreInternal::runString(const char* string)

@@ -26,8 +26,8 @@ class JSObject : public ChromiumDLL::JavaScriptObjectI
 {
 public:
 	JSObject(v8::Handle<v8::Value> obj, bool isException = false)
+	:	m_v8Object(obj)
 	{
-		m_v8Object = v8::Persistent<v8::Value>::New(obj);
 		m_iRefCount = 1;
 		m_bIsException = isException;
 	}
@@ -224,7 +224,7 @@ public:
 		return (T*)getUserObject();
 	}
 
-	v8::Persistent<v8::Value> getNative()
+	v8::Handle<v8::Value> getNative()
 	{
 		return m_v8Object;
 	}
@@ -232,7 +232,7 @@ public:
 private:
 	bool m_bIsException;
 	uint32 m_iRefCount;
-	v8::Persistent<v8::Value> m_v8Object;
+	v8::Handle<v8::Value> m_v8Object;
 };
 
 
