@@ -360,12 +360,12 @@ void MigrateStandaloneTask::doTask()
 	{
 		AutoDelFile adf(m_vFileList[x]);
 
-		TiXmlDocument doc;
+		tinyxml2::XMLDocument doc;
 
 		if (!doc.LoadFile(m_vFileList[x].getFullPath().c_str()))
 			continue;
 
-		TiXmlElement* root = doc.FirstChildElement("game");
+		tinyxml2::XMLElement* root = doc.FirstChildElement("game");
 
 		if (!root)
 			continue;

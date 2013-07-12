@@ -173,10 +173,10 @@ void UploadThread::doRun()
 
 		//Warning("UC: %s\n", error);
 
-		TiXmlDocument doc;
-		XML::loadBuffer(doc, const_cast<char*>(error), m_hHttpHandle->getDataSize());
+		tinyxml2::XMLDocument doc;
+		XML::loadBuffer(doc, const_cast<char*>(error));
 
-		TiXmlNode *gNode = doc.FirstChild("itemupload");
+		tinyxml2::XMLElement *gNode = doc.FirstChildElement("itemupload");
 		if (!gNode)
 		{
 			if (m_uiContinueCount > 3)
@@ -191,7 +191,7 @@ void UploadThread::doRun()
 			}
 		}
 
-		TiXmlNode *gMsg = gNode->FirstChild("status");
+		tinyxml2::XMLElement *gMsg = gNode->FirstChildElement("status");
 		if (!gMsg)
 		{
 			if (m_uiContinueCount > 3)
@@ -206,7 +206,7 @@ void UploadThread::doRun()
 			}
 		}
 		
-		TiXmlElement* gEle = gMsg->ToElement();
+		tinyxml2::XMLElement* gEle = gMsg->ToElement();
 
 		const char* id = gEle->Attribute("code");
 		const char* msg = gEle->GetText();

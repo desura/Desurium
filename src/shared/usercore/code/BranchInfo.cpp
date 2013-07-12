@@ -233,17 +233,17 @@ void BranchInfo::loadDb(sqlite3x::sqlite3_connection* db)
 }
 
 
-void BranchInfo::loadXmlData(TiXmlNode *xmlNode)
+void BranchInfo::loadXmlData(tinyxml2::XMLNode *xmlNode)
 {
 	XML::GetChild("name", m_szName, xmlNode);
 	XML::GetChild("price", m_szCost, xmlNode);
 	XML::GetChild("eula", m_szEulaUrl, xmlNode);
 
-	TiXmlNode* eNode = xmlNode->FirstChild("eula");
+	tinyxml2::XMLElement* eNode = xmlNode->FirstChildElement("eula");
 
 	if (eNode && XML::isValidElement(eNode))
 	{
-		TiXmlElement *eEl = dynamic_cast<TiXmlElement*>(eNode);
+		tinyxml2::XMLElement *eEl = dynamic_cast<tinyxml2::XMLElement*>(eNode);
 
 		const char* date = eEl->Attribute("date");
 
@@ -327,7 +327,7 @@ void BranchInfo::loadXmlData(TiXmlNode *xmlNode)
 		m_uiFlags |= BF_STEAMGAME;
 
 	//no mcf no release
-	TiXmlNode* mcfNode = xmlNode->FirstChild("mcf");
+	tinyxml2::XMLElement* mcfNode = xmlNode->FirstChildElement("mcf");
 	if (!mcfNode)
 	{
 		m_uiFlags |= BF_NORELEASES;
@@ -340,13 +340,13 @@ void BranchInfo::loadXmlData(TiXmlNode *xmlNode)
 		m_uiLatestBuild = MCFBuild::BuildFromInt(build);
 	}
 
-	TiXmlNode* toolsNode = xmlNode->FirstChild("tools");
+	tinyxml2::XMLElement* toolsNode = xmlNode->FirstChildElement("tools");
 
 	if (toolsNode)
 	{
 		m_vToolList.clear();
 
-		TiXmlElement* toolNode = toolsNode->FirstChildElement("tool");
+		tinyxml2::XMLElement* toolNode = toolsNode->FirstChildElement("tool");
 
 		while (toolNode)
 		{
@@ -359,16 +359,15 @@ void BranchInfo::loadXmlData(TiXmlNode *xmlNode)
 		}
 	}
 
-	TiXmlElement* scriptNode = xmlNode->FirstChildElement("installscript");
+	tinyxml2::XMLElement* scriptNode = xmlNode->FirstChildElement("installscript");
 
 	if (scriptNode)
 		processInstallScript(scriptNode);
 }
 
-void BranchInfo::processInstallScript(TiXmlElement* scriptNode)
+void BranchInfo::processInstallScript(tinyxml2::XMLElement* scriptNode)
 {
-	int crc = 0;
-	scriptNode->Attribute("crc", &crc);
+	int crc = scriptNode->IntAttribute("crc");
 
 	if (UTIL::FS::isValidFile(m_szInstallScript))
 	{

@@ -38,13 +38,13 @@ protected:
 
 	void init();
 	bool pollUpdates();
-	void parseXML(TiXmlDocument &doc);
+	void parseXML(tinyxml2::XMLDocument &doc);
 	
 
 	void updateBuildVer();
 	void onForcePoll();
 
-	virtual bool onMessageReceived(const char* resource, TiXmlNode* root);
+	virtual bool onMessageReceived(const char* resource, tinyxml2::XMLNode* root);
 	virtual void setInfo(UserCore::UserI* user, WebCore::WebCoreI* webcore);
 
 #ifdef WIN32
@@ -52,7 +52,7 @@ protected:
 #endif
 
 	void loadLoginItems();
-	void checkAppUpdate(TiXmlNode* uNode);
+	void checkAppUpdate(tinyxml2::XMLNode* uNode);
 
 private:
 	HttpHandle m_hHttpHandle;

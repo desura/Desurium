@@ -55,10 +55,10 @@ public:
 protected:
 	void doRun();
 
-	void parseItemsQuick(TiXmlNode *fNode);
+	void parseItemsQuick(tinyxml2::XMLNode *fNode);
 
-	void parseItems1(TiXmlNode *fNode, WildcardManager *pWildCard, std::map<uint64, TiXmlElement*> *vMap = NULL);
-	void parseItems2(TiXmlNode *fNode, WildcardManager *pWildCard);
+	void parseItems1(tinyxml2::XMLNode *fNode, WildcardManager *pWildCard, std::map<uint64, tinyxml2::XMLElement*> *vMap = NULL);
+	void parseItems2(tinyxml2::XMLNode *fNode, WildcardManager *pWildCard);
 
 	bool selectBranch(UserCore::Item::ItemInfoI *item);
 	void onItemFound(UserCore::Item::ItemInfoI *item);
@@ -73,10 +73,10 @@ protected:
 
 	void triggerProgress();
 
-	void parseGameQuick(TiXmlElement* game);
+	void parseGameQuick(tinyxml2::XMLElement* game);
 
-	void parseGame(DesuraId id, TiXmlElement* game, WildcardManager *pWildCard, TiXmlElement* info = NULL);
-	void parseMod(DesuraId parId, DesuraId id, TiXmlElement* mod, WildcardManager *pWildCard, TiXmlElement* info = NULL);
+	void parseGame(DesuraId id, tinyxml2::XMLElement* game, WildcardManager *pWildCard, tinyxml2::XMLElement* info = NULL);
+	void parseMod(DesuraId parId, DesuraId id, tinyxml2::XMLElement* mod, WildcardManager *pWildCard, tinyxml2::XMLElement* info = NULL);
 
 private:
 	UserCore::User* m_pUser;

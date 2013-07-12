@@ -79,12 +79,12 @@ public:
 	virtual const char* getSessCookie();
 
 	virtual const char* getUserAgent();
-	virtual void getItemInfo(DesuraId id, TiXmlDocument &doc, MCFBranch mcfBranch, MCFBuild mcfBuild); 
-	virtual void getInstalledItemList(TiXmlDocument &doc);
+	virtual void getItemInfo(DesuraId id, tinyxml2::XMLDocument &doc, MCFBranch mcfBranch, MCFBuild mcfBuild); 
+	virtual void getInstalledItemList(tinyxml2::XMLDocument &doc);
 	virtual EventV* getCookieUpdateEvent();
 	virtual gcString getCDKey(DesuraId id, MCFBranch branch);
-	virtual void getUpdatePoll(TiXmlDocument &doc, const std::map<std::string, std::string> &post);
-	virtual void getLoginItems(TiXmlDocument &doc);
+	virtual void getUpdatePoll(tinyxml2::XMLDocument &doc, const std::map<std::string, std::string> &post);
+	virtual void getLoginItems(tinyxml2::XMLDocument &doc);
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Setters
@@ -139,14 +139,14 @@ public:
 	static gcString getMemberDataUrl();
 
 protected:
-	virtual void logIn(const char* user, const char* pass, TiXmlDocument &doc);
+	virtual void logIn(const char* user, const char* pass, tinyxml2::XMLDocument &doc);
 	virtual void logOut();
 
 	void startRefreshCycle();
 	void stopRefreshCycle();
 
-	TiXmlNode* postToServer(std::string url, std::string resource, PostMap &postData, TiXmlDocument &doc, bool useHTTPS = false);
-	TiXmlNode* loginToServer(std::string url, std::string resource, PostMap &postData, TiXmlDocument &doc);
+	tinyxml2::XMLNode* postToServer(std::string url, std::string resource, PostMap &postData, tinyxml2::XMLDocument &doc, bool useHTTPS = false);
+	tinyxml2::XMLNode* loginToServer(std::string url, std::string resource, PostMap &postData, tinyxml2::XMLDocument &doc);
 
 	EventV onCookieUpdateEvent;
 

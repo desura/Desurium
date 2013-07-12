@@ -79,7 +79,7 @@ protected:
 		TF_LINK = 1<<2,
 	};
 
-	void parseXml(TiXmlNode* toolNode, WildcardManager* wildCardManager, const char* appDataPath);
+	void parseXml(tinyxml2::XMLNode* toolNode, WildcardManager* wildCardManager, const char* appDataPath);
 
 	virtual void loadFromDb(sqlite3x::sqlite3_connection* db);
 	virtual void saveToDb(sqlite3x::sqlite3_connection* db);
