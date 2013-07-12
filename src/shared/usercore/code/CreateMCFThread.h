@@ -58,9 +58,9 @@ protected:
 
 	void retrieveBranchList(std::vector<UserCore::Item::BranchInfo*> &outList);
 	
-	void processGames(std::vector<UserCore::Item::BranchInfo*> &outList, TiXmlElement* platform);
-	void processMods(std::vector<UserCore::Item::BranchInfo*> &outList, TiXmlElement* game);
-	void processBranches(std::vector<UserCore::Item::BranchInfo*> &outList, TiXmlElement* item);
+	void processGames(std::vector<UserCore::Item::BranchInfo*> &outList, tinyxml2::XMLElement* platform);
+	void processMods(std::vector<UserCore::Item::BranchInfo*> &outList, tinyxml2::XMLElement* game);
+	void processBranches(std::vector<UserCore::Item::BranchInfo*> &outList, tinyxml2::XMLElement* item);
 
 
 

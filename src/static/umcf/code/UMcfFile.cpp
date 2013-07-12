@@ -98,7 +98,7 @@ void UMcfFile::setCCsum(const char* var)
 		m_szCCsum = var;
 }
 
-uint8 UMcfFile::loadXmlData(TiXmlElement *xmlNode)
+uint8 UMcfFile::loadXmlData(tinyxml2::XMLElement *xmlNode)
 {
 	std::string name;
 	std::string path;
@@ -125,7 +125,7 @@ uint8 UMcfFile::loadXmlData(TiXmlElement *xmlNode)
 	return MCFF_OK;
 }
 
-void UMcfFile::genXml(TiXmlElement *element)
+void UMcfFile::genXml(tinyxml2::XMLElement *element)
 {
 #ifdef NIX
 	std::wstring copy(m_szPath);

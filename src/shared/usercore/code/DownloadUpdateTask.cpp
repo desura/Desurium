@@ -102,17 +102,17 @@ void DownloadUpdateTask::downloadUpdate()
 		throw gcException(ERR_INVALIDDATA);
 
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	XML::loadBuffer(doc, const_cast<char*>(wc->getData()), wc->getDataSize());
 
 	XML::processStatus(doc, "appupdate");
 
-	TiXmlNode *uNode = doc.FirstChild("appupdate");
+	tinyxml2::XMLNode *uNode = doc.FirstChild("appupdate");
 
 	if (!uNode)
 		throw gcException(ERR_BADXML);
 
-	TiXmlNode *mNode = uNode->FirstChild("mcf");
+	tinyxml2::XMLNode *mNode = uNode->FirstChild("mcf");
 
 	if (!mNode)
 		throw gcException(ERR_BADXML);

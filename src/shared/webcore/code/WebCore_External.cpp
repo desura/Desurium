@@ -56,10 +56,10 @@ void WebCoreClass::sendPassReminder(const char* email)
 	if (hh->getDataSize() == 0)
 		throw gcException(ERR_BADRESPONSE, "Data size was zero");
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	XML::loadBuffer(doc, const_cast<char*>(hh->getData()), hh->getDataSize());
 
-	TiXmlNode *uNode = doc.FirstChild("memberpasswordreminder");
+	tinyxml2::XMLNode *uNode = doc.FirstChild("memberpasswordreminder");
 
 	if (!uNode)
 		throw gcException(ERR_BADXML, "Missing the root node");
@@ -67,7 +67,7 @@ void WebCoreClass::sendPassReminder(const char* email)
 	XML::processStatus(doc, "memberpasswordreminder");
 }
 
-void WebCoreClass::getInstalledItemList(TiXmlDocument &doc)
+void WebCoreClass::getInstalledItemList(tinyxml2::XMLDocument &doc)
 {
 	HttpHandle hh(getInstalledWizardUrl().c_str());
 	setWCCookies(hh);

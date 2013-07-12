@@ -173,19 +173,19 @@ void BranchInstallInfo::loadDb(sqlite3x::sqlite3_connection* db)
 	}
 }
 
-ProcessResult BranchInstallInfo::processSettings(TiXmlNode* setNode, WildcardManager* pWildCard, bool reset, bool hasBroughtItem, const char* cipPath)
+ProcessResult BranchInstallInfo::processSettings(tinyxml2::XMLNode* setNode, WildcardManager* pWildCard, bool reset, bool hasBroughtItem, const char* cipPath)
 {
 	ProcessResult pr;
 	pr.found = false;
 	pr.useCip = false;
 	pr.notFirst = false;
 
-	TiXmlNode* icsNode = setNode->FirstChild("installlocations");
+	tinyxml2::XMLNode* icsNode = setNode->FirstChild("installlocations");
 	
 	if (icsNode)
 	{
 		std::vector<InsCheck*> insCheck;
-		TiXmlNode* icNode = icsNode->FirstChild("installlocation");
+		tinyxml2::XMLNode* icNode = icsNode->FirstChild("installlocation");
 		while (icNode)
 		{
 			gcString iCheck;
@@ -467,11 +467,11 @@ void BranchInstallInfo::launchExeHack()
 #endif
 }
 
-void BranchInstallInfo::processExes(TiXmlNode* setNode, WildcardManager* pWildCard, bool useCip)
+void BranchInstallInfo::processExes(tinyxml2::XMLNode* setNode, WildcardManager* pWildCard, bool useCip)
 {
 	uint32 rank = 0;
 
-	XML::for_each_child("execute", setNode->FirstChild("executes"), [&](TiXmlElement* exe)
+	XML::for_each_child("execute", setNode->FirstChild("executes"), [&](tinyxml2::XMLElement* exe)
 	{
 		gcString ePath;
 		gcString args;
@@ -582,9 +582,9 @@ void BranchInstallInfo::resetInstalledMcf()
 	m_INBuild = MCFBuild();
 }
 
-bool BranchInstallInfo::processUpdateXml(TiXmlNode* branch)
+bool BranchInstallInfo::processUpdateXml(tinyxml2::XMLNode* branch)
 {
-	TiXmlElement* mcfEl = branch->FirstChildElement("mcf");
+	tinyxml2::XMLElement* mcfEl = branch->FirstChildElement("mcf");
 	if (mcfEl)
 	{
 		const char* id = mcfEl->Attribute("id");

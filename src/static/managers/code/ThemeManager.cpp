@@ -148,10 +148,10 @@ void ThemeManager::getThemeStubList(std::vector<ThemeStubI*> &vList)
 
 bool ThemeStub::parseFile(const char* szFile)
 {
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	doc.LoadFile(szFile);
 
-	TiXmlNode *mcNode = doc.FirstChild("theme");
+	tinyxml2::XMLNode *mcNode = doc.FirstChild("theme");
 
 	if (!mcNode)
 		return false;

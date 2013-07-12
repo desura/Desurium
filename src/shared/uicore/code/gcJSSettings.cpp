@@ -135,10 +135,10 @@ std::vector<MapElementI*> DesuraJSSettings::getLanguages()
 
 	for (size_t x=0; x<fileList.size(); x++)
 	{
-		TiXmlDocument doc;
+		tinyxml2::XMLDocument doc;
 		doc.LoadFile(fileList[x].getFullPath().c_str());
 				
-		TiXmlElement *uNode = doc.FirstChildElement("lang");
+		tinyxml2::XMLElement *uNode = doc.FirstChildElement("lang");
 
 		if (!uNode)
 			continue;

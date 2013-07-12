@@ -69,19 +69,19 @@ const wchar_t* LanguageManager::getString(const wchar_t* name)
 
 bool LanguageManager::loadFromFile(const char* file)
 {
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	doc.LoadFile(file);
 
 #ifdef WIN32 // seemingly unused
 	const char* err = doc.ErrorDesc();
 #endif
 
-	TiXmlNode *cNode = doc.FirstChild("lang");
+	tinyxml2::XMLNode *cNode = doc.FirstChild("lang");
 
 	if (!cNode)
 		return false;
 
-	auto parseString = [this](TiXmlElement* str)
+	auto parseString = [this](tinyxml2::XMLElement* str)
 	{
 		const char* name = str->Attribute("name");
 		const char* val = str->GetText();

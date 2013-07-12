@@ -110,10 +110,10 @@ protected:
 
 	//parsers a xml buffer
 	uint8 parseXml(char* buff, size_t buffLen);
-	uint8 parseXml(TiXmlNode *fNode);
+	uint8 parseXml(tinyxml2::XMLNode *fNode);
 	
 	//parsers the update xml
-	void parseUpdateXml(TiXmlDocument &doc);
+	void parseUpdateXml(tinyxml2::XMLDocument &doc);
 
 	void updateAllCB(Prog_s& p);
 

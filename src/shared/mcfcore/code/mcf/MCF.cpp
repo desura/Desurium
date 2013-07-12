@@ -290,17 +290,17 @@ void MCF::parseXml(char* buff, uint32 buffLen)
 	if (m_bStopped)
 		return;
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	
 	doc.SetCondenseWhiteSpace(false);
 	XML::loadBuffer(doc, buff, buffLen);
 
-	TiXmlNode *fNode = doc.FirstChild("files");
+	tinyxml2::XMLNode *fNode = doc.FirstChild("files");
 
 	if (!fNode)
 		throw gcException(ERR_XML_NOPRIMENODE);
 
-	TiXmlElement* pChild = fNode->FirstChildElement();
+	tinyxml2::XMLElement* pChild = fNode->FirstChildElement();
 
 	while (pChild)
 	{

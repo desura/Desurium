@@ -176,7 +176,7 @@ bool UpdateThreadOld::pollUpdates()
 		post[key] = "1";
 	}
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 
 	try
 	{
@@ -225,7 +225,7 @@ void UpdateThreadOld::checkFreeSpace()
 #endif
 
 
-void UpdateThreadOld::parseXML(TiXmlDocument &doc)
+void UpdateThreadOld::parseXML(tinyxml2::XMLDocument &doc)
 {
 	UserCore::User *pUser = dynamic_cast<UserCore::User*>(m_pUser);
 
@@ -244,12 +244,12 @@ void UpdateThreadOld::parseXML(TiXmlDocument &doc)
 		return;
 	}
 
-	TiXmlNode *uNode = doc.FirstChild("updatepoll");
+	tinyxml2::XMLNode *uNode = doc.FirstChild("updatepoll");
 	
 	if (!uNode)
 		return;
 
-	TiXmlNode* tempNode = NULL;
+	tinyxml2::XMLNode* tempNode = NULL;
 
 
 	tempNode = uNode->FirstChild("cookies");
@@ -309,7 +309,7 @@ void UpdateThreadOld::parseXML(TiXmlDocument &doc)
 		pUser->parseGifts(tempNode);
 }
 
-bool UpdateThreadOld::onMessageReceived(const char* resource, TiXmlNode* root)
+bool UpdateThreadOld::onMessageReceived(const char* resource, tinyxml2::XMLNode* root)
 {
 	return false;
 }
@@ -324,13 +324,13 @@ void UpdateThreadOld::loadLoginItems()
 {
 	UserCore::ItemManager* im = dynamic_cast<UserCore::ItemManager*>(m_pUser->getItemManager());
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 
 	try
 	{
 		m_pWebCore->getLoginItems(doc);
 
-		TiXmlNode* first = doc.FirstChildElement("memberdata");
+		tinyxml2::XMLNode* first = doc.FirstChildElement("memberdata");
 		im->parseLoginXml2(first->FirstChildElement("games"), first->FirstChildElement("platforms"));
 	}
 	catch (gcException &e)
@@ -345,9 +345,9 @@ void UpdateThreadOld::loadLoginItems()
 
 #ifdef DESURA_OFFICAL_BUILD
 
-void UpdateThreadOld::checkAppUpdate(TiXmlNode* uNode)
+void UpdateThreadOld::checkAppUpdate(tinyxml2::XMLNode* uNode)
 {
-	TiXmlElement* appEl = uNode->FirstChildElement("app");
+	tinyxml2::XMLElement* appEl = uNode->FirstChildElement("app");
 
 	if (!appEl)
 		return;
@@ -394,7 +394,7 @@ void UpdateThreadOld::updateBuildVer()
 
 #else
 
-void UpdateThreadOld::checkAppUpdate(TiXmlNode* uNode)
+void UpdateThreadOld::checkAppUpdate(tinyxml2::XMLNode* uNode)
 {
 }
 

@@ -74,11 +74,11 @@ SpriteRect* Theme::getSpriteRect(const char* id, const char* rectId)
 
 void Theme::parseFile(const char* file)
 {
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 
 	doc.LoadFile(file);
 
-	TiXmlNode *mcNode = doc.FirstChild("theme");
+	tinyxml2::XMLNode *mcNode = doc.FirstChild("theme");
 
 	if (!mcNode)
 		throw gcException(ERR_XML_NOPRIMENODE);
@@ -88,10 +88,10 @@ void Theme::parseFile(const char* file)
 
 	UTIL::FS::Path path(file, "", true);
 
-	TiXmlNode *cNode = mcNode->FirstChild("images");
+	tinyxml2::XMLNode *cNode = mcNode->FirstChild("images");
 	if (cNode)
 	{
-		TiXmlNode* pChild = cNode->FirstChild();
+		tinyxml2::XMLNode* pChild = cNode->FirstChild();
 
 		while (pChild)
 		{
@@ -127,7 +127,7 @@ void Theme::parseFile(const char* file)
 	cNode = mcNode->FirstChild("web");
 	if (cNode)
 	{
-		TiXmlNode* pChild = cNode->FirstChild();
+		tinyxml2::XMLNode* pChild = cNode->FirstChild();
 
 		gcString urlPath(path.getFolderPath());
 
@@ -177,7 +177,7 @@ void Theme::parseFile(const char* file)
 	cNode = mcNode->FirstChild("sprites");
 	if (cNode)
 	{
-		TiXmlNode* pChild = cNode->FirstChild();
+		tinyxml2::XMLNode* pChild = cNode->FirstChild();
 
 		while (pChild)
 		{
@@ -203,7 +203,7 @@ void Theme::parseFile(const char* file)
 				SpriteList::addItem( sprite );
 			}
 
-			TiXmlNode* rNode = pChild->FirstChild();
+			tinyxml2::XMLNode* rNode = pChild->FirstChild();
 
 			while (rNode)
 			{
@@ -214,8 +214,8 @@ void Theme::parseFile(const char* file)
 				}
 
 				const char* rName = rNode->ToElement()->Attribute("name");
-				TiXmlNode* pos = rNode->FirstChild("pos");
-				TiXmlNode* size = rNode->FirstChild("size");
+				tinyxml2::XMLNode* pos = rNode->FirstChild("pos");
+				tinyxml2::XMLNode* size = rNode->FirstChild("size");
 
 				if (!rName || !XML::isValidElement(pos) || !XML::isValidElement(size))
 				{
@@ -260,7 +260,7 @@ void Theme::parseFile(const char* file)
 	cNode = mcNode->FirstChild("controls");
 	if (cNode)
 	{
-		TiXmlNode* pChild = cNode->FirstChild();
+		tinyxml2::XMLNode* pChild = cNode->FirstChild();
 
 		while (pChild)
 		{
@@ -272,7 +272,7 @@ void Theme::parseFile(const char* file)
 		
 
 			const char* name = pChild->ToElement()->Attribute("name");
-			TiXmlNode* colNode = pChild->FirstChild("color");
+			tinyxml2::XMLNode* colNode = pChild->FirstChild("color");
 
 			if (name && colNode)
 			{

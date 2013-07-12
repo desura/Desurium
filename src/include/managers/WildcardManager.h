@@ -94,7 +94,7 @@ public:
 	void constructPath(const char* path, char **res, bool fixPath = true);
 
 	//! this parses an xml feed.
-	uint8 parseXML(TiXmlNode* node);
+	uint8 parseXML(tinyxml2::XMLNode* node);
 
 	uint32 getDepth(){return m_uiDepth;}
 

@@ -122,14 +122,14 @@ public:
 	//! @param internId Desura item internal id
 	//! @param[out] doc Item xml
 	//!
-	virtual void getItemInfo(DesuraId id, TiXmlDocument &doc, MCFBranch mcfBranch, MCFBuild mcfBuild)=0; 
+	virtual void getItemInfo(DesuraId id, tinyxml2::XMLDocument &doc, MCFBranch mcfBranch, MCFBuild mcfBuild)=0; 
 
 
 	//! Gets all the items for the mod install wizard
 	//!
 	//! @param[out] doc Item list xml
 	//!
-	virtual void getInstalledItemList(TiXmlDocument &doc)=0;
+	virtual void getInstalledItemList(tinyxml2::XMLDocument &doc)=0;
 
 	//! Gets a cdkey for a branch
 	//!
@@ -148,11 +148,11 @@ public:
 
 	//! Calls the update poll with the post data
 	//!
-	virtual void getUpdatePoll(TiXmlDocument &doc, const std::map<std::string, std::string> &post)=0;
+	virtual void getUpdatePoll(tinyxml2::XMLDocument &doc, const std::map<std::string, std::string> &post)=0;
 
 	//! Gets the items that where normally part of the login
 	//!
-	virtual void getLoginItems(TiXmlDocument &doc)=0;
+	virtual void getLoginItems(tinyxml2::XMLDocument &doc)=0;
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Setters
@@ -254,7 +254,7 @@ public:
 	//! @param[out] doc Login xml
 	//! @return Api Version Number
 	//!
-	virtual void logIn(const char* user, const char* pass, TiXmlDocument &doc)=0;
+	virtual void logIn(const char* user, const char* pass, tinyxml2::XMLDocument &doc)=0;
 
 	//! Logs the user out
 	//!

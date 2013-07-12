@@ -252,12 +252,12 @@ ToolTransactionId ToolManager::installTools(Misc::ToolTransaction* transaction)
 
 
 
-void ToolManager::parseXml(TiXmlNode* toolinfoNode)
+void ToolManager::parseXml(tinyxml2::XMLNode* toolinfoNode)
 {
 	if (!toolinfoNode)
 		return;	
 
-	TiXmlNode* toolsNode = toolinfoNode->FirstChild("tools");
+	tinyxml2::XMLNode* toolsNode = toolinfoNode->FirstChild("tools");
 
 	if (!toolsNode)
 		return;
@@ -267,7 +267,7 @@ void ToolManager::parseXml(TiXmlNode* toolinfoNode)
 	wcm.onNeedInstallSpecialEvent += delegate(this, &ToolManager::onSpecialCheck);
 	wcm.onNeedSpecialEvent += delegate(m_pUser->getNeedWildCardEvent());
 
-	TiXmlNode* wildcardNode = toolinfoNode->FirstChild("wcards");
+	tinyxml2::XMLNode* wildcardNode = toolinfoNode->FirstChild("wcards");
 
 	if (wildcardNode)
 		wcm.parseXML(wildcardNode);
@@ -283,7 +283,7 @@ void ToolManager::parseXml(TiXmlNode* toolinfoNode)
 
 	bool is64OS = UTIL::OS::is64OS();
 
-	XML::for_each_child("tool", toolsNode, [this, is64OS, &wcm](TiXmlElement* toolEl)
+	XML::for_each_child("tool", toolsNode, [this, is64OS, &wcm](tinyxml2::XMLElement* toolEl)
 	{
 		bool isTool64 = false;
 		XML::GetChild("bit64", isTool64, toolEl);

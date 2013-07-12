@@ -404,31 +404,31 @@ void User::changeAccount(DesuraId id, uint8 action)
 
 
 
-void User::parseNews(TiXmlNode* newsNode)
+void User::parseNews(tinyxml2::XMLNode* newsNode)
 {
 	parseNewsAndGifts(newsNode, onNewsUpdateEvent);
 }
 
 
-void User::parseGifts(TiXmlNode* giftNode)
+void User::parseGifts(tinyxml2::XMLNode* giftNode)
 {
 
 	parseNewsAndGifts(giftNode, onGiftUpdateEvent);
 }
 
-void User::parseNewsAndGifts(TiXmlNode* xmlNode, Event<std::vector<UserCore::Misc::NewsItem*> > &onEvent)
+void User::parseNewsAndGifts(tinyxml2::XMLNode* xmlNode, Event<std::vector<UserCore::Misc::NewsItem*> > &onEvent)
 {
 	if (!xmlNode)
 		return;
 
 	std::vector<UserCore::Misc::NewsItem*> itemList;
 
-	TiXmlNode* pChild = xmlNode->FirstChild();
+	tinyxml2::XMLNode* pChild = xmlNode->FirstChild();
 	while (pChild)
 	{
 		if (XML::isValidElement(pChild))
 		{
-			TiXmlElement *itemElem = pChild->ToElement();
+			tinyxml2::XMLElement *itemElem = pChild->ToElement();
 
 			const char* szId = itemElem->Attribute("id");
 
@@ -535,7 +535,7 @@ void User::runInstallScript(const char* file, const char* installPath, const cha
 		getServiceMain()->runInstallScript(file, installPath, function);
 }
 
-bool User::platformFilter(TiXmlElement* platform, PlatformType type)
+bool User::platformFilter(tinyxml2::XMLElement* platform, PlatformType type)
 {
 	if (!platform)
 		return true;

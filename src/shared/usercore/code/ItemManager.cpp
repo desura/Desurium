@@ -46,7 +46,7 @@ public:
 };
 
 
-typedef std::map<DesuraId, std::pair<TiXmlElement*, DesuraId>, CompairDesuraIds> InfoMap;
+typedef std::map<DesuraId, std::pair<tinyxml2::XMLElement*, DesuraId>, CompairDesuraIds> InfoMap;
 
 class InfoMaps
 {
@@ -599,16 +599,16 @@ void ItemManager::retrieveItemInfo(DesuraId id, uint32 statusOveride, WildcardMa
 {
 	assert(m_pUser->m_pWebCore);
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	m_pUser->m_pWebCore->getItemInfo(id, doc, mcfBranch, mcfBuild);
 
-	TiXmlNode *uNode = doc.FirstChild("iteminfo");
+	tinyxml2::XMLNode *uNode = doc.FirstChild("iteminfo");
 
 	if (!uNode)
 		throw gcException(ERR_BADXML);
 
-	TiXmlNode *wcNode = uNode->FirstChild("wcards");
-	TiXmlElement *gamesNode = uNode->FirstChildElement("games");
+	tinyxml2::XMLNode *wcNode = uNode->FirstChild("wcards");
+	tinyxml2::XMLElement *gamesNode = uNode->FirstChildElement("games");
 
 	uint32 ver = 1;
 	XML::GetAtt("version", ver, uNode->ToElement());
@@ -644,7 +644,7 @@ void ItemManager::retrieveItemInfo(DesuraId id, uint32 statusOveride, WildcardMa
 
 		ParseInfo pi(statusOveride, pWildCard, reset, &maps);
 
-		XML::for_each_child("platform", uNode->FirstChildElement("platforms"), [&](TiXmlElement* platform)
+		XML::for_each_child("platform", uNode->FirstChildElement("platforms"), [&](tinyxml2::XMLElement* platform)
 		{
 			if (!m_pUser->platformFilter(platform, PlatformType::PT_Tool))
 				m_pUser->getToolManager()->parseXml(platform->FirstChild("toolinfo"));
@@ -664,7 +664,7 @@ void ItemManager::retrieveItemInfo(DesuraId id, uint32 statusOveride, WildcardMa
 			else
 			{
 				WildcardManager wc(pWildCard);
-				TiXmlNode *wcNode = platform->FirstChild("wcards");
+				tinyxml2::XMLNode *wcNode = platform->FirstChild("wcards");
 
 				if (wcNode)
 					wc.parseXML(wcNode);
@@ -689,11 +689,11 @@ void ItemManager::retrieveItemInfo(DesuraId id, uint32 statusOveride, WildcardMa
 void ItemManager::processLeftOvers(InfoMaps &maps, bool addMissing)
 {
 	//if we have left over games we didnt parse add them as deleted items if they dont exist
-	std::for_each(maps.gameMap.begin(), maps.gameMap.end(), [this, &maps, addMissing](std::pair<DesuraId, std::pair<TiXmlElement*, DesuraId> > p)
+	std::for_each(maps.gameMap.begin(), maps.gameMap.end(), [this, &maps, addMissing](std::pair<DesuraId, std::pair<tinyxml2::XMLElement*, DesuraId> > p)
 	{
 		DesuraId pid = p.second.second;
 		DesuraId id = p.first;
-		TiXmlElement* infoNode = p.second.first;
+		tinyxml2::XMLElement* infoNode = p.second.first;
 
 		UserCore::Item::ItemInfo* info = this->findItemInfoNorm(id);
 		ParseInfo pi(UM::ItemInfo::STATUS_STUB);
@@ -702,7 +702,7 @@ void ItemManager::processLeftOvers(InfoMaps &maps, bool addMissing)
 			return;
 
 	
-		auto isDev = [](TiXmlElement* infoNode) -> bool
+		auto isDev = [](tinyxml2::XMLElement* infoNode) -> bool
 		{
 			bool isDev = false;
 			return (XML::GetChild("devadmin", isDev, infoNode) && isDev);
@@ -720,10 +720,10 @@ void ItemManager::processLeftOvers(InfoMaps &maps, bool addMissing)
 		bool addMissingChild = addMissing;
 		ItemManager* im = this;
 
-		std::for_each(maps.modMap.begin(), maps.modMap.end(), [im, id, &pi, &isDevOfMod, addMissingChild, isDev](std::pair<DesuraId, std::pair<TiXmlElement*, DesuraId> > p)
+		std::for_each(maps.modMap.begin(), maps.modMap.end(), [im, id, &pi, &isDevOfMod, addMissingChild, isDev](std::pair<DesuraId, std::pair<tinyxml2::XMLElement*, DesuraId> > p)
 		{
 			DesuraId gid = p.second.second;
-			TiXmlElement* infoNode = p.second.first;
+			tinyxml2::XMLElement* infoNode = p.second.first;
 			
 			if (id != gid)
 				return;
@@ -848,7 +848,7 @@ void ItemManager::saveDbItems(bool fullSave)
 	}
 }
 
-void ItemManager::itemsNeedUpdate(TiXmlNode *itemsNode)
+void ItemManager::itemsNeedUpdate(tinyxml2::XMLNode *itemsNode)
 {
 	if (!itemsNode)
 		return;
@@ -863,14 +863,14 @@ void ItemManager::itemsNeedUpdate(TiXmlNode *itemsNode)
 	onUpdateEvent();
 }
 
-void ItemManager::itemsNeedUpdate2(TiXmlNode* platformsNode)
+void ItemManager::itemsNeedUpdate2(tinyxml2::XMLNode* platformsNode)
 {
 	if (!platformsNode)
 		return;
 
 	m_pUser->getToolManager()->initJSEngine();
 
-	XML::for_each_child("platform", platformsNode, [this](TiXmlElement* platform)
+	XML::for_each_child("platform", platformsNode, [this](tinyxml2::XMLElement* platform)
 	{
 		if (!m_pUser->platformFilter(platform, PlatformType::PT_Item))
 		{
@@ -885,15 +885,15 @@ void ItemManager::itemsNeedUpdate2(TiXmlNode* platformsNode)
 	onUpdateEvent();
 }
 
-void ItemManager::parseItemUpdateXml(const char* area, TiXmlNode *itemsNode)
+void ItemManager::parseItemUpdateXml(const char* area, tinyxml2::XMLNode *itemsNode)
 {
 	gcString rootArea = gcString(area) + "s";
 
-	TiXmlNode *modNode = itemsNode->FirstChild(rootArea.c_str());
+	tinyxml2::XMLNode *modNode = itemsNode->FirstChild(rootArea.c_str());
 	if (!modNode)
 		return;
 
-	XML::for_each_child(area, modNode, [&](TiXmlElement* itemNode)
+	XML::for_each_child(area, modNode, [&](tinyxml2::XMLElement* itemNode)
 	{
 		const char* szId = itemNode->Attribute("siteareaid");
 		DesuraId id(szId, rootArea.c_str());
@@ -938,9 +938,9 @@ void ItemManager::postParseLoginXml()
 	m_bFirstLogin = false;
 }
 
-void ItemManager::generateInfoMaps(TiXmlElement* gamesNode, InfoMaps* maps)
+void ItemManager::generateInfoMaps(tinyxml2::XMLElement* gamesNode, InfoMaps* maps)
 {
-	XML::for_each_child("game", gamesNode, [&maps, this](TiXmlElement* game)
+	XML::for_each_child("game", gamesNode, [&maps, this](tinyxml2::XMLElement* game)
 	{
 		InfoMaps* pMaps = maps;
 
@@ -952,9 +952,9 @@ void ItemManager::generateInfoMaps(TiXmlElement* gamesNode, InfoMaps* maps)
 		DesuraId pid = getParentId(game);
 		DesuraId gid(szId, "games");
 		
-		maps->gameMap[gid] = std::pair<TiXmlElement*, DesuraId>(game, pid);
+		maps->gameMap[gid] = std::pair<tinyxml2::XMLElement*, DesuraId>(game, pid);
 
-		XML::for_each_child("mod", game->FirstChild("mods"), [&pMaps, gid](TiXmlElement* mod)
+		XML::for_each_child("mod", game->FirstChild("mods"), [&pMaps, gid](tinyxml2::XMLElement* mod)
 		{
 			const char* id = mod->Attribute("siteareaid");
 	
@@ -962,7 +962,7 @@ void ItemManager::generateInfoMaps(TiXmlElement* gamesNode, InfoMaps* maps)
 				return;
 
 			DesuraId mid(id, "mods");
-			pMaps->modMap[mid] = std::pair<TiXmlElement*, DesuraId>(mod, gid);
+			pMaps->modMap[mid] = std::pair<tinyxml2::XMLElement*, DesuraId>(mod, gid);
 		});
 	});
 }
@@ -1009,7 +1009,7 @@ void ItemManager::updateItem(UserCore::Item::ItemInfo* itemInfo, ParseInfo& pi)
 	m_pUser->getToolManager()->findJSTools(itemInfo);
 }
 
-void ItemManager::parseLoginXml(TiXmlElement* gameNode, TiXmlElement* devNode)
+void ItemManager::parseLoginXml(tinyxml2::XMLElement* gameNode, tinyxml2::XMLElement* devNode)
 {
 	m_pUser->getToolManager()->initJSEngine();
 
@@ -1035,7 +1035,7 @@ void ItemManager::parseLoginXml(TiXmlElement* gameNode, TiXmlElement* devNode)
 	m_pUser->getToolManager()->destroyJSEngine();
 }
 
-void ItemManager::parseLoginXml2(TiXmlElement* gamesNode, TiXmlElement* platformNodes)
+void ItemManager::parseLoginXml2(tinyxml2::XMLElement* gamesNode, tinyxml2::XMLElement* platformNodes)
 {
 	m_pUser->getToolManager()->initJSEngine();
 	
@@ -1046,7 +1046,7 @@ void ItemManager::parseLoginXml2(TiXmlElement* gamesNode, TiXmlElement* platform
 
 	try
 	{
-		XML::for_each_child("platform", platformNodes, [this, &pi](TiXmlElement* platform)
+		XML::for_each_child("platform", platformNodes, [this, &pi](tinyxml2::XMLElement* platform)
 		{
 			XML::GetAtt("id", pi.platform, platform);
 			pi.rootNode = platform->FirstChildElement("games");
@@ -1077,7 +1077,7 @@ void ItemManager::parseGamesXml(ParseInfo& pi)
 
 	ParseInfo gamePi(pi);
 
-	XML::for_each_child("game", pi.rootNode, [&](TiXmlElement* game)
+	XML::for_each_child("game", pi.rootNode, [&](tinyxml2::XMLElement* game)
 	{
 		const char* id = game->Attribute("siteareaid");
 	
@@ -1087,7 +1087,7 @@ void ItemManager::parseGamesXml(ParseInfo& pi)
 		DesuraId pid = getParentId(game, pi.infoNode);
 		DesuraId gid(id, "games");
 
-		TiXmlElement* infoNode = NULL;
+		tinyxml2::XMLElement* infoNode = NULL;
 
 		if (pi.maps)
 		{
@@ -1116,7 +1116,7 @@ void ItemManager::parseGamesXml(ParseInfo& pi)
 	}
 }
 
-DesuraId ItemManager::getParentId(TiXmlElement* gameNode, TiXmlElement* infoNode)
+DesuraId ItemManager::getParentId(tinyxml2::XMLElement* gameNode, tinyxml2::XMLElement* infoNode)
 {
 	gcString expansion;
 	XML::GetChild("expansion", expansion, gameNode);
@@ -1187,7 +1187,7 @@ void ItemManager::parseModsXml(UserCore::Item::ItemInfo* parent, ParseInfo &pi)
 
 	ParseInfo modPi(pi);
 
-	XML::for_each_child("mod", pi.rootNode, [&](TiXmlElement* mod)
+	XML::for_each_child("mod", pi.rootNode, [&](tinyxml2::XMLElement* mod)
 	{
 		const char* id = mod->Attribute("siteareaid");
 		DesuraId internId(id, "mods");
@@ -1195,7 +1195,7 @@ void ItemManager::parseModsXml(UserCore::Item::ItemInfo* parent, ParseInfo &pi)
 		if (!internId.isOk())
 			return;
 
-		TiXmlElement* infoNode = NULL;
+			tinyxml2::XMLElement* infoNode = NULL;
 
 		if (pi.maps)
 		{
@@ -1505,9 +1505,9 @@ void ItemManager::updateLink(DesuraId id, const char* args)
 }
 
 
-void ItemManager::parseKnownBranches(TiXmlElement* gamesNode)
+void ItemManager::parseKnownBranches(tinyxml2::XMLElement* gamesNode)
 {
-	auto parseBranch = [this](DesuraId id, TiXmlElement* branch)
+	auto parseBranch = [this](DesuraId id, tinyxml2::XMLElement* branch)
 	{
 		uint32 branchId = 0;
 
@@ -1521,7 +1521,7 @@ void ItemManager::parseKnownBranches(TiXmlElement* gamesNode)
 		m_BranchLock.unlock();
 	};
 
-	XML::for_each_child("game", gamesNode, [this, &parseBranch](TiXmlElement* game)
+	XML::for_each_child("game", gamesNode, [this, &parseBranch](tinyxml2::XMLElement* game)
 	{
 		const char* szId = game->Attribute("siteareaid");
 	
@@ -1532,12 +1532,12 @@ void ItemManager::parseKnownBranches(TiXmlElement* gamesNode)
 
 		auto parseBranchLocal = parseBranch;
 
-		XML::for_each_child("branch", game->FirstChildElement("branches"), [&parseBranchLocal, &id](TiXmlElement* branch)
+		XML::for_each_child("branch", game->FirstChildElement("branches"), [&parseBranchLocal, &id](tinyxml2::XMLElement* branch)
 		{
 			parseBranchLocal(id, branch);
 		});
 
-		XML::for_each_child("mod", game->FirstChildElement("mods"), [&parseBranchLocal](TiXmlElement* mod)
+		XML::for_each_child("mod", game->FirstChildElement("mods"), [&parseBranchLocal](tinyxml2::XMLElement* mod)
 		{
 			const char* szId = mod->Attribute("siteareaid");
 	
@@ -1548,7 +1548,7 @@ void ItemManager::parseKnownBranches(TiXmlElement* gamesNode)
 
 			auto parseBranchLocalMod = parseBranchLocal;
 
-			XML::for_each_child("branch", mod->FirstChildElement("branches"), [&parseBranchLocalMod, &id](TiXmlElement* branch)
+			XML::for_each_child("branch", mod->FirstChildElement("branches"), [&parseBranchLocalMod, &id](tinyxml2::XMLElement* branch)
 			{
 				parseBranchLocalMod(id, branch);
 			});

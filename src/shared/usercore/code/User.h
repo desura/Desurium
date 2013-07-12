@@ -179,13 +179,13 @@ public:
 	//!
 	//! @param newsNode News xml
 	//!
-	void parseNews(TiXmlNode* newsNode);
+	void parseNews(tinyxml2::XMLNode* newsNode);
 
 	//! Parses gifts xml
 	//!
 	//! @param giftNode Gifts xml
 	//!
-	void parseGifts(TiXmlNode* giftNode);
+	void parseGifts(tinyxml2::XMLNode* giftNode);
 
 	//! Set user avatar
 	//!
@@ -230,7 +230,7 @@ public:
 	//! @param type Type of item applying the filter for
 	//! @return true to filter, false to inclue
 	//!
-	bool platformFilter(TiXmlElement* platform, PlatformType type);
+	bool platformFilter(tinyxml2::XMLElement* platform, PlatformType type);
 
 	BDManager* getBDManager();
 
@@ -269,7 +269,7 @@ protected:
 	//!
 	void onNeedWildCardCB(WCSpecialInfo& info);
 
-	void parseNewsAndGifts(TiXmlNode* xmlNode, Event<std::vector<UserCore::Misc::NewsItem*> > &onEvent);
+	void parseNewsAndGifts(tinyxml2::XMLNode* xmlNode, Event<std::vector<UserCore::Misc::NewsItem*> > &onEvent);
 
 	void testMcfCache();
 
