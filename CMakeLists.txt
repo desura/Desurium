@@ -305,7 +305,7 @@ if(NOT BUILD_ONLY_CEF)
   add_subdirectory(third_party/courgette) # for headers only, build via ExternalProject
 
   if(NOT TINYXML_FOUND)
-    add_subdirectory(third_party/tinyxml)
+    add_subdirectory(third_party/tinyxml2)
   endif()
 
   if(NOT SQLITE_FOUND)
