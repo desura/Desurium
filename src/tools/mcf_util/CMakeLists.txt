@@ -16,7 +16,7 @@ if(UNIX)
   set(PLATFORM_LIBRARIES dl)
 endif()
 
-add_executable(mcf_util ${Sources})
+add_executable(mcf_util ${Sources} ${TINYXML2_CPP})
 target_link_libraries(mcf_util
   mcfcore
   umcf

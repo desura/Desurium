@@ -151,7 +151,7 @@ if(WIN32)
   use_unicode_here()
 endif()
 
-add_library(uicore SHARED ${Sources} ${PlattformSources} ${BROWSER_PIPE_SPOURCES})
+add_library(uicore SHARED ${Sources} ${PlattformSources} ${BROWSER_PIPE_SPOURCES} ${TINYXML2_CPP})
 
 target_link_libraries(uicore
     gcJSBase

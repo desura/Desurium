@@ -16,7 +16,7 @@ if(WIN32)
   endif()
 endif()
 
-add_library(webcore SHARED ${Sources})
+add_library(webcore SHARED ${Sources} ${TINYXML2_CPP})
 target_link_libraries(webcore
     threads
     util

@@ -12,7 +12,7 @@ if(WIN32)
 #  add_linker_flags(/NODEFAULTLIB:LIBCMT)
 endif()
 
-add_library(crashuploader SHARED ${Sources})
+add_library(crashuploader SHARED ${Sources} ${TINYXML2_CPP})
 
 target_link_libraries(crashuploader
     util

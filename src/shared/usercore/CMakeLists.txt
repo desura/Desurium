@@ -103,7 +103,7 @@ else()
 endif()
 # TODO: code/InstallHandler.cpp
 
-add_library(usercore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES} ${TOOL_PIPE_SPOURCES})
+add_library(usercore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES} ${TOOL_PIPE_SPOURCES} ${TINYXML2_CPP})
 target_link_libraries(usercore
   gcJSBase
   ipc_pipe
