@@ -174,9 +174,9 @@ void UploadThread::doRun()
 		//Warning("UC: %s\n", error);
 
 		tinyxml2::XMLDocument doc;
-		XML::loadBuffer(doc, const_cast<char*>(error), m_hHttpHandle->getDataSize());
+		XML::loadBuffer(doc, const_cast<char*>(error));
 
-		tinyxml2::XMLNode *gNode = doc.FirstChild("itemupload");
+		tinyxml2::XMLElement *gNode = doc.FirstChildElement("itemupload");
 		if (!gNode)
 		{
 			if (m_uiContinueCount > 3)
@@ -191,7 +191,7 @@ void UploadThread::doRun()
 			}
 		}
 
-		tinyxml2::XMLNode *gMsg = gNode->FirstChild("status");
+		tinyxml2::XMLElement *gMsg = gNode->FirstChildElement("status");
 		if (!gMsg)
 		{
 			if (m_uiContinueCount > 3)

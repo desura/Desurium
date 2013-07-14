@@ -311,7 +311,7 @@ void MCFFile::loadXmlData(tinyxml2::XMLElement *xmlNode)
 	XML::GetChild("offset", m_llOffset, xmlNode);
 	XML::GetChild("tstamp", m_iTimeStamp, xmlNode);
 
-	tinyxml2::XMLNode* diff = xmlNode->FirstChild("diff");
+	tinyxml2::XMLElement* diff = xmlNode->FirstChildElement("diff");
 
 	if (hasDiff() && diff)
 	{
@@ -325,7 +325,7 @@ void MCFFile::loadXmlData(tinyxml2::XMLElement *xmlNode)
 		delFlag(FLAG_HASDIFF);
 	}
 
-	tinyxml2::XMLNode *crcNode = xmlNode->FirstChild("crc");
+	tinyxml2::XMLElement *crcNode = xmlNode->FirstChildElement("crc");
 
 	if (crcNode && crcNode->ToElement())
 	{

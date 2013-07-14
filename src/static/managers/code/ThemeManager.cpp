@@ -151,7 +151,7 @@ bool ThemeStub::parseFile(const char* szFile)
 	tinyxml2::XMLDocument doc;
 	doc.LoadFile(szFile);
 
-	tinyxml2::XMLNode *mcNode = doc.FirstChild("theme");
+	tinyxml2::XMLElement *mcNode = doc.FirstChildElement("theme");
 
 	if (!mcNode)
 		return false;

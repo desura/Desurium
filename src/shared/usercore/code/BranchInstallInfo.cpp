@@ -180,12 +180,12 @@ ProcessResult BranchInstallInfo::processSettings(tinyxml2::XMLNode* setNode, Wil
 	pr.useCip = false;
 	pr.notFirst = false;
 
-	tinyxml2::XMLNode* icsNode = setNode->FirstChild("installlocations");
+	tinyxml2::XMLElement* icsNode = setNode->FirstChildElement("installlocations");
 	
 	if (icsNode)
 	{
 		std::vector<InsCheck*> insCheck;
-		tinyxml2::XMLNode* icNode = icsNode->FirstChild("installlocation");
+		tinyxml2::XMLElement* icNode = icsNode->FirstChildElement("installlocation");
 		while (icNode)
 		{
 			gcString iCheck;
@@ -202,7 +202,7 @@ ProcessResult BranchInstallInfo::processSettings(tinyxml2::XMLNode* setNode, Wil
 					break;
 			}
 
-			icNode = icNode->NextSibling();
+			icNode = icNode->NextSiblingElement();
 		}
 
 		size_t size = insCheck.size();
@@ -471,7 +471,7 @@ void BranchInstallInfo::processExes(tinyxml2::XMLNode* setNode, WildcardManager*
 {
 	uint32 rank = 0;
 
-	XML::for_each_child("execute", setNode->FirstChild("executes"), [&](tinyxml2::XMLElement* exe)
+	XML::for_each_child("execute", setNode->FirstChildElement("executes"), [&](tinyxml2::XMLElement* exe)
 	{
 		gcString ePath;
 		gcString args;

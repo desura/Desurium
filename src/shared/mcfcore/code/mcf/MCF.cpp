@@ -292,10 +292,9 @@ void MCF::parseXml(char* buff, uint32 buffLen)
 
 	tinyxml2::XMLDocument doc;
 	
-	doc.SetCondenseWhiteSpace(false);
-	XML::loadBuffer(doc, buff, buffLen);
+	XML::loadBuffer(doc, buff);
 
-	tinyxml2::XMLNode *fNode = doc.FirstChild("files");
+	tinyxml2::XMLElement *fNode = doc.FirstChildElement("files");
 
 	if (!fNode)
 		throw gcException(ERR_XML_NOPRIMENODE);

@@ -247,7 +247,7 @@ void CreateMCFThread::retrieveBranchList(std::vector<UserCore::Item::BranchInfo*
 	tinyxml2::XMLDocument doc;
 	getWebCore()->getItemInfo(getItemId(), doc, MCFBranch(), MCFBuild());
 
-	tinyxml2::XMLNode *uNode = doc.FirstChild("iteminfo");
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement("iteminfo");
 
 	if (!uNode)
 		throw gcException(ERR_BADXML);

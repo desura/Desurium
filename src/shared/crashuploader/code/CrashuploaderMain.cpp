@@ -268,7 +268,7 @@ bool UploadDump(const char* file, const char* user, int build, int branch, Deleg
 	}
 
 	tinyxml2::XMLDocument doc;
-	XML::loadBuffer(doc, const_cast<char*>(hh->getData()), hh->getDataSize());
+	XML::loadBuffer(doc, const_cast<char*>(hh->getData()));
 	
 	try
 	{

@@ -25,8 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 typedef uint32 ToolTransactionId;
 
-class tinyxml2::XMLNode;
-
 namespace UserCore
 {
 	namespace Misc

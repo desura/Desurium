@@ -244,15 +244,15 @@ void UpdateThreadOld::parseXML(tinyxml2::XMLDocument &doc)
 		return;
 	}
 
-	tinyxml2::XMLNode *uNode = doc.FirstChild("updatepoll");
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement("updatepoll");
 	
 	if (!uNode)
 		return;
 
-	tinyxml2::XMLNode* tempNode = NULL;
+	tinyxml2::XMLElement* tempNode = NULL;
 
 
-	tempNode = uNode->FirstChild("cookies");
+	tempNode = uNode->FirstChildElement("cookies");
 
 	if (tempNode)
 	{
@@ -263,7 +263,7 @@ void UpdateThreadOld::parseXML(tinyxml2::XMLDocument &doc)
 			m_pWebCore->setCookie(szSessCookie.c_str());
 	}
 
-	tempNode = uNode->FirstChild("messages");
+	tempNode = uNode->FirstChildElement("messages");
 
 	if (tempNode)
 	{
@@ -284,26 +284,26 @@ void UpdateThreadOld::parseXML(tinyxml2::XMLDocument &doc)
 
 	if (version == 1)
 	{
-		tempNode = uNode->FirstChild("items");
+		tempNode = uNode->FirstChildElement("items");
 
 		if (tempNode)
 			pUser->getItemManager()->itemsNeedUpdate(tempNode);
 	}
 	else
 	{
-		tempNode = uNode->FirstChild("platforms");
+		tempNode = uNode->FirstChildElement("platforms");
 
 		if (tempNode)
 			pUser->getItemManager()->itemsNeedUpdate2(tempNode);
 	}
 
-	tempNode = uNode->FirstChild("news");
+	tempNode = uNode->FirstChildElement("news");
 
 	if (tempNode)
 		pUser->parseNews(tempNode);
 
 
-	tempNode = uNode->FirstChild("gifts");
+	tempNode = uNode->FirstChildElement("gifts");
 
 	if (tempNode)
 		pUser->parseGifts(tempNode);

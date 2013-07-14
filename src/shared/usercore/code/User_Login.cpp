@@ -207,7 +207,7 @@ void User::logIn(const char* user, const char* pass)
 	m_pThreadPool->queueTask(new UserCore::Task::DownloadAvatarTask(this, szAvatar.c_str(), m_iUserId) );
 
 
-	tinyxml2::XMLNode *msgNode = memNode->FirstChild("messages");
+	tinyxml2::XMLElement *msgNode = memNode->FirstChildElement("messages");
 	if (msgNode)
 	{
 		XML::GetChild("updates", m_iUpdates, msgNode);
@@ -240,11 +240,11 @@ void User::logIn(const char* user, const char* pass)
 		throw;
 	}
 
-	tinyxml2::XMLNode *newsNode = memNode->FirstChild("news");
+	tinyxml2::XMLElement *newsNode = memNode->FirstChildElement("news");
 	if (newsNode)
 		parseNews(newsNode);
 
-	tinyxml2::XMLNode *giftsNode = memNode->FirstChild("gifts");
+	tinyxml2::XMLElement *giftsNode = memNode->FirstChildElement("gifts");
 	if (giftsNode)
 		parseGifts(giftsNode);
 

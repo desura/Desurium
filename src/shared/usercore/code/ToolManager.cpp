@@ -257,7 +257,7 @@ void ToolManager::parseXml(tinyxml2::XMLNode* toolinfoNode)
 	if (!toolinfoNode)
 		return;	
 
-	tinyxml2::XMLNode* toolsNode = toolinfoNode->FirstChild("tools");
+	tinyxml2::XMLElement* toolsNode = toolinfoNode->FirstChildElement("tools");
 
 	if (!toolsNode)
 		return;
@@ -267,7 +267,7 @@ void ToolManager::parseXml(tinyxml2::XMLNode* toolinfoNode)
 	wcm.onNeedInstallSpecialEvent += delegate(this, &ToolManager::onSpecialCheck);
 	wcm.onNeedSpecialEvent += delegate(m_pUser->getNeedWildCardEvent());
 
-	tinyxml2::XMLNode* wildcardNode = toolinfoNode->FirstChild("wcards");
+	tinyxml2::XMLElement* wildcardNode = toolinfoNode->FirstChildElement("wcards");
 
 	if (wildcardNode)
 		wcm.parseXML(wildcardNode);

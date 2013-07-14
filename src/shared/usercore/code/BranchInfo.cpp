@@ -235,7 +235,7 @@ void BranchInfo::loadXmlData(tinyxml2::XMLNode *xmlNode)
 	XML::GetChild("price", m_szCost, xmlNode);
 	XML::GetChild("eula", m_szEulaUrl, xmlNode);
 
-	tinyxml2::XMLNode* eNode = xmlNode->FirstChild("eula");
+	tinyxml2::XMLElement* eNode = xmlNode->FirstChildElement("eula");
 
 	if (eNode && XML::isValidElement(eNode))
 	{
@@ -323,7 +323,7 @@ void BranchInfo::loadXmlData(tinyxml2::XMLNode *xmlNode)
 		m_uiFlags |= BF_STEAMGAME;
 
 	//no mcf no release
-	tinyxml2::XMLNode* mcfNode = xmlNode->FirstChild("mcf");
+	tinyxml2::XMLElement* mcfNode = xmlNode->FirstChildElement("mcf");
 	if (!mcfNode)
 	{
 		m_uiFlags |= BF_NORELEASES;
@@ -336,7 +336,7 @@ void BranchInfo::loadXmlData(tinyxml2::XMLNode *xmlNode)
 		m_uiLatestBuild = MCFBuild::BuildFromInt(build);
 	}
 
-	tinyxml2::XMLNode* toolsNode = xmlNode->FirstChild("tools");
+	tinyxml2::XMLElement* toolsNode = xmlNode->FirstChildElement("tools");
 
 	if (toolsNode)
 	{
@@ -363,8 +363,7 @@ void BranchInfo::loadXmlData(tinyxml2::XMLNode *xmlNode)
 
 void BranchInfo::processInstallScript(tinyxml2::XMLElement* scriptNode)
 {
-	int crc = 0;
-	scriptNode->Attribute("crc", &crc);
+	int crc = scriptNode->IntAttribute("crc");
 
 	if (UTIL::FS::isValidFile(m_szInstallScript))
 	{

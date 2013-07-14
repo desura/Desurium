@@ -40,17 +40,17 @@ void InstallInfo::loadXmlData(tinyxml2::XMLNode *xmlNode, WildcardManager* pWild
 {
 	WildcardManager lwc(pWildCard);
 
-	tinyxml2::XMLNode* wcNode = xmlNode->FirstChild("wcards");
+	tinyxml2::XMLElement* wcNode = xmlNode->FirstChildElement("wcards");
 	if (wcNode)
 	{
 		lwc.parseXML(wcNode);
 	}
 
 	XML::GetChild("name", m_szName, xmlNode);
-	tinyxml2::XMLNode* setNode = xmlNode->FirstChild("settings");
+	tinyxml2::XMLElement* setNode = xmlNode->FirstChildElement("settings");
 	if (setNode)
 	{
-		tinyxml2::XMLNode* icsNode = setNode->FirstChild("installlocations");
+		tinyxml2::XMLElement* icsNode = setNode->FirstChildElement("installlocations");
 		if (icsNode)
 		{
 			tinyxml2::XMLElement* icNode = icsNode->FirstChildElement("installlocation");

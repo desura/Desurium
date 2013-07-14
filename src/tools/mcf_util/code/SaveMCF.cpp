@@ -135,10 +135,6 @@ public:
 
 		mcfDelFactory(mcfSrc);
 
-		tinyxml2::XMLDocument doc;
-		doc.LoadFile(args[1].c_str());
-		doc.SaveFile(args[1].c_str());
-
 
 		return 0;
 	}

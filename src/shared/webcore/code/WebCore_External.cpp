@@ -57,9 +57,9 @@ void WebCoreClass::sendPassReminder(const char* email)
 		throw gcException(ERR_BADRESPONSE, "Data size was zero");
 
 	tinyxml2::XMLDocument doc;
-	XML::loadBuffer(doc, const_cast<char*>(hh->getData()), hh->getDataSize());
+	XML::loadBuffer(doc, const_cast<char*>(hh->getData()));
 
-	tinyxml2::XMLNode *uNode = doc.FirstChild("memberpasswordreminder");
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement("memberpasswordreminder");
 
 	if (!uNode)
 		throw gcException(ERR_BADXML, "Missing the root node");
@@ -83,11 +83,11 @@ void WebCoreClass::getInstalledItemList(tinyxml2::XMLDocument &doc)
 		UTIL::MISC::Buffer buff(bufSize);
 		UTIL::BZIP::BZ2DBuff(buff, &bufSize, const_cast<char*>(hh->getData()), hh->getDataSize());
 
-		XML::loadBuffer(doc, buff, bufSize);
+		XML::loadBuffer(doc, buff);
 	}
 	else
 	{
-		XML::loadBuffer(doc, const_cast<char*>(hh->getData()), hh->getDataSize());
+		XML::loadBuffer(doc, const_cast<char*>(hh->getData()));
 	}
 
 	XML::processStatus(doc, "itemwizard");

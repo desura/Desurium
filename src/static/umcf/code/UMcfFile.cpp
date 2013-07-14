@@ -125,28 +125,28 @@ uint8 UMcfFile::loadXmlData(tinyxml2::XMLElement *xmlNode)
 	return MCFF_OK;
 }
 
-void UMcfFile::genXml(tinyxml2::XMLElement *element)
+void UMcfFile::genXml(tinyxml2::XMLElement *element, tinyxml2::XMLDocument& doc)
 {
 #ifdef NIX
 	std::wstring copy(m_szPath);
 	std::replace(copy.begin(), copy.end(), '/', '\\');
 #endif
 
-	XML::WriteChild("name", gcString(m_szName), element);
+	XML::WriteChild("name", gcString(m_szName), element, doc);
 #ifdef NIX
-	XML::WriteChild("path", gcString(copy), element);
+	XML::WriteChild("path", gcString(copy), element, doc);
 #else
-	XML::WriteChild("path", gcString(m_szPath), element);
+	XML::WriteChild("path", gcString(m_szPath), element, doc);
 #endif
-	XML::WriteChild("nom_csum", m_szCsum, element);
-	XML::WriteChild("com_csum", m_szCCsum, element);
+	XML::WriteChild("nom_csum", m_szCsum, element, doc);
+	XML::WriteChild("com_csum", m_szCCsum, element, doc);
 
-	XML::WriteChild("size", m_ullSize, element);
-	XML::WriteChild("csize", m_ullCSize, element);
-	XML::WriteChild("flags", m_uiFlags, element);
+	XML::WriteChild("size", m_ullSize, element, doc);
+	XML::WriteChild("csize", m_ullCSize, element, doc);
+	XML::WriteChild("flags", m_uiFlags, element, doc);
 
-	XML::WriteChild("offset", m_ullOffset, element);
-	XML::WriteChild("tstamp", m_ullTimeStamp, element);
+	XML::WriteChild("offset", m_ullOffset, element, doc);
+	XML::WriteChild("tstamp", m_ullTimeStamp, element, doc);
 }
 
 

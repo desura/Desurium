@@ -602,12 +602,12 @@ void ItemManager::retrieveItemInfo(DesuraId id, uint32 statusOveride, WildcardMa
 	tinyxml2::XMLDocument doc;
 	m_pUser->m_pWebCore->getItemInfo(id, doc, mcfBranch, mcfBuild);
 
-	tinyxml2::XMLNode *uNode = doc.FirstChild("iteminfo");
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement("iteminfo");
 
 	if (!uNode)
 		throw gcException(ERR_BADXML);
 
-	tinyxml2::XMLNode *wcNode = uNode->FirstChild("wcards");
+	tinyxml2::XMLElement *wcNode = uNode->FirstChildElement("wcards");
 	tinyxml2::XMLElement *gamesNode = uNode->FirstChildElement("games");
 
 	uint32 ver = 1;
@@ -647,7 +647,7 @@ void ItemManager::retrieveItemInfo(DesuraId id, uint32 statusOveride, WildcardMa
 		XML::for_each_child("platform", uNode->FirstChildElement("platforms"), [&](tinyxml2::XMLElement* platform)
 		{
 			if (!m_pUser->platformFilter(platform, PlatformType::PT_Tool))
-				m_pUser->getToolManager()->parseXml(platform->FirstChild("toolinfo"));
+				m_pUser->getToolManager()->parseXml(platform->FirstChildElement("toolinfo"));
 
 			XML::GetAtt("id", pi.platform, platform);
 			parseKnownBranches(platform->FirstChildElement("games"));
@@ -664,7 +664,7 @@ void ItemManager::retrieveItemInfo(DesuraId id, uint32 statusOveride, WildcardMa
 			else
 			{
 				WildcardManager wc(pWildCard);
-				tinyxml2::XMLNode *wcNode = platform->FirstChild("wcards");
+				tinyxml2::XMLNode *wcNode = platform->FirstChildElement("wcards");
 
 				if (wcNode)
 					wc.parseXML(wcNode);
@@ -889,7 +889,7 @@ void ItemManager::parseItemUpdateXml(const char* area, tinyxml2::XMLNode *itemsN
 {
 	gcString rootArea = gcString(area) + "s";
 
-	tinyxml2::XMLNode *modNode = itemsNode->FirstChild(rootArea.c_str());
+	tinyxml2::XMLElement *modNode = itemsNode->FirstChildElement(rootArea.c_str());
 	if (!modNode)
 		return;
 
@@ -954,7 +954,7 @@ void ItemManager::generateInfoMaps(tinyxml2::XMLElement* gamesNode, InfoMaps* ma
 		
 		maps->gameMap[gid] = std::pair<tinyxml2::XMLElement*, DesuraId>(game, pid);
 
-		XML::for_each_child("mod", game->FirstChild("mods"), [&pMaps, gid](tinyxml2::XMLElement* mod)
+		XML::for_each_child("mod", game->FirstChildElement("mods"), [&pMaps, gid](tinyxml2::XMLElement* mod)
 		{
 			const char* id = mod->Attribute("siteareaid");
 	

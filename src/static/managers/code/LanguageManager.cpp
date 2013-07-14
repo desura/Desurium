@@ -72,11 +72,7 @@ bool LanguageManager::loadFromFile(const char* file)
 	tinyxml2::XMLDocument doc;
 	doc.LoadFile(file);
 
-#ifdef WIN32 // seemingly unused
-	const char* err = doc.ErrorDesc();
-#endif
-
-	tinyxml2::XMLNode *cNode = doc.FirstChild("lang");
+	tinyxml2::XMLNode *cNode = doc.FirstChildElement("lang");
 
 	if (!cNode)
 		return false;
@@ -117,12 +113,12 @@ bool LanguageManager::loadFromFile(const char* file)
 #endif
 	};
 
-	XML::for_each_child("str", cNode->FirstChild("strings"), parseString);
+	XML::for_each_child("str", cNode->FirstChildElement("strings"), parseString);
 
 #ifdef WIN32
-	XML::for_each_child("str", cNode->FirstChild("windows"), parseString);
+	XML::for_each_child("str", cNode->FirstChildElement("windows"), parseString);
 #else
-	XML::for_each_child("str", cNode->FirstChild("linux"), parseString);
+	XML::for_each_child("str", cNode->FirstChildElement("linux"), parseString);
 #endif
 
 	return true;

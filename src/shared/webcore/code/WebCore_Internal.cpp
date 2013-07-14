@@ -61,13 +61,13 @@ tinyxml2::XMLNode* WebCoreClass::postToServer(std::string url, std::string resou
 		if (hh->getDataSize() == 0)
 			throw gcException(ERR_BADRESPONSE, "Data size was zero");
 
-		XML::loadBuffer(doc, const_cast<char*>(hh->getData()), hh->getDataSize());
+		XML::loadBuffer(doc, const_cast<char*>(hh->getData()));
 
 		if (m_bDebuggingOut)
 			httpOut.assign(const_cast<char*>(hh->getData()), hh->getDataSize());
 	}
 
-	tinyxml2::XMLNode *uNode = doc.FirstChild(resource.c_str());
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement(resource.c_str());
 
 	if (m_bDebuggingOut && !uNode)
 		Warning(httpOut);
@@ -109,7 +109,7 @@ DesuraId WebCoreClass::nameToId(const char* name, const char* type)
 	post["sitearea"] = type;
 
 	tinyxml2::XMLNode *uNode = postToServer(getNameLookUpUrl(), "iteminfo", post, doc);
-	tinyxml2::XMLNode* cNode = uNode->FirstChild("item");
+	tinyxml2::XMLElement* cNode = uNode->FirstChildElement("item");
 
 	if (cNode)
 	{
@@ -173,7 +173,7 @@ DesuraId WebCoreClass::hashToId(const char* itemHashId)
 	post["hashid"] = itemHashId;
 
 	tinyxml2::XMLNode *uNode = postToServer(getNameLookUpUrl(), "iteminfo", post, doc);
-	tinyxml2::XMLNode* cNode = uNode->FirstChild("item");
+	tinyxml2::XMLElement* cNode = uNode->FirstChildElement("item");
 
 	if (cNode)
 	{
@@ -238,7 +238,7 @@ void WebCoreClass::newUpload(DesuraId id, const char* hash, uint64 fileSize, cha
 	post["filesize"] = size;
 
 	tinyxml2::XMLNode *uNode = postToServer(getMcfUploadUrl(), "itemupload", post, doc);
-	tinyxml2::XMLNode* iNode = uNode->FirstChild("mcf");
+	tinyxml2::XMLElement* iNode = uNode->FirstChildElement("mcf");
 	
 	if (!iNode)
 		throw gcException(ERR_BADXML);	
@@ -269,7 +269,7 @@ void WebCoreClass::resumeUpload(DesuraId id, const char* key, WebCore::Misc::Res
 	post["key"] = key;
 
 	tinyxml2::XMLNode *uNode = postToServer(getMcfUploadUrl(), "itemupload", post, doc);
-	tinyxml2::XMLNode* mNode = uNode->FirstChild("mcf");
+	tinyxml2::XMLElement* mNode = uNode->FirstChildElement("mcf");
 
 	if (!mNode)
 		throw gcException(ERR_BADXML);	
@@ -355,7 +355,7 @@ void WebCoreClass::logIn(const char* user, const char* pass, tinyxml2::XMLDocume
 
 	m_uiUserId = atoi(idStr);
 
-	tinyxml2::XMLNode *cookieNode = memNode->FirstChild("cookies");
+	tinyxml2::XMLNode *cookieNode = memNode->FirstChildElement("cookies");
 	if (cookieNode)
 	{
 		XML::GetChild("id", m_szIdCookie, cookieNode);

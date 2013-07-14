@@ -99,17 +99,17 @@ void DownloadTask::startToolDownload()
 
 		getWebCore()->getItemInfo(getItemId(), doc, MCFBranch(), MCFBuild());
 
-		tinyxml2::XMLNode *uNode = doc.FirstChild("iteminfo");
+		tinyxml2::XMLElement *uNode = doc.FirstChildElement("iteminfo");
 
 		if (!uNode)
 			throw gcException(ERR_BADXML);
 
-		tinyxml2::XMLNode *toolNode = uNode->FirstChild("toolinfo");
+		tinyxml2::XMLElement *toolNode = uNode->FirstChildElement("toolinfo");
 
 		if (toolNode)
 			getUserCore()->getToolManager()->parseXml(toolNode);
 
-		tinyxml2::XMLNode *gameNode = uNode->FirstChild("games");
+		tinyxml2::XMLElement *gameNode = uNode->FirstChildElement("games");
 
 		if (!gameNode)
 			throw gcException(ERR_BADXML);

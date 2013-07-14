@@ -163,10 +163,10 @@ void ToolInfo::parseXml(tinyxml2::XMLNode* ToolInfoNode, WildcardManager* wildca
 	m_szArgs = res;
 	safe_delete(res);
 
-	tinyxml2::XMLNode* iChecksNode = ToolInfoNode->FirstChild("intallchecks");
+	tinyxml2::XMLElement* iChecksNode = ToolInfoNode->FirstChildElement("intallchecks");
 
 	if (!iChecksNode)
-		iChecksNode = ToolInfoNode->FirstChild("installchecks");
+		iChecksNode = ToolInfoNode->FirstChildElement("installchecks");
 
 	if (!iChecksNode)
 		return;

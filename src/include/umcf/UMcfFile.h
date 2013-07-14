@@ -147,7 +147,7 @@ public:
 
 	void remove(const wchar_t* dir);
 
-	void genXml(tinyxml2::XMLElement *element);
+	void genXml(tinyxml2::XMLElement *element, tinyxml2::XMLDocument& doc);
 	bool verifyFile(FILEHANDLE hFile, uint64 baseOffset);
 
 	uint8 readMCFAndSave(FILEHANDLE hFile, const wchar_t* path, uint64 offset, DelegateI<ProgressCB> *del = NULL);

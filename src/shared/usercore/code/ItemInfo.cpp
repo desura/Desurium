@@ -472,7 +472,7 @@ void ItemInfo::loadXmlData(uint32 platform, tinyxml2::XMLNode *xmlNode, uint16 s
 
 	pauseCallBack();
 
-	tinyxml2::XMLNode* statNode = xmlNode->FirstChild("status");
+	tinyxml2::XMLElement* statNode = xmlNode->FirstChildElement("status");
 	if (statNode)
 	{
 		tinyxml2::XMLElement* statEl = statNode->ToElement();
@@ -499,13 +499,13 @@ void ItemInfo::loadXmlData(uint32 platform, tinyxml2::XMLNode *xmlNode, uint16 s
 	
 	processInfo(xmlEl);
 
-	XML::for_each_child("branch", xmlNode->FirstChild("branches"), [this](tinyxml2::XMLElement* branch)
+	XML::for_each_child("branch", xmlNode->FirstChildElement("branches"), [this](tinyxml2::XMLElement* branch)
 	{
 		loadBranchXmlData(branch);
 	});
 
 	//the only time settings should be present if the xml came from the api
-	tinyxml2::XMLNode* setNode = xmlNode->FirstChild("settings");
+	tinyxml2::XMLElement* setNode = xmlNode->FirstChildElement("settings");
 	if (setNode && !isInstalled() && pWildCard)
 		processSettings(platform, setNode, pWildCard, reset);
 
@@ -605,7 +605,7 @@ void ItemInfo::processInfo(tinyxml2::XMLNode* xmlEl)
 	if (XML::GetChild("devadmin", isDev, xmlEl) && isDev)
 		addSFlag(STATUS_DEVELOPER);
 
-	tinyxml2::XMLNode * logoNode= xmlEl->FirstChild("boxart");
+	tinyxml2::XMLElement * logoNode= xmlEl->FirstChildElement("boxart");
 	if (logoNode && logoNode->ToElement())
 	{
 		const char *icon= logoNode->ToElement()->GetText();
@@ -616,7 +616,7 @@ void ItemInfo::processInfo(tinyxml2::XMLNode* xmlEl)
 			setLogo(icon);
 	}
 
-	tinyxml2::XMLNode * iconNode= xmlEl->FirstChild("icon");
+	tinyxml2::XMLElement * iconNode= xmlEl->FirstChildElement("icon");
 	if (iconNode && iconNode->ToElement())
 	{
 		const char *icon= iconNode->ToElement()->GetText();
@@ -649,14 +649,14 @@ void ItemInfo::processInfo(tinyxml2::XMLNode* xmlEl)
 			delSFlag(UM::ItemInfoI::STATUS_DLC);
 	}
 
-	tinyxml2::XMLNode* devNode = xmlEl->FirstChild("developer");
+	tinyxml2::XMLElement* devNode = xmlEl->FirstChildElement("developer");
 	if (devNode)
 	{
 		XML::GetChild("name", m_szDev, devNode);
 		XML::GetChild("url", m_szDevProfile, devNode);
 	}
 
-	tinyxml2::XMLNode* pubNode = xmlEl->FirstChild("publisher");
+	tinyxml2::XMLElement* pubNode = xmlEl->FirstChildElement("publisher");
 	if (pubNode)
 	{
 		XML::GetChild("name", m_szPublisher, pubNode);
@@ -986,7 +986,7 @@ bool ItemInfo::compare(const char* filter)
 
 void ItemInfo::processUpdateXml(tinyxml2::XMLNode *node)
 {
-	tinyxml2::XMLNode* branches = node->FirstChild("branches");
+	tinyxml2::XMLElement* branches = node->FirstChildElement("branches");
 
 	if (!branches)
 		return;

@@ -187,11 +187,11 @@ uint8 UMcf::parseXml(char* buff, size_t buffLen)
 	}
 
 	tinyxml2::XMLDocument doc;
-	XML::loadBuffer(doc, buff, buffLen);
+	XML::loadBuffer(doc, buff);
 
 	delete [] outbuff;
 
-	tinyxml2::XMLNode *fNode = doc.FirstChild("files");
+	tinyxml2::XMLElement *fNode = doc.FirstChildElement("files");
 	return parseXml(fNode);
 }
 
@@ -352,12 +352,12 @@ void UMcf::loadFromFile(const wchar_t* file)
 
 void UMcf::parseUpdateXml(tinyxml2::XMLDocument &doc)
 {
-	tinyxml2::XMLNode *uNode = doc.FirstChild("appupdate");
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement("appupdate");
 
 	if (!uNode)
 		return;
 
-	tinyxml2::XMLNode *mcfNode = uNode->FirstChild("mcf");
+	tinyxml2::XMLElement *mcfNode = uNode->FirstChildElement("mcf");
 
 	if (!mcfNode)
 		return;
@@ -381,7 +381,7 @@ void UMcf::parseUpdateXml(tinyxml2::XMLDocument &doc)
 
 	XML::GetChild("url", m_szUrl, mcfNode);
 
-	tinyxml2::XMLNode *fNode = mcfNode->FirstChild("files");
+	tinyxml2::XMLElement *fNode = mcfNode->FirstChildElement("files");
 	parseXml(fNode);
 }
 
@@ -593,7 +593,7 @@ void UMcf::dumpXml(const wchar_t* path)
 	for (size_t x=0; x<m_pFileList.size(); x++)
 	{
 		tinyxml2::XMLElement * startElFile = doc.NewElement( "file" );
-		m_pFileList[x]->genXml(startElFile);
+		m_pFileList[x]->genXml(startElFile, doc);
 		filesElFiles->InsertEndChild(startElFile);
 	}
 

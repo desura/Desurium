@@ -46,7 +46,7 @@ void GetItemListThread::doRun()
 
 	int ver = XML::processStatus(doc, "itemwizard");
 
-	tinyxml2::XMLNode *infoNode = doc.FirstChild("itemwizard");
+	tinyxml2::XMLElement *infoNode = doc.FirstChildElement("itemwizard");
 
 	if (!infoNode)
 		throw gcException(ERR_BADXML);

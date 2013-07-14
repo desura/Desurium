@@ -63,15 +63,14 @@ void MCF::getDownloadProviders(const char* url, MCFCore::Misc::UserCookies *pCoo
 	
 	tinyxml2::XMLDocument doc;
 
-	doc.SetCondenseWhiteSpace(false);
-	XML::loadBuffer(doc, const_cast<char*>(wc->getData()), wc->getDataSize());
+	XML::loadBuffer(doc, const_cast<char*>(wc->getData()));
 
-	tinyxml2::XMLNode *uNode = doc.FirstChild("itemdownloadurl");
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement("itemdownloadurl");
 
 	if (!uNode)
 		throw gcException(ERR_BADXML);
 
-	tinyxml2::XMLNode* sNode = uNode->FirstChild("status");
+	tinyxml2::XMLElement* sNode = uNode->FirstChildElement("status");
 
 	if (!sNode)
 		throw gcException(ERR_BADXML);
@@ -94,14 +93,14 @@ void MCF::getDownloadProviders(const char* url, MCFCore::Misc::UserCookies *pCoo
 	if (status != 0)
 		throw gcException(ERR_BADSTATUS, status, gcString("Status: {0}", sEl->GetText()));
 
-	tinyxml2::XMLNode* iNode = uNode->FirstChild("item");
+	tinyxml2::XMLElement* iNode = uNode->FirstChildElement("item");
 
 	if (!iNode)
 	{
 		throw gcException(ERR_BADXML);
 	}
 
-	tinyxml2::XMLNode* mNode = iNode->FirstChild("mcf");
+	tinyxml2::XMLElement* mNode = iNode->FirstChildElement("mcf");
 
 	if (!mNode)
 	{
@@ -143,7 +142,7 @@ void MCF::getDownloadProviders(const char* url, MCFCore::Misc::UserCookies *pCoo
 	memcpy(m_pFileAuth->authkey, buff, size);
 	safe_delete(szAuthCode);
 
-	tinyxml2::XMLNode* urlNode = mNode->FirstChild("urls");
+	tinyxml2::XMLElement* urlNode = mNode->FirstChildElement("urls");
 
 	if (!urlNode)
 		throw gcException(ERR_BADXML);

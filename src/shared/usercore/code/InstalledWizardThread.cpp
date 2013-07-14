@@ -62,7 +62,7 @@ void InstalledWizardThread::doRun()
 
 	int ver = XML::processStatus(doc, "itemwizard");
 
-	tinyxml2::XMLNode *infoNode = doc.FirstChild("itemwizard");
+	tinyxml2::XMLElement *infoNode = doc.FirstChildElement("itemwizard");
 
 	if (!infoNode)
 		throw gcException(ERR_BADXML);
@@ -249,7 +249,7 @@ void InstalledWizardThread::parseItemsQuick(tinyxml2::XMLNode *fNode)
 	if (!fNode)
 		return;
 
-	tinyxml2::XMLNode* platforms = fNode->FirstChild("platforms");
+	tinyxml2::XMLElement* platforms = fNode->FirstChildElement("platforms");
 
 	if (platforms)
 	{
@@ -263,7 +263,7 @@ void InstalledWizardThread::parseItemsQuick(tinyxml2::XMLNode *fNode)
 	}
 	else
 	{
-		XML::for_each_child("game", fNode->FirstChild("games"), [&](tinyxml2::XMLElement* game)
+		XML::for_each_child("game", fNode->FirstChildElement("games"), [&](tinyxml2::XMLElement* game)
 		{
 			const char* id = game->Attribute("siteareaid");
 			DesuraId gameId(id, "games");
@@ -390,7 +390,7 @@ void InstalledWizardThread::parseItems1(tinyxml2::XMLNode *fNode, WildcardManage
 	if (!fNode)
 		return;
 
-	XML::for_each_child("game", fNode->FirstChild("games"), [&](tinyxml2::XMLElement* game)
+	XML::for_each_child("game", fNode->FirstChildElement("games"), [&](tinyxml2::XMLElement* game)
 	{
 		const char* id = game->Attribute("siteareaid");
 		DesuraId gameId(id, "games");
@@ -416,7 +416,7 @@ void InstalledWizardThread::parseItems2(tinyxml2::XMLNode *fNode, WildcardManage
 
 	std::map<uint64, tinyxml2::XMLElement*> vMap;
 
-	XML::for_each_child("game", fNode->FirstChild("games"), [&](tinyxml2::XMLElement* game)
+	XML::for_each_child("game", fNode->FirstChildElement("games"), [&](tinyxml2::XMLElement* game)
 	{
 		const char* id = game->Attribute("siteareaid");
 		DesuraId gameId(id, "games");
@@ -425,13 +425,13 @@ void InstalledWizardThread::parseItems2(tinyxml2::XMLNode *fNode, WildcardManage
 			vMap[gameId.toInt64()] = game;
 	});
 
-	XML::for_each_child("platform", fNode->FirstChild("platforms"), [&](tinyxml2::XMLElement* platform)
+	XML::for_each_child("platform", fNode->FirstChildElement("platforms"), [&](tinyxml2::XMLElement* platform)
 	{
 		if (m_pUser->platformFilter(platform, PT_Item))
 			return;
 
 		WildcardManager wm(pWildCard);
-		tinyxml2::XMLNode *wildCardNode = platform->FirstChild("wcards");
+		tinyxml2::XMLElement *wildCardNode = platform->FirstChildElement("wcards");
 
 		if (wildCardNode)
 		{
