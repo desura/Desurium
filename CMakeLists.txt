@@ -307,10 +307,6 @@ if(NOT BUILD_ONLY_CEF)
 
   if(NOT TINYXML_FOUND)
     add_subdirectory(third_party/tinyxml2)
-	include_directories( ${CMAKE_SOURCE_DIR}/third_party/tinyxml2 )
-	set ( TINYXML2_CPP ${CMAKE_SOURCE_DIR}/third_party/tinyxml2/tinyxml2.cpp )
-  else()
-  	set ( TINYXML2_CPP "")
   endif()
 
   if(NOT SQLITE_FOUND)

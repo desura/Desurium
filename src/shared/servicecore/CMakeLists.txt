@@ -34,7 +34,7 @@ else()
   set(PLATFORM_LIBRARIES dl)
 endif()
 
-add_library(servicecore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES} ${TINYXML2_CPP})
+add_library(servicecore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES})
 target_link_libraries(servicecore
     gcJSBase
     ipc_pipe

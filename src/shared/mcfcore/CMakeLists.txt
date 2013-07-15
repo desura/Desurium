@@ -23,7 +23,7 @@ else()
   set(PLATFORM_LIBRARIES dl)
 endif()
 
-add_library(mcfcore SHARED ${Sources} ${TINYXML2_CPP})
+add_library(mcfcore SHARED ${Sources})
 target_link_libraries(mcfcore
   umcf
   util
