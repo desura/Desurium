@@ -22,14 +22,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 class CIMPORT uploadMng;
 
-inline const char* LANGFOLDER(void)
+inline std::basic_string<char> LANGFOLDER(void)
 {
-	return gcString("{0}{1}language{1}", UTIL::OS::getDataPath(), DIRS_STR).c_str();
+	return gcString("{0}{1}language{1}", UTIL::OS::getDataPath(), DIRS_STR);
 }
 
-inline const char* THEMEFOLDER(void)
+inline std::basic_string<char> THEMEFOLDER(void)
 {
-	return gcString("{0}{1}themes{1}", UTIL::OS::getDataPath(), DIRS_STR).c_str();
+	return gcString("{0}{1}themes{1}", UTIL::OS::getDataPath(), DIRS_STR);
 }
 
 
@@ -93,7 +93,7 @@ UserCore::UploadManagerI* GetUploadMng()
 
 void InitLocalManagers()
 {
-	GetGCThemeManager()->loadFromFolder(THEMEFOLDER());
+	GetGCThemeManager()->loadFromFolder(THEMEFOLDER().c_str());
 	GetGCThemeManager()->loadTheme(gc_theme.getString());
 }
 
