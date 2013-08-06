@@ -41,9 +41,13 @@ if(WIN32 AND NOT MINGW)
   if(DEBUG)
     set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include ${wxWidgets_INSTALL_DIR}/include/msvc)
     set(wxWidgets_LIBRARIES ${wxWidgets_LIBRARY_DIRS}/wxmsw29ud.lib)
+    install(FILES ${wxWidgets_LIBRARY_DIRS}/wxmsw293ud_vc_desura.dll
+            DESTINATION ${LIB_INSTALL_DIR})
   else()
     set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include ${wxWidgets_INSTALL_DIR}/include/msvc)
     set(wxWidgets_LIBRARIES ${wxWidgets_LIBRARY_DIRS}/wxmsw29u.lib)
+    install(FILES ${wxWidgets_LIBRARY_DIRS}/wxmsw293u_vc_desura.dll
+            DESTINATION ${LIB_INSTALL_DIR})
   endif()
   
 else()
