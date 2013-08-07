@@ -19,12 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Common.h"
 #include "gcImage.h"
 
-gcImage::gcImage(const char* image, bool alpha) :  wxImage(1,1)
+gcImage::gcImage(const char* image) :  wxImage(1,1)
 {
-	setImage(image, alpha);
+	setImage(image);
 }
 
-void gcImage::setImage(const char* image, bool alpha)
+void gcImage::setImage(const char* image)
 {
 	if (!image || !UTIL::FS::isValidFile(UTIL::FS::Path(image, "", true)))
 	{
@@ -39,15 +39,6 @@ void gcImage::setImage(const char* image, bool alpha)
 	{
 		Warning(gcString("Failed to load image {0}\n", image));
 	}
-#ifdef WIN32
-	else
-	{
-		if (alpha)
-		{
-			ConvertAlphaToMask();
-		}
-	}
-#endif
 }
 
 void gcImage::tileImg( wxBitmap &target, wxBitmap src, wxColor* fillBg, TILE_DIR dir)

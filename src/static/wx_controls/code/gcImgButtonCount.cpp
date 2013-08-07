@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 gcImgButtonCount::gcImgButtonCount( wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style ) : gcImageButton( parent, id, pos, size, style )
 {
 	m_uiCount = 0;
-	m_imgCount = GetGCThemeManager()->getImageHandle("#count_background", true);
+	m_imgCount = GetGCThemeManager()->getImageHandle("#count_background");
 }
 
 gcImgButtonCount::~gcImgButtonCount()
@@ -92,7 +92,7 @@ void gcImgButtonCount::refreshImage()
 	gcImageButton::refreshImage();
 
 	if (isHovering())
-		m_imgCount = GetGCThemeManager()->getImageHandle("#count_background_hover", true);
+		m_imgCount = GetGCThemeManager()->getImageHandle("#count_background_hover");
 	else
-		m_imgCount = GetGCThemeManager()->getImageHandle("#count_background", true);
+		m_imgCount = GetGCThemeManager()->getImageHandle("#count_background");
 }

@@ -161,7 +161,7 @@ void gcButton::setImage(const char* image)
 	if (m_szCurImage == image && m_imgHandle.getImg() && m_imgHandle->IsOk())
 		return;
 
-	m_imgHandle = GetGCThemeManager()->getImageHandle(image, true);
+	m_imgHandle = GetGCThemeManager()->getImageHandle(image);
 	invalidatePaint();
 }
 

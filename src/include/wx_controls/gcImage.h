@@ -27,8 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 class gcImage : public wxImage
 {
 public:
-	gcImage(const char* image, bool alpha = false);
-	void setImage(const char* image, bool alpha = false);
+	gcImage(const char* image);
+	void setImage(const char* image);
 
 	enum TILE_DIR
 	{

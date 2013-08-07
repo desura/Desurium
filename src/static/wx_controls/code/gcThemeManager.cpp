@@ -28,15 +28,11 @@ gcThemeManager::~gcThemeManager()
 {
 }
 
-gcImageHandle gcThemeManager::getImageHandle(const char* path, bool alpha)
+gcImageHandle gcThemeManager::getImageHandle(const char* path)
 {
 	m_WaitMutex.lock();
 
 	gcString name(path);
-
-	if (alpha)
-		name = gcString("{0}!!alpha", path);
-
 	gcImageInfo* h = findItem(name.c_str());
 
 	if (!h)
@@ -44,11 +40,11 @@ gcImageHandle gcThemeManager::getImageHandle(const char* path, bool alpha)
 		//if path name starts with an # that means we need to load from theme
 		if (path && path[0] == '#')
 		{
-			h = new gcImageInfo(getImage(path+1), name.c_str(), alpha);
+			h = new gcImageInfo(getImage(path+1), name.c_str());
 		}
 		else
 		{
-			h = new gcImageInfo(path, name.c_str(), alpha);
+			h = new gcImageInfo(path, name.c_str());
 		}
 
 		addItem(h);
