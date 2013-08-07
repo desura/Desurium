@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 gcString g_szSCVersion("{0}.{1}.{2}.{3}", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILDNO, VERSION_EXTEND);
 
-#ifdef NIX
+#if defined NIX || defined MACOS
 #include "IPCServerI.h"
 
 class Server : public IPC::PipeServer, public IPCServerI
@@ -63,7 +63,7 @@ namespace SCore
 		{
 			return static_cast<void*>(new ServiceCore());
 		}
-#ifdef NIX
+#if defined NIX || defined MACOS
 		else if (strcmp(name, IPC_SERVER) == 0)
 		{
 			return (IPCServerI*)new Server();

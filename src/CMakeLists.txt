@@ -26,6 +26,12 @@ install(FILES ${APP}/about_logo.png
         DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app/
 )
 
+if(APPLE)
+  install(FILES ${BRANDING_DIR}/desura.icns
+          DESTINATION ${RESOURCES_INSTALL_DIR}
+  )
+endif()
+
 if(WIN32)
   install(FILES ${APP}/menu_button_hover_win.png RENAME menu_button_hover.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
   install(FILES ${APP}/menu_button_nonactive_win.png RENAME menu_button_nonactive.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
@@ -71,7 +77,9 @@ if(WIN32)
   add_subdirectory(common/tool_pipe)
 endif()
 add_subdirectory(static/managers)
-add_subdirectory(static/mdump)
+if(NOT APPLE)
+  add_subdirectory(static/mdump)
+endif()
 add_subdirectory(static/ipc_pipe)
 add_subdirectory(static/scriptengine)
 add_subdirectory(static/umcf)
@@ -108,18 +116,21 @@ if(WIN32)
   add_subdirectory(executable/service_win)
   add_subdirectory(executable/toolhelper)
   add_subdirectory(executable/utilhelper)
+elseif(APPLE)
+  add_subdirectory(executable/bootloader_mac)
 else()
   add_subdirectory(executable/bootloader_lin)
   add_subdirectory(executable/crashdlg_lin)
-  
   if(32BIT_SUPPORT)
     add_subdirectory(executable/bittest)
   endif()
 endif()
 
-option(BUILD_TOOLS "Build various Desura tools." ON)
+if(NOT APPLE)
+  option(BUILD_TOOLS "Build various Desura tools." ON)
+endif()
 
-if(BUILD_TOOLS)
+if(BUILD_TOOLS AND NOT APPLE)
   add_subdirectory(tools/mcf_upload_cli)
   add_subdirectory(tools/mcf_extract)
   add_subdirectory(tools/mcf_util)
@@ -210,7 +221,7 @@ if(NOT Boost_FOUND)
   add_dependencies(wx_controls boost)
 endif()
 
-if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND)
+if(NOT BREAKPAD_EXCEPTION_HANDLER_FOUND AND NOT APPLE)
   add_dependencies(mdump breakpad)
 endif()
 

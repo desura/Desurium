@@ -283,6 +283,14 @@ namespace WIN
 	//! Uses explorer run as command to launch an item
 	//!
 	bool runAs(const char* command, const char* area = "open");
+	
+	std::string getCmdStdout(const char* command, int stdErrDest = 0);
+	
+	std::string getExecuteDir();
+	
+	bool launchFolder(const char* path);
+	
+	bool canLaunchBinary(BinType type);
 }
 }
 

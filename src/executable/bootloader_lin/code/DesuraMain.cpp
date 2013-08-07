@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <cstring> // strerror()
 #include <cerrno> // errno
 
+#include "Common.h"
 #include "UICoreI.h" // UICoreI
 #include "MiniDumpGenerator.h"
 
@@ -60,7 +61,7 @@ void SendMessage(const char* msg)
     }
 
     remote.sun_family = AF_UNIX;
-    strcpy(remote.sun_path, UTIL::LIN::SOCK_PATH());
+    strcpy(remote.sun_path, UTIL::OS::SOCK_PATH());
     len = strlen(remote.sun_path) + sizeof(remote.sun_family);
     if (connect(socketConnect, (struct sockaddr*)&remote, len) == -1)
     {

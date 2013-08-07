@@ -51,6 +51,13 @@ static VOID CALLBACK TimerProc(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwT
 		g_TimerLock.unlock();
 	}
 }
+#elif defined MACOS
+static void TimerProc(CFRunLoopTimerRef timerRef, void *info)
+{
+	gcSpinningBar *bar = (gcSpinningBar*)info;
+	if (bar)
+		bar->notify();
+}
 #else
 static gboolean TimerProc(gcSpinningBar *bar)
 {
@@ -80,6 +87,9 @@ gcSpinningBar::gcSpinningBar( wxWindow* parent, wxWindowID id, const wxPoint& po
 
 #ifdef WIN32
 	m_tId = ::SetTimer((HWND)GetHWND(), GetId(), 75, TimerProc);
+#elif defined MACOS
+	CFRunLoopTimerContext context = {0, this, NULL, NULL, NULL};
+	m_tId = CFRunLoopTimerCreate(NULL, CFAbsoluteTimeGetCurrent(), 0.075, 0, 0, TimerProc, &context);
 #else
 	m_tId = g_timeout_add(75, (GSourceFunc)TimerProc, (gpointer)this);
 #endif
@@ -101,7 +111,12 @@ gcSpinningBar::~gcSpinningBar()
 	g_TimerLock.unlock();
 
 	::KillTimer((HWND)GetHWND(), m_tId);
-
+#elif defined MACOS
+	if(m_tId)
+	{
+		CFRunLoopTimerInvalidate(m_tId);
+		CFRelease(m_tId);
+	}
 #else
 	if (m_tId)
 		g_source_remove(m_tId);

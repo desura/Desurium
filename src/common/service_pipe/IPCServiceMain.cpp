@@ -186,7 +186,7 @@ void IPCServiceMain::registerFunctions()
 #include <shlobj.h>
 #endif
 
-#ifdef NIX
+#ifndef MAX_PATH
 #define MAX_PATH 255
 #endif
 

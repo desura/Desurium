@@ -61,7 +61,7 @@ uint64 GetMainThreadId()
 	return g_uiMainThreadId;
 }
 
-#ifdef NIX
+#if defined NIX || defined MACOS
 
 class ListenThread : public Thread::BaseThread
 {
@@ -83,7 +83,7 @@ public:
 		}
 
 		socketLocal.sun_family = AF_UNIX;
-		strcpy(socketLocal.sun_path, UTIL::LIN::SOCK_PATH());
+		strcpy(socketLocal.sun_path, UTIL::OS::SOCK_PATH());
 		ERROR_OUTPUT(socketLocal.sun_path);
 		unlink(socketLocal.sun_path);
 		len = strlen(socketLocal.sun_path) + sizeof(socketLocal.sun_family);

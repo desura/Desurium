@@ -29,10 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	#include "gtk/gtk.h"
 #endif
 
-#ifdef __WXMAC__
-	#include "wx/mac/private.h"
-#endif
-
 #include <wx/dcbuffer.h>
 
 #include <wx/image.h>
@@ -221,7 +217,8 @@ bool SetShape(const wxRegion& region, wxWindow* frame)
     return true;
     
 #elif defined(__WXMAC__)
-	if ( region.IsEmpty() )
+	std::cout << "called not implemented method " << __FUNCTION__ << std::endl;
+/*	if ( region.IsEmpty() )
     {
         wxSize sz = T->GetClientSize();
         wxRegion rgn(0, 0, sz.x, sz.y);
@@ -242,8 +239,8 @@ bool SetShape(const wxRegion& region, wxWindow* frame)
 
     // Tell the window manager that the window has changed shape
     ReshapeCustomWindow((WindowRef)GetHandle());
-    return true;
-    
+    return true;*/
+    return false;
 #elif defined(__WXGTK__)
 
 	GtkWidget* m_wxwindow = frame->m_wxwindow;

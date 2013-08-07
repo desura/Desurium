@@ -30,15 +30,6 @@ namespace UTIL
 {
 namespace LIN
 {
-	enum BinType
-	{
-		BT_ELF32,	// Warn and launch natively if on x64
-		BT_ELF64,	// Launch natively
-		BT_WIN,		// Warn and launch using xdg-open
-		BT_SCRIPT,	// Launch using xdg-open
-		BT_UNKNOWN,	// Error
-	};
-
 	/*! \brief Gets the path from which the executable was launched.
 	 *  \return Returns a std::string for the path without an ending '/'
 	 *  \attention Currently this function serves the same purpose as getAppPath()
@@ -56,14 +47,6 @@ namespace LIN
 	//! @return expanded path if successful, "" if not
 	//!
 	std::string expandPath(const char* file);
-
-	//! Returns the type of file by its magic mark at the start of the file
-	//!
-	//! @param buff Buffer that contains at least the first 4 bytes
-	//! @param buffSize size of buffer
-	//! @return Bin type if known or BT_UNKNOWN if not
-	//!
-	BinType getFileType(const char* buff, size_t buffSize);
 	
 	//! Gets the exectuables directory
 	//!
@@ -154,13 +137,8 @@ namespace LIN
 	
 	//! Sets up XDG environmental variables.
 	void setupXDGVars();
-
-#ifdef NIX
-	inline const char* SOCK_PATH(void)
-	{
-		return UTIL::STRING::toStr(UTIL::OS::getCachePath(L"socket")).c_str();
-	}
-#endif
+	
+	bool canLaunchBinary(OS::BinType type);
 }
 }
 

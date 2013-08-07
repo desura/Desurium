@@ -21,7 +21,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include<stdio.h>
 #include<string.h>
-#include<malloc.h>
+
+#ifdef MACOS
+  #include <sys/malloc.h>
+#else
+  #include<malloc.h>
+#endif
+
 #include<math.h>
 #include<stdlib.h>
 

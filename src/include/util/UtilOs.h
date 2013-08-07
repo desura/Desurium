@@ -26,6 +26,19 @@ namespace UTIL
 {
 namespace OS
 {
+	enum class BinType
+	{
+		ELF32,
+		ELF64,
+		WIN32,
+		WIN64,
+		MACH32,
+		MACH64,
+		SH,
+		BAT,
+		UNKNOWN,
+	};
+	
 	bool is64OS();
 
 	//! Determines if a point is on the screen
@@ -122,6 +135,43 @@ namespace OS
 	gcString getRuntimeLibPath();
 	
 	gcString getRelativePath(const gcString &path);
+	
+	//! Returns the stdout of a system() call
+	//!
+	//! @param command command to execute
+	//! @param stdErrDest 0 = do nothing, 1 = hide it, 2 = append to stdout
+	//! @return stdout
+	//! @note Throws exceptions if can't run command
+	//!
+	std::string getCmdStdout(const char* command, int stdErrDest = 0);
+	
+	/*! \brief Gets the path from which the executable was launched.
+	 *  \return Returns a std::string for the path without an ending '/'
+	 *  \attention Currently this function serves the same purpose as getAppPath()
+	 *
+	 *  Uses /proc/self/exe to get the path, from which the executable was launched.
+	 *  Uses readlink() - Read more about readlink at http://linux.die.net/man/2/readlink
+	 *  Contrary to readlink(), this function appends a null byte to the string.
+	 *  This function was implemented to replace a previous ExeDir class
+	 */
+	std::string getExecuteDir();
+	
+	bool launchFolder(const char* path);
+	
+	//! Returns the type of file by its magic mark at the start of the file
+	//!
+	//! @param buff Buffer that contains at least the first 4 bytes
+	//! @param buffSize size of buffer
+	//! @return Bin type if known or BT_UNKNOWN if not
+	//!
+	BinType getFileType(const char* buff, size_t buffSize);
+	
+	bool canLaunchBinary(BinType type);
+	
+	inline const char* SOCK_PATH(void)
+	{
+		return UTIL::STRING::toStr(UTIL::OS::getCachePath(L"socket")).c_str();
+	}
 }
 }
 

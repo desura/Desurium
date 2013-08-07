@@ -52,6 +52,7 @@ gcWebControl::gcWebControl(wxWindow* parent, const char* defaultUrl, const char*
 #ifdef WIN32
 	m_pChromeBrowser = NewChromiumBrowser((HWND)GetHWND(), PRODUCT_NAME, loadingurl.c_str());
 #else
+#ifndef MACOS
 	GtkWidget* gtkParent = this->GetConnectWidget();
 	GtkWidget* vbox = gtk_vbox_new(FALSE, 0);
 	
@@ -74,6 +75,10 @@ gcWebControl::gcWebControl(wxWindow* parent, const char* defaultUrl, const char*
 	gtk_widget_modify_bg(GTK_WIDGET(vbox), GTK_STATE_INSENSITIVE, &blackCol);
 	
 	gtk_container_add(GTK_CONTAINER(gtkParent), vbox);
+#else
+	std::cout << "called not implemented method " << __FUNCTION__ << std::endl;
+	int *vbox = NULL;
+#endif
 	
 	m_pChromeBrowser = NewChromiumBrowser((int*)vbox, PRODUCT_NAME, loadingurl.c_str());
 #endif

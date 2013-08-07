@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "sql/ItemInfoSql.h"
 
-#ifdef NIX
+#if defined NIX || MACOS
 	#define localtime_s(a, b) localtime_r( (b), (a) )
 #endif
 

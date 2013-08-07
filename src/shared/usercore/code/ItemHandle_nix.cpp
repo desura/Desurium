@@ -67,16 +67,20 @@ void ItemHandle::doLaunch(Helper::ItemLaunchHelperI* helper)
 		throw gcException(ERR_LAUNCH, e.getSecErrId(), gcString("Failed to read [{0}]: {1}\n", exe, e));
 	}
 
-	UTIL::LIN::BinType type = UTIL::LIN::getFileType(magicBytes, 5);
+	UTIL::OS::BinType type = UTIL::OS::getFileType(magicBytes, 5);
 
-	if (type == UTIL::LIN::BT_WIN && helper)
+	if ((type == UTIL::OS::BinType::WIN32
+#ifdef NIX64
+		|| type == UTIL::OS::BinType::WIN64
+#endif
+		)&& helper)
 		helper->showWinLaunchDialog();
 	
 	//if we are not using globalExe set exe to Null so that we use the proper exe
-	if (globalExe.size() == 0 || type == UTIL::LIN::BT_UNKNOWN)
+	if (globalExe.size() == 0 || type == UTIL::OS::BinType::UNKNOWN)
 		exe = NULL;
 
-	doLaunch(type == UTIL::LIN::BT_UNKNOWN, exe, args);
+	doLaunch(type == UTIL::OS::BinType::UNKNOWN, exe, args);
 }
 
 void ItemHandle::doLaunch(bool useXdgOpen, const char* globalExe, const char* globalArgs)
@@ -251,13 +255,13 @@ void ItemHandle::installLaunchScripts()
 			continue;
 		}
 		
-		UTIL::LIN::BinType type = UTIL::LIN::getFileType(magicBytes, 5);
+		UTIL::OS::BinType type = UTIL::OS::getFileType(magicBytes, 5);
 		
 		try
 		{
 			UTIL::FS::FileHandle fh(path.c_str(), UTIL::FS::FILE_WRITE);
 			
-			if (type == UTIL::LIN::BT_UNKNOWN)
+			if (type == UTIL::OS::BinType::UNKNOWN)
 			{
 				gcString lcmd(scriptXdg, exe->getExe());
 				fh.write(lcmd.c_str(), lcmd.size());

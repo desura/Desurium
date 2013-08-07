@@ -258,6 +258,10 @@ void gcMainCustomFrameImpl::doMaximize()
 
 	wxPoint pos = wxPoint(mi.rcWork.left, mi.rcWork.top) - wbr.GetTopLeft();
 	wxSize size = wxSize(mi.rcWork.right - mi.rcWork.left, mi.rcWork.bottom - mi.rcWork.top);
+#elif defined MACOS
+	std::cout << "called not implemented method " << __FUNCTION__ << std::endl;
+	wxPoint pos = wxPoint(0,0);
+	wxSize size = wxSize(300,300);
 #else
 	gint posX;
 	gint posY;
