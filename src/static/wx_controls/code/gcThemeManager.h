@@ -33,10 +33,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 class gcImageInfo : public BaseItem
 {
 public: 
-	gcImageInfo(const char* path, const char* name, bool alpha = false) : BaseItem(name)
+	gcImageInfo(const char* path, const char* name) : BaseItem(name)
 	{
 		m_uiRefCount = 0;
-		m_pImg = new gcImage(path, alpha);
+		m_pImg = new gcImage(path);
 	}
 
 	~gcImageInfo()
@@ -77,7 +77,7 @@ public:
 	~gcThemeManager();
 
 	//gets image handle. Alpha refers to if the image is the alpha version
-	virtual gcImageHandle getImageHandle(const char* path, bool alpha = false);
+	virtual gcImageHandle getImageHandle(const char* path);
 	virtual wxBitmap getSprite(wxImage& img, const char* spriteId, const char* spriteName);
 
 	virtual const char* getThemeFolder();
