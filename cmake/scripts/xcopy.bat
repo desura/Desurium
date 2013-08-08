@@ -1,1 +1,1 @@
-xcopy "%1" "%2" /S /E /H /I
+xcopy "%1" %2 /S /E /H /I
