@@ -261,10 +261,10 @@
 	<str name="#IF_CONFLICTTITLE">Konflikt Skomplikowanej Instalacji</str>
 
 	<str name="#IF_COMPLETEPREORDER">Wczytanie Gotowe</str>
-	<str name="#IF_PRELOADLAUNCH">{0} został wczytany i nie może zostać teraz uruchomiony. Poczekaj na datę wydania.</str>
+	<str name="#IF_PRELOADLAUNCH">{0} został już {2}, ale nie może być jeszcze uruchomiony. Poczekaj na premierę jeszcze {1} dni.</str>
 	<str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
 
-	<str name="#IF_PRELOADLAUNCH_PREORDERED">zamówione</str>
+	<str name="#IF_PRELOADLAUNCH_PREORDERED">zamówiony</str>
 	<str name="#IF_PRELOADLAUNCH_PRELOADED">wstępnie pobieranie</str>
 	<str name="#IF_PRELOADLAUNCH_INSTALLDEMO">Zainstaluj Demo</str>
 	<str name="#IF_PRELOADLAUNCH_INSTALLOTHER">Zainstaluj Inne</str>
@@ -634,12 +634,12 @@
 	<str name="#IS_DEVSTUB">Pień Dewelopera</str>
 	<str name="#IS_NOTAVAIL">Nie Gotowe</str>
 	<str name="#IS_PAUSED">Wstrzymano</str>
-	<str name="#IS_PREORDER_STATUS">Zamówione</str>
+	<str name="#IS_PREORDER_STATUS">Zamówiony</str>
 	<str name="#IS_PRELOADED_STATUS">Wstępne pobieranie</str>
 
-	<str name="#IS_PREORDER">Dostępne za {0}</str>
-	<str name="#IS_PREORDER_DAYS">{0} dni {1} godzin</str>
-	<str name="#IS_PREORDER_HOURS">{0} godzin</str>
+	<str name="#IS_PREORDER">Dostępny za </str>
+	<str name="#IS_PREORDER_DAYS">dni</str>
+	<str name="#IS_PREORDER_HOURS">godzin</str>
 	<str name="#IS_PREORDER_MINS">minut</str>
 	<str name="#IS_PREORDER_DAY">dzień</str>
 	<str name="#IS_PREORDER_HOUR">godzina</str>
