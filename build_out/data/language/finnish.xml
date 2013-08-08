@@ -483,10 +483,13 @@
 		<str name="#IS_DEVSTUB">Kehittäjän tynkä</str>
 		<str name="#IS_NOTAVAIL">Ei valmiina</str>
 		<str name="#IS_PAUSED">Pysäytetty</str>
-		<str name="#IS_PREORDER">Saatavilla {0}</str>
-		<str name="#IS_PREORDER_DAYS">{0} päivää {1} tuntia</str>
-		<str name="#IS_PREORDER_HOURS">{0} tuntia</str>
-		<str name="#IS_PREORDER_MINS">Alle tunti</str>
+		<str name="#IS_PREORDER">Saatavilla </str>
+		<str name="#IS_PREORDER_DAYS">päivää</str>
+		<str name="#IS_PREORDER_HOURS">tuntia</str>
+		<str name="#IS_PREORDER_MINS">minuuttia</str>
+		<str name="#IS_PREORDER_DAY">päivä</str>
+		<str name="#IS_PREORDER_HOUR">aika</str>
+		<str name="#IS_PREORDER_MIN">minuutti</str>
 
 		<str name="#IH_DEV">Kehittäjien osat</str>
 		<str name="#IH_MISC">Sekalaiset osat</str>
