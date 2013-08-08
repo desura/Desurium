@@ -880,7 +880,7 @@ void setupXDGVars()
 		// but as $HOME is referenced later on it might confuse anybody reading the
 		// logs.
 		// Also use 'passwd' instead of 'password' as that may freak out some users.
-		printf("$HOME not set, temporarily setting it to the user's passwd entry.");
+		printf("$HOME not set, temporarily setting it to the user's passwd entry.\n");
 		
 		struct passwd* pass = getpwuid(getuid());
 		homeDir = pass->pw_dir;
@@ -888,13 +888,13 @@ void setupXDGVars()
 	
 	if (configDir.empty())
 	{
-		printf("$XDG_CONFIG_HOME not set, falling back to $HOME/.config.");
+		printf("$XDG_CONFIG_HOME not set, falling back to $HOME/.config.\n");
 		configDir = homeDir + "/.config";
 	}
 	
 	if (cacheDir.empty())
 	{
-		printf("$XDG_CACHE_HOME not set, falling back to $HOME/.cache.");
+		printf("$XDG_CACHE_HOME not set, falling back to $HOME/.cache.\n");
 		cacheDir = homeDir + "/.cache";
 	}
 	
