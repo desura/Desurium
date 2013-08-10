@@ -167,6 +167,15 @@ std::wstring getCachePath(std::wstring extra)
 #endif
 }
 
+std::wstring getMcfCachePath()
+{
+#ifdef NIX
+	return UTIL::OS::getAppDataPath();
+#else
+	return UTIL::OS::getCachePath(L"mcf");
+#endif
+}
+
 std::wstring getAppInstallPath(std::wstring extra)
 {
 #ifdef NIX

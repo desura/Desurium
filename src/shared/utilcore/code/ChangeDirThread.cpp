@@ -23,10 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 ChangeDirThread::ChangeDirThread(const char* dest, UserCore::UserI* user) : ::Thread::BaseThread("ChangeDir Thread")
 {
 	m_szDest = dest;
-	m_szCurDir = UTIL::WIN::getRegValue(MCFCACHE);
-
-	if (m_szCurDir.size() == 0)
-		m_szCurDir = UTIL::OS::getAppDataPath();
+	m_szCurDir = UTIL::OS::getMcfCachePath();
 
 	m_bStopped = false;
 	m_bCompleted = false;
@@ -68,7 +65,6 @@ void ChangeDirThread::run()
 	
 	if (!m_bStopped)
 	{
-		m_pUser->updateRegKey(MCFCACHE, m_szDest.c_str());
 		m_bCompleted = true;
 	}
 

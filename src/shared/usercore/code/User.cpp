@@ -137,16 +137,7 @@ void User::init(const char* appDataPath)
 	m_pBannerDownloadManager = new BDManager(this);
 	m_pCDKeyManager = new CDKeyManager(this);
 
-#ifdef WIN32
-
-	m_szMcfCachePath = UTIL::OS::getConfigValue(MCFCACHE);
-
-	if (m_szMcfCachePath.size() == 0)
-		m_szMcfCachePath = UTIL::OS::getCurrentDir(L"Cache");
-
-#else
-	m_szMcfCachePath = UTIL::OS::getAppDataPath();
-#endif
+	m_szMcfCachePath = UTIL::OS::getMcfCachePath();
 
 	InitMCFManager(appDataPath, m_szMcfCachePath.c_str());
 	init();

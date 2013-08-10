@@ -205,11 +205,8 @@ bool UpdateThreadOld::pollUpdates()
 void UpdateThreadOld::checkFreeSpace()
 {
 	gcString sysPath = UTIL::WIN::getWindowsPath();
-	gcString dataPath = UTIL::OS::getConfigValue(MCFCACHE);
+	gcString dataPath = UTIL::OS::getMcfCachePath();
 
-	if (dataPath == "")
-		dataPath = sysPath;
-	
 	if (dataPath.size() < 1 || dataPath[1] != ':')
 		dataPath = UTIL::OS::getCurrentDir();
 

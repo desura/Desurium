@@ -541,7 +541,6 @@ private:
 #define REGRUN "HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\Desura"
 #define APPID	"HKEY_LOCAL_MACHINE\\SOFTWARE\\Desura\\DesuraApp\\appid"
 #define APPBUILD "HKEY_LOCAL_MACHINE\\SOFTWARE\\Desura\\DesuraApp\\appver"
-#define MCFCACHE "HKEY_LOCAL_MACHINE\\SOFTWARE\\Desura\\DesuraApp\\mcfcache"
 
 //dont change the name as the uninstaller needs it!
 #define SERVICE_NAME "Desura Install Service"
