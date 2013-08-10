@@ -1,0 +1,15 @@
+--- net/base/x509_certificate_nss.cc	2013-08-10 18:15:03.643999871 +1000
++++ net/base/x509_certificate_nss.cc	2013-08-10 18:28:45.269823335 +1000
+@@ -275,7 +275,11 @@
+ 
+ void ParsePrincipal(CERTName* name,
+                     CertPrincipal* principal) {
+-  typedef char* (*CERTGetNameFunc)(CERTName* name);
++  #if NSS_VMINOR >= 15
++    typedef char* (*CERTGetNameFunc)(CERTName const* name);
++  #else
++    typedef char* (*CERTGetNameFunc)(CERTName* name);
++  #endif
+ 
+   // TODO(jcampan): add business_category and serial_number.
+   // TODO(wtc): NSS has the CERT_GetOrgName, CERT_GetOrgUnitName, and

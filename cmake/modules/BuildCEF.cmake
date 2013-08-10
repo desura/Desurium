@@ -126,6 +126,14 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
 
     ExternalProject_Add_Step(
     cef
+    nss-3-15-patch
+    COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_SOURCE_DIR}/cmake/patches/chromium-nss-3.15.patch
+    DEPENDERS patch
+    WORKING_DIRECTORY ${CHROMIUM_SOURCE_DIR}/src
+    )
+
+    ExternalProject_Add_Step(
+    cef
     config_cef
     COMMAND ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh ${DEPOT_TOOLS_BIN_DIR} ./cef_create_projects.sh
     DEPENDEES download
