@@ -56,6 +56,7 @@
 #
 # windows-only options:
 #   BOOST_URL                           URL to boost archive
+#   DEBUG_CEF       OFF                 turn on/off debugging in CEF
 #
 # some dev notes:
 #
