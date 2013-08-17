@@ -564,14 +564,13 @@
         <str name="#IS_PAUSED">Paŭza</str>
         <str name="#IS_PREORDER_STATUS">Antaŭmendo</str>
 
-        <str name="#IS_PREORDER">Havabliĝota en {0}</str>
-        <!-- \note For english/esperanto/french it's frowned upon but accepted to
-                   say "1 hours", in other languages it's totally unacceptable.
-                   Ideally you should add a seperate case for a when the number is 1,
-                   but this may/may not be practical. -->
-        <str name="#IS_PREORDER_DAYS">{0} tagoj {1} horoj</str>
-        <str name="#IS_PREORDER_HOURS">{0} horoj</str>
-        <str name="#IS_PREORDER_MINS">Malpli ol unu horo</str>
+        <str name="#IS_PREORDER">Havabliĝota en </str>
+        <str name="#IS_PREORDER_DAYS">tagoj</str>
+        <str name="#IS_PREORDER_HOURS">horoj</str>
+        <str name="#IS_PREORDER_MINS">minutoj</str>
+        <str name="#IS_PREORDER_DAY">tago</str>
+        <str name="#IS_PREORDER_HOUR">tempo</str>
+        <str name="#IS_PREORDER_MIN">minuto</str>
 
         <!-- \note Why was this using abbreviations? -->
         <str name="#IS_LAUNCHING">Lanĉanta...</str>
