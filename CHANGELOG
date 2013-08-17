@@ -5,6 +5,7 @@ rc11:
 -----
  * fixed: desurium crashes after starting wyv and keep (https://github.com/lodle/Desurium/issues/558)
  * fixed: desurium does not build with newest v8 (https://github.com/desura/Desurium/issues/569)
+ * fixed: Upcoming Games - Release date (https://github.com/desura/Desurium/issues/577)
  * fixed: boost-1.53 linking problems
  * repository moved to desura github account
 
