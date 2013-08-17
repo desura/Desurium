@@ -492,10 +492,13 @@
 		<str name="#IS_DEVSTUB">Developer Stub</str>
 		<str name="#IS_NOTAVAIL">Не готово</str>
 		<str name="#IS_PAUSED">Приостановлено</str>
-		<str name="#IS_PREORDER">Будет доступно через {0}</str>
-		<str name="#IS_PREORDER_DAYS">{0} дней {1} часов</str>
-		<str name="#IS_PREORDER_HOURS">{0} дней</str>
-		<str name="#IS_PREORDER_MINS">В течение часа</str>
+		<str name="#IS_PREORDER">Будет доступно через </str>
+		<str name="#IS_PREORDER_DAYS">дней</str>
+		<str name="#IS_PREORDER_HOURS">часов</str>
+		<str name="#IS_PREORDER_MINS">минут</str>
+		<str name="#IS_PREORDER_DAY">день</str>
+		<str name="#IS_PREORDER_HOUR">время</str>
+		<str name="#IS_PREORDER_MIN">минута</str>
 
 		<str name="#IS_LAUNCHING">Запуск</str>
 		<str name="#IS_DOWNLOADINGTOOL">DL инструменты</str>
