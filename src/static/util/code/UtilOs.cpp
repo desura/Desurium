@@ -162,8 +162,7 @@ std::wstring getCachePath(std::wstring extra)
 	
 	return UTIL::STRING::toWStr(cachePath) + extra;
 #else
-	return L"";
-//	#error NOT IMPLEMENTED
+	return getAppDataPath(std::wstring(L"cache/") + extra);
 #endif
 }
 
@@ -194,8 +193,7 @@ std::wstring getAppInstallPath(std::wstring extra)
 	
 	return UTIL::STRING::toWStr(installPath) + extra;
 #else
-	return L"";
-//	#error NOT IMPLEMENTED
+	return UTIL::OS::getCurrentDir(DIR_WCOMMON);
 #endif
 }
 
