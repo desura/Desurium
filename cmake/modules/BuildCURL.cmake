@@ -14,8 +14,6 @@ else()
   set(CURL_DEBUG no)
 endif()
 
-# we need OpenSSL on all targets
-find_package(OpenSSL REQUIRED)
 if(WIN32 AND NOT MINGW)
   ExternalProject_Add(
     curl
@@ -32,7 +30,7 @@ if(WIN32 AND NOT MINGW)
     custom_build
     DEPENDEES configure
     DEPENDERS build
-    COMMAND nmake /f Makefile.vc MODE=dll WITH_SSL=static DEBUG=${CURL_DEBUG} GEN_PDB=no USE_SSPI=no USE_IPV6=no USE_IDN=no WITH_DEVEL=${OPENSSL_INCLUDE_DIR}/..
+    COMMAND nmake /f Makefile.vc MODE=dll DEBUG=${CURL_DEBUG} GEN_PDB=no USE_SSPI=yes USE_IPV6=no USE_IDN=no ENABLE_WINSSL=yes MACHINE=x86
     WORKING_DIRECTORY <SOURCE_DIR>/winbuild
   )
   
@@ -41,11 +39,12 @@ if(WIN32 AND NOT MINGW)
     source_dir
   )
   if(DEBUG)
-    set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-debug-dll-ssl-static/)
+    set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-vc-x86-debug-dll-spnego-winssl)
   else()
-    set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-release-dll-ssl-static/)
+    set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-vc-x86-release-dll-spnego-winssl)
   endif()
 else()
+  find_package(OpenSSL REQUIRED)
   set(CURL_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/curl)
   ExternalProject_Add(
     curl

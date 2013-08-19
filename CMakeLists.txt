@@ -239,11 +239,11 @@ else()
 endif()
 
 if(WIN32 OR NOT CURL_FOUND)
-  set(CURL_URL_DEFAULT http://curl.haxx.se/download/curl-7.26.0.tar.bz2)
+  set(CURL_URL_DEFAULT http://curl.haxx.se/download/curl-7.32.0.tar.bz2)
   set(CURL_URL ${CURL_URL_DEFAULT}
       CACHE STRING "URL to curl archive")
   if(CURL_URL STREQUAL CURL_URL_DEFAULT)
-    set(CURL_MD5 bfa80f01b3d300359cfb4d409b6136a3)
+    set(CURL_MD5 30d04b0a8c43c6770039d1bf033dfe79)
   else()
     unset(CURL_MD5)
   endif()
