@@ -324,7 +324,7 @@ if(NOT BUILD_ONLY_CEF)
     add_dependencies(sqlite3x boost)
   endif()
 
-  if(WITH_FLASH)
+  if(WITH_FLASH AND NOT WIN32)
     add_subdirectory(third_party/npwrapper)
   endif()
   ###############################################################################
