@@ -5,7 +5,7 @@
  void ParsePrincipal(CERTName* name,
                      CertPrincipal* principal) {
 -  typedef char* (*CERTGetNameFunc)(CERTName* name);
-+  #if NSS_VMINOR >= 15
++  #if NSS_VMAJOR >= 3 && NSS_VMINOR >= 15
 +    typedef char* (*CERTGetNameFunc)(CERTName const* name);
 +  #else
 +    typedef char* (*CERTGetNameFunc)(CERTName* name);
