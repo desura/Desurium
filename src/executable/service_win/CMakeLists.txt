@@ -9,11 +9,11 @@ file(GLOB
   ${RC_DIR}/service_exe.rc
 )
 
-add_executable(service_win ${Sources} ${COMMON_SOURCE})
-target_link_libraries(service_win
+add_executable(desura_service ${Sources} ${COMMON_SOURCE})
+target_link_libraries(desura_service
   mdump
   wintrust
 )
 
-install(TARGETS service_win
+install(TARGETS desura_service
         DESTINATION "${BIN_INSTALL_DIR}")

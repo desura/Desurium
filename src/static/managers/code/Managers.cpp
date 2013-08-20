@@ -53,7 +53,7 @@ public:
 
 private:
 	static Class* instance;
-	static MutexType mutex;
+	static QuickMutex mutex;
 
 	static void NewInstance();
 
@@ -75,20 +75,20 @@ template <typename Class>
 inline void SingletonHolder<Class>::NewInstance()
 {
 	// enter critical section
-	EnterCriticalSection(&mutex);
+	mutex.lock();
 
 	// check again for creation (another thread could accessed the critical section before
 	if (!instance)
 		instance = new Class();
 
-	LeaveCriticalSection(&mutex);
+	mutex.unlock();
 }
 
 template <typename Class>
 Class *SingletonHolder<Class>::instance = nullptr;
 
 template <typename Class>
-MutexType SingletonHolder<Class>::mutex;
+QuickMutex SingletonHolder<Class>::mutex;
 
 class ManagersImpl
 {

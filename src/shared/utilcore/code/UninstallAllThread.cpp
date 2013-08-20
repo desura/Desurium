@@ -277,8 +277,6 @@ void UninstallAllThread::removeDesuraCache()
 
 	UTIL::FS::delFile(mcfUploads);
 	UTIL::FS::delFile(mcfStore);
-
-	UTIL::WIN::delRegValue(MCFCACHE);
 }
 
 void UninstallAllThread::removeDesuraSettings()
@@ -351,10 +349,5 @@ void UninstallAllThread::delLeftOverMcf(UTIL::FS::Path path, std::vector<std::st
 
 gcString UninstallAllThread::getCachePath()
 {
-	gcString path = UTIL::WIN::getRegValue(MCFCACHE);
-
-	if (path.size() == 0)
-		path = m_pUser->getAppDataPath();
-
-	return path;
+	return UTIL::OS::getMcfCachePath();
 }

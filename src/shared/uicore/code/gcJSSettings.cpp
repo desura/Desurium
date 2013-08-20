@@ -25,8 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #define STEAMPATH "HKEY_CURRENT_USER\\Software\\Valve\\Steam\\SteamPath"
 #define NOSTEAM "Steam Not Installed"
 
-void RestartAndSetMCFCache(const char* dir);
-
 #include <wx/filepicker.h>
 #include "usercore/CIPManagerI.h"
 

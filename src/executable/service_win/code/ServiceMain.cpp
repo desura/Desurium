@@ -74,22 +74,19 @@ bool CGCServiceApp::start(int argc, char** argv)
 	DeleteFile("desura_service_old.exe");
 	DeleteFile("desura_old.exe");
 
-#ifndef DEBUG
+#if !defined(DEBUG) && defined(DESURA_OFFICAL_BUILD)
 	char message[255] = {0};
-	if (ValidateCert(L".\\bin\\servicecore_c.dll", message, 255) != ERROR_SUCCESS)
+	if (ValidateCert(L".\\servicecore.dll", message, 255) != ERROR_SUCCESS)
 	{
-		log("Failed cert check on servicecore_c.dll: ");
+		log("Failed cert check on servicecore.dll: ");
 		log(message);
 		log("\n");
 		return false;
 	}
-
-	if (!m_SCDLL.load("servicecore_c.dll"))
-#else
-	if (!m_SCDLL.load("servicecore_c-d.dll")) 
 #endif
+	if (!m_SCDLL.load("servicecore.dll")) 
 	{
-		log("Failed to load servicecore_c.dll.\n");
+		log("Failed to load servicecore.dll.\n");
 		return false;
 	}
 

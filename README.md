@@ -82,15 +82,15 @@ Build Desura on Windows
 
 Download and install:
 
- * TortoiseSvn http://tortoisesvn.net/downloads.html. Make sure to install command line tools
- * msysGit https://code.google.com/p/msysgit/downloads/list
- * Windows Sdk 7.1 http://www.microsoft.com/download/en/details.aspx?id=8279
-  (If applicable)
+ * Svn http://www.sliksvn.com/en/download or http://tortoisesvn.net/downloads.html
+ * Msvc 2008 Professional or higher
  * Python 2.7 http://www.python.org/getit/
  * SCons http://www.scons.org/download.php (same architecture as python 2.7!)
  * CMake 2.8 http://www.cmake.org/
+ * Patch either from msysGit or http://gnuwin32.sourceforge.net/packages/patch.htm (please use Complete package, except sources)
+ * Windows DirectX 9 SDK for the CEF build https://www.microsoft.com/en-us/download/details.aspx?id=6812
 
-Note: Make sure you add git to your environment path and also set SVN_PATH to point to the tortoise svn path
+Note: Make sure you add svn and python to your environment PATH
 
 Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a full build environment) and run:
 

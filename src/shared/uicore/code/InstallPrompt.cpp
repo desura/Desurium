@@ -24,6 +24,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "util/UtilLinux.h"
 #endif
 
+#ifdef WIN32
+  #include <Shellapi.h>
+#endif
+
 BEGIN_EVENT_TABLE( InstallPrompt, wxDialog )
 	EVT_BUTTON( wxID_ANY, InstallPrompt::onButtonClick )
 END_EVENT_TABLE()

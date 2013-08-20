@@ -32,7 +32,7 @@ class gcThemeManagerI : public ThemeManagerI
 public:
 	//! Gets image handle. Alpha refers to if the image has transperency
 	//!
-	virtual gcImageHandle getImageHandle(const char* path, bool alpha = false)=0;
+	virtual gcImageHandle getImageHandle(const char* path)=0;
 
 	//! Gets a sprite from an image
 	//!

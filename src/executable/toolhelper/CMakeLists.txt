@@ -7,10 +7,8 @@ file(GLOB
   Sources code/*.cpp
   ${RC_DIR}/toolhelper.rc
 )
-
-add_linker_flags(/FORCE)
 				
-add_executable(toolhelper ${Sources})
+add_executable(toolhelper WIN32 ${Sources})
 target_link_libraries(toolhelper
   mdump
   util_bootloader

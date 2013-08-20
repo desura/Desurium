@@ -6,7 +6,9 @@
 
 find_program(PATCH_EXECUTABLE
   NAME patch
-  PATHS "$ENV{ProgramFiles}/Git/bin"
+  PATHS "$ENV{ProgramFiles}/GnuWin32/bin"
+        "$ENV{ProgramFiles(x86)}/GnuWin32/bin"
+        "$ENV{ProgramFiles}/Git/bin"
         "$ENV{ProgramFiles(x86)}/Git/bin"
 )
 

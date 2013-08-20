@@ -46,6 +46,9 @@ if(NOT BUILD_ONLY_CEF)
   # windows-only options
   ###############################################################################
 
+  if(WIN32)
+    option(DEBUG_CEF "turn on/off debugging in CEF" OFF)
+  endif()
 
   ###############################################################################
   # check set options, print warnings, what ever

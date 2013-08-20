@@ -25,20 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <wincrypt.h>
 #include <wintrust.h>
 
-#ifdef DEBUG
-	const char* g_szValidExeNames[] =
-	{
-		"desura-d.exe",
-		NULL,
-	};
-#else
-	const char* g_szValidExeNames[] =
-	{
-		"desura.exe",
-		NULL,
-	};
-#endif
-
+const char* g_szValidExeNames[] =
+{
+	"desura.exe",
+	NULL,
+};
 
 bool FindWorkingDir(std::string &out)
 {

@@ -123,7 +123,7 @@ TaskBarIcon::TaskBarIcon(wxWindow *parent) : gcTaskBarIcon()
 	m_uiLastCount = -1;
 	m_uiLastProg = 0;
 	
-	m_imgCount = GetGCThemeManager()->getImageHandle("#count_background", true);
+	m_imgCount = GetGCThemeManager()->getImageHandle("#count_background");
 	updateIcon();	
 }
 

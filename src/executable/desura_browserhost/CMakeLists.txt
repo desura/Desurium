@@ -13,13 +13,10 @@ file(GLOB
 )
 
 add_definitions(
-  -D_CONSOLE
-  -DDONT_INCLUDE_AFXWIN
   -DDONT_DEFINE_OS_VERSION
 )
-add_linker_flags(/FORCE)
 				
-add_executable(desura_browserhost ${Sources} ${BROWSER_PIPE_SPOURCES})
+add_executable(desura_browserhost WIN32 ${Sources} ${BROWSER_PIPE_SPOURCES})
 target_link_libraries(desura_browserhost
   gcJSBase
   ipc_pipe
