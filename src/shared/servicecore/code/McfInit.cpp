@@ -36,23 +36,17 @@ void initFactory()
 {
 	bool res = false;
 
-#ifdef WIN32
-#ifndef DEBUG
+#if defined(WIN32) && !defined(DEBUG) && defined(DESURA_OFFICAL_BUILD)
 	char message[255] = {0};
-	if (UTIL::WIN::validateCert(L".\\bin\\mcfcore.dll", message, 255) != ERROR_SUCCESS)
+	if (UTIL::WIN::validateCert(L".\\mcfcore.dll", message, 255) != ERROR_SUCCESS)
 	{
 		Warning(gcString("Cert validation failed on mcfcore.dll: {0}\n", message));
 		exit(-1);
 	}
 #endif
-#endif
 
 #ifdef WIN32
-#ifdef DEBUG
-	res = g_pMCFCore.load("mcfcore-d.dll");
-#else
 	res = g_pMCFCore.load("mcfcore.dll");
-#endif
 #else
 	res = g_pMCFCore.load("libmcfcore.so");
 #endif

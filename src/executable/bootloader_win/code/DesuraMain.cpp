@@ -18,7 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "stdafx.h"
 
-#include "windows.h"
+#include "Common.h"
+
 #include "resource.h"
 #include "UtilBootloader.h"
 
@@ -461,24 +462,20 @@ BOOL BootLoader::OnIdle(LONG lCount)
 
 void BootLoader::preReadImages()
 {
+	BootLoaderUtil::PreReadImage(".\\uicore.dll");
+	BootLoaderUtil::PreReadImage(".\\webcore.dll");
+	BootLoaderUtil::PreReadImage(".\\usercore.dll");
+	BootLoaderUtil::PreReadImage(".\\mcfcore.dll");
 #ifdef DEBUG
-	BootLoaderUtil::PreReadImage(".\\bin\\uicore-d.dll");
-	BootLoaderUtil::PreReadImage(".\\bin\\webcore-d.dll");
-	BootLoaderUtil::PreReadImage(".\\bin\\usercore-d.dll");
-	BootLoaderUtil::PreReadImage(".\\bin\\mcfcore-d.dll");
-	BootLoaderUtil::PreReadImage(".\\bin\\wxmsw290ud_vc_desura.dll");
+	BootLoaderUtil::PreReadImage(".\\wxmsw290ud_vc_desura.dll");
 #else
-	BootLoaderUtil::PreReadImage(".\\bin\\uicore.dll");
-	BootLoaderUtil::PreReadImage(".\\bin\\webcore.dll");
-	BootLoaderUtil::PreReadImage(".\\bin\\usercore.dll");
-	BootLoaderUtil::PreReadImage(".\\bin\\mcfcore.dll");
-	BootLoaderUtil::PreReadImage(".\\bin\\wxmsw290u_vc_desura.dll");	
+	BootLoaderUtil::PreReadImage(".\\wxmsw290u_vc_desura.dll");	
 #endif
 }
 
 void BootLoader::loadUICore()
 {
-	if (!BootLoaderUtil::SetDllDir(".\\bin"))
+	if (!BootLoaderUtil::SetDllDir("."))
 	{
 		::MessageBox(NULL, "Failed to set the DLL path to the bin folder.", PRODUCT_NAME ": ERROR!",  MB_OK);
 		exit(-100);			
@@ -486,11 +483,7 @@ void BootLoader::loadUICore()
 
 	preReadImages();
 
-#ifdef DEBUG
-	const char* dllname = "uicore-d.dll";
-#else
 	const char* dllname = "uicore.dll";
-#endif
 
 	if (!m_hUICore.load(dllname))
 	{

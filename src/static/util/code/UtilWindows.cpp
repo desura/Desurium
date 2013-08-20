@@ -32,6 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <Aclapi.h>
 #include <Propkey.h>
 #include <olectl.h>
+#include <Shellapi.h>
 
 #include <Sddl.h>
 #define getSystemPath(id, path) SHGetFolderPathW(NULL, id , NULL, SHGFP_TYPE_CURRENT, path);

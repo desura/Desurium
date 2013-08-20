@@ -3,4 +3,5 @@ IF NOT EXIST build (
 )
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=../install -G "NMake Makefiles"
-nmake
+nmake install
+cd ..

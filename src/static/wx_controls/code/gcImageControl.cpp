@@ -62,7 +62,7 @@ void gcImageControl::setImage(const char* image)
 {
 	wxRegion r;
 	SetShape(r, this);
-	m_imgHandle = GetGCThemeManager()->getImageHandle(image, true);
+	m_imgHandle = GetGCThemeManager()->getImageHandle(image);
 	invalidatePaint();
 }
 

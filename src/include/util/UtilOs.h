@@ -84,6 +84,10 @@ namespace OS
 	//! @param extra Extra path to add to the end of app path
 	//!
 	std::wstring getCachePath(std::wstring extra = L"");
+	
+	//! Gets the folder for Desura's Mcf cache
+	//!
+	std::wstring getMcfCachePath();
 
 	//! Gets the folder for installing apps to
 	//!

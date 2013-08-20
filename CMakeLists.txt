@@ -56,6 +56,7 @@
 #
 # windows-only options:
 #   BOOST_URL                           URL to boost archive
+#   DEBUG_CEF       OFF                 turn on/off debugging in CEF
 #
 # some dev notes:
 #
@@ -183,7 +184,10 @@ if(WIN32)
   # VC express and mingw doesn't provide MFC, but other versions of VC do
   find_package(MFC)
   if(MFC_FOUND)
-    add_definitions(-DMFC_FOUND)
+    set(CMAKE_MFC_FLAG 2)
+    add_definitions(-DMFC_FOUND -DDONT_INCLUDE_WINH -D_AFXDLL)
+    # Visual Studio 9 needs this
+    add_definitions(-D_BIND_TO_CURRENT_CRT_VERSION -D_BIND_TO_CURRENT_MFC_VERSION)
   endif()
 endif()
 
@@ -196,7 +200,7 @@ else()
 endif()
 
 ###############################################################################
-# SVN, Git, HTTP stuff
+# SVN, HTTP stuff
 ###############################################################################
 
 if(WIN32)
@@ -239,11 +243,11 @@ else()
 endif()
 
 if(WIN32 OR NOT CURL_FOUND)
-  set(CURL_URL_DEFAULT http://curl.haxx.se/download/curl-7.26.0.tar.bz2)
+  set(CURL_URL_DEFAULT http://curl.haxx.se/download/curl-7.32.0.tar.bz2)
   set(CURL_URL ${CURL_URL_DEFAULT}
       CACHE STRING "URL to curl archive")
   if(CURL_URL STREQUAL CURL_URL_DEFAULT)
-    set(CURL_MD5 bfa80f01b3d300359cfb4d409b6136a3)
+    set(CURL_MD5 30d04b0a8c43c6770039d1bf033dfe79)
   else()
     unset(CURL_MD5)
   endif()
@@ -268,8 +272,6 @@ else()
 endif()
 
 # for windows
-set(CURL_GIT git://github.com/bagder/curl.git)
-set(CURL_VERSION tags/curl-7_25_0)
 set(V8_SVN http://v8.googlecode.com/svn/tags/3.9.15/)
 
 ###############################################################################
@@ -324,7 +326,7 @@ if(NOT BUILD_ONLY_CEF)
     add_dependencies(sqlite3x boost)
   endif()
 
-  if(WITH_FLASH)
+  if(WITH_FLASH AND NOT WIN32)
     add_subdirectory(third_party/npwrapper)
   endif()
   ###############################################################################

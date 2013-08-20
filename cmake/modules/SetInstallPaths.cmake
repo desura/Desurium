@@ -10,11 +10,17 @@ else()
   set(SYSTEM_ROOT_DIR "/")
 endif()
 
+if(WIN32)
+  set(DEFAULT_RUNTIME_LIB_DIR "")
+else()
+  set(DEFAULT_RUNTIME_LIB_DIR "lib")
+endif()
+
 set(CMAKE_INSTALL_PREFIX ${DEFAULT_INSTALL_DIR}
     CACHE STRING "Desura Install Prefix")
 set(BINDIR ""
     CACHE STRING "Desura Bin Install Dir")
-set(RUNTIME_LIBDIR "lib"
+set(RUNTIME_LIBDIR ${DEFAULT_RUNTIME_LIB_DIR}
     CACHE STRING "Desura Lib Dir")
 set(DATADIR ""
     CACHE STRING "Desura Data Install Dir")

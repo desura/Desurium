@@ -28,6 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 static UINT gs_msgTaskbar = 0;
 static UINT gs_msgRestartTaskbar = 0;
+
+#include <Shellapi.h>
 #endif
 
 #ifdef NIX

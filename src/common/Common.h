@@ -109,6 +109,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #ifdef WIN32 // WINDOWS DEFINES
 	#ifndef DONT_INCLUDE_WINH
 		#include <windows.h>
+	#else
+		#include <afx.h>
 	#endif
 	
 	#include <sys/stat.h>
@@ -539,7 +541,6 @@ private:
 #define REGRUN "HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\Desura"
 #define APPID	"HKEY_LOCAL_MACHINE\\SOFTWARE\\Desura\\DesuraApp\\appid"
 #define APPBUILD "HKEY_LOCAL_MACHINE\\SOFTWARE\\Desura\\DesuraApp\\appver"
-#define MCFCACHE "HKEY_LOCAL_MACHINE\\SOFTWARE\\Desura\\DesuraApp\\mcfcache"
 
 //dont change the name as the uninstaller needs it!
 #define SERVICE_NAME "Desura Install Service"

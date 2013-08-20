@@ -62,8 +62,8 @@ void DestroyManagers();
 
 void InitLocalManagers()
 {
-	GetLanguageManager()->loadFromFile(LANG_DEF);
-	GetLanguageManager()->loadFromFile(LANG_EXTRA);
+	GetLanguageManager().loadFromFile(LANG_DEF);
+	GetLanguageManager().loadFromFile(LANG_EXTRA);
 
 	GetGCThemeManager()->loadFromFolder(THEMEFOLDER);
 	GetGCThemeManager()->loadTheme(gc_theme.getString());
@@ -71,23 +71,20 @@ void InitLocalManagers()
 
 bool LangChanged(CVar* var, const char* val)
 {
-	if (GetLanguageManager())
+	gcString lan("{0}{1}.xml", LANGFOLDER, val);
+	gcString extra("{0}{1}_utility.xml", LANGFOLDER, val);
+	
+	if (GetLanguageManager().loadFromFile(lan.c_str()))
 	{
-		gcString lan("{0}{1}.xml", LANGFOLDER, val);
-		gcString extra("{0}{1}_utility.xml", LANGFOLDER, val);
-
-		if (GetLanguageManager() && GetLanguageManager()->loadFromFile(lan.c_str()))
-		{
-			GetLanguageManager()->loadFromFile(extra.c_str());
-
-			Msg(gcString("Loaded Language file: {0}\n", val));
-			return true;
-		}
-		else
-		{
-			Warning(gcString("Failed to Load Language file: {0}\n", val));
-			return false;
-		}
+		GetLanguageManager().loadFromFile(extra.c_str());
+		
+		Msg(gcString("Loaded Language file: {0}\n", val));
+		return true;
+	}
+	else
+	{
+		Warning(gcString("Failed to Load Language file: {0}\n", val));
+		return false;
 	}
 
 	return true;

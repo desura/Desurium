@@ -22,6 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include <branding/branding.h>
 
+#ifdef WIN32
+  #include <Shellapi.h>
+#endif
+
 namespace UserCore
 {
 
