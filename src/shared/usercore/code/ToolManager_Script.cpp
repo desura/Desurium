@@ -319,13 +319,8 @@ bool ToolManager::initJSEngine()
 bool ToolManager::loadJSEngine()
 {
 #ifdef WIN32
-#ifdef DEBUG
-	if (!m_ScriptCore.load("scriptcore-d.dll"))
-		return false;
-#else
 	if (!m_ScriptCore.load("scriptcore.dll"))
 		return false;
-#endif
 #else
 	if (!m_ScriptCore.load("libscriptcore.so"))
 		return false;
