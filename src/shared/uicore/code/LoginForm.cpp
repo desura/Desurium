@@ -696,6 +696,8 @@ void LoginForm::doLogin()
 	m_tbPassword->Disable();
 	m_butSignin->Disable();
 
+	m_cbRemPass->Disable();
+
 	m_butCancel->Disable();
 
 	m_linkOffline->Disable();
@@ -769,6 +771,8 @@ void LoginForm::onLoginError(gcException &e)
 	m_tbPassword->Enable();
 	m_butSignin->Enable();
 	m_butCancel->Enable();
+
+	m_cbRemPass->Enable();
 
 	m_linkOffline->Enable();
 	m_linkNewAccount->Enable();
