@@ -35,12 +35,12 @@ class StripMenuButton;
 ///////////////////////////////////////////////////////////////////////////////
 /// Class LoginForm
 ///////////////////////////////////////////////////////////////////////////////
-class LoginForm : public gcFrame 
+class LoginForm : public gcFrame
 {
 public:
 	LoginForm(wxWindow* parent);
 	~LoginForm();
-	
+
 	void autoLogin();
 
 	EventV onLoginEvent;
@@ -52,10 +52,8 @@ protected:
 	gcTextCtrl* m_tbUsername;
 	gcTextCtrl* m_tbPassword;
 	gcTextCtrl* m_tbPasswordDisp;
-	
-#ifndef UI_HIDE_AUTOLOGIN
+
 	gcCheckBox* m_cbRemPass;
-#endif
 
 	gcStaticLine* m_staticline1;
 
@@ -69,9 +67,6 @@ protected:
 	StripMenuButton* m_linkOffline;
 	StripMenuButton* m_linkNewAccount;
 	StripMenuButton* m_linkLostPassword;
-
-
-
 
 	void doLogin();
 

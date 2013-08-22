@@ -114,7 +114,7 @@ public:
 		setColors(linkColor, hoverColor);
 		showFocusBox(hoverColor);
 		init(NULL);
-	
+
 		Bind(wxEVT_CHAR, &LoginLink::onChar, this);
 	}
 
@@ -158,10 +158,8 @@ LoginForm::LoginForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, Managers::Get
 	m_tbPassword = new gcTextCtrl(this, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER|wxWANTS_CHARS|wxTE_PASSWORD);
 	m_tbPasswordDisp = new gcTextCtrl(this, wxID_ANY, Managers::GetString(L"#LF_PASS"));
 
-#ifndef UI_HIDE_AUTOLOGIN
 	m_cbRemPass = new gcCheckBox(this, wxID_ANY, Managers::GetString(L"#LF_AUTO"));
 	m_cbRemPass->SetToolTip(Managers::GetString(L"#LF_AUTO_TOOLTIP"));
-#endif
 
 	m_butSignin = new gcButton(this, wxID_ANY, Managers::GetString(L"#LOGIN"), wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS);
 	m_butCancel = new gcButton(this, wxID_ANY, Managers::GetString(L"#CANCEL"), wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS);
@@ -199,9 +197,7 @@ LoginForm::LoginForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, Managers::Get
 	m_tbPasswordDisp->Bind(wxEVT_COMMAND_TEXT_UPDATED, &LoginForm::onTextChange, this);
 	m_tbPasswordDisp->Bind(wxEVT_SET_FOCUS, &LoginForm::onFocus, this);
 
-#ifndef UI_HIDE_AUTOLOGIN
 	m_cbRemPass->Bind(wxEVT_CHAR, &LoginForm::onChar, this);
-#endif
 
 	m_linkOffline->Bind(wxEVT_CHAR, &LoginForm::onChar, this);
 	m_linkNewAccount->Bind(wxEVT_CHAR, &LoginForm::onChar, this);
@@ -226,17 +222,13 @@ LoginForm::LoginForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, Managers::Get
 	fgSizer4->AddGrowableCol( 0 );
 	fgSizer4->SetFlexibleDirection( wxBOTH );
 	fgSizer4->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-	
-#ifndef UI_HIDE_AUTOLOGIN
+
 	fgSizer4->Add( m_cbRemPass, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
-#else
-	fgSizer4->Add(0,0,0,0);
-#endif
 
 	fgSizer4->Add( m_butSignin, 0, wxTOP|wxBOTTOM|wxLEFT, 5 );
 	fgSizer4->Add( m_butCancel, 0, wxTOP|wxBOTTOM|wxLEFT, 5 );
 
-	
+
 	wxFlexGridSizer* fgSizer5 = new wxFlexGridSizer( 1, 3, 0, 0 );
 	fgSizer5->AddGrowableCol( 0 );
 	fgSizer5->AddGrowableCol( 1 );
@@ -247,7 +239,7 @@ LoginForm::LoginForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, Managers::Get
 	fgSizer5->Add( m_linkOffline, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
 	fgSizer5->Add( m_linkNewAccount, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
 	fgSizer5->Add( m_linkLostPassword, 0, wxALIGN_RIGHT|wxTOP|wxBOTTOM|wxLEFT, 5 );
-	
+
 
 	wxFlexGridSizer* fgSizer6 = new wxFlexGridSizer( 4, 1, 0, 0 );
 	fgSizer6->AddGrowableCol( 0 );
@@ -272,7 +264,7 @@ LoginForm::LoginForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, Managers::Get
 	fgSizer2->Add( m_imgLogo, 1, wxTOP|wxBOTTOM|wxALIGN_CENTER_HORIZONTAL, 5 );
 	fgSizer2->Add( fgSizer3, 1, wxEXPAND, 5 );
 	fgSizer2->Add( 0, 9, 1, wxEXPAND, 5 );
-	fgSizer2->Add( fgSizer5, 1, wxEXPAND, 5 );	
+	fgSizer2->Add( fgSizer5, 1, wxEXPAND, 5 );
 
 
 	wxFlexGridSizer* fgSizer1 = new wxFlexGridSizer( 1, 3, 0, 0 );
@@ -284,7 +276,7 @@ LoginForm::LoginForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, Managers::Get
 	fgSizer1->Add( 0, 0, 1, wxEXPAND, 5 );
 	fgSizer1->Add( fgSizer2, 1, wxEXPAND, 5 );
 	fgSizer1->Add( 0, 0, 1, wxEXPAND, 5 );
-	
+
 	this->SetSizer( fgSizer1 );
 	this->Layout();
 
@@ -294,9 +286,7 @@ LoginForm::LoginForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, Managers::Get
 	m_vTabOrder.push_back(m_tbUsername);
 	m_vTabOrder.push_back(m_tbPasswordDisp);
 	m_vTabOrder.push_back(m_tbPassword);
-#ifndef UI_HIDE_AUTOLOGIN
 	m_vTabOrder.push_back(m_cbRemPass);
-#endif
 	m_vTabOrder.push_back(m_butSignin);
 	m_vTabOrder.push_back(m_butCancel);
 	m_vTabOrder.push_back(m_linkOffline);
@@ -329,10 +319,8 @@ LoginForm::LoginForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, Managers::Get
 			setSavedWindowPos(gc_login_x.getInt(), gc_login_y.getInt(), UINT_MAX, UINT_MAX);
 	}
 
-#ifndef UI_HIDE_AUTOLOGIN
 	if (gc_savelogin.getBool())
 		m_cbRemPass->SetValue(true);
-#endif
 
 	if (gc_saveusername.getBool())
 	{
@@ -362,10 +350,8 @@ LoginForm::LoginForm(wxWindow* parent) : gcFrame(parent, wxID_ANY, Managers::Get
 	onStartLoginEvent += guiDelegate(this, &LoginForm::onStartLogin);
 
 	Managers::LoadTheme(this, "formlogin");
-	
-#ifndef UI_HIDE_AUTOLOGIN
+
 	Managers::LoadTheme(m_cbRemPass, "formlogin");
-#endif
 
 #ifdef WIN32
 	SetSize(wxSize(420,246));
@@ -407,7 +393,7 @@ wxRect LoginForm::getWindowsBorderRect() const
 #else
 	return wxRect(wxPoint(0,0), wxSize(800, 600));
 #endif // LINUX TODO
-	
+
 }
 
 void LoginForm::setFrameRegion()
@@ -415,7 +401,7 @@ void LoginForm::setFrameRegion()
 #ifdef WIN32
 	wxRect wbr = getWindowsBorderRect();
 	wxPoint br = wbr.GetBottomRight();
-	
+
 	br.x += 2;
 	br.y += 2;
 
@@ -733,12 +719,8 @@ void LoginForm::onLogin()
 {
 	safe_delete(m_pLogThread);
 
-#ifndef UI_HIDE_AUTOLOGIN
 	bool remPass = m_cbRemPass->GetValue();
 	gc_savelogin.setValue(remPass);
-#else
-	bool remPass = false;
-#endif
 
 	if (gc_saveusername.getBool())
 	{
@@ -778,14 +760,13 @@ void LoginForm::onLoginError(gcException &e)
 }
 
 void LoginForm::onChar(wxKeyEvent& event)
-{ 
+{
 	if (event.m_keyCode == WXK_TAB)
 	{
 		processTab(!event.ShiftDown(), event.GetId());
 	}
 	else
 	{
-#ifndef UI_HIDE_AUTOLOGIN
 		if (event.GetId() == m_cbRemPass->GetId())
 		{
 			if (event.m_keyCode == WXK_RETURN)
@@ -793,9 +774,8 @@ void LoginForm::onChar(wxKeyEvent& event)
 			else if (event.m_keyCode == ' ')
 				m_cbRemPass->SetValue(!m_cbRemPass->GetValue());
 		}
-#endif
 
-		event.Skip(); 
+		event.Skip();
 	}
 }
 
