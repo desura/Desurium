@@ -327,8 +327,6 @@ void ToolManager::startDownload(Misc::ToolTransInfo* info)
 	std::vector<DesuraId> idList;
 	info->getIds(idList);
 
-	bool bIsDownloading = false;
-
 	for (size_t x=0; x<idList.size(); x++)
 	{
 		DesuraId id = idList[x];
@@ -347,8 +345,6 @@ void ToolManager::startDownload(Misc::ToolTransInfo* info)
 			info->removeItem(id);
 			continue;
 		}
-
-		bIsDownloading = true;
 
 		std::map<uint64, UserCore::Task::DownloadToolTask*>::iterator it = m_mDownloads.find(id.toInt64());
 
