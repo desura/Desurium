@@ -25,29 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 //#define IPC_DEBUG
 #endif
 
-void print_buffer(const char* buff, size_t size)
-{
-	return;
-
-	gcString out="\n";
-
-	char b[10];
-
-	for (size_t x=0; x<size; x++)
-	{
-		snprintf(b, 10, "%02X ", (char)buff[x]);
-
-		out += b;
-
-		if ((x+1)%10 == 0 && x!=0)
-			out += "\n";
-	}
-
-	out += "\n";
-
-	printf("%s", out.c_str());
-}
-
 namespace IPC
 {
 
