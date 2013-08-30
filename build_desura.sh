@@ -77,7 +77,6 @@ pack() {
 		mv Desura-*.rpm ..
 	fi
 	cd ..
-	rm -rf build_package
 }
 
 case "$@" in
