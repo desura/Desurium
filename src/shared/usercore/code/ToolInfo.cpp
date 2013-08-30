@@ -142,7 +142,7 @@ ToolInfo::~ToolInfo()
 	safe_delete(m_vRPN);
 }
 
-void ToolInfo::parseXml(TiXmlNode* ToolInfoNode, WildcardManager* wildcardManager, const char* appDataPath)
+void ToolInfo::parseXml(tinyxml2::XMLNode* ToolInfoNode, WildcardManager* wildcardManager, const char* appDataPath)
 {
 	XML::GetChild("name", m_szNameString, ToolInfoNode);
 	XML::GetChild("nameid", m_szName, ToolInfoNode);
@@ -163,15 +163,15 @@ void ToolInfo::parseXml(TiXmlNode* ToolInfoNode, WildcardManager* wildcardManage
 	m_szArgs = res;
 	safe_delete(res);
 
-	TiXmlNode* iChecksNode = ToolInfoNode->FirstChild("intallchecks");
+	tinyxml2::XMLElement* iChecksNode = ToolInfoNode->FirstChildElement("intallchecks");
 
 	if (!iChecksNode)
-		iChecksNode = ToolInfoNode->FirstChild("installchecks");
+		iChecksNode = ToolInfoNode->FirstChildElement("installchecks");
 
 	if (!iChecksNode)
 		return;
 
-	TiXmlElement* iCheckNode = iChecksNode->FirstChildElement("installcheck");
+	tinyxml2::XMLElement* iCheckNode = iChecksNode->FirstChildElement("installcheck");
 
 	while (iCheckNode)
 	{

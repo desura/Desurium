@@ -104,7 +104,7 @@ public:
 	//!
 	//! @param xmlNode Xml to get data from
 	//!
-	void loadXmlData(TiXmlNode *xmlNode);
+	void loadXmlData(tinyxml2::XMLNode *xmlNode);
 
 	//! Returns the last mcf build for this branch
 	//!
@@ -128,7 +128,7 @@ protected:
 	gcString encodeCDKey();
 	void decodeCDKey(gcString key);
 
-	void processInstallScript(TiXmlElement* scriptNode);
+	void processInstallScript(tinyxml2::XMLElement* scriptNode);
 
 private:
 	DesuraId m_ItemId;

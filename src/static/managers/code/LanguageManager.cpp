@@ -69,19 +69,15 @@ const wchar_t* LanguageManager::getString(const wchar_t* name)
 
 bool LanguageManager::loadFromFile(const char* file)
 {
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	doc.LoadFile(file);
 
-#ifdef WIN32 // seemingly unused
-	const char* err = doc.ErrorDesc();
-#endif
-
-	TiXmlNode *cNode = doc.FirstChild("lang");
+	tinyxml2::XMLNode *cNode = doc.FirstChildElement("lang");
 
 	if (!cNode)
 		return false;
 
-	auto parseString = [this](TiXmlElement* str)
+	auto parseString = [this](tinyxml2::XMLElement* str)
 	{
 		const char* name = str->Attribute("name");
 		const char* val = str->GetText();
@@ -117,12 +113,12 @@ bool LanguageManager::loadFromFile(const char* file)
 #endif
 	};
 
-	XML::for_each_child("str", cNode->FirstChild("strings"), parseString);
+	XML::for_each_child("str", cNode->FirstChildElement("strings"), parseString);
 
 #ifdef WIN32
-	XML::for_each_child("str", cNode->FirstChild("windows"), parseString);
+	XML::for_each_child("str", cNode->FirstChildElement("windows"), parseString);
 #else
-	XML::for_each_child("str", cNode->FirstChild("linux"), parseString);
+	XML::for_each_child("str", cNode->FirstChildElement("linux"), parseString);
 #endif
 
 	return true;

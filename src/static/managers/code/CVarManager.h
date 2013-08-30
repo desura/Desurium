@@ -71,7 +71,7 @@ public:
 	virtual void getCVarList(std::vector<CVar*> &vList);
 
 protected:
-	void parseXML(TiXmlNode *cNode);
+	void parseXML(tinyxml2::XMLNode *cNode);
 
 	void loadFromDb(sqlite3x::sqlite3_reader &reader);
 	void saveToDb(sqlite3x::sqlite3_command &cmd, uint8 flags);

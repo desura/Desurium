@@ -56,7 +56,7 @@ public:
 	//!
 	//! @param xmlNode node in the xml tree
 	//!
-	void loadXmlData(TiXmlElement *xmlNode);
+	void loadXmlData(tinyxml2::XMLElement *xmlNode);
 
 	//! Generates xml from file data and appends it to element
 	//!

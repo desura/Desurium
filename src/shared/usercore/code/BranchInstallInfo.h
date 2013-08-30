@@ -125,7 +125,7 @@ public:
 	//!
 	//! @param xmlNode Xml to get data from
 	//!
-	ProcessResult processSettings(TiXmlNode* setNode, WildcardManager* pWildCard, bool reset, bool hasBroughtItem, const char* cipPath);
+	ProcessResult processSettings(tinyxml2::XMLNode* setNode, WildcardManager* pWildCard, bool reset, bool hasBroughtItem, const char* cipPath);
 
 
 	//! Sets the item install path
@@ -159,7 +159,7 @@ public:
 	void overideInstalledBuild(MCFBuild build);
 	void resetInstalledMcf();
 
-	bool processUpdateXml(TiXmlNode* branch);
+	bool processUpdateXml(tinyxml2::XMLNode* branch);
 
 	bool hasInstalledMod();
 
@@ -182,7 +182,7 @@ public:
 
 protected:
 	void launchExeHack();
-	void processExes(TiXmlNode* setNode, WildcardManager* pWildCard, bool useCip);
+	void processExes(tinyxml2::XMLNode* setNode, WildcardManager* pWildCard, bool useCip);
 
 private:
 	gcString m_szPath;

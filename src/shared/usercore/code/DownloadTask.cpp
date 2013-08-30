@@ -95,21 +95,21 @@ void DownloadTask::startToolDownload()
 	if (!getUserCore()->getToolManager()->areAllToolsValid(toolList))
 	{
 		//missing tools. Gather info again
-		TiXmlDocument doc;
+		tinyxml2::XMLDocument doc;
 
 		getWebCore()->getItemInfo(getItemId(), doc, MCFBranch(), MCFBuild());
 
-		TiXmlNode *uNode = doc.FirstChild("iteminfo");
+		tinyxml2::XMLElement *uNode = doc.FirstChildElement("iteminfo");
 
 		if (!uNode)
 			throw gcException(ERR_BADXML);
 
-		TiXmlNode *toolNode = uNode->FirstChild("toolinfo");
+		tinyxml2::XMLElement *toolNode = uNode->FirstChildElement("toolinfo");
 
 		if (toolNode)
 			getUserCore()->getToolManager()->parseXml(toolNode);
 
-		TiXmlNode *gameNode = uNode->FirstChild("games");
+		tinyxml2::XMLElement *gameNode = uNode->FirstChildElement("games");
 
 		if (!gameNode)
 			throw gcException(ERR_BADXML);

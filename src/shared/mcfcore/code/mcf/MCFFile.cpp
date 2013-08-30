@@ -297,7 +297,7 @@ uint64 MCFFile::getCurSize()
 		return m_iSize;
 }
 
-void MCFFile::loadXmlData(TiXmlElement *xmlNode)
+void MCFFile::loadXmlData(tinyxml2::XMLElement *xmlNode)
 {
 	XML::GetChild("name", this, &MCFFile::setName, xmlNode);
 	XML::GetChild("path", this, &MCFFile::setPath, xmlNode);
@@ -311,7 +311,7 @@ void MCFFile::loadXmlData(TiXmlElement *xmlNode)
 	XML::GetChild("offset", m_llOffset, xmlNode);
 	XML::GetChild("tstamp", m_iTimeStamp, xmlNode);
 
-	TiXmlNode* diff = xmlNode->FirstChild("diff");
+	tinyxml2::XMLElement* diff = xmlNode->FirstChildElement("diff");
 
 	if (hasDiff() && diff)
 	{
@@ -325,11 +325,11 @@ void MCFFile::loadXmlData(TiXmlElement *xmlNode)
 		delFlag(FLAG_HASDIFF);
 	}
 
-	TiXmlNode *crcNode = xmlNode->FirstChild("crc");
+	tinyxml2::XMLElement *crcNode = xmlNode->FirstChildElement("crc");
 
 	if (crcNode && crcNode->ToElement())
 	{
-		TiXmlElement* crcEl = crcNode->ToElement();
+		tinyxml2::XMLElement* crcEl = crcNode->ToElement();
 
 		const char* bs = crcEl->Attribute("blocksize");
 

@@ -46,6 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include <vector>
 #include <algorithm>
+#include <cassert>
 
 #ifndef UNKNOWN_ITEM
 #define UNKNOWN_ITEM 0xFFFFFFFF

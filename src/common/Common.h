@@ -251,7 +251,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <wchar.h>
 #include <string.h>
 
-#include "tinyxml.h"
+#include "tinyxml2.h"
 //using namespace openutils;
 
 #include <vector>

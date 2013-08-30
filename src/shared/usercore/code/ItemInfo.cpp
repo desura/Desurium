@@ -410,7 +410,7 @@ void ItemInfo::loadDb(sqlite3x::sqlite3_connection* db)
 	triggerCallBack();
 }
 
-void ItemInfo::loadBranchXmlData(TiXmlElement* branch)
+void ItemInfo::loadBranchXmlData(tinyxml2::XMLElement* branch)
 {
 	const char* szId = branch->Attribute("id");
 
@@ -460,22 +460,22 @@ void ItemInfo::loadBranchXmlData(TiXmlElement* branch)
 	}
 }
 
-void ItemInfo::loadXmlData(uint32 platform, TiXmlNode *xmlNode, uint16 statusOveride, WildcardManager* pWildCard, bool reset)
+void ItemInfo::loadXmlData(uint32 platform, tinyxml2::XMLNode *xmlNode, uint16 statusOveride, WildcardManager* pWildCard, bool reset)
 {
 	if (!xmlNode)
 		throw gcException(ERR_BADXML);
 
-	TiXmlElement* xmlEl = xmlNode->ToElement();
+	tinyxml2::XMLElement* xmlEl = xmlNode->ToElement();
 
 	if (!xmlEl)
 		throw gcException(ERR_BADXML);
 
 	pauseCallBack();
 
-	TiXmlNode* statNode = xmlNode->FirstChild("status");
+	tinyxml2::XMLElement* statNode = xmlNode->FirstChildElement("status");
 	if (statNode)
 	{
-		TiXmlElement* statEl = statNode->ToElement();
+		tinyxml2::XMLElement* statEl = statNode->ToElement();
 
 		if (statEl)
 		{
@@ -499,13 +499,13 @@ void ItemInfo::loadXmlData(uint32 platform, TiXmlNode *xmlNode, uint16 statusOve
 	
 	processInfo(xmlEl);
 
-	XML::for_each_child("branch", xmlNode->FirstChild("branches"), [this](TiXmlElement* branch)
+	XML::for_each_child("branch", xmlNode->FirstChildElement("branches"), [this](tinyxml2::XMLElement* branch)
 	{
 		loadBranchXmlData(branch);
 	});
 
 	//the only time settings should be present if the xml came from the api
-	TiXmlNode* setNode = xmlNode->FirstChild("settings");
+	tinyxml2::XMLElement* setNode = xmlNode->FirstChildElement("settings");
 	if (setNode && !isInstalled() && pWildCard)
 		processSettings(platform, setNode, pWildCard, reset);
 
@@ -589,7 +589,7 @@ void ItemInfo::loadXmlData(uint32 platform, TiXmlNode *xmlNode, uint16 statusOve
 }
 
 
-void ItemInfo::processInfo(TiXmlNode* xmlEl)
+void ItemInfo::processInfo(tinyxml2::XMLNode* xmlEl)
 {
 	//desura info
 	XML::GetChild("name", this, &ItemInfo::setName, xmlEl);
@@ -605,7 +605,7 @@ void ItemInfo::processInfo(TiXmlNode* xmlEl)
 	if (XML::GetChild("devadmin", isDev, xmlEl) && isDev)
 		addSFlag(STATUS_DEVELOPER);
 
-	TiXmlNode * logoNode= xmlEl->FirstChild("boxart");
+	tinyxml2::XMLElement * logoNode= xmlEl->FirstChildElement("boxart");
 	if (logoNode && logoNode->ToElement())
 	{
 		const char *icon= logoNode->ToElement()->GetText();
@@ -616,7 +616,7 @@ void ItemInfo::processInfo(TiXmlNode* xmlEl)
 			setLogo(icon);
 	}
 
-	TiXmlNode * iconNode= xmlEl->FirstChild("icon");
+	tinyxml2::XMLElement * iconNode= xmlEl->FirstChildElement("icon");
 	if (iconNode && iconNode->ToElement())
 	{
 		const char *icon= iconNode->ToElement()->GetText();
@@ -649,14 +649,14 @@ void ItemInfo::processInfo(TiXmlNode* xmlEl)
 			delSFlag(UM::ItemInfoI::STATUS_DLC);
 	}
 
-	TiXmlNode* devNode = xmlEl->FirstChild("developer");
+	tinyxml2::XMLElement* devNode = xmlEl->FirstChildElement("developer");
 	if (devNode)
 	{
 		XML::GetChild("name", m_szDev, devNode);
 		XML::GetChild("url", m_szDevProfile, devNode);
 	}
 
-	TiXmlNode* pubNode = xmlEl->FirstChild("publisher");
+	tinyxml2::XMLElement* pubNode = xmlEl->FirstChildElement("publisher");
 	if (pubNode)
 	{
 		XML::GetChild("name", m_szPublisher, pubNode);
@@ -664,7 +664,7 @@ void ItemInfo::processInfo(TiXmlNode* xmlEl)
 	}
 }
 
-void ItemInfo::processSettings(uint32 platform, TiXmlNode* setNode, WildcardManager* pWildCard, bool reset)
+void ItemInfo::processSettings(uint32 platform, tinyxml2::XMLNode* setNode, WildcardManager* pWildCard, bool reset)
 {
 	//if (platform == -1)
 	//	int a=1;
@@ -984,14 +984,14 @@ bool ItemInfo::compare(const char* filter)
 }
 
 
-void ItemInfo::processUpdateXml(TiXmlNode *node)
+void ItemInfo::processUpdateXml(tinyxml2::XMLNode *node)
 {
-	TiXmlNode* branches = node->FirstChild("branches");
+	tinyxml2::XMLElement* branches = node->FirstChildElement("branches");
 
 	if (!branches)
 		return;
 
-	TiXmlElement* branch = branches->FirstChildElement("branch");
+	tinyxml2::XMLElement* branch = branches->FirstChildElement("branch");
 	while (branch)
 	{
 		uint32 id;

@@ -125,10 +125,10 @@ void User::logIn(const char* user, const char* pass)
 		throw gcException(ERR_NULLWEBCORE);
 
 	
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	m_pWebCore->logIn(user, pass, doc);
 
-	TiXmlElement *uNode = doc.FirstChildElement("memberlogin");
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement("memberlogin");
 
 	uint32 version = 0;
 	XML::GetAtt("version", version, uNode);
@@ -144,7 +144,7 @@ void User::logIn(const char* user, const char* pass)
 		throw gcException(ERR_BADXML);
 	}
 
-	TiXmlElement *memNode = uNode->FirstChildElement("member");
+	tinyxml2::XMLElement *memNode = uNode->FirstChildElement("member");
 	
 	if (memNode)
 	{
@@ -207,7 +207,7 @@ void User::logIn(const char* user, const char* pass)
 	m_pThreadPool->queueTask(new UserCore::Task::DownloadAvatarTask(this, szAvatar.c_str(), m_iUserId) );
 
 
-	TiXmlNode *msgNode = memNode->FirstChild("messages");
+	tinyxml2::XMLElement *msgNode = memNode->FirstChildElement("messages");
 	if (msgNode)
 	{
 		XML::GetChild("updates", m_iUpdates, msgNode);
@@ -240,11 +240,11 @@ void User::logIn(const char* user, const char* pass)
 		throw;
 	}
 
-	TiXmlNode *newsNode = memNode->FirstChild("news");
+	tinyxml2::XMLElement *newsNode = memNode->FirstChildElement("news");
 	if (newsNode)
 		parseNews(newsNode);
 
-	TiXmlNode *giftsNode = memNode->FirstChild("gifts");
+	tinyxml2::XMLElement *giftsNode = memNode->FirstChildElement("gifts");
 	if (giftsNode)
 		parseGifts(giftsNode);
 

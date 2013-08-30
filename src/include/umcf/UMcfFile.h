@@ -130,7 +130,7 @@ public:
 	void setTimeStamp(uint64 time){m_ullTimeStamp = time;}
 	void setOffset(uint64 offset){ m_ullOffset = offset; }
 
-	uint8 loadXmlData(TiXmlElement *xmlNode);
+	uint8 loadXmlData(tinyxml2::XMLElement *xmlNode);
 
 	//checks to see if file exists in dir
 	bool checkFile(const wchar_t* dir);
@@ -147,7 +147,7 @@ public:
 
 	void remove(const wchar_t* dir);
 
-	void genXml(TiXmlElement *element);
+	void genXml(tinyxml2::XMLElement *element, tinyxml2::XMLDocument& doc);
 	bool verifyFile(FILEHANDLE hFile, uint64 baseOffset);
 
 	uint8 readMCFAndSave(FILEHANDLE hFile, const wchar_t* path, uint64 offset, DelegateI<ProgressCB> *del = NULL);

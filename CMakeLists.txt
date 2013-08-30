@@ -76,6 +76,7 @@
 # TODO: silent output for externel dependencies
 project(Desura)
 
+
 if(APPLE) # see #418
   cmake_minimum_required(VERSION 2.8.10)
 else()
@@ -159,15 +160,8 @@ if(NOT BUILD_ONLY_CEF)
   endif()
   find_package(BZip2 ${REQUIRED_IF_OPTION})
   find_package(Sqlite ${REQUIRED_IF_OPTION})
-  find_package(TinyXML ${REQUIRED_IF_OPTION})
-  if(NOT TINYXML_HAS_2_6_API)
-    if(REQUIRED_IF_OPTION)
-      message(FATAL_ERROR "tinyxml >= 2.6 is required")
-    else()
-      message("tinyxml >= 2.6 is required. Using builtin")
-      set(TINYXML_FOUND FALSE)
-    endif()
-  endif()
+  pkg_check_modules(TINYXML ${REQUIRED_IF_OPTION} tinyxml2)
+  message("${TINYXML_LIBRARIES} ${TINYXML_INCLUDE_DIR}")
 
   find_package(v8 ${REQUIRED_ON_UNIX})
 
@@ -314,7 +308,7 @@ if(NOT BUILD_ONLY_CEF)
   add_subdirectory(third_party/courgette) # for headers only, build via ExternalProject
 
   if(NOT TINYXML_FOUND)
-    add_subdirectory(third_party/tinyxml)
+    add_subdirectory(third_party/tinyxml2)
   endif()
 
   if(NOT SQLITE_FOUND)

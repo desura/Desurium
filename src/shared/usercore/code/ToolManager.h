@@ -81,7 +81,7 @@ public:
 	virtual bool areAllToolsDownloaded(std::vector<DesuraId> &list);
 	virtual bool areAllToolsInstalled(std::vector<DesuraId> &list);
 
-	virtual void parseXml(TiXmlNode* toolinfoNode);
+	virtual void parseXml(tinyxml2::XMLNode* toolinfoNode);
 	virtual std::string getToolName(DesuraId toolId);
 
 	void loadItems();
