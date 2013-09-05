@@ -187,7 +187,7 @@ if(NOT BUILD_ONLY_CEF)
   find_package(v8 ${REQUIRED_IF_OPTION})
 
   if(NOT FORCE_BUNDLED_WXGTK)
-    find_package(wxWidgets 2.9.5 COMPONENTS richtext ${REQUIRED_IF_OPTION})
+    find_package(wxWidgets 2.9.5 ${REQUIRED_IF_OPTION})
   endif()
 endif()
 

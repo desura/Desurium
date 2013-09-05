@@ -58,7 +58,7 @@ public:
 protected:
 	void setupAutoComplete();
 
-	wxRichTextCtrl* m_rtDisplay;
+	wxTextCtrl* m_rtDisplay;
 	gcComboBox* m_tbInfo;
 	gcButton* m_butSubmit;
 	

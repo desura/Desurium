@@ -24,6 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "managers/Managers.h"
 
+#include <wx/datetime.h>
+
 CONCOMMAND(cmdlist, "cmdlist")
 {
 	std::vector<ConCommand*> vList;
@@ -124,7 +126,7 @@ Console::Console(wxWindow* parent) : gcFrame(parent, wxID_ANY, wxT("#CS_TITLE"),
 	SetMinSize( wxSize(300,300) );
 	setupPositionSave("log", false);
 
-	m_rtDisplay = new wxRichTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY|wxHSCROLL|wxVSCROLL );
+	m_rtDisplay = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY|wxHSCROLL|wxTE_MULTILINE );
 
 	m_tbInfo = new gcComboBox( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, NULL, wxTE_PROCESS_ENTER|wxWANTS_CHARS );
 	m_tbInfo->Bind(wxEVT_KEY_DOWN, &Console::onKeyDown, this);
@@ -278,9 +280,10 @@ void Console::onConsoleText(ConsoleText_s& text)
 
 		if (szText.size() > 0)
 		{
-			m_rtDisplay->BeginTextColour( wxColor(text.col) );
+			wxTextAttr oldStyle = m_rtDisplay->GetDefaultStyle();
+			m_rtDisplay->SetDefaultStyle( wxTextAttr(wxColor(text.col)));
 			m_rtDisplay->AppendText(szText.c_str());
-			m_rtDisplay->EndTextColour();
+			m_rtDisplay->SetDefaultStyle( oldStyle );
 		}
 
 		if (it+1 != tList.end())
@@ -290,7 +293,6 @@ void Console::onConsoleText(ConsoleText_s& text)
 	if (endReturn)
 		m_rtDisplay->AppendText(L"\n");
 
-	m_rtDisplay->MoveEnd();
 	m_rtDisplay->DiscardEdits();
 	m_rtDisplay->ShowPosition(m_rtDisplay->GetLastPosition());
 }
