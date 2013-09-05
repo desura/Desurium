@@ -78,10 +78,53 @@ else()
     UPDATE_COMMAND ""
     ${WX_PATCH_COMMAND}
     BUILD_IN_SOURCE 1
-    CONFIGURE_COMMAND ./configure
-        --enable-shared --enable-unicode ${CONFIGURE_DEBUG}
-        --enable-monolithic --with-flavour=desura --enable-threads --with-opengl=no --disable-palette
-        --disable-joystick --disable-mediactrl --prefix=${wxWidgets_INSTALL_DIR} --enable-permissive
+    CONFIGURE_COMMAND ./configure --disable-all-features
+        --enable-animatectrl 
+        --enable-button
+        --enable-checkbox
+        --enable-choice
+        --enable-clipboard
+        --enable-combobox
+        --enable-dataobj
+        --enable-datetime
+        --enable-dirdlg
+        --enable-exceptions
+        --enable-file
+        --enable-filectrl
+        --enable-filedlg
+        --enable-filepicker
+        --enable-fontmap
+        --enable-grid
+        --enable-headerctrl
+        --enable-hyperlink
+        --enable-image
+        --with-libpng
+        --enable-imaglist
+        --enable-intl
+        --enable-listctrl
+        --enable-log
+        --enable-longlong
+        --enable-menus
+        --enable-msgdlg
+        --with-opengl=no
+        --enable-radiobtn
+        --enable-snglinst
+        --enable-stattext
+        --enable-streams
+        --enable-taskbaricon
+        --enable-textctrl
+        --enable-timer
+        --enable-tooltips
+        --enable-treectrl
+        --enable-validators
+        --enable-shared
+        --enable-unicode
+        ${CONFIGURE_DEBUG}
+        --enable-monolithic
+        --with-flavour=desura
+        --enable-threads
+        --prefix=${wxWidgets_INSTALL_DIR}
+        --enable-permissive
   )
   
   set(wxWidgets_LIBRARY_DIRS ${wxWidgets_INSTALL_DIR}/lib)
