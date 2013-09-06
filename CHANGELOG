@@ -3,6 +3,7 @@ version 0.8.0:
 
 rc11:
 -----
+ * fixed: fail to compile third_party/sqlite on Linux (https://github.com/desura/Desurium/issues/406)
  * fixed: where should archvies for building desurium be stored? (https://github.com/desura/Desurium/issues/544)
  * fixed: desurium crashes after starting wyv and keep (https://github.com/lodle/Desurium/issues/558)
  * fixed: desurium does not build with newest v8 (https://github.com/desura/Desurium/issues/569)
