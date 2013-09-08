@@ -1,6 +1,9 @@
 /*
 Desura is the leading indie game distribution platform
-Copyright (C) 2011 Mark Chandler (Desura Net Pty Ltd)
+Copyright (C) Desura Ltd. <support@desura.com>
+          (C) Jookia <166291@gmail.com>
+          (C) Karol Herbst <git@karolherbst.de>
+          (C) Mark Chandler <mark@moddb.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
