@@ -1,7 +1,7 @@
 #!/bin/sh
 
 repair_corrupted=""
-excluded_commits=""
+excluded_commits="926f560d8e3abbd1a587d012891e8d0bda199549"
 excluded_emails=""
 name_substitutions="
 	karolherbst:Karol Herbst
