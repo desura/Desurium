@@ -749,40 +749,6 @@ bool ItemHandle::verify(bool files, bool tools, bool hooks)
 	return true;
 }
 
-
-
-
-
-
-
-class TestTask : public UserCore::ItemTask::BaseItemTask
-{
-public:
-	TestTask(UserCore::Item::ItemHandle* item) : UserCore::ItemTask::BaseItemTask(UserCore::Item::ItemHandleI::STAGE_VERIFY, "Test Task", item)
-	{
-	}
-
-	virtual void doRun()
-	{
-		for (size_t x=0; x<100; x++)
-		{
-			gcSleep(500);
-			MCFCore::Misc::ProgressInfo p;
-			p.percent = x;
-			onMcfProgressEvent(p);
-		}
-
-		UserCore::Misc::VerifyComplete vCompleteEvent(UserCore::Misc::VerifyComplete::V_COMPLETE, "");
-		onVerifyCompleteEvent(vCompleteEvent);
-		getItemHandle()->completeStage(true);
-	}
-};
-
-
-
-
-
-
 void ItemHandle::verifyOveride()
 {
 	m_ThreadMutex.readLock();
@@ -792,7 +758,6 @@ void ItemHandle::verifyOveride()
 
 	m_ThreadMutex.readUnlock();
 
-	//registerTask(new TestTask(this));
 	goToStageVerify(MCFBranch(), MCFBuild(), true, false, false);
 }
 

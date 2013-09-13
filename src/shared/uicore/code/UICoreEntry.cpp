@@ -114,9 +114,6 @@ public:
 #ifdef WIN32
 	bool initWxWidgets(HINSTANCE hInst, int CmdShow, int argc, char** argv)
 	{
-		if (needForceUpdate())
-			return false;
-
 		hIISHook = SetWindowsHookEx(WH_CALLWNDPROC, (HOOKPROC)CallWndProc, 0, GetCurrentThreadId());
 
 		wxSetInstance(hInst);
@@ -131,9 +128,6 @@ public:
 #else
 	bool initWxWidgets(int argc, char** argv)
 	{
-		if (needForceUpdate())
-			return false;
-
 		wxEntry(argc, argv);
 
 		if ( !wxTheApp || !wxTheApp->CallOnInit() )
@@ -256,13 +250,6 @@ public:
 		m_pChecker = NULL;
 	}
 #endif
-
-protected:
-	bool needForceUpdate()
-	{
-		return false;
-	}
-
 
 private:
 	DumpSettingsFP m_pDumpSettings;
