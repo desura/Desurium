@@ -23,7 +23,7 @@ endif()
 
 if(DEBUG_EXTERNAL)
   add_definitions(-D_DEBUG)
-  set(CONFIGURE_DEBUG --enable-debug)
+  set(CONFIGURE_DEBUG --enable-debug --enable-debug_gdb)
   set(MODE_DEBUG mode=debug)
 else()
   add_definitions(-DwxDEBUG_LEVEL=0)
