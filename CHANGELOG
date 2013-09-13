@@ -6,6 +6,7 @@ rc1:
  * fixed: cmake: build on windows (https://github.com/desura/Desurium/issues/106)
  * fixed: move to tinyxml-2 (https://github.com/desura/Desurium/issues/491)
  * fixed: util/OS: some functions not implemented on windows (https://github.com/desura/Desurium/issues/583)
+ * fixed: Debugging is hard. (https://github.com/desura/Desurium/issues/585)
  * fixed: cmake/v8: move away from svn and update to newer v8 version (https://github.com/desura/Desurium/pull/590)
 
 version 0.8.0:
