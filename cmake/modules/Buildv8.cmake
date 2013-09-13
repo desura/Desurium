@@ -1,34 +1,43 @@
 if(64BIT)
-  set(EXTRA_OPTS "arch=x64")
+  set(EXTRA_OPTS "-Dv8_target_arch=x64")
+else()
+  set(EXTRA_OPTS "-Dv8_target_arch=ia32")
 endif()
 
-set(TEST "%")
-
-if(MINGW)
-  set(SCONS_COMMAND scons.py snapshot=on ${MODE_DEBUG} library=shared ${EXTRA_OPTS} toolchain=gcc)
-  set(V8_LIB_SUFFIX dll)
-elseif(WIN32)
-  if(DEBUG)
-    set(SCONS_COMMAND ${CMAKE_SCRIPT_PATH}/Buildv8.bat ${PYTHON_INCLUDE_DIRS}/../Scripts/scons.bat debug ${EXTRA_OPTS})
-  else()
-    set(SCONS_COMMAND ${CMAKE_SCRIPT_PATH}/Buildv8.bat ${PYTHON_INCLUDE_DIRS}/../Scripts/scons.bat release ${EXTRA_OPTS})
-  endif()
-  set(V8_LIB_SUFFIX lib)
+if(UNIX)
+  set(ENV{CFLAGS.host} "$ENV{CFLAGS}")
+  set(ENV{CXXFLAGS.host} "$ENV{CXXFLAGS}")
+  set(ENV{LDFLAGS.host} "$ENV{LDFLAGS}")
+  set(V8_CONFIGURE_CMD ${CMAKE_SCRIPT_PATH}/depot_tools_wrapper.sh <SOURCE_DIR>/build gyp_v8 -Dcomponent=shared_library -Dwerror= --generator-output=out -f make ${EXTRA_OPTS})
+  set(V8_BUILD_CMD $(MAKE) $ENV{MAKEOPTS} V=1 -C out BUILDTYPE=Release CC.host=${CMAKE_C_COMPILER} CXX.host=${CMAKE_CXX_COMPILER} LINK.host=${CMAKE_CXX_COMPILER} AR.host=${CMAKE_AR})
 else()
-  set(SCONS_COMMAND scons snapshot=on ${MODE_DEBUG} library=shared ${EXTRA_OPTS})
-  set(V8_LIB_SUFFIX so)
-  set(V8_LIB_PREFIX lib)
+  set(V8_CONFIGURE_CMD ${PYTHON_EXECUTABLE} <SOURCE_DIR>/build/gyp_v8 -Dcomponent=shared_library -f msvs -Dtarget_arch=ia32)
+  if(DEBUG_V8)
+    set(V8_BUILD_CMD msbuild <SOURCE_DIR>/tools/gyp/v8.sln /m /p:Platform=Win32 /p:Configuration=Debug)
+  else()
+    set(V8_BUILD_CMD msbuild <SOURCE_DIR>/tools/gyp/v8.sln /m /p:Platform=Win32 /p:Configuration=Release)
+  endif()
 endif()
 
 ExternalProject_Add(
   v8
-  SVN_REPOSITORY ${V8_SVN}
-  UPDATE_COMMAND ""
-  CONFIGURE_COMMAND ""
-  BUILD_COMMAND ${SCONS_COMMAND}
+  URL ${V8_URL}
+  URL_MD5 ${V8_MD5}
+  CONFIGURE_COMMAND ${V8_CONFIGURE_CMD}
+  BUILD_COMMAND ${V8_BUILD_CMD}
   BUILD_IN_SOURCE 1
   INSTALL_COMMAND ""
 )
+if(WIN32)
+
+ExternalProject_Add_Step(
+  v8
+  cygwin-svn-fetch
+  COMMAND ${Subversion_SVN_EXECUTABLE} co http://src.chromium.org/svn/trunk/deps/third_party/cygwin@66844 third_party/cygwin
+  DEPENDERS configure
+  WORKING_DIRECTORY <SOURCE_DIR>
+)
+endif()
 
 ExternalProject_Get_Property(
   v8
@@ -38,10 +47,22 @@ ExternalProject_Get_Property(
 set(V8_INSTALL_DIR ${source_dir})
 set(V8_INCLUDE_DIR ${V8_INSTALL_DIR}/include)
 
-if(DEBUG)
-set(V8_LIBRARIES "${V8_INSTALL_DIR}/${V8_LIB_PREFIX}v8_g.${V8_LIB_SUFFIX};${V8_INSTALL_DIR}/${V8_LIB_PREFIX}v8preparser_g.${V8_LIB_SUFFIX}")
+if(WIN32)
+  if(DEBUG_V8)
+    set(V8_LIBRARIES "${V8_INSTALL_DIR}/build/Debug/lib/v8.lib")
+    install(FILES "${V8_INSTALL_DIR}/build/Debug/v8.dll"
+            DESTINATION ${LIB_INSTALL_DIR})
+  else()
+    set(V8_LIBRARIES "${V8_INSTALL_DIR}/build/Release/lib/v8.lib")
+    install(FILES "${V8_INSTALL_DIR}/build/Release/v8.dll"
+            DESTINATION ${LIB_INSTALL_DIR})
+  endif()
 else()
-set(V8_LIBRARIES "${V8_INSTALL_DIR}/${V8_LIB_PREFIX}v8.${V8_LIB_SUFFIX};${V8_INSTALL_DIR}/${V8_LIB_PREFIX}v8preparser.${V8_LIB_SUFFIX}")
+  if(DEBUG_V8)
+    set(V8_LIBRARIES "${V8_INSTALL_DIR}/out/out/Debug/lib.target/libv8.so")
+  else()
+    set(V8_LIBRARIES "${V8_INSTALL_DIR}/out/out/Release/lib.target/libv8.so")
+  endif()
+  install(FILES ${V8_LIBRARIES}
+          DESTINATION ${LIB_INSTALL_DIR})
 endif()
-install(FILES ${V8_LIBRARIES}
-        DESTINATION ${LIB_INSTALL_DIR})
