@@ -69,7 +69,7 @@ pack() {
 		mkdir build_package
 	fi
 	cd build_package
-	cmake .. -DPACKAGE_TYPE=$PACKAGE -DINSTALL_DESKTOP_FILE=ON -DCMAKE_INSTALL_PREFIX="/opt/desura" || exit
+	cmake .. -DPACKAGE_TYPE=$PACKAGE -DINSTALL_DESKTOP_FILE=ON -DCMAKE_INSTALL_PREFIX="/opt/desura" -DDESKTOP_EXE="/opt/desura/desura" -DDESKTOP_ICON="/opt/desura/desura.png" || exit
 	make package $args
 	if [ $PACKAGE = "DEB" ]; then
 		mv Desura-*.deb ..
@@ -77,7 +77,6 @@ pack() {
 		mv Desura-*.rpm ..
 	fi
 	cd ..
-	rm -rf build_package
 }
 
 case "$@" in
