@@ -330,7 +330,11 @@ void BaseThread::stop()
 		m_pPrivates->m_pThread->interrupt();
 		if (m_pPrivates->m_pThread->joinable())
 		{
-			m_pPrivates->m_pThread->join();
+			try {
+				m_pPrivates->m_pThread->join();
+			} catch (boost::thread_interrupted &e) {
+				// thread was interrupted, which is fine for us here
+			}
 		}
 	}
 }
