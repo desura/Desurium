@@ -23,8 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <sys/mman.h>
 
 #include <fcntl.h>
-#include <unistd.h> // execl(), fork(), getppid()
-#include <sys/types.h> // pid_t
+#include <unistd.h> // execl()
 #include <cstring> // strerror()
 #include <cerrno> // errno
 
@@ -85,40 +84,24 @@ void SendMessage(const char* msg)
 
 void ShowHelpDialog(const char* msg, const char* url, const char* type)
 {
-	int fork1;
-	
 	std::string zenityString;
 	zenityString += "--text=";
 	zenityString += msg;
-	
-	fork1 = fork();
-	if (fork1 == 0)
-	{
-		execlp("zenity", "zenity", type, zenityString.c_str(), NULL);
-		execlp("kdialog", "kdialog", type, msg, NULL);
-		execlp("gxmessage", "gxmessage", "-buttons", "GTK_STOCK_OK", "-center", "-default", "GTK_STOCK_OK", "-title", "Information", "-wrap", msg, NULL);
-		execlp("gmessage", "gmessage", "-buttons", "GTK_STOCK_OK", "-center", "-default", "OK", "-title", "Information", "-wrap", msg, NULL);
-		execlp("xmessage", "xmessage", "-center", msg, NULL);
-		fprintf(stderr, "%s\n", msg);
 
-		return;
-	}
-	
-	waitpid(fork1, NULL, 0);
-	
+	execlp("zenity", "zenity", type, zenityString.c_str(), NULL);
+	execlp("kdialog", "kdialog", type, msg, NULL);
+	execlp("gxmessage", "gxmessage", "-buttons", "GTK_STOCK_OK", "-center", "-default", "GTK_STOCK_OK", "-title", "Information", "-wrap", msg, NULL);
+	execlp("gmessage", "gmessage", "-buttons", "GTK_STOCK_OK", "-center", "-default", "OK", "-title", "Information", "-wrap", msg, NULL);
+	execlp("xmessage", "xmessage", "-center", msg, NULL);
+	fprintf(stderr, "%s\n", msg);
+
 	if (url)
 	{
 		std::string systemString("xdg-open ");
 		systemString += url;
-		
+
 		system(systemString.c_str());
 	}
-}
-
-bool RestartBootloader(const char* args)
-{
-	MainApp::restart(args, true);
-	return true;
 }
 
 int main(int argc, char** argv)
@@ -140,7 +123,6 @@ MainApp::MainApp(int argc, char** argv)
 	m_Argc = argc;
 	m_Argv = argv;
 	
-	m_RestartMem = -1;
 	m_pUICore = NULL;
 	strcpy(m_szUser, "linux_Unknown");
 }
@@ -224,46 +206,11 @@ int MainApp::run()
 		return 0;
 	}
 	
-	setupSharedMem();
-
 #ifndef DEBUG
 	if (!loadCrashHelper())
 		return -1;
 #endif
 
-	int id = fork();
-
-	if (id != 0)
-		return runParent(id);
-
-	return runChild(usingGDB);
-}
-
-int MainApp::runParent(int pid)
-{
-	char* endArgs =  (char*)mmap(0, sizeof(RestartArg_s), PROT_READ|PROT_WRITE, MAP_SHARED, m_RestartMem, 0);
-			
-	if (endArgs != MAP_FAILED)
-		memset(endArgs, 0, sizeof(RestartArg_s));
-
-	waitpid(pid, NULL, 0);
-	
-	shutdownUICore();
-	
-	if (endArgs != MAP_FAILED)
-	{
-		if (endArgs[0] == 'r')
-			restartReal(((RestartArg_s*)endArgs)->args);
-			
-		else if (endArgs[0] == 'c')
-			processCrash((CrashArg_s*)endArgs);
-	}
-	
-	return 0;
-}
-
-int MainApp::runChild(bool usingGDB)
-{
 	m_pUICore->disableSingleInstanceLock();
 		
 	if (usingGDB)
@@ -275,9 +222,6 @@ int MainApp::runChild(bool usingGDB)
 		MiniDumpGenerator m_MDumpHandle;
 		m_MDumpHandle.showMessageBox(true);
 		m_MDumpHandle.setCrashCallback(&MainApp::onCrash);	
-		m_pCrashArgs =  (CrashArg_s*)mmap(0, sizeof(RestartArg_s), PROT_READ|PROT_WRITE, MAP_SHARED, m_RestartMem, 0);
-		if (!m_pCrashArgs)
-			fprintf(stderr, "Failed to map crash arguments %s\n", dlerror());
 	}
 	
 	return m_pUICore->initWxWidgets(m_Argc, m_Argv);
@@ -286,7 +230,7 @@ int MainApp::runChild(bool usingGDB)
 bool MainApp::testDeps()
 {
 	void* gtkHandle = dlopen("libgtk-x11-2.0.so.0", RTLD_LAZY);
-	
+
 	if (!gtkHandle)
 	{
 		ShowHelpDialog(	"It appears as though you don't have GTK installed on your system.\n"
@@ -341,7 +285,7 @@ void MainApp::shutdownUICore()
 	g_UICoreDll = SharedObjectLoader();
 }
 
-void MainApp::restartReal(const char* args)
+void MainApp::restartFromUICore(const char* args)
 {
 	ERROR_OUTPUT("######### RESTARTING ##########");
 	
@@ -352,94 +296,57 @@ void MainApp::restartReal(const char* args)
 	}
 }
 
-void MainApp::restartShib(const char* args)
-{
-	RestartArg_s* restartArgs = (RestartArg_s*)mmap(0, sizeof(RestartArg_s), PROT_READ|PROT_WRITE, MAP_SHARED, m_RestartMem, 0);
-	
-	if (restartArgs == MAP_FAILED)
-		return;
-		
-	restartArgs->type = 'r';
-	
-	if (args)
-	{
-		size_t size = strlen(args);
-		
-		if (size > 1023)
-			size = 1023;
-		
-		strncpy(restartArgs->args, args, size);
-		restartArgs->args[size] = 0;
-	}
-}
-
-void MainApp::restart(const char* args, bool real)
-{
-	if (real)
-		g_pMainApp->restartReal(args);
-	else	
-		g_pMainApp->restartShib(args);
-}
-
-void MainApp::restartFromUICore(const char* args)
-{
-	restart(args, false);
-}
-
-void MainApp::onCrashShib(const char* path)
+bool MainApp::onCrash(const char* path)
 {
 	if (!path)
 	{
 		fprintf(stderr, "on crash path is null!");
 		return;
 	}
-	
+	else
+	{
+		strcpy(g_pMainApp->m_pCrashArgs->file, path);
+	}
+
 	int appid = 0;
 	int build = 0;
 
 	FILE* fh = fopen("version", "r");
-	
+
 	if (fh)
 	{
 		fscanf(fh, "BRANCH=%d\nBUILD=%d", &appid, &build);
-		fclose(fh);	
+		fclose(fh);
 	}
 
-	m_pCrashArgs->type = 'c';
-	
-	strcpy(m_pCrashArgs->file, path);
-	strcpy(m_pCrashArgs->user, m_szUser);
-	m_pCrashArgs->branch = appid;
-	m_pCrashArgs->build = build;
-}
+	g_pMainApp->m_pCrashArgs->type = 'c';
 
-bool MainApp::onCrash(const char* path)
-{
-	g_pMainApp->onCrashShib(path);
+	strcpy(g_pMainApp->m_pCrashArgs->user, g_pMainApp->m_szUser);
+	g_pMainApp->m_pCrashArgs->branch = appid;
+	g_pMainApp->m_pCrashArgs->build = build;
+
+	g_pMainApp->processCrash();
 	return true;
 }
 
-void MainApp::processCrash(CrashArg_s* args)
+void MainApp::processCrash()
 {
 #ifndef DEBUG
-	if (!args)
-		args = m_pCrashArgs;
-	
-	if (!args)
+	if (!m_pCrashArgs)
 	{
 		ERROR_OUTPUT("No crash args passed!");
 		return;
 	}
 
 	pid_t pid1 = fork();
-	
+
 	if (pid1 == 0)
 	{
-		execl("bin/crashdlg", "bin/crashdlg", m_Argv, NULL);
+		execl("crashdlg", "crashdlg", m_Argv, NULL);
 	}
 	else
 	{
-		g_UploadCrashfn(args->file, args->user, args->build, args->branch);
+		g_UploadCrashfn(m_pCrashArgs->file, m_pCrashArgs->user, m_pCrashArgs->build, m_pCrashArgs->branch);
 		return;
 	}
 #endif
@@ -515,17 +422,6 @@ void MainApp::sendArgs()
 
 	SendMessage(args.c_str());
 	shutdownUICore();
-}
-
-void MainApp::setupSharedMem()
-{
-	//this key should be unique due to single instance check above
-	m_RestartMem = shm_open("des_restart_mem", O_RDWR|O_CREAT, S_IREAD|S_IWRITE);
-	
-	if (m_RestartMem < 0)
-		fprintf(stderr, "Failed to allocate memory for restart.");
-	else
-		ftruncate(m_RestartMem, sizeof(RestartArg_s));
 }
 
 void MainApp::checkUnityWhitelist()

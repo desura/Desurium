@@ -34,12 +34,6 @@ void ShowHelpDialog(const char* msg, const char* url = NULL, const char* type = 
 typedef struct
 {
 	char type;
-	char args[1024];
-} RestartArg_s;
-
-typedef struct
-{
-	char type;
 	char user[64];
 	int branch;
 	int build;
@@ -63,20 +57,14 @@ protected:
 	
 	bool loadDumpUploader();
 	
-	void restartReal(const char* args);
-	void restartShib(const char* args);
-	static void restart(const char* args, bool real = false);
 	static void restartFromUICore(const char* args);
 	
-	void onCrashShib(const char* path);
 	static bool onCrash(const char* path);
 	
-	void processCrash(CrashArg_s* args = NULL);
+	void processCrash();
 	void setUser(const char* user);
 	
 	static void setCrashSettings(const char* user, bool upload);
-	
-	friend bool RestartBootloader(const char* args);
 	
 	bool utf8Test();
 
@@ -84,23 +72,16 @@ protected:
 	void sendArgs();
 	
 	void checkUnityWhitelist();
-	void setupSharedMem();
-	
-	int runParent(int pid);
-	int runChild(bool usingGDB);
 	
 private:
 	int m_Argc;
 	char** m_Argv;
 
-	int m_RestartMem;
 	UICoreI* m_pUICore;
 	CrashArg_s* m_pCrashArgs;
-	
+
 	SharedObjectLoader g_UICoreDll;
 	char m_szUser[255];
 };
-
-bool RestartBootloader(const char* args = NULL);
 
 #endif
