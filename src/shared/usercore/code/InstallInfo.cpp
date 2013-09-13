@@ -36,24 +36,24 @@ InstallInfo::~InstallInfo()
 {
 }
 
-void InstallInfo::loadXmlData(TiXmlNode *xmlNode, WildcardManager* pWildCard)
+void InstallInfo::loadXmlData(tinyxml2::XMLNode *xmlNode, WildcardManager* pWildCard)
 {
 	WildcardManager lwc(pWildCard);
 
-	TiXmlNode* wcNode = xmlNode->FirstChild("wcards");
+	tinyxml2::XMLElement* wcNode = xmlNode->FirstChildElement("wcards");
 	if (wcNode)
 	{
 		lwc.parseXML(wcNode);
 	}
 
 	XML::GetChild("name", m_szName, xmlNode);
-	TiXmlNode* setNode = xmlNode->FirstChild("settings");
+	tinyxml2::XMLElement* setNode = xmlNode->FirstChildElement("settings");
 	if (setNode)
 	{
-		TiXmlNode* icsNode = setNode->FirstChild("installlocations");
+		tinyxml2::XMLElement* icsNode = setNode->FirstChildElement("installlocations");
 		if (icsNode)
 		{
-			TiXmlElement* icNode = icsNode->FirstChildElement("installlocation");
+			tinyxml2::XMLElement* icNode = icsNode->FirstChildElement("installlocation");
 
 			while (icNode)
 			{

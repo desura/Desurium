@@ -36,7 +36,7 @@ public:
 	InstallInfo(DesuraId id, DesuraId pid = 0);
 	~InstallInfo();
 
-	void loadXmlData(TiXmlNode *xmlNode, WildcardManager* pWildCard);
+	void loadXmlData(tinyxml2::XMLNode *xmlNode, WildcardManager* pWildCard);
 
 	const char* getName(){return m_szName.c_str();}
 	const char* getPath(){return m_szPath.c_str();}

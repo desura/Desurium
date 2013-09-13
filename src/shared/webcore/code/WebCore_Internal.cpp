@@ -30,7 +30,7 @@ namespace WebCore
 {
 
 
-TiXmlNode* WebCoreClass::postToServer(std::string url, std::string resource, PostMap &postData, TiXmlDocument &doc, bool useHTTPS)
+tinyxml2::XMLNode* WebCoreClass::postToServer(std::string url, std::string resource, PostMap &postData, tinyxml2::XMLDocument &doc, bool useHTTPS)
 {
 	gcString httpOut;
 
@@ -61,13 +61,13 @@ TiXmlNode* WebCoreClass::postToServer(std::string url, std::string resource, Pos
 		if (hh->getDataSize() == 0)
 			throw gcException(ERR_BADRESPONSE, "Data size was zero");
 
-		XML::loadBuffer(doc, const_cast<char*>(hh->getData()), hh->getDataSize());
+		XML::loadBuffer(doc, const_cast<char*>(hh->getData()));
 
 		if (m_bDebuggingOut)
 			httpOut.assign(const_cast<char*>(hh->getData()), hh->getDataSize());
 	}
 
-	TiXmlNode *uNode = doc.FirstChild(resource.c_str());
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement(resource.c_str());
 
 	if (m_bDebuggingOut && !uNode)
 		Warning(httpOut);
@@ -76,7 +76,7 @@ TiXmlNode* WebCoreClass::postToServer(std::string url, std::string resource, Pos
 	return uNode;
 }
 
-TiXmlNode* WebCoreClass::loginToServer(std::string url, std::string resource, PostMap &postData, TiXmlDocument &doc)
+tinyxml2::XMLNode* WebCoreClass::loginToServer(std::string url, std::string resource, PostMap &postData, tinyxml2::XMLDocument &doc)
 {
 	return postToServer(url, resource, postData, doc, true);
 }
@@ -102,18 +102,18 @@ DesuraId WebCoreClass::nameToId(const char* name, const char* type)
 	{
 	}
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	PostMap post;
 
 	post["nameid"] = name;
 	post["sitearea"] = type;
 
-	TiXmlNode *uNode = postToServer(getNameLookUpUrl(), "iteminfo", post, doc);
-	TiXmlNode* cNode = uNode->FirstChild("item");
+	tinyxml2::XMLNode *uNode = postToServer(getNameLookUpUrl(), "iteminfo", post, doc);
+	tinyxml2::XMLElement* cNode = uNode->FirstChildElement("item");
 
 	if (cNode)
 	{
-		TiXmlElement* cEl = cNode->ToElement();
+		tinyxml2::XMLElement* cEl = cNode->ToElement();
 		
 		if (cEl)
 		{
@@ -167,17 +167,17 @@ DesuraId WebCoreClass::hashToId(const char* itemHashId)
 	}
 
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	PostMap post;
 
 	post["hashid"] = itemHashId;
 
-	TiXmlNode *uNode = postToServer(getNameLookUpUrl(), "iteminfo", post, doc);
-	TiXmlNode* cNode = uNode->FirstChild("item");
+	tinyxml2::XMLNode *uNode = postToServer(getNameLookUpUrl(), "iteminfo", post, doc);
+	tinyxml2::XMLElement* cNode = uNode->FirstChildElement("item");
 
 	if (cNode)
 	{
-		TiXmlElement* cEl = cNode->ToElement();
+		tinyxml2::XMLElement* cEl = cNode->ToElement();
 		
 		if (cEl)
 		{
@@ -214,7 +214,7 @@ DesuraId WebCoreClass::hashToId(const char* itemHashId)
 
 void WebCoreClass::updateAccountItem(DesuraId id, bool add)
 {
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	PostMap post;
 
 	post["siteareaid"] = id.getItem();
@@ -228,7 +228,7 @@ void WebCoreClass::newUpload(DesuraId id, const char* hash, uint64 fileSize, cha
 {
 	gcString size("{0}", fileSize);
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	PostMap post;
 
 	post["siteareaid"] = id.getItem();
@@ -237,13 +237,13 @@ void WebCoreClass::newUpload(DesuraId id, const char* hash, uint64 fileSize, cha
 	post["filehash"] = hash;
 	post["filesize"] = size;
 
-	TiXmlNode *uNode = postToServer(getMcfUploadUrl(), "itemupload", post, doc);
-	TiXmlNode* iNode = uNode->FirstChild("mcf");
+	tinyxml2::XMLNode *uNode = postToServer(getMcfUploadUrl(), "itemupload", post, doc);
+	tinyxml2::XMLElement* iNode = uNode->FirstChildElement("mcf");
 	
 	if (!iNode)
 		throw gcException(ERR_BADXML);	
 
-	TiXmlElement* cEl = iNode->ToElement();
+	tinyxml2::XMLElement* cEl = iNode->ToElement();
 		
 	if (cEl)
 	{
@@ -260,7 +260,7 @@ void WebCoreClass::newUpload(DesuraId id, const char* hash, uint64 fileSize, cha
 
 void WebCoreClass::resumeUpload(DesuraId id, const char* key, WebCore::Misc::ResumeUploadInfo &info)
 {
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	PostMap post;
 
 	post["siteareaid"] = id.getItem();
@@ -268,8 +268,8 @@ void WebCoreClass::resumeUpload(DesuraId id, const char* key, WebCore::Misc::Res
 	post["action"] = "resumeupload";
 	post["key"] = key;
 
-	TiXmlNode *uNode = postToServer(getMcfUploadUrl(), "itemupload", post, doc);
-	TiXmlNode* mNode = uNode->FirstChild("mcf");
+	tinyxml2::XMLNode *uNode = postToServer(getMcfUploadUrl(), "itemupload", post, doc);
+	tinyxml2::XMLElement* mNode = uNode->FirstChildElement("mcf");
 
 	if (!mNode)
 		throw gcException(ERR_BADXML);	
@@ -287,7 +287,7 @@ void WebCoreClass::resumeUpload(DesuraId id, const char* key, WebCore::Misc::Res
 }
 
 
-void WebCoreClass::getItemInfo(DesuraId id, TiXmlDocument &doc, MCFBranch mcfBranch, MCFBuild mcfBuild)
+void WebCoreClass::getItemInfo(DesuraId id, tinyxml2::XMLDocument &doc, MCFBranch mcfBranch, MCFBuild mcfBuild)
 {
 	PostMap post;
 
@@ -310,7 +310,7 @@ void WebCoreClass::getItemInfo(DesuraId id, TiXmlDocument &doc, MCFBranch mcfBra
 
 gcString WebCoreClass::getCDKey(DesuraId id, MCFBranch branch)
 {
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	PostMap post;
 
 	post["siteareaid"] = id.getItem();
@@ -323,8 +323,8 @@ gcString WebCoreClass::getCDKey(DesuraId id, MCFBranch branch)
 	post["token"] = "todo";
 #endif
 
-	TiXmlNode* root = postToServer(getCDKeyUrl(), "cdkey", post, doc);
-	TiXmlElement* key = root->FirstChildElement("key");
+	tinyxml2::XMLNode* root = postToServer(getCDKeyUrl(), "cdkey", post, doc);
+	tinyxml2::XMLElement* key = root->FirstChildElement("key");
 
 	if (!key)
 		throw gcException(ERR_BADXML);
@@ -332,7 +332,7 @@ gcString WebCoreClass::getCDKey(DesuraId id, MCFBranch branch)
 	return key->GetText();
 }
 
-void WebCoreClass::logIn(const char* user, const char* pass, TiXmlDocument &doc)
+void WebCoreClass::logIn(const char* user, const char* pass, tinyxml2::XMLDocument &doc)
 {
 	if (m_bUserAuth)
 		throw gcException(ERR_ALREADYLOGGEDIN);
@@ -342,8 +342,8 @@ void WebCoreClass::logIn(const char* user, const char* pass, TiXmlDocument &doc)
 	post["username"] = user;
 	post["password"] = pass;
 
-	TiXmlNode* uNode = loginToServer(getLoginUrl(), "memberlogin", post, doc);
-	TiXmlElement *memNode = uNode->FirstChildElement("member");
+	tinyxml2::XMLNode* uNode = loginToServer(getLoginUrl(), "memberlogin", post, doc);
+	tinyxml2::XMLElement *memNode = uNode->FirstChildElement("member");
 	
 	if (!memNode)
 		throw gcException(ERR_BADXML);
@@ -355,7 +355,7 @@ void WebCoreClass::logIn(const char* user, const char* pass, TiXmlDocument &doc)
 
 	m_uiUserId = atoi(idStr);
 
-	TiXmlNode *cookieNode = memNode->FirstChild("cookies");
+	tinyxml2::XMLNode *cookieNode = memNode->FirstChildElement("cookies");
 	if (cookieNode)
 	{
 		XML::GetChild("id", m_szIdCookie, cookieNode);
@@ -372,7 +372,7 @@ void WebCoreClass::logOut()
 	m_szSessCookie = gcString("");
 }
 
-void WebCoreClass::getUpdatePoll(TiXmlDocument &doc, const std::map<std::string, std::string> &post)
+void WebCoreClass::getUpdatePoll(tinyxml2::XMLDocument &doc, const std::map<std::string, std::string> &post)
 {
 	PostMap postData;
 
@@ -384,7 +384,7 @@ void WebCoreClass::getUpdatePoll(TiXmlDocument &doc, const std::map<std::string,
 	postToServer(getUpdatePollUrl(), "updatepoll", postData, doc);
 }
 
-void WebCoreClass::getLoginItems(TiXmlDocument &doc)
+void WebCoreClass::getLoginItems(tinyxml2::XMLDocument &doc)
 {
 	PostMap postData;
 	postToServer(getMemberDataUrl(), "memberdata", postData, doc);

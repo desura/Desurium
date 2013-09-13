@@ -186,22 +186,22 @@ uint8 UMcf::parseXml(char* buff, size_t buffLen)
 		worker.read(outbuff, buffLen);
 	}
 
-	TiXmlDocument doc;
-	XML::loadBuffer(doc, buff, buffLen);
+	tinyxml2::XMLDocument doc;
+	XML::loadBuffer(doc, buff);
 
 	delete [] outbuff;
 
-	TiXmlNode *fNode = doc.FirstChild("files");
+	tinyxml2::XMLElement *fNode = doc.FirstChildElement("files");
 	return parseXml(fNode);
 }
 
 
-uint8 UMcf::parseXml(TiXmlNode *fNode)
+uint8 UMcf::parseXml(tinyxml2::XMLNode *fNode)
 {
 	if (!fNode)
 		return UMCF_ERR_XML_NOPRIMENODE;
 
-	TiXmlElement* pChild = fNode->FirstChildElement();
+	tinyxml2::XMLElement* pChild = fNode->FirstChildElement();
 
 	while (pChild)
 	{
@@ -344,20 +344,20 @@ void UMcf::onFileProgress(ProgressCB& prog)
 
 void UMcf::loadFromFile(const wchar_t* file)
 {
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 
 	if (doc.LoadFile(gcString(file).c_str()))
 		parseUpdateXml(doc);
 }
 
-void UMcf::parseUpdateXml(TiXmlDocument &doc)
+void UMcf::parseUpdateXml(tinyxml2::XMLDocument &doc)
 {
-	TiXmlNode *uNode = doc.FirstChild("appupdate");
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement("appupdate");
 
 	if (!uNode)
 		return;
 
-	TiXmlNode *mcfNode = uNode->FirstChild("mcf");
+	tinyxml2::XMLElement *mcfNode = uNode->FirstChildElement("mcf");
 
 	if (!mcfNode)
 		return;
@@ -381,7 +381,7 @@ void UMcf::parseUpdateXml(TiXmlDocument &doc)
 
 	XML::GetChild("url", m_szUrl, mcfNode);
 
-	TiXmlNode *fNode = mcfNode->FirstChild("files");
+	tinyxml2::XMLElement *fNode = mcfNode->FirstChildElement("files");
 	parseXml(fNode);
 }
 
@@ -576,29 +576,29 @@ void UMcf::dumpXml(const wchar_t* path)
 	if (!path)
 		return;
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 
-	TiXmlDeclaration * decl = new TiXmlDeclaration( "1.0", "", "" );
+	tinyxml2::XMLDeclaration * decl = doc.NewDeclaration();
 
-	TiXmlElement * startElFiles = new TiXmlElement( "appupdate" );
+	tinyxml2::XMLElement * startElFiles = doc.NewElement( "appupdate" );
 
-	TiXmlElement * mcfElFiles = new TiXmlElement( "mcf" );
+	tinyxml2::XMLElement * mcfElFiles = doc.NewElement( "mcf" );
 	mcfElFiles->SetAttribute("build",  m_sHeader->getBuild() );
 	mcfElFiles->SetAttribute("appid",  m_sHeader->getId() );
-	startElFiles->LinkEndChild(mcfElFiles);
+	startElFiles->InsertEndChild(mcfElFiles);
 
-	TiXmlElement * filesElFiles = new TiXmlElement( "files" );
-	mcfElFiles->LinkEndChild(filesElFiles);
+	tinyxml2::XMLElement * filesElFiles = doc.NewElement( "files" );
+	mcfElFiles->InsertEndChild(filesElFiles);
 
 	for (size_t x=0; x<m_pFileList.size(); x++)
 	{
-		TiXmlElement * startElFile = new TiXmlElement( "file" );
-		m_pFileList[x]->genXml(startElFile);
-		filesElFiles->LinkEndChild(startElFile);
+		tinyxml2::XMLElement * startElFile = doc.NewElement( "file" );
+		m_pFileList[x]->genXml(startElFile, doc);
+		filesElFiles->InsertEndChild(startElFile);
 	}
 
-	doc.LinkEndChild( decl );
-	doc.LinkEndChild( startElFiles );
+	doc.InsertEndChild( decl );
+	doc.InsertEndChild( startElFiles );
 
 	doc.SaveFile(gcString(path).c_str());
 }

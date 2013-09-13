@@ -37,7 +37,7 @@ Required dependencies:
  * OpenSSL (only for building Curl)
  * BZip2
  * Sqlite3
- * tinyxml (2.6 or later)
+ * tinyxml2
  * V8
  * Python
  * C-ares

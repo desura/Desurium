@@ -75,7 +75,7 @@ public:
 	//! 
 	//! @param node Xml node to get info from
 	//!
-	DownloadProvider(TiXmlElement* node)
+	DownloadProvider(tinyxml2::XMLElement* node)
 	{
 		XML::GetChild("banner", m_szBanner, node);
 		XML::GetChild("provider", m_szName, node);

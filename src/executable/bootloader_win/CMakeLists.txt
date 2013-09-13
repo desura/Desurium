@@ -3,7 +3,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/RES
   ${COMMON_INCLUDE_DIRS}/service_pipe
   ${IPC_PIPE_INCLUDE_DIRS}
-  ${TINYXML_INCLUDE_DIR}
+  ${TINYXML_INCLUDEDIR}
 )
 
 configure_file(RES/desura_exe.rc ${RC_DIR}/desura_exe.rc @ONLY)

@@ -244,23 +244,23 @@ void CreateMCFThread::onStop()
 
 void CreateMCFThread::retrieveBranchList(std::vector<UserCore::Item::BranchInfo*> &outList)
 {
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	getWebCore()->getItemInfo(getItemId(), doc, MCFBranch(), MCFBuild());
 
-	TiXmlNode *uNode = doc.FirstChild("iteminfo");
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement("iteminfo");
 
 	if (!uNode)
 		throw gcException(ERR_BADXML);
 
-	XML::for_each_child("platform", uNode->FirstChildElement("platforms"), [this, &outList](TiXmlElement* platform)
+	XML::for_each_child("platform", uNode->FirstChildElement("platforms"), [this, &outList](tinyxml2::XMLElement* platform)
 	{
 		this->processGames(outList, platform);
 	});
 }
 
-void CreateMCFThread::processGames(std::vector<UserCore::Item::BranchInfo*> &outList, TiXmlElement* platform)
+void CreateMCFThread::processGames(std::vector<UserCore::Item::BranchInfo*> &outList, tinyxml2::XMLElement* platform)
 {
-	XML::for_each_child("game", platform->FirstChildElement("games"), [this, &outList](TiXmlElement* game)
+	XML::for_each_child("game", platform->FirstChildElement("games"), [this, &outList](tinyxml2::XMLElement* game)
 	{
 		const char* szId = game->Attribute("siteareaid");
 		DesuraId gid(szId, "games");
@@ -275,9 +275,9 @@ void CreateMCFThread::processGames(std::vector<UserCore::Item::BranchInfo*> &out
 	});
 }
 
-void CreateMCFThread::processMods(std::vector<UserCore::Item::BranchInfo*> &outList, TiXmlElement* game)
+void CreateMCFThread::processMods(std::vector<UserCore::Item::BranchInfo*> &outList, tinyxml2::XMLElement* game)
 {
-	XML::for_each_child("mod", game->FirstChildElement("mods"), [this, &outList](TiXmlElement* mod)
+	XML::for_each_child("mod", game->FirstChildElement("mods"), [this, &outList](tinyxml2::XMLElement* mod)
 	{
 		const char* szId = mod->Attribute("siteareaid");
 		DesuraId id(szId, "mods");
@@ -289,9 +289,9 @@ void CreateMCFThread::processMods(std::vector<UserCore::Item::BranchInfo*> &outL
 	});
 }
 
-void CreateMCFThread::processBranches(std::vector<UserCore::Item::BranchInfo*> &outList, TiXmlElement* item)
+void CreateMCFThread::processBranches(std::vector<UserCore::Item::BranchInfo*> &outList, tinyxml2::XMLElement* item)
 {
-	XML::for_each_child("branch", item->FirstChildElement("branches"), [this, &outList](TiXmlElement* branch)
+	XML::for_each_child("branch", item->FirstChildElement("branches"), [this, &outList](tinyxml2::XMLElement* branch)
 	{
 		uint32 id = 0;
 		XML::GetAtt("id", id, branch);

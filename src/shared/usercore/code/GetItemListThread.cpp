@@ -41,12 +41,12 @@ void GetItemListThread::doRun()
 {
 	m_szDbName = getCIBDb(getUserCore()->getAppDataPath());
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 	getWebCore()->getInstalledItemList(doc);
 
 	int ver = XML::processStatus(doc, "itemwizard");
 
-	TiXmlNode *infoNode = doc.FirstChild("itemwizard");
+	tinyxml2::XMLElement *infoNode = doc.FirstChildElement("itemwizard");
 
 	if (!infoNode)
 		throw gcException(ERR_BADXML);

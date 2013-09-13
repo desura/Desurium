@@ -61,23 +61,22 @@ void MCF::getDownloadProviders(const char* url, MCFCore::Misc::UserCookies *pCoo
 	if (wc->getDataSize() == 0)
 		throw gcException(ERR_BADRESPONSE);
 	
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 
-	doc.SetCondenseWhiteSpace(false);
-	XML::loadBuffer(doc, const_cast<char*>(wc->getData()), wc->getDataSize());
+	XML::loadBuffer(doc, const_cast<char*>(wc->getData()));
 
-	TiXmlNode *uNode = doc.FirstChild("itemdownloadurl");
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement("itemdownloadurl");
 
 	if (!uNode)
 		throw gcException(ERR_BADXML);
 
-	TiXmlNode* sNode = uNode->FirstChild("status");
+	tinyxml2::XMLElement* sNode = uNode->FirstChildElement("status");
 
 	if (!sNode)
 		throw gcException(ERR_BADXML);
 
 	uint32 status = 0;
-	TiXmlElement* sEl = sNode->ToElement();
+	tinyxml2::XMLElement* sEl = sNode->ToElement();
 	if (sEl)
 	{
 		const char* statStr = sEl->Attribute("code");
@@ -94,21 +93,21 @@ void MCF::getDownloadProviders(const char* url, MCFCore::Misc::UserCookies *pCoo
 	if (status != 0)
 		throw gcException(ERR_BADSTATUS, status, gcString("Status: {0}", sEl->GetText()));
 
-	TiXmlNode* iNode = uNode->FirstChild("item");
+	tinyxml2::XMLElement* iNode = uNode->FirstChildElement("item");
 
 	if (!iNode)
 	{
 		throw gcException(ERR_BADXML);
 	}
 
-	TiXmlNode* mNode = iNode->FirstChild("mcf");
+	tinyxml2::XMLElement* mNode = iNode->FirstChildElement("mcf");
 
 	if (!mNode)
 	{
 		throw gcException(ERR_BADXML);
 	}
 
-	TiXmlElement *melNode = mNode->ToElement();
+	tinyxml2::XMLElement *melNode = mNode->ToElement();
 
 	if (melNode)
 	{
@@ -143,7 +142,7 @@ void MCF::getDownloadProviders(const char* url, MCFCore::Misc::UserCookies *pCoo
 	memcpy(m_pFileAuth->authkey, buff, size);
 	safe_delete(szAuthCode);
 
-	TiXmlNode* urlNode = mNode->FirstChild("urls");
+	tinyxml2::XMLElement* urlNode = mNode->FirstChildElement("urls");
 
 	if (!urlNode)
 		throw gcException(ERR_BADXML);
@@ -167,7 +166,7 @@ void MCF::getDownloadProviders(const char* url, MCFCore::Misc::UserCookies *pCoo
 #endif
 #endif
 
-	TiXmlElement* pChild = urlNode->FirstChildElement("url");
+	tinyxml2::XMLElement* pChild = urlNode->FirstChildElement("url");
 	while (pChild)
 	{
 		MCFCore::Misc::DownloadProvider* temp = new MCFCore::Misc::DownloadProvider(pChild);

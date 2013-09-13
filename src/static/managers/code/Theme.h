@@ -29,7 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Common.h"
 #include "Color.h"
 #include "BaseManager.h"
-#include "tinyxml.h"
 #include "managers/Managers.h"
 
 class SpriteRect : public BaseItem, public SpriteRectI

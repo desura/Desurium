@@ -57,7 +57,7 @@ void UpdateThread::onStop()
 	m_pBaseTask->onStop();
 }
 
-bool UpdateThread::onMessageReceived(const char* resource, TiXmlNode* root)
+bool UpdateThread::onMessageReceived(const char* resource, tinyxml2::XMLNode* root)
 {
 	return m_pBaseTask->onMessageReceived(resource, root);
 }

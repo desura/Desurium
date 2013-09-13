@@ -135,10 +135,6 @@ public:
 
 		mcfDelFactory(mcfSrc);
 
-		TiXmlDocument doc;
-		doc.LoadFile(args[1].c_str());
-		doc.SaveFile(args[1].c_str());
-
 
 		return 0;
 	}

@@ -173,8 +173,8 @@ public:
 	//!
 	//! @param itemsNode Item xml
 	//!
-	virtual void itemsNeedUpdate(TiXmlNode *itemsNode)=0;
-	virtual void itemsNeedUpdate2(TiXmlNode* platformsNode)=0;
+	virtual void itemsNeedUpdate(tinyxml2::XMLNode *itemsNode)=0;
+	virtual void itemsNeedUpdate2(tinyxml2::XMLNode* platformsNode)=0;
 
 
 	virtual void setFavorite(DesuraId id, bool fav)=0;
