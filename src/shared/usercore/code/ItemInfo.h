@@ -179,7 +179,7 @@ public:
 	//! @param statusOveride New status flags to add when load is complete
 	//! @param pWildCard Wildcard manager to resolve wildcards from
 	//!
-	void loadXmlData(uint32 platform, TiXmlNode *xmlNode, uint16 statusOveride, WildcardManager* pWildCard=NULL, bool reset = false);
+	void loadXmlData(uint32 platform, tinyxml2::XMLNode *xmlNode, uint16 statusOveride, WildcardManager* pWildCard=NULL, bool reset = false);
 
 
 	//! hash for base manager
@@ -244,7 +244,7 @@ public:
 	void setLogoUrl(const char* logo);
 
 
-	void processUpdateXml(TiXmlNode *node);
+	void processUpdateXml(tinyxml2::XMLNode *node);
 
 
 	bool setInstalledMcf(MCFBranch branch, MCFBuild build);
@@ -310,15 +310,15 @@ protected:
 
 	void broughtCheck();
 
-	void processInfo(TiXmlNode* xmlEl);
-	void processSettings(uint32 platform, TiXmlNode* setNode, WildcardManager* pWildCard, bool reset);
+	void processInfo(tinyxml2::XMLNode* xmlEl);
+	void processSettings(uint32 platform, tinyxml2::XMLNode* setNode, WildcardManager* pWildCard, bool reset);
 
 	void launchExeHack();
 
 	void onBranchInfoChanged();
 	bool shouldSaveDb(sqlite3x::sqlite3_connection* db);
 
-	void loadBranchXmlData(TiXmlElement* branch);
+	void loadBranchXmlData(tinyxml2::XMLElement* branch);
 	
 	BranchInfo* getCurrentBranchFull();
 	BranchInstallInfo* getBranchOrCurrent(MCFBranch branch);

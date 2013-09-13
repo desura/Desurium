@@ -21,9 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include <iostream>
 
-
-#include "tinyxml.h"
-
 #include "third_party/utf8.h"
 
 namespace UTIL

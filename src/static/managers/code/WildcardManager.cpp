@@ -238,12 +238,12 @@ void WildcardManager::constructPath(const char* path, char **res, uint8 *depth)
 }
 
 
-uint8 WildcardManager::parseXML(TiXmlNode* node)
+uint8 WildcardManager::parseXML(tinyxml2::XMLNode* node)
 {
 	if (!node)
 		return WCM_ERR_BADXML;
 
-	TiXmlElement* pChild = node->FirstChildElement("wcard");
+	tinyxml2::XMLElement* pChild = node->FirstChildElement("wcard");
 	while (pChild)
 	{
 		const char* name = pChild->Attribute("name");

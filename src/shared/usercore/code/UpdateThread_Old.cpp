@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "Common.h"
 #include "UpdateThread_Old.h"
-#include "tinyxml.h"
 #include "XMLMacros.h"
 #include "User.h"
 #ifdef WIN32
@@ -176,7 +175,7 @@ bool UpdateThreadOld::pollUpdates()
 		post[key] = "1";
 	}
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 
 	try
 	{
@@ -222,7 +221,7 @@ void UpdateThreadOld::checkFreeSpace()
 #endif
 
 
-void UpdateThreadOld::parseXML(TiXmlDocument &doc)
+void UpdateThreadOld::parseXML(tinyxml2::XMLDocument &doc)
 {
 	UserCore::User *pUser = dynamic_cast<UserCore::User*>(m_pUser);
 
@@ -241,15 +240,15 @@ void UpdateThreadOld::parseXML(TiXmlDocument &doc)
 		return;
 	}
 
-	TiXmlNode *uNode = doc.FirstChild("updatepoll");
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement("updatepoll");
 	
 	if (!uNode)
 		return;
 
-	TiXmlNode* tempNode = NULL;
+	tinyxml2::XMLElement* tempNode = NULL;
 
 
-	tempNode = uNode->FirstChild("cookies");
+	tempNode = uNode->FirstChildElement("cookies");
 
 	if (tempNode)
 	{
@@ -260,7 +259,7 @@ void UpdateThreadOld::parseXML(TiXmlDocument &doc)
 			m_pWebCore->setCookie(szSessCookie.c_str());
 	}
 
-	tempNode = uNode->FirstChild("messages");
+	tempNode = uNode->FirstChildElement("messages");
 
 	if (tempNode)
 	{
@@ -281,32 +280,32 @@ void UpdateThreadOld::parseXML(TiXmlDocument &doc)
 
 	if (version == 1)
 	{
-		tempNode = uNode->FirstChild("items");
+		tempNode = uNode->FirstChildElement("items");
 
 		if (tempNode)
 			pUser->getItemManager()->itemsNeedUpdate(tempNode);
 	}
 	else
 	{
-		tempNode = uNode->FirstChild("platforms");
+		tempNode = uNode->FirstChildElement("platforms");
 
 		if (tempNode)
 			pUser->getItemManager()->itemsNeedUpdate2(tempNode);
 	}
 
-	tempNode = uNode->FirstChild("news");
+	tempNode = uNode->FirstChildElement("news");
 
 	if (tempNode)
 		pUser->parseNews(tempNode);
 
 
-	tempNode = uNode->FirstChild("gifts");
+	tempNode = uNode->FirstChildElement("gifts");
 
 	if (tempNode)
 		pUser->parseGifts(tempNode);
 }
 
-bool UpdateThreadOld::onMessageReceived(const char* resource, TiXmlNode* root)
+bool UpdateThreadOld::onMessageReceived(const char* resource, tinyxml2::XMLNode* root)
 {
 	return false;
 }
@@ -321,13 +320,13 @@ void UpdateThreadOld::loadLoginItems()
 {
 	UserCore::ItemManager* im = dynamic_cast<UserCore::ItemManager*>(m_pUser->getItemManager());
 
-	TiXmlDocument doc;
+	tinyxml2::XMLDocument doc;
 
 	try
 	{
 		m_pWebCore->getLoginItems(doc);
 
-		TiXmlNode* first = doc.FirstChildElement("memberdata");
+		tinyxml2::XMLNode* first = doc.FirstChildElement("memberdata");
 		im->parseLoginXml2(first->FirstChildElement("games"), first->FirstChildElement("platforms"));
 	}
 	catch (gcException &e)
@@ -342,9 +341,9 @@ void UpdateThreadOld::loadLoginItems()
 
 #ifdef DESURA_OFFICAL_BUILD
 
-void UpdateThreadOld::checkAppUpdate(TiXmlNode* uNode)
+void UpdateThreadOld::checkAppUpdate(tinyxml2::XMLNode* uNode)
 {
-	TiXmlElement* appEl = uNode->FirstChildElement("app");
+	tinyxml2::XMLElement* appEl = uNode->FirstChildElement("app");
 
 	if (!appEl)
 		return;
@@ -391,7 +390,7 @@ void UpdateThreadOld::updateBuildVer()
 
 #else
 
-void UpdateThreadOld::checkAppUpdate(TiXmlNode* uNode)
+void UpdateThreadOld::checkAppUpdate(tinyxml2::XMLNode* uNode)
 {
 }
 

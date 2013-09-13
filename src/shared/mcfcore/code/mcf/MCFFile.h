@@ -25,7 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "mcfcore/MCFFileI.h"
 
 #include <string.h>
-#include "tinyxml.h"
 
 class XMLSaveAndCompress;
 class CourgetteInstance;
@@ -56,7 +55,7 @@ public:
 	//!
 	//! @param xmlNode node in the xml tree
 	//!
-	void loadXmlData(TiXmlElement *xmlNode);
+	void loadXmlData(tinyxml2::XMLElement *xmlNode);
 
 	//! Generates xml from file data and appends it to element
 	//!

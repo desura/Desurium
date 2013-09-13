@@ -76,8 +76,8 @@ public:
 	virtual void getRecentList(std::vector<UserCore::Item::ItemInfoI*> &rList);
 	virtual void getNewItems(std::vector<UserCore::Item::ItemInfoI*> &tList);
 
-	virtual void itemsNeedUpdate(TiXmlNode *itemsNode);
-	virtual void itemsNeedUpdate2(TiXmlNode* platformsNode);
+	virtual void itemsNeedUpdate(tinyxml2::XMLNode *itemsNode);
+	virtual void itemsNeedUpdate2(tinyxml2::XMLNode* platformsNode);
 
 	virtual EventV* getOnUpdateEvent();
 	virtual Event<DesuraId>* getOnRecentUpdateEvent();
@@ -123,8 +123,8 @@ protected:
 			platform = -1;
 		}
 
-		TiXmlElement* rootNode;
-		TiXmlElement* infoNode;
+		tinyxml2::XMLElement* rootNode;
+		tinyxml2::XMLElement* infoNode;
 
 		WildcardManager* pWildCard;
 		InfoMaps* maps;
@@ -138,8 +138,8 @@ protected:
 
 	void parseXml(uint16 statusOverride = 0);
 
-	void parseLoginXml(TiXmlElement* gamesNode, TiXmlElement* devNodes);
-	void parseLoginXml2(TiXmlElement* gamesNode, TiXmlElement* platformNodes);
+	void parseLoginXml(tinyxml2::XMLElement* gamesNode, tinyxml2::XMLElement* devNodes);
+	void parseLoginXml2(tinyxml2::XMLElement* gamesNode, tinyxml2::XMLElement* platformNodes);
 	void postParseLoginXml();
 
 	void parseGamesXml(ParseInfo &pi);
@@ -148,12 +148,12 @@ protected:
 	void parseModsXml(UserCore::Item::ItemInfo* parent, ParseInfo &pi);
 	void parseModXml(UserCore::Item::ItemInfo* parent, DesuraId id, ParseInfo &pi);
 
-	void parseItemUpdateXml(const char* area, TiXmlNode *itemsNode);
+	void parseItemUpdateXml(const char* area, tinyxml2::XMLNode *itemsNode);
 
 	UserCore::Item::ItemInfo* createNewItem(DesuraId pid, DesuraId id, ParseInfo &pi);
 	void updateItem(UserCore::Item::ItemInfo* info, ParseInfo &pi);
 
-	DesuraId getParentId(TiXmlElement* gameNode, TiXmlElement* infoNode = NULL);
+	DesuraId getParentId(tinyxml2::XMLElement* gameNode, tinyxml2::XMLElement* infoNode = NULL);
 
 	void processLeftOvers(InfoMaps &maps, bool addMissing);
 
@@ -180,10 +180,10 @@ protected:
 	void migrateOldItemInfo(const char* olddb, const char* newdb);
 	void migrateStandaloneFiles();
 
-	void generateInfoMaps(TiXmlElement* gamesNode, InfoMaps* maps);
+	void generateInfoMaps(tinyxml2::XMLElement* gamesNode, InfoMaps* maps);
 
 
-	void parseKnownBranches(TiXmlElement* gamesNode);
+	void parseKnownBranches(tinyxml2::XMLElement* gamesNode);
 
 	void onNewItem(DesuraId id);
 	bool isDelayLoading();

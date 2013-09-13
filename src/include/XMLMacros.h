@@ -30,12 +30,12 @@ namespace XML
 
 	
 template <typename T>
-void for_each_child(const char* name, TiXmlNode* parent, const T& t)
+void for_each_child(const char* name, tinyxml2::XMLNode* parent, const T& t)
 {
 	if (!parent || !name)
 		return;
 
-	TiXmlElement* child = parent->FirstChildElement(name);
+	tinyxml2::XMLElement* child = parent->FirstChildElement(name);
 
 	while (child)
 	{
@@ -44,7 +44,7 @@ void for_each_child(const char* name, TiXmlNode* parent, const T& t)
 	};
 }
 
-inline void GetAtt(const char* name, gcString& outVal, TiXmlElement* el)
+inline void GetAtt(const char* name, gcString& outVal, tinyxml2::XMLElement* el)
 {
 	if (!el || !name)
 		return;
@@ -57,7 +57,7 @@ inline void GetAtt(const char* name, gcString& outVal, TiXmlElement* el)
 	outVal = val;
 }
 
-inline void GetAtt(const char* name, uint32& outVal, TiXmlElement* el)
+inline void GetAtt(const char* name, uint32& outVal, tinyxml2::XMLElement* el)
 {
 	gcString r;
 	GetAtt(name, r, el);
@@ -67,12 +67,12 @@ inline void GetAtt(const char* name, uint32& outVal, TiXmlElement* el)
 }
 
 template <class T>
-inline bool GetChild(const char* name, T* obj, void (T::*func)(const char*), TiXmlNode* node)
+inline bool GetChild(const char* name, T* obj, void (T::*func)(const char*), tinyxml2::XMLNode* node)
 {
 	if (!name || !func || !node || !obj)
 		return false;
 
-	TiXmlElement* child = node->FirstChildElement(name);
+	tinyxml2::XMLElement* child = node->FirstChildElement(name);
 	
 	if (child)
 		(*obj.*func)(child->GetText());
@@ -80,12 +80,12 @@ inline bool GetChild(const char* name, T* obj, void (T::*func)(const char*), TiX
 	return !!child;
 }
 
-inline bool GetChild(const char* name, gcszFn func, TiXmlNode* node)
+inline bool GetChild(const char* name, gcszFn func, tinyxml2::XMLNode* node)
 {
 	if (!name || !func || !node)
 		return false;
 
-	TiXmlElement* child = node->FirstChildElement(name);
+	tinyxml2::XMLElement* child = node->FirstChildElement(name);
 
 	if (child)
 		func(child->GetText());
@@ -93,12 +93,12 @@ inline bool GetChild(const char* name, gcszFn func, TiXmlNode* node)
 	return !!child;
 }
 
-inline bool GetChild(const char* name, gcString& str, TiXmlNode* node)
+inline bool GetChild(const char* name, gcString& str, tinyxml2::XMLNode* node)
 {
 	if (!name || !node)
 		return false;
 
-	TiXmlElement* child = node->FirstChildElement(name);
+	tinyxml2::XMLElement* child = node->FirstChildElement(name);
 
 	if (child)
 		str = child->GetText();
@@ -106,12 +106,12 @@ inline bool GetChild(const char* name, gcString& str, TiXmlNode* node)
 	return !!child;
 }
 
-inline bool GetChild(const char* name, std::string& str, TiXmlNode* node)
+inline bool GetChild(const char* name, std::string& str, tinyxml2::XMLNode* node)
 {
 	if (!name || !node)
 		return false;
 
-	TiXmlElement* child = node->FirstChildElement(name);
+	tinyxml2::XMLElement* child = node->FirstChildElement(name);
 
 	if (child && child->GetText())
 		str = child->GetText();
@@ -119,7 +119,7 @@ inline bool GetChild(const char* name, std::string& str, TiXmlNode* node)
 	return !!child;
 }
 
-inline bool GetChild(const char* name, char*& str, TiXmlNode* node)
+inline bool GetChild(const char* name, char*& str, tinyxml2::XMLNode* node)
 {
 	gcString string;
 	bool res = GetChild(name, string, node);
@@ -136,7 +136,7 @@ inline bool GetChild(const char* name, char*& str, TiXmlNode* node)
 	return res;
 }
 
-inline bool GetChild(const char* name, int32& num, TiXmlNode* node)
+inline bool GetChild(const char* name, int32& num, tinyxml2::XMLNode* node)
 {
 	gcString string("0");
 	bool res = GetChild(name, string, node);
@@ -147,7 +147,7 @@ inline bool GetChild(const char* name, int32& num, TiXmlNode* node)
 	return res;
 }
 
-inline bool GetChild(const char* name, uint32& num, TiXmlNode* node)
+inline bool GetChild(const char* name, uint32& num, tinyxml2::XMLNode* node)
 {
 	int32 value = 0;
 	bool res = GetChild(name, value, node);
@@ -158,7 +158,7 @@ inline bool GetChild(const char* name, uint32& num, TiXmlNode* node)
 	return res;
 }
 
-inline bool GetChild(const char* name, int64& num, TiXmlNode* node)
+inline bool GetChild(const char* name, int64& num, tinyxml2::XMLNode* node)
 {
 	gcString string("0");
 	bool res = GetChild(name, string, node);
@@ -169,7 +169,7 @@ inline bool GetChild(const char* name, int64& num, TiXmlNode* node)
 	return res;
 }
 
-inline bool GetChild(const char* name, uint64& num, TiXmlNode* node)
+inline bool GetChild(const char* name, uint64& num, tinyxml2::XMLNode* node)
 {
 	int64 value = 0;
 	bool res = GetChild(name, value, node);
@@ -180,7 +180,7 @@ inline bool GetChild(const char* name, uint64& num, TiXmlNode* node)
 	return res;
 }
 
-inline bool GetChild(const char* name, uint16& num, TiXmlNode* node)
+inline bool GetChild(const char* name, uint16& num, tinyxml2::XMLNode* node)
 {
 	int32 value = 0;
 	bool res = GetChild(name, value, node);
@@ -191,7 +191,7 @@ inline bool GetChild(const char* name, uint16& num, TiXmlNode* node)
 	return res;
 }
 
-inline bool GetChild(const char* name, uint8& num, TiXmlNode* node)
+inline bool GetChild(const char* name, uint8& num, tinyxml2::XMLNode* node)
 {
 	int32 value = 0;
 	bool res = GetChild(name, value, node);
@@ -202,7 +202,7 @@ inline bool GetChild(const char* name, uint8& num, TiXmlNode* node)
 	return res;
 }
 
-inline bool GetChild(const char* name, bool& num, TiXmlNode* node)
+inline bool GetChild(const char* name, bool& num, tinyxml2::XMLNode* node)
 {
 	gcString value;
 	bool res = GetChild(name, value, node);
@@ -213,44 +213,41 @@ inline bool GetChild(const char* name, bool& num, TiXmlNode* node)
 	return res;
 }
 
-inline void WriteChild(const char* name, const char* value, TiXmlNode* node)
+inline void WriteChild(const char* name, const char* value, tinyxml2::XMLNode* node, tinyxml2::XMLDocument& doc)
 {
 	if ( !value || !node || !name)
 		return;
 
-	TiXmlElement * newEle = new TiXmlElement( name );
-	TiXmlText * newTextEle = new TiXmlText( value );
-	newEle->LinkEndChild(newTextEle);
-	node->LinkEndChild( newEle );
+	tinyxml2::XMLElement * newEle = doc.NewElement( name );
+	tinyxml2::XMLText * newTextEle = doc.NewText( value );
+	newEle->InsertEndChild(newTextEle);
+	node->InsertEndChild( newEle );
 }
 
-inline void WriteChild(const char* name, const gcString &val, TiXmlNode* node)
+inline void WriteChild(const char* name, const gcString &val, tinyxml2::XMLNode* node, tinyxml2::XMLDocument& doc)
 {
-	WriteChild(name, val.c_str(), node);
+	WriteChild(name, val.c_str(), node, doc);
 }
 
 template <typename T>
-inline void WriteChild(const char* name, T &val, TiXmlNode* node)
+inline void WriteChild(const char* name, T &val, tinyxml2::XMLNode* node, tinyxml2::XMLDocument& doc)
 {
-	WriteChild(name, gcString("{0}", val).c_str(), node);
+	WriteChild(name, gcString("{0}", val).c_str(), node, doc);
 }
 
 template <typename T>
-inline void WriteChild(const char* name, T* val, TiXmlNode* node)
+inline void WriteChild(const char* name, T* val, tinyxml2::XMLNode* node, tinyxml2::XMLDocument& doc)
 {
 	if (val == NULL)
-		WriteChild(name, "", node);
+		WriteChild(name, "", node, doc);
 	else
-		WriteChild(name, gcString("{0}", val).c_str(), node);
+		WriteChild(name, gcString("{0}", val).c_str(), node, doc);
 }
 
 
-inline bool isValidElement(TiXmlNode* node)
+inline bool isValidElement(tinyxml2::XMLNode* node)
 {
 	if (!node)
-		return false;
-
-	if (node->Type() != TiXmlNode::TINYXML_ELEMENT)
 		return false;
 
 	return (node->ToElement()?true:false);
@@ -258,11 +255,11 @@ inline bool isValidElement(TiXmlNode* node)
 
 
 //! Returns version
-inline uint32 processStatus(TiXmlDocument& doc, const char* root)
+inline uint32 processStatus(tinyxml2::XMLDocument& doc, const char* root)
 {
 	uint32 v = 1;
 
-	TiXmlElement *uNode = doc.FirstChildElement(root);
+	tinyxml2::XMLElement *uNode = doc.FirstChildElement(root);
 
 	if (!uNode)
 		uNode = doc.FirstChildElement("servererror");
@@ -270,7 +267,7 @@ inline uint32 processStatus(TiXmlDocument& doc, const char* root)
 	if (!uNode)
 		throw gcException(ERR_BADXML, "Missing root node");
 
-	TiXmlElement* sNode = uNode->FirstChildElement("status");
+	tinyxml2::XMLElement* sNode = uNode->FirstChildElement("status");
 
 	if (!sNode)
 		throw gcException(ERR_BADXML, "Missing status node");
@@ -298,13 +295,10 @@ inline uint32 processStatus(TiXmlDocument& doc, const char* root)
 	return v;
 }
 
-#include <tinyxml.h>
-
-inline void loadBuffer(TiXmlDocument& doc, char* buff, size_t buffLen,
-	TiXmlEncoding encoding = TIXML_ENCODING_UTF8)
+inline void loadBuffer(tinyxml2::XMLDocument& doc, char* buff)
 {
-	doc.Clear();
-	doc.Parse(buff, 0, encoding);
+	doc.DeleteChildren();
+	doc.Parse(buff);
 }
 
 }

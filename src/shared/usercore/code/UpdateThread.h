@@ -34,7 +34,7 @@ public:
 	virtual void setInfo(UserCore::UserI* user, WebCore::WebCoreI* webcore)=0;
 	virtual void doRun()=0;
 	virtual void onStop()=0;
-	virtual bool onMessageReceived(const char* resource, TiXmlNode* root)=0;
+	virtual bool onMessageReceived(const char* resource, tinyxml2::XMLNode* root)=0;
 	virtual ~UpdateThreadI(){}
 
 	Event<bool> isStoppedEvent;
@@ -68,7 +68,7 @@ protected:
 	virtual void doRun();
 	virtual void onStop();
 
-	virtual bool onMessageReceived(const char* resource, TiXmlNode* root);
+	virtual bool onMessageReceived(const char* resource, tinyxml2::XMLNode* root);
 
 	void isThreadStopped(bool &stopped);
 

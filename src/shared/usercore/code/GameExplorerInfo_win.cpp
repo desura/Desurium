@@ -80,10 +80,10 @@ GRPICONDIR, *LPGRPICONDIR;
 #pragma pack(pop)
 
 
-TiXmlElement* WriteChildWithChildAndAtt(const char* nodeName, const char* childName, const char* attName, const char* attValue, TiXmlNode* root)
+tinyxml2::XMLElement* WriteChildWithChildAndAtt(const char* nodeName, const char* childName, const char* attName, const char* attValue, tinyxml2::XMLNode* root, tinyxml2::XMLDocument& doc)
 {
-	TiXmlElement *node = new TiXmlElement(nodeName);
-	TiXmlElement *child = new TiXmlElement(childName);
+	tinyxml2::XMLElement *node = doc.NewElement(nodeName);
+	tinyxml2::XMLElement *child = doc.NewElement(childName);
 
 	child->SetAttribute(attName, attValue);
 
@@ -93,9 +93,9 @@ TiXmlElement* WriteChildWithChildAndAtt(const char* nodeName, const char* childN
 	return node;
 }
 
-TiXmlElement* WriteChildWithChildAndAtt(TiXmlElement* node, const char* childName, const char* attName, const char* attValue)
+tinyxml2::XMLElement* WriteChildWithChildAndAtt(tinyxml2::XMLElement* node, const char* childName, const char* attName, const char* attValue, tinyxml2::XMLDocument& doc)
 {
-	TiXmlElement *child = new TiXmlElement(childName);
+	tinyxml2::XMLElement *child = doc.NewElement(childName);
 	child->SetAttribute(attName, attValue);
 	return node;
 }
@@ -415,71 +415,73 @@ gcWString GameExplorerInfo::generateXml()
 	if (szGenere.size() == 0)
 		szGenere = "Unknown";
 
-	TiXmlDeclaration *decl = new TiXmlDeclaration( "1.0", "utf-16", "");
-	TiXmlElement *gameDefFile = new TiXmlElement("GameDefinitionFile");
-	TiXmlElement *gameDef = new TiXmlElement("GameDefinition");
+	tinyxml2::XMLDocument doc;
+
+	tinyxml2::XMLDeclaration *decl = doc.NewDeclaration("<?xml version=\"1.0\" encoding=\"UTF-16\" ?>");
+	tinyxml2::XMLElement *gameDefFile = doc.NewElement("GameDefinitionFile");
+	tinyxml2::XMLElement *gameDef = doc.NewElement("GameDefinition");
 
 	gameDefFile->SetAttribute("xmlns:baseTypes", "urn:schemas-microsoft-com:GamesExplorerBaseTypes.v1");
 	gameDefFile->SetAttribute("xmlns", "urn:schemas-microsoft-com:GameDescription.v1");
 	gameDef->SetAttribute("gameID", m_szGuid.c_str());
 
 
-	XML::WriteChild("Name", szName, gameDef);
-	XML::WriteChild("Description", szDescription, gameDef);
-	XML::WriteChild("ReleaseDate", szReleaseData, gameDef);
+	XML::WriteChild("Name", szName, gameDef, doc);
+	XML::WriteChild("Description", szDescription, gameDef, doc);
+	XML::WriteChild("ReleaseDate", szReleaseData, gameDef, doc);
 
-	TiXmlElement *genres = new TiXmlElement("Genres");
-	XML::WriteChild("Genre", szGenere, genres);
-	gameDef->LinkEndChild(genres);
+	tinyxml2::XMLElement *genres = doc.NewElement("Genres");
+	XML::WriteChild("Genre", szGenere, genres, doc);
+	gameDef->InsertEndChild(genres);
 	
-	WriteChildWithChildAndAtt("Version", "VersionNumber", "versionNumber", szVersion.c_str(), gameDef);
+	WriteChildWithChildAndAtt("Version", "VersionNumber", "versionNumber", szVersion.c_str(), gameDef, doc);
 
 
-	TiXmlElement *devs = new TiXmlElement("Developers");
-		TiXmlElement *dev = new TiXmlElement("Developer");
+	tinyxml2::XMLElement *devs = doc.NewElement("Developers");
+	tinyxml2::XMLElement *dev = doc.NewElement("Developer");
 
 			dev->SetAttribute("URI", szDevUrl.c_str());
-			dev->LinkEndChild(new TiXmlText(szDevName.c_str()));
+			dev->InsertEndChild(doc.NewText(szDevName.c_str()));
 
-		devs->LinkEndChild(dev);
-	gameDef->LinkEndChild(devs);
+		devs->InsertEndChild(dev);
+	gameDef->InsertEndChild(devs);
 
 
-	TiXmlElement *publishers = new TiXmlElement("Publishers");
-		TiXmlElement *publisher = new TiXmlElement("Publisher");
+	tinyxml2::XMLElement *publishers = doc.NewElement("Publishers");
+	tinyxml2::XMLElement *publisher = doc.NewElement("Publisher");
 
 			publisher->SetAttribute("URI", szPubUrl.c_str());
-			publisher->LinkEndChild(new TiXmlText(szPub.c_str()));
+			publisher->InsertEndChild(doc.NewText(szPub.c_str()));
 
-		publishers->LinkEndChild(publisher);
-	gameDef->LinkEndChild(publishers);
+		publishers->InsertEndChild(publisher);
+	gameDef->InsertEndChild(publishers);
 
 
 	
 	if (vExeList.size() > 0)
 	{
-		TiXmlElement *gameExecutables = new TiXmlElement("GameExecutables");
+		tinyxml2::XMLElement *gameExecutables = doc.NewElement("GameExecutables");
 
 		for (size_t x=0; x<vExeList.size(); x++)
 		{
 			gcString szGameExe(UTIL::FS::PathWithFile(vExeList[x]->getExe()).getFile().getFile());
-			TiXmlElement *gameExecutable = new TiXmlElement("GameExecutable");
+			tinyxml2::XMLElement *gameExecutable = doc.NewElement("GameExecutable");
 
 			gameExecutable->SetAttribute("path", szGameExe.c_str());
-			gameExecutables->LinkEndChild(gameExecutable);
+			gameExecutables->InsertEndChild(gameExecutable);
 		}
 
-		gameDef->LinkEndChild(gameExecutables);
+		gameDef->InsertEndChild(gameExecutables);
 	}
 
 	int i = 1;
 
-	TiXmlElement *extProps = new TiXmlElement("ExtendedProperties");
-	TiXmlElement *gameTasks = new TiXmlElement("GameTasks");
+	tinyxml2::XMLElement *extProps = doc.NewElement("ExtendedProperties");
+	tinyxml2::XMLElement *gameTasks = doc.NewElement("GameTasks");
 
-	TiXmlElement *playTask = new TiXmlElement("Play");
+	tinyxml2::XMLElement *playTask = doc.NewElement("Play");
 
-		WriteChildWithChildAndAtt("Primary", "URLTask", "Link", szPlayLink.c_str(), playTask);
+		WriteChildWithChildAndAtt("Primary", "URLTask", "Link", szPlayLink.c_str(), playTask, doc);
 
 		if (vExeList.size() > 1)
 		{
@@ -488,7 +490,7 @@ gcWString GameExplorerInfo::generateXml()
 				gcString play("Play: {0}", vExeList[x]->getName());
 				gcString link("desura://launch/{0}/{1}/{2}", m_Id.getTypeString(), m_pItemInfo->getShortName(), vExeList[x]->getName());
 
-				TiXmlElement *changeLog = WriteChildWithChildAndAtt("Task", "URLTask", "Link", link.c_str(), playTask);
+				tinyxml2::XMLElement *changeLog = WriteChildWithChildAndAtt("Task", "URLTask", "Link", link.c_str(), playTask, doc);
 				changeLog->SetAttribute("index", i);
 				changeLog->SetAttribute("name", play.c_str());
 				i++;
@@ -497,14 +499,14 @@ gcWString GameExplorerInfo::generateXml()
 
 		if (m_pItemInfo->isDownloadable())
 		{
-			TiXmlElement *changeLog = WriteChildWithChildAndAtt("Task", "URLTask", "Link", szChangeLogLink.c_str(), playTask);
+			tinyxml2::XMLElement *changeLog = WriteChildWithChildAndAtt("Task", "URLTask", "Link", szChangeLogLink.c_str(), playTask, doc);
 			changeLog->SetAttribute("index", i);
 			changeLog->SetAttribute("name", "View Update History");
 			i++;
 		}
 		
 		
-		TiXmlElement *profile = WriteChildWithChildAndAtt("Task", "URLTask", "Link", szProfileLink.c_str(), playTask);
+		tinyxml2::XMLElement *profile = WriteChildWithChildAndAtt("Task", "URLTask", "Link", szProfileLink.c_str(), playTask, doc);
 		profile->SetAttribute("index", i);
 		profile->SetAttribute("name", "View Profile");
 		i++;
@@ -530,7 +532,7 @@ gcWString GameExplorerInfo::generateXml()
 			gcString name("Install Branch: {0}", bi->getName());
 			gcString link("desura://install/{0}/{1}/{2}", m_Id.getTypeString(), m_pItemInfo->getShortName(), bi->getBranchId());
 
-			TiXmlElement *branch = WriteChildWithChildAndAtt("Task", "URLTask", "Link", link.c_str(), playTask);
+			tinyxml2::XMLElement *branch = WriteChildWithChildAndAtt("Task", "URLTask", "Link", link.c_str(), playTask, doc);
 			branch->SetAttribute("index", x+i);
 			branch->SetAttribute("name", name.c_str());
 			
@@ -539,13 +541,13 @@ gcWString GameExplorerInfo::generateXml()
 
 	gameTasks->LinkEndChild(playTask);
 
-	TiXmlElement *supportTask = new TiXmlElement("Support");
+	tinyxml2::XMLElement *supportTask = doc.NewElement("Support");
 
-		TiXmlElement *verify = WriteChildWithChildAndAtt("Task", "URLTask", "Link", szVerifyLink.c_str(), supportTask);
+	tinyxml2::XMLElement *verify = WriteChildWithChildAndAtt("Task", "URLTask", "Link", szVerifyLink.c_str(), supportTask, doc);
 		verify->SetAttribute("index", 0);
 		verify->SetAttribute("name", "Verify Files");
 
-		TiXmlElement *uninstall = WriteChildWithChildAndAtt("Task", "URLTask", "Link", szUninstallLink.c_str(), supportTask);
+		tinyxml2::XMLElement *uninstall = WriteChildWithChildAndAtt("Task", "URLTask", "Link", szUninstallLink.c_str(), supportTask, doc);
 		uninstall->SetAttribute("index", 1);
 		uninstall->SetAttribute("name", "Uninstall");
 		
@@ -555,13 +557,10 @@ gcWString GameExplorerInfo::generateXml()
 	gameDef->LinkEndChild(extProps);
 	gameDefFile->LinkEndChild(gameDef);
 
-	TiXmlDocument doc;
 	doc.LinkEndChild(decl);
 	doc.LinkEndChild(gameDefFile);
 
-	TiXmlPrinter printer;
-	printer.SetIndent( "\t" );
-
+	tinyxml2::XMLPrinter printer;
 	doc.Accept( &printer );
 
 	gcWString res;
