@@ -4,16 +4,21 @@ include_directories(
 
 set(SQLITE_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include/ PARENT_SCOPE)
 
-file(GLOB Headers ./include/*.h)
-file(GLOB Sources ./code/*.c ./include/*.h)
+file(GLOB Headers
+  ${SQLITE_INCLUDE_DIR}/sqlite3.h
+  ${SQLITE_INCLUDE_DIR}/sqlite3ext.h)
+
+file(GLOB Sources
+  ./code/sqlite3.c
+  ./code/sqlite3ext.c)
 
 if(WIN32)
-  add_definitions(/D_LIB /DSQLITE_THREADSAFE)
+  add_definitions(-D_LIB -DSQLITE_THREADSAFE)
 else()
   set(LINUX_LIBRARIES dl pthread)
 endif()
 
-add_library(sqlite STATIC ${Sources})
+add_library(sqlite STATIC ${Sources} ${Headers})
 target_link_libraries(sqlite
   ${LINUX_LIBRARIES}
 )
