@@ -15,7 +15,7 @@ file(GLOB Sources
 if(WIN32)
   add_definitions(-D_LIB -DSQLITE_THREADSAFE)
 else()
-  set(LINUX_LIBRARIES dl pthread)
+  set(LINUX_LIBRARIES dl ${CMAKE_THREAD_LIBS_INIT})
 endif()
 
 add_library(sqlite STATIC ${Sources} ${Headers})
