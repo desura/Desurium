@@ -40,9 +40,4 @@ target_link_libraries(mcfcore
   ${CMAKE_THREAD_LIBS_INIT}
 )
 
-install(TARGETS mcfcore
-        DESTINATION "${LIB_INSTALL_DIR}")
-
-CopyTargetFiles(mcfcore)
-		
-SET_PROPERTY(TARGET mcfcore                PROPERTY FOLDER "Shared")
+desurium_install_library(mcfcore "Shared")

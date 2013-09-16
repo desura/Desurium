@@ -31,8 +31,4 @@ target_link_libraries(webcore
 	${CMAKE_THREAD_LIBS_INIT}
 )
 
-install(TARGETS webcore
-        DESTINATION "${LIB_INSTALL_DIR}")
-
-CopyTargetFiles(webcore)
-SET_PROPERTY(TARGET webcore                PROPERTY FOLDER "Shared")
+desurium_install_library(webcore "Shared")

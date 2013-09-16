@@ -59,7 +59,4 @@ target_link_libraries(utilcore
 	${WINDOWS_LIBRARIES}
 )
 
-install(TARGETS utilcore
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(utilcore)
-SET_PROPERTY(TARGET utilcore                PROPERTY FOLDER "Shared")
+desurium_install_library(utilcore "Shared")

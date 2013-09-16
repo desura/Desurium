@@ -1,3 +1,21 @@
+function(CopyTargetFiles target)
+  get_target_property(target_loc ${target} LOCATION)
+  get_filename_component(target_loc "${target_loc}" NAME)
+
+  if(NOT IS_ABSOLUTE ${BINDIR})
+    if(${target_loc} MATCHES ".*exe")
+      add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_BINARY_DIR}/${target_loc}")
+    endif()
+  endif()
+
+  if(RUNTIME_LIBDIR)
+    if(${target_loc} MATCHES ".*dll" OR ${target_loc} MATCHES ".*so" OR ${target_loc} MATCHES ".*dylib")
+      add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_OUTPUT}/${RUNTIME_LIBDIR}/${target_loc}")
+      add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_BINARY_DIR}/${RUNTIME_LIBDIR}/${target_loc}")
+    endif()
+  endif()
+endfunction(CopyTargetFiles)
+
 macro(add_compiler_flags)
   set(flags_list "")
   parse_arguments(ARG "" "C;CXX;DEBUG;RELEASE" ${ARGN})
@@ -112,12 +130,23 @@ endmacro()
 function(install_executable target)
   set(CURRENT_TARGET "${target}")
   install(TARGETS "${CURRENT_TARGET}"
-          DESTINATION "${LIB_INSTALL_DIR}")
-  
-  configure_file("${CMAKE_SCRIPT_PATH}/run.sh" "${CMAKE_GEN_SRC_DIR}/build_out/${CURRENT_TARGET}" @ONLY)
-  install(FILES "${CMAKE_GEN_SRC_DIR}/build_out/${CURRENT_TARGET}"
-          DESTINATION "${BIN_INSTALL_DIR}"
-          PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-                      GROUP_READ             GROUP_EXECUTE
-                      WORLD_READ             WORLD_EXECUTE)
+          RUNTIME DESTINATION "${LIB_INSTALL_DIR}")
+  # install script to launch binary
+  if(NOT WIN32)
+    configure_file("${CMAKE_SCRIPT_PATH}/run.sh" "${CMAKE_GEN_SRC_DIR}/build_out/${CURRENT_TARGET}" @ONLY)
+    install(FILES "${CMAKE_GEN_SRC_DIR}/build_out/${CURRENT_TARGET}"
+            DESTINATION "${BIN_INSTALL_DIR}"
+            PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                        GROUP_READ             GROUP_EXECUTE
+                        WORLD_READ             WORLD_EXECUTE)
+  endif()
+endfunction()
+
+function(desurium_install_library target category)
+  # dlls are runtime targets, import libs are archive, but we don't need them
+  install(TARGETS "${target}"
+          RUNTIME DESTINATION "${LIB_INSTALL_DIR}"
+          LIBRARY DESTINATION "${LIB_INSTALL_DIR}")
+  CopyTargetFiles(${target})
+  set_property(TARGET ${target} PROPERTY FOLDER ${category})
 endfunction()

@@ -173,7 +173,4 @@ target_link_libraries(uicore
     ${WINDOWS_LIBRARIES}
 )
 
-install(TARGETS uicore
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(uicore)
-SET_PROPERTY(TARGET uicore                PROPERTY FOLDER "Shared")
+desurium_install_library(uicore "Shared")

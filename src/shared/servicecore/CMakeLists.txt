@@ -50,7 +50,4 @@ target_link_libraries(servicecore
 	${PLATFORM_LIBRARIES}
 )
 
-install(TARGETS servicecore
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(servicecore)
-SET_PROPERTY(TARGET servicecore                PROPERTY FOLDER "Shared")
+desurium_install_library(servicecore "Shared")
