@@ -42,3 +42,5 @@ target_link_libraries(mcfcore
 
 install(TARGETS mcfcore
         DESTINATION "${LIB_INSTALL_DIR}")
+
+SET_PROPERTY(TARGET mcfcore                PROPERTY FOLDER "Shared")

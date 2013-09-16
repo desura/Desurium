@@ -16,3 +16,5 @@ target_link_libraries(threads
   ${Boost_THREAD_LIBRARY}
   ${PLATFORM_LIBRARIES}
 )
+
+SET_PROPERTY(TARGET threads                PROPERTY FOLDER "Static")

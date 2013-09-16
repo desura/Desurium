@@ -66,3 +66,6 @@ else()
   install(FILES ${V8_LIBRARIES}
           DESTINATION ${LIB_INSTALL_DIR})
 endif()
+
+
+SET_PROPERTY(TARGET v8                PROPERTY FOLDER "ThirdParty")

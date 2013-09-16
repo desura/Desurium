@@ -61,3 +61,5 @@ target_link_libraries(utilcore
 
 install(TARGETS utilcore
         DESTINATION "${LIB_INSTALL_DIR}")
+
+SET_PROPERTY(TARGET utilcore                PROPERTY FOLDER "Shared")

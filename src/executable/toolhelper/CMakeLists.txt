@@ -16,3 +16,5 @@ target_link_libraries(toolhelper
 
 install(TARGETS toolhelper
         DESTINATION "${BIN_INSTALL_DIR}")
+
+SET_PROPERTY(TARGET toolhelper                PROPERTY FOLDER "Executable")

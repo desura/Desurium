@@ -39,3 +39,6 @@ target_link_libraries(desura
 
 install(TARGETS desura
         DESTINATION "${BIN_INSTALL_DIR}")
+
+		
+SET_PROPERTY(TARGET desura                PROPERTY FOLDER "Executable")

@@ -17,3 +17,6 @@ target_link_libraries(desura_service
 
 install(TARGETS desura_service
         DESTINATION "${BIN_INSTALL_DIR}")
+
+		
+SET_PROPERTY(TARGET desura_service                PROPERTY FOLDER "Executable")

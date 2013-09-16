@@ -15,3 +15,6 @@ target_link_libraries(mcf_extract
 )
 
 install_executable(mcf_extract)
+
+
+SET_PROPERTY(TARGET mcf_extract                PROPERTY FOLDER "Tools")

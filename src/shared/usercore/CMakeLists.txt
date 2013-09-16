@@ -125,3 +125,5 @@ target_link_libraries(usercore
 
 install(TARGETS usercore
         DESTINATION "${LIB_INSTALL_DIR}")
+		
+SET_PROPERTY(TARGET usercore                PROPERTY FOLDER "Shared")

@@ -15,3 +15,5 @@ target_link_libraries(mdump
     ${BREAKPAD_EXCEPTION_HANDLER_LIBRARIES}
 	${WINDOWS_LIBS}
 )
+
+SET_PROPERTY(TARGET mdump                PROPERTY FOLDER "Static")

@@ -18,3 +18,5 @@ target_link_libraries(sqlite3x
     ${SQLITE_LIBRARIES}
 )
 set(SQLITE3X_LIBRARIES sqlite3x PARENT_SCOPE)
+
+SET_PROPERTY(TARGET sqlite3x                PROPERTY FOLDER "ThirdParty")

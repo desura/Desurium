@@ -33,4 +33,5 @@ target_link_libraries(managers_window
     ${wxWidgets_LIBRARIES}
 )
 
-
+SET_PROPERTY(TARGET managers                PROPERTY FOLDER "Static")
+SET_PROPERTY(TARGET managers_window                PROPERTY FOLDER "Static")

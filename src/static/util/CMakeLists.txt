@@ -80,3 +80,6 @@ target_link_libraries(util
   ${Boost_SYSTEM_LIBRARY}
   ${PLATFORM_LIBRARIES}
 )
+
+SET_PROPERTY(TARGET util                PROPERTY FOLDER "Static")
+SET_PROPERTY(TARGET util_web                PROPERTY FOLDER "Static")
