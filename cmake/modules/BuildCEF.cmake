@@ -244,10 +244,7 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
   add_dependencies(cef chromium)
   add_dependencies(cef fetch_cef)
 
-  install(FILES ${CEF_LIBRARIES}
-          DESTINATION ${LIB_INSTALL_DIR})
-  install(FILES ${CEF_FFMPEG_LIB}
-          DESTINATION ${CEF_MEDIA_DIR})
+  install_external_library(cef ${CEF_LIBRARIES} ${CEF_FFMPEG_LIB})
 		  
   SET_PROPERTY(TARGET cef                PROPERTY FOLDER "ThirdParty")
 else(BUILD_CEF)

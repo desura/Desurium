@@ -14,26 +14,18 @@ file(RENAME ${BIN_INCLUDE_DIR}/${BRANDING} ${BIN_INCLUDE_DIR}/branding)
 set(BRANDING_DIR ${BIN_INCLUDE_DIR}/branding)
 set(APP ${BRANDING_DIR}/data/themes/default/images/app)
 
-install(FILES ${BRANDING_DIR}/data/desura_lin.png
-        DESTINATION ${DATA_INSTALL_DIR}
-        RENAME desura.png
-)
-install(FILES ${BRANDING_DIR}/data/themes/default/images/html/default/logo.png
-        DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/html/default/)
-install(FILES ${APP}/about_logo.png
-              ${APP}/icon_download.png
-              ${APP}/signin_banner.png
-        DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app/
-)
+install_data_files("" ${BRANDING_DIR}/data/desura_lin.png)
+install_data_files(themes/default/images/html/default ${BRANDING_DIR}/data/themes/default/images/html/default/logo.png)
+install_data_files(themes/default/images/app ${APP}/about_logo.png ${APP}/icon_download.png ${APP}/signin_banner.png)
 
 if(WIN32)
-  install(FILES ${APP}/menu_button_hover_win.png RENAME menu_button_hover.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-  install(FILES ${APP}/menu_button_nonactive_win.png RENAME menu_button_nonactive.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-  install(FILES ${APP}/menu_button_win.png RENAME menu_button.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
+  install_data_files(themes/default/images/app ${APP}/menu_button_hover_win.png)
+  install_data_files(themes/default/images/app ${APP}/menu_button_nonactive_win.png)
+  install_data_files(themes/default/images/app ${APP}/menu_button_win.png)
 else()
-  install(FILES ${APP}/menu_button_hover_lin.png RENAME menu_button_hover.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-  install(FILES ${APP}/menu_button_nonactive_lin.png RENAME menu_button_nonactive.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-  install(FILES ${APP}/menu_button_lin.png RENAME menu_button.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
+  install_data_files(themes/default/images/app ${APP}/menu_button_hover_lin.png)
+  install_data_files(themes/default/images/app ${APP}/menu_button_nonactive_lin.png)
+  install_data_files(themes/default/images/app ${APP}/menu_button_lin.png)
 endif()
 
 ###############################################################################

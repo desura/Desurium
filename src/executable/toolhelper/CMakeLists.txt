@@ -14,8 +14,4 @@ target_link_libraries(toolhelper
   util_bootloader
 )
 
-install(TARGETS toolhelper
-        DESTINATION "${BIN_INSTALL_DIR}")
-
-CopyTargetFiles(toolhelper)
-SET_PROPERTY(TARGET toolhelper                PROPERTY FOLDER "Executable")
+install_executable(toolhelper)

@@ -39,9 +39,4 @@ target_link_libraries(desura
   mdump
 )
 
-install(TARGETS desura
-        DESTINATION "${BIN_INSTALL_DIR}")
-
-CopyTargetFiles(desura)
-		
-SET_PROPERTY(TARGET desura                PROPERTY FOLDER "Executable")
+install_executable(desura)

@@ -5068,7 +5068,7 @@ diff '--exclude=.svn' -aurN cef.ori/libcef/browser_webkit_init.cc cef/libcef/bro
  
 +#ifdef OS_LINUX
 +    // Load only the libraries we want Desura to use
-+    media::InitializeMediaLibrary(FilePath("./cefmedia/"));
++    media::InitializeMediaLibrary(FilePath("./"));
 +    WebKit::WebRuntimeFeatures::enableMediaPlayer(true);
 +#else
    // Load libraries for media and enable the media player.

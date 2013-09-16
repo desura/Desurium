@@ -126,24 +126,6 @@ endif()
 # find all packages which are needed
 ###############################################################################
 
-macro(CopyTargetFiles target)
-
-get_property(target_loc TARGET ${target} PROPERTY LOCATION)
-
-message(WARNING, ${target_loc})
-
-if (${target_loc} MATCHES ".*exe")
-	add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_OUTPUT}")
-endif()
-
-if (${target_loc} MATCHES ".*dll")
-	add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_OUTPUT}/bin/.")
-	add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_OUTPUT}/bin/.")
-endif()
-	
-endmacro(CopyTargetFiles)
-
-
 if(NOT WIN32)
   set(REQUIRED_ON_UNIX REQUIRED)
 endif()

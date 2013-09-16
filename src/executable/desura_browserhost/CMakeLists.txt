@@ -27,8 +27,4 @@ target_link_libraries(desura_browserhost
   wintrust
 )
 
-install(TARGETS desura_browserhost
-        DESTINATION "${BIN_INSTALL_DIR}")
-
-CopyTargetFiles(desura_browserhost)
-SET_PROPERTY(TARGET desura_browserhost                PROPERTY FOLDER "Executable")
+install_executable(desura_browserhost)

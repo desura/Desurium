@@ -123,7 +123,4 @@ target_link_libraries(usercore
   ${WINDOWS_LIBRARIES}
 )
 
-install(TARGETS usercore
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(usercore)
-SET_PROPERTY(TARGET usercore                PROPERTY FOLDER "Shared")
+install_library(usercore)

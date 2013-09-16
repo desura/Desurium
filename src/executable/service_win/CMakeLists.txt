@@ -15,8 +15,4 @@ target_link_libraries(desura_service
   wintrust
 )
 
-install(TARGETS desura_service
-        DESTINATION "${BIN_INSTALL_DIR}")
-
-CopyTargetFiles(desura_service)
-SET_PROPERTY(TARGET desura_service                PROPERTY FOLDER "Executable")
+install_executable(desura_service)
