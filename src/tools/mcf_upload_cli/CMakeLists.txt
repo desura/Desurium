@@ -16,5 +16,5 @@ target_link_libraries(mcf_upload_cli
 )
 
 install_executable(mcf_upload_cli)
-
+CopyTargetFiles(mcf_upload_cli)
 SET_PROPERTY(TARGET mcf_upload_cli                PROPERTY FOLDER "Tools")

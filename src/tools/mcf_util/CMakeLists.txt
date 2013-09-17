@@ -28,5 +28,5 @@ target_link_libraries(mcf_util
 
 install_executable(mcf_util)
 
-
+CopyTargetFiles(mcf_util)
 SET_PROPERTY(TARGET mcf_util                PROPERTY FOLDER "Tools")

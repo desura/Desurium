@@ -27,5 +27,5 @@ target_link_libraries(crashuploader
 
 install(TARGETS crashuploader
         DESTINATION "${LIB_INSTALL_DIR}")
-
+CopyTargetFiles(crashuploader)
 SET_PROPERTY(TARGET crashuploader                PROPERTY FOLDER "Shared")
