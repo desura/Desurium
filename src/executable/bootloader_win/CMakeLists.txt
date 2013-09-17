@@ -27,6 +27,8 @@ add_definitions(-D_WINDOWS
   -DNO_UTIL_FS
 )
 
+set(CMAKE_MFC_FLAG 2) #this should really be 1
+
 add_executable(desura WIN32 ${Sources} ${SERVICE_PIPE_IPCUPDATEMAIN})
 target_link_libraries(desura
   ipc_pipe
@@ -39,3 +41,7 @@ target_link_libraries(desura
 
 install(TARGETS desura
         DESTINATION "${BIN_INSTALL_DIR}")
+
+CopyTargetFiles(desura)
+		
+SET_PROPERTY(TARGET desura                PROPERTY FOLDER "Executable")

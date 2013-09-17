@@ -29,3 +29,5 @@ target_link_libraries(ipc_pipe
     util
     ${TINYXML_LIBRARIES}
 )
+
+SET_PROPERTY(TARGET ipc_pipe                PROPERTY FOLDER "Static")

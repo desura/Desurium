@@ -23,3 +23,6 @@ target_link_libraries(utilhelper
 
 install(TARGETS utilhelper
         DESTINATION "${BIN_INSTALL_DIR}")
+
+CopyTargetFiles(utilhelper)
+SET_PROPERTY(TARGET utilhelper                PROPERTY FOLDER "Executable")

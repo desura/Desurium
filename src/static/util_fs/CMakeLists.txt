@@ -18,3 +18,5 @@ target_link_libraries(util_fs
   ${Boost_FILESYSTEM_LIBRARY}
   ${Boost_SYSTEM_LIBRARY}
 )
+
+SET_PROPERTY(TARGET util_fs                PROPERTY FOLDER "Static")

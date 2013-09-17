@@ -248,6 +248,8 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
           DESTINATION ${LIB_INSTALL_DIR})
   install(FILES ${CEF_FFMPEG_LIB}
           DESTINATION ${CEF_MEDIA_DIR})
+		  
+  SET_PROPERTY(TARGET cef                PROPERTY FOLDER "ThirdParty")
 else(BUILD_CEF)
   ExternalProject_Add(
     fetch_cef
@@ -266,5 +268,7 @@ else(BUILD_CEF)
   )
   set(CEF_SOURCE_DIR ${source_dir})
   set(CEF_INCLUDE_DIRS "${CEF_SOURCE_DIR}")
+  
+  SET_PROPERTY(TARGET fetch_cef                PROPERTY FOLDER "ThirdParty")
 endif()
 

@@ -34,6 +34,7 @@ ExternalProject_Add_Step(
   v8
   cygwin-svn-fetch
   COMMAND ${Subversion_SVN_EXECUTABLE} co http://src.chromium.org/svn/trunk/deps/third_party/cygwin@66844 third_party/cygwin
+  DEPENDEES download
   DEPENDERS configure
   WORKING_DIRECTORY <SOURCE_DIR>
 )
@@ -66,3 +67,6 @@ else()
   install(FILES ${V8_LIBRARIES}
           DESTINATION ${LIB_INSTALL_DIR})
 endif()
+
+
+SET_PROPERTY(TARGET v8                PROPERTY FOLDER "ThirdParty")

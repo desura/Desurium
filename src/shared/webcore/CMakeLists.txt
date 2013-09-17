@@ -33,3 +33,6 @@ target_link_libraries(webcore
 
 install(TARGETS webcore
         DESTINATION "${LIB_INSTALL_DIR}")
+
+CopyTargetFiles(webcore)
+SET_PROPERTY(TARGET webcore                PROPERTY FOLDER "Shared")

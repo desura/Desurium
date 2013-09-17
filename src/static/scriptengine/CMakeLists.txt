@@ -19,3 +19,5 @@ target_link_libraries(scriptengine
     util_fs
     ${V8_LIBRARIES}
 )
+
+SET_PROPERTY(TARGET scriptengine                PROPERTY FOLDER "Static")

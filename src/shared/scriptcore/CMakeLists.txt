@@ -24,3 +24,5 @@ target_link_libraries(scriptcore
 
 install(TARGETS scriptcore
         DESTINATION "${LIB_INSTALL_DIR}")
+CopyTargetFiles(scriptcore)
+SET_PROPERTY(TARGET scriptcore                PROPERTY FOLDER "Shared")

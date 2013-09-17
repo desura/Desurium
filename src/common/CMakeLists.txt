@@ -11,3 +11,5 @@ add_library(gcJSBase STATIC ${Sources})
 target_link_libraries(gcJSBase
   util
 )
+
+SET_PROPERTY(TARGET gcJSBase                PROPERTY FOLDER "Common")
