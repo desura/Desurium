@@ -35,7 +35,7 @@ SET_PROPERTY(TARGET ipc_pipe                PROPERTY FOLDER "Static")
 if (WIN32)
 	add_library(ipc_pipe_s STATIC ${Sources} ${PlattformSources})
 
-	target_link_libraries(ipc_pipe
+	target_link_libraries(ipc_pipe_s
 		threads_s
 		util_s
 		${TINYXML_LIBRARIES_S}

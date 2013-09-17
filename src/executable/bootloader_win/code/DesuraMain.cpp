@@ -462,20 +462,20 @@ BOOL BootLoader::OnIdle(LONG lCount)
 
 void BootLoader::preReadImages()
 {
-	BootLoaderUtil::PreReadImage(".\\uicore.dll");
-	BootLoaderUtil::PreReadImage(".\\webcore.dll");
-	BootLoaderUtil::PreReadImage(".\\usercore.dll");
-	BootLoaderUtil::PreReadImage(".\\mcfcore.dll");
+	BootLoaderUtil::PreReadImage(".\\bin\\uicore.dll");
+	BootLoaderUtil::PreReadImage(".\\bin\\webcore.dll");
+	BootLoaderUtil::PreReadImage(".\\bin\\usercore.dll");
+	BootLoaderUtil::PreReadImage(".\\bin\\mcfcore.dll");
 #ifdef DEBUG
-	BootLoaderUtil::PreReadImage(".\\wxmsw290ud_vc_desura.dll");
+	BootLoaderUtil::PreReadImage(".\\bin\\wxmsw293ud_vc_desura.dll");
 #else
-	BootLoaderUtil::PreReadImage(".\\wxmsw290u_vc_desura.dll");	
+	BootLoaderUtil::PreReadImage(".\\bin\\wxmsw293u_vc_desura.dll");	
 #endif
 }
 
 void BootLoader::loadUICore()
 {
-	if (!BootLoaderUtil::SetDllDir("."))
+	if (!BootLoaderUtil::SetDllDir(".\\bin"))
 	{
 		::MessageBox(NULL, "Failed to set the DLL path to the bin folder.", PRODUCT_NAME ": ERROR!",  MB_OK);
 		exit(-100);			
