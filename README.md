@@ -91,11 +91,38 @@ Download and install:
 
 Note: Make sure you add svn and python to your environment PATH
 
+## Command line build:
+
 Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a full build environment) and run:
 
     ./build_desura.bat
 
 wait
+
+
+## Visual studio build:
+
+* Launch cmake-gui.exe
+* Set source code dir to git checkout location
+* Set build the binaries dir to source code dir + "\build_vis"
+* Click configure selecting visual studio 12 as generator
+* In settings:
+ * Enable DEBUG
+ * Disable BUILD_CEF
+ * Disable BUILD_TESTS
+ * Disable BUILD_TESTING
+ * Enable DEBUG_V8
+ * Set BINDIR to source code dir + "\build_out"
+* Click generate
+* Open solution with visual studio 2013 and build
+* Set BUILD_ALL as startup project
+* In properties for BUILD_ALL set debugging options:
+ * Command to source code dir + "\build_out\desura.exe"
+ * Working Directory to source code dir + "\build_out"
+* Copy wxmsw293ud_vc_desura.dll from wxWidgets build dir to source code dir + "\build_out\bin"
+* From desura release copy all missing dll's to source code dir + "\build_out\bin"
+ 
+Should be able to run and debug Desura now.
 
 Special notes for advanced users
 =====================
