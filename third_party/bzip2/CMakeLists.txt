@@ -24,6 +24,14 @@ add_library(bzip2 STATIC ${Sources} ${Headers})
 )
 
 set(BZIP2_LIBRARIES bzip2 PARENT_SCOPE)
-
-
 SET_PROPERTY(TARGET bzip2                PROPERTY FOLDER "ThirdParty")
+
+if (WIN32)
+	add_library(bzip2_s STATIC ${Sources} ${Headers})
+	  target_link_libraries(bzip2_s)
+
+	set(BZIP2_LIBRARIES_S bzip2_s PARENT_SCOPE)
+	SET_PROPERTY(TARGET bzip2_s                PROPERTY FOLDER "ThirdParty")
+
+	SetStaticRuntime(bzip2_s)
+endif()

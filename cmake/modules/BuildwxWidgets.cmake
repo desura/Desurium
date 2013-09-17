@@ -102,4 +102,5 @@ else()
   set(wxWidgets_CONFIG_EXECUTABLE ${wxWidgets_BIN_DIR}/wx-config)
 endif()
 
+CopyTargetFiles(wxWidget-2-9)
 SET_PROPERTY(TARGET wxWidget-2-9                PROPERTY FOLDER "ThirdParty")

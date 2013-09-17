@@ -12,6 +12,8 @@ file(GLOB Sources code/AppUpdateInstall.cpp
                   code/UpdateFunctions.cpp
                   ${RC_DIR}/desura_exe.rc)
 
+SetUseMFC()
+				  
 if(MFC_FOUND)
   file(GLOB AdditionalSources code/DesuraMain.cpp)
 else()
@@ -27,21 +29,31 @@ add_definitions(-D_WINDOWS
   -DNO_UTIL_FS
 )
 
-set(CMAKE_MFC_FLAG 2) #this should really be 1
-
 add_executable(desura WIN32 ${Sources} ${SERVICE_PIPE_IPCUPDATEMAIN})
-target_link_libraries(desura
-  ipc_pipe
-  threads
-  util
-  util_bootloader
-  comctl32
-  mdump
-)
+
+if (WIN32)
+	target_link_libraries(desura
+	  ipc_pipe_s
+	  threads_s
+	  util_s
+	  util_bootloader_s
+	  comctl32
+	  mdump_s
+	)
+	SetStaticRuntime(desura)
+else()
+	target_link_libraries(desura
+	  ipc_pipe
+	  threads
+	  util
+	  util_bootloader
+	  comctl32
+	  mdump
+	)
+endif()
 
 install(TARGETS desura
         DESTINATION "${BIN_INSTALL_DIR}")
 
 CopyTargetFiles(desura)
-		
 SET_PROPERTY(TARGET desura                PROPERTY FOLDER "Executable")

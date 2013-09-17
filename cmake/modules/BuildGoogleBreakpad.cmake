@@ -33,6 +33,35 @@ if(WIN32 AND NOT MINGW)
     WORKING_DIRECTORY <SOURCE_DIR>
     COMMAND cmake -DVCXPROJ_PATH=<SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj -P ${CMAKE_SCRIPT_PATH}/breakpad_VS_patch.cmake
   )
+  
+  
+  
+  ExternalProject_Add(
+    breakpad_s
+    URL ${BREAKPAD_URL}
+    URL_MD5 ${BREAKPAD_MD5}
+    UPDATE_COMMAND ""
+    PATCH_COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_PATCH_DIR}/breakpad.patch
+    CONFIGURE_COMMAND ${PYTHON_EXECUTABLE} ../breakpad_s/src/tools/gyp/gyp ../breakpad_s/src/client/windows/breakpad_client.gyp
+    BUILD_COMMAND msbuild <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj /nologo /t:rebuild /m:2 /property:Configuration=${CONFIGURATION_TYPE}
+    INSTALL_COMMAND ""
+  )
+  ExternalProject_Add_Step(
+    breakpad_s
+    update_project_files
+    DEPENDEES configure
+    DEPENDERS build
+    COMMAND vcupgrade <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcproj
+  )
+  
+	ExternalProject_Get_Property(
+	  breakpad_s
+	  source_dir
+	)
+	set(BREAKPAD_EXCEPTION_HANDLER_INCLUDE_DIR_S ${source_dir}/src)  
+	set(BREAKPAD_EXCEPTION_HANDLER_LIBRARY_DIR_S ${source_dir}/src/client/windows/handler/${CONFIGURATION_TYPE}/lib)
+	set(BREAKPAD_EXCEPTION_HANDLER_LIBRARIES_S "${BREAKPAD_EXCEPTION_HANDLER_LIBRARY_DIR_S}/exception_handler.lib")	
+	SET_PROPERTY(TARGET breakpad_s PROPERTY FOLDER "ThirdParty")
 else()
   ExternalProject_Add(
     breakpad

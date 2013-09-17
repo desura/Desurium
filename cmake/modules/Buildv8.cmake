@@ -68,5 +68,5 @@ else()
           DESTINATION ${LIB_INSTALL_DIR})
 endif()
 
-
+CopyTargetFiles(v8)
 SET_PROPERTY(TARGET v8                PROPERTY FOLDER "ThirdParty")
