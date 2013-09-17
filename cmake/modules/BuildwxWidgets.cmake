@@ -10,6 +10,8 @@ if(WIN32 AND NOT MINGW)
     INSTALL_COMMAND ""
   )
   
+  message(STATUS "${DEBUG}")
+  
   if(DEBUG) 
     ExternalProject_Add_Step(
       wxWidget-2-9
@@ -99,3 +101,5 @@ else()
   set(wxWidgets_BIN_DIR ${wxWidgets_INSTALL_DIR}/bin)
   set(wxWidgets_CONFIG_EXECUTABLE ${wxWidgets_BIN_DIR}/wx-config)
 endif()
+
+SET_PROPERTY(TARGET wxWidget-2-9                PROPERTY FOLDER "ThirdParty")

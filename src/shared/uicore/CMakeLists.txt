@@ -175,3 +175,5 @@ target_link_libraries(uicore
 
 install(TARGETS uicore
         DESTINATION "${LIB_INSTALL_DIR}")
+CopyTargetFiles(uicore)
+SET_PROPERTY(TARGET uicore                PROPERTY FOLDER "Shared")

@@ -20,3 +20,5 @@ target_link_libraries(wx_controls
     ${GTK2_LIBRARIES}
     ${wxWidgets_LIBRARIES}
 )
+
+SET_PROPERTY(TARGET wx_controls                PROPERTY FOLDER "Static")

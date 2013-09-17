@@ -9,3 +9,5 @@ add_library(umcf STATIC ${Sources})
 target_link_libraries(umcf
     ${BZIP2_LIBRARIES}
 )
+
+SET_PROPERTY(TARGET umcf                PROPERTY FOLDER "Static")

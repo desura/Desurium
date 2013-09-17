@@ -52,3 +52,5 @@ target_link_libraries(servicecore
 
 install(TARGETS servicecore
         DESTINATION "${LIB_INSTALL_DIR}")
+CopyTargetFiles(servicecore)
+SET_PROPERTY(TARGET servicecore                PROPERTY FOLDER "Shared")

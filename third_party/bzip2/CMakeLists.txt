@@ -12,3 +12,6 @@ target_link_libraries(bzip2
 )
 
 set(BZIP2_LIBRARIES bzip2 PARENT_SCOPE)
+
+
+SET_PROPERTY(TARGET bzip2                PROPERTY FOLDER "ThirdParty")

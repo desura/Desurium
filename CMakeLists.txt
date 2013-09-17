@@ -88,6 +88,7 @@ endif()
 # some globale variables
 ###############################################################################
 
+set(CMAKE_OUTPUT "${CMAKE_SOURCE_DIR}/build_out")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 set(CMAKE_PLATFORM_PATH "${CMAKE_SOURCE_DIR}/cmake/platform")
 set(CMAKE_EXTERNAL_BINARY_DIR "${CMAKE_BINARY_DIR}/external")
@@ -97,6 +98,8 @@ set(CMAKE_PATCH_DIR "${CMAKE_SOURCE_DIR}/cmake/patches")
 set(CMAKE_GEN_SRC_DIR "${CMAKE_BINARY_DIR}/gen")
 set(CMAKE_TEST_PROJECTS "${CMAKE_SOURCE_DIR}/cmake/tests")
 set(CMAKE_TEST_PROJECTS_BIN "${CMAKE_BINARY_DIR}/cmake_test")
+
+SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 
 if(DEBUG)
   set(CMAKE_BUILD_TYPE Debug)
@@ -122,6 +125,24 @@ endif()
 ###############################################################################
 # find all packages which are needed
 ###############################################################################
+
+macro(CopyTargetFiles target)
+
+get_property(target_loc TARGET ${target} PROPERTY LOCATION)
+
+message(WARNING, ${target_loc})
+
+if (${target_loc} MATCHES ".*exe")
+	add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_OUTPUT}")
+endif()
+
+if (${target_loc} MATCHES ".*dll")
+	add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_OUTPUT}/bin/.")
+	add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_OUTPUT}/bin/.")
+endif()
+	
+endmacro(CopyTargetFiles)
+
 
 if(NOT WIN32)
   set(REQUIRED_ON_UNIX REQUIRED)

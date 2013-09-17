@@ -19,3 +19,5 @@ target_link_libraries(sqlite
 )
 
 set(SQLITE_LIBRARIES sqlite PARENT_SCOPE)
+
+SET_PROPERTY(TARGET sqlite                PROPERTY FOLDER "ThirdParty")

@@ -10,3 +10,5 @@ target_link_libraries(util_bootloader
     Psapi
     wintrust
 )
+
+SET_PROPERTY(TARGET util_bootloader                PROPERTY FOLDER "Static")
