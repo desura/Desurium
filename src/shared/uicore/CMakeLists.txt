@@ -5,6 +5,7 @@ include_directories(
   ${GTK2_INCLUDE_DIRS}
   ${IPC_PIPE_INCLUDE_DIRS}
   ${wxWidgets_INCLUDE_DIRS}
+  ${gtest_SOURCE_DIR}/include
 )
 
 file(GLOB Sources       code/AboutForm.cpp
@@ -120,7 +121,8 @@ file(GLOB Sources       code/AboutForm.cpp
                         code/UploadProgPage.cpp
                         code/UploadPrompt.cpp
                         code/UsernameBox.cpp
-                        code/*.h)
+                        code/*.h
+						code/gcUnitTestPage.cpp)
 
 if(WIN32)
   file(GLOB PlattformSources
@@ -165,6 +167,8 @@ target_link_libraries(uicore
     usercore
     webcore
     wx_controls
+	gtest
+	gmock
     ${LIBNOTIFY_LIBRARIES}
     ${SQLITE_LIBRARIES}
     ${SQLITE3X_LIBRARIES}

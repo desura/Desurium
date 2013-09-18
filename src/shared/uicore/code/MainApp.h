@@ -84,6 +84,7 @@ public:
 
 class InternalLink;
 class TaskBarIcon;
+class gcUnitTestForm;
 
 class MainApp :  public MainAppI
 {
@@ -130,6 +131,8 @@ public:
 
 
 	virtual void newAccountLogin(const char* username, const char* cookie);
+
+	void showUnitTest();
 
 protected:
 	void showLogin(bool skipAutoLogin = false);
@@ -193,6 +196,7 @@ private:
 
 	gcString m_szDesuraCache;
 
+	gcUnitTestForm* m_UnitTestForm;
 	LoginForm* m_wxLoginForm;
 	MainForm* m_wxMainForm;
 	TaskBarIcon* m_wxTBIcon; 

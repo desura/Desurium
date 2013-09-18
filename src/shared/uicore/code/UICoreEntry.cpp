@@ -25,6 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <wx/snglinst.h>
 #include <wx/evtloop.h>
 
+#include <gtest/gtest.h>
+
 extern "C" CEXPORT UICoreI* GetInterface();
 
 #ifdef NIX
@@ -250,6 +252,12 @@ public:
 		m_pChecker = NULL;
 	}
 #endif
+
+	int runUnitTests(int argc, char** argv)
+	{
+		testing::InitGoogleTest(&argc, argv);
+		return RUN_ALL_TESTS();
+	}
 
 private:
 	DumpSettingsFP m_pDumpSettings;
