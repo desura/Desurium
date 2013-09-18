@@ -38,11 +38,43 @@ if(WIN32 AND NOT MINGW)
     curl
     source_dir
   )
+  
   if(DEBUG)
     set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-vc-x86-debug-dll-spnego-winssl)
   else()
     set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-vc-x86-release-dll-spnego-winssl)
   endif()
+  
+  
+  ExternalProject_Add(
+    curl_s
+    URL ${CURL_URL}
+    URL_MD5 ${CURL_MD5}
+    UPDATE_COMMAND ""
+    CONFIGURE_COMMAND ""
+    BUILD_IN_SOURCE 1
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+  )
+  ExternalProject_Add_Step(
+    curl_s
+    custom_build
+    DEPENDEES configure
+    DEPENDERS build
+    COMMAND nmake /f Makefile.vc MODE=static RTLIBCFG=static DEBUG=${CURL_DEBUG} GEN_PDB=no USE_SSPI=yes USE_IPV6=no USE_IDN=no ENABLE_WINSSL=yes MACHINE=x86
+    WORKING_DIRECTORY <SOURCE_DIR>/winbuild
+  )
+  
+  ExternalProject_Get_Property(
+    curl_s
+    source_dir
+  )
+  
+  if(DEBUG)
+    set(CURL_INSTALL_DIR_S ${source_dir}/builds/libcurl-vc-x86-debug-static-spnego-winssl)
+  else()
+    set(CURL_INSTALL_DIR_S ${source_dir}/builds/libcurl-vc-x86-release-static-spnego-winssl)
+  endif()  
 else()
   find_package(OpenSSL REQUIRED)
   set(CURL_INSTALL_DIR ${CMAKE_EXTERNAL_BINARY_DIR}/curl)
@@ -69,6 +101,10 @@ set(CURL_BIN_DIRS ${CURL_INSTALL_DIR}/bin)
 set(CURL_LIBRARY_DIR ${CURL_INSTALL_DIR}/lib)
 set(CURL_INCLUDE_DIRS ${CURL_INSTALL_DIR}/include)
 
+set(CURL_BIN_DIRS_S ${CURL_INSTALL_DIR_S}/bin)
+set(CURL_LIBRARY_DIR_S ${CURL_INSTALL_DIR_S}/lib)
+set(CURL_INCLUDE_DIRS_S ${CURL_INSTALL_DIR_S}/include)
+
 if(WIN32 AND NOT MINGW)
   if(DEBUG)
     list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl_debug.lib")
@@ -77,6 +113,13 @@ if(WIN32 AND NOT MINGW)
     list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl.lib")
     install(FILES "${CURL_BIN_DIRS}/libcurl.dll" DESTINATION ${LIB_INSTALL_DIR})
   endif()
+  
+  
+  if(DEBUG)
+    list(APPEND CURL_LIBRARIES_S "${CURL_LIBRARY_DIR_S}/libcurl_a_debug.lib")
+  else()
+    list(APPEND CURL_LIBRARIES_S "${CURL_LIBRARY_DIR_S}/libcurl_a.lib")
+  endif()  
 else()
   list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl.a")
   list(APPEND CURL_LIBRARIES "${OPENSSL_LIBRARIES}")
@@ -92,4 +135,5 @@ if(WITH_ARES)
 endif()
 
 
-SET_PROPERTY(TARGET curl                PROPERTY FOLDER "ThirdParty")
+SET_PROPERTY(TARGET curl PROPERTY FOLDER "ThirdParty")
+SET_PROPERTY(TARGET curl_s PROPERTY FOLDER "ThirdParty")

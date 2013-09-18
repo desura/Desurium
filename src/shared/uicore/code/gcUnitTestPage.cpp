@@ -312,16 +312,3 @@ void gcUnitTestForm::postShowEvent()
 	uint32 res;
 	showEvent(res);
 }
-
-namespace UnitTest
-{
-	TEST(gcUnitTestForm, Sample)
-	{
-		ASSERT_TRUE(true);
-	}
-
-	TEST(gcUnitTestForm, Sample_Failure)
-	{
-		ASSERT_TRUE(false);
-	}
-}

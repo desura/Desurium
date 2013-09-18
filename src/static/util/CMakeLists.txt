@@ -98,4 +98,14 @@ if (WIN32)
 
 	SET_PROPERTY(TARGET util_s                PROPERTY FOLDER "Static")
 	SetStaticRuntime(util_s)
+	
+	
+	add_library(util_web_s STATIC ${SourcesWEB})
+	target_link_libraries(util_web_s
+		${WINDOWS_LIBRARIES}
+		${CURL_LIBRARIES_S}
+	)
+	
+	SET_PROPERTY(TARGET util_web_s                PROPERTY FOLDER "Static")
+	SetStaticRuntime(util_web_s)	
 endif()

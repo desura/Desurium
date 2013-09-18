@@ -323,11 +323,8 @@ if(NOT BUILD_ONLY_CEF)
   if(NOT SQLITE_FOUND)
     add_subdirectory(third_party/sqlite)
   endif()
+  
   add_subdirectory(third_party/sqlite3x)
-
-  if(NOT Boost_FOUND)
-    add_dependencies(sqlite3x boost)
-  endif()
 
   if(WITH_FLASH AND NOT WIN32)
     add_subdirectory(third_party/npwrapper)
@@ -340,8 +337,6 @@ if(NOT BUILD_ONLY_CEF)
 endif()
 
 set(gtest_force_shared_crt ON)
-
-#add_subdirectory(third_party/gtest-1.6.0)
 add_subdirectory(third_party/gmock-1.6.0)
 
 
