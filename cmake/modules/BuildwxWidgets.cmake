@@ -76,7 +76,7 @@ else()
     BUILD_IN_SOURCE 1
     CONFIGURE_COMMAND ./configure
         --enable-shared --enable-unicode ${CONFIGURE_DEBUG}
-        --enable-monolithic --with-flavour=desura --enable-threads --with-opengl=no --disable-palette
+        --enable-monolithic --with-flavour=desura --enable-threads --with-opengl=no --disable-palette2
         --disable-joystick --disable-mediactrl --prefix=${wxWidgets_INSTALL_DIR} --enable-permissive
   )
   
