@@ -344,6 +344,10 @@ set(gtest_force_shared_crt ON)
 #add_subdirectory(third_party/gtest-1.6.0)
 add_subdirectory(third_party/gmock-1.6.0)
 
+if (WIN32)
+  set_target_properties(gmock PROPERTIES COMPILE_FLAGS "/D _VARIADIC_MAX=10")
+  set_target_properties(gtest PROPERTIES COMPILE_FLAGS "/D _VARIADIC_MAX=10")
+endif()
 
 SET_PROPERTY(TARGET gmock PROPERTY FOLDER "ThirdParty")
 SET_PROPERTY(TARGET gmock_main PROPERTY FOLDER "ThirdParty")
