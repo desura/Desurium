@@ -6,12 +6,12 @@ include_directories(
   ${UTIL_REAL_SOURCE_DIR}
   ${UTIL_REAL_SOURCE_DIR}/code/third_party
   ${Boost_INCLUDE_DIR_S} 
-  ${BZIP2_INCLUDE_DIR_S}
+  ${BZIP2_INCLUDE_DIR}
   ${SQLITE3X_INCLUDE_DIRS_S}
 )
 
 # configure source file to hardcode paths
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/code/UtilOs_cmake.cpp.inc ${CMAKE_GEN_SRC_DIR}/util/UtilOs_cmake.cpp)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../util/code/UtilOs_cmake.cpp.inc ${CMAKE_GEN_SRC_DIR}/util/UtilOs_cmake.cpp)
 
 file(GLOB Sources ${UTIL_REAL_SOURCE_DIR}/code/gcBuff.cpp
                   ${UTIL_REAL_SOURCE_DIR}/code/MD5Progressive.cpp
