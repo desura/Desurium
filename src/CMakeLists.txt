@@ -61,6 +61,14 @@ else()
   )
 endif()
 
+if(WIN32)
+	if (OFFICIAL_BUILD)
+		add_subdirectory(branding_desurium)
+	else()
+		add_subdirectory(branding_desura)
+	endif()
+endif()
+
 ###############################################################################
 # build static libs
 ###############################################################################
