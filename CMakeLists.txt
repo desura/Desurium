@@ -299,6 +299,7 @@ if(NOT BUILD_ONLY_CEF)
   endif()
 
   if(NOT V8_FOUND)
+    find_package(Subversion REQUIRED)
     include(Buildv8)
   endif()
 endif()

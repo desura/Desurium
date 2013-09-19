@@ -1,6 +1,6 @@
-function(CopyTargetFiles target)
-  get_target_property(target_loc ${target} LOCATION)
-  
+
+
+function(CopyOutputFiles target target_loc)
   if (WIN32)
     if(${target_loc} MATCHES ".*exe")
       add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_OUTPUT}\\.")
@@ -26,6 +26,11 @@ function(CopyTargetFiles target)
 		endif()
 	  endif()
 	endif()
+endfunction(CopyOutputFiles)
+
+function(CopyTargetFiles target)
+  get_target_property(target_loc ${target} LOCATION)
+  CopyOutputFiles(${target} ${target_loc})
 endfunction(CopyTargetFiles)
 
 macro(add_compiler_flags)
