@@ -121,10 +121,12 @@ namespace OS
 	
 	gcString getAbsPath(const gcString& path);
 	
+#ifndef WIN32
 	//! Gets the folder for runtime lib loading
 	//!
 	gcString getRuntimeLibPath();
-	
+#endif
+
 	gcString getRelativePath(const gcString &path);
 }
 }
