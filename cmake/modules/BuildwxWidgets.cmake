@@ -52,6 +52,12 @@ if(WIN32 AND NOT MINGW)
             DESTINATION ${LIB_INSTALL_DIR})
   endif()
   
+  if(DEBUG)
+	CopyOutputFiles(wxWidget-2-9 ${wxWidgets_LIBRARY_DIRS}/wxmsw293ud_vc_desura.dll)
+  else()
+    CopyOutputFiles(wxWidget-2-9 ${wxWidgets_LIBRARY_DIRS}/wxmsw293u_vc_desura.dll)
+  endif() 
+  
 else()
   if(MINGW)
     set(WX_SETUP_INCLUDE_SUB "msw-unicode-2.9-desura")
@@ -102,5 +108,4 @@ else()
   set(wxWidgets_CONFIG_EXECUTABLE ${wxWidgets_BIN_DIR}/wx-config)
 endif()
 
-CopyTargetFiles(wxWidget-2-9)
 SET_PROPERTY(TARGET wxWidget-2-9                PROPERTY FOLDER "ThirdParty")

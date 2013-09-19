@@ -58,6 +58,12 @@ if(WIN32)
     install(FILES "${V8_INSTALL_DIR}/build/Release/v8.dll"
             DESTINATION ${LIB_INSTALL_DIR})
   endif()
+  
+   if(DEBUG)
+	CopyOutputFiles(v8 ${V8_INSTALL_DIR}/build/Debug/v8.dll)
+  else()
+    CopyOutputFiles(v8 ${V8_INSTALL_DIR}/build/Release/v8.dll)
+  endif()   
 else()
   if(DEBUG_V8)
     set(V8_LIBRARIES "${V8_INSTALL_DIR}/out/out/Debug/lib.target/libv8.so")

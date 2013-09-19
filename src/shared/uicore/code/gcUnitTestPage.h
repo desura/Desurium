@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #pragma once
 #endif
 
-
+#include <wx/imaglist.h>
 #include "wx_controls/gcControls.h"
 
 class wxListCtrl;

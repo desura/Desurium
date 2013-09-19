@@ -20,8 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Common.h"
 #include "gcUnitTestPage.h"
 
-#include <wx\listctrl.h>
-#include <gtest\gtest.h>
+#include <wx/listctrl.h>
+#include <gtest/gtest.h>
 
 using namespace testing;
 
