@@ -35,8 +35,8 @@ std::wstring getDataPath(std::wstring extra)
 #else
 	path dataDir = L"@DATA_INSOURCE_DIR_ESCP@";
 #endif
-	
-	// we need this for windows, where all files are relativ in the desura application folder or for local Linux
+
+	// we need this for windows, where all files are relative in the desura application folder or for local Linux
 	// installations (if you want to move it around your Document directory)
 	if (dataDir.is_relative())
 		dataDir = getCurrentDir() / dataDir;
@@ -46,12 +46,6 @@ std::wstring getDataPath(std::wstring extra)
 
 gcString getRuntimeLibPath()
 {
-//	path runtimeLibDir = L"@RUNTIME_LIB_INSOURCE_DIR@/";
-	
-//	if (runtimeLibDir.is_relative())
-//		runtimeLibDir = getCurrentDir() / runtimeLibDir;
-	
-	//return runtimeLibDir.string();
 	return getCurrentDir() + L"/";
 }
 
