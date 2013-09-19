@@ -1192,8 +1192,6 @@ void InternalLink::showSettings(Args &args)
 
 void InternalLink::uploadMCF(DesuraId id)
 {
-	FINDFORM(id, UploadMCFForm);
-
 	UserCore::Item::ItemInfoI* item = GetUserCore()->getItemManager()->findItemInfo( id );
 	if (!item && !GetUserCore()->isAdmin())
 	{
@@ -1215,8 +1213,6 @@ void InternalLink::uploadMCF(DesuraId id)
 
 void InternalLink::resumeUploadMCF(DesuraId id, Args args)
 {
-	FINDFORM(id, UploadMCFForm);
-
 	std::string key = args.getArgValue("key");
 
 	UserCore::Item::ItemInfoI* item = GetUserCore()->getItemManager()->findItemInfo( id );
@@ -1241,8 +1237,6 @@ void InternalLink::resumeUploadMCF(DesuraId id, Args args)
 
 void InternalLink::createMCF(DesuraId id)
 {
-	FINDFORM(id, CreateMCFForm);
-
 	UserCore::Item::ItemInfoI* item = GetUserCore()->getItemManager()->findItemInfo( id );
 
 	if (!GetUserCore()->isAdmin() && !item)
