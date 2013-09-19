@@ -30,7 +30,11 @@ using namespace boost::filesystem;
 
 std::wstring getDataPath(std::wstring extra)
 {
+#ifdef WIN32
+	path dataDir = L".\\data";
+#else
 	path dataDir = L"@DATA_INSOURCE_DIR_ESCP@";
+#endif
 	
 	// we need this for windows, where all files are relativ in the desura application folder or for local Linux
 	// installations (if you want to move it around your Document directory)

@@ -177,4 +177,5 @@ target_link_libraries(uicore
     ${WINDOWS_LIBRARIES}
 )
 
+add_definitions("-D_VARIADIC_MAX=10")
 desurium_install_library(uicore "Shared")
