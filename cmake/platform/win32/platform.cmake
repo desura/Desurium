@@ -38,9 +38,6 @@ else()
 endif()
 
 macro(SetStaticRuntime target)
-	#set(CMAKE_CXX_FLAGS_RELEASE "/MT")
-	#set(CMAKE_CXX_FLAGS_DEBUG "/MTd")
-	
 	if (DEBUG)
 		set_target_properties(${target} PROPERTIES COMPILE_FLAGS "/MTd")
 	else()
@@ -49,9 +46,8 @@ macro(SetStaticRuntime target)
 	
 	if (MFC_FOUND)
 		set(CMAKE_MFC_FLAG 1)
+		remove_definitions(-D_AFXDLL)
 	endif()
-	
-	remove_definitions(-D_AFXDLL)	
 endmacro()
 
 macro(SetUseMFC)

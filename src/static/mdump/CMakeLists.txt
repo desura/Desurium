@@ -1,7 +1,6 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${BREAKPAD_EXCEPTION_HANDLER_INCLUDE_DIR}
-  ${BREAKPAD_EXCEPTION_HANDLER_INCLUDE_DIR_S}
 )
 
 if(WIN32)
@@ -18,14 +17,3 @@ target_link_libraries(mdump
 )
 
 SET_PROPERTY(TARGET mdump                PROPERTY FOLDER "Static")
-
-if (WIN32)
-	add_library(mdump_s STATIC ${Sources})
-	target_link_libraries(mdump_s
-		${BREAKPAD_EXCEPTION_HANDLER_LIBRARIES_S}
-		${WINDOWS_LIBS}
-	)
-
-	SET_PROPERTY(TARGET mdump_s                PROPERTY FOLDER "Static")
-	SetStaticRuntime(mdump_s)
-endif()

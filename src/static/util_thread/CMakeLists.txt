@@ -19,16 +19,3 @@ target_link_libraries(threads
 )
 
 SET_PROPERTY(TARGET threads                PROPERTY FOLDER "Static")
-
-if (WIN32)
-	add_library(threads_s STATIC ${Sources})
-
-	target_link_libraries(threads_s
-	  ${Boost_SYSTEM_LIBRARY_S}
-	  ${Boost_THREAD_LIBRARY_S}
-	  ${Boost_CHRONO_LIBRARY_S}
-	)
-
-	SET_PROPERTY(TARGET threads_s                PROPERTY FOLDER "Static")
-	SetStaticRuntime(threads_s)
-endif()
