@@ -40,4 +40,5 @@ target_link_libraries(mcfcore
   ${CMAKE_THREAD_LIBS_INIT}
 )
 
+LinkWithGTest(mcfcore)
 desurium_install_library(mcfcore "Shared")
