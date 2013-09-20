@@ -833,3 +833,8 @@ T Clamp(T val, T minVal, T maxVal)
 #endif
 
 #endif
+
+
+#ifdef NIX
+#define override
+#endif
