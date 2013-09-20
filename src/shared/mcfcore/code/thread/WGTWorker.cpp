@@ -27,7 +27,8 @@ namespace MCFCore
 namespace Thread
 {
 
-WGTWorker::WGTWorker(WGTControllerI* controller, uint16 id, MCFCore::Misc::ProviderManager *pProvMng, MCFCore::Misc::GetFile_s* pFileAuth) : BaseThread( "WebGet Worker Thread" )
+WGTWorker::WGTWorker(WGTControllerI* controller, uint16 id, MCFCore::Misc::ProviderManager *pProvMng, MCFCore::Misc::GetFile_s* pFileAuth) 
+	: BaseThread( "WebGet Worker Thread" )
 {
 	m_pProvMng = pProvMng;
 	m_pMcfCon = NULL;
@@ -255,7 +256,7 @@ void WGTWorker::doDownload()
 		if (!m_pMcfCon->isConnected())
 			m_pMcfCon->connect(m_szUrl.c_str(), m_pFileAuth);
 
-		m_pMcfCon->downloadRange(m_pCurBlock->offset, m_pCurBlock->size, this);
+		m_pMcfCon->downloadRange(m_pCurBlock->offset + m_pCurBlock->done, m_pCurBlock->size - m_pCurBlock->done, this);
 	}
 	catch (gcException &excep)
 	{
@@ -289,8 +290,11 @@ void WGTWorker::doDownload()
 		return;
 	}
 
-	m_pCT->workerFinishedSuperBlock(m_uiId);
-	m_pCurBlock = NULL;
+	if (m_pCurBlock->size == 0)
+	{
+		m_pCT->workerFinishedSuperBlock(m_uiId);
+		m_pCurBlock = NULL;
+	}
 }
 
 
@@ -357,3 +361,248 @@ void WGTWorker::requestNewUrl(gcException& e)
 
 }
 }
+
+
+#ifdef WITH_GTEST
+
+#include <gtest/gtest.h>
+
+namespace UnitTest
+{
+	class StubMCFServerCon : public MCFCore::Misc::MCFServerConI
+	{
+	public:
+		StubMCFServerCon(int nDownloadSize, int nMaxRequestSize)
+			: m_nDownloadSize(nDownloadSize)
+			, m_nMaxRequestSize(nMaxRequestSize)
+		{
+		}
+		
+		void connect(const char* host, MCFCore::Misc::GetFile_s* fileAuth) override
+		{
+		}
+
+		void disconnect() override
+		{
+		}
+
+		void setDPInformation(const char* name) override
+		{
+		}
+
+		void downloadRange(uint64 offset, uint32 size, MCFCore::Misc::OutBufferI* buff) override
+		{
+			gcBuff temp(m_nDownloadSize);
+			char* szBuff = temp.c_ptr();
+
+			if (size > m_nMaxRequestSize)
+				size = m_nMaxRequestSize;
+
+			while (size > 0)
+			{
+				int todo = m_nDownloadSize;
+
+				if (todo > size)
+					todo = size;
+
+				for (uint32 x = 0; x < todo; ++x)
+					szBuff[x] = (char)(offset + x);
+
+				buff->writeData(szBuff, todo);
+
+				size -= todo;
+				offset += todo;
+			}
+		}
+
+		void onPause() override
+		{
+		}
+
+		bool isConnected() override
+		{
+			return true;
+		}
+
+		const int m_nDownloadSize;
+		const int m_nMaxRequestSize;
+	};
+
+	class StubWGTController : public MCFCore::Thread::WGTControllerI
+	{
+	public:
+		StubWGTController()
+			: m_bSuperCompleted(false)
+		{
+		}
+
+		MCFCore::Thread::Misc::WGTSuperBlock* newTask(uint32 id, uint32 &status) override
+		{
+			return &m_SuperBlock;
+		}
+
+		uint32 getStatus(uint32 id) override
+		{
+			return MCFCore::Thread::BaseMCFThread::SF_STATUS_CONTINUE;
+		}
+
+		void reportError(uint32 id, gcException &e) override
+		{
+		}
+
+		void reportProgress(uint32 id, uint64 ammount) override
+		{
+		}
+
+		void reportNegProgress(uint32 id, uint64 ammount) override
+		{
+		}
+
+		void workerFinishedBlock(uint32 id, MCFCore::Thread::Misc::WGTBlock* block) override
+		{
+			m_vCompletedBlocks.push_back(block);
+		}
+
+		void workerFinishedSuperBlock(uint32 id) override
+		{
+			m_bSuperCompleted = true;
+		}
+
+		void pokeThread() override
+		{
+		}
+
+		bool m_bSuperCompleted;
+		std::vector<MCFCore::Thread::Misc::WGTBlock*> m_vCompletedBlocks;
+		MCFCore::Thread::Misc::WGTSuperBlock m_SuperBlock;
+	};
+
+
+	class TestWGTWorker : public MCFCore::Thread::WGTWorker
+	{
+	public:
+		TestWGTWorker(MCFCore::Thread::WGTControllerI* controller, uint16 id, MCFCore::Misc::ProviderManager *pProvMng, MCFCore::Misc::GetFile_s* pFileAuth)
+			: MCFCore::Thread::WGTWorker(controller, id, pProvMng, pFileAuth)
+		{
+			m_szUrl = "UnitTest";
+		}
+
+		void download(StubMCFServerCon *pMcfCon, int nRunCount)
+		{
+			safe_delete(m_pMcfCon);
+			m_pMcfCon = pMcfCon;
+
+			for (int x = 0; x < nRunCount; x++)
+				doDownload();
+		}
+	};
+
+	class WGTWorkerFixture : public ::testing::TestWithParam<std::pair<int, int>>
+	{
+	public:
+		WGTWorkerFixture()
+			: m_nParamOne(GetParam().first)
+			, m_nParamTwo(GetParam().second)
+			, Provider("", "", "", "")
+			, ProviderManager(getProviderVector())
+			, Worker(&Controller, 1, &ProviderManager, &FileAuth)
+		{
+		}
+
+		void AddBlock(int nSize)
+		{
+			std::shared_ptr<MCFCore::Thread::Misc::WGTBlock> a(new MCFCore::Thread::Misc::WGTBlock());
+			a->size = nSize;
+			a->fileOffset = Controller.m_SuperBlock.size;
+			a->webOffset = Controller.m_SuperBlock.size;
+
+			unsigned char* szTemp = new unsigned char[nSize];
+
+			for (int x = 0; x < nSize; x++)
+				szTemp[x] = (unsigned char)(Controller.m_SuperBlock.size + x);
+
+			a->crc = UTIL::MISC::CRC32(szTemp, nSize);
+			a->index = m_vBlocks.size();
+
+			safe_delete(szTemp);
+
+			Controller.m_SuperBlock.size += nSize;
+			Controller.m_SuperBlock.vBlockList.push_back(a.get());
+			m_vBlocks.push_back(a);
+		}
+
+		void DoDownload(int nDownloadSize, int nMaxRequestSize=-1)
+		{
+			int nRunCount = (Controller.m_SuperBlock.size / nMaxRequestSize) + 1;
+
+			Worker.download(new StubMCFServerCon(nDownloadSize, nMaxRequestSize), nRunCount);
+		}
+
+		void CheckCompletedBlocks()
+		{
+			ASSERT_TRUE(Controller.m_bSuperCompleted);
+			ASSERT_EQ(m_vBlocks.size(), Controller.m_vCompletedBlocks.size());
+
+			for (size_t x = 0; x < m_vBlocks.size(); x++)
+			{
+				unsigned long crc = UTIL::MISC::CRC32((unsigned char*)m_vBlocks[x]->buff, m_vBlocks[x]->size);
+				ASSERT_EQ(m_vBlocks[x]->crc, crc);
+			}
+		}
+
+		int m_nParamOne;
+		int m_nParamTwo;
+
+		std::vector<MCFCore::Misc::DownloadProvider*>& getProviderVector()
+		{
+			Providers.push_back(&Provider);
+			return Providers;
+		}
+
+		std::vector<MCFCore::Misc::DownloadProvider*> Providers;
+		MCFCore::Misc::DownloadProvider Provider;
+		MCFCore::Misc::ProviderManager ProviderManager;
+		
+		std::vector<std::shared_ptr<MCFCore::Thread::Misc::WGTBlock>> m_vBlocks;
+		TestWGTWorker Worker;
+		StubWGTController Controller;
+
+		MCFCore::Misc::GetFile_s FileAuth;	
+	};
+
+
+	INSTANTIATE_TEST_CASE_P(DownloadBufferSize,
+		WGTWorkerFixture,
+		::testing::Values(std::make_pair(1, 1), std::make_pair(5, 1), std::make_pair(10, 1),
+				std::make_pair(1, 5), std::make_pair(5, 5), std::make_pair(10, 1),
+				std::make_pair(1, 10), std::make_pair(5, 10), std::make_pair(10, 10)));
+
+	TEST_P(WGTWorkerFixture, Download_SuperBlock_VarDownloadSize)
+	{
+		for (int x = 0; x < 5; x++)
+			AddBlock(5);
+
+		DoDownload(GetParam().first, GetParam().second);
+		CheckCompletedBlocks();
+	}
+
+	TEST_P(WGTWorkerFixture, Download_SuperBlock_VarBlockSize)
+	{
+		for (int x = 0; x < 5; x++)
+			AddBlock(GetParam().first);
+
+		DoDownload(5, GetParam().second);
+		CheckCompletedBlocks();
+	}
+
+	TEST_P(WGTWorkerFixture, Download_SuperBlock_VarBlockCount)
+	{
+		for (int x = 0; x < GetParam().first; x++)
+			AddBlock(5);
+
+		DoDownload(5, GetParam().second);
+		CheckCompletedBlocks();
+	}
+}
+
+#endif
