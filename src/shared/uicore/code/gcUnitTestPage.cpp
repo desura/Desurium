@@ -44,7 +44,7 @@ public:
 
 	void OnTestStart(const TestInfo& test_info)
 	{
-		m_szLastTest = gcString("{0}\\{1}", test_info.test_case_name(), test_info.name());
+		m_szLastTest = gcString("{0}/{1}", test_info.test_case_name(), test_info.name());
 		onTestStartEvent(m_szLastTest);
 	}
 
@@ -311,17 +311,4 @@ void gcUnitTestForm::postShowEvent()
 {
 	uint32 res;
 	showEvent(res);
-}
-
-namespace UnitTest
-{
-	TEST(gcUnitTestForm, Sample)
-	{
-		ASSERT_TRUE(true);
-	}
-
-	TEST(gcUnitTestForm, Sample_Failure)
-	{
-		ASSERT_TRUE(false);
-	}
 }
