@@ -833,3 +833,13 @@ T Clamp(T val, T minVal, T maxVal)
 #endif
 
 #endif
+
+#if defined(__GNUC__)
+#  if (__GNUC__ == 4 && __GNUC_MINOR__ < 7) || __GNUC__ < 4
+#    define override
+#  endif
+#elif defined(__clang__)
+#  if !__has_feature(cxx_override_control)
+#    define override
+#  endif
+#endif
