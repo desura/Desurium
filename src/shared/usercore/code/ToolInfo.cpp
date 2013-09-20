@@ -628,6 +628,7 @@ const char* ToolInfo::getResultString()
 	return m_szResult.c_str();
 }
 
+#ifdef WITH_GTEST
 
 #include <gtest/gtest.h>
 
@@ -784,3 +785,5 @@ namespace UnitTest
 			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
 	}
 }
+
+#endif

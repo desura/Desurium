@@ -196,7 +196,10 @@ private:
 
 	gcString m_szDesuraCache;
 
+#ifdef WITH_GTEST
 	gcUnitTestForm* m_UnitTestForm;
+#endif
+
 	LoginForm* m_wxLoginForm;
 	MainForm* m_wxMainForm;
 	TaskBarIcon* m_wxTBIcon; 

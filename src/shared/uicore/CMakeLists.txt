@@ -5,7 +5,6 @@ include_directories(
   ${GTK2_INCLUDE_DIRS}
   ${IPC_PIPE_INCLUDE_DIRS}
   ${wxWidgets_INCLUDE_DIRS}
-  ${gtest_SOURCE_DIR}/include
 )
 
 file(GLOB Sources       code/AboutForm.cpp
@@ -155,8 +154,6 @@ endif()
 
 add_library(uicore SHARED ${Sources} ${PlattformSources} ${BROWSER_PIPE_SPOURCES})
 
-add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY)
-
 target_link_libraries(uicore
     gcJSBase
     managers
@@ -169,7 +166,6 @@ target_link_libraries(uicore
     usercore
     webcore
     wx_controls
-	gtest
     ${LIBNOTIFY_LIBRARIES}
     ${SQLITE_LIBRARIES}
     ${SQLITE3X_LIBRARIES}
@@ -178,4 +174,5 @@ target_link_libraries(uicore
     ${WINDOWS_LIBRARIES}
 )
 
+LinkWithGTest(uicore)
 desurium_install_library(uicore "Shared")

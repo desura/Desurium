@@ -89,6 +89,7 @@ endif()
 # some globale variables
 ###############################################################################
 
+set(WITH_GTEST ON)
 set(CMAKE_OUTPUT "${CMAKE_SOURCE_DIR}/build_out")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 set(CMAKE_PLATFORM_PATH "${CMAKE_SOURCE_DIR}/cmake/platform")
@@ -255,7 +256,9 @@ endif()
 
 include(BuildCEF)
 
-add_subdirectory(third_party/gtest)
+if (WITH_GTEST)
+	add_subdirectory(third_party/gtest)
+endif()
 
 if(NOT BUILD_ONLY_CEF)
   ###############################################################################

@@ -6,7 +6,6 @@ include_directories(
   ${CEF_INCLUDE_DIRS}
   ${IPC_PIPE_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}
-  ${gtest_SOURCE_DIR}/include  
 )
 
 if(UNIX AND 32BIT_SUPPORT)
@@ -104,8 +103,6 @@ else()
 endif()
 # TODO: code/InstallHandler.cpp
 
-add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY)
-
 add_library(usercore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES} ${TOOL_PIPE_SPOURCES})
 target_link_libraries(usercore
   gcJSBase
@@ -118,7 +115,6 @@ target_link_libraries(usercore
   util_fs
   util_web
   webcore
-  gtest
   ${Boost_DATE_TIME_LIBRARY}
   ${CURL_LIBRARIES}
   ${SQLITE_LIBRARIES}
@@ -127,4 +123,5 @@ target_link_libraries(usercore
   ${WINDOWS_LIBRARIES}
 )
 
+LinkWithGTest(usercore)
 desurium_install_library(usercore "Shared")
