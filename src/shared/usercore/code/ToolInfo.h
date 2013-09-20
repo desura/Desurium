@@ -33,6 +33,11 @@ namespace sqlite3x
 	class sqlite3_connection;
 }
 
+namespace UnitTest
+{
+	class ToolInfoFixture;
+}
+
 namespace UserCore
 {
 
@@ -71,6 +76,8 @@ public:
 #endif
 
 protected:
+	friend class UnitTest::ToolInfoFixture;
+
 	enum TOOL_FLAGS
 	{
 		TF_NONE = 0,
