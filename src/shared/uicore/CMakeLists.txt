@@ -155,6 +155,8 @@ endif()
 
 add_library(uicore SHARED ${Sources} ${PlattformSources} ${BROWSER_PIPE_SPOURCES})
 
+add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY)
+
 target_link_libraries(uicore
     gcJSBase
     managers
@@ -168,7 +170,6 @@ target_link_libraries(uicore
     webcore
     wx_controls
 	gtest
-	gmock
     ${LIBNOTIFY_LIBRARIES}
     ${SQLITE_LIBRARIES}
     ${SQLITE3X_LIBRARIES}

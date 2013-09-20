@@ -255,6 +255,8 @@ endif()
 
 include(BuildCEF)
 
+add_subdirectory(third_party/gtest)
+
 if(NOT BUILD_ONLY_CEF)
   ###############################################################################
   # build third_party
@@ -294,12 +296,3 @@ if(WIN32)
 endif()
 
 set(gtest_force_shared_crt ON)
-
-#add_subdirectory(third_party/gtest-1.6.0)
-add_subdirectory(third_party/gmock-1.6.0)
-
-
-SET_PROPERTY(TARGET gmock PROPERTY FOLDER "ThirdParty")
-SET_PROPERTY(TARGET gmock_main PROPERTY FOLDER "ThirdParty")
-SET_PROPERTY(TARGET gtest PROPERTY FOLDER "ThirdParty")
-SET_PROPERTY(TARGET gtest_main PROPERTY FOLDER "ThirdParty")
