@@ -76,6 +76,8 @@ public:
 #endif
 
 protected:
+	friend class UnitTest::ToolInfoFixture;
+
 	enum TOOL_FLAGS
 	{
 		TF_NONE = 0,

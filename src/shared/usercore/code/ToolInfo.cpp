@@ -26,108 +26,105 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #define X_CONSTANT 0x7FFFFFFF
 
-int getOperatorOrder(std::string curOp)
-{
-	if (curOp == "<" || curOp == "<=" || curOp == ">" || curOp == ">=")
-		return 6;
-
-	if (curOp == "==" || curOp == "!=")
-		return 7;
-
-	if (curOp == "&&")
-		return 11;
-
-	if (curOp == "||")
-		return 12;
-
-	return 20;
-}
-
-int32 getOpereatorCount(std::string curOp)
-{
-	if (curOp == "==" || curOp == "!=" || curOp == ">" || curOp == "<" || curOp == ">=" || curOp == "<=")
-		return 2;
-
-	return 0;
-}
-
-
 class OutValI
 {
 public:
-	virtual bool isOperand()=0;
+	virtual bool isOperand() = 0;
 	virtual ~OutValI(){}
 };
 
-class Operand : public OutValI
+namespace 
 {
-public:
-	Operand(int val)
+	int getOperatorOrder(std::string curOp)
 	{
-		m_iVal = val;
+		if (curOp == "<" || curOp == "<=" || curOp == ">" || curOp == ">=")
+			return 6;
+
+		if (curOp == "==" || curOp == "!=")
+			return 7;
+
+		if (curOp == "&&")
+			return 11;
+
+		if (curOp == "||")
+			return 12;
+
+		return 20;
 	}
 
-	virtual bool isOperand()
+	int32 getOpereatorCount(std::string curOp)
 	{
+		if (curOp == "==" || curOp == "!=" || curOp == ">" || curOp == "<" || curOp == ">=" || curOp == "<=")
+			return 2;
+
+		return 0;
+	}
+
+	class Operand : public OutValI
+	{
+	public:
+		Operand(int val)
+		{
+			m_iVal = val;
+		}
+
+		virtual bool isOperand()
+		{
+			return true;
+		}
+
+		virtual int getOperand()
+		{
+			return m_iVal;
+		}
+
+	private:
+		int32 m_iVal;
+	};
+
+	class Operator : public OutValI
+	{
+	public:
+		Operator(std::string val)
+			: m_szVal(val)
+		{}
+
+		virtual bool isOperand()
+		{
+			return false;
+		}
+
+		virtual std::string& getOperator()
+		{
+			return m_szVal;
+		}
+
+	private:
+		std::string m_szVal;
+	};
+
+	bool processStack(std::deque<OutValI*> &vOutStack, std::deque<int32> &valStack, std::deque<std::string> &opStack)
+	{
+		size_t c = getOpereatorCount(opStack.back());
+
+		if (c > valStack.size())
+			return false;
+
+		while (c > 0)
+		{
+			vOutStack.push_back(new Operand(valStack.back()));
+			valStack.pop_back();
+			c--;
+		}
+
+		vOutStack.push_back(new Operator(opStack.back()));
+		opStack.pop_back();
+
 		return true;
 	}
-
-	virtual int getOperand()
-	{
-		return m_iVal;
-	}
-
-private:
-	int32 m_iVal;
-};
-
-class Operator : public OutValI
-{
-public:
-	Operator(std::string val)
-	:	m_szVal(val)
-	{}
-
-	virtual bool isOperand()
-	{
-		return false;
-	}
-
-	virtual std::string& getOperator()
-	{
-		return m_szVal;
-	}
-
-private:
-	std::string m_szVal;
-};
-
-bool processStack(std::deque<OutValI*> &vOutStack, std::deque<int32> &valStack, std::deque<std::string> &opStack)
-{
-	size_t c = getOpereatorCount(opStack.back());
-
-	if (c > valStack.size())
-		return false;
-
-	while (c > 0)
-	{
-		vOutStack.push_back(new Operand(valStack.back()));
-		valStack.pop_back();
-		c--;
-	}
-
-	vOutStack.push_back(new Operator(opStack.back()));
-	opStack.pop_back();
-
-	return true;
 }
 
-
-
-
-
-namespace UserCore
-{
+using namespace UserCore;
 
 ToolInfo::ToolInfo(DesuraId id)
 :	m_ToolId(id),
@@ -411,7 +408,7 @@ bool ToolInfo::processResultString()
 	std::deque<std::string> opStack;
 
 	bool lastWasDigit = false;
-	//bool lastWasAlpha = false;              unused variable
+	bool lastWasNeg = false;
 
 	while (it != m_szResult.end())
 	{
@@ -437,14 +434,27 @@ bool ToolInfo::processResultString()
 
 			opStack.pop_back();
 		}
+		else if (c == '-')
+		{
+			lastWasNeg = true;
+		}
 		else if (isdigit(c))
 		{
 			int val = c - 48;
-
-			if (lastWasDigit)
+			
+			if (lastWasDigit && !lastWasNeg)
 			{
-				val = valStack.back()*10 + val;
+				if (valStack.back() > 0)
+					val = valStack.back() * 10 + val;
+				else
+					val = valStack.back() * 10 - val;
+				
 				valStack.pop_back();
+			}
+			else if (lastWasNeg)
+			{
+				val = val*-1;
+				lastWasNeg = false;
 			}
 
 			valStack.push_back(val);
@@ -465,7 +475,7 @@ bool ToolInfo::processResultString()
 				++it;
 				c = *it;
 			}
-			while (it != m_szResult.end() && !isdigit(c) && !isalpha(c) && c != '(' && c != ')');
+			while (it != m_szResult.end() && !isdigit(c) && !isalpha(c) && c != '(' && c != ')' && c != '-');
 
 			--it;
 			c = *it;
@@ -480,8 +490,10 @@ bool ToolInfo::processResultString()
 			opStack.push_back(val);
 		}
 
-		//lastWasAlpha = isalpha(c) || c == '(' || c == ')';
-		lastWasDigit = isdigit(c)?true:false;
+		lastWasDigit = isdigit(c) || c == '-';
+
+		if (!lastWasDigit)
+			lastWasNeg = false;
 
 		++it;
 	}
@@ -602,7 +614,7 @@ bool ToolInfo::checkExpectedResult(uint32 res)
 		}
 	}
 
-	if (!stack.empty())
+	if (stack.size() > 1)
 		Warning(gcString("To many items left on stack after results calc for tool {0}.", getName()));
 
 	if (stack.empty())
@@ -614,8 +626,6 @@ bool ToolInfo::checkExpectedResult(uint32 res)
 const char* ToolInfo::getResultString()
 {
 	return m_szResult.c_str();
-}
-
 }
 
 #ifdef WITH_GTEST
