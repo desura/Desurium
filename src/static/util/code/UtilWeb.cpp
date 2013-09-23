@@ -298,6 +298,7 @@ HttpHInternal::~HttpHInternal()
 void HttpHInternal::init(bool useSsl)
 {
 	m_pCurlHandle = curl_easy_init();
+	curl_easy_setopt(m_pCurlHandle, CURLOPT_NOSIGNAL, 1); //this is needed to work stable without c-ares
 	m_pMemStruct = new MemoryStruct;
 
 	m_bLock = false;
