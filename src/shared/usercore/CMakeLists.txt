@@ -123,4 +123,5 @@ target_link_libraries(usercore
   ${WINDOWS_LIBRARIES}
 )
 
+LinkWithGTest(usercore)
 desurium_install_library(usercore "Shared")

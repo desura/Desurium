@@ -1,8 +1,7 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/RES
+  ${UTIL_BOOTLOADER_INCLUDE_DIRS}
 )
-
-SetUseMFC()
 
 configure_file(RES/repair.rc ${RC_DIR}/repair.rc @ONLY)
 file(GLOB Sources

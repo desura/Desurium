@@ -89,6 +89,7 @@ endif()
 # some globale variables
 ###############################################################################
 
+set(WITH_GTEST ON)
 set(CMAKE_OUTPUT "${CMAKE_SOURCE_DIR}/build_out")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 set(CMAKE_PLATFORM_PATH "${CMAKE_SOURCE_DIR}/cmake/platform")
@@ -255,6 +256,10 @@ endif()
 
 include(BuildCEF)
 
+if (WITH_GTEST)
+	add_subdirectory(third_party/gtest)
+endif()
+
 if(NOT BUILD_ONLY_CEF)
   ###############################################################################
   # build third_party
@@ -294,18 +299,3 @@ if(WIN32)
 endif()
 
 set(gtest_force_shared_crt ON)
-
-#add_subdirectory(third_party/gtest-1.6.0)
-add_subdirectory(third_party/gmock-1.6.0)
-
-if (WIN32)
-  set_target_properties(gmock PROPERTIES COMPILE_FLAGS "/D _VARIADIC_MAX=10")
-  set_target_properties(gtest PROPERTIES COMPILE_FLAGS "/D _VARIADIC_MAX=10")
-  set_target_properties(gmock_main PROPERTIES COMPILE_FLAGS "/D _VARIADIC_MAX=10")
-  set_target_properties(gtest_main PROPERTIES COMPILE_FLAGS "/D _VARIADIC_MAX=10")
-endif()
-
-SET_PROPERTY(TARGET gmock PROPERTY FOLDER "ThirdParty")
-SET_PROPERTY(TARGET gmock_main PROPERTY FOLDER "ThirdParty")
-SET_PROPERTY(TARGET gtest PROPERTY FOLDER "ThirdParty")
-SET_PROPERTY(TARGET gtest_main PROPERTY FOLDER "ThirdParty")

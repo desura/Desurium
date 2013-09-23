@@ -41,7 +41,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "InternalLink.h"
 #include "DesuraServiceError.h"
+
+#ifdef WITH_GTEST
 #include "gcUnitTestPage.h"
+#endif
 
 extern void DeleteCookies();
 extern void SetCookies();
@@ -201,8 +204,9 @@ MainApp::MainApp()
 
 	m_pOfflineDialog = NULL;
 	m_pInternalLink = NULL;
+#ifdef WITH_GTEST
 	m_UnitTestForm = NULL;
-
+#endif
 	onLoginAcceptedEvent += guiDelegate(this, &MainApp::onLoginAcceptedCB);
 	onInternalLinkEvent += guiDelegate(this, &MainApp::onInternalLink);
 	onInternalLinkStrEvent += guiDelegate(this, &MainApp::onInternalStrLink);
@@ -214,11 +218,13 @@ MainApp::~MainApp()
 	if (m_pOfflineDialog)
 		m_pOfflineDialog->EndModal(0);
 
+#ifdef WITH_GTEST
 	if (m_UnitTestForm)
 	{
 		m_UnitTestForm->canClose();
 		m_UnitTestForm->Close();
 	}
+#endif
 
 	safe_delete(m_vNewsItems);
 	safe_delete(m_pInternalLink);
@@ -794,8 +800,10 @@ void MainApp::newAccountLogin(const char* username, const char* cookie)
 
 void MainApp::showUnitTest()
 {
+#ifdef WITH_GTEST
 	if (!m_UnitTestForm)
 		m_UnitTestForm = new gcUnitTestForm(this);
 
 	m_UnitTestForm->postShowEvent();
+#endif
 }

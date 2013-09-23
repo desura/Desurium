@@ -16,28 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#include "Common.h"
-#include "DStripMenuControls.h"
-#include "wx_controls/gcManagers.h"
-#include "managers/CVar.h"
 
-CVar gc_buttontol("gc_butMouseTol", "16", CFLAG_USER);
+// stdafx.cpp : source file that includes just the standard includes
+// mcf_testapp2.pch will be the pre-compiled header
+// stdafx.obj will contain the pre-compiled type information
 
-DStripMenuButton::DStripMenuButton(wxWindow *parent, const char* label, wxSize size) 
-	: OverrideBorderMouseClick(parent, gcWString(label).c_str(), size)
-{
-	init("#menu_bg", "#menu_overlay");
 
-	m_NormColor = this->GetForegroundColour();
-	m_NonActiveColor = wxColor(GetGCThemeManager()->getColor("label", "na-fg"));
-}
 
-void DStripMenuButton::setActive(bool state)
-{
-	setNormalCol(state?m_NormColor:m_NonActiveColor);
-
-	if (!isSelected())
-		m_imgBg = GetGCThemeManager()->getImageHandle(state?"#menu_bg":"#menu_bg_nonactive");
-
-	this->invalidatePaint();
-}

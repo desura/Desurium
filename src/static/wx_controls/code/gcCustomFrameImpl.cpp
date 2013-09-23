@@ -802,7 +802,7 @@ void gcCustomFrameImpl::onLeftMouseDown( wxMouseEvent& event )
 
 void gcCustomFrameImpl::onLeftMouseUp( wxMouseEvent& event )
 {
-	if ((m_pCFButtons && m_pCFButtons->onMouseUp()) || m_pCFMove->onMouseUp() || m_pCFResize->onMouseUp())
+	if ((m_pCFButtons && m_pCFButtons->onMouseUp()) || !m_pCFMove->onMouseUp() || !m_pCFResize->onMouseUp())
 		event.Skip();
 }
 

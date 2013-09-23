@@ -122,8 +122,10 @@ void MainMenuButton::createMenu(bool offline)
 	m_mainMenu->AppendSeparator();
 
 #ifdef DEBUG
+#ifdef WITH_GTEST
 	m_mainMenu->Append(DESURA_wxUnitTest, Managers::GetString(L"#MENU_UNITTEST"));
 	m_mainMenu->AppendSeparator();
+#endif
 #endif
 
 	m_mainMenu->Append(DESURA_wxExit, Managers::GetString(L"#MENU_EXIT"), Managers::GetString(L"#MENU_EXIT_TOOLTIP"));

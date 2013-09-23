@@ -326,5 +326,7 @@ bool FixServiceDisabled()
 	return true;
 }
 
+#ifndef DESURA_OFFICAL_BUILD
 void McfUpdate() {}
 void FullUpdate() {}
+#endif

@@ -4,21 +4,13 @@ include_directories(
   ${COMMON_INCLUDE_DIRS}/service_pipe
   ${IPC_PIPE_INCLUDE_DIRS}
   ${TINYXML_INCLUDEDIR}
+  ${UTIL_BOOTLOADER_OFFICIAL_INCLUDE_DIRS}
+  ${UTIL_BOOTLOADER_INCLUDE_DIRS}
 )
 
 configure_file(RES/desura_exe.rc ${RC_DIR}/desura_exe.rc @ONLY)
-file(GLOB Sources code/AppUpdateInstall.cpp
-                  code/Log.cpp
-                  code/UpdateFunctions.cpp
-                  ${RC_DIR}/desura_exe.rc)
+file(GLOB Sources code/*.cpp ${RC_DIR}/desura_exe.rc)
 
-SetUseMFC()
-				  
-if(MFC_FOUND)
-  file(GLOB AdditionalSources code/DesuraMain.cpp)
-else()
-  file(GLOB AdditionalSources code/DesuraMainMingw.cpp)
-endif()
 set(Sources "${Sources};${AdditionalSources}")
 
 add_definitions(-D_WINDOWS
@@ -31,6 +23,12 @@ add_definitions(-D_WINDOWS
 
 add_executable(desura WIN32 ${Sources} ${SERVICE_PIPE_IPCUPDATEMAIN})
 
+if (OFFICIAL_BUILD)
+	set(OFFICIAL_DEP "util_bootloader_official_s")
+	add_definitions(-DDESURA_OFFICAL_BUILD)
+endif()
+
+
 if (WIN32)
 	target_link_libraries(desura
 	  ipc_pipe_s
@@ -39,6 +37,7 @@ if (WIN32)
 	  util_bootloader_s
 	  comctl32
 	  mdump_s
+	  ${OFFICIAL_DEP}
 	)
 	SetStaticRuntime(desura)
 else()

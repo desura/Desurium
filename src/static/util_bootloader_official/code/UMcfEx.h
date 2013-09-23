@@ -16,28 +16,38 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#include "Common.h"
-#include "DStripMenuControls.h"
-#include "wx_controls/gcManagers.h"
-#include "managers/CVar.h"
+#ifndef DESURA_UMCF_EX_H
+#define DESURA_UMCF_EX_H
+#ifdef _WIN32
+#pragma once
+#endif
 
-CVar gc_buttontol("gc_butMouseTol", "16", CFLAG_USER);
+#include "umcf/UMcf.h"
 
-DStripMenuButton::DStripMenuButton(wxWindow *parent, const char* label, wxSize size) 
-	: OverrideBorderMouseClick(parent, gcWString(label).c_str(), size)
+class UMcfEx : public UMcf
 {
-	init("#menu_bg", "#menu_overlay");
+public:
+	UMcfEx();
+	~UMcfEx();
 
-	m_NormColor = this->GetForegroundColour();
-	m_NonActiveColor = wxColor(GetGCThemeManager()->getColor("label", "na-fg"));
-}
+	//Downloads update info from web
+	void getUpdateInfo(bool save = false);
 
-void DStripMenuButton::setActive(bool state)
-{
-	setNormalCol(state?m_NormColor:m_NonActiveColor);
+	//downloads the MCF ready to install.
+	void downloadMcf();
+	bool checkMcf();
+	void deleteMcf();
 
-	if (!isSelected())
-		m_imgBg = GetGCThemeManager()->getImageHandle(state?"#menu_bg":"#menu_bg_nonactive");
+	const char* getLastError(){return m_szLastError;}
 
-	this->invalidatePaint();
-}
+	void setProgLevel(uint8 level){m_uiLevel = level;}
+
+protected:
+	uint32 progressUpdate(Prog_s *info, uint32 other=0);
+
+private:
+	uint8 m_uiLevel;
+	char* m_szLastError;
+};
+
+#endif //DESURA_UMCF_EX_H

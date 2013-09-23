@@ -167,3 +167,15 @@ function(desurium_install_library target category)
   CopyTargetFiles(${target})
   set_property(TARGET ${target} PROPERTY FOLDER ${category})
 endfunction()
+
+
+macro(LinkWithGTest target)
+
+if (WITH_GTEST)
+	include_directories(${gtest_SOURCE_DIR}/include)
+	add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY)
+	add_definitions(-DWITH_GTEST)
+	target_link_libraries(${target} gtest)
+endif()
+
+endmacro()

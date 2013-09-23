@@ -40,6 +40,10 @@ endif()
 # do final steps for setting up the desura build environment
 ###############################################################################
 
+if (WIN32)
+	set(DESURA_EXE_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/executable/bootloader_win/code)
+endif()
+
 set(GLOBAL_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(COMMON_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/common)
 
@@ -87,6 +91,7 @@ add_subdirectory(static/util)
 if(WIN32)
   add_subdirectory(static/util_bootloader)
   add_subdirectory(static/util_bootloader_s)
+  add_subdirectory(static/util_bootloader_official)
   add_subdirectory(static/util_thread_s)
   add_subdirectory(static/ipc_pipe_s)
   add_subdirectory(static/mdump_s)
