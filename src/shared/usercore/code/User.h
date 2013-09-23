@@ -100,6 +100,7 @@ public:
 	///////////////////////////////////////////////////////////////////////////////
 
 	virtual void logIn(const char* user, const char* password);
+	virtual void logInTool(const char* user, const char* pass);
 	virtual void logOut(bool delAutoLogin = false, bool reInit = true);
 	virtual void saveLoginInfo();
 	virtual void logInCleanUp();
@@ -274,6 +275,8 @@ protected:
 	void testMcfCache();
 
 private:
+	void doLogIn(const char* user, const char* pass, bool bTestOnly);
+
 	void init();
 	void cleanUp();
 	void onLoginItemsLoaded();
