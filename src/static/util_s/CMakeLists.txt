@@ -10,6 +10,9 @@ include_directories(
   ${SQLITE3X_INCLUDE_DIRS_S}
 )
 
+file(GLOB SourcesWEB ${UTIL_REAL_SOURCE_DIR}/code/UtilWeb.cpp)
+
+
 # configure source file to hardcode paths
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../util/code/UtilOs_cmake.cpp.inc ${CMAKE_GEN_SRC_DIR}/util/UtilOs_cmake.cpp)
 
@@ -53,3 +56,17 @@ target_link_libraries(util_s
 
 SET_PROPERTY(TARGET util_s                PROPERTY FOLDER "Static")
 SetStaticRuntime(util_s)
+
+if(WIN32 AND NOT MINGW)
+  set(WINDOWS_LIBRARIES msi Winhttp wintrust)
+  use_unicode_here()
+endif()
+
+add_library(util_web_s STATIC ${SourcesWEB})
+target_link_libraries(util_web_s
+	${WINDOWS_LIBRARIES}
+	${CURL_LIBRARIES_S}
+)
+
+SET_PROPERTY(TARGET util_web_s                PROPERTY FOLDER "Static")
+SetStaticRuntime(util_web_s)	
