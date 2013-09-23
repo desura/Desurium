@@ -1,6 +1,7 @@
 set(BUILD_SHARED_LIBS ON)
 
 add_definitions("-DGTEST_CREATE_SHARED_LIBRARY=1")
+add_definitions(-D_VARIADIC_MAX=10)
 
 add_subdirectory(../gmock-1.6.0/gtest ${CMAKE_CURRENT_BINARY_DIR}/gtest_real)
 
