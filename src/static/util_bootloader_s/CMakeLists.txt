@@ -4,7 +4,6 @@ include_directories(
 
 file(GLOB Sources ../util_bootloader/code/*.cpp ../util_bootloader/code/third_party/*.cpp)
 
-SetUseMFC()
 add_library(util_bootloader_s STATIC ${Sources})
 
 target_link_libraries(util_bootloader_s
