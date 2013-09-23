@@ -84,6 +84,8 @@ protected:
 
 	std::wstring getWinUser();
 
+	void loadCVarFromDb(CVar *var, const char* szSql, gcString strExtra);
+
 private:
 	uint32 m_uiUserId;
 	gcString m_szCVarDb;
