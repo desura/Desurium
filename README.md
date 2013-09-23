@@ -40,10 +40,9 @@ Required dependencies:
  * tinyxml2
  * V8
  * Python
- * C-ares
+ * Curl
 
 Optional dependencies (will be built by cmake if not existing):
-- Curl (if there is no ares support)
 - wxWidgets (2.9.3 or later)
 - Breakpad
 - CEF (Chromium Embedded)
