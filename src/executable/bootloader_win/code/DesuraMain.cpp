@@ -16,11 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-#include "stdafx.h"
-
 #include "Common.h"
-
-#include "resource.h"
+#include "DesuraWinApp.h"
 #include "UtilBootloader.h"
 
 #ifdef DESURA_OFFICIAL_BUILD
@@ -92,16 +89,14 @@ const char* g_UpdateReasons[] =
 	NULL
 };
 
-class BootLoader : public CWinApp
+class BootLoader : public Desurium::CDesuraWinApp
 {
 public:
 	BootLoader();
 	~BootLoader();
 
-	BOOL InitInstance();
-	int ExitInstance();
-	BOOL PreTranslateMessage(MSG *msg);
-	BOOL OnIdle(LONG lCount);
+	void InitInstance() override;
+	int ExitInstance() override;
 
 	MiniDumpGenerator m_MDumpHandle;
 
@@ -142,7 +137,7 @@ BootLoader::BootLoader()
 {
 	m_MDumpHandle.showMessageBox(true);
 
-	AfxEnableMemoryTracking(FALSE);
+	//AfxEnableMemoryTracking(FALSE);
 	InitCommonControls();
 
 	hasAdminRights = false;
@@ -158,7 +153,7 @@ BootLoader::~BootLoader()
 		delete [] g_szArgs;
 }
 
-BOOL BootLoader::InitInstance()
+void BootLoader::InitInstance()
 {
 	BootLoaderUtil::CMDArgs args(m_lpCmdLine);
 	
@@ -166,7 +161,6 @@ BOOL BootLoader::InitInstance()
 		BootLoaderUtil::WaitForDebugger();
 
 	BootLoaderUtil::SetCurrentDir();
-	CWinApp::InitInstance();
 
 #ifdef DESURA_OFFICIAL_BUILD
 	CheckForBadUninstaller();
@@ -180,7 +174,7 @@ BOOL BootLoader::InitInstance()
 		a.replace(pos, 8, "");
 
 		BootLoaderUtil::Restart(a.c_str(), false);
-		return FALSE;
+		return;
 	}
 
 #ifdef DESURA_OFFICIAL_BUILD
@@ -188,14 +182,14 @@ BOOL BootLoader::InitInstance()
 	{
 		m_bRetCode = true;
 		m_iRetCode = InstallFilesForTest();
-		return FALSE;
+		return;
 	}
 
 	if (args.hasArg("testdownload"))
 	{
 		m_bRetCode = true;
 		m_iRetCode = DownloadFilesForTest();
-		return FALSE;
+		return;
 	}
 #endif
 	
@@ -210,7 +204,7 @@ BOOL BootLoader::InitInstance()
 		//need to wait for service to start
 		Sleep(15*1000);
 		BootLoaderUtil::RestartAsNormal("-wait");
-		return FALSE;
+		return;
 	}
 
 #ifdef DESURA_OFFICIAL_BUILD
@@ -218,25 +212,25 @@ BOOL BootLoader::InitInstance()
 	if (args.hasArg("debugupdater"))
 	{
 		INT_PTR nResponse = DisplayUpdateWindow(-1);
-		return FALSE;
+		return;
 	}
 
 	if (args.hasArg("debuginstall"))
 	{
 		McfUpdate();
-		return FALSE;
+		return;
 	}
 
 	if (args.hasArg("debugdownload"))
 	{
 		FullUpdate();
-		return FALSE;
+		return;
 	}
 
 	if (args.hasArg("debugcheck"))
 	{
 		CheckInstall();
-		return FALSE;
+		return;
 	}
 #endif
 #endif
@@ -252,7 +246,7 @@ BOOL BootLoader::InitInstance()
 	if (osid == WINDOWS_PRE2000)
 	{
 		::MessageBox(NULL, PRODUCT_NAME " needs Windows XP or better to run.", PRODUCT_NAME " Error: Old Windows", MB_OK);
-		return FALSE;
+		return;
 	}
 	else if (osid == WINDOWS_XP || osid == WINDOWS_XP64)
 	{
@@ -274,7 +268,7 @@ BOOL BootLoader::InitInstance()
 		if (BootLoaderUtil::CheckForOtherInstances(m_hInstance))
 		{
 			sendArgs();
-			return FALSE;
+			return;
 		}
 		else
 		{
@@ -287,7 +281,7 @@ BOOL BootLoader::InitInstance()
 			{
 				a.replace(pos+9, 9, "remove");
 				BootLoaderUtil::RestartAsNormal(a.c_str());
-				return FALSE;
+				return;
 			}
 		}
 	}
@@ -298,13 +292,13 @@ BOOL BootLoader::InitInstance()
 		if (!hasAdminRights)
 		{
 			restartAsAdmin(UPDATE_FORCED);
-			return FALSE;
+			return;
 		}
 		else
 		{
 			FullUpdate();
 			BootLoaderUtil::RestartAsNormal("-wait");
-			return FALSE;
+			return;
 		}
 	}
 #endif
@@ -323,7 +317,7 @@ BOOL BootLoader::InitInstance()
 			Log("Updating from MCF.\n");
 			McfUpdate();
 			BootLoaderUtil::RestartAsNormal("-wait");
-			return FALSE;
+			return;
 		}
 		else if (nu == UPDATE_SERVICE_PATH)
 		{
@@ -339,7 +333,7 @@ BOOL BootLoader::InitInstance()
 		if (!hasAdminRights)
 		{
 			restartAsAdmin(nu);
-			return FALSE;
+			return;
 		}
 		else if (nu == UPDATE_SERVICE_LOCATION || nu == UPDATE_SERVICE_HASH)
 		{
@@ -351,42 +345,37 @@ BOOL BootLoader::InitInstance()
 			if (FixServiceDisabled())
 				BootLoaderUtil::RestartAsNormal("-wait");
 
-			return FALSE;
+			return;
 		}
 		else
 		{
 			Log("Full update [%s].\n", g_UpdateReasons[nu]);
 			FullUpdate();
 			BootLoaderUtil::RestartAsNormal("-wait");
-			return FALSE;
+			return;
 		}
 	}
 
 	if (hasAdminRights && !(osid == WINDOWS_XP || osid == WINDOWS_XP64))
 	{
 		BootLoaderUtil::RestartAsNormal("-wait");
-		return FALSE;
+		return;
 	}
 #endif
 
 	loadUICore();
 
 	if (!m_pUICore)
-		return FALSE;
+		return;
 
 	if (args.hasArg("unittests"))
 	{
 		m_iRetCode = m_pUICore->runUnitTests(args.getArgc(), const_cast<char**>(args.getArgv()));
 		m_bRetCode = true;
-		return FALSE;
+		return;
 	}
 
-	bool res = m_pUICore->initWxWidgets(m_hInstance, m_nCmdShow, args.getArgc(), const_cast<char**>(args.getArgv()));
-
-	if (res)
-		m_pMainWnd = new BootLoaderUtil::CDummyWindow(m_pUICore->getHWND());
-
-	return res?TRUE:FALSE;
+	m_pUICore->initWxWidgets(m_hInstance, m_nCmdShow, args.getArgc(), const_cast<char**>(args.getArgv()));
 }
 
 void BootLoader::restartAsAdmin(int needupdate)
@@ -425,9 +414,7 @@ bool BootLoader::sendArgs()
 
 int BootLoader::ExitInstance()
 {
-	delete m_pMainWnd;
-
-	int ret = CWinApp::ExitInstance();
+	int ret = 0;
 
 	if (m_pUICore)
 		m_pUICore->exitApp(&ret);
@@ -448,23 +435,6 @@ int BootLoader::ExitInstance()
 		return m_iRetCode;
 
 	return ret;
-}
-
-// Override this to provide wxWidgets message loop compatibility
-BOOL BootLoader::PreTranslateMessage(MSG *msg)
-{
-	if (m_pUICore && m_pUICore->preTranslateMessage(msg) )
-		return TRUE;
-
-	return CWinApp::PreTranslateMessage(msg);
-}
-
-BOOL BootLoader::OnIdle(LONG lCount)
-{
-	if (m_pUICore)
-		return m_pUICore->onIdle();
-
-	return FALSE;
 }
 
 void BootLoader::preReadImages()

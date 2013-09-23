@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #endif
 
 #include "Resource.h"
+#include "DesuraWnd.h"
 #include "DesuraProgress.h"
 #include "AppUpdateInstall.h"
 
@@ -39,10 +40,12 @@ typedef struct
 
 #endif
 
-class UpdateForm : public CDialog, public ProgressReportI
+
+
+class UpdateForm : public Desurium::CDesuraDialog, public ProgressReportI
 {
 public:
-	UpdateForm(int updateType, CWnd* pParent = NULL);
+	UpdateForm(int updateType);
 	~UpdateForm();
 
 	INT_PTR DoModal();
@@ -62,7 +65,7 @@ protected:
 	void UpdateMcf();
 	void UpdateFiles();
 
-	virtual BOOL OnInitDialog();
+	virtual bool OnInitDialog();
 
 private:
 	HICON m_hIcon;
@@ -70,8 +73,6 @@ private:
 
 	bool m_bInit;
 	int m_updateType;
-
-	DECLARE_MESSAGE_MAP()
 };
 
 

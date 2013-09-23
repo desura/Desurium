@@ -2,20 +2,11 @@
 //
 #include "resource.h"
 
-#define APSTUDIO_READONLY_SYMBOLS
-/////////////////////////////////////////////////////////////////////////////
-//
-// Generated from the TEXTINCLUDE 2 resource.
-//
-#include "afxres.h"
-
-/////////////////////////////////////////////////////////////////////////////
-#undef APSTUDIO_READONLY_SYMBOLS
+#include "Winuser.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // English (United States) resources
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 #ifdef APSTUDIO_INVOKED
@@ -55,7 +46,6 @@ IDI_ICON1               ICON                    "@BRANDING_DIR@/desura.ico"
 IDI_ICONSMALL           ICON                    "@BRANDING_DIR@/desura_16.ico"
 IDI_ICONNORMAL          ICON                    "@BRANDING_DIR@/desura.ico"
 IDI_HEADER				BITMAP					"@BRANDING_DIR@/header.bmp"
-#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

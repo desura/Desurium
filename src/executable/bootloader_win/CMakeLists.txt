@@ -4,21 +4,13 @@ include_directories(
   ${COMMON_INCLUDE_DIRS}/service_pipe
   ${IPC_PIPE_INCLUDE_DIRS}
   ${TINYXML_INCLUDEDIR}
+  ${UTIL_BOOTLOADER_OFFICIAL_INCLUDE_DIRS}
+  ${UTIL_BOOTLOADER_INCLUDE_DIRS}
 )
 
 configure_file(RES/desura_exe.rc ${RC_DIR}/desura_exe.rc @ONLY)
-file(GLOB Sources code/AppUpdateInstall.cpp
-                  code/Log.cpp
-                  code/UpdateFunctions.cpp
-                  ${RC_DIR}/desura_exe.rc)
+file(GLOB Sources code/*.cpp ${RC_DIR}/desura_exe.rc)
 
-SetUseMFC()
-				  
-if(MFC_FOUND)
-  file(GLOB AdditionalSources code/DesuraMain.cpp)
-else()
-  file(GLOB AdditionalSources code/DesuraMainMingw.cpp)
-endif()
 set(Sources "${Sources};${AdditionalSources}")
 
 add_definitions(-D_WINDOWS

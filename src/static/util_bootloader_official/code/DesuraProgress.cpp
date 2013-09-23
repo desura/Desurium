@@ -19,44 +19,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 // DesuraProgress.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include <stdio.h>
 #include "DesuraProgress.h"
 #include "resource.h"
 
 #define MIN( a, b) (a)>(b)?(b):(a)
 #define MAX( a, b) (a)>(b)?(a):(b)
 
-#define DPROGRESS_CLASSNAME    _T("MFCDesuraProgress")  // Window class name
+#define DPROGRESS_CLASSNAME "MFCDesuraProgress"  // Window class name
 
+// these macros are standard now (Win98) but some older headers don't have them
+#ifndef GET_X_LPARAM
+#define GET_X_LPARAM(lp) ((int)(short)LOWORD(lp))
+#define GET_Y_LPARAM(lp) ((int)(short)HIWORD(lp))
+#endif // GET_X_LPARAM
 
+using namespace Desurium;
 
-
-
-
-
-
-
-
-
-
-
-
-// DesuraProgress
-
-IMPLEMENT_DYNAMIC(DesuraProgress, CWnd)
-
-BEGIN_MESSAGE_MAP(DesuraProgress, CWnd)
-	ON_WM_PAINT()
-	ON_WM_ERASEBKGND()
-	ON_WM_MOUSEMOVE()
-	ON_WM_MOUSELEAVE()
-	ON_WM_LBUTTONDOWN()
-	ON_WM_LBUTTONUP()
-END_MESSAGE_MAP()
-
+DesuraProgress* DesuraProgress::gs_pDesuraProgress = NULL;
 
 DesuraProgress::DesuraProgress()
+	: CDesuraWnd(true)
 {
+	gs_pDesuraProgress = this;
+
 	m_iProg = 0;
 	m_iTotal = 0;
 	m_vDone[0] = 0;
@@ -78,6 +64,8 @@ DesuraProgress::DesuraProgress()
 
 DesuraProgress::~DesuraProgress()
 {
+	gs_pDesuraProgress = NULL;
+
 	delete m_pBackgroundImage;
 	m_pBackgroundImage = NULL;
 
@@ -98,39 +86,67 @@ int DesuraProgress::getDone()
 }
 
 
-BOOL DesuraProgress::RegisterWindowClass()
+bool DesuraProgress::RegisterWindowClass()
 {
 	WNDCLASS wndcls;
-	HINSTANCE hInst = AfxGetInstanceHandle();
+	HINSTANCE hInst = GetInstanceHandle();
 
 	if (!(::GetClassInfo(hInst, DPROGRESS_CLASSNAME, &wndcls)))
 	{
 		// otherwise we need to register a new class
 
 		wndcls.style            = CS_HREDRAW | CS_VREDRAW|CS_DBLCLKS;
-		wndcls.lpfnWndProc      = ::DefWindowProc;
+		wndcls.lpfnWndProc      = &DesuraProgress::WinProc;
 		wndcls.cbClsExtra       = wndcls.cbWndExtra = 0;
 		wndcls.hInstance        = hInst;
 		wndcls.hIcon            = NULL;
-		wndcls.hCursor          = AfxGetApp()->LoadStandardCursor(IDC_ARROW);
+		wndcls.hCursor          = LoadStandardCursor(IDC_ARROW);
 		wndcls.hbrBackground    = (HBRUSH) (COLOR_3DFACE + 1);
 		wndcls.lpszMenuName     = NULL;
 		wndcls.lpszClassName    = DPROGRESS_CLASSNAME;
 
-		if (!AfxRegisterClass(&wndcls))
-		{
-			AfxThrowResourceException();
-			return FALSE;
-		}
+		if (!RegisterClass(&wndcls))
+			return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
-
-BOOL DesuraProgress::Create(CWnd* pParentWnd, const RECT& rect, UINT nID, DWORD dwStyle /*=WS_VISIBLE*/)
+LRESULT DesuraProgress::WinProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	return CWnd::Create(DPROGRESS_CLASSNAME, _T(""), dwStyle, rect, pParentWnd, nID);
+	switch (message)
+	{
+	case WM_PAINT:
+		gs_pDesuraProgress->OnPaint();
+		return 0;
+
+	case WM_ERASEBKGND:
+		gs_pDesuraProgress->OnEraseBkgnd();
+		return 1;
+
+	case WM_MOUSEMOVE:
+		gs_pDesuraProgress->OnMouseMove(wParam, CPoint(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)));
+		return 0;
+
+	case WM_MOUSELEAVE:
+		gs_pDesuraProgress->OnMouseLeave();
+		return 0;
+
+	case WM_LBUTTONDOWN:
+		gs_pDesuraProgress->OnLButtonDown(wParam, CPoint(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)));
+		return 0;
+
+	case WM_LBUTTONUP:
+		gs_pDesuraProgress->OnLButtonUp(wParam, CPoint(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)));
+		return 0;
+	}
+
+	return ::DefWindowProc(hDlg, message, wParam, lParam);
+}
+
+bool DesuraProgress::Create(CDesuraWnd* pParentWnd, const CRect& rect, UINT nID, DWORD dwStyle /*=WS_VISIBLE*/)
+{
+	return __super::Create(DPROGRESS_CLASSNAME, "Abcd", dwStyle, rect, pParentWnd, nID);
 }
 
 void DesuraProgress::OnLButtonUp(UINT nFlags, CPoint point)
@@ -142,7 +158,7 @@ void DesuraProgress::OnLButtonUp(UINT nFlags, CPoint point)
 void DesuraProgress::OnLButtonDown(UINT nFlags, CPoint point) 
 {
 	CRect rect = getCancelRect();
-	if (rect.PtInRect(point)==TRUE)
+	if (rect.PtInRect(point))
 	{
 		exit(1);
 	}
@@ -167,7 +183,7 @@ void DesuraProgress::OnMouseMove(UINT nFlags, CPoint point)
 	bool old = m_bMouseOver;
 
 	CRect rect = getCancelRect();
-	m_bMouseOver = (rect.PtInRect(point)==TRUE);
+	m_bMouseOver = rect.PtInRect(point);
 
 	if (old != m_bMouseOver)
 		refresh();
@@ -175,33 +191,15 @@ void DesuraProgress::OnMouseMove(UINT nFlags, CPoint point)
 	if (m_bDragging)
 	{
 		CPoint pos = point - m_StartPoint;
-		ClientToScreen(&pos);
-		GetParent()->SetWindowPos(NULL, pos.x-4, pos.y-26, 0, 0, SWP_NOSIZE);
+		ClientToScreen(pos);
+		GetParent()->SetWindowPos(pos.x-4, pos.y-26, 0, 0, SWP_NOSIZE);
 	}
 }
 
 
-
-
-
-
-
-
-
-
-
-
 CRect DesuraProgress::getCancelRect()
 {
-	SIZE s;
-	s.cx = 100;
-	s.cy = 26;
-
-	POINT p;
-	p.x = 280;
-	p.y = 168;
-
-	return CRect(p, s);
+	return CRect(280, 168, 100, 26);
 }
 
 
@@ -209,19 +207,19 @@ void DesuraProgress::OnPaint()
 {
 	CPaintDC dc(this);
 
-	RECT size;
-	GetClientRect(&size);
+	CRect size;
+	GetClientRect(size);
 
 	int w = size.right-size.left;
 	int h = size.bottom-size.top;
 
 	
 	CBitmap bmp;
-	bmp.CreateCompatibleBitmap(&dc, w, h);
+	bmp.CreateCompatibleBitmap(dc, w, h);
 
 	CDC memDC;
 	memDC.CreateCompatibleDC(&dc);
-	CBitmap* pOldBitmap = memDC.SelectObject(&bmp);
+	HGDIOBJ pOldBitmap = memDC.SelectObject(&bmp);
 	//memDC.FillSolidRect(0,0,w, h, RGB(34,34,34));
 	
 	{
@@ -229,7 +227,7 @@ void DesuraProgress::OnPaint()
 		BITMAP bmap;
 
 		cdc.CreateCompatibleDC(&dc);
-		CBitmap* pOldBitmap = cdc.SelectObject(m_pBackgroundImage);
+		HGDIOBJ pOldBitmap = cdc.SelectObject(m_pBackgroundImage);
 		m_pBackgroundImage->GetBitmap(&bmap);
 
 		memDC.StretchBlt(0, 0, w, h, &cdc, 0, 0, bmap.bmWidth, bmap.bmHeight, SRCCOPY);
@@ -247,7 +245,7 @@ void DesuraProgress::OnPaint()
 		BITMAP bmap;
 
 		cdc.CreateCompatibleDC(&dc);
-		CBitmap* pOldBitmap = cdc.SelectObject(m_pLoadingBar);
+		HGDIOBJ pOldBitmap = cdc.SelectObject(m_pLoadingBar);
 		m_pLoadingBar->GetBitmap(&bmap);
 
 		int bw = bmap.bmWidth *m_iProg/100;
@@ -314,7 +312,7 @@ void DesuraProgress::OnPaint()
 	memDC.SelectObject(pOldBitmap);
 }
 
-BOOL DesuraProgress::OnEraseBkgnd(CDC* pDC) 
+bool DesuraProgress::OnEraseBkgnd() 
 {
 	return true;
 }

@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #pragma once
 
+#include "DesuraWnd.h"
 
 // DesuraProgress
 
@@ -28,15 +29,14 @@ enum
 	MODE_INSTALLING,
 };
 
-class CBitmap;
 
-class DesuraProgress : public CWnd
+class DesuraProgress : public Desurium::CDesuraWnd
 {
 public:
 	DesuraProgress();
 	virtual ~DesuraProgress();
 
-	BOOL Create(CWnd* pParentWnd, const RECT& rect, UINT nID, DWORD dwStyle = WS_VISIBLE);
+	bool Create(Desurium::CDesuraWnd *pParent, const Desurium::CRect& rect, UINT nID, DWORD dwStyle = WS_VISIBLE) override;
 
 	void setTotal(int total){m_iTotal=total;}
 	void setDone(int done);
@@ -46,20 +46,23 @@ public:
 
 	void refresh()
 	{
-		RedrawWindow(0,0, RDW_INTERNALPAINT|RDW_NOERASE|RDW_UPDATENOW|RDW_INVALIDATE);
+		RedrawWindow(0, 0, RDW_INTERNALPAINT|RDW_NOERASE|RDW_UPDATENOW|RDW_INVALIDATE);
 	}
 
 protected:
-	void OnPaint();
-	BOOL OnEraseBkgnd(CDC* pDC);
-	BOOL RegisterWindowClass();
 
-	void OnMouseMove(UINT nFlags, CPoint point);
-	void OnLButtonUp(UINT nFlags, CPoint point);
-	void OnLButtonDown(UINT nFlags, CPoint point);
-	void OnMouseLeave();
+	bool RegisterWindowClass();
 
-	CRect getCancelRect();
+	void OnPaint() override;
+	bool OnEraseBkgnd() override;
+	void OnMouseMove(UINT nFlags, Desurium::CPoint point) override;
+	void OnLButtonUp(UINT nFlags, Desurium::CPoint point) override;
+	void OnLButtonDown(UINT nFlags, Desurium::CPoint point) override;
+	void OnMouseLeave() override;
+
+	Desurium::CRect getCancelRect();
+
+	static LRESULT CALLBACK WinProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 
 private:
@@ -70,14 +73,13 @@ private:
 
 	int m_vDone[3];
 
-	CBitmap *m_pBackgroundImage;
-	CBitmap *m_pLoadingBar;
+	Desurium::CBitmap *m_pBackgroundImage;
+	Desurium::CBitmap *m_pLoadingBar;
 
 	bool m_bDragging;
-	CPoint m_StartPoint;
+	Desurium::CPoint m_StartPoint;
 
-	DECLARE_MESSAGE_MAP()
-	DECLARE_DYNAMIC(DesuraProgress)
+	static DesuraProgress* gs_pDesuraProgress;
 };
 
 

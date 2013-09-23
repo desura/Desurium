@@ -29,6 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "UpdateFunctions.h"
 #include <shlobj.h>
 
+using namespace Desurium;
 
 INT_PTR DisplayUpdateWindow(int updateType)
 {
@@ -36,22 +37,16 @@ INT_PTR DisplayUpdateWindow(int updateType)
 	return dlg.DoModal();
 }
 
-
-
-UINT InstallFilesThread(void *form);
-UINT InstallMcfThread(void *form);
-
-
-BEGIN_MESSAGE_MAP(UpdateForm, CDialog)
-	//ON_WM_NCPAINT()
-END_MESSAGE_MAP()
+UINT __stdcall InstallFilesThread(void *form);
+UINT __stdcall InstallMcfThread(void *form);
 
 
 
-UpdateForm::UpdateForm(int updateType, CWnd* pParent) : CDialog(IDD_UPDATEFORM_DIALOG, pParent)
+UpdateForm::UpdateForm(int updateType) 
+	: Desurium::CDesuraDialog(IDD_UPDATEFORM_DIALOG)
 {
 	m_bInit = false;
-	m_hIcon = AfxGetApp()->LoadIcon(IDI_ICON);
+	m_hIcon = LoadIcon(IDI_ICON);
 	m_Progress = new DesuraProgress();
 	m_updateType = updateType;
 }
@@ -61,10 +56,8 @@ UpdateForm::~UpdateForm()
 }
 
 
-BOOL UpdateForm::OnInitDialog()
+bool UpdateForm::OnInitDialog()
 {
-	CDialog::OnInitDialog();
-
 	// Set the icon for this dialog.  The framework does this automatically
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
@@ -91,12 +84,7 @@ BOOL UpdateForm::OnInitDialog()
 	HRGN region = CreateRoundRectRgn(clientRect.left, clientRect.top, clientRect.right, clientRect.bottom+clientRect.top-clientRect.left, 5, 5);
 	SetWindowRgn(region, true);
 
-	//int cstyle= GetClassLong((HWND)this->GetSafeHwnd(), GCL_STYLE);
-	//SetClassLong((HWND)this->GetSafeHwnd(), GCL_STYLE, cstyle|CS_DROPSHADOW);
-
-	//ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED); 
-
-	return TRUE;  // return TRUE  unless you set the focus to a control
+	return TRUE;
 }
 
 INT_PTR UpdateForm::DoModal()
@@ -109,18 +97,18 @@ INT_PTR UpdateForm::DoModal()
 			UpdateFiles();
 	}
 
-	return CDialog::DoModal();
+	return CDesuraDialog::DoModal();
 }
 
 
 void UpdateForm::UpdateFiles()
 {
-	AfxBeginThread(InstallFilesThread, (void*)this, THREAD_PRIORITY_NORMAL, 0, 0,NULL);
+	BeginThread(InstallFilesThread, (void*)this);
 }
 
 void UpdateForm::UpdateMcf()
 {
-	AfxBeginThread(InstallMcfThread, (void*)this, THREAD_PRIORITY_NORMAL, 0, 0,NULL);
+	BeginThread(InstallMcfThread, (void*)this);
 }
 
 void UpdateForm::onProgressN(unsigned int& prog)
@@ -151,7 +139,7 @@ bool FileExists(const wchar_t* fileName);
 UINT DownloadAndInstallMCF(UpdateForm* temp);
 
 //this should only be called if an update is needed.
-UINT InstallFilesThread(void *form)
+UINT __stdcall InstallFilesThread(void *form)
 {
 	UpdateForm* temp = static_cast<UpdateForm*>(form);
 
@@ -192,7 +180,7 @@ UINT InstallFilesThread(void *form)
 }
 
 //this should only be called if an update is needed.
-UINT InstallMcfThread(void *form)
+UINT __stdcall InstallMcfThread(void *form)
 {
 	int res = 0;
 	UpdateForm* temp = static_cast<UpdateForm*>(form);

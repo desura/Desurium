@@ -182,15 +182,6 @@ find_package(PythonInterp REQUIRED)
 
 if(WIN32)
   find_package(PythonLibs REQUIRED)
-  # only define this if MFC was found
-  # VC express and mingw doesn't provide MFC, but other versions of VC do
-  find_package(MFC)
-  if(MFC_FOUND)
-    set(CMAKE_MFC_FLAG 2)
-    add_definitions(-DMFC_FOUND -DDONT_INCLUDE_WINH)
-    # Visual Studio 9 needs this
-    add_definitions(-D_BIND_TO_CURRENT_CRT_VERSION -D_BIND_TO_CURRENT_MFC_VERSION)
-  endif()
 endif()
 
 find_package(Patch REQUIRED)

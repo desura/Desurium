@@ -4,6 +4,7 @@ include_directories(
   ${Boost_INCLUDE_DIR}
   ${BZIP2_INCLUDE_DIR}
   ${CURL_INCLUDE_DIRS}
+  ${CURL_INCLUDE_DIRS_S}
   ${SQLITE3X_INCLUDE_DIRS}
 )
 

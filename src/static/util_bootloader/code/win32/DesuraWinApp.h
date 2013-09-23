@@ -1,6 +1,8 @@
+#pragma once
+
 /*
 Desura is the leading indie game distribution platform
-Copyright (C) 2011 Mark Chandler (Desura Net Pty Ltd)
+Copyright (C) 2013 Mark Chandler (Desura Net Pty Ltd)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,19 +18,32 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
+#include <wtypes.h>
 
-// stdafx.h : include file for standard system include files,
-// or project specific include files that are used frequently,
-// but are changed infrequently
+namespace Desurium
+{
 
-#pragma once
+	class CDesuraWinApp
+	{
+	public:
+		CDesuraWinApp();
+		~CDesuraWinApp();
 
-#ifndef _SECURE_ATL
-#define _SECURE_ATL 1
-#endif
+		virtual void InitInstance()=0;
+		virtual int ExitInstance()=0;
 
-#ifndef VC_EXTRALEAN
-#define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
-#endif
+		static CDesuraWinApp& GetApp();
 
-#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// some CString constructors will be explicit
+		void Init(HINSTANCE hInstance, int nCmdShow, const char* lpCmdLine);
+
+	protected:
+		HINSTANCE m_hInstance;
+		int m_nCmdShow;
+		const char* m_lpCmdLine;
+
+	private:
+		static CDesuraWinApp* gs_pWinApp;
+	};
+
+
+}
