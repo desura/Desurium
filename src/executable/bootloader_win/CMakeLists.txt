@@ -21,6 +21,12 @@ add_definitions(-D_WINDOWS
 
 add_executable(desura WIN32 ${Sources} ${SERVICE_PIPE_IPCUPDATEMAIN})
 
+if (OFFICIAL_BUILD)
+	set(OFFICIAL_DEP "util_bootloader_official_s")
+	add_definitions(-DDESURA_OFFICAL_BUILD)
+endif()
+
+
 if (WIN32)
 	target_link_libraries(desura
 	  ipc_pipe_s
@@ -29,6 +35,7 @@ if (WIN32)
 	  util_bootloader_s
 	  comctl32
 	  mdump_s
+	  ${OFFICIAL_DEP}
 	)
 	SetStaticRuntime(desura)
 else()

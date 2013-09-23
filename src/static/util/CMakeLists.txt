@@ -2,6 +2,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/code/third_party
   ${Boost_INCLUDE_DIR}
+  ${Boost_INCLUDE_DIR_S} 
   ${BZIP2_INCLUDE_DIR}
   ${CURL_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}
@@ -83,3 +84,28 @@ target_link_libraries(util
 
 SET_PROPERTY(TARGET util                PROPERTY FOLDER "Static")
 SET_PROPERTY(TARGET util_web                PROPERTY FOLDER "Static")
+
+if (WIN32)
+	add_library(util_s STATIC ${Sources} ${PlattformSources})
+
+	target_link_libraries(util_s
+	  ${BZIP2_LIBRARIES_S}
+	  ${SQLITE3X_LIBRARIES_S}
+	  ${Boost_FILESYSTEM_LIBRARY_S}
+	  ${Boost_SYSTEM_LIBRARY_S}
+	  ${PLATFORM_LIBRARIES}
+	)
+
+	SET_PROPERTY(TARGET util_s                PROPERTY FOLDER "Static")
+	SetStaticRuntime(util_s)
+	
+	
+	add_library(util_web_s STATIC ${SourcesWEB})
+	target_link_libraries(util_web_s
+		${WINDOWS_LIBRARIES}
+		${CURL_LIBRARIES_S}
+	)
+	
+	SET_PROPERTY(TARGET util_web_s                PROPERTY FOLDER "Static")
+	SetStaticRuntime(util_web_s)	
+endif()
