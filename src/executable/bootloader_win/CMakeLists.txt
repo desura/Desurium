@@ -4,7 +4,8 @@ include_directories(
   ${COMMON_INCLUDE_DIRS}/service_pipe
   ${IPC_PIPE_INCLUDE_DIRS}
   ${TINYXML_INCLUDEDIR}
-  ${UTIL_BOOTLOADER_OFFICIAL_INCLUDE_DIR}
+  ${UTIL_BOOTLOADER_OFFICIAL_INCLUDE_DIRS}
+  ${UTIL_BOOTLOADER_INCLUDE_DIRS}
 )
 
 configure_file(RES/desura_exe.rc ${RC_DIR}/desura_exe.rc @ONLY)
