@@ -94,6 +94,9 @@ void ScriptCoreInternal::runString(const char* string)
 	if (!string)
 		throw gcException(ERR_INVALID, "String is null");
 
+	if (m_v8Context.IsEmpty())
+		throw gcException(ERR_INVALID, "Context is not setup");
+
 	v8::Context::Scope context_scope(m_v8Context);
 	v8::HandleScope handle_scope;
 
