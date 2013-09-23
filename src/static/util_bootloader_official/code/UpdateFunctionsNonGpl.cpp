@@ -17,7 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 
-#include "stdafx.h"
+#include "windows.h"
+#include "ShlObj.h"
 #include "Common.h"
 #include "UpdateFunctions.h"
 #include "umcf/UMcf.h"

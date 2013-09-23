@@ -55,25 +55,6 @@ void Msg(char const *, ...)
 namespace BootLoaderUtil
 {
 
-
-#if !defined(DONT_INCLUDE_AFXWIN) && defined(MFC_FOUND)
-
-CDummyWindow::CDummyWindow(HWND hWnd)
-{
-	Attach(hWnd);
-}
-
-// Don't let the CWnd destructor delete the HWND
-CDummyWindow::~CDummyWindow()
-{
-	Detach();
-}
-
-#endif
-
-
-
-
 bool IsExeRunning(char* pName)
 {
 	unsigned long aProcesses[1024], cbNeeded, cProcesses;

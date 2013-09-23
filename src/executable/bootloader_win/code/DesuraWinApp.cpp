@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 #include "DesuraWinApp.h"
+#include "DesuraWnd.h"
 #include <windows.h>
 
 #include <cassert>
@@ -26,6 +27,8 @@ using namespace Desurium;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+	CDesuraWnd::SetInstanceHandle(hInstance);
+
 	CDesuraWinApp& app = CDesuraWinApp::GetApp();
 
 	app.Init(hInstance, nCmdShow, lpCmdLine);

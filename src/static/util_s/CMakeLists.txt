@@ -8,6 +8,7 @@ include_directories(
   ${Boost_INCLUDE_DIR_S} 
   ${BZIP2_INCLUDE_DIR}
   ${SQLITE3X_INCLUDE_DIRS_S}
+  ${CURL_INCLUDE_DIRS_S}
 )
 
 file(GLOB SourcesWEB ${UTIL_REAL_SOURCE_DIR}/code/UtilWeb.cpp)
