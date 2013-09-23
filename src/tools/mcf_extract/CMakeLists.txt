@@ -11,6 +11,13 @@ endif()
 add_executable(mcf_extract ${Sources})
 target_link_libraries(mcf_extract
   mcfcore
+  managers
+  managers_window
+  threads
+  usercore
+  util
+  util_fs
+  ${CURL_LIBRARIES}
   ${LINUX_LIBRARIES}
 )
 

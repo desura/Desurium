@@ -1,13 +1,20 @@
-///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
-//
-//   Project     : mcf_util
-//   File        : MCFSetup.cpp
-//   Description :
-//      [TODO: Write the purpose of MCFSetup.cpp.]
-//
-//   Created On: 4/5/2011 4:28:07 PM
-//   Created By:  <mailto:>
-////////////////////////////////////////////////////////////////////////////
+/*
+Desura is the leading indie game distribution platform
+Copyright (C) 2013 Mark Chandler (Desura Net Pty Ltd)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
 
 #include "Common.h"
 #include "SharedObjectLoader.h"
@@ -45,11 +52,7 @@ void InitFactory()
         exit(-1);
     }
 #else
-	#ifdef DEBUG
-		if (!g_hMcfCore.load("mcfcore-d.dll"))
-	#else
 		if (!g_hMcfCore.load("mcfcore.dll"))
-	#endif
 		{
 			printf("Error loading mcfcore.dll\n");
 			exit(-1);

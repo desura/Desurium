@@ -10,6 +10,7 @@ file(GLOB Sources
   code/PatchMCF.cpp
   code/SaveMCF.cpp
   code/TestMCF.cpp
+  code/UploadMCF.cpp
   code/UtilFunction.cpp)
 
 if(UNIX)

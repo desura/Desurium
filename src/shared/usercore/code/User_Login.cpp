@@ -118,13 +118,21 @@ void User::logInCleanUp()
 
 void User::logIn(const char* user, const char* pass)
 {
-	gcString appDataPath = UTIL::OS::getAppDataPath();
+	doLogIn(user, pass, false);
+}
+
+void User::logInTool(const char* user, const char* pass)
+{
+	doLogIn(user, pass, true);
+}
+
+void User::doLogIn(const char* user, const char* pass, bool bTestOnly)
+{
 	m_pThreadPool->unBlockTasks();
 
 	if (!m_pWebCore)
 		throw gcException(ERR_NULLWEBCORE);
 
-	
 	tinyxml2::XMLDocument doc;
 	m_pWebCore->logIn(user, pass, doc);
 
@@ -174,6 +182,10 @@ void User::logIn(const char* user, const char* pass)
 	XML::GetChild("url", m_szProfileUrl,  memNode);
 	XML::GetChild("urledit", m_szProfileEditUrl,  memNode);
 
+	if (bTestOnly)
+		return;
+
+	gcString appDataPath = UTIL::OS::getAppDataPath();
 
 	initPipe();
 
