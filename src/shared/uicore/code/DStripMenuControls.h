@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "StripMenuButton.h"
 #include "MenuSeperator.h"
 
-
+#include "managers/CVar.h"
 extern CVar gc_buttontol;
 
 template <typename T, typename K = wxEventDelegateWrapper<T>>
@@ -59,7 +59,7 @@ public:
 
 	virtual bool handleEvent(wxMouseEvent& event)
 	{
-		wxPoint mouse = wxGetMousePosition() - GetScreenPosition();
+		wxPoint mouse = wxGetMousePosition() - this->GetScreenPosition();
 
 		if (event.GetEventType() == wxEVT_MOTION)
 		{
@@ -87,7 +87,7 @@ public:
 			wxRect mouseRect(startPos, wxSize(is, is));
 
 			//need to take 6 of for drag border
-			wxSize size = GetSize();
+			wxSize size = this->GetSize();
 			size.y -= 6;
 			wxRect curRect(wxPoint(0, 6), size);
 
