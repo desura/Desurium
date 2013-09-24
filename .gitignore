@@ -4,13 +4,10 @@ CMakeCache.txt
 CMakeFiles/
 Makefile
 build*/
+!build_out/
 install/
 ceflibs/
-
-distro/archlinux/*
-!distro/archlinux/git/PKGBUILD
-!distro/archlinux/release/cef/PKGBUILD
-!distro/archlinux/release/desurium/PKGBUID
+bin/
 
 # some qt-creator stuff
 qtcreator-build/
