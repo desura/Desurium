@@ -8,6 +8,17 @@ else()
   set(BOOST_EXTRA_BUILD_OPTS "")
 endif()
 
+if (WIN32 AND NOT MINGW)
+  if (MSVC10)
+	set(TOOLSET_MSVC_VER --toolset=msvc-10.0)
+  elseif (MSVC11)
+	set(TOOLSET_MSVC_VER --toolset=msvc-11.0)
+  elseif (MSVC12)
+	set(TOOLSET_MSVC_VER --toolset=msvc-12.0)
+  endif()
+ endif()
+
+
 if(DEBUG) 
 ExternalProject_Add(
   boost
@@ -18,7 +29,7 @@ ExternalProject_Add(
   CONFIGURE_COMMAND ${CONFIGURE_COMMAND} ${BOOST_EXTRA_BUILD_OPTS}
   BUILD_COMMAND ${BJAM_BINARY} --layout=system --with-date_time --with-filesystem --with-chrono
                   --with-thread --with-system --with-test variant=debug link=static
-				  threading=multi runtime-link=shared --toolset=msvc-12.0
+				  threading=multi runtime-link=shared ${TOOLSET_MSVC_VER}
   INSTALL_COMMAND ""
 )
 else()
@@ -31,7 +42,7 @@ ExternalProject_Add(
   CONFIGURE_COMMAND ${CONFIGURE_COMMAND} ${BOOST_EXTRA_BUILD_OPTS}
   BUILD_COMMAND ${BJAM_BINARY} --layout=system --with-date_time --with-filesystem --with-chrono
                   --with-thread --with-system --with-test variant=release link=static
-				  threading=multi runtime-link=shared --toolset=msvc-12.0
+				  threading=multi runtime-link=shared ${TOOLSET_MSVC_VER}
   INSTALL_COMMAND ""
 )
 endif()
