@@ -10,6 +10,16 @@ endif()
 
 set(BOOST_BJAM_LIBS --with-chrono --with-date_time --with-filesystem --with-thread --with-system --with-test)
 
+if (WIN32 AND NOT MINGW)
+  if (MSVC10)
+    set(TOOLSET_MSVC_VER --toolset=msvc-10.0)
+  elseif (MSVC11)
+    set(TOOLSET_MSVC_VER --toolset=msvc-11.0)
+  elseif (MSVC12)
+    set(TOOLSET_MSVC_VER --toolset=msvc-12.0)
+  endif()
+endif()
+
 if(DEBUG) 
   ExternalProject_Add(
     boost
@@ -19,7 +29,7 @@ if(DEBUG)
     BUILD_IN_SOURCE 1
     CONFIGURE_COMMAND ${CONFIGURE_COMMAND} ${BOOST_EXTRA_BUILD_OPTS}
     BUILD_COMMAND ${BJAM_BINARY} ${BOOST_BJAM_LIBS} --layout=system variant=debug link=static
-                    threading=multi runtime-link=shared
+                    threading=multi runtime-link=shared ${TOOLSET_MSVC_VER}
     INSTALL_COMMAND ""
   )
 else()
@@ -31,7 +41,7 @@ else()
     BUILD_IN_SOURCE 1
     CONFIGURE_COMMAND ${CONFIGURE_COMMAND} ${BOOST_EXTRA_BUILD_OPTS}
     BUILD_COMMAND ${BJAM_BINARY} ${BOOST_BJAM_LIBS} --layout=system variant=release link=static
-                    threading=multi runtime-link=shared 
+                    threading=multi runtime-link=shared ${TOOLSET_MSVC_VER}
     INSTALL_COMMAND ""
   )
 endif()
