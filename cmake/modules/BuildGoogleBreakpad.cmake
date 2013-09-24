@@ -7,6 +7,17 @@ if(WIN32 AND NOT MINGW)
     set(CONFIGURATION_TYPE Release)
   endif()
   
+  if (MSVC10)
+	set(MSVC_VER v100)
+  elseif (MSVC11)
+	set(MSVC_VER v110)
+  elseif (MSVC12)
+	set(MSVC_VER v120)
+  endif() 
+  
+  configure_file(${CMAKE_PATCH_DIR}/breakpad-winproj.vcxproj ${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR}/breakpad-winproj_out.vcxproj @ONLY)
+  configure_file(${CMAKE_PATCH_DIR}/breakpad-winproj_s.vcxproj ${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR}/breakpad-winproj_s_out.vcxproj @ONLY)
+  
   ExternalProject_Add(
     breakpad
     URL ${BREAKPAD_URL}
@@ -23,7 +34,7 @@ if(WIN32 AND NOT MINGW)
     update_project_files
     DEPENDEES configure
     DEPENDERS build
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_PATCH_DIR}/breakpad-winproj.vcxproj <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR}/breakpad-winproj_out.vcxproj <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj
   )
   
   ExternalProject_Add(
@@ -42,7 +53,7 @@ if(WIN32 AND NOT MINGW)
     update_project_files
     DEPENDEES configure
     DEPENDERS build
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_PATCH_DIR}/breakpad-winproj_s.vcxproj <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR}/breakpad-winproj_s_out.vcxproj <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj
   )
   
 	ExternalProject_Get_Property(
