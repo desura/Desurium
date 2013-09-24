@@ -103,7 +103,9 @@ else()
 endif()
 # TODO: code/InstallHandler.cpp
 
-add_library(usercore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES} ${TOOL_PIPE_SPOURCES})
+set(AllSources ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES} ${TOOL_PIPE_SPOURCES})
+setup_precompiled_header(Common.h ${COMMON_INCLUDE_DIRS}/Common.cpp AllSources)
+add_library(usercore SHARED ${AllSources})
 target_link_libraries(usercore
   gcJSBase
   ipc_pipe
@@ -123,5 +125,5 @@ target_link_libraries(usercore
   ${WINDOWS_LIBRARIES}
 )
 
-LinkWithGTest(usercore)
+link_with_gtest(usercore)
 desurium_install_library(usercore "Shared")

@@ -16,6 +16,7 @@ if(WIN32)
   endif()
 endif()
 
+setup_precompiled_header(Common.h ${COMMON_INCLUDE_DIRS}/Common.cpp Sources)
 add_library(webcore SHARED ${Sources})
 target_link_libraries(webcore
     threads
