@@ -110,7 +110,7 @@ public:
 #ifdef WIN32
 		const char* szDllName = "usercore.dll";
 #else
-		const char* szDllname = "libusercore.so";
+		const char* szDllName = "libusercore.so";
 #endif
 
 		if (!m_hUserCore.load(szDllName))
