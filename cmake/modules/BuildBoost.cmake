@@ -8,7 +8,7 @@ else()
   set(BOOST_EXTRA_BUILD_OPTS "")
 endif()
 
-set(BOOST_BJAM_LIBS --with-date_time --with-filesystem --with-thread --with-system --with-test)
+set(BOOST_BJAM_LIBS --with-chrono --with-date_time --with-filesystem --with-thread --with-system --with-test)
 
 if(DEBUG) 
   ExternalProject_Add(
