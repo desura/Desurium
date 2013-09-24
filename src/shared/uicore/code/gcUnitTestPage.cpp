@@ -284,7 +284,7 @@ void gcUnitTestForm::OnAssertOnErrorClicked(wxCommandEvent& event)
 
 void gcUnitTestForm::OnTextChanged(wxCommandEvent& event)
 {
-	g_strUnitTestFilter.setValue(m_textCtrl1->GetValue());
+	g_strUnitTestFilter.setValue((const char*)m_textCtrl1->GetValue());
 }
 
 void gcUnitTestForm::OnClose(wxCloseEvent& event)
