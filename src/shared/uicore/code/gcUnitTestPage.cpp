@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include <wx/listctrl.h>
 #include <gtest/gtest.h>
+#include "managers/CVar.h"
 
 using namespace testing;
 
@@ -56,8 +57,11 @@ public:
 
 	void OnTestEnd(const TestInfo& test_info)
 	{
-		onTestResultEvent(std::make_pair(m_szLastTest, test_info.result()->Passed()));
-		onTestEndEnd(std::make_pair(m_szLastTest, (uint64)test_info.result()->elapsed_time()));
+		std::pair<gcString, bool> res = std::make_pair(m_szLastTest, test_info.result()->Passed());
+		std::pair<gcString, uint64> end = std::make_pair(m_szLastTest, (uint64)test_info.result()->elapsed_time());
+
+		onTestResultEvent(res);
+		onTestEndEnd(end);
 	}
 
 	gcString m_szLastTest;
