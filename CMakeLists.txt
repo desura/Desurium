@@ -81,6 +81,9 @@ project(Desura)
 
 if(APPLE) # see #418
   cmake_minimum_required(VERSION 2.8.10)
+elseif(WIN32)
+  #gtest fails on any thing less
+  cmake_minimum_required(VERSION 2.8.11)
 else()
   cmake_minimum_required(VERSION 2.8.2)
 endif()
