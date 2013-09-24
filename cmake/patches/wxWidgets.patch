@@ -1,8 +1,34 @@
 
+Index: include/wx/platform.h
+===================================================================
+--- include/wx/platform.h	(revision 68296)
++++ include/wx/platform.h	(working copy)
+@@ -500,6 +500,10 @@
+ #       define __VISUALC9__
+ #   elif __VISUALC__ < 1700
+ #       define __VISUALC10__
++#   elif __VISUALC__ < 1800
++#       define __VISUALC11__
++#   elif __VISUALC__ < 1900
++#       define __VISUALC12__
+ #   else
+ #       pragma message("Please update wx/platform.h to recognize this VC++ version")
+ #   endif
 Index: include/msvc/wx/setup.h
 ===================================================================
 --- include/msvc/wx/setup.h	(revision 68296)
 +++ include/msvc/wx/setup.h	(working copy)
+@@ -60,6 +60,10 @@
+         #define wxCOMPILER_PREFIX vc90
+     #elif _MSC_VER == 1600
+         #define wxCOMPILER_PREFIX vc100
++    #elif _MSC_VER == 1700
++        #define wxCOMPILER_PREFIX vc110
++    #elif _MSC_VER == 1800
++        #define wxCOMPILER_PREFIX vc120
+     #else
+         #error "Unknown MSVC compiler version, please report to wx-dev."
+     #endif
 @@ -121,6 +121,7 @@
  // special version for regex as it does have a Unicode version
  #define wx3RD_PARTY_LIB_NAME_U(name) "wx" name wxSUFFIX_STR

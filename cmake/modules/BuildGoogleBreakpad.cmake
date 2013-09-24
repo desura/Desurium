@@ -7,6 +7,17 @@ if(WIN32 AND NOT MINGW)
     set(CONFIGURATION_TYPE Release)
   endif()
   
+  if (MSVC10)
+	set(MSVC_VER v100)
+  elseif (MSVC11)
+	set(MSVC_VER v110)
+  elseif (MSVC12)
+	set(MSVC_VER v120)
+  endif() 
+  
+  configure_file(${CMAKE_PATCH_DIR}/breakpad-winproj.vcxproj ${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR}/breakpad-winproj_out.vcxproj @ONLY)
+  configure_file(${CMAKE_PATCH_DIR}/breakpad-winproj_s.vcxproj ${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR}/breakpad-winproj_s_out.vcxproj @ONLY)
+  
   ExternalProject_Add(
     breakpad
     URL ${BREAKPAD_URL}
@@ -17,24 +28,14 @@ if(WIN32 AND NOT MINGW)
     BUILD_COMMAND msbuild <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj /nologo /t:rebuild /m:2 /property:Configuration=${CONFIGURATION_TYPE}
     INSTALL_COMMAND ""
   )
+  
   ExternalProject_Add_Step(
     breakpad
     update_project_files
     DEPENDEES configure
     DEPENDERS build
-    COMMAND vcupgrade <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcproj
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR}/breakpad-winproj_out.vcxproj <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj
   )
-  # Breakpad builds with /MT by default but we need /MD. This patch makes it build with /MD
-  ExternalProject_Add_Step(
-    breakpad
-    patch_project_files
-    DEPENDEES update_project_files
-    DEPENDERS build
-    WORKING_DIRECTORY <SOURCE_DIR>
-    COMMAND cmake -DVCXPROJ_PATH=<SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj -P ${CMAKE_SCRIPT_PATH}/breakpad_VS_patch.cmake
-  )
-  
-  
   
   ExternalProject_Add(
     breakpad_s
@@ -46,12 +47,13 @@ if(WIN32 AND NOT MINGW)
     BUILD_COMMAND msbuild <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj /nologo /t:rebuild /m:2 /property:Configuration=${CONFIGURATION_TYPE}
     INSTALL_COMMAND ""
   )
+  
   ExternalProject_Add_Step(
     breakpad_s
     update_project_files
     DEPENDEES configure
     DEPENDERS build
-    COMMAND vcupgrade <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcproj
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR}/breakpad-winproj_s_out.vcxproj <SOURCE_DIR>/src/client/windows/handler/exception_handler.vcxproj
   )
   
 	ExternalProject_Get_Property(
