@@ -50,4 +50,8 @@ target_link_libraries(servicecore
 	${PLATFORM_LIBRARIES}
 )
 
+if(WIN32)
+  SetSharedRuntime(servicecore)
+endif()
+
 install_library(servicecore)

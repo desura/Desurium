@@ -20,9 +20,16 @@ if(WIN32)
 endif()
 
 add_library(sqlite3x STATIC ${Sqlite3xSources} ${Sqlite3xHeaders})
-target_link_libraries(sqlite3x
-    ${SQLITE_LIBRARIES}
-)
+target_link_libraries(sqlite3x ${SQLITE_LIBRARIES})
 set(SQLITE3X_LIBRARIES sqlite3x PARENT_SCOPE)
 
 set_property(TARGET sqlite3x PROPERTY FOLDER "ThirdParty")
+
+if (WIN32)
+	add_library(sqlite3x_s STATIC ${Sqlite3xSources} ${Sqlite3xHeaders})
+	target_link_libraries(sqlite3x_s ${SQLITE_LIBRARIES_S})
+	set(SQLITE3X_LIBRARIES_S sqlite3x_s PARENT_SCOPE)
+
+	SET_PROPERTY(TARGET sqlite3x_s PROPERTY FOLDER "ThirdParty")
+	SetStaticRuntime(sqlite3x_s)
+endif()

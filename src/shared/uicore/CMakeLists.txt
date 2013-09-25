@@ -177,5 +177,9 @@ target_link_libraries(uicore
     ${WINDOWS_LIBRARIES}
 )
 
+if(WIN32)
+  SetSharedRuntime(uicore)
+endif()
+
 LinkWithGTest(uicore)
 install_library(uicore)

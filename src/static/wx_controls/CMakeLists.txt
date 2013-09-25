@@ -21,4 +21,8 @@ target_link_libraries(wx_controls
     ${wxWidgets_LIBRARIES}
 )
 
+if(WIN32)
+  SetSharedRuntime(wx_controls)
+endif()
+
 SET_PROPERTY(TARGET wx_controls                PROPERTY FOLDER "Static")

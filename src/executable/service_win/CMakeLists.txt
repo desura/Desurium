@@ -15,4 +15,8 @@ target_link_libraries(desura_service
   wintrust
 )
 
+if(WIN32)
+  SetSharedRuntime(desura_service)
+endif()
+
 install_executable(desura_service)

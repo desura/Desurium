@@ -15,4 +15,8 @@ target_link_libraries(mcf_upload_cli
     ${CURL_LIBRARIES}
 )
 
+if(WIN32)
+  SetSharedRuntime(mcf_upload_cli)
+endif()
+
 install_tool(mcf_upload_cli)

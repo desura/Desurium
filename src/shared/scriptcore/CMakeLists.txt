@@ -22,4 +22,8 @@ target_link_libraries(scriptcore
 	${WINDOWS_LIBRARIES}
 )
 
+if(WIN32)
+  SetSharedRuntime(scriptcore)
+endif()
+
 install_library(scriptcore)

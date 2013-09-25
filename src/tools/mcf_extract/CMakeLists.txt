@@ -14,4 +14,8 @@ target_link_libraries(mcf_extract
   ${LINUX_LIBRARIES}
 )
 
+if(WIN32)
+  SetSharedRuntime(mcf_extract)
+endif()
+
 install_tool(mcf_extract)

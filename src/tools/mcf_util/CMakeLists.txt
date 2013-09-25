@@ -26,4 +26,8 @@ target_link_libraries(mcf_util
   ${PLATFORM_LIBRARIES}
 )
 
+if(WIN32)
+  SetSharedRuntime(mcf_util)
+endif()
+
 install_tool(mcf_util)

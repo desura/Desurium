@@ -27,4 +27,8 @@ target_link_libraries(desura_browserhost
   wintrust
 )
 
+if(WIN32)
+  SetSharedRuntime(desura_browserhost)
+endif()
+
 install_executable(desura_browserhost)

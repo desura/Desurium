@@ -25,4 +25,8 @@ target_link_libraries(crashuploader
     ${PLATFORM_LIBRARIES}
 )
 
+if(WIN32)
+  SetSharedRuntime(crashuploader)
+endif()
+
 install_library(crashuploader)

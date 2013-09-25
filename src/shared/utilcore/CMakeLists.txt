@@ -59,4 +59,8 @@ target_link_libraries(utilcore
 	${WINDOWS_LIBRARIES}
 )
 
+if(WIN32)
+  SetSharedRuntime(utilcore)
+endif()
+
 install_library(utilcore)

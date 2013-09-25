@@ -123,5 +123,9 @@ target_link_libraries(usercore
   ${WINDOWS_LIBRARIES}
 )
 
+if(WIN32)
+  SetSharedRuntime(usercore)
+endif()
+
 LinkWithGTest(usercore)
 install_library(usercore)

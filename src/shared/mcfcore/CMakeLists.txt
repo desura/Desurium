@@ -40,4 +40,8 @@ target_link_libraries(mcfcore
   ${CMAKE_THREAD_LIBS_INIT}
 )
 
+if(WIN32)
+  SetSharedRuntime(mcfcore)
+endif()
+
 install_library(mcfcore)

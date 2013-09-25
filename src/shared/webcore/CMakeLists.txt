@@ -40,4 +40,8 @@ target_link_libraries(webcore
   ${CMAKE_THREAD_LIBS_INIT}
 )
 
+if(WIN32)
+  SetSharedRuntime(webcore)
+endif()
+
 install_library(webcore)
