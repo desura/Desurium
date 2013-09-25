@@ -180,7 +180,7 @@ protected:
 #endif
 
 #ifdef WIN32
-		if (!m_ScriptCore.load(".\\bin\\scriptcore.dll"))
+		if (!m_ScriptCore.load("scriptcore.dll"))
 			return false;
 #else
 		if (!m_ScriptCore.load("libscriptcore.so"))

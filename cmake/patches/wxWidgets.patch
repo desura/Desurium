@@ -169,3 +169,47 @@ Index: src/msw/font.cpp
  }
  
  void wxNativeFontInfo::SetStyle(wxFontStyle style)
+Index: src/msw/dlmsw.cpp
+===================================================================
+--- src/msw/dlmsw.cpp	(revision 68296)
++++ src/msw/dlmsw.cpp	(working copy)
+@@ -251,8 +251,10 @@
+     wxFileName::SplitPath(modpath, &path, NULL, NULL);
+
+     typedef BOOL (WINAPI *SetDllDirectory_t)(LPCTSTR lpPathName);
++     typedef void (WINAPI *GetDllDirectory_t)(DWORD nBufferLength, LPTSTR lpBuffer);
+
+     static SetDllDirectory_t s_pfnSetDllDirectory = (SetDllDirectory_t) -1;
++     static GetDllDirectory_t s_pfnGetDllDirectory = (GetDllDirectory_t) -1;
+
+     if ( s_pfnSetDllDirectory == (SetDllDirectory_t) -1 )
+     {
+@@ -265,8 +267,16 @@
+         wxLoadedDLL dllKernel("kernel32.dll");
+
+         wxDL_INIT_FUNC_AW(s_pfn, SetDllDirectory, dllKernel);
++        wxDL_INIT_FUNC_AW(s_pfn, GetDllDirectory, dllKernel);
+     }
+
++       TCHAR szBinDir[255] = {0};
++
++        if (s_pfnGetDllDirectory)
++        {
++                s_pfnGetDllDirectory(255, szBinDir);
++        }
++
+     if (s_pfnSetDllDirectory)
+     {
+         s_pfnSetDllDirectory(path.t_str());
+@@ -277,7 +287,10 @@
+     // reset the search path
+     if (s_pfnSetDllDirectory)
+     {
+-        s_pfnSetDllDirectory(NULL);
++        if (s_pfnGetDllDirectory)
++                s_pfnSetDllDirectory(szBinDir);
++        else
++                s_pfnSetDllDirectory(NULL);
+     }
+
+     return handle;
