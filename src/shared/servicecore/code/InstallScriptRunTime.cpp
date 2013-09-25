@@ -171,7 +171,7 @@ protected:
 #if !defined(DEBUG) && defined(DESURA_OFFICAL_BUILD)
 	#ifdef WIN32
 			char message[255] = {0};
-			if (UTIL::WIN::validateCert(L".\\scriptcore.dll", message, 255) != ERROR_SUCCESS)
+			if (UTIL::WIN::validateCert(L".\\bin\\scriptcore.dll", message, 255) != ERROR_SUCCESS)
 			{
 				Warning(gcString("Cert validation failed on scriptcore.dll: {0}\n", message));
 				return false;
