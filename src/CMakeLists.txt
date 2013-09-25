@@ -40,6 +40,10 @@ endif()
 # do final steps for setting up the desura build environment
 ###############################################################################
 
+if (WIN32)
+	set(DESURA_EXE_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/executable/bootloader_win/code)
+endif()
+
 set(GLOBAL_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(COMMON_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/common)
 
@@ -61,6 +65,14 @@ else()
   )
 endif()
 
+if(WIN32)
+	if (OFFICIAL_BUILD)
+		add_subdirectory(branding_desurium)
+	else()
+		add_subdirectory(branding_desura)
+	endif()
+endif()
+
 ###############################################################################
 # build static libs
 ###############################################################################
@@ -78,6 +90,16 @@ add_subdirectory(static/umcf)
 add_subdirectory(static/util)
 if(WIN32)
   add_subdirectory(static/util_bootloader)
+  add_subdirectory(static/util_bootloader_s)
+  add_subdirectory(static/util_thread_s)
+  add_subdirectory(static/ipc_pipe_s)
+  add_subdirectory(static/mdump_s)
+  add_subdirectory(static/util_s)
+
+if (OFFICIAL_BUILD)
+  add_subdirectory(static/util_bootloader_official)
+endif()
+
 endif()
 add_subdirectory(static/util_fs)
 add_subdirectory(static/util_thread)
@@ -120,8 +142,6 @@ endif()
 option(BUILD_TOOLS "Build various Desura tools." ON)
 
 if(BUILD_TOOLS)
-  add_subdirectory(tools/mcf_upload_cli)
-  add_subdirectory(tools/mcf_extract)
   add_subdirectory(tools/mcf_util)
 endif()
 

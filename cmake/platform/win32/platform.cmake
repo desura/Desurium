@@ -36,3 +36,12 @@ else()
   set(64BIT FALSE)
   message("-- detected 32bit")
 endif()
+
+macro(SetStaticRuntime target)
+	if (DEBUG)
+		set_target_properties(${target} PROPERTIES COMPILE_FLAGS "/MTd")
+	else()
+		set_target_properties(${target} PROPERTIES COMPILE_FLAGS "/MT")
+	endif()
+endmacro()
+

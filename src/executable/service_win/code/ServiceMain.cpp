@@ -76,7 +76,7 @@ bool CGCServiceApp::start(int argc, char** argv)
 
 #if !defined(DEBUG) && defined(DESURA_OFFICAL_BUILD)
 	char message[255] = {0};
-	if (ValidateCert(L".\\servicecore.dll", message, 255) != ERROR_SUCCESS)
+	if (ValidateCert(L".\\bin\\servicecore.dll", message, 255) != ERROR_SUCCESS)
 	{
 		log("Failed cert check on servicecore.dll: ");
 		log(message);
@@ -84,7 +84,7 @@ bool CGCServiceApp::start(int argc, char** argv)
 		return false;
 	}
 #endif
-	if (!m_SCDLL.load("servicecore.dll")) 
+	if (!m_SCDLL.load(".\\bin\\servicecore.dll")) 
 	{
 		log("Failed to load servicecore.dll.\n");
 		return false;

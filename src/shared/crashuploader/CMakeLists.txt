@@ -25,7 +25,4 @@ target_link_libraries(crashuploader
     ${PLATFORM_LIBRARIES}
 )
 
-install(TARGETS crashuploader
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(crashuploader)
-SET_PROPERTY(TARGET crashuploader                PROPERTY FOLDER "Shared")
+desurium_install_library(crashuploader "Shared")

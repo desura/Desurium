@@ -131,7 +131,7 @@ void UnloadCEFDll()
 }
 
 #ifdef WIN32
-const char* szCefDLL = "cef_desura.dll";
+const char* szCefDLL = ".\\bin\\cef_desura.dll";
 #else
 const char* szCefDLL = "libcef_desura.so";
 #endif

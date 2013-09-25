@@ -29,12 +29,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 class webControl;
 class OutToBlock;
 
+namespace UnitTest
+{
+	class TestWGTWorker;
+}
+
 namespace MCFCore
 {
 namespace Misc
 {
 	class ProviderManager;
-	class MCFServerCon;
+	class MCFServerConI;
 }
 
 namespace Thread
@@ -91,7 +96,10 @@ protected:
 	bool checkBlock(MCFCore::Thread::Misc::WGTBlock *block);
 
 private:
+	friend class UnitTest::TestWGTWorker;
+
 	gcString m_szUrl;
+	MCFCore::Misc::MCFServerConI *m_pMcfCon;
 	MCFCore::Misc::GetFile_s* m_pFileAuth;
 
 	uint32 m_iAttempt;
@@ -101,7 +109,6 @@ private:
 
 	MCFCore::Thread::WGTControllerI *m_pCT;
 	MCFCore::Thread::Misc::WGTSuperBlock *m_pCurBlock;
-	MCFCore::Misc::MCFServerCon *m_pMcfCon;
 	MCFCore::Misc::ProviderManager *m_pProvMng;
 
 

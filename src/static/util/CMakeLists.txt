@@ -2,6 +2,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/code/third_party
   ${Boost_INCLUDE_DIR}
+  ${Boost_INCLUDE_DIR_S} 
   ${BZIP2_INCLUDE_DIR}
   ${CURL_INCLUDE_DIRS}
   ${SQLITE3X_INCLUDE_DIRS}

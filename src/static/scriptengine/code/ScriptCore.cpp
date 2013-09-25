@@ -168,7 +168,8 @@ public:
 
 	virtual void run()
 	{
-		m_pScriptCore->runString(m_szString.c_str());
+		if (m_pScriptCore)
+			m_pScriptCore->runString(m_szString.c_str());
 	}
 
 	gcString m_szString;
@@ -223,7 +224,7 @@ void ScriptCore::setItem(ScriptCoreItemI* item)
 	delItem();
 
 	m_uiItemId = ItemJSBinding::AddItem(item);
-	executeString(gcString("item.SetItem({0});", (int32)m_uiItemId).c_str());
+	executeString(gcString("if (item && item.SetItem){item.SetItem({0});}", (int32)m_uiItemId).c_str());
 }
 
 void ScriptCore::runTask(ScriptTask* task)

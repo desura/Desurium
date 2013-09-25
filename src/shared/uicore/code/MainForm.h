@@ -47,6 +47,7 @@ public:
 
 	void onSubFormClose(uint32 eventId);
 	void showAbout();
+
 	void logOut();
 	void goOffline();
 	void Exit();

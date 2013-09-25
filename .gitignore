@@ -3,9 +3,7 @@
 CMakeCache.txt
 CMakeFiles/
 Makefile
-build/
-build_cef/
-build_package/
+build*/
 install/
 ceflibs/
 
@@ -18,3 +16,4 @@ distro/archlinux/*
 qtcreator-build/
 qtcreator-install/
 CMakeLists.txt.user
+bin

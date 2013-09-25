@@ -34,7 +34,9 @@ else()
   set(PLATFORM_LIBRARIES dl)
 endif()
 
-add_library(servicecore SHARED ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES})
+set(AllSources ${Sources} ${PlattformSources} ${SERVICE_PIPE_SPOURCES})
+setup_precompiled_header(Common.h ${COMMON_INCLUDE_DIRS}/Common.cpp AllSources)
+add_library(servicecore SHARED ${AllSources})
 target_link_libraries(servicecore
     gcJSBase
     ipc_pipe
@@ -50,7 +52,4 @@ target_link_libraries(servicecore
 	${PLATFORM_LIBRARIES}
 )
 
-install(TARGETS servicecore
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(servicecore)
-SET_PROPERTY(TARGET servicecore                PROPERTY FOLDER "Shared")
+desurium_install_library(servicecore "Shared")

@@ -301,7 +301,7 @@ bool MainApp::onCrash(const char* path)
 	if (!path)
 	{
 		fprintf(stderr, "on crash path is null!");
-		return;
+		return false;
 	}
 	else
 	{

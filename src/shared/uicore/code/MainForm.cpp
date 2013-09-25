@@ -35,6 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Managers.h"
 #include "DesuraControl.h"
 
+
 #include <branding/branding.h>
 
 
@@ -309,6 +310,10 @@ void MainForm::onMenuSelect(wxCommandEvent& event )
 	{
 	case DESURA_wxLog:
 		ShowLogForm(true);
+		break;
+
+	case DESURA_wxUnitTest:
+		g_pMainApp->showUnitTest();
 		break;
 
 	case DESURA_wxSettings:

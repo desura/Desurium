@@ -23,6 +23,7 @@ else()
   set(PLATFORM_LIBRARIES dl)
 endif()
 
+setup_precompiled_header(Common.h ${COMMON_INCLUDE_DIRS}/Common.cpp Sources)
 add_library(mcfcore SHARED ${Sources})
 target_link_libraries(mcfcore
   umcf
@@ -40,9 +41,5 @@ target_link_libraries(mcfcore
   ${CMAKE_THREAD_LIBS_INIT}
 )
 
-install(TARGETS mcfcore
-        DESTINATION "${LIB_INSTALL_DIR}")
-
-CopyTargetFiles(mcfcore)
-		
-SET_PROPERTY(TARGET mcfcore                PROPERTY FOLDER "Shared")
+link_with_gtest(mcfcore)
+desurium_install_library(mcfcore "Shared")

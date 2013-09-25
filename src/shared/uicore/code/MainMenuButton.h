@@ -62,6 +62,7 @@ enum
 	DESURA_wxPurchase,
 	DESURA_wxGifts,
 	DESURA_wxActivateGame,
+	DESURA_wxUnitTest,
 };
 
 class gcMainCustomFrameImpl;

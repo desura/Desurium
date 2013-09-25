@@ -40,6 +40,16 @@ if(WIN32 AND NOT MINGW)
   set(wxWidgets_BIN_DIR ${wxWidgets_INSTALL_DIR}/bin)
   set(wxWidgets_LIBRARY_DIRS ${wxWidgets_INSTALL_DIR}/lib/vc_dll)
   
+  if (MSVC10)
+	set(MSVC_VER vc100)
+  elseif (MSVC11)
+	set(MSVC_VER vc110)
+  elseif (MSVC12)
+	set(MSVC_VER vc120)
+  else()
+	set(MSVC_VER vc)
+  endif()
+  
   if(DEBUG)
     set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include ${wxWidgets_INSTALL_DIR}/include/msvc)
     set(wxWidgets_LIBRARIES ${wxWidgets_LIBRARY_DIRS}/wxmsw29ud.lib)
@@ -51,6 +61,12 @@ if(WIN32 AND NOT MINGW)
     install(FILES ${wxWidgets_LIBRARY_DIRS}/wxmsw293u_vc_desura.dll
             DESTINATION ${LIB_INSTALL_DIR})
   endif()
+  
+  if(DEBUG)
+	CopyOutputFiles(wxWidget-2-9 ${wxWidgets_LIBRARY_DIRS}/wxmsw293ud_vc_desura.dll)
+  else()
+    CopyOutputFiles(wxWidget-2-9 ${wxWidgets_LIBRARY_DIRS}/wxmsw293u_vc_desura.dll)
+  endif() 
   
 else()
   if(MINGW)
@@ -80,7 +96,7 @@ else()
     BUILD_IN_SOURCE 1
     CONFIGURE_COMMAND ./configure
         --enable-shared --enable-unicode ${CONFIGURE_DEBUG}
-        --enable-monolithic --with-flavour=desura --enable-threads --with-opengl=no --disable-palette
+        --enable-monolithic --with-flavour=desura --enable-threads --with-opengl=no --disable-palette2
         --disable-joystick --disable-mediactrl --prefix=${wxWidgets_INSTALL_DIR} --enable-permissive
   )
   

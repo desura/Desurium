@@ -406,6 +406,7 @@
 		<str name="#MENU_ACTIVATEGAME_TOOLTIP">Enter a CD key or giftcode to activate a game on your account</str>
 		<str name="#MENU_VERSION">Version</str>
 		<str name="#MENU_EXIT">Exit</str>
+		<str name="#MENU_UNITTEST">Unit Tests</str>
 
 		<str name="#MENU_DOWNLOADREPORT">Bandwidth Monitor</str>
 		<str name="#MENU_DOWNLOADREPORT_TOOLTIP">Shows the bandwidth monitor</str>

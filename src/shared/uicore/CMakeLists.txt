@@ -120,7 +120,8 @@ file(GLOB Sources       code/AboutForm.cpp
                         code/UploadProgPage.cpp
                         code/UploadPrompt.cpp
                         code/UsernameBox.cpp
-                        code/*.h)
+                        code/*.h
+						code/gcUnitTestPage.cpp)
 
 if(WIN32)
   file(GLOB PlattformSources
@@ -151,7 +152,10 @@ if(WIN32)
   use_unicode_here()
 endif()
 
-add_library(uicore SHARED ${Sources} ${PlattformSources} ${BROWSER_PIPE_SPOURCES})
+set(AllSources ${Sources} ${PlattformSources} ${BROWSER_PIPE_SPOURCES})
+
+setup_precompiled_header(Common.h ${COMMON_INCLUDE_DIRS}/Common.cpp AllSources)
+add_library(uicore SHARED ${AllSources})
 
 target_link_libraries(uicore
     gcJSBase
@@ -173,7 +177,5 @@ target_link_libraries(uicore
     ${WINDOWS_LIBRARIES}
 )
 
-install(TARGETS uicore
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(uicore)
-SET_PROPERTY(TARGET uicore                PROPERTY FOLDER "Shared")
+link_with_gtest(uicore)
+desurium_install_library(uicore "Shared")

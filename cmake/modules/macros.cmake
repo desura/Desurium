@@ -1,3 +1,38 @@
+
+
+function(CopyOutputFiles target target_loc)
+  if (WIN32)
+    if(${target_loc} MATCHES ".*exe")
+      add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_OUTPUT}\\.")
+    endif()
+	
+    if(${target_loc} MATCHES ".*dll")
+      add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_OUTPUT}\\bin")
+      add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_OUTPUT}\\bin\\.")
+    endif()
+  else()
+	  get_filename_component(target_loc "${target_loc}" NAME)
+  
+	  if(NOT IS_ABSOLUTE ${BINDIR})
+		if(${target_loc} MATCHES ".*exe")
+		  add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_BINARY_DIR}/${target_loc}")
+		endif()
+	  endif()
+
+	  if(RUNTIME_LIBDIR)
+		if(${target_loc} MATCHES ".*so" OR ${target_loc} MATCHES ".*dylib")
+		  add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_OUTPUT}/${RUNTIME_LIBDIR}/${target_loc}")
+		  add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_BINARY_DIR}/${RUNTIME_LIBDIR}/${target_loc}")
+		endif()
+	  endif()
+	endif()
+endfunction(CopyOutputFiles)
+
+function(CopyTargetFiles target)
+  get_target_property(target_loc ${target} LOCATION)
+  CopyOutputFiles(${target} ${target_loc})
+endfunction(CopyTargetFiles)
+
 macro(add_compiler_flags)
   set(flags_list "")
   parse_arguments(ARG "" "C;CXX;DEBUG;RELEASE" ${ARGN})
@@ -112,12 +147,54 @@ endmacro()
 function(install_executable target)
   set(CURRENT_TARGET "${target}")
   install(TARGETS "${CURRENT_TARGET}"
-          DESTINATION "${LIB_INSTALL_DIR}")
-  
-  configure_file("${CMAKE_SCRIPT_PATH}/run.sh" "${CMAKE_GEN_SRC_DIR}/build_out/${CURRENT_TARGET}" @ONLY)
-  install(FILES "${CMAKE_GEN_SRC_DIR}/build_out/${CURRENT_TARGET}"
-          DESTINATION "${BIN_INSTALL_DIR}"
-          PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-                      GROUP_READ             GROUP_EXECUTE
-                      WORLD_READ             WORLD_EXECUTE)
+          RUNTIME DESTINATION "${LIB_INSTALL_DIR}")
+  # install script to launch binary
+  if(NOT WIN32)
+    configure_file("${CMAKE_SCRIPT_PATH}/run.sh" "${CMAKE_GEN_SRC_DIR}/build_out/${CURRENT_TARGET}" @ONLY)
+    install(FILES "${CMAKE_GEN_SRC_DIR}/build_out/${CURRENT_TARGET}"
+            DESTINATION "${BIN_INSTALL_DIR}"
+            PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                        GROUP_READ             GROUP_EXECUTE
+                        WORLD_READ             WORLD_EXECUTE)
+  endif()
 endfunction()
+
+function(desurium_install_library target category)
+  # dlls are runtime targets, import libs are archive, but we don't need them
+  install(TARGETS "${target}"
+          RUNTIME DESTINATION "${LIB_INSTALL_DIR}"
+          LIBRARY DESTINATION "${LIB_INSTALL_DIR}")
+  CopyTargetFiles(${target})
+  set_property(TARGET ${target} PROPERTY FOLDER ${category})
+endfunction()
+
+
+macro(link_with_gtest target)
+
+if (WITH_GTEST)
+	include_directories(${gtest_SOURCE_DIR}/include)
+	add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY)
+  add_definitions(-D_VARIADIC_MAX=10)
+	add_definitions(-DWITH_GTEST)
+	target_link_libraries(${target} gtest)
+endif()
+
+endmacro()
+
+
+MACRO(setup_precompiled_header PrecompiledHeader PrecompiledSource SourcesVar)
+  IF(MSVC)
+    GET_FILENAME_COMPONENT(PrecompiledBasename ${PrecompiledHeader} NAME_WE)
+    SET(PrecompiledBinary "${CMAKE_CURRENT_BINARY_DIR}/${PrecompiledBasename}.pch")
+    SET(SourcesInternal ${${SourcesVar}})
+
+    SET_SOURCE_FILES_PROPERTIES(${PrecompiledSource}
+                                PROPERTIES COMPILE_FLAGS "/Yc\"${PrecompiledHeader}\" /Fp\"${PrecompiledBinary}\""
+                                           OBJECT_OUTPUTS "${PrecompiledBinary}")
+    SET_SOURCE_FILES_PROPERTIES(${SourcesInternal}
+                                PROPERTIES COMPILE_FLAGS "/Yu\"${PrecompiledHeader}\" /FI\"${PrecompiledBinary}\" /Fp\"${PrecompiledBinary}\""
+                                           OBJECT_DEPENDS "${PrecompiledBinary}")  
+    # Add precompiled header to SourcesVar
+    LIST(APPEND ${SourcesVar} ${PrecompiledSource})
+  ENDIF(MSVC)
+ENDMACRO(setup_precompiled_header)

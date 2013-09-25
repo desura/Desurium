@@ -91,11 +91,29 @@ Download and install:
 
 Note: Make sure you add svn and python to your environment PATH
 
+## Command line build:
+
 Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a full build environment) and run:
 
     ./build_desura.bat
 
 wait
+
+
+## Visual studio build:
+
+Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a full build environment) and run:
+
+    ./build_desura_vis.bat
+	
+* Set BUILD_ALL as startup project
+* In properties for BUILD_ALL set debugging options:
+ * Command to source code dir + "\build_out\desura.exe"
+ * Working Directory to source code dir + "\build_out"
+* Build ThirdParty folder first (race condition some times if you dont
+* Build BUILD_ALL
+ 
+Should be able to run and debug Desura now.
 
 Special notes for advanced users
 =====================

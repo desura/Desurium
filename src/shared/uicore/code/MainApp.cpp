@@ -42,6 +42,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "InternalLink.h"
 #include "DesuraServiceError.h"
 
+#ifdef WITH_GTEST
+#include "gcUnitTestPage.h"
+#endif
+
 extern void DeleteCookies();
 extern void SetCookies();
 
@@ -200,7 +204,9 @@ MainApp::MainApp()
 
 	m_pOfflineDialog = NULL;
 	m_pInternalLink = NULL;
-
+#ifdef WITH_GTEST
+	m_UnitTestForm = NULL;
+#endif
 	onLoginAcceptedEvent += guiDelegate(this, &MainApp::onLoginAcceptedCB);
 	onInternalLinkEvent += guiDelegate(this, &MainApp::onInternalLink);
 	onInternalLinkStrEvent += guiDelegate(this, &MainApp::onInternalStrLink);
@@ -210,9 +216,15 @@ MainApp::MainApp()
 MainApp::~MainApp()
 {
 	if (m_pOfflineDialog)
-	{
 		m_pOfflineDialog->EndModal(0);
+
+#ifdef WITH_GTEST
+	if (m_UnitTestForm)
+	{
+		m_UnitTestForm->canClose();
+		m_UnitTestForm->Close();
 	}
+#endif
 
 	safe_delete(m_vNewsItems);
 	safe_delete(m_pInternalLink);
@@ -662,6 +674,10 @@ void MainApp::showMainForm(bool raise, bool show)
 
 void MainApp::showLogin(bool skipAutoLogin)
 {
+#ifdef DEBUG
+	showUnitTest();
+#endif
+
 	if (!m_wxLoginForm)
 		m_wxLoginForm = new LoginForm(this);
 
@@ -672,7 +688,6 @@ void MainApp::showLogin(bool skipAutoLogin)
 
 	if (m_wxLoginForm->IsShown())
 		m_wxLoginForm->Raise();
-
 }
 
 void MainApp::onAppUpdateProg(uint32& prog)
@@ -781,4 +796,14 @@ void MainApp::newAccountLogin(const char* username, const char* cookie)
 {
 	if (!m_bLoggedIn && m_iMode != MODE_OFFLINE && m_wxLoginForm)
 		m_wxLoginForm->newAccountLogin(username, cookie);
+}
+
+void MainApp::showUnitTest()
+{
+#ifdef WITH_GTEST
+	if (!m_UnitTestForm)
+		m_UnitTestForm = new gcUnitTestForm(this);
+
+	m_UnitTestForm->postShowEvent();
+#endif
 }

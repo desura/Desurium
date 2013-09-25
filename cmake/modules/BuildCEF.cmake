@@ -269,6 +269,27 @@ else(BUILD_CEF)
   set(CEF_SOURCE_DIR ${source_dir})
   set(CEF_INCLUDE_DIRS "${CEF_SOURCE_DIR}")
   
-  SET_PROPERTY(TARGET fetch_cef                PROPERTY FOLDER "ThirdParty")
+  SET_PROPERTY(TARGET fetch_cef PROPERTY FOLDER "ThirdParty")
+  
+  if (WIN32)
+	ExternalProject_Add(
+	  fetch_cef_bin
+	  URL "${CEF_BIN_URL}"
+	  URL_MD5 ${CEF_BIN_MD5}
+	  UPDATE_COMMAND ""
+	  BUILD_IN_SOURCE 1
+	  CONFIGURE_COMMAND ""
+	  BUILD_COMMAND ""
+	  INSTALL_COMMAND ""
+	)
+	
+    ExternalProject_Get_Property(
+	  fetch_cef_bin
+  	  source_dir
+    )	
+	
+	add_custom_command(TARGET fetch_cef_bin POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory "${source_dir}\\." "${CMAKE_OUTPUT}\\bin\\.")
+	SET_PROPERTY(TARGET fetch_cef_bin PROPERTY FOLDER "ThirdParty")
+  endif()
 endif()
 

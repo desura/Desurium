@@ -44,6 +44,7 @@ else()
                         code/BrowserTest.cpp)
 endif()
 
+setup_precompiled_header(Common.h ${COMMON_INCLUDE_DIRS}/Common.cpp Sources)
 add_library(utilcore SHARED ${Sources} ${PLATTFORM_SOURCES})
 target_link_libraries(utilcore
 	managers
@@ -59,7 +60,4 @@ target_link_libraries(utilcore
 	${WINDOWS_LIBRARIES}
 )
 
-install(TARGETS utilcore
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(utilcore)
-SET_PROPERTY(TARGET utilcore                PROPERTY FOLDER "Shared")
+desurium_install_library(utilcore "Shared")

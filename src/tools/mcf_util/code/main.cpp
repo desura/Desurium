@@ -1,16 +1,24 @@
-///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
-//
-//   Project     : mcf_util
-//   File        : main.cpp
-//   Description :
-//      [TODO: Write the purpose of main.cpp.]
-//
-//   Created On: 4/5/2011 4:30:23 PM
-//   Created By:  <mailto:>
-////////////////////////////////////////////////////////////////////////////
+/*
+Desura is the leading indie game distribution platform
+Copyright (C) 2013 Mark Chandler (Desura Net Pty Ltd)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
 
 #include "Common.h"
 #include "UtilFunction.h"
+#include "SharedObjectLoader.h"
 
 #define MCF_VERSION "3.1.0"
 
@@ -67,10 +75,42 @@ void PrintfMsg(const char* format, ...)
 	va_end(args);
 }
 
+void LogMsg(int type, std::string msg, Color *col)
+{
+	printf("%s", msg.c_str());
+}
+
+void LogMsg(int type, std::wstring msg, Color *col)
+{
+	wprintf(L"%s", msg.c_str());
+}
+
+
 bool SortFunctionList(UtilFunction* a, UtilFunction* b)
 {
 	return a->getShortArg() < b->getShortArg();
 }
+
+#ifdef WIN32
+typedef BOOL(WINAPI* SetDllDirectoryFunc)(LPCTSTR);
+
+bool SetDllDir(const char* dir)
+{
+	SharedObjectLoader sol;
+
+	if (sol.load("kernel32.dll"))
+	{
+		SetDllDirectoryFunc set_dll_directory = sol.getFunction<SetDllDirectoryFunc>("SetDllDirectoryA");
+
+		if (set_dll_directory && set_dll_directory(dir))
+			return true;
+	}
+
+	return false;
+}
+
+#endif
+
 
 void dispHelp()
 {
@@ -111,6 +151,12 @@ int main(int argc, char** argv)
 		dispHelp();
 		return 1;
 	}
+
+#ifdef WIN32
+	if (UTIL::FS::isValidFolder("bin"))
+		SetDllDir(".\\bin");
+#endif
+
 
 	InitFactory();
 

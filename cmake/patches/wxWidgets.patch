@@ -1,8 +1,34 @@
 
+Index: include/wx/platform.h
+===================================================================
+--- include/wx/platform.h	(revision 68296)
++++ include/wx/platform.h	(working copy)
+@@ -500,6 +500,10 @@
+ #       define __VISUALC9__
+ #   elif __VISUALC__ < 1700
+ #       define __VISUALC10__
++#   elif __VISUALC__ < 1800
++#       define __VISUALC11__
++#   elif __VISUALC__ < 1900
++#       define __VISUALC12__
+ #   else
+ #       pragma message("Please update wx/platform.h to recognize this VC++ version")
+ #   endif
 Index: include/msvc/wx/setup.h
 ===================================================================
 --- include/msvc/wx/setup.h	(revision 68296)
 +++ include/msvc/wx/setup.h	(working copy)
+@@ -60,6 +60,10 @@
+         #define wxCOMPILER_PREFIX vc90
+     #elif _MSC_VER == 1600
+         #define wxCOMPILER_PREFIX vc100
++    #elif _MSC_VER == 1700
++        #define wxCOMPILER_PREFIX vc110
++    #elif _MSC_VER == 1800
++        #define wxCOMPILER_PREFIX vc120
+     #else
+         #error "Unknown MSVC compiler version, please report to wx-dev."
+     #endif
 @@ -121,6 +121,7 @@
  // special version for regex as it does have a Unicode version
  #define wx3RD_PARTY_LIB_NAME_U(name) "wx" name wxSUFFIX_STR
@@ -143,3 +169,47 @@ Index: src/msw/font.cpp
  }
  
  void wxNativeFontInfo::SetStyle(wxFontStyle style)
+Index: src/msw/dlmsw.cpp
+===================================================================
+--- src/msw/dlmsw.cpp	(revision 68296)
++++ src/msw/dlmsw.cpp	(working copy)
+@@ -251,8 +251,10 @@
+     wxFileName::SplitPath(modpath, &path, NULL, NULL);
+
+     typedef BOOL (WINAPI *SetDllDirectory_t)(LPCTSTR lpPathName);
++     typedef void (WINAPI *GetDllDirectory_t)(DWORD nBufferLength, LPTSTR lpBuffer);
+
+     static SetDllDirectory_t s_pfnSetDllDirectory = (SetDllDirectory_t) -1;
++     static GetDllDirectory_t s_pfnGetDllDirectory = (GetDllDirectory_t) -1;
+
+     if ( s_pfnSetDllDirectory == (SetDllDirectory_t) -1 )
+     {
+@@ -265,8 +267,16 @@
+         wxLoadedDLL dllKernel("kernel32.dll");
+
+         wxDL_INIT_FUNC_AW(s_pfn, SetDllDirectory, dllKernel);
++        wxDL_INIT_FUNC_AW(s_pfn, GetDllDirectory, dllKernel);
+     }
+
++       TCHAR szBinDir[255] = {0};
++
++        if (s_pfnGetDllDirectory)
++        {
++                s_pfnGetDllDirectory(255, szBinDir);
++        }
++
+     if (s_pfnSetDllDirectory)
+     {
+         s_pfnSetDllDirectory(path.t_str());
+@@ -277,7 +287,10 @@
+     // reset the search path
+     if (s_pfnSetDllDirectory)
+     {
+-        s_pfnSetDllDirectory(NULL);
++        if (s_pfnGetDllDirectory)
++                s_pfnSetDllDirectory(szBinDir);
++        else
++                s_pfnSetDllDirectory(NULL);
+     }
+
+     return handle;
