@@ -282,3 +282,128 @@ private:
 };
 
 REG_FUNCTION(UploadMCF)
+
+
+
+#define GCUPLOAD_URL "http://www.desura.com/api/appupload"
+
+static uint32 s_uiLastProg = -1;
+
+void OnProgress(Prog_s& prog)
+{
+	uint32 percent = (uint32)(prog.ulnow * 100.0 / prog.ultotal);
+
+	if (s_uiLastProg == percent)
+		return;
+
+	s_uiLastProg = percent;
+
+	printf("\r[");
+
+	size_t tot = (percent / 2);
+
+	for (size_t x = 0; x < 50; x++)
+	{
+		if (x < tot)
+			printf("=");
+		else
+			printf(" ");
+	}
+
+	printf("] %u%%", percent);
+}
+
+
+class UploadApp : public UtilFunction
+{
+public:
+	virtual uint32 getNumArgs()
+	{
+		return 5;
+	}
+
+	virtual const char* getArgDesc(size_t index)
+	{
+		switch (index)
+		{
+		default:
+		case 0:
+			return "Token";
+
+		case 1:
+			return "McfFile";
+
+		case 2:
+			return "GitCommit";
+
+		case 3:
+			return "Branch";
+
+		case 4:
+			return "LogFile";
+		}
+	}
+
+	virtual const char* getFullArg()
+	{
+		return "uploadapp";
+	}
+
+	virtual const char getShortArg()
+	{
+		return 'q';
+	}
+
+	virtual const char* getDescription()
+	{
+		return "Uploads an app MCF to desura";
+	}
+
+	virtual int performAction(std::vector<std::string> &args)
+	{
+		HttpHandle wc(GCUPLOAD_URL);
+
+		char* changeLog = NULL;
+		UTIL::FS::readWholeFile(args[4], &changeLog);
+
+		wc->addPostText("token", args[0].c_str());
+		wc->addPostFile("mcf", args[1].c_str());
+		wc->addPostText("gitrevision", args[2].c_str());
+		wc->addPostText("appid", args[3].c_str());
+		wc->addPostText("changelog", changeLog);
+
+		wc->getProgressEvent() += delegate(OnProgress);
+
+		try
+		{
+			wc->postWeb();
+		}
+		catch (gcException &e)
+		{
+			printf("ERROR: %s [%d.%d]\n", e.getErrMsg(), e.getErrId(), e.getSecErrId());
+			return -1;
+		}
+
+		printf("%s\n", std::string(wc->getData(), wc->getDataSize()).c_str());
+
+		tinyxml2::XMLDocument doc;
+		doc.Parse(const_cast<char*>(wc->getData()), wc->getDataSize());
+
+		try
+		{
+			XML::processStatus(doc, "appupload");
+		}
+		catch (gcException &e)
+		{
+			if (e.getSecErrId())
+				return e.getSecErrId();
+
+			return e.getErrId();
+		}
+
+		return 0;
+	}
+};
+
+
+REG_FUNCTION(UploadApp)
