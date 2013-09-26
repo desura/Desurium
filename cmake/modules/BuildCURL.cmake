@@ -30,7 +30,7 @@ if(WIN32 AND NOT MINGW)
     custom_build
     DEPENDEES configure
     DEPENDERS build
-    COMMAND nmake /f Makefile.vc MODE=dll DEBUG=${CURL_DEBUG} GEN_PDB=no USE_SSPI=yes USE_IPV6=no USE_IDN=no ENABLE_WINSSL=yes MACHINE=x86
+    COMMAND nmake /f Makefile.vc MODE=static DEBUG=${CURL_DEBUG} GEN_PDB=no USE_SSPI=yes USE_IPV6=no USE_IDN=no ENABLE_WINSSL=yes MACHINE=x86
     WORKING_DIRECTORY <SOURCE_DIR>/winbuild
   )
   
@@ -40,9 +40,9 @@ if(WIN32 AND NOT MINGW)
   )
   
   if(DEBUG)
-    set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-vc-x86-debug-dll-spnego-winssl)
+    set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-vc-x86-debug-static-spnego-winssl)
   else()
-    set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-vc-x86-release-dll-spnego-winssl)
+    set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-vc-x86-release-static-spnego-winssl)
   endif()
   
   
@@ -107,11 +107,9 @@ set(CURL_INCLUDE_DIRS_S ${CURL_INSTALL_DIR_S}/include)
 
 if(WIN32 AND NOT MINGW)
   if(DEBUG)
-    list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl_debug.lib")
-    install(FILES "${CURL_BIN_DIRS}/libcurl_debug.dll" DESTINATION ${LIB_INSTALL_DIR})
+    list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl_a_debug.lib")
   else()
-    list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl.lib")
-    install(FILES "${CURL_BIN_DIRS}/libcurl.dll" DESTINATION ${LIB_INSTALL_DIR})
+    list(APPEND CURL_LIBRARIES "${CURL_LIBRARY_DIR}/libcurl_a.lib")
   endif()
   
   
