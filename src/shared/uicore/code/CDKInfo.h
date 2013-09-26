@@ -54,7 +54,6 @@ protected:
 	void tokenizeKey(const char* start, const char* end, const char* key);
 
 	void onButtonClicked(wxCommandEvent& event);
-	bool checkForArma(DesuraId id, const char* key);
 
 private:
 	gcString m_szExe;
