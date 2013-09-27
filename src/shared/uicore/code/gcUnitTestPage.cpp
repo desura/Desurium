@@ -24,6 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <gtest/gtest.h>
 #include "managers/CVar.h"
 
+#include "UtilBootloader.h"
+
 using namespace testing;
 
 CVar g_bAssertOnFailure("unittest_assertonfailure", "true");
@@ -102,9 +104,11 @@ static gcUnitTestWatcher* SetupTestWatcher()
 
 	TestEventListeners& listeners = UnitTest::GetInstance()->listeners();
 	listeners.Append(pWatcher);
+	
+	BootLoaderUtil::CMDArgs args(GetCommandLineA());
 
-	int argc = 0;
-	InitGoogleTest(&argc, (char**)NULL);
+	int argc = args.getArgc();
+	InitGoogleTest(&argc, const_cast<char**>(args.getArgv()));
 
 	return pWatcher;
 }

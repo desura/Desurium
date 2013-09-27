@@ -169,6 +169,7 @@ target_link_libraries(uicore
     usercore
     webcore
     wx_controls
+	util_bootloader
     ${LIBNOTIFY_LIBRARIES}
     ${SQLITE_LIBRARIES}
     ${SQLITE3X_LIBRARIES}
