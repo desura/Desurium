@@ -27,102 +27,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "StripMenuButton.h"
 #include "MenuSeperator.h"
 
-
-extern CVar gc_buttontol;
-
-template <typename T, typename K = wxEventDelegateWrapper<T>>
-class OverrideBorderMouseClick : public K
-{
-public:
-	OverrideBorderMouseClick(wxWindow *parent, wxWindowID id, const wxString& label, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = 0) 
-		: K(parent, id, label, pos, size, style)
-	{
-		m_bMouseDown = false;
-	}
-
-	OverrideBorderMouseClick(wxWindow *parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = 0) 
-		: K(parent, id, pos, size, style)
-	{
-		m_bMouseDown = false;
-	}
-
-	OverrideBorderMouseClick(wxWindow *parent, const wxString& label, const wxSize& size = wxDefaultSize) 
-		: K(parent, label.c_str(), size)
-	{
-		m_bMouseDown = false;
-	}
-
-	void onMouseEvent(wxMouseEvent& event)
-	{
-		handleEvent(event);
-	}
-
-	virtual bool handleEvent(wxMouseEvent& event)
-	{
-		wxPoint mouse = wxGetMousePosition() - GetScreenPosition();
-
-		if (event.GetEventType() == wxEVT_MOTION)
-		{
-			if (m_bMouseDown && !m_IgnoreRect.Contains(mouse))
-			{
-				wxMouseEvent fakeEvent;
-				fakeEvent.SetEventType(wxEVT_LEFT_DOWN);
-				fakeEvent.SetEventObject(event.GetEventObject());
-
-				wxEventDelegate<T>::handleEvent(fakeEvent);
-				wxEventDelegate<T>::handleEvent(event);
-				m_bMouseDown = false;
-			}
-		}
-		else if (event.GetEventType() == wxEVT_LEFT_DOWN)
-		{
-			uint32 is = gc_buttontol.getInt();
-
-			m_bMouseDown = true;
-
-			wxPoint startPos = mouse;
-			startPos.x -= is / 2;
-			startPos.y -= is / 2;
-
-			wxRect mouseRect(startPos, wxSize(is, is));
-
-			//need to take 6 of for drag border
-			wxSize size = GetSize();
-			size.y -= 6;
-			wxRect curRect(wxPoint(0, 6), size);
-
-			m_IgnoreRect = curRect.Intersect(mouseRect);
-
-			event.Skip();
-			return true;
-		}
-		else if (event.GetEventType() == wxEVT_LEFT_UP)
-		{
-			bool res = wxEventDelegate<T>::handleEvent(event);
-
-			if (m_bMouseDown)
-				event.Skip();
-
-			m_bMouseDown = false;
-			return res;
-		}
-
-		return wxEventDelegate<T>::handleEvent(event);
-	}
-
-private:
-	wxRect m_IgnoreRect;
-	bool m_bMouseDown;
-};
-
-
-class DStripMenuButton : public OverrideBorderMouseClick < StripMenuButton, wxEventDelegate<StripMenuButton>>
+class DStripMenuButton : public wxEventDelegate<StripMenuButton>
 {
 public:
 	DStripMenuButton(wxWindow *parent, const char* label, wxSize size = wxDefaultSize);
 	void setActive(bool state);
 
+	virtual bool handleEvent(wxMouseEvent& event);
+
 private:
+	wxRect m_IgnoreRect;
+	bool m_bMouseDown;
+
 	wxColor m_NormColor;
 	wxColor m_NonActiveColor;
 };
