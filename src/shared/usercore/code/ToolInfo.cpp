@@ -26,105 +26,108 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #define X_CONSTANT 0x7FFFFFFF
 
+int getOperatorOrder(std::string curOp)
+{
+	if (curOp == "<" || curOp == "<=" || curOp == ">" || curOp == ">=")
+		return 6;
+
+	if (curOp == "==" || curOp == "!=")
+		return 7;
+
+	if (curOp == "&&")
+		return 11;
+
+	if (curOp == "||")
+		return 12;
+
+	return 20;
+}
+
+int32 getOpereatorCount(std::string curOp)
+{
+	if (curOp == "==" || curOp == "!=" || curOp == ">" || curOp == "<" || curOp == ">=" || curOp == "<=")
+		return 2;
+
+	return 0;
+}
+
+
 class OutValI
 {
 public:
-	virtual bool isOperand() = 0;
+	virtual bool isOperand()=0;
 	virtual ~OutValI(){}
 };
 
-namespace 
+class Operand : public OutValI
 {
-	int getOperatorOrder(std::string curOp)
+public:
+	Operand(int val)
 	{
-		if (curOp == "<" || curOp == "<=" || curOp == ">" || curOp == ">=")
-			return 6;
-
-		if (curOp == "==" || curOp == "!=")
-			return 7;
-
-		if (curOp == "&&")
-			return 11;
-
-		if (curOp == "||")
-			return 12;
-
-		return 20;
+		m_iVal = val;
 	}
 
-	int32 getOpereatorCount(std::string curOp)
+	virtual bool isOperand()
 	{
-		if (curOp == "==" || curOp == "!=" || curOp == ">" || curOp == "<" || curOp == ">=" || curOp == "<=")
-			return 2;
-
-		return 0;
-	}
-
-	class Operand : public OutValI
-	{
-	public:
-		Operand(int val)
-		{
-			m_iVal = val;
-		}
-
-		virtual bool isOperand()
-		{
-			return true;
-		}
-
-		virtual int getOperand()
-		{
-			return m_iVal;
-		}
-
-	private:
-		int32 m_iVal;
-	};
-
-	class Operator : public OutValI
-	{
-	public:
-		Operator(std::string val)
-			: m_szVal(val)
-		{}
-
-		virtual bool isOperand()
-		{
-			return false;
-		}
-
-		virtual std::string& getOperator()
-		{
-			return m_szVal;
-		}
-
-	private:
-		std::string m_szVal;
-	};
-
-	bool processStack(std::deque<OutValI*> &vOutStack, std::deque<int32> &valStack, std::deque<std::string> &opStack)
-	{
-		size_t c = getOpereatorCount(opStack.back());
-
-		if (c > valStack.size())
-			return false;
-
-		while (c > 0)
-		{
-			vOutStack.push_back(new Operand(valStack.back()));
-			valStack.pop_back();
-			c--;
-		}
-
-		vOutStack.push_back(new Operator(opStack.back()));
-		opStack.pop_back();
-
 		return true;
 	}
+
+	virtual int getOperand()
+	{
+		return m_iVal;
+	}
+
+private:
+	int32 m_iVal;
+};
+
+class Operator : public OutValI
+{
+public:
+	Operator(std::string val)
+	:	m_szVal(val)
+	{}
+
+	virtual bool isOperand()
+	{
+		return false;
+	}
+
+	virtual std::string& getOperator()
+	{
+		return m_szVal;
+	}
+
+private:
+	std::string m_szVal;
+};
+
+bool processStack(std::deque<OutValI*> &vOutStack, std::deque<int32> &valStack, std::deque<std::string> &opStack)
+{
+	size_t c = getOpereatorCount(opStack.back());
+
+	if (c > valStack.size())
+		return false;
+
+	while (c > 0)
+	{
+		vOutStack.push_back(new Operand(valStack.back()));
+		valStack.pop_back();
+		c--;
+	}
+
+	vOutStack.push_back(new Operator(opStack.back()));
+	opStack.pop_back();
+
+	return true;
 }
 
-using namespace UserCore;
+
+
+
+
+namespace UserCore
+{
 
 ToolInfo::ToolInfo(DesuraId id)
 :	m_ToolId(id),
@@ -408,7 +411,7 @@ bool ToolInfo::processResultString()
 	std::deque<std::string> opStack;
 
 	bool lastWasDigit = false;
-	bool lastWasNeg = false;
+	//bool lastWasAlpha = false;              unused variable
 
 	while (it != m_szResult.end())
 	{
@@ -434,27 +437,14 @@ bool ToolInfo::processResultString()
 
 			opStack.pop_back();
 		}
-		else if (c == '-')
-		{
-			lastWasNeg = true;
-		}
 		else if (isdigit(c))
 		{
 			int val = c - 48;
-			
-			if (lastWasDigit && !lastWasNeg)
+
+			if (lastWasDigit)
 			{
-				if (valStack.back() > 0)
-					val = valStack.back() * 10 + val;
-				else
-					val = valStack.back() * 10 - val;
-				
+				val = valStack.back()*10 + val;
 				valStack.pop_back();
-			}
-			else if (lastWasNeg)
-			{
-				val = val*-1;
-				lastWasNeg = false;
 			}
 
 			valStack.push_back(val);
@@ -475,7 +465,7 @@ bool ToolInfo::processResultString()
 				++it;
 				c = *it;
 			}
-			while (it != m_szResult.end() && !isdigit(c) && !isalpha(c) && c != '(' && c != ')' && c != '-');
+			while (it != m_szResult.end() && !isdigit(c) && !isalpha(c) && c != '(' && c != ')');
 
 			--it;
 			c = *it;
@@ -490,10 +480,8 @@ bool ToolInfo::processResultString()
 			opStack.push_back(val);
 		}
 
-		lastWasDigit = isdigit(c) || c == '-';
-
-		if (!lastWasDigit)
-			lastWasNeg = false;
+		//lastWasAlpha = isalpha(c) || c == '(' || c == ')';
+		lastWasDigit = isdigit(c)?true:false;
 
 		++it;
 	}
@@ -614,7 +602,7 @@ bool ToolInfo::checkExpectedResult(uint32 res)
 		}
 	}
 
-	if (stack.size() > 1)
+	if (!stack.empty())
 		Warning(gcString("To many items left on stack after results calc for tool {0}.", getName()));
 
 	if (stack.empty())
@@ -628,159 +616,4 @@ const char* ToolInfo::getResultString()
 	return m_szResult.c_str();
 }
 
-
-#include <gtest/gtest.h>
-
-namespace UnitTest
-{
-	class ToolInfoFixture : public ::testing::TestWithParam<int>
-	{
-	public:
-		ToolInfoFixture()
-			: m_ToolInfo(DesuraId())
-		{
-
-		}
-
-		void SetupResult(const gcString &szRes)
-		{
-			m_ToolInfo.m_szResult = szRes;
-		}
-
-		UserCore::ToolInfo m_ToolInfo;
-	};
-
-	INSTANTIATE_TEST_CASE_P(ReturnValues,
-		ToolInfoFixture,
-		::testing::Values(-1000, -1, 0, 1, 1000));
-
-	TEST_P(ToolInfoFixture, ResultTest_Empty)
-	{
-		SetupResult("");
-		ASSERT_TRUE(m_ToolInfo.checkExpectedResult(GetParam()));
-	}
-
-	TEST_P(ToolInfoFixture, ResultTest_Exact_Zero)
-	{
-		SetupResult("0");
-
-		if (GetParam() == 0)
-			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(GetParam()));
-		else
-			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(GetParam()));
-	}
-
-	TEST_P(ToolInfoFixture, ResultTest_EqualZero)
-	{
-		SetupResult("X==0");
-
-		if (GetParam() == 0)
-			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(GetParam()));
-		else
-			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(GetParam()));
-	}
-
-	TEST_P(ToolInfoFixture, ResultTest_NotEqualZero)
-	{
-		SetupResult("X!=0");
-
-		if (GetParam() != 0)
-			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(GetParam()));
-		else
-			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(GetParam()));
-	}
-
-	TEST_P(ToolInfoFixture, ResultTest_Exact_NonZero)
-	{
-		SetupResult("1000");
-
-		if (GetParam() == 1000)
-			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(GetParam()));
-		else
-			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(GetParam()));
-	}
-
-	TEST_P(ToolInfoFixture, ResultTest_Exact_ZeroOr1)
-	{
-		int nParam = GetParam();
-
-		SetupResult("X == 0 || X == 1");
-
-		if (nParam == 0 || nParam == 1)
-			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
-		else
-			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
-	}
-
-	TEST_P(ToolInfoFixture, ResultTest_GreaterThanZero)
-	{
-		int nParam = GetParam();
-
-		SetupResult("X > 0");
-
-		if (nParam > 0)
-			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
-		else
-			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
-	}
-
-	TEST_P(ToolInfoFixture, ResultTest_GreaterThanOrEqualZero)
-	{
-		int nParam = GetParam();
-
-		SetupResult("X >= 0");
-
-		if (nParam >= 0)
-			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
-		else
-			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
-	}
-
-	TEST_P(ToolInfoFixture, ResultTest_LessThanZero)
-	{
-		int nParam = GetParam();
-
-		SetupResult("X < 0");
-
-		if (nParam < 0)
-			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
-		else
-			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
-	}
-
-	TEST_P(ToolInfoFixture, ResultTest_LessThanOrEqualZero)
-	{
-		int nParam = GetParam();
-
-		SetupResult("X <= 0");
-
-		if (nParam <= 0)
-			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
-		else
-			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
-	}
-
-	TEST_P(ToolInfoFixture, ResultTest_LessThanOrGreaterThanZero)
-	{
-		int nParam = GetParam();
-
-		SetupResult("X < 0 || X > 0");
-
-		if (nParam < 0 || nParam > 0)
-			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
-		else
-			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
-	}
-
-	TEST_P(ToolInfoFixture, ResultTest_LessThan1AndGreaterThanNeg1)
-	{
-		int nParam = GetParam();
-
-		SetupResult("(X > -1) && (X < 1)");
-
-		if ((nParam > -1) && (nParam < 1))
-			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
-		else
-			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
-	}
 }
