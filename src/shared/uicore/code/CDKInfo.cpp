@@ -23,16 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <wx/clipbrd.h>
 #include <branding/branding.h>
 
-#ifdef DESURA_OFFICAL_BUILD
-bool DecodeMsgAMAR2CDKey(unsigned char *msg, const char *buffer);
-#else
-bool DecodeMsgAMAR2CDKey(unsigned char *msg, const char *buffer)
-{
-	Warning("Decoding Arma Cd Keys not supported in non Offical Builds.\n");
-	return true;
-}
-#endif
-
 class SplitInfo
 {
 public:
@@ -47,22 +37,6 @@ public:
 	int32 end;
 };
 
-typedef struct
-{
-	uint32 item;
-	const char* reg;
-} CDKeySpecial_s;
-
-CDKeySpecial_s g_CDKeySpecial[] =
-{
-	{167, "HKEY_LOCAL_MACHINE\\SOFTWARE\\Bohemia Interactive Studio\\ArmA\\Key"},
-	{15211, "HKEY_LOCAL_MACHINE\\SOFTWARE\\Bohemia Interactive Studio\\ColdWarAssault\\Key"},
-	{12147, "HKEY_LOCAL_MACHINE\\SOFTWARE\\Bohemia Interactive Studio\\ArmA 2\\Key"},
-	{14743, "HKEY_LOCAL_MACHINE\\SOFTWARE\\Bohemia Interactive Studio\\ArmA 2 OA\\Key"},
-	{14252, "HKEY_LOCAL_MACHINE\\SOFTWARE\\Bohemia Interactive Studio\\ArmA 2 OA\\Key"},
-	{14558, "HKEY_LOCAL_MACHINE\\SOFTWARE\\Bohemia Interactive Studio\\Take On Helicopters\\Key"},
-	{0, NULL},
-};
 
 CDKInfo::CDKInfo(wxWindow* parent, const char* exe, bool launch) : BasePage(parent)
 {
@@ -154,9 +128,6 @@ void CDKInfo::setInfo(DesuraId id, const char* key)
 
 	m_butLaunch->Enable(info->isLaunchable());
 
-	if (checkForArma(id, key))
-		return;
-
 	m_tbCdKey->ChangeValue(key);
 	tokenizeKey(key);
 
@@ -181,48 +152,6 @@ void CDKInfo::setInfo(DesuraId id, const char* key)
 		setParentSize(-1, 140);
 	}
 }
-
-bool CDKInfo::checkForArma(DesuraId id, const char* key)
-{
-	if (id.getType() != DesuraId::TYPE_GAME)
-		return false;
-
-	size_t x=0; 
-
-	while (g_CDKeySpecial[x].item)
-	{
-		if (g_CDKeySpecial[x].item == id.getItem())
-		{
-			unsigned char binkey[255] = {0};
-			DecodeMsgAMAR2CDKey(binkey, key);
-
-			GetUserCore()->updateBinaryRegKey(g_CDKeySpecial[x].reg, (char*)binkey, 15);
-			break;
-		}
-
-		x++;
-	};
-
-	if (g_CDKeySpecial[x].item == 14558 || g_CDKeySpecial[x].item == 0) //take on heli needs the cd key to be entered as well
-		return false;
-
-	if (m_bLaunch)
-	{
-		wxCommandEvent e(wxEVT_NULL, m_butLaunch->GetId());
-		onButtonClicked(e);
-		GetParent()->Close();
-	}
-	else
-	{
-		m_tbCdKey->SetLabel(Managers::GetString(L"#CDK_REGKEY"));
-		m_tbCdKey->SetToolTip(Managers::GetString(L"#CDK_REGKEY_TOOLTIP"));
-		m_imgCopyPart->Disable();
-		m_imgCopyAll->Disable();
-	}
-
-	return true;
-}
-
 
 void CDKInfo::tokenizeKey(const char* key)
 {
