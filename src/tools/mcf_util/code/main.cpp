@@ -40,13 +40,11 @@ public:
 	virtual int performAction(std::vector<std::string> &args)
 	{
 		printf("----------------------------------------------------------------------------\n");
-		printf(" MCF Utility\n");
+		printf(" MCF Utility By Lodle\n");
 		printf("----------------------------------------------------------------------------\n");
 		printf(" Util Version: %s\n", MCF_VERSION);
 		printf(" McfCore Version: %s\n", GetMcfVersion());
-		printf("\n");
-		printf("Copyright Linden Labs 2013 (http://github.com/desura/Desurium)\n");
-		printf("----------------------------------------------------------------------------\n");
+
 		return 0;
 	}
 };
@@ -82,7 +80,7 @@ void dispHelp()
 	std::sort(list.begin(), list.end(), SortFunctionList);
 
 	printf("----------------------------------------------------------------------------\n");
-	printf(" MCF Utility\n");
+	printf(" MCF Utility By Lodle\n");
 	printf("----------------------------------------------------------------------------\n");
 	printf("\n");
 	printf("Usage:\n");
@@ -100,7 +98,7 @@ void dispHelp()
 	}
 
 	printf("\n");
-	printf("Copyright Linden Labs 2013 (http://github.com/desura/Desurium)\n");
+	printf("Desura Pty Ltd 2011 [mark@desura.com]\n");
 	printf("----------------------------------------------------------------------------\n");
 }
 
