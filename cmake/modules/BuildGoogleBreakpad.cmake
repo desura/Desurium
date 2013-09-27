@@ -39,7 +39,7 @@ else()
     URL ${BREAKPAD_URL}
     URL_MD5 ${BREAKPAD_MD5}
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND <SOURCE_DIR>/configure --enable-shared=no --enable-static=yes --prefix=${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR}
+    CONFIGURE_COMMAND sh <SOURCE_DIR>/configure --enable-shared=no --enable-static=yes --prefix=${BREAKPAD_EXCEPTION_HANDLER_INSTALL_DIR}
   )
   ExternalProject_Add_Step(
     breakpad
