@@ -9,9 +9,7 @@ if(WIN32 AND NOT MINGW)
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
   )
-  
-  message(STATUS "${DEBUG}")
-  
+
   if(DEBUG) 
     ExternalProject_Add_Step(
       wxWidget-2-9
