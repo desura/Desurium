@@ -55,12 +55,6 @@ if(NOT BUILD_ONLY_CEF)
   # check set options, print warnings, what ever
   ###############################################################################
 
-  if(NOT WITH_ARES)
-    message("WW building Desura without c-ares is not supported.")
-    message("WW Make sure, that your system installed cURL has ares support.")
-    message("WW Ignore this if you are aware of what you do. See #189 for further information.")
-  endif()
-
   option(WITH_FLASH "enable flash support" ON)
 endif()
 
