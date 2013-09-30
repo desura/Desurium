@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "MainForm.h"
 
 CVar gc_firsttime("gc_firsttime", "1", CFLAG_USER);
-
+CVar gc_enable_news_popups("gc_enable_news_popups", "1", CFLAG_USER);
 
 bool admin_cb(CVar* var, const char* val)
 {
@@ -213,6 +213,11 @@ void MainApp::showNews()
 	if (gc_firsttime.getBool())
 	{
 		gc_firsttime.setValue(false);
+		return;
+	}
+
+	if (! gc_enable_news_popups.getBool())
+	{
 		return;
 	}
 
