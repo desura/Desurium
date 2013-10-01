@@ -285,7 +285,8 @@ REG_FUNCTION(UploadMCF)
 
 
 
-#define GCUPLOAD_URL "http://www.desura.com/api/appupload"
+#define GCUPLOAD_URL_PROD "http://www.desura.com/api/appupload"
+#define GCUPLOAD_URL_STAGE "http://www.desura.desura-staging.ooze.lindenlab.com/api/appupload"
 
 static uint32 s_uiLastProg = -1;
 
@@ -319,7 +320,7 @@ class UploadApp : public UtilFunction
 public:
 	virtual uint32 getNumArgs()
 	{
-		return 5;
+		return 6;
 	}
 
 	virtual const char* getArgDesc(size_t index)
@@ -341,6 +342,9 @@ public:
 
 		case 4:
 			return "LogFile";
+
+		case 5:
+			return "Production";
 		}
 	}
 
@@ -361,14 +365,19 @@ public:
 
 	virtual int performAction(std::vector<std::string> &args)
 	{
-		HttpHandle wc(GCUPLOAD_URL);
+		HttpHandle wc;
+		
+		if (args[5] == "True" || args[5] == "1" || args[5] == "true")
+			wc = HttpHandle(GCUPLOAD_URL_PROD);
+		else
+			wc = HttpHandle(GCUPLOAD_URL_STAGE);
 
 		char* changeLog = NULL;
 		UTIL::FS::readWholeFile(args[4], &changeLog);
 
 		wc->addPostText("token", args[0].c_str());
 		wc->addPostFile("mcf", args[1].c_str());
-		wc->addPostText("gitrevision", args[2].c_str());
+		wc->addPostText("svnrevision", args[2].c_str());
 		wc->addPostText("appid", args[3].c_str());
 		wc->addPostText("changelog", changeLog);
 
