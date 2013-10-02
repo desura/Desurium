@@ -379,7 +379,11 @@ public:
 		wc->addPostFile("mcf", args[1].c_str());
 		wc->addPostText("svnrevision", args[2].c_str());
 		wc->addPostText("appid", args[3].c_str());
-		wc->addPostText("changelog", changeLog);
+
+		if (strlen(changeLog) == 0)
+			wc->addPostText("changelog", "**UNKNOWN**");
+		else
+			wc->addPostText("changelog", changeLog);
 
 		wc->getProgressEvent() += delegate(OnProgress);
 
