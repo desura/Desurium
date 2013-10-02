@@ -283,6 +283,9 @@ namespace Desurium
 		virtual INT_PTR DoModal();
 		virtual void EndDialog(int nResult);
 
+		virtual void OnCommand(HWND hWnd, int nId)
+		{
+		}
 
 	protected:
 		void SetIcon(HICON hIcon, bool bSmall);

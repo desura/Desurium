@@ -299,6 +299,11 @@ INT_PTR CDesuraDialog::WinProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 		gs_pCurrentDialog->OnInitDialog();
 		return TRUE;
 
+	case WM_COMMAND:
+		if (lParam)
+			gs_pCurrentDialog->OnCommand((HWND)lParam, HIWORD(wParam));
+		break;
+
 	case WM_CLOSE:
 		gs_pCurrentDialog->EndDialog(LOWORD(wParam));
 		break;
