@@ -219,13 +219,13 @@ void MainApp::showNews()
 	// std::vector<T> initialized empty
 	std::vector<UserCore::Misc::NewsItem*> news_items_vec;
 
+	m_NewsLock.lock();
+
 	if ( gc_enable_news_popups.getBool())
 	{
 		// popups allowed so point to list of news items
 		news_items_vec = m_vNewsItems;
 	}
-
-	m_NewsLock.lock();
 
 	m_pInternalLink->showNews(news_items_vec, m_vGiftItems);
 
