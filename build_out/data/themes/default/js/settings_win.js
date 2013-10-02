@@ -28,6 +28,7 @@ cvar_gen = [
 	{name: 'gc_showerror', 		type: 'CHECKBOX', 		displayName: '#SET_CV_CONSOLE', 		help: '#SET_CV_CONSOLE_TOOLTIP'},
 	{name: 'gc_disable_wge',	type: 'CHECKBOX',		displayName: '#SET_CV_DISABLE_WGE',		help: '#SET_CV_DISABLE_WGE_TOOLTIP'},
 	{name: 'gc_ignore_windows_permissions_against_marks_wishes',	type: 'CHECKBOX',		displayName: '#SET_CV_DISABLE_FS_PERMS',		help: '#SET_CV_DISABLE_FS_PERMS_TOOLTIP'},
+	{ name: 'gc_enable_news_popups', type: 'CHECKBOX', displayName: '#SET_CV_NEWS_POPUP_ENABLE', help: '#SET_CV_NEWS_POPUP_ENABLE_TOOLTIP' }
 ];
 
 cvar_performance = [ 

@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "MainForm.h"
 
 CVar gc_firsttime("gc_firsttime", "1", CFLAG_USER);
-
+CVar gc_enable_news_popups("gc_enable_news_popups", "1", CFLAG_USER);
 
 bool admin_cb(CVar* var, const char* val)
 {
@@ -216,9 +216,18 @@ void MainApp::showNews()
 		return;
 	}
 
+	// std::vector<T> initialized empty
+	std::vector<UserCore::Misc::NewsItem*> news_items_vec;
+
 	m_NewsLock.lock();
 
-	m_pInternalLink->showNews(m_vNewsItems, m_vGiftItems);
+	if ( gc_enable_news_popups.getBool())
+	{
+		// popups allowed so point to list of news items
+		news_items_vec = m_vNewsItems;
+	}
+
+	m_pInternalLink->showNews(news_items_vec, m_vGiftItems);
 
 	safe_delete(m_vNewsItems);
 	m_vNewsItems.resize(0);
