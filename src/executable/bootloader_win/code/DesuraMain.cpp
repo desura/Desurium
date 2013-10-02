@@ -107,13 +107,15 @@ protected:
 	void restartAsAdmin(int needupdate);
 	void preReadImages();
 
+	bool preLaunchCheck(BootLoaderUtil::CMDArgs &args);
+
 private:
 	SharedObjectLoader m_hUICore;
 	UICoreI* m_pUICore;
 
 	bool m_bRetCode;
 	int m_iRetCode;
-	bool hasAdminRights;
+	bool m_bHasAdminRights;
 };
 
 
@@ -140,7 +142,7 @@ BootLoader::BootLoader()
 	//AfxEnableMemoryTracking(FALSE);
 	InitCommonControls();
 
-	hasAdminRights = false;
+	m_bHasAdminRights = false;
 	m_pUICore = NULL;
 	m_bRetCode = false;
 }
@@ -162,7 +164,29 @@ void BootLoader::InitInstance()
 
 	BootLoaderUtil::SetCurrentDir();
 
-#ifdef DESURA_OFFICIAL_BUILD
+	bool bRunUnitTests = args.hasArg("unittests");
+
+	if (!bRunUnitTests && !preLaunchCheck(args))
+		return;
+
+	loadUICore();
+
+	if (!m_pUICore)
+		return;
+
+	if (bRunUnitTests)
+	{
+		m_iRetCode = m_pUICore->runUnitTests(args.getArgc(), const_cast<char**>(args.getArgv()));
+		m_bRetCode = true;
+		return;
+	}
+
+	m_pUICore->initWxWidgets(m_hInstance, m_nCmdShow, args.getArgc(), const_cast<char**>(args.getArgv()));
+}
+
+bool BootLoader::preLaunchCheck(BootLoaderUtil::CMDArgs &args)
+{
+#ifdef DESURA_OFFICAL_BUILD
 	CheckForBadUninstaller();
 #endif
 
@@ -174,7 +198,7 @@ void BootLoader::InitInstance()
 		a.replace(pos, 8, "");
 
 		BootLoaderUtil::Restart(a.c_str(), false);
-		return;
+		return false;
 	}
 
 #ifdef DESURA_OFFICIAL_BUILD
@@ -182,17 +206,17 @@ void BootLoader::InitInstance()
 	{
 		m_bRetCode = true;
 		m_iRetCode = InstallFilesForTest();
-		return;
+		return false;
 	}
 
 	if (args.hasArg("testdownload"))
 	{
 		m_bRetCode = true;
 		m_iRetCode = DownloadFilesForTest();
-		return;
+		return false;
 	}
 #endif
-	
+
 	if (args.hasArg("dumplevel"))
 	{
 		SetDumpLevel(args.getInt("dumplevel"));
@@ -202,9 +226,9 @@ void BootLoader::InitInstance()
 	if (args.hasArg("autostart"))
 	{
 		//need to wait for service to start
-		Sleep(15*1000);
+		Sleep(15 * 1000);
 		BootLoaderUtil::RestartAsNormal("-wait");
-		return;
+		return false;
 	}
 
 #ifdef DESURA_OFFICIAL_BUILD
@@ -212,25 +236,25 @@ void BootLoader::InitInstance()
 	if (args.hasArg("debugupdater"))
 	{
 		INT_PTR nResponse = DisplayUpdateWindow(-1);
-		return;
+		return false;
 	}
 
 	if (args.hasArg("debuginstall"))
 	{
 		McfUpdate();
-		return;
+		return false;
 	}
 
 	if (args.hasArg("debugdownload"))
 	{
 		FullUpdate();
-		return;
+		return false;
 	}
 
 	if (args.hasArg("debugcheck"))
 	{
 		CheckInstall();
-		return;
+		return false;
 	}
 #endif
 #endif
@@ -246,16 +270,16 @@ void BootLoader::InitInstance()
 	if (osid == WINDOWS_PRE2000)
 	{
 		::MessageBox(NULL, PRODUCT_NAME " needs Windows XP or better to run.", PRODUCT_NAME " Error: Old Windows", MB_OK);
-		return;
+		return false;
 	}
 	else if (osid == WINDOWS_XP || osid == WINDOWS_XP64)
 	{
-		hasAdminRights = true;
+		m_bHasAdminRights = true;
 	}
 
 	if (args.hasArg("admin"))
 	{
-		hasAdminRights = true;
+		m_bHasAdminRights = true;
 	}
 
 	//if the wait command is parsed in then we need to wait for all other instances of desura to exit.
@@ -268,7 +292,7 @@ void BootLoader::InitInstance()
 		if (BootLoaderUtil::CheckForOtherInstances(m_hInstance))
 		{
 			sendArgs();
-			return;
+			return false;
 		}
 		else
 		{
@@ -279,9 +303,9 @@ void BootLoader::InitInstance()
 
 			if (pos != std::string::npos)
 			{
-				a.replace(pos+9, 9, "remove");
+				a.replace(pos + 9, 9, "remove");
 				BootLoaderUtil::RestartAsNormal(a.c_str());
-				return;
+				return false;
 			}
 		}
 	}
@@ -289,20 +313,20 @@ void BootLoader::InitInstance()
 #ifdef DESURA_OFFICIAL_BUILD
 	if (args.hasArg("forceupdate"))
 	{
-		if (!hasAdminRights)
+		if (!m_bHasAdminRights)
 		{
 			restartAsAdmin(UPDATE_FORCED);
-			return;
+			return false;
 		}
 		else
 		{
 			FullUpdate();
 			BootLoaderUtil::RestartAsNormal("-wait");
-			return;
+			return false;
 		}
 	}
 #endif
-	
+
 
 #ifdef _DEBUG
 	SetRegValues();
@@ -317,7 +341,7 @@ void BootLoader::InitInstance()
 			Log("Updating from MCF.\n");
 			McfUpdate();
 			BootLoaderUtil::RestartAsNormal("-wait");
-			return;
+			return false;
 		}
 		else if (nu == UPDATE_SERVICE_PATH)
 		{
@@ -330,10 +354,10 @@ void BootLoader::InitInstance()
 
 	if (nu != UPDATE_NONE)
 	{
-		if (!hasAdminRights)
+		if (!m_bHasAdminRights)
 		{
 			restartAsAdmin(nu);
-			return;
+			return false;
 		}
 		else if (nu == UPDATE_SERVICE_LOCATION || nu == UPDATE_SERVICE_HASH)
 		{
@@ -345,37 +369,25 @@ void BootLoader::InitInstance()
 			if (FixServiceDisabled())
 				BootLoaderUtil::RestartAsNormal("-wait");
 
-			return;
+			return false;
 		}
 		else
 		{
 			Log("Full update [%s].\n", g_UpdateReasons[nu]);
 			FullUpdate();
 			BootLoaderUtil::RestartAsNormal("-wait");
-			return;
+			return false;
 		}
 	}
 
-	if (hasAdminRights && !(osid == WINDOWS_XP || osid == WINDOWS_XP64))
+	if (m_bHasAdminRights && !(osid == WINDOWS_XP || osid == WINDOWS_XP64))
 	{
 		BootLoaderUtil::RestartAsNormal("-wait");
-		return;
+		return false;
 	}
 #endif
 
-	loadUICore();
-
-	if (!m_pUICore)
-		return;
-
-	if (args.hasArg("unittests"))
-	{
-		m_iRetCode = m_pUICore->runUnitTests(args.getArgc(), const_cast<char**>(args.getArgv()));
-		m_bRetCode = true;
-		return;
-	}
-
-	m_pUICore->initWxWidgets(m_hInstance, m_nCmdShow, args.getArgc(), const_cast<char**>(args.getArgv()));
+	return true;
 }
 
 void BootLoader::restartAsAdmin(int needupdate)
