@@ -28,7 +28,8 @@ cvar_gen = [
 	{name: 'gc_showerror', 						type: 'CHECKBOX', 		displayName: '#SET_CV_CONSOLE', 		help: '#SET_CV_CONSOLE_TOOLTIP'},
 //	{name: 'gc_linux_disable_windows_warning',	type: 'CHECKBOX',		displayName: '#SET_CV_LIN_DIS_WIN_WRN',	help: '#SET_CV_LIN_DIS_WIN_WRN_TOOLTIP'},
 	{name: 'gc_allow_wm_positioning',			type: 'CHECKBOX',		displayName: '#SET_CV_ALLOW_WM_POS',	help: '#SET_CV_ALLOW_WM_POS_TOOLTIP'},
-	{name: 'gc_disable_forceupdate_shortcut', 	type: 'CHECKBOX', 		displayName: '#SET_CV_DISABLE_FORCESHORTCUT', help: '#SET_CV_DISABLE_FORCESHORTCUT_TOOLTIP'}
+	{name: 'gc_disable_forceupdate_shortcut', 	type: 'CHECKBOX', 		displayName: '#SET_CV_DISABLE_FORCESHORTCUT', help: '#SET_CV_DISABLE_FORCESHORTCUT_TOOLTIP'},
+	{ name: 'gc_enable_news_popups', type: 'CHECKBOX', displayName: '#SET_CV_NEWS_POPUP_ENABLE', help: '#SET_CV_NEWS_POPUP_ENABLE_TOOLTIP' }
 ];
 
 cvar_performance = [ 
