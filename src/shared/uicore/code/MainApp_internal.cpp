@@ -216,14 +216,18 @@ void MainApp::showNews()
 		return;
 	}
 
-	if (! gc_enable_news_popups.getBool())
+	// std::vector<T> initialized empty
+	std::vector<UserCore::Misc::NewsItem*> news_items_vec;
+
+	if ( gc_enable_news_popups.getBool())
 	{
-		return;
+		// popups allowed so point to list of news items
+		news_items_vec = m_vNewsItems;
 	}
 
 	m_NewsLock.lock();
 
-	m_pInternalLink->showNews(m_vNewsItems, m_vGiftItems);
+	m_pInternalLink->showNews(news_items_vec, m_vGiftItems);
 
 	safe_delete(m_vNewsItems);
 	m_vNewsItems.resize(0);
