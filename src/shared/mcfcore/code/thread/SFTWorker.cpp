@@ -106,6 +106,17 @@ void SFTWorker::run()
 	}
 }
 
+static ptime parseTimeStamp(gcString &str)
+{
+	//Boost throws exception if no time string. :(
+	if (str.find('T') == std::string::npos)
+	{
+		str = str.substr(0, 8) + "T" + str.substr(8);
+	}
+
+	return ptime(from_iso_string(str));
+}
+
 void SFTWorker::finishFile()
 {
 	m_hFh.close();
@@ -115,7 +126,7 @@ void SFTWorker::finishFile()
 
 	try
 	{
-		ptime t(from_iso_string(str));
+		ptime t = parseTimeStamp(str);
 		bfs::path spath(file);
 
 		tm pt_tm = to_tm(t);

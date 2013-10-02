@@ -293,6 +293,15 @@ void MCF::parseFolder(const char *path, bool hashFile, bool reportProgress)
 	}
 }
 
+static int64 ConvertTimeStringToInt(std::string timeStr)
+{
+	size_t tPos = timeStr.find('T');
+
+	if (tPos != std::string::npos)
+		timeStr = timeStr.substr(0, tPos) + timeStr.substr(tPos + 1);
+
+	return UTIL::MISC::atoll(timeStr.c_str());
+}
 
 void MCF::parseFolder(const char *filePath, const char *oPath)
 {
@@ -358,9 +367,8 @@ void MCF::parseFolder(const char *filePath, const char *oPath)
 		time_t lastWrite = UTIL::FS::lastWriteTime(fileList[x]);
 
 		std::string timeStr = bpt::to_iso_string(bpt::from_time_t(lastWrite));
-		temp->setTimeStamp(UTIL::MISC::atoll(timeStr.c_str()));
+		temp->setTimeStamp(ConvertTimeStringToInt(timeStr));
 
-		
 
 #ifdef NIX
 		std::string fullpath = fileList[x].getFullPath();
