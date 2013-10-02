@@ -115,6 +115,10 @@ void SFTWorker::finishFile()
 
 	try
 	{
+		//Boost throws exception if no time string. :(
+		if (str.find('T') == std::string::npos)
+			str += "T000000";
+
 		ptime t(from_iso_string(str));
 		bfs::path spath(file);
 
