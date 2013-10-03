@@ -67,25 +67,25 @@ int gcMessageBox(wxWindow *parent, const wxString& message, const wxString& capt
 
 
 gcMessageDialog::gcMessageDialog(wxWindow* parent, const wxString& message, const wxString& caption, long style, const wxPoint& pos) 
-	: gcDialog(NULL, wxID_ANY, caption, pos, wxDefaultSize, wxCAPTION ) //PARENT MUST BE LEFT NULL. Crashes other wise.
+	: gcDialog(NULL, wxID_ANY, caption, pos, wxDefaultSize, wxCAPTION|wxWANTS_CHARS ) //PARENT MUST BE LEFT NULL. Crashes other wise.
 {
 	if (style&(wxYES))
-		m_bButtonList.push_back(new gcButton(this, wxID_YES, Managers::GetString(L"#YES")));
+		m_bButtonList.push_back(new gcButton(this, wxID_YES, Managers::GetString(L"#YES"), wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS));
 
 	if (style&(wxOK))
-		m_bButtonList.push_back(new gcButton(this, wxID_OK, Managers::GetString(L"#OK")));
+		m_bButtonList.push_back(new gcButton(this, wxID_OK, Managers::GetString(L"#OK"), wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS));
 
 	if (style&(wxNO))
-		m_bButtonList.push_back(new gcButton(this, wxID_NO, Managers::GetString(L"#NO")));
+		m_bButtonList.push_back(new gcButton(this, wxID_NO, Managers::GetString(L"#NO"), wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS));
 
 	if (style&(wxCANCEL))
-		m_bButtonList.push_back(new gcButton(this, wxID_CANCEL, Managers::GetString(L"#CANCEL")));
+		m_bButtonList.push_back(new gcButton(this, wxID_CANCEL, Managers::GetString(L"#CANCEL"), wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS));
 
 	if (style&(wxAPPLY))
-		m_bButtonList.push_back(new gcButton(this, wxID_OK, Managers::GetString(L"#APPLY")));
+		m_bButtonList.push_back(new gcButton(this, wxID_OK, Managers::GetString(L"#APPLY"), wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS));
 
 	if (style&(wxCLOSE))
-		m_bButtonList.push_back(new gcButton(this, wxID_OK, Managers::GetString(L"#CLOSE")));	
+		m_bButtonList.push_back(new gcButton(this, wxID_OK, Managers::GetString(L"#CLOSE"), wxDefaultPosition, wxDefaultSize, wxWANTS_CHARS));
 
 
 	m_imgIcon = new gcImageControl( this, wxID_ANY, wxDefaultPosition, wxSize( 48,48 ) );
@@ -156,6 +156,12 @@ gcMessageDialog::gcMessageDialog(wxWindow* parent, const wxString& message, cons
 
 	m_pHelper = NULL;
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &gcMessageDialog::onButtonClick, this);
+	Bind(wxEVT_CHAR, &gcMessageDialog::onChar, this);
+
+	for (size_t x = 0; x < m_bButtonList.size(); ++x)
+	{
+		m_bButtonList[x]->Bind(wxEVT_CHAR, &gcMessageDialog::onChar, this);
+	}
 }
 
 gcMessageDialog::~gcMessageDialog()
@@ -220,7 +226,7 @@ wxSize gcMessageDialog::getBestTextSize()
 		lableSize = iconSize;
 
 	txtSize.SetWidth(370);
-	txtSize.SetHeight( lableSize + buttonSize + 20);
+	txtSize.SetHeight( lableSize + buttonSize + 40);
 	
 	if (txtSize.GetHeight() < 120)
 		txtSize.SetHeight(120);
@@ -243,4 +249,19 @@ void gcMessageDialog::onButtonClick(wxCommandEvent& event)
 	}
 
 	EndModal(event.GetId());
+}
+
+void gcMessageDialog::onChar(wxKeyEvent& event)
+{
+	if (event.GetKeyCode() == WXK_CONTROL_C)
+	{
+		// Write some text to the clipboard
+		if (wxTheClipboard->Open())
+		{
+			// This data objects are held by the clipboard,
+			// so do not delete them in the app.
+			wxTheClipboard->SetData(new wxTextDataObject(GetTitle() + ":\n\n" + m_labInfo->GetLabel()));
+			wxTheClipboard->Close();
+		}
+	}
 }
