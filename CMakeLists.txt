@@ -171,6 +171,11 @@ if(NOT BUILD_ONLY_CEF)
   if(NOT FORCE_BUNDLED_WXGTK)
     find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
   endif()
+
+  if(WITH_GTEST)
+    find_package(GTest ${REQUIRED_IF_OPTION})
+    add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY -DWITH_GTEST)
+  endif()
 endif()
 
 find_package(PythonInterp REQUIRED)
@@ -259,6 +264,15 @@ else()
   unset(DEPOT_TOOLS_MD5)
 endif()
 
+set(GTEST_URL_DEFAULT https://googletest.googlecode.com/files/gtest-1.7.0.zip)
+set(GTEST_URL ${GTEST_URL_DEFAULT}
+    CACHE STRING "URL to gtest archive")
+if(GTEST_URL STREQUAL GTEST_URL_DEFAULT)
+  set(GTEST_MD5 2d6ec8ccdf5c46b05ba54a9fd1d130d7)
+else()
+  unset(GTEST_MD5)
+endif()
+
 set(V8_URL_DEFAULT https://commondatastorage.googleapis.com/chromium-browser-official/v8-3.18.5.14.tar.bz2)
 set(V8_URL ${V8_URL_DEFAULT}
     CACHE STRING "URL to v8 archive")
@@ -296,6 +310,10 @@ if(NOT BUILD_ONLY_CEF)
 
   if(NOT CURL_FOUND)
     include(BuildCURL)  
+  endif()
+
+  if(NOT GTEST_FOUND AND WITH_GTEST)
+    include(BuildGTest)
   endif()
 
   if(NOT V8_FOUND)
