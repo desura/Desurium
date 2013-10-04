@@ -103,6 +103,9 @@ public:
 	//! Sets the crash dump level callback
 	//!	
 	virtual void setCrashDumpLevel(DumpLevelFP dlfp)=0;
+
+	//runs all unit tests
+	virtual int runUnitTests(int argc, char** argv) = 0;
 };
 
 typedef UICoreI* (*UICoreFP)();

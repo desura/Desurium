@@ -311,6 +311,10 @@ void MainForm::onMenuSelect(wxCommandEvent& event )
 		ShowLogForm(true);
 		break;
 
+	case DESURA_wxUnitTest:
+		g_pMainApp->showUnitTest();
+		break;
+
 	case DESURA_wxSettings:
 		g_pMainApp->handleInternalLink(0, ACTION_SHOWSETTINGS);
 		break;

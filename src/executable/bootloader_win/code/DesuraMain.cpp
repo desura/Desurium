@@ -374,6 +374,13 @@ BOOL BootLoader::InitInstance()
 	if (!m_pUICore)
 		return FALSE;
 
+	if (args.hasArg("unittests"))
+	{
+		m_iRetCode = m_pUICore->runUnitTests(args.getArgc(), const_cast<char**>(args.getArgv()));
+		m_bRetCode = true;
+		return FALSE;
+	}
+
 	bool res = m_pUICore->initWxWidgets(m_hInstance, m_nCmdShow, args.getArgc(), const_cast<char**>(args.getArgv()));
 
 	if (res)

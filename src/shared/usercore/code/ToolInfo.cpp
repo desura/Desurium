@@ -617,3 +617,163 @@ const char* ToolInfo::getResultString()
 }
 
 }
+
+#ifdef WITH_GTEST
+
+#include <gtest/gtest.h>
+
+namespace UnitTest
+{
+	class ToolInfoFixture : public ::testing::TestWithParam<int>
+	{
+	public:
+		ToolInfoFixture()
+			: m_ToolInfo(DesuraId())
+		{
+
+		}
+
+		void SetupResult(const gcString &szRes)
+		{
+			m_ToolInfo.m_szResult = szRes;
+		}
+
+		UserCore::ToolInfo m_ToolInfo;
+	};
+
+	INSTANTIATE_TEST_CASE_P(ReturnValues,
+		ToolInfoFixture,
+		::testing::Values(-1000, -1, 0, 1, 1000));
+
+	TEST_P(ToolInfoFixture, ResultTest_Empty)
+	{
+		SetupResult("");
+		ASSERT_TRUE(m_ToolInfo.checkExpectedResult(GetParam()));
+	}
+
+	TEST_P(ToolInfoFixture, ResultTest_Exact_Zero)
+	{
+		SetupResult("0");
+
+		if (GetParam() == 0)
+			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(GetParam()));
+		else
+			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(GetParam()));
+	}
+
+	TEST_P(ToolInfoFixture, ResultTest_EqualZero)
+	{
+		SetupResult("X==0");
+
+		if (GetParam() == 0)
+			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(GetParam()));
+		else
+			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(GetParam()));
+	}
+
+	TEST_P(ToolInfoFixture, ResultTest_NotEqualZero)
+	{
+		SetupResult("X!=0");
+
+		if (GetParam() != 0)
+			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(GetParam()));
+		else
+			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(GetParam()));
+	}
+
+	TEST_P(ToolInfoFixture, ResultTest_Exact_NonZero)
+	{
+		SetupResult("1000");
+
+		if (GetParam() == 1000)
+			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(GetParam()));
+		else
+			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(GetParam()));
+	}
+
+	TEST_P(ToolInfoFixture, ResultTest_Exact_ZeroOr1)
+	{
+		int nParam = GetParam();
+
+		SetupResult("X == 0 || X == 1");
+
+		if (nParam == 0 || nParam == 1)
+			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
+		else
+			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
+	}
+
+	TEST_P(ToolInfoFixture, ResultTest_GreaterThanZero)
+	{
+		int nParam = GetParam();
+
+		SetupResult("X > 0");
+
+		if (nParam > 0)
+			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
+		else
+			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
+	}
+
+	TEST_P(ToolInfoFixture, ResultTest_GreaterThanOrEqualZero)
+	{
+		int nParam = GetParam();
+
+		SetupResult("X >= 0");
+
+		if (nParam >= 0)
+			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
+		else
+			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
+	}
+
+	TEST_P(ToolInfoFixture, ResultTest_LessThanZero)
+	{
+		int nParam = GetParam();
+
+		SetupResult("X < 0");
+
+		if (nParam < 0)
+			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
+		else
+			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
+	}
+
+	TEST_P(ToolInfoFixture, ResultTest_LessThanOrEqualZero)
+	{
+		int nParam = GetParam();
+
+		SetupResult("X <= 0");
+
+		if (nParam <= 0)
+			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
+		else
+			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
+	}
+
+	TEST_P(ToolInfoFixture, ResultTest_LessThanOrGreaterThanZero)
+	{
+		int nParam = GetParam();
+
+		SetupResult("X < 0 || X > 0");
+
+		if (nParam < 0 || nParam > 0)
+			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
+		else
+			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
+	}
+
+	TEST_P(ToolInfoFixture, ResultTest_LessThan1AndGreaterThanNeg1)
+	{
+		int nParam = GetParam();
+
+		SetupResult("(X > -1) && (X < 1)");
+
+		if ((nParam > -1) && (nParam < 1))
+			ASSERT_TRUE(m_ToolInfo.checkExpectedResult(nParam));
+		else
+			ASSERT_FALSE(m_ToolInfo.checkExpectedResult(nParam));
+	}
+}
+
+#endif

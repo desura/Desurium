@@ -138,6 +138,8 @@ public:
 	virtual wxWindow* getTopLevelWindow()=0;
 
 	virtual void newAccountLogin(const char* username, const char* cookie)=0;
+
+	virtual void showUnitTest(){}
 };
 
 
