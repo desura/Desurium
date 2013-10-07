@@ -83,10 +83,10 @@ Build Desura on Windows
 Download and install:
 
  * Svn http://www.sliksvn.com/en/download or http://tortoisesvn.net/downloads.html
- * Msvc 2008 Professional or higher
+ * Msvc 2012 or higher
  * Python 2.7 http://www.python.org/getit/
  * CMake 2.8 http://www.cmake.org/
- * Patch either from msysGit or http://gnuwin32.sourceforge.net/packages/patch.htm (please use Complete package, except sources)
+ * Patch either from msysGit or git bash
  * Windows DirectX 9 SDK for the CEF build https://www.microsoft.com/en-us/download/details.aspx?id=6812
 
 Note: Make sure you add svn and python to your environment PATH
