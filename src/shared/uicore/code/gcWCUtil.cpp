@@ -235,13 +235,23 @@ void ShutdownWebControl()
 	UnloadCEFDll();
 }
 
+static Thread::Mutex g_RootUrlMutex;
+static gcString g_strRootUrl = "desura.com";
+
 void DeleteCookies()
 {
 	if (!CEF_DeleteCookie)
 		return;
 
-	CEF_DeleteCookie("http://www.desura.com", "freeman");
-	CEF_DeleteCookie("http://www.desura.com", "masterchief");
+	gcString urlRoot;
+
+	{
+		Thread::AutoLock a(g_RootUrlMutex);
+		urlRoot = g_strRootUrl;
+	}
+
+	CEF_DeleteCookie(urlRoot.c_str(), "freeman");
+	CEF_DeleteCookie(urlRoot.c_str(), "masterchief");
 }
 
 void SetCookies()
@@ -269,7 +279,26 @@ void SetCookies()
 		return;
 	}
 
-	cookie->SetDomain(".desura.com");
+	gcString urlRoot;
+
+	{
+		Thread::AutoLock a(g_RootUrlMutex);
+
+		if (GetWebCore())
+			g_strRootUrl = GetWebCore()->getUrl(WebCore::Root);
+
+		urlRoot = g_strRootUrl;
+	}
+
+	if (urlRoot.find("http://") == 0)
+		urlRoot = urlRoot.substr(7);
+
+	if (urlRoot.find("www") == 0)
+		urlRoot = urlRoot.substr(3);
+	else
+		urlRoot = gcString(".") + urlRoot;
+
+	cookie->SetDomain(urlRoot.c_str());
 	cookie->SetPath("/");
 
 	MCFCore::Misc::UserCookies uc;
@@ -281,12 +310,14 @@ void SetCookies()
 	cookie->SetName("freeman");
 	cookie->SetData(fD.c_str());
 
-	CEF_SetCookie("http://www.desura.com", cookie);
+	gcString strRoot = GetWebCore()->getUrl(WebCore::Root);
+
+	CEF_SetCookie(strRoot.c_str(), cookie);
 
 	cookie->SetName("masterchief");
 	cookie->SetData(mD.c_str());
 
-	CEF_SetCookie("http://www.desura.com", cookie);
+	CEF_SetCookie(strRoot.c_str(), cookie);
 
 	cookie->destroy();
 }

@@ -83,7 +83,7 @@ protected:
 		}
 		else if (isSafeUrl(url.c_str()))
 		{
-			if (!isCurrentUrl(url.c_str()) && url.find("desura.com/media/iframe") == std::string::npos)
+			if (!isCurrentUrl(url.c_str()) && url.find("/media/iframe") == std::string::npos)
 			{
 				info.stop = true;
 				g_pMainApp->loadUrl(url.c_str(), COMMUNITY);
