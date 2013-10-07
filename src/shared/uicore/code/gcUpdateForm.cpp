@@ -21,7 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "MainApp.h"
 #include "managers/ConCommand.h"
 
-#define DESURA_CHANGELOG L"http://www.desura.com/app/changelog"
 
 extern ConCommand cc_restart_wait;
 extern const char* GetAppVersion();
@@ -76,7 +75,7 @@ void GCUpdateInfo::setInfo(uint32 appver)
 	if (appver == 0)
 		appver = BUILDID_PUBLIC;
 
-	m_ieBrowser->loadUrl(gcWString(L"{0}/{1}", DESURA_CHANGELOG, appver));
+	m_ieBrowser->loadUrl(gcWString(L"{0}/{1}", GetWebCore()->getUrl(WebCore::AppChangeLog), appver));
 }
 
 void GCUpdateInfo::onFormClose(wxCloseEvent& event)

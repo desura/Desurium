@@ -277,6 +277,10 @@ if (!desura.internal) {
 		login(username, cookie);
 	};
 	
+	desura.utils.loginError = function(errorMessage){
+		native function loginError();
+		loginError(errorMessage);
+	};
 
 	desura.internal.checkOldCrumbs = function(){
 		if (typeof getBreadCrumbs == 'function')

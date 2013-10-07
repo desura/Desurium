@@ -75,6 +75,8 @@ public:
 		gcPanel::PopupMenu(menu);
 	}
 
+	void showInspector();
+
 protected:
 	void onResize(wxSizeEvent& event);
 	void onPaintBg(wxEraseEvent& event);

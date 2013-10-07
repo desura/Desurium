@@ -120,7 +120,8 @@ file(GLOB Sources       code/AboutForm.cpp
                         code/UploadProgPage.cpp
                         code/UploadPrompt.cpp
                         code/UsernameBox.cpp
-                        code/*.h)
+                        code/*.h
+			code/AltLoginDialog.cpp)
 
 if(WIN32)
   file(GLOB PlattformSources

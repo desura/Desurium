@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "XMLMacros.h"
 
 #include "sqlite3x.hpp"
+#include "webcore/WebCoreI.h"
 
 #pragma pack(push)
 #pragma pack(2)
@@ -393,8 +394,10 @@ gcWString GameExplorerInfo::generateXml()
 	if (szPubUrl.size() == 0)
 		szPubUrl = "http://";
 
+
+
 	gcString szPlayLink("desura://launch/{0}/{1}", m_Id.getTypeString(), m_pItemInfo->getShortName());
-	gcString szChangeLogLink("http://www.desura.com/{0}/{1}/changelog", m_Id.getTypeString(), m_pItemInfo->getShortName());
+	gcString szChangeLogLink("{0}/{1}/{2}/changelog", m_pUser->getWebCore()->getUrl(WebCore::Root), m_Id.getTypeString(), m_pItemInfo->getShortName());
 	gcString szProfileLink = m_pItemInfo->getProfile();
 
 	gcString szDescription = m_pItemInfo->getName();

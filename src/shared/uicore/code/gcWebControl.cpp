@@ -304,3 +304,8 @@ ChromiumDLL::JavaScriptContextI* gcWebControl::getJSContext()
 {
 	return m_pChromeBrowser->getJSContext();
 }
+
+void gcWebControl::showInspector()
+{
+	m_pChromeBrowser->showInspector();
+}

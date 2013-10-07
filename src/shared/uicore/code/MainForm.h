@@ -38,7 +38,7 @@ class baseTabPage;
 class MainForm : public gcFrame
 {
 public:
-	MainForm(wxWindow* parent, bool offline = false);
+	MainForm(wxWindow* parent, bool offline, const char* szProvider);
 	~MainForm();
 
 	virtual void loadFrame(long style);

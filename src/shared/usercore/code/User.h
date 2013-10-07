@@ -88,6 +88,7 @@ public:
 	User();
 	~User();
 
+	virtual void init(const char* appDataPath, const char* szProviderUrl) override;
 	virtual void init(const char* appDataPath);
 	virtual const char* getAppDataPath();
 	virtual const char* getMcfCachePath();

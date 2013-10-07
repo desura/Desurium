@@ -47,6 +47,7 @@ public:
 	Event<gcException> onLoginErrorEvent;
 
 	void newAccountLogin(const char* username, const char* cookie);
+	void newAccountLoginError(const char* szErrorMessage);
 
 protected:
 	gcTextCtrl* m_tbUsername;
@@ -63,18 +64,25 @@ protected:
 	gcImageControl* m_imgLogo;
 	gcImageControl* m_imgAvatar;
 
+	gcChoice* m_comboProvider;
+
+	gcImageButton *m_butTwitter;
+	gcImageButton *m_butSteam;
+	gcImageButton *m_butFacebook;
+	gcImageButton *m_butGoogle;
 
 	StripMenuButton* m_linkOffline;
 	StripMenuButton* m_linkNewAccount;
 	StripMenuButton* m_linkLostPassword;
 
 	void doLogin();
+	void doLogin(gcString user, gcString pass);
 
 	void onLogin();
 	void onLoginError(gcException &e);
 
-	void onStartLogin();
-	EventV onStartLoginEvent;
+	void onStartLogin(std::pair<gcString, gcString> &l);
+	Event<std::pair<gcString, gcString>> onStartLoginEvent;
 
 	void processTab(bool forward, int32 id);
 
@@ -97,8 +105,11 @@ protected:
 	void onBlur(wxFocusEvent& event);
 
 	void onLinkClick(wxCommandEvent& event);
+	void onAltLoginClick(wxCommandEvent& event);
 
 	void onNewAccount();
+
+	void onAltLogin(const char* szProvider);
 
 private:
 	bool m_bSavePos;

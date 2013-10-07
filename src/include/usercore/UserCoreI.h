@@ -441,6 +441,9 @@ public:
 	virtual void updateBinaryRegKey(const char* key, const char* value, size_t size)=0;
 
 	virtual void runInstallScript(const char* file, const char* installPath, const char* function)=0;
+
+
+	virtual void init(const char* appDataPath, const char* szProviderUrl)=0;
 };
 
 
