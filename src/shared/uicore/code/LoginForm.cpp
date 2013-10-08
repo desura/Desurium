@@ -835,11 +835,11 @@ void LoginForm::onLogin()
 	if (gc_saveusername.getBool())
 	{
 		wxString dastr = m_tbUsername->GetValue();
-		gc_lastusername.setValue((const char*)dastr.c_str());
+		gc_lastusername.setValue(dastr.ToUTF8());
 	}
 
 	if (m_comboProvider)
-		gc_login_stage_last.setValue(m_comboProvider->GetStringSelection());
+		gc_login_stage_last.setValue(m_comboProvider->GetStringSelection().ToUTF8());
 
 	Show(false);
 
