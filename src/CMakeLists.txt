@@ -99,6 +99,10 @@ endif()
 add_subdirectory(shared/usercore)
 add_subdirectory(shared/webcore)
 
+if(WITH_GTEST)
+  add_subdirectory(shared/unittests)
+endif()
+
 ###############################################################################
 # build the client
 ###############################################################################
@@ -126,12 +130,6 @@ if(BUILD_TOOLS)
   add_subdirectory(tools/mcf_extract)
   add_subdirectory(tools/mcf_util)
 endif()
-
-###############################################################################
-# build the tests
-###############################################################################
-
-add_subdirectory(tests)
 
 ###############################################################################
 # some pre building or installing actions

@@ -35,6 +35,8 @@ extern "C" CEXPORT UICoreI* GetInterface();
 #include "util/UtilLinux.h"
 #endif
 
+#include "SharedObjectLoader.h"
+
 #ifdef WIN32
 #include <shlobj.h>
 
@@ -94,6 +96,16 @@ public:
 
 		m_bExitCodeSet = false;
 		m_iExitCode = 0;
+
+#ifdef DEBUG
+#ifdef WITH_GTEST
+#ifdef WIN32
+		m_hUnitTest.load("unittest.dll");
+#else
+		m_hUnitTest.load("unittest.so");
+#endif
+#endif
+#endif
 	}
 
 	~UICore()
@@ -258,6 +270,13 @@ public:
 	int runUnitTests(int argc, char** argv)
 	{
 #ifdef WITH_GTEST
+#ifdef WIN32
+		m_hUnitTest.load("unittest.dll");
+#else
+		m_hUnitTest.load("unittest.so");
+#endif
+#endif
+
 		testing::InitGoogleTest(&argc, argv);
 		return RUN_ALL_TESTS();
 #else
@@ -274,6 +293,8 @@ private:
 
 	bool m_bExitCodeSet;
 	int32 m_iExitCode;
+
+	SharedObjectLoader m_hUnitTest;
 
 #ifndef WIN32
 	wxSingleInstanceChecker* m_pChecker;
