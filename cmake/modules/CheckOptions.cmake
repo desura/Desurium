@@ -19,6 +19,7 @@ if(NOT BUILD_ONLY_CEF)
   if(OFFICIAL_BUILD)
     set(BRANDING "branding_desura"
       CACHE STRING "The branding to use for Desura.")
+    add_definitions(-DDESURA_OFFICIAL_BUILD)
   else()
     set(BRANDING "branding_desurium"
       CACHE STRING "The branding to use for Desura.")

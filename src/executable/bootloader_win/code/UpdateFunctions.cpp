@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 void SetRegValues();
 void InstallService();
 
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 int NeedUpdateNonGpl();
 #endif
 
@@ -69,7 +69,7 @@ bool FileExists(const wchar_t* fileName)
 		return false;
 }
 
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 extern FILE* g_pUpdateLog;
 #endif
 
@@ -117,7 +117,7 @@ int IsServiceInstalled()
 	Safe::snprintf(regname, 255, "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\%s\\Start", SERVICE_NAME);
 	int res = UTIL::WIN::getRegValueInt(regname, true);
 
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 	if (g_pUpdateLog)
 		fprintf(g_pUpdateLog, "Status: %d\n", res);
 #endif
@@ -130,7 +130,7 @@ int IsServiceInstalled()
 
 int NeedUpdate()
 {
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 	int res = NeedUpdateNonGpl();
 	
 	if (res != UPDATE_NONE)

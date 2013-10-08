@@ -36,7 +36,7 @@ void initFactory()
 {
 	bool res = false;
 
-#if defined(WIN32) && !defined(DEBUG) && defined(DESURA_OFFICAL_BUILD)
+#if defined(WIN32) && !defined(DEBUG) && defined(DESURA_OFFICIAL_BUILD)
 	char message[255] = {0};
 	if (UTIL::WIN::validateCert(L".\\bin\\mcfcore.dll", message, 255) != ERROR_SUCCESS)
 	{
