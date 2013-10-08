@@ -27,6 +27,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 namespace bf = boost::filesystem;
 
+#ifdef WIN32
+
+#include "boost/filesystem/path.hpp"
+// fix for https://svn.boost.org/trac/boost/ticket/6320
+
+class BoostFSCrashFix
+{
+public:
+	BoostFSCrashFix()
+	{
+		boost::filesystem::path::imbue(std::locale(""));
+	}
+};
+
+static BoostFSCrashFix gs_BoostFSFix;
+
+#endif
+
 namespace UTIL
 {
 namespace MISC
