@@ -174,7 +174,7 @@ DesuraControl::DesuraControl(gcFrame* parent, bool offline, const char* szProvid
 
 	if (gcString(szProvider).size() > 0)
 	{
-		gcString strProv("Warning: Staging Environment {0}", szProvider);
+		gcString strProv("Warning: Staging Environment {0}. Client Updates Disabled", szProvider);
 		wxStaticText *pText = new wxStaticText(this, wxID_ANY, strProv, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE);
 
 		pText->SetForegroundColour(*wxBLACK);

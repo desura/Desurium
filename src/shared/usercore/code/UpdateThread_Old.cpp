@@ -276,7 +276,8 @@ void UpdateThreadOld::parseXML(tinyxml2::XMLDocument &doc)
 		pUser->setCounts(pm, up, th, cc);
 	}
 
-	checkAppUpdate(uNode);
+	if (!pUser->isAltProvider())
+		checkAppUpdate(uNode);
 
 	if (version == 1)
 	{
@@ -339,7 +340,7 @@ void UpdateThreadOld::loadLoginItems()
 }
 
 
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 
 void UpdateThreadOld::checkAppUpdate(tinyxml2::XMLNode* uNode)
 {
