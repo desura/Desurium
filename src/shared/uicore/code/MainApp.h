@@ -86,14 +86,14 @@ class InternalLink;
 class TaskBarIcon;
 class gcUnitTestForm;
 
-class MainApp :  public MainAppI
+class MainApp :  public MainAppI, public MainAppProviderI
 {
 public:
 	MainApp();
 	virtual ~MainApp();
 
 	void run();
-	//wx Function overide
+	//wx Function override
 	void Init(int argc, wxCmdLineArgsArray &argv);
 	void showMainWindow(bool raise = false);
 

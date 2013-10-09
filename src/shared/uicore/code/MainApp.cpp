@@ -147,7 +147,7 @@ static bool isSafeUrl(const wxString &server, const wxString &safeUrl)
 	return server == safeUrl;
 }
 
-static bool isSafeUrl(const char* url, MainAppI* pMainApp)
+static bool isSafeUrl(const char* url, MainAppProviderI* pMainApp)
 {
 	if (!url)
 		return false;
@@ -188,7 +188,7 @@ static bool isSafeUrl(const char* url, MainAppI* pMainApp)
 
 bool isSafeUrl(const char* url)
 {
-	return isSafeUrl(url, g_pMainApp);
+	return isSafeUrl(url, dynamic_cast<MainAppProviderI*>(g_pMainApp));
 }
 
 extern CVar gc_autostart;
@@ -846,46 +846,9 @@ const char* MainApp::getProvider() const
 
 namespace UnitTest
 {
-	class StubMainApp : public MainAppI
+	class StubMainAppProvider : public MainAppProviderI
 	{
 	public:
-		void showPage(PAGE page){}
-		void showNews(){}
-		void showPlay(){}
-		void showMainWindow(bool raise = false){}
-
-		void handleInternalLink(const char* link){}
-		void handleInternalLink(DesuraId id, uint8 action, std::vector<std::string> args = std::vector<std::string>()){}
-
-		//this closes and destroys a sub form
-		void closeForm(int32 id){}
-
-		void logIn(const char* user, const char* pass){}
-		void logOut(bool bShowLogin = true, bool autoLogin = false){}
-		void onLoginAccepted(bool saveLoginInfo = false, bool autologin = false){}
-
-		bool isOffline(){ return false; }
-		bool isLoggedIn(){ return false; }
-
-		void processWildCards(WCSpecialInfo &info, wxWindow* parent = NULL){}
-
-		void loadUrl(const char* url, PAGE page){}
-
-		gcFrame* getMainWindow(){return NULL;}
-
-		void disableQuietMode(){}
-		bool isQuietMode(){return false;}
-
-		bool Destroy(){ return false; }
-
-		EventV* getLoginEvent(){ return NULL; }
-
-		wxWindow* getTopLevelWindow(){ return NULL; }
-
-		void newAccountLogin(const char* username, const char* cookie){}
-
-		void showUnitTest(){}
-
 		//Changes the server url provider. Set to null to reset
 		void setProvider(const char* szProvider)
 		{
@@ -896,8 +859,6 @@ namespace UnitTest
 		{
 			return m_szProvider;
 		}
-
-		void newAccountLoginError(const char* szErrorMessage){}
 
 		const char* m_szProvider;
 	};
@@ -927,7 +888,7 @@ namespace UnitTest
 
 	TEST(MainApp, SafeUrlStaging)
 	{
-		StubMainApp a;
+		StubMainAppProvider a;
 		a.setProvider("desura.blah.com");
 
 		ASSERT_TRUE(isSafeUrl("http://desura.blah.com", &a));

@@ -82,14 +82,16 @@ protected:
 	{
 		try
 		{
+			MainAppProviderI *pProvider = dynamic_cast<MainAppProviderI*>(g_pMainApp);
+
 			if (m_bAltProvider)
 			{
 				gcString strProv = gc_login_stage_url.getString();
-				g_pMainApp->setProvider(strProv.c_str());
+				pProvider->setProvider(strProv.c_str());
 			}	
 			else
 			{
-				g_pMainApp->setProvider(NULL);
+				pProvider->setProvider(NULL);
 			}
 
 			g_pMainApp->logIn(m_szUsername.c_str(), m_szPassword.c_str());
