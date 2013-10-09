@@ -10,6 +10,8 @@ rc1:
  * fixed: cmake/v8: move away from svn and update to newer v8 version (https://github.com/desura/Desurium/pull/590)
  * fixed: Multiple MCF upload Issue (https://github.com/desura/Desurium/issues/609)
  * added: Add option to disable news popup (https://github.com/desura/Desurium/issues/628)
+ * fixed: boost causes desura to crash due to boost bug 6320 (https://github.com/desura/Desurium/issues/639)
+ * fixed: Desura fails to save settings on login (like auto login) (https://github.com/desura/Desurium/issues/640)
 
 version 0.8.0:
 --------------
