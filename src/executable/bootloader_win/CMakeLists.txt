@@ -24,7 +24,6 @@ add_definitions(-D_WINDOWS
 
 if (OFFICIAL_BUILD)
   set(OFFICIAL_DEP "util_bootloader_official_s")
-  add_definitions(-DDESURA_OFFICAL_BUILD)
 endif()
 
 add_executable(desura WIN32 ${Sources} ${SERVICE_PIPE_IPCUPDATEMAIN})

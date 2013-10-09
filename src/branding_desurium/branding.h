@@ -9,6 +9,5 @@
 #define COMPANY_NAME	""
 #define EXE_PREFIX		"desurium_"
 
-//#define DESURA_OFFICAL_BUILD
 #endif
 

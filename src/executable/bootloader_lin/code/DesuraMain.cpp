@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "util/UtilString.h"
 #include <branding/branding.h>
 
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 	int DownloadFilesForTest();
 	int InstallFilesForTest();
 	bool CheckForUpdate(bool force, bool skip);
@@ -145,7 +145,7 @@ int MainApp::run()
 	bool runGtest = false;
 #endif
 
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 	bool forceUpdate = false;
 	bool skipUpdate = false;
 	bool testDownload = false;
@@ -165,7 +165,7 @@ int MainApp::run()
 			runGtest = true;
 #endif
 
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 		if (strcasecmp(m_Argv[x], "-td") == 0 || strcasecmp(m_Argv[x], "--testdownload") == 0)
 			testDownload = true;
 
@@ -180,7 +180,7 @@ int MainApp::run()
 #endif
 	}
 
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 	if (testInstall)
 		return InstallFilesForTest();
 
@@ -193,7 +193,7 @@ int MainApp::run()
 
 	if (!FileExists(lockPath.c_str())) // if desura isn't already running - simple check
 	{
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 		if (CheckForUpdate(forceUpdate, skipUpdate))
 			return 0;
 #endif

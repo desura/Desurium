@@ -84,7 +84,7 @@ static void dbCreateTables()
 
 // the non official build will use generated files by cmake, so we don't need a version file at all
 // see UtilOs_cmake.cpp.inc
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 	extern std::string GetAppBuild()
 	{
 		FILE* fh = fopen("version", "r");

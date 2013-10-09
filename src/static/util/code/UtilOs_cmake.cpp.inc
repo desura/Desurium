@@ -52,7 +52,7 @@ gcString getRuntimeLibPath()
 }
 }
 
-#ifndef DESURA_OFFICAL_BUILD
+#ifndef DESURA_OFFICIAL_BUILD
 	std::string GetAppBuild()
 	{
 		return "@CPACK_PACKAGE_VERSION_PATCH@@CPACK_PACKAGE_VERSION_ADDITION@";

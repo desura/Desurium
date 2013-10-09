@@ -34,7 +34,7 @@ void Log(const char* format, ...);
 
 bool CheckCert()
 {
-#ifndef DESURA_OFFICAL_BUILD
+#ifndef DESURA_OFFICIAL_BUILD
 	return false;
 #endif
 

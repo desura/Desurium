@@ -2,7 +2,7 @@
 //
 //#include "resource.h"
 
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 #include "resource.h"
 #endif
 #include "Winuser.h"
@@ -78,7 +78,7 @@ IDI_ICONNORMAL          ICON                    "@BRANDING_DIR@/desura.ico"
 // Dialog
 //
 
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 
 IDD_UPDATEFORM_DIALOG DIALOGEX 0, 0, 276, 135
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
