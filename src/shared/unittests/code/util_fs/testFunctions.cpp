@@ -9,6 +9,8 @@ namespace fs = boost::filesystem;
 
 namespace UnitTest
 {
+	static const char* UNICODE_EXAMPLE_FILE = "ʨʬжװᇪ";
+
 	#define ASSERT_EQ_FILES(/* const fs::path& */ file1, /* const fs::path& */ file2) \
 	{ \
 		fs::ifstream file1_stream(file1); \
@@ -87,7 +89,5 @@ namespace UnitTest
 				}
 			}
 		}
-
-		static const char* UNICODE_EXAMPLE_FILE = "ʨʬжװᇪ";
 	};
 }
