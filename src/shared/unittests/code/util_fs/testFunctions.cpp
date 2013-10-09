@@ -88,6 +88,6 @@ namespace UnitTest
 			}
 		}
 
-		const char* UNICODE_EXAMPLE_FILE = "ʨʬжװᇪ";
+		static const char* UNICODE_EXAMPLE_FILE = "ʨʬжװᇪ";
 	};
 }
