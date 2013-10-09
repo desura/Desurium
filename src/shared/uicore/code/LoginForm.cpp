@@ -730,6 +730,7 @@ void LoginForm::onLogin()
 		gc_lastusername.setValue((const char*)dastr.c_str());
 	}
 
+	SaveCVars();
 	Show(false);
 
 	MainApp* temp = dynamic_cast<MainApp*>(GetParent());
