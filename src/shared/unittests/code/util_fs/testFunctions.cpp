@@ -2,6 +2,8 @@
 #error you have to define TEST_DIR first
 #endif
 
+#include "Common.h"
+
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 
