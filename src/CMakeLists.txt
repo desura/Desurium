@@ -13,6 +13,11 @@ file(RENAME ${BIN_INCLUDE_DIR}/${BRANDING} ${BIN_INCLUDE_DIR}/branding)
 
 set(BRANDING_DIR ${BIN_INCLUDE_DIR}/branding)
 
+###############################################################################
+# install data files
+###############################################################################
+
+add_subdirectory(data)
 install_data_files("" ${BRANDING_DIR}/data/desura_lin.png ${BRANDING_DIR}/data/desura_win.ico)
 install_data_directories("" ${BRANDING_DIR}/data/themes)
 
