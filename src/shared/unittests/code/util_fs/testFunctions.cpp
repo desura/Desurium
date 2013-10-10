@@ -74,8 +74,14 @@ namespace UnitTest
 			const fs::path &testDir = getTestDirectory();
 			fs::create_directories(testDir);
 
-			std::vector<std::string> firstLevel = { "0" };
-			std::vector<std::string> secondLevel = { "0", "1.txt", "2.png", UNICODE_EXAMPLE_FILE };
+			std::vector<std::string> firstLevel;
+			firstLevel.push_back("0");
+			
+			std::vector<std::string> secondLevel;
+			secondLevel.push_back("0");
+			secondLevel.push_back("1.txt");
+			secondLevel.push_back("2.png");
+			secondLevel.push_back(UNICODE_EXAMPLE_FILE);
 
 			for (const std::string& i : firstLevel)
 			{
