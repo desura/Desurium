@@ -39,7 +39,9 @@ namespace UnitTest
 	TEST_F(FSTestFixture, getAllFiles_with_extsfiler)
 	{
 		std::vector<Path> content;
-		std::vector<std::string> filter = { "txt" };
+		std::vector<std::string> filter;
+		filter.push_back("txt");
+
 		Path path((getTestDirectory() / "0").string(), "", false);
 		getAllFiles(path, content, &filter);
 

@@ -42,7 +42,8 @@ namespace UnitTest
 	{
 		Path src(SRC.string(), "", false);
 		Path des(DES2.string(), "", false);
-		std::vector<std::string> ignoreList = { "1.txt" };
+		std::vector<std::string> ignoreList;
+		ignoreList.push_back("1.txt");
 
 		ASSERT_TRUE(!fs::exists(DES2));
 		copyFolder(src, des, &ignoreList);
@@ -66,7 +67,9 @@ namespace UnitTest
 
 	TEST_F(FSTestFixture, copyFolder_string_vector_default)
 	{
-		std::vector<std::string> ignoreList = { "1.txt" };
+		std::vector<std::string> ignoreList;
+		ignoreList.push_back("1.txt");
+
 		ASSERT_TRUE(!fs::exists(DES4));
 		copyFolder(SRC.string(), DES4.string(), &ignoreList);
 		ASSERT_TRUE(fs::exists(DES4));
