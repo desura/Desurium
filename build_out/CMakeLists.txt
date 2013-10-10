@@ -1,49 +1,7 @@
 set(DATA ${CMAKE_CURRENT_SOURCE_DIR}/data)
 
-###############################################################################
-# /
-###############################################################################
-
-install_data_directories("" ${DATA}/bindings)
-install_data_directories("" ${DATA}/language)
-install_data_directories("" ${DATA}/scripts)
-install_data_files("" "${DATA}/ca-bundle_lin.crt")
-install_data_files("" "${DATA}/cef_data_lin.pak")
-
-###############################################################################
-# /themes/default
-###############################################################################
-
-set(DT ${DATA}/themes/default)
-
-install_data_directories("themes/default" "${DT}/css")
-install_data_directories("themes/default" "${DT}/html")
-install_data_files("themes/default" ${DT}/preview.jpg ${DT}/theme.xml)
-
-###############################################################################
-# /themes/default/js
-###############################################################################
-
-set(JS ${DT}/js)
-file(GLOB JS_SCRIPTS ${JS}/*.js)
-install_data_files("themes/default/js" ${JS_SCRIPTS})
-
-###############################################################################
-# /themes/default/images
-###############################################################################
-
-set(IMG ${DT}/images)
-install_data_directories("themes/default/images" ${IMG}/html)
-
-###############################################################################
-# /themes/default/images/app
-###############################################################################
-
-set(APP ${IMG}/app)
-file(GLOB IMAGES ${APP}/*.png)
-file(GLOB IMAGES ${APP}/*.gif)
-
-install_data_files("themes/default/images/app" ${IMAGES})
+install_data_directories("" "${DATA}/bindings" "${DATA}/language" "${DATA}/scripts" "${DATA}/themes")
+install_data_files("" "${DATA}/ca-bundle_lin.crt" "${DATA}/cef_data_lin.pak")
 
 if(NOT WIN32)
   install_internal_tool_script(util.sh)
