@@ -26,27 +26,13 @@ install_data_files("themes/default" ${DT}/preview.jpg ${DT}/theme.xml)
 
 set(JS ${DT}/js)
 file(GLOB JS_SCRIPTS ${JS}/*.js)
-
-list(REMOVE_ITEM JS_SCRIPTS ${JS}/functions_lin.js
-                            ${JS}/functions_win.js
-                            ${JS}/settings_lin.js
-                            ${JS}/settings_win.js)
 install_data_files("themes/default/js" ${JS_SCRIPTS})
-
-if(WIN32)
-  install_data_files("themes/default/js" ${JS}/functions_win.js)
-  install_data_files("themes/default/js" ${JS}/settings_win.js)
-else()
-  install_data_files("themes/default/js" ${JS}/functions_lin.js)
-  install_data_files("themes/default/js" ${JS}/settings_lin.js)
-endif()
 
 ###############################################################################
 # /themes/default/images
 ###############################################################################
 
 set(IMG ${DT}/images)
-
 install_data_directories("themes/default/images" ${IMG}/html)
 
 ###############################################################################

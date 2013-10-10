@@ -18,16 +18,12 @@ install_data_files("" ${BRANDING_DIR}/data/desura_lin.png)
 install_data_files("" ${BRANDING_DIR}/data/desura_win.ico)
 install_data_files(themes/default/images/html/default ${BRANDING_DIR}/data/themes/default/images/html/default/logo.png)
 install_data_files(themes/default/images/app ${APP}/about_logo.png ${APP}/icon_download.png ${APP}/signin_banner.png)
-
-if(WIN32)
-  install_data_files(themes/default/images/app ${APP}/menu_button_hover_win.png)
-  install_data_files(themes/default/images/app ${APP}/menu_button_nonactive_win.png)
-  install_data_files(themes/default/images/app ${APP}/menu_button_win.png)
-else()
-  install_data_files(themes/default/images/app ${APP}/menu_button_hover_lin.png)
-  install_data_files(themes/default/images/app ${APP}/menu_button_nonactive_lin.png)
-  install_data_files(themes/default/images/app ${APP}/menu_button_lin.png)
-endif()
+install_data_files(themes/default/images/app ${APP}/menu_button_hover_win.png)
+install_data_files(themes/default/images/app ${APP}/menu_button_nonactive_win.png)
+install_data_files(themes/default/images/app ${APP}/menu_button_win.png)
+install_data_files(themes/default/images/app ${APP}/menu_button_hover_lin.png)
+install_data_files(themes/default/images/app ${APP}/menu_button_nonactive_lin.png)
+install_data_files(themes/default/images/app ${APP}/menu_button_lin.png)
 
 ###############################################################################
 # do final steps for setting up the desura build environment
