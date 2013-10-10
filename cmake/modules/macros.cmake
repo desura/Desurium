@@ -217,6 +217,7 @@ endfunction()
 
 macro(generate_current_data_copy_target target)
   file(RELATIVE_PATH __rel_current_dir "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}")
+  string(REPLACE "/" "_" __rel_current_dir "${__rel_current_dir}")
   set(${target} "internal_data_copy_${__rel_current_dir}")
 endmacro()
 
