@@ -22,6 +22,11 @@ add_linker_flags(/ignore:4006
 				 /ignore:4221)
 add_compiler_flags(/wd4996 /MP)
 
+# jom needs /FS msvc12 for parralel builds
+if(MSVC12)
+  add_compiler_flags(/FS)
+endif()
+
 set(WIN_TARGET 0x0502) # Windows XP SP2
 set(WIN_SDK_MIN 0x0600) # Windows Vista
 set(WIN_IE_VERSION 0x0603) # IE 6 SP2
