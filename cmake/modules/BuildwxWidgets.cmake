@@ -16,7 +16,7 @@ if(WIN32 AND NOT MINGW)
       custom_build
       DEPENDEES configure
       DEPENDERS build
-      COMMAND nmake /nologo -f makefile.vc BUILD=debug MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=dynamic
+      COMMAND ${NMAKE_EXECUTABLE} /nologo -f makefile.vc BUILD=debug MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=dynamic
       WORKING_DIRECTORY <SOURCE_DIR>/build/msw
     )
   else()
@@ -25,7 +25,7 @@ if(WIN32 AND NOT MINGW)
       custom_build
       DEPENDEES configure
       DEPENDERS build
-      COMMAND nmake /nologo -f makefile.vc BUILD=release MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=dynamic
+      COMMAND ${NMAKE_EXECUTABLE} /nologo -f makefile.vc BUILD=release MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=dynamic
       WORKING_DIRECTORY <SOURCE_DIR>/build/msw
     )
   endif()

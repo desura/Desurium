@@ -193,6 +193,10 @@ else()
   set(PATCH_SCRIPT_PATH ${CMAKE_SCRIPT_PATH}/patch.sh)
 endif()
 
+if(WIN32)
+  find_package(NMake REQUIRED)
+endif()
+
 ###############################################################################
 # SVN, HTTP stuff
 ###############################################################################

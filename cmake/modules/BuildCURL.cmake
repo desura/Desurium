@@ -30,7 +30,7 @@ if(WIN32 AND NOT MINGW)
     custom_build
     DEPENDEES configure
     DEPENDERS build
-    COMMAND nmake /f Makefile.vc MODE=dll DEBUG=${CURL_DEBUG} GEN_PDB=no USE_SSPI=yes USE_IPV6=no USE_IDN=no ENABLE_WINSSL=yes MACHINE=x86
+    COMMAND ${NMAKE_EXECUTABLE} /f Makefile.vc MODE=dll DEBUG=${CURL_DEBUG} GEN_PDB=no USE_SSPI=yes USE_IPV6=no USE_IDN=no ENABLE_WINSSL=yes MACHINE=x86
     WORKING_DIRECTORY <SOURCE_DIR>/winbuild
   )
   
@@ -61,7 +61,7 @@ if(WIN32 AND NOT MINGW)
     custom_build
     DEPENDEES configure
     DEPENDERS build
-    COMMAND nmake /f Makefile.vc MODE=static RTLIBCFG=static DEBUG=${CURL_DEBUG} GEN_PDB=no USE_SSPI=yes USE_IPV6=no USE_IDN=no ENABLE_WINSSL=yes MACHINE=x86
+    COMMAND ${NMAKE_EXECUTABLE} /f Makefile.vc MODE=static RTLIBCFG=static DEBUG=${CURL_DEBUG} GEN_PDB=no USE_SSPI=yes USE_IPV6=no USE_IDN=no ENABLE_WINSSL=yes MACHINE=x86
     WORKING_DIRECTORY <SOURCE_DIR>/winbuild
   )
   
