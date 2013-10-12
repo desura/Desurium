@@ -30,7 +30,7 @@ if(WIN32 AND NOT MINGW)
     custom_build
     DEPENDEES configure
     DEPENDERS build
-    COMMAND ${NMAKE_EXECUTABLE} /f Makefile.vc MODE=dll DEBUG=${CURL_DEBUG} GEN_PDB=no USE_SSPI=yes USE_IPV6=no USE_IDN=no ENABLE_WINSSL=yes MACHINE=x86
+    COMMAND ${NMAKE_EXECUTABLE} /f Makefile.vc MODE=dll DEBUG=${CURL_DEBUG} GEN_PDB=no ENABLE_SSPI=yes ENABLE_IPV6=no ENABLE_IDN=no ENABLE_WINSSL=yes MACHINE=x86 ENABLE_SPNEGO=no
     WORKING_DIRECTORY <SOURCE_DIR>/winbuild
   )
   
@@ -40,9 +40,9 @@ if(WIN32 AND NOT MINGW)
   )
   
   if(DEBUG)
-    set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-vc-x86-debug-dll-spnego-winssl)
+    set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-vc-x86-debug-dll-sspi-winssl)
   else()
-    set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-vc-x86-release-dll-spnego-winssl)
+    set(CURL_INSTALL_DIR ${source_dir}/builds/libcurl-vc-x86-release-dll-sspi-winssl)
   endif()
   
   
@@ -61,7 +61,7 @@ if(WIN32 AND NOT MINGW)
     custom_build
     DEPENDEES configure
     DEPENDERS build
-    COMMAND ${NMAKE_EXECUTABLE} /f Makefile.vc MODE=static RTLIBCFG=static DEBUG=${CURL_DEBUG} GEN_PDB=no USE_SSPI=yes USE_IPV6=no USE_IDN=no ENABLE_WINSSL=yes MACHINE=x86
+    COMMAND ${NMAKE_EXECUTABLE} /f Makefile.vc MODE=static RTLIBCFG=static DEBUG=${CURL_DEBUG} GEN_PDB=no ENABLE_SSPI=yes ENABLE_IPV6=no ENABLE_IDN=no ENABLE_WINSSL=yes MACHINE=x86 ENABLE_SPNEGO=no
     WORKING_DIRECTORY <SOURCE_DIR>/winbuild
   )
   
@@ -71,9 +71,9 @@ if(WIN32 AND NOT MINGW)
   )
   
   if(DEBUG)
-    set(CURL_INSTALL_DIR_S ${source_dir}/builds/libcurl-vc-x86-debug-static-spnego-winssl)
+    set(CURL_INSTALL_DIR_S ${source_dir}/builds/libcurl-vc-x86-debug-static-sspi-winssl)
   else()
-    set(CURL_INSTALL_DIR_S ${source_dir}/builds/libcurl-vc-x86-release-static-spnego-winssl)
+    set(CURL_INSTALL_DIR_S ${source_dir}/builds/libcurl-vc-x86-release-static-sspi-winssl)
   endif()  
 else()
   find_package(OpenSSL REQUIRED)
