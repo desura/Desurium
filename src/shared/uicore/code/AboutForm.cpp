@@ -33,8 +33,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 		constexpr int ABOUT_FORM_WIDTH = 287;
 		constexpr int ABOUT_FORM_HEIGHT = 462;
 	#else
-		constexpr int ABOUT_FORM_WIDTH = 320;
-		constexpr int ABOUT_FORM_HEIGHT = 502;
+		constexpr int ABOUT_FORM_WIDTH = 275;
+		constexpr int ABOUT_FORM_HEIGHT = 462;
 	#endif
 #endif	
 	
@@ -56,7 +56,7 @@ AboutForm::AboutForm(wxWindow* parent) : gcDialog(parent, wxID_ANY, "About " PRO
 	m_imgLogo->setImage("#about_logo");
 	m_imgLogo->setTile(true);
 
-	fgSizer6->Add( m_imgLogo, 0, wxALIGN_RIGHT, 5 );
+	fgSizer6->Add( m_imgLogo, 0, wxEXPAND, 5 );
 	
 	m_pMainPage = new AboutMainPage(this);
 
