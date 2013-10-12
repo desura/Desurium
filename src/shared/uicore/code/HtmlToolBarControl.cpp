@@ -22,7 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "CrumbInfo.h"
 #include "SearchControl.h"
 
-HtmlToolBarControl::HtmlToolBarControl(wxWindow* parent) : BaseToolBarControl(parent)
+HtmlToolBarControl::HtmlToolBarControl(wxWindow* parent) 
+	: BaseToolBarControl(parent)
 {
 	m_butBack = new gcImageButton( this, BUTTON_BACK, wxDefaultPosition, wxSize( 19,19 ), 0 );
 	m_butBack->setDefaultImage(("#browser_back"));
@@ -79,7 +80,7 @@ HtmlToolBarControl::HtmlToolBarControl(wxWindow* parent) : BaseToolBarControl(pa
 	fgSizer1->Add( m_butFoward, 0, wxTOP|wxBOTTOM, 4 );
 	fgSizer1->Add( 3, 0, 1, 0, 4 );
 	fgSizer1->Add( m_butHome, 0, wxTOP|wxBOTTOM, 4 );
-	fgSizer1->Add( m_pBreadCrumb, 0, wxTOP|wxBOTTOM|wxEXPAND, 4 );
+	fgSizer1->Add( m_pBreadCrumb, 0, wxTOP|wxBOTTOM, 4 );
 	fgSizer1->Add( m_dispLoading, 1, wxTOP|wxBOTTOM, 4 );
 	fgSizer1->Add( m_butStop, 1, wxTOP|wxBOTTOM, 4 );
 	fgSizer1->Add( m_butRefresh, 0, wxTOP|wxBOTTOM, 4 );
@@ -166,6 +167,8 @@ void HtmlToolBarControl::addCrumb(const char* name, const char* url)
 	CrumbInfo* info = new CrumbInfo(wname.c_str(), wurl.c_str(), 0);
 	info->crumbId = m_pBreadCrumb->addItem(name, (uint32)m_vCrumbList.size()-1);
 	m_vCrumbList.push_back(info);
+
+	this->Layout();
 }
 
 void HtmlToolBarControl::clearCrumbs()
@@ -173,6 +176,8 @@ void HtmlToolBarControl::clearCrumbs()
 	m_pBreadCrumb->clear();
 	safe_delete(m_vCrumbList);
 	m_vCrumbList.clear();
+
+	this->Layout();
 }
 
 const wchar_t* HtmlToolBarControl::getCrumbUrl(int32 id)
