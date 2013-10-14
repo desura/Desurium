@@ -220,13 +220,6 @@ public:
 		Warning(gcString("wx Assert: {0}\n", msg.mb_str()));
 		return true;
 	}
-	
-#if not wxCHECK_VERSION(2,9,5) //wxAppTraits::SetLocale() is replaced by wxApp::SetCLocale()
-	virtual void SetLocale()
-	{
-		m_pOldTraits->SetLocale();
-	}
-#endif
 
 	virtual wxLog* CreateLogTarget()
 	{
