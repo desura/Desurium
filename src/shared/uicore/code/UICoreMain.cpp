@@ -220,12 +220,7 @@ public:
 		Warning(gcString("wx Assert: {0}\n", msg.mb_str()));
 		return true;
 	}
-	
-	virtual void SetLocale()
-	{
-		m_pOldTraits->SetLocale();
-	}
-	
+
 	virtual wxLog* CreateLogTarget()
 	{
 		return m_pOldTraits->CreateLogTarget();
@@ -553,5 +548,3 @@ CONCOMMAND(exitApp, "exit")
 	if (g_pMainApp)
 		g_pMainApp->Close();
 }
-
-

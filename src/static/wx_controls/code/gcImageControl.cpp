@@ -261,8 +261,8 @@ bool SetShape(const wxRegion& region, wxWindow* frame)
 	{	
 		wxBitmap bmp = ConvertRegionToBitmap(region);
 		bmp.SetMask(new wxMask(bmp, *wxBLACK));
-		
-		GdkBitmap* mask = bmp.GetMask()->GetBitmap();
+
+		GdkBitmap* mask = *bmp.GetMask();
 
 		if (m_wxwindow)
 			gtk_widget_shape_combine_mask(m_wxwindow, mask, 0, 0);
