@@ -3,23 +3,15 @@ compiler:
   - gcc
   - clang
 before_install:
+  - sudo apt-key adv --fetch-keys http://repos.codelite.org/CodeLite.asc
+  - sudo apt-add-repository 'deb http://repos.codelite.org/wx2.9/ubuntu/ precise universe'
   - sudo apt-get update
-  - sudo apt-get install gcc-multilib libnotify-dev libv8-dev libboost1.48-dev libboost-date-time1.48-dev libboost-filesystem1.48-dev libboost-thread1.48-dev libboost-system1.48-dev libboost-test1.48-dev
-  - wget "http://ppa.launchpad.net/fransschreuder1/usbpicprog-stable/ubuntu/pool/main/w/wxwidgets2.9/libwxgtk2.9-dev_2.9.3-1_amd64.deb"
-  - wget "http://ppa.launchpad.net/fransschreuder1/usbpicprog-stable/ubuntu/pool/main/w/wxwidgets2.9/wx2.9-headers_2.9.3-1_amd64.deb"
-  - wget "http://ppa.launchpad.net/fransschreuder1/usbpicprog-stable/ubuntu/pool/main/w/wxwidgets2.9/libwxgtk2.9-0_2.9.3-1_amd64.deb"
-  - wget "http://ppa.launchpad.net/fransschreuder1/usbpicprog-stable/ubuntu/pool/main/w/wxwidgets2.9/libwxbase2.9-dev_2.9.3-1_amd64.deb"
-  - wget "http://ppa.launchpad.net/fransschreuder1/usbpicprog-stable/ubuntu/pool/main/w/wxwidgets2.9/libwxbase2.9-0_2.9.3-1_amd64.deb"
-  - sudo dpkg --install libwxbase2.9-0_2.9.3-1_amd64.deb
-  - sudo dpkg --install libwxgtk2.9-0_2.9.3-1_amd64.deb
-  - sudo dpkg --install wx2.9-headers_2.9.3-1_amd64.deb
-  - sudo dpkg --install libwxbase2.9-dev_2.9.3-1_amd64.deb
-  - sudo dpkg --install libwxgtk2.9-dev_2.9.3-1_amd64.deb
+  - sudo apt-get install gcc-multilib libnotify-dev libv8-dev libboost1.48-dev libboost-date-time1.48-dev libboost-filesystem1.48-dev libboost-thread1.48-dev libboost-system1.48-dev libboost-test1.48-dev libwxgtk2.9-dev
 before_script:
   - mkdir build
   - cd build
 script:
-  - cmake .. -DBUILD_CEF=off -DWITH_ARES=off -DDEBUG=on -DFORCE_BUNDLED_WXGTK=off
+  - cmake .. -DBUILD_CEF=off -DWITH_ARES=off -DDEBUG=on
   - make -j4
   - ctest --output-on-failure .
 notifications:
