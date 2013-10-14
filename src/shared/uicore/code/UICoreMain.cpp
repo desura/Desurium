@@ -221,11 +221,13 @@ public:
 		return true;
 	}
 	
+#if not wxCHECK_VERSION(2,9,5) //wxAppTraits::SetLocale() is replaced by wxApp::SetCLocale()
 	virtual void SetLocale()
 	{
 		m_pOldTraits->SetLocale();
 	}
-	
+#endif
+
 	virtual wxLog* CreateLogTarget()
 	{
 		return m_pOldTraits->CreateLogTarget();
@@ -553,5 +555,3 @@ CONCOMMAND(exitApp, "exit")
 	if (g_pMainApp)
 		g_pMainApp->Close();
 }
-
-
