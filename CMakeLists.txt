@@ -36,8 +36,8 @@
 #   DESKTOPDIR      depends on OS       the directory where the desktop file or link should be installed
 #
 # unix-only options:
-#   FORCE_BUNDLED_WXGTK  		ON: bundle wxGTK 2.9.3
-#                   ON			OFF: use system wxGTK (has to be 2.9.x, work stable on 2.9.3)
+#   FORCE_BUNDLED_WXGTK  		OFF: bundle wxGTK 2.9.3
+#                   ON			OFF: use system wxGTK (has to be 3.0 or later)
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
 #   WITH_ARES       ON                  build CURL with ares support (c-ares REQUIRED)
 #   DIR_TYPE        SINGLE              how should game data be stored?
@@ -51,9 +51,9 @@
 #   DESKTOP_EXE     desura              the value of Exe in the desktop file
 #   DESKTOP_ICON    desura              the value of Icon in the desktop file
 #
-# wxWidgets select correct  version
-#   wxWidgets_CONFIG_EXECUTABLE         path to wx-config (version 2.9.x)
-#   wxWidgets_wxrc_EXECUTABLE           path to wxrc (version 2.9.x)
+# wxWidgets select optional  version
+#   wxWidgets_CONFIG_EXECUTABLE         path to wx-config (version 2.9.x or later)
+#   wxWidgets_wxrc_EXECUTABLE           path to wxrc (version 2.9.x or later)
 #
 # windows-only options:
 #   BOOST_URL                           URL to boost archive
@@ -187,7 +187,7 @@ if(NOT BUILD_ONLY_CEF)
   find_package(v8 ${REQUIRED_IF_OPTION})
 
   if(NOT FORCE_BUNDLED_WXGTK)
-    find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
+    find_package(wxWidgets 3.0 COMPONENTS richtext ${REQUIRED_IF_OPTION})
   endif()
 endif()
 
