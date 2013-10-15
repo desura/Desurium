@@ -137,6 +137,8 @@ void SetDumpLevel(unsigned char level)
 
 BootLoader::BootLoader()
 {
+	_set_error_mode(_OUT_TO_MSGBOX);
+
 	m_MDumpHandle.showMessageBox(true);
 
 	//AfxEnableMemoryTracking(FALSE);
