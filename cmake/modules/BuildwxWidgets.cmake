@@ -70,6 +70,12 @@ else()
   if(MINGW)
     set(WX_PATCH_COMMAND "${PATCH_SCRIPT_PATH}" "${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch")
   endif()
+  
+  if(CLANG)
+    set(additional_flags "CXXFLAGS=-std=c++0x")
+  elseif(GCC)
+    set(additional_flags --enable-permissive)
+  endif()
 
   ExternalProject_Add(
     wxWidget
@@ -124,7 +130,7 @@ else()
         --with-flavour=desura
         --enable-threads
         --prefix=${wxWidgets_INSTALL_DIR}
-        --enable-permissive
+        ${additional_flags}
   )
   
   set(wxWidgets_LIBRARY_DIRS ${wxWidgets_INSTALL_DIR}/lib)
