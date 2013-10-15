@@ -19,7 +19,7 @@ before_script:
   - mkdir build
   - cd build
 script:
-  - cmake .. -DBUILD_CEF=off -DWITH_ARES=off -DDEBUG=on -DFORCE_BUNDLED_WXGTK=off
+  - cmake .. -DBUILD_CEF=off -DDEBUG=on -DFORCE_BUNDLED_WXGTK=off
   - make -j4
   - ctest --output-on-failure .
 notifications:
