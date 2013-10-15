@@ -30,3 +30,4 @@ notifications:
       - "Latest commit: %{compare_url}"
     on_success: change
     on_failure: change
+    skip_join: true
