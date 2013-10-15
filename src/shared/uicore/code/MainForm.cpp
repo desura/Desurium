@@ -24,9 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "MainApp.h"
 #include "Color.h"
 
-#include "MainFormCustomFrame.h"
-#include "MainFormLeftBorder.h"
-
 #include "HtmlTabPage.h"
 #include "ItemTabPage.h"
 #include "AboutForm.h"
@@ -34,7 +31,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "Managers.h"
 #include "DesuraControl.h"
-
 #include <branding/branding.h>
 
 
@@ -198,14 +194,6 @@ void MainForm::setTitle(bool offline)
 
 void MainForm::loadFrame(long style)
 {
-	if (!getCustomFrame())
-	{
-		gcMainCustomFrameImpl* mcf = new gcMainCustomFrameImpl(this, this, style);
-		
-		m_pDesuraControl->regCustomFrame(mcf);
-		init(mcf);
-	}
-
 #ifdef NIX
 	Raise();
 #endif

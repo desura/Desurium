@@ -23,7 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #endif
 
 #include "wx_controls/gcControls.h"
-#include "wx_controls/wxEventDelegate.h"
 
 
 
@@ -41,8 +40,6 @@ public:
 
 	void setSelected(uint32 count);
 	int32 addButton(const char* name);
-
-	void regCustomFrame(gcMainCustomFrameImpl* mcf);
 
 	void onActiveToggle(bool state);
 
