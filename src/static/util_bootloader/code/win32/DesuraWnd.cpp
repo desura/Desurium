@@ -17,7 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 #include "DesuraWnd.h"
-
+#include <branding/branding.h>
+#include <stdio.h>
 
 using namespace Desurium;
 
@@ -111,10 +112,10 @@ HGDIOBJ CDC::SelectObject(HGDIOBJ pObject)
 	return ::SelectObject(m_hDC, pObject);
 }
 
-CFont* CDC::SelectObject(CFont* pFont)
+HGDIOBJ CDC::SelectObject(CFont* pFont)
 {
 	assert(m_hDC);
-	return NULL;
+	return ::SelectObject(m_hDC, *pFont);
 }
 
 void CDC::StretchBlt(int x, int y, int nWidth, int nHeight, CDC* pSrcDC,
@@ -144,7 +145,7 @@ CSize CDC::GetOutputTextExtent(const char* szText, int nSize)
 bool CDC::TextOut(int x, int y, const char* szText, int nSize)
 {
 	assert(m_hDC);
-	return ::TextOut(m_hDC, x, y, szText, nSize);
+	return !!::TextOut(m_hDC, x, y, szText, nSize);
 }
 
 
@@ -204,7 +205,7 @@ HCURSOR CDesuraWnd::LoadStandardCursor(const char* szResourceId)
 
 bool CDesuraWnd::RegisterClass(WNDCLASS *pClass)
 {
-	return ::RegisterClass(pClass);
+	return !!::RegisterClass(pClass);
 }
 
 HINSTANCE CDesuraWnd::gs_hInstance = NULL;
@@ -274,6 +275,13 @@ INT_PTR CDesuraDialog::DoModal()
 
 	DWORD err = GetLastError();
 
+	if (nRes == -1 && err != 0)
+	{
+		char msg[255];
+		_snprintf_s(msg, 255, _TRUNCATE, "Failed to show dialog %d", err);
+		::MessageBox(NULL, msg, PRODUCT_NAME " Critical Error", MB_OK);
+	}
+
 	return nRes;
 }
 
@@ -301,7 +309,7 @@ INT_PTR CDesuraDialog::WinProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 
 	case WM_COMMAND:
 		if (lParam)
-			gs_pCurrentDialog->OnCommand((HWND)lParam, HIWORD(wParam));
+			gs_pCurrentDialog->OnCommand((HWND)lParam, LOWORD(wParam));
 		break;
 
 	case WM_CLOSE:

@@ -257,7 +257,7 @@ void DesuraProgress::OnPaint()
 
 
 	CFont Font2;
-	Font2.CreatePointFont(80, "MS Shell Dlg");
+	Font2.CreatePointFont(16, "MS Shell Dlg");
 
 	memDC.SelectObject(&Font2);
 	memDC.SetBkMode(TRANSPARENT); 

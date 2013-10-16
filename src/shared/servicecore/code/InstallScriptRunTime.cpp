@@ -168,7 +168,7 @@ public:
 protected:
 	bool loadDll()
 	{
-#if !defined(DEBUG) && defined(DESURA_OFFICIAL_BUILD)
+#if !defined(DEBUG) && defined(DESURA_OFFICIAL_BUILD) && defined(WITH_CODESIGN)
 	#ifdef WIN32
 			char message[255] = {0};
 			if (UTIL::WIN::validateCert(L".\\bin\\scriptcore.dll", message, 255) != ERROR_SUCCESS)

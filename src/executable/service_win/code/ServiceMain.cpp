@@ -74,7 +74,7 @@ bool CGCServiceApp::start(int argc, char** argv)
 	DeleteFile("desura_service_old.exe");
 	DeleteFile("desura_old.exe");
 
-#if !defined(DEBUG) && defined(DESURA_OFFICIAL_BUILD)
+#if !defined(DEBUG) && defined(DESURA_OFFICIAL_BUILD) && defined(WITH_CODESIGN)
 	char message[255] = {0};
 	if (ValidateCert(L".\\bin\\servicecore.dll", message, 255) != ERROR_SUCCESS)
 	{

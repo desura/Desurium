@@ -57,6 +57,12 @@ enum
 	UMCF_ERR_XML_NOPRIMENODE,
 };
 
+class IBadFileCallback
+{
+public:
+	//return true to stop checking or false to continue checking
+	virtual bool foundBadFile(const wchar_t* szFileName, const wchar_t* szPath)=0;
+};
 
 class UMcf
 {
@@ -73,8 +79,11 @@ public:
 	//this extracts all files into path.
 	void install(const wchar_t* path);
 
-	//checks local files and updates as necassary
+	//checks local files and updates as necessary
 	bool checkFiles();
+
+	//checks local files and updates as necessary
+	bool checkFiles(IBadFileCallback *pCallback);
 
 	//checks the header and makes sure its a valid installer
 	bool isValidInstaller();
@@ -86,7 +95,7 @@ public:
 	bool isUpdateNewer();
 
 	//loads xml from a file
-	void loadFromFile(const wchar_t* file);
+	uint8 loadFromFile(const wchar_t* file);
 
 	//saves the xml to the path
 	void dumpXml(const wchar_t* path);

@@ -55,6 +55,12 @@ int main(int argc, char** argv)
 #endif
 #endif
 
+	if (GetFileAttributes("desura_service_debug.txt") != 0xFFFFFFFF)
+	{
+		while (!IsDebuggerPresent())
+			gcSleep( 500 );
+	}
+
 	if (argc >= 2 && strcmp(argv[1], "-exe")== 0)
 	{
 		if (g_ServiceApp.start(argc, argv))

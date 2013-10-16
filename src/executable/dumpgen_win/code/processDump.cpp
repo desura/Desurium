@@ -39,10 +39,12 @@ typedef bool (*UploadCrashFn)(const char* path, const char* user, int build, int
 class DumpInfo
 {
 public:
-	DumpInfo(const char* file, const char* user, volatile bool &complete) : m_szComplete(complete)
+	DumpInfo(const char* file, const char* user, volatile bool &complete) 
+		: m_szComplete(complete)
 	{
 		m_szFile = file;
 		m_szUser = user;
+		m_szComplete = false;
 	}
 
 	const char* m_szFile;
@@ -98,7 +100,7 @@ void ProcessDump(const char* m_lpCmdLine)
 
 	BootLoaderUtil::CMDArgs args(m_lpCmdLine);
 
-	volatile bool uploadComplete = false;
+	volatile bool uploadComplete = true;
 	char file[255] = {0};
 	char user[255] = {0};
 
@@ -115,10 +117,6 @@ void ProcessDump(const char* m_lpCmdLine)
 	{
 		DumpInfo *di = new DumpInfo(file, user, uploadComplete);
 		CDesuraWnd::BeginThread(&UploadDump, (void*)di);
-	}
-	else
-	{
-		uploadComplete = true;
 	}
 
 	if (msgbox)

@@ -21,15 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <branding/branding.h>
 #include <branding/webcore_version.h>
 
-#ifdef DESURA_OFFICAL_BUILD
-	extern void* FactoryBuilderNonGpl(const char* name);
-#else
-	void* FactoryBuilderNonGpl(const char* name)
-	{
-		return NULL;
-	}
-#endif
-
 gcString g_szVersion("{0}.{1}.{2}.{3}", VERSION_MAJOR, VERSION_MINOR, VERSION_BUILDNO, VERSION_EXTEND);
 
 namespace WebCore
@@ -102,7 +93,7 @@ CEXPORT void* FactoryBuilder(const char* name)
 		return (void*)&genUserAgent;
 	}
 
-	return FactoryBuilderNonGpl(name);
+	return NULL;
 }
 
 extern "C"

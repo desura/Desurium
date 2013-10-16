@@ -342,13 +342,22 @@ void UMcf::onFileProgress(ProgressCB& prog)
 	onProgressEvent(per);
 }
 
-void UMcf::loadFromFile(const wchar_t* file)
+uint8 UMcf::loadFromFile(const wchar_t* file)
 {
 	tinyxml2::XMLDocument doc;
 	gcString strFile(file);
 
-	if (doc.LoadFile(strFile.c_str()) == tinyxml2::XML_NO_ERROR)
-		parseUpdateXml(doc);
+	int nRes = doc.LoadFile(strFile.c_str());
+
+	if (nRes != tinyxml2::XML_NO_ERROR)
+		return MCF_ERR_INVALIDHANDLE;
+
+	parseUpdateXml(doc);
+
+	if (m_pFileList.size() == 0)
+		return MCF_ERR_FAILEDREAD;
+
+	return MCF_OK;
 }
 
 void UMcf::parseUpdateXml(tinyxml2::XMLDocument &doc)
@@ -389,6 +398,12 @@ void UMcf::parseUpdateXml(tinyxml2::XMLDocument &doc)
 //checks local files. returns true if they are good false if they are bad
 bool UMcf::checkFiles()
 {
+	return checkFiles(NULL);
+}
+
+//checks local files. returns true if they are good false if they are bad
+bool UMcf::checkFiles(IBadFileCallback *pCallback)
+{
 	uint32 prog = 0;
 
 	onProgressEvent(prog);
@@ -412,8 +427,8 @@ bool UMcf::checkFiles()
 		if (!m_pFileList[x]->checkFile(L"."))
 #endif
 		{
-			printf("Failed to check: [%s]\n", gcString(m_pFileList[x]->getName()).c_str());
-			return false;
+			if (!pCallback || pCallback->foundBadFile(m_pFileList[x]->getName(), m_pFileList[x]->getPath()))
+				return false;
 		}
 	}
 

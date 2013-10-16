@@ -23,11 +23,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "UpdateFunctions.h"
 #include "umcf/UMcf.h"
 
+extern void SetRegValues();
+extern void InstallService();
+
 INT_PTR DisplayUpdateWindow(int updateType);
+
+void InitUpdateLog();
+void StopUpdateLog();
+void Log(const char* format, ...);
 
 bool CheckCert()
 {
 #ifndef DESURA_OFFICAL_BUILD
+	return false;
+#endif
+
+#ifndef WITH_CODESIGN
 	return false;
 #endif
 
@@ -113,25 +124,53 @@ bool CheckCert()
 	return (res == IDYES);
 }
 
+class UpdateLogHandle
+{
+public:
+	UpdateLogHandle()
+	{
+		InitUpdateLog();
+	}
+
+	~UpdateLogHandle()
+	{
+		StopUpdateLog();
+	}
+};
+
 int NeedUpdateNonGpl()
 {
+	UpdateLogHandle ulh;
+
 	std::wstring path = UTIL::OS::getAppDataPath(UPDATEFILE_W);
 
 	if (!FileExists(UPDATEXML_W))
 	{
+		Log("NeedUpdate: Missing Xml");
 		return UPDATE_XML;
 	}
 	else
 	{
 		if (FileExists(path.c_str()) && CheckUpdate(path.c_str()))
+		{
+			Log("NeedUpdate: Missing Mcf");
 			return UPDATE_MCF;
+		}
 
 		if (!CheckInstall())
+		{
+			Log("NeedUpdate: Bad Files");
 			return UPDATE_FILES;
+		}
 	}
 
+#ifdef WITH_CODESIGN
 	if (CheckCert())
+	{
+		Log("NeedUpdate: Bad Cert");
 		return UPDATE_CERT;
+	}
+#endif
 
 	return UPDATE_NONE;
 }
@@ -144,12 +183,28 @@ bool CheckUpdate(const wchar_t* path)
 	return (updateMcf.parseMCF() == UMCF_OK && updateMcf.isValidInstaller());
 }
 
+class BadFileLogger : public IBadFileCallback
+{
+public:
+	bool foundBadFile(const wchar_t* szFileName, const wchar_t* szPath) override
+	{
+		gcString strFullPath("{0}\\{1}", szPath, szFileName);
+		Log("Found bad file: %s", strFullPath.c_str());
+		
+		return false;
+	}
+};
+
+
 bool CheckInstall()
 {
 	UMcf updateMcf;
-	updateMcf.loadFromFile(UPDATEXML_W);
+	
+	if (updateMcf.loadFromFile(UPDATEXML_W) != MCF_OK)
+		return false;
 
-	return updateMcf.checkFiles();
+	BadFileLogger bfl;
+	return updateMcf.checkFiles(&bfl);
 }
 
 //with full updates we should have admin rights
@@ -161,7 +216,13 @@ void FullUpdate()
 	std::wstring updateFile = UTIL::OS::getAppDataPath(UPDATEFILE_W);
 	DeleteFileW(updateFile.c_str());
 
-	if (DisplayUpdateWindow(UPDATE_FILES) == 2)
+	int nRes = DisplayUpdateWindow(UPDATE_FILES);
+	
+	//Critical failure
+	if (nRes == -1)
+		exit(0);
+	
+	if (nRes == 2)
 		exit(0);
 
 #ifndef DEBUG
@@ -184,7 +245,11 @@ void FullUpdate()
 
 void McfUpdate()
 {
-	DisplayUpdateWindow(UPDATE_MCF);
+	int nRes = DisplayUpdateWindow(UPDATE_MCF);
+	
+	//Critical failure
+	if (nRes == -1)
+		exit(0);
 }
 
 

@@ -120,10 +120,28 @@ namespace Desurium
 	class CFont
 	{
 	public:
+		CFont()
+			: m_hFont(NULL)
+		{
+		}
+
+		~CFont()
+		{
+			DeleteObject(m_hFont);
+		}
+
 		void CreatePointFont(int nSize, const char* szName)
 		{
-
+			m_hFont = CreateFont(nSize, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, szName);
 		}
+
+		operator HFONT ()
+		{
+			return m_hFont;
+		}
+
+	private:
+		HFONT m_hFont;
 	};
 
 
@@ -140,7 +158,7 @@ namespace Desurium
 
 		HGDIOBJ SelectObject(CBitmap* pBitmap);
 		HGDIOBJ SelectObject(HGDIOBJ pObject);
-		CFont* SelectObject(CFont* pFont);
+		HGDIOBJ SelectObject(CFont* pFont);
 
 		void StretchBlt(int x, int y, int nWidth, int nHeight, CDC* pSrcDC, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, DWORD dwRop);
 		void BitBlt(int x, int y, int nWidth, int nHeight, CDC* pSrcDC, int xSrc, int ySrc, DWORD dwRop);
