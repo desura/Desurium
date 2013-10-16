@@ -23,7 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #endif
 
 #include <wx/wx.h>
-#include "gcCustomFrameImpl.h"
 #include "gcManagers.h"
 
 extern wxWindow* GetMainWindow(wxWindow* p);
@@ -64,10 +63,6 @@ public:
 
 		this->Layout();
 		this->Refresh(true);
-	}
-
-	virtual ~gcCustomFrame()
-	{
 	}
 
 	virtual void loadFrame(long style)
