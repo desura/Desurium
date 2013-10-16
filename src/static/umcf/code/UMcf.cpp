@@ -345,8 +345,9 @@ void UMcf::onFileProgress(ProgressCB& prog)
 void UMcf::loadFromFile(const wchar_t* file)
 {
 	tinyxml2::XMLDocument doc;
+	gcString strFile(file);
 
-	if (doc.LoadFile(gcString(file).c_str()))
+	if (doc.LoadFile(strFile.c_str()) == tinyxml2::XML_NO_ERROR)
 		parseUpdateXml(doc);
 }
 

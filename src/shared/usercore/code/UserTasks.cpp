@@ -362,7 +362,7 @@ void MigrateStandaloneTask::doTask()
 
 		tinyxml2::XMLDocument doc;
 
-		if (!doc.LoadFile(m_vFileList[x].getFullPath().c_str()))
+		if (doc.LoadFile(m_vFileList[x].getFullPath().c_str()) != tinyxml2::XML_NO_ERROR)
 			continue;
 
 		tinyxml2::XMLElement* root = doc.FirstChildElement("game");
