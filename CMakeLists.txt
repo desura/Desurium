@@ -164,7 +164,7 @@ if(NOT BUILD_ONLY_CEF)
   find_package(Boost COMPONENTS date_time filesystem thread system ${Boost_ADDITION_LIBS})
   
   if(NOT WITH_ARES)
-    find_package(CURL ${REQUIRED_IF_OPTION})
+    find_package(CURL 7.19.1 ${REQUIRED_IF_OPTION})
   endif()
 
   if(NOT WIN32)
