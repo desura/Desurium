@@ -2,7 +2,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowser.cpp cef/cef_desur
 --- cef_desura/ChromiumBrowser.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/ChromiumBrowser.cpp	2012-05-09 11:32:01.267658243 +0200
 @@ -0,0 +1,553 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : minimal
 +//   File        : ChromiumBrowser.cpp
@@ -559,7 +559,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowserEvents.cpp cef/cef
 --- cef_desura/ChromiumBrowserEvents.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/ChromiumBrowserEvents.cpp	2012-05-09 11:32:01.267658243 +0200
 @@ -0,0 +1,340 @@
-+///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
++///////////// Copyright 2010 DesuraNet. All rights reserved. /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : ChromiumBrowserEvents.cpp
@@ -903,7 +903,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowserEvents.h cef/cef_d
 --- cef_desura/ChromiumBrowserEvents.h	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/ChromiumBrowserEvents.h	2012-05-09 11:32:01.267658243 +0200
 @@ -0,0 +1,182 @@
-+///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
++///////////// Copyright 2010 DesuraNet. All rights reserved. /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : ChromiumBrowserEvents.h
@@ -1089,7 +1089,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/ChromiumBrowser.h cef/cef_desura/
 --- cef_desura/ChromiumBrowser.h	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/ChromiumBrowser.h	2012-05-09 11:32:01.267658243 +0200
 @@ -0,0 +1,140 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : ChromiumBrowserDll
 +//   File        : ChromiumBrowser.h
@@ -1233,7 +1233,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/Cookie.cpp cef/cef_desura/Cookie.
 --- cef_desura/Cookie.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/Cookie.cpp	2012-05-09 11:32:01.267658243 +0200
 @@ -0,0 +1,113 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : Cookie.cpp
@@ -1350,7 +1350,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptContext.cpp cef/cef_des
 --- cef_desura/JavaScriptContext.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/JavaScriptContext.cpp	2012-05-09 11:32:01.267658243 +0200
 @@ -0,0 +1,75 @@
-+///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
++///////////// Copyright 2010 DesuraNet. All rights reserved. /////////////
 +//
 +//   Project     : Miscellaneous Files
 +//   File        : JavaScriptContext.cpp
@@ -1429,7 +1429,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptContext.h cef/cef_desur
 --- cef_desura/JavaScriptContext.h	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/JavaScriptContext.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,46 @@
-+///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
++///////////// Copyright 2010 DesuraNet. All rights reserved. /////////////
 +//
 +//   Project     : Miscellaneous Files
 +//   File        : JavaScriptContext.h
@@ -1479,7 +1479,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptExtender.cpp cef/cef_de
 --- cef_desura/JavaScriptExtender.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/JavaScriptExtender.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,179 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : JavaScriptExtender.cpp
@@ -1662,7 +1662,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptExtender.h cef/cef_desu
 --- cef_desura/JavaScriptExtender.h	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/JavaScriptExtender.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,92 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : JavaScriptExtender.h
@@ -1758,7 +1758,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptFactory.cpp cef/cef_des
 --- cef_desura/JavaScriptFactory.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/JavaScriptFactory.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,111 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : JavaScriptFactory.cpp
@@ -1873,7 +1873,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptFactory.h cef/cef_desur
 --- cef_desura/JavaScriptFactory.h	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/JavaScriptFactory.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,59 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : JavaScriptFactory.h
@@ -1936,7 +1936,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptObject.cpp cef/cef_desu
 --- cef_desura/JavaScriptObject.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/JavaScriptObject.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,314 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : JavaScriptObject.cpp
@@ -2254,7 +2254,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/JavaScriptObject.h cef/cef_desura
 --- cef_desura/JavaScriptObject.h	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/JavaScriptObject.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,101 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : JavaScriptObject.h
@@ -2359,7 +2359,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/MenuInfo.cpp cef/cef_desura/MenuI
 --- cef_desura/MenuInfo.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/MenuInfo.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,125 @@
-+///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
++///////////// Copyright 2010 DesuraNet. All rights reserved. /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : MenuInfo.cpp
@@ -2488,7 +2488,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/MenuInfo.h cef/cef_desura/MenuInf
 --- cef_desura/MenuInfo.h	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/MenuInfo.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,76 @@
-+///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
++///////////// Copyright 2010 DesuraNet. All rights reserved. /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : MenuInfo.h
@@ -2568,7 +2568,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemeExtender.cpp cef/cef_desura
 --- cef_desura/SchemeExtender.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/SchemeExtender.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,184 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : SchemeExtender.cpp
@@ -2757,7 +2757,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemeExtender.h cef/cef_desura/S
 --- cef_desura/SchemeExtender.h	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/SchemeExtender.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,47 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : SchemeExtender.h
@@ -2808,7 +2808,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemePost.cpp cef/cef_desura/Sch
 --- cef_desura/SchemePost.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/SchemePost.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,133 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : SchemePost.cpp
@@ -2945,7 +2945,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemePost.h cef/cef_desura/Schem
 --- cef_desura/SchemePost.h	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/SchemePost.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,91 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : SchemePost.h
@@ -3040,7 +3040,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemeRequest.cpp cef/cef_desura/
 --- cef_desura/SchemeRequest.cpp	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/SchemeRequest.cpp	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,124 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : SchemeRequest.cpp
@@ -3169,7 +3169,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura/SchemeRequest.h cef/cef_desura/Sc
 --- cef_desura/SchemeRequest.h	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura/SchemeRequest.h	2012-05-09 11:32:01.268658243 +0200
 @@ -0,0 +1,58 @@
-+///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
++///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 +//
 +//   Project     : desura_libcef_dll_wrapper
 +//   File        : SchemeRequest.h
@@ -3231,7 +3231,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura_includes/ChromiumBrowserI.h cef/c
 --- cef_desura_includes/ChromiumBrowserI.h	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura_includes/ChromiumBrowserI.h	2012-05-09 11:32:01.269658243 +0200
 @@ -0,0 +1,815 @@
-+///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
++///////////// Copyright 2010 DesuraNet. All rights reserved. /////////////
 +//
 +//   Project     : wxChromiumDll
 +//   File        : wxChromiumI.h
@@ -4050,7 +4050,7 @@ diff '--exclude=.svn' -aurN cef.ori/cef_desura_includes/SharedObjectLoader.h cef
 --- cef_desura_includes/SharedObjectLoader.h	1970-01-01 01:00:00.000000000 +0100
 +++ cef_desura_includes/SharedObjectLoader.h	2012-05-09 11:32:01.269658243 +0200
 @@ -0,0 +1,122 @@
-+///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
++///////////// Copyright 2010 DesuraNet. All rights reserved. /////////////
 +//
 +//   Project     : mcf_util
 +//   File        : SharedObjectLoader.h
