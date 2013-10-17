@@ -2,6 +2,8 @@ language: cpp
 compiler:
   - gcc
   - clang
+env:
+  - CFLAGS=--coverage CXXFLAGS=--coverage
 before_install:
   - sudo apt-get update
   - sudo apt-get install gcc-multilib libnotify-dev libv8-dev libboost1.48-dev libboost-date-time1.48-dev libboost-filesystem1.48-dev libboost-thread1.48-dev libboost-system1.48-dev libboost-test1.48-dev libgtest-dev
@@ -15,13 +17,13 @@ before_install:
   - sudo dpkg --install wx2.9-headers_2.9.3-1_amd64.deb
   - sudo dpkg --install libwxbase2.9-dev_2.9.3-1_amd64.deb
   - sudo dpkg --install libwxgtk2.9-dev_2.9.3-1_amd64.deb
-before_script:
-  - mkdir build
-  - cd build
+  - sudo pip install cpp-coveralls --use-mirrors
 script:
-  - cmake .. -DBUILD_CEF=off -DWITH_ARES=off -DDEBUG=on -DFORCE_BUNDLED_WXGTK=off -DWITH_GTEST=ON -DBUILD_TESTS=ON
+  - cmake . -DBUILD_CEF=off -DWITH_ARES=off -DDEBUG=on -DFORCE_BUNDLED_WXGTK=off -DWITH_GTEST=ON -DBUILD_TESTS=ON
   - make -j4
   - ctest --output-on-failure .
+after_success:
+  - coveralls --exclude third_party --exclude src/tests --exclude breakpad-prefix --exclude gtest-prefix --exclude fetch_cef-prefix/src/fetch_cef/tests --exclude fetch_cef-prefix/src/fetch_cef/libcef --exclude CMakeFiles --exclude-pattern 'CMake[^\.]*\.c(?:pp)?' --exclude-pattern '[^\.]*\.h' > /dev/null
 notifications:
   irc:
     channels:
