@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "Common.h"
 #include "MenuStrip.h"
-#include "MainFormCustomFrame.h"
 #include "DStripMenuControls.h"
 
 
@@ -50,22 +49,6 @@ void MenuStrip::onActiveToggle(bool state)
 
 		if (ms)
 			ms->setActive(state);
-	}
-}
-
-void MenuStrip::regCustomFrame(gcMainCustomFrameImpl* mcf)
-{
-	for (size_t x=0; x<m_vButtons.size(); x++)
-	{
-		DStripMenuButton* smb = dynamic_cast<DStripMenuButton*>(m_vButtons[x]->getButton());
-
-		if (smb)
-			smb->regCustomFrame(mcf);
-
-		DMenuSeperator* ms = dynamic_cast<DMenuSeperator*>(m_vButtons[x]->getButton());
-
-		if (ms)
-			ms->regCustomFrame(mcf);
 	}
 }
 

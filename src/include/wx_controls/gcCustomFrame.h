@@ -23,7 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #endif
 
 #include <wx/wx.h>
-#include "gcCustomFrameImpl.h"
 #include "gcManagers.h"
 
 extern wxWindow* GetMainWindow(wxWindow* p);
@@ -39,12 +38,10 @@ template <typename T>
 class gcCustomFrame : public T, public FrameIcon
 {
 public:
-	gcCustomFrame(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style) : T(), m_pCustomFrame(NULL)
-	{
-#ifdef NIX	
-		m_uiTitleHeight = 0;
-#endif
-
+	gcCustomFrame(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style) 
+		: T()
+		, m_uiTitleHeight(0)
+	{	
 		this->Create(parent, id, title, pos, size + wxSize(16, 38), style);
 		
 #ifdef WIN32
@@ -68,154 +65,15 @@ public:
 		this->Refresh(true);
 	}
 
-	~gcCustomFrame()
-	{
-		delete m_pCustomFrame;
-	}
-
-	virtual bool Destroy()
-	{
-#ifdef WIN32
-		if (m_pCustomFrame)
-		{
-			m_pCustomFrame->destroy();
-			m_pCustomFrame->onActiveEvent -= delegate(&onActiveEvent);
-		}
-#endif
-
-		return T::Destroy();
-	}
-
-	void init(gcCustomFrameImpl* custFrame)
-	{
-#ifdef WIN32
-		m_pCustomFrame = custFrame;
-
-		if (m_pCustomFrame)
-			m_pCustomFrame->onActiveEvent += delegate(&onActiveEvent);
-			
-#else
-		if (custFrame)
-			custFrame->destroy();
-#endif
-		this->Layout();
-	}
-
 	virtual void loadFrame(long style)
 	{
 		applyTheme();
-#ifdef WIN32
-		if (!getCustomFrame())
-			init(new gcCustomFrameImpl(this, this, style));
-#endif
-	}
-	
-	gcCustomFrameImpl* getCustomFrame()
-	{
-		return m_pCustomFrame;
-	}
-
-	virtual void DoGetClientSize(int *width, int *height) const
-	{
-#ifdef WIN32
-		if (m_pCustomFrame)
-			m_pCustomFrame->DoGetClientSize(width, height);
-		else
-#endif
-			T::DoGetClientSize(width, height);
-	}
-
-	virtual wxPoint GetClientAreaOrigin() const
-	{
-#ifdef WIN32
-		if (m_pCustomFrame)
-			return m_pCustomFrame->GetClientAreaOrigin();
-#endif
-		return T::GetClientAreaOrigin();
-	}
-
-#ifdef WIN32
-	virtual WXLRESULT MSWWindowProc(WXUINT message, WXWPARAM wParam, WXLPARAM lParam)
-	{
-		bool processed = false;
-		WXLRESULT res = 0;
-
-		if (m_pCustomFrame)
-			res = m_pCustomFrame->PreMSWWindowProc(message, wParam, lParam, processed);
-
-		if (processed)
-			return res;
-
-		res = T::MSWWindowProc(message, wParam, lParam);
-
-		if (!m_pCustomFrame)
-			return res;
-
-		return m_pCustomFrame->PostMSWWindowProc(message, wParam, lParam, res);
-	}
-#endif
-
-	virtual void SetTitle(const wxString &title)
-	{
-#ifdef WIN32
-		if (m_pCustomFrame)
-			m_pCustomFrame->invalidatePaint();
-#endif
-		return T::SetTitle(title);
-	}
-
-	virtual bool IsMaximized() const
-	{
-#ifdef WIN32
-		if (m_pCustomFrame)
-			return m_pCustomFrame->isMaximized();
-#endif
-		return T::IsMaximized();
-	}
-
-	virtual void Maximize(bool state)
-	{
-#ifdef WIN32
-		if (m_pCustomFrame)
-			m_pCustomFrame->maximize(state);
-		else
-#endif
-			T::Maximize(state);
-	}
-
-	virtual void Iconize(bool state)
-	{
-#ifdef WIN32
-		if (m_pCustomFrame)
-			m_pCustomFrame->minimize(state);
-#endif
-		T::Iconize(state);
-	}
-
-	virtual void Restore()
-	{
-#ifdef WIN32
-		if (m_pCustomFrame)
-			m_pCustomFrame->restore();
-#endif
-		T::Restore();
 	}
 
 	virtual void DoSetSize(int x, int y, int width, int height, int sizeFlags = wxSIZE_AUTO)
 	{
-#ifdef WIN32
-		if (m_pCustomFrame)
-		{
-			if (width != -1)
-				width += 16;
-
-			if (height != -1)
-				height += 38;
-		}
-#else
 		if (height != -1)
 			height += m_uiTitleHeight;
-#endif
 
 		T::DoSetSize(x, y, width, height, sizeFlags);
 	}
@@ -223,12 +81,7 @@ public:
 	virtual wxSize DoGetBestSize() const
 	{
 		wxSize size = T::DoGetBestSize();
-#ifdef WIN32
-		if (m_pCustomFrame)
-			size += wxSize(16,38);
-#else
 		size += wxSize(0, m_uiTitleHeight);
-#endif
 		return size;
 	}
 
@@ -236,17 +89,6 @@ public:
 	{
 		T::DoGetSize(width, height);
 		
-#ifdef WIN32
-		//Due to a bug with pointers this never worked and since it does now it messes with things
-		//if (m_pCustomFrame)
-		//{
-		//	if (width)
-		//		*width -= 16;
-		//		
-		//	if (height)
-		//		*height -= 38;
-		//}
-#else
 		if (height)
 		{
 			*height -= m_uiTitleHeight;
@@ -254,7 +96,6 @@ public:
 			if (*height < 0)
 				*height = 0;
 		}
-#endif
 	}
 
 	virtual wxSize GetFullSize()
@@ -263,7 +104,6 @@ public:
 		T::DoGetSize(&w, &h);
 		return wxSize(w,h);
 	}
-
 
 	void setIcon(const char* path)
 	{
@@ -302,9 +142,6 @@ public:
 	void setFrameIcon(wxIcon icon)
 	{
 		m_FrameIcon = icon;
-
-		if (m_pCustomFrame)
-			m_pCustomFrame->invalidatePaint();
 	}
 
 	void applyTheme()
@@ -334,22 +171,6 @@ public:
 		this->SetPosition(wxPoint(fin.x, fin.y));
 	}
 
-	bool isResizing()
-	{
-		if (!m_pCustomFrame)
-			return false;
-
-		return m_pCustomFrame->isResizing();
-	}
-
-	bool isActive()
-	{
-		if (m_pCustomFrame)
-			return m_pCustomFrame->isActive();
-
-		return true;
-	}
-
 	bool  setSavedWindowPos(int x, int y, int w, int h)
 	{
 		if (UTIL::OS::isPointOnScreen(x+8, y+30))
@@ -361,15 +182,10 @@ public:
 		return false;
 	}
 
-
 	Event<bool> onActiveEvent;
 
 private:
-#ifdef NIX
 	uint32 m_uiTitleHeight;
-#endif
-
-	gcCustomFrameImpl* m_pCustomFrame;
 	wxIcon m_FrameIcon;
 };
 

@@ -24,7 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 extern ITaskbarList3* g_pITBL3;
 #endif
 
-#include "gcCustomFrameImpl.h"
 #include "managers/CVar.h"
 #include "managers/Managers.h"
 

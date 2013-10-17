@@ -33,7 +33,6 @@ file(GLOB Sources       code/AboutForm.cpp
                         code/DStripMenuControls.cpp
                         code/EulaForm.cpp
                         code/ExeSelectForm.cpp
-                        code/FrameButtons.cpp
                         code/GameDiscForm.cpp
                         code/gcImgLoader.cpp
                         code/gcJSBinding.cpp
@@ -83,8 +82,6 @@ file(GLOB Sources       code/AboutForm.cpp
 						code/MainApp_internal.cpp
                         code/MainApp_wildcards.cpp
                         code/MainForm.cpp
-                        code/MainFormCustomFrame.cpp
-                        code/MainFormLeftBorder.cpp
                         code/MainMenuButton.cpp
                         code/Managers.cpp
                         code/MenuFiller.cpp

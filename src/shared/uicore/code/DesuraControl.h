@@ -24,7 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "wx_controls/gcControls.h"
 #include "MainAppI.h"
-#include "wx_controls/wxEventDelegate.h"
 
 class baseTabPage;
 class MainMenuButton;
@@ -62,10 +61,6 @@ public:
 	void setActivePage(PAGE index, bool reset = false);
 	void setActivePage_ID(int32 id);
 
-	
-
-	void regCustomFrame(gcMainCustomFrameImpl* mcf);
-
 	void showLeftBorder(bool state);
 	void refreshSearch();
 
@@ -83,7 +78,7 @@ protected:
 	DesuraMenuFiller *m_pFiller;
 	FrameButtons* m_pFrameButtons;
 
-	wxEventDelegateWrapper<gcImageButton> *m_pAvatar;
+	gcImageButton *m_pAvatar;
 
 	void unloadSearch(baseTabPage* page);
 	void loadSearch(baseTabPage* page);
@@ -108,9 +103,6 @@ private:
 	bool m_bOffline;
 
 	uint32 m_uiUpdateProgress;
-
-	MainFormLeftBorder* m_pLeftBorder;
-	gcMainCustomFrameImpl* m_pMainCustomFrame;
 
 	DECLARE_EVENT_TABLE();
 };

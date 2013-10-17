@@ -31,21 +31,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "ButtonStrip.h"
 #include "MenuFiller.h"
 
-#include "MainFormCustomFrame.h"
-#include "MainFormLeftBorder.h"
-
 #include "BaseToolBarControl.h"
-#include "FrameButtons.h"
-
-#include "wx_controls/wxEventDelegate.h"
 #include "managers/CVar.h"
 
 extern CVar gc_lastavatar;
 
-class DesuraMenuFiller : public wxEventDelegateWrapper<MenuFiller>
+class DesuraMenuFiller : public MenuFiller
 {
 public:
-	DesuraMenuFiller(wxWindow *parent) : wxEventDelegateWrapper<MenuFiller>(parent, "#menu_bg", wxSize(25,38))
+	DesuraMenuFiller(wxWindow *parent) : MenuFiller(parent, "#menu_bg", wxSize(25,38))
 	{
 		
 	}
@@ -67,7 +61,6 @@ END_EVENT_TABLE()
 
 DesuraControl::DesuraControl(gcFrame* parent, bool offline) : gcPanel(parent)
 {
-	m_pMainCustomFrame = NULL;
 	m_iIndex = -1;
 	m_bDownloadingUpdate = false;
 	m_uiUpdateProgress = 0;
@@ -82,7 +75,7 @@ DesuraControl::DesuraControl(gcFrame* parent, bool offline) : gcPanel(parent)
 
 	m_pMainMenuButton = new MainMenuButton(this, offline);
 
-	m_pAvatar = new wxEventDelegateWrapper<gcImageButton>( this, wxID_ANY, wxDefaultPosition, wxSize( 66,66 ), wxTAB_TRAVERSAL );
+	m_pAvatar = new gcImageButton( this, wxID_ANY, wxDefaultPosition, wxSize( 66,66 ), wxTAB_TRAVERSAL );
 
 #ifdef WIN32
 	m_pAvatar->SetCursor(wxCURSOR_HAND);
@@ -104,28 +97,16 @@ DesuraControl::DesuraControl(gcFrame* parent, bool offline) : gcPanel(parent)
 	
 	m_pUsernameBox = new UsernameBox(this, offline?"Offline":GetUserCore()->getUserName());
 	m_pMenuStrip = new MenuStrip(this);
-#ifdef WIN32
-	m_pFrameButtons = new FrameButtons(this, parent);
-	m_pLeftBorder = new MainFormLeftBorder(this);
-#endif
 
-#ifdef WIN32
-	m_sizerContent = new wxFlexGridSizer( 1, 2, 0, 0 );
-	m_sizerContent->AddGrowableCol( 1 );
-#else
 	m_sizerContent = new wxFlexGridSizer( 1, 1, 0, 0 );
 	m_sizerContent->AddGrowableCol( 0 );
-#endif
 	m_sizerContent->AddGrowableRow( 0 );
 	m_sizerContent->SetFlexibleDirection( wxBOTH );
 	m_sizerContent->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
 	wxFlexGridSizer* fgSizer3;
-#ifdef WIN32
-	fgSizer3 = new wxFlexGridSizer( 1, 5, 0, 0 );
-#else
+
 	fgSizer3 = new wxFlexGridSizer( 1, 4, 0, 0 );
-#endif
 
 	fgSizer3->AddGrowableCol( 2 );
 	fgSizer3->SetFlexibleDirection( wxBOTH );
@@ -134,10 +115,6 @@ DesuraControl::DesuraControl(gcFrame* parent, bool offline) : gcPanel(parent)
 	fgSizer3->Add( m_pUsernameBox, 1, wxEXPAND, 5 );
 	fgSizer3->Add( m_pMenuStrip, 1, wxEXPAND, 5 ); 	// main buttons across the top
 	fgSizer3->Add( m_pFiller, 1, wxEXPAND, 5 );
-
-#ifdef WIN32
-	fgSizer3->Add( m_pFrameButtons, 1, wxEXPAND, 5 );
-#endif
 
 	
 	m_sizerHeader = new wxBoxSizer( wxVERTICAL ); 
@@ -229,35 +206,15 @@ void DesuraControl::refreshSearch()
 	onResize(sEvent);
 }
 
-void DesuraControl::regCustomFrame(gcMainCustomFrameImpl* mcf)
-{
-	m_pAvatar->regCustomFrame(mcf);
-	m_pUsernameBox->regCustomFrame(mcf);
-	m_pMenuStrip->regCustomFrame(mcf);
-#ifdef WIN32
-	m_pLeftBorder->regCustomFrame(mcf);
-	m_pFrameButtons->regCustomFrame(mcf);
-#endif
-	m_pFiller->regCustomFrame(mcf);
-	m_pMainCustomFrame = mcf;
-}
-
 void DesuraControl::onActiveToggle(bool &state)
 {
 	this->Freeze();
 
 	m_pMainMenuButton->onActiveToggle(state);
-#ifdef WIN32
-	m_pLeftBorder->onActiveToggle(state);
-#endif
 	m_pFiller->onActiveToggle(state);
 
 	m_pUsernameBox->onActiveToggle(state);
 	m_pMenuStrip->onActiveToggle(state);
-#ifdef WIN32
-	m_pFrameButtons->onActiveToggle(state);
-	m_pLeftBorder->onActiveToggle(state);
-#endif
 
 	if (m_iIndex != UNKNOWN_ITEM && m_iIndex < m_vTabInfo.size())
 	{	
@@ -338,9 +295,6 @@ void DesuraControl::setActivePage(PAGE index, bool reset)
 	if (reset)
 		m_vTabInfo[index]->page->reset();
 	
-#ifdef WIN32
-	m_sizerContent->Add(m_pLeftBorder, 1, wxEXPAND, 0);
-#endif
 	m_sizerContent->Add( m_vTabInfo[index]->page, 1, wxEXPAND|wxBOTTOM, 1 );
 	m_sizerHeader->Add( m_vTabInfo[index]->header, 1, wxEXPAND|wxBOTTOM, 1 );
 
@@ -352,10 +306,6 @@ void DesuraControl::setActivePage(PAGE index, bool reset)
 
 void DesuraControl::showLeftBorder(bool state)
 {
-#ifdef WIN32
-	m_pLeftBorder->Show(state);
-	m_pFrameButtons->changeMaxButton(!state);
-#endif
 	Layout();
 }
 
