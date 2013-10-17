@@ -4,6 +4,7 @@ version 0.9.0:
 rc1:
 ----
  * fixed: cmake: build on windows (https://github.com/desura/Desurium/issues/106)
+ * fixed: create alternative to MFC (Microsoft Foundation Classes) (https://github.com/desura/Desurium/issues/376)
  * fixed: move to tinyxml-2 (https://github.com/desura/Desurium/issues/491)
  * fixed: util/OS: some functions not implemented on windows (https://github.com/desura/Desurium/issues/583)
  * fixed: Debugging is hard. (https://github.com/desura/Desurium/issues/585)
