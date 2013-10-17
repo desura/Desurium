@@ -119,15 +119,35 @@ void  CVarManager::UnRegCVar(CVar* var)
 
 void CVarManager::loadUser(CVar* var)
 {
+	loadCVarFromDb(var, "SELECT value FROM cvaruser WHERE name=? AND user=?;", gcString("{0}", m_uiUserId));
+}
+
+void CVarManager::loadWinUser(CVar* var)
+{
+	loadCVarFromDb(var, "SELECT value FROM cvarwin WHERE name=? AND user=?;", getWinUser());
+}
+
+void CVarManager::loadNormal(CVar* var)
+{
+	loadCVarFromDb(var, "SELECT value FROM cvar WHERE name=?;", "");
+}
+
+void CVarManager::loadCVarFromDb(CVar *var, const char* szSql, gcString strExtra)
+{
 	try
 	{
 		sqlite3x::sqlite3_connection db(m_szCVarDb.c_str());
-		sqlite3x::sqlite3_command cmd(db, "SELECT value FROM cvaruser WHERE user=? AND name=?;");
-		cmd.bind(1, (int)m_uiUserId);
-		cmd.bind(2, var->getName());
+		sqlite3x::sqlite3_command cmd(db, szSql);
+		cmd.bind(1, var->getName());
+		cmd.bind(2, strExtra);
+		
+		sqlite3x::sqlite3_reader reader = cmd.executereader();
 
-		std::string value = cmd.executestring();
-		var->setValueOveride(value.c_str());
+		if (reader.read())
+		{
+			std::string value = reader.getstring(0);
+			var->setValueOveride(value.c_str());
+		}
 	}
 	catch (std::exception &)
 	{
@@ -144,40 +164,7 @@ std::wstring CVarManager::getWinUser()
 	return username;
 }
 
-void CVarManager::loadWinUser(CVar* var)
-{
-	try
-	{
-		sqlite3x::sqlite3_connection db(m_szCVarDb.c_str());
-		sqlite3x::sqlite3_command cmd(db, "SELECT value FROM cvarwin WHERE user=? AND name=?;");
 
-
-		cmd.bind(1, getWinUser());
-		cmd.bind(2, var->getName());
-
-		std::string value = cmd.executestring();
-		var->setValueOveride(value.c_str());
-	}
-	catch (std::exception &)
-	{
-	}
-}
-
-void CVarManager::loadNormal(CVar* var)
-{
-	try
-	{
-		sqlite3x::sqlite3_connection db(m_szCVarDb.c_str());
-		sqlite3x::sqlite3_command cmd(db, "SELECT value FROM cvar WHERE name=?;");
-		cmd.bind(1, var->getName());
-
-		std::string value = cmd.executestring();
-		var->setValueOveride(value.c_str());
-	}
-	catch (std::exception &)
-	{
-	}
-}
 
 
 

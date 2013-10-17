@@ -92,7 +92,7 @@ bool LanguageManager::loadFromFile(const char* file)
 			this->addItem( temp );
 		}
 
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 		temp->ustr = val;
 #else
 		std::vector<std::string> res;

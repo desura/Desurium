@@ -102,7 +102,7 @@ void MainMenuButton::createMenu(bool offline)
 	m_historyMenu->Append(DESURA_wxPurchase, Managers::GetString(L"#MENU_PURCHASE"), Managers::GetString(L"#MENU_PURCHASE_TOOLTIP"));
 	m_historyMenu->Append(DESURA_wxCart, Managers::GetString(L"#MENU_CART"), Managers::GetString(L"#MENU_CART_TOOLTIP"));
 
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 	m_historyMenu->Append(DESURA_wxChangeLog, Managers::GetString(L"#MENU_CHANGELOG"), Managers::GetString(L"#MENU_CHANGELOG_TOOLTIP"));
 #endif
 
@@ -120,6 +120,11 @@ void MainMenuButton::createMenu(bool offline)
 	m_mainMenu->Append(-1, Managers::GetString(L"#MENU_TOOLS"), m_toolMenu);
 	m_mainMenu->AppendSeparator();
 
+#if defined(DEBUG) && defined(WITH_GTEST)
+	m_mainMenu->Append(DESURA_wxUnitTest, Managers::GetString(L"#MENU_UNITTEST"));
+	m_mainMenu->AppendSeparator();
+#endif
+
 	m_mainMenu->Append(DESURA_wxExit, Managers::GetString(L"#MENU_EXIT"), Managers::GetString(L"#MENU_EXIT_TOOLTIP"));
 
 	if (offline)
@@ -134,7 +139,7 @@ void MainMenuButton::createMenu(bool offline)
 		m_historyMenu->Enable(DESURA_wxGifts, false);
 		m_historyMenu->Enable(DESURA_wxPurchase, false);
 		m_historyMenu->Enable(DESURA_wxCart, false);
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 		m_historyMenu->Enable(DESURA_wxChangeLog, false);
 #endif
 

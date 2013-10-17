@@ -11,5 +11,8 @@ add_library(gcJSBase STATIC ${Sources})
 target_link_libraries(gcJSBase
   util
 )
+if(WIN32)
+  SetSharedRuntime(gcJSBase)
+endif()
 
 SET_PROPERTY(TARGET gcJSBase                PROPERTY FOLDER "Common")

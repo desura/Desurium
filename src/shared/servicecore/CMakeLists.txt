@@ -50,7 +50,8 @@ target_link_libraries(servicecore
 	${PLATFORM_LIBRARIES}
 )
 
-install(TARGETS servicecore
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(servicecore)
-SET_PROPERTY(TARGET servicecore                PROPERTY FOLDER "Shared")
+if(WIN32)
+  SetSharedRuntime(servicecore)
+endif()
+
+install_library(servicecore)

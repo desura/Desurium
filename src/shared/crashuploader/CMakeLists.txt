@@ -25,7 +25,8 @@ target_link_libraries(crashuploader
     ${PLATFORM_LIBRARIES}
 )
 
-install(TARGETS crashuploader
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(crashuploader)
-SET_PROPERTY(TARGET crashuploader                PROPERTY FOLDER "Shared")
+if(WIN32)
+  SetSharedRuntime(crashuploader)
+endif()
+
+install_library(crashuploader)

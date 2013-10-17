@@ -19,7 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "stdafx.h"
 
 #include "Common.h"
-#include "resource.h"
+
+#include "Commctrl.h"
 
 #include "UtilBootloader.h"
 #include "MiniDumpGenerator.h"
@@ -27,19 +28,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "SharedObjectLoader.h"
 #include "UICoreI.h"
 #include <branding/branding.h>
-
+#include "DesuraWinApp.h"
 #include <vector>
 
-class BootLoader : public CWinApp
+class BootLoader : public Desurium::CDesuraWinApp
 {
 public:
 	BootLoader();
 	~BootLoader();
 
-	BOOL InitInstance();
+	void InitInstance();
 	int ExitInstance();
-	BOOL PreTranslateMessage(MSG *msg);
-	BOOL OnIdle(LONG lCount);
 
 protected:
 	bool sendArgs();
@@ -62,7 +61,6 @@ BootLoader::BootLoader()
 {
 	m_MDumpHandle.showMessageBox(true);
 
-	AfxEnableMemoryTracking(FALSE);
 	InitCommonControls();
 
 #if 0
@@ -76,15 +74,14 @@ BootLoader::~BootLoader()
 {
 }
 
-BOOL BootLoader::InitInstance()
+void BootLoader::InitInstance()
 {
 	BootLoaderUtil::CMDArgs args(m_lpCmdLine);
-	CWinApp::InitInstance();
 
 	if (BootLoaderUtil::GetOSId() == WINDOWS_PRE2000)
 	{
 		::MessageBox(NULL, PRODUCT_NAME " needs Windows XP or better to run.", PRODUCT_NAME " Error: Old Windows", MB_OK);
-		return FALSE;
+		return;
 	}
 
 	if (args.hasArg("wait"))
@@ -99,43 +96,19 @@ BOOL BootLoader::InitInstance()
 	loadUICore();
 
 	if (!m_pUICore)
-		return FALSE;
+		return;
 
-	bool res = m_pUICore->initWxWidgets(m_hInstance, m_nCmdShow, args.getArgc(), const_cast<char**>(args.getArgv()));
-
-	if (res)
-		m_pMainWnd = new BootLoaderUtil::CDummyWindow(m_pUICore->getHWND());
-
-	return res?TRUE:FALSE;
+	m_pUICore->initWxWidgets(m_hInstance, m_nCmdShow, args.getArgc(), const_cast<char**>(args.getArgv()));
 }
 
 int BootLoader::ExitInstance()
 {
-	delete m_pMainWnd;
-
-	int ret = CWinApp::ExitInstance();
+	int ret=0;
 
 	if (m_pUICore)
 		m_pUICore->exitApp(&ret);
 
 	return ret;
-}
-
-// Override this to provide wxWidgets message loop compatibility
-BOOL BootLoader::PreTranslateMessage(MSG *msg)
-{
-	if (m_pUICore && m_pUICore->preTranslateMessage(msg) )
-		return TRUE;
-
-	return CWinApp::PreTranslateMessage(msg);
-}
-
-BOOL BootLoader::OnIdle(LONG lCount)
-{
-	if (m_pUICore)
-		return m_pUICore->onIdle();
-
-	return FALSE;
 }
 
 void BootLoader::loadUICore()

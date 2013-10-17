@@ -6,7 +6,8 @@ option(BUILD_ONLY_CEF "build only cef, this will disable desurium building" OFF)
 
 if(NOT BUILD_ONLY_CEF)
   option(BUILD_TESTS "Build various unit tests." ON)
-  if(BUILD_TESTS)
+  option(WITH_GTEST "Add GTest support" OFF)
+  if(BUILD_TESTS OR WITH_GTEST)
     include(CTest)
     enable_testing()
   endif()
@@ -19,6 +20,7 @@ if(NOT BUILD_ONLY_CEF)
   if(OFFICIAL_BUILD)
     set(BRANDING "branding_desura"
       CACHE STRING "The branding to use for Desura.")
+    add_definitions(-DDESURA_OFFICIAL_BUILD)
   else()
     set(BRANDING "branding_desurium"
       CACHE STRING "The branding to use for Desura.")

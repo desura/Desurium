@@ -22,7 +22,8 @@ target_link_libraries(scriptcore
 	${WINDOWS_LIBRARIES}
 )
 
-install(TARGETS scriptcore
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(scriptcore)
-SET_PROPERTY(TARGET scriptcore                PROPERTY FOLDER "Shared")
+if(WIN32)
+  SetSharedRuntime(scriptcore)
+endif()
+
+install_library(scriptcore)

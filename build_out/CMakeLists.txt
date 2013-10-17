@@ -4,22 +4,11 @@ set(DATA ${CMAKE_CURRENT_SOURCE_DIR}/data)
 # /
 ###############################################################################
 
-install(DIRECTORY 
-                  ${DATA}/bindings
-                  ${DATA}/language
-                  ${DATA}/scripts
-        DESTINATION ${DATA_INSTALL_DIR}
-)
-
-install(FILES ${DATA}/ca-bundle_lin.crt 
-        DESTINATION ${DATA_INSTALL_DIR}
-        RENAME ca-bundle.crt
-)
-
-install(FILES ${DATA}/cef_data_lin.pak
-        DESTINATION ${DATA_INSTALL_DIR}
-        RENAME cef_data.pak
-)
+install_data_directories("" ${DATA}/bindings)
+install_data_directories("" ${DATA}/language)
+install_data_directories("" ${DATA}/scripts)
+install_data_files("" "${DATA}/ca-bundle_lin.crt")
+install_data_files("" "${DATA}/cef_data_lin.pak")
 
 ###############################################################################
 # /themes/default
@@ -27,15 +16,9 @@ install(FILES ${DATA}/cef_data_lin.pak
 
 set(DT ${DATA}/themes/default)
 
-install(DIRECTORY ${DT}/css
-                  ${DT}/html
-        DESTINATION ${DATA_INSTALL_DIR}/themes/default
-)
-
-install(FILES ${DT}/preview.jpg
-              ${DT}/theme.xml
-        DESTINATION ${DATA_INSTALL_DIR}/themes/default
-)
+install_data_directories("themes/default" "${DT}/css")
+install_data_directories("themes/default" "${DT}/html")
+install_data_files("themes/default" ${DT}/preview.jpg ${DT}/theme.xml)
 
 ###############################################################################
 # /themes/default/js
@@ -48,15 +31,14 @@ list(REMOVE_ITEM JS_SCRIPTS ${JS}/functions_lin.js
                             ${JS}/functions_win.js
                             ${JS}/settings_lin.js
                             ${JS}/settings_win.js)
-install(FILES ${JS_SCRIPTS}
-        DESTINATION ${DATA_INSTALL_DIR}/themes/default/js)
+install_data_files("themes/default/js" ${JS_SCRIPTS})
 
 if(WIN32)
-  install(FILES ${JS}/functions_win.js DESTINATION ${DATA_INSTALL_DIR}/themes/default/js RENAME functions.js)
-  install(FILES ${JS}/settings_win.js DESTINATION ${DATA_INSTALL_DIR}/themes/default/js RENAME settings.js)
+  install_data_files("themes/default/js" ${JS}/functions_win.js)
+  install_data_files("themes/default/js" ${JS}/settings_win.js)
 else()
-  install(FILES ${JS}/functions_lin.js DESTINATION ${DATA_INSTALL_DIR}/themes/default/js RENAME functions.js)
-  install(FILES ${JS}/settings_lin.js DESTINATION ${DATA_INSTALL_DIR}/themes/default/js RENAME settings.js)
+  install_data_files("themes/default/js" ${JS}/functions_lin.js)
+  install_data_files("themes/default/js" ${JS}/settings_lin.js)
 endif()
 
 ###############################################################################
@@ -65,9 +47,7 @@ endif()
 
 set(IMG ${DT}/images)
 
-install(DIRECTORY ${IMG}/html
-        DESTINATION ${DATA_INSTALL_DIR}/themes/default/images
-)
+install_data_directories("themes/default/images" ${IMG}/html)
 
 ###############################################################################
 # /themes/default/images/app
@@ -76,22 +56,9 @@ install(DIRECTORY ${IMG}/html
 set(APP ${IMG}/app)
 file(GLOB IMAGES ${APP}/*.png)
 
-install(FILES ${IMAGES}
-        DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app
-)
+install_data_files("themes/default/images/app" ${IMAGES})
 
 if(NOT WIN32)
-  install(FILES util.sh
-          DESTINATION ${DATA_INSTALL_DIR}
-          PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-                      GROUP_READ             GROUP_EXECUTE
-                      WORLD_READ             WORLD_EXECUTE
-  )
-  
-  install(FILES findlib.sh
-          DESTINATION ${LIB_INSTALL_DIR}
-          PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-                      GROUP_READ             GROUP_EXECUTE
-                      WORLD_READ             WORLD_EXECUTE
-  )
+  install_internal_tool_script(util.sh)
+  install_internal_tool_script(findlib.sh)
 endif()

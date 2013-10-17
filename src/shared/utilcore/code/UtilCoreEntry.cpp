@@ -151,6 +151,11 @@ public:
 		m_iExitCode = exitCode;
 	}
 
+	int runUnitTests(int argc, char** argv)
+	{
+		return -1;
+	}
+
 private:
 	bool m_bExitCodeSet;
 	int32 m_iExitCode;

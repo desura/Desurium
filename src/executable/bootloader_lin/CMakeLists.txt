@@ -22,4 +22,4 @@ target_link_libraries(desura
 )
 
 install_executable(desura)
-        
+add_gtest_test(desura --unittests)

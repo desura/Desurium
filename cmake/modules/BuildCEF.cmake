@@ -244,10 +244,7 @@ if(BUILD_CEF OR BUILD_ONLY_CEF)
   add_dependencies(cef chromium)
   add_dependencies(cef fetch_cef)
 
-  install(FILES ${CEF_LIBRARIES}
-          DESTINATION ${LIB_INSTALL_DIR})
-  install(FILES ${CEF_FFMPEG_LIB}
-          DESTINATION ${CEF_MEDIA_DIR})
+  install_external_library(cef ${CEF_LIBRARIES} ${CEF_FFMPEG_LIB})
 		  
   SET_PROPERTY(TARGET cef                PROPERTY FOLDER "ThirdParty")
 else(BUILD_CEF)
@@ -269,6 +266,34 @@ else(BUILD_CEF)
   set(CEF_SOURCE_DIR ${source_dir})
   set(CEF_INCLUDE_DIRS "${CEF_SOURCE_DIR}")
   
-  SET_PROPERTY(TARGET fetch_cef                PROPERTY FOLDER "ThirdParty")
+  SET_PROPERTY(TARGET fetch_cef PROPERTY FOLDER "ThirdParty")
+  
+  if(WIN32)
+    ExternalProject_Add(
+      fetch_cef_bin
+      URL "${CEF_BIN_URL}"
+      URL_MD5 ${CEF_BIN_MD5}
+      UPDATE_COMMAND ""
+      BUILD_IN_SOURCE 1
+      CONFIGURE_COMMAND ""
+      BUILD_COMMAND ""
+      INSTALL_COMMAND ""
+    )
+
+    ExternalProject_Get_Property(
+      fetch_cef_bin
+      source_dir
+    )
+    
+    install_external_library(fetch_cef_bin 
+      ${source_dir}/avcodec-53.dll
+      ${source_dir}/avformat-53.dll
+      ${source_dir}/avutil-51.dll
+      ${source_dir}/cef_desura.dll
+      ${source_dir}/gcswf32.dll
+      ${source_dir}/icudt.dll
+      ${source_dir}/plugin.vch
+      ${source_dir}/zlibwapi.dll)
+  endif()	
 endif()
 

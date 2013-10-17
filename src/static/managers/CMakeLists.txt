@@ -19,6 +19,9 @@ target_link_libraries(managers
   ${SQLITE3X_LIBRARIES}
   ${CMAKE_THREAD_LIBS_INIT}
 )
+if(WIN32)
+  SetSharedRuntime(managers)
+endif()
 
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/code
@@ -32,6 +35,10 @@ add_library(managers_window STATIC ${SourcesWindow})
 target_link_libraries(managers_window
     ${wxWidgets_LIBRARIES}
 )
+
+if(WIN32)
+  SetSharedRuntime(managers_window)
+endif()
 
 SET_PROPERTY(TARGET managers                PROPERTY FOLDER "Static")
 SET_PROPERTY(TARGET managers_window                PROPERTY FOLDER "Static")

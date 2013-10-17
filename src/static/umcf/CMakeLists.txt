@@ -10,4 +10,19 @@ target_link_libraries(umcf
     ${BZIP2_LIBRARIES}
 )
 
-SET_PROPERTY(TARGET umcf                PROPERTY FOLDER "Static")
+if(WIN32)
+  SetSharedRuntime(umcf)
+endif()
+
+SET_PROPERTY(TARGET umcf PROPERTY FOLDER "Static")
+
+if(WIN32)
+  add_library(umcf_s STATIC ${Sources})
+
+  target_link_libraries(umcf_s
+    ${BZIP2_LIBRARIES_S}
+  )
+
+  SET_PROPERTY(TARGET umcf_s PROPERTY FOLDER "Static")
+  SetStaticRuntime(umcf_s)
+endif()

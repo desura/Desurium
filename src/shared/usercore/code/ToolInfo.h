@@ -33,6 +33,11 @@ namespace sqlite3x
 	class sqlite3_connection;
 }
 
+namespace UnitTest
+{
+	class ToolInfoFixture;
+}
+
 namespace UserCore
 {
 
@@ -71,6 +76,8 @@ public:
 #endif
 
 protected:
+	friend class UnitTest::ToolInfoFixture;
+
 	enum TOOL_FLAGS
 	{
 		TF_NONE = 0,
@@ -85,6 +92,7 @@ protected:
 	virtual void saveToDb(sqlite3x::sqlite3_connection* db);
 
 	friend class ToolManager;
+	friend class UnitTest::ToolInfoFixture;
 
 	virtual bool checkExePath(const char* path, bool quick = false);
 

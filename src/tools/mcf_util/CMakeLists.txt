@@ -26,7 +26,8 @@ target_link_libraries(mcf_util
   ${PLATFORM_LIBRARIES}
 )
 
-install_executable(mcf_util)
+if(WIN32)
+  SetSharedRuntime(mcf_util)
+endif()
 
-CopyTargetFiles(mcf_util)
-SET_PROPERTY(TARGET mcf_util                PROPERTY FOLDER "Tools")
+install_tool(mcf_util)

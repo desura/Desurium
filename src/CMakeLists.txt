@@ -14,31 +14,28 @@ file(RENAME ${BIN_INCLUDE_DIR}/${BRANDING} ${BIN_INCLUDE_DIR}/branding)
 set(BRANDING_DIR ${BIN_INCLUDE_DIR}/branding)
 set(APP ${BRANDING_DIR}/data/themes/default/images/app)
 
-install(FILES ${BRANDING_DIR}/data/desura_lin.png
-        DESTINATION ${DATA_INSTALL_DIR}
-        RENAME desura.png
-)
-install(FILES ${BRANDING_DIR}/data/themes/default/images/html/default/logo.png
-        DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/html/default/)
-install(FILES ${APP}/about_logo.png
-              ${APP}/icon_download.png
-              ${APP}/signin_banner.png
-        DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app/
-)
+install_data_files("" ${BRANDING_DIR}/data/desura_lin.png)
+install_data_files("" ${BRANDING_DIR}/data/desura_win.ico)
+install_data_files(themes/default/images/html/default ${BRANDING_DIR}/data/themes/default/images/html/default/logo.png)
+install_data_files(themes/default/images/app ${APP}/about_logo.png ${APP}/icon_download.png ${APP}/signin_banner.png)
 
 if(WIN32)
-  install(FILES ${APP}/menu_button_hover_win.png RENAME menu_button_hover.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-  install(FILES ${APP}/menu_button_nonactive_win.png RENAME menu_button_nonactive.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-  install(FILES ${APP}/menu_button_win.png RENAME menu_button.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
+  install_data_files(themes/default/images/app ${APP}/menu_button_hover_win.png)
+  install_data_files(themes/default/images/app ${APP}/menu_button_nonactive_win.png)
+  install_data_files(themes/default/images/app ${APP}/menu_button_win.png)
 else()
-  install(FILES ${APP}/menu_button_hover_lin.png RENAME menu_button_hover.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-  install(FILES ${APP}/menu_button_nonactive_lin.png RENAME menu_button_nonactive.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
-  install(FILES ${APP}/menu_button_lin.png RENAME menu_button.png DESTINATION ${DATA_INSTALL_DIR}/themes/default/images/app)
+  install_data_files(themes/default/images/app ${APP}/menu_button_hover_lin.png)
+  install_data_files(themes/default/images/app ${APP}/menu_button_nonactive_lin.png)
+  install_data_files(themes/default/images/app ${APP}/menu_button_lin.png)
 endif()
 
 ###############################################################################
 # do final steps for setting up the desura build environment
 ###############################################################################
+
+if (WIN32)
+	set(DESURA_EXE_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/executable/bootloader_win/code)
+endif()
 
 set(GLOBAL_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(COMMON_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/common)
@@ -76,8 +73,12 @@ add_subdirectory(static/ipc_pipe)
 add_subdirectory(static/scriptengine)
 add_subdirectory(static/umcf)
 add_subdirectory(static/util)
+
 if(WIN32)
   add_subdirectory(static/util_bootloader)
+  if(OFFICIAL_BUILD)
+    add_subdirectory(static/util_bootloader_official)
+  endif()
 endif()
 add_subdirectory(static/util_fs)
 add_subdirectory(static/util_thread)
@@ -108,6 +109,7 @@ if(WIN32)
   add_subdirectory(executable/service_win)
   add_subdirectory(executable/toolhelper)
   add_subdirectory(executable/utilhelper)
+  add_subdirectory(executable/dumpgen_win)
 else()
   add_subdirectory(executable/bootloader_lin)
   add_subdirectory(executable/crashdlg_lin)
@@ -227,4 +229,8 @@ endif()
 if(NOT V8_FOUND)
   add_dependencies(scriptcore v8)
   add_dependencies(scriptengine v8)
+endif()
+
+if(NOT GTEST_FOUND AND WITH_GTEST)
+  add_dependencies(uicore gtest)
 endif()

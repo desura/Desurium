@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 	static const int ABOUT_FORM_WIDTH = 295;
 	static const int ABOUT_FORM_HEIGHT = 412;
 #else
-	#ifdef DESURA_OFFICAL_BUILD
+	#ifdef DESURA_OFFICIAL_BUILD
 		static const int ABOUT_FORM_WIDTH = 287;
 		static const int ABOUT_FORM_HEIGHT = 462;
 	#else
