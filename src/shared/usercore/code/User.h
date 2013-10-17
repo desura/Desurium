@@ -1,13 +1,21 @@
-////////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
-//
-//   Project     : UserCore::Usercore
-//   File        : UserCore::User.h
-//   Description :
-//      [Write the purpose of UserCore::User.h.]
-//
-//   Created On: 9/23/2008 5:00:03 PM
-//   Created By: Mark Chandler <mailto:mark@moddb.com>
-////////////////////////////////////////////////////////////////////////////
+/*
+Desura is the leading indie game distribution platform
+Copyright (C) Desura Ltd. <support@desura.com>
+          (C) Ian T. Jacobsen <iantj92@gmail.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
 
 #ifndef DESURA_USER_H
 #define DESURA_USER_H

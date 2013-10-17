@@ -1,13 +1,22 @@
-///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
-//
-//   Project     : uicore
-//   File        : gcJSBase.cpp
-//   Description :
-//      [TODO: Write the purpose of gcJSBase.cpp.]
-//
-//   Created On: 6/17/2010 10:53:04 AM
-//   Created By: Mark Chandler <mailto:mark@moddb.com>
-////////////////////////////////////////////////////////////////////////////
+/*
+Desura is the leading indie game distribution platform
+Copyright (C) Desura Ltd. <support@desura.com>
+          (C) Jookia <166291@gmail.com>
+          (C) Karol Herbst <git@karolherbst.de>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
 
 #include "Common.h"
 #include "gcJSBase.h"
