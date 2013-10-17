@@ -23,17 +23,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #endif
 
 #include "wx_controls/gcControls.h"
-#include "wx_controls/wxEventDelegate.h"
 #include "StripMenuButton.h"
 #include "MenuSeperator.h"
 
-class DStripMenuButton : public wxEventDelegate<StripMenuButton>
+class DStripMenuButton : public StripMenuButton
 {
 public:
 	DStripMenuButton(wxWindow *parent, const char* label, wxSize size = wxDefaultSize);
 	void setActive(bool state);
-
-	virtual bool handleEvent(wxMouseEvent& event);
 
 private:
 	wxRect m_IgnoreRect;
@@ -43,10 +40,11 @@ private:
 	wxColor m_NonActiveColor;
 };
 
-class DMenuSeperator : public wxEventDelegateWrapper<MenuSeperator>
+class DMenuSeperator : public MenuSeperator
 {
 public:
-	DMenuSeperator(wxWindow *parent, const wxSize &size = wxDefaultSize) : wxEventDelegateWrapper<MenuSeperator>(parent, "#menu_separator", size)
+	DMenuSeperator(wxWindow *parent, const wxSize &size = wxDefaultSize) 
+		: MenuSeperator(parent, "#menu_separator", size)
 	{
 	}
 

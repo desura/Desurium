@@ -35,7 +35,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include <wx/menu.h>
 #include "BaseMenuButton.h"
 
-#include "wx_controls/wxEventDelegate.h"
 #include "wx_controls/gcCustomMenu.h"
 
 enum
