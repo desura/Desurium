@@ -104,7 +104,11 @@ SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 if(DEBUG)
   set(CMAKE_BUILD_TYPE Debug)
 else()
-  set(CMAKE_BUILD_TYPE Release)
+  if(OFFICIAL_BUILD)
+    set(CMAKE_BUILD_TYPE RelWithDebInfo)
+  else()
+    set(CMAKE_BUILD_TYPE Release)
+  endif()
 endif()
 
 ###############################################################################
