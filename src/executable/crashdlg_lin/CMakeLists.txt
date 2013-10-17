@@ -13,5 +13,4 @@ target_link_libraries(crashdlg
     ${SQLITE_LIBRARIES}
 )
 
-install(TARGETS crashdlg
-        DESTINATION "${LIB_INSTALL_DIR}")
+install_internal_tool(crashdlg)

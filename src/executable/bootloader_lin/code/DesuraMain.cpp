@@ -141,13 +141,16 @@ int MainApp::run()
 		return -1;
 
 	bool usingGDB = false;
-		
+#ifdef WITH_GTEST
+	bool runGtest = false;
+#endif
+
 #ifdef DESURA_OFFICAL_BUILD
 	bool forceUpdate = false;
 	bool skipUpdate = false;
 	bool testDownload = false;
 	bool testInstall = false;
-#endif	
+#endif
 
 	for (int x=0; x<m_Argc; x++)
 	{
@@ -157,7 +160,12 @@ int MainApp::run()
 		if (strcasecmp(m_Argv[x], "-g") == 0 || strcasecmp(m_Argv[x], "--gdb") == 0)
 			usingGDB = true;
 
-#ifdef DESURA_OFFICAL_BUILD			
+#ifdef WITH_GTEST
+		if (strcasecmp(m_Argv[x], "-u") == 0 || strcasecmp(m_Argv[x], "--unittests") == 0)
+			runGtest = true;
+#endif
+
+#ifdef DESURA_OFFICAL_BUILD
 		if (strcasecmp(m_Argv[x], "-td") == 0 || strcasecmp(m_Argv[x], "--testdownload") == 0)
 			testDownload = true;
 
@@ -168,18 +176,18 @@ int MainApp::run()
 			skipUpdate = true;
 
 		if (strcasecmp(m_Argv[x], "-f") == 0 || strcasecmp(m_Argv[x], "--forceupdate") == 0)
-			forceUpdate = true;			
-#endif			
+			forceUpdate = true;
+#endif
 	}
-	
-#ifdef DESURA_OFFICAL_BUILD	
+
+#ifdef DESURA_OFFICAL_BUILD
 	if (testInstall)
 		return InstallFilesForTest();
-		
+
 	if (testDownload)
 		return DownloadFilesForTest();
 #endif
-		
+
 #ifndef DEBUG
 	std::string lockPath = UTIL::LIN::expandPath("$XDG_RUNTIME_DIR/desura/lock");
 
@@ -189,7 +197,7 @@ int MainApp::run()
 		if (CheckForUpdate(forceUpdate, skipUpdate))
 			return 0;
 #endif
-	
+
 		checkUnityWhitelist();
 	}
 #endif
@@ -200,19 +208,26 @@ int MainApp::run()
 		return -1;
 	}
 
+#ifdef WITH_GTEST
+	if (runGtest)
+	{
+		return m_pUICore->runUnitTests(m_Argc, m_Argv);
+	}
+#endif
+
 	if (!m_pUICore->singleInstantCheck())
 	{
 		sendArgs();
 		return 0;
 	}
-	
+
 #ifndef DEBUG
 	if (!loadCrashHelper())
 		return -1;
 #endif
 
 	m_pUICore->disableSingleInstanceLock();
-		
+
 	if (usingGDB)
 	{
 		ERROR_OUTPUT("Running with GDB -- Not setting up dump handler");
@@ -223,7 +238,7 @@ int MainApp::run()
 		m_MDumpHandle.showMessageBox(true);
 		m_MDumpHandle.setCrashCallback(&MainApp::onCrash);	
 	}
-	
+
 	return m_pUICore->initWxWidgets(m_Argc, m_Argv);
 }
 

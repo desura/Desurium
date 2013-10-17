@@ -59,7 +59,8 @@ target_link_libraries(utilcore
 	${WINDOWS_LIBRARIES}
 )
 
-install(TARGETS utilcore
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(utilcore)
-SET_PROPERTY(TARGET utilcore                PROPERTY FOLDER "Shared")
+if(WIN32)
+  SetSharedRuntime(utilcore)
+endif()
+
+install_library(utilcore)

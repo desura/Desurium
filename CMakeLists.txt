@@ -19,6 +19,7 @@
 #
 #   BREAKPAD_URL                        URL to breakdpad archive, should be rev. 850
 #   CEF_URL                             URL to cef archive, should be rev. 291
+#   CEF_BIN_URL							URL to cef bin files for windows
 #   CHROMIUM_URL                        URL to chromium archive, has to be 15.0.876.0
 #   CURL_URL                            URL to curl archive
 #   DEPOT_TOOLS_URL                     URL to depot_tools archive
@@ -130,24 +131,6 @@ endif()
 # find all packages which are needed
 ###############################################################################
 
-macro(CopyTargetFiles target)
-
-get_property(target_loc TARGET ${target} PROPERTY LOCATION)
-
-message(WARNING, ${target_loc})
-
-if (${target_loc} MATCHES ".*exe")
-	add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_OUTPUT}")
-endif()
-
-if (${target_loc} MATCHES ".*dll")
-	add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_OUTPUT}/bin/.")
-	add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different "${target_loc}" "${CMAKE_OUTPUT}/bin/.")
-endif()
-	
-endmacro(CopyTargetFiles)
-
-
 if(NOT WIN32)
   set(REQUIRED_ON_UNIX REQUIRED)
 endif()
@@ -159,14 +142,14 @@ if(NOT BUILD_ONLY_CEF)
   if(BUILD_TESTS)
     set(Boost_ADDITION_LIBS ${Boost_ADDITION_LIBS} unit_test_framework)
   endif()
-  
+
   set(Boost_USE_MULTITHREADED ON)
   if(WIN32)
     set(Boost_USE_STATIC_LIBS OFF)
     set(Boost_USE_STATIC_RUNTIME OFF)
   endif()
   find_package(Boost COMPONENTS date_time filesystem thread system ${Boost_ADDITION_LIBS})
-  
+
   if(NOT WITH_ARES)
     find_package(CURL 7.19.1 ${REQUIRED_IF_OPTION})
   endif()
@@ -193,21 +176,17 @@ if(NOT BUILD_ONLY_CEF)
   if(NOT FORCE_BUNDLED_WXGTK)
     find_package(wxWidgets 2.9 COMPONENTS richtext ${REQUIRED_IF_OPTION})
   endif()
+
+  if(WITH_GTEST)
+    find_package(GTest ${REQUIRED_IF_OPTION})
+    add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY -DWITH_GTEST)
+  endif()
 endif()
 
 find_package(PythonInterp REQUIRED)
 
 if(WIN32)
   find_package(PythonLibs REQUIRED)
-  # only define this if MFC was found
-  # VC express and mingw doesn't provide MFC, but other versions of VC do
-  find_package(MFC)
-  if(MFC_FOUND)
-    set(CMAKE_MFC_FLAG 2)
-    add_definitions(-DMFC_FOUND -DDONT_INCLUDE_WINH -D_AFXDLL)
-    # Visual Studio 9 needs this
-    add_definitions(-D_BIND_TO_CURRENT_CRT_VERSION -D_BIND_TO_CURRENT_MFC_VERSION)
-  endif()
 endif()
 
 find_package(Patch REQUIRED)
@@ -218,86 +197,42 @@ else()
   set(PATCH_SCRIPT_PATH ${CMAKE_SCRIPT_PATH}/patch.sh)
 endif()
 
+if(WIN32)
+  find_package(NMake REQUIRED)
+endif()
+
 ###############################################################################
 # SVN, HTTP stuff
 ###############################################################################
 
-if(WIN32)
-  set(BOOST_URL_DEFAULT "http://downloads.sourceforge.net/project/boost/boost/1.51.0/boost_1_51_0.zip")
-  set(BOOST_URL ${BOOST_URL_DEFAULT}
-      CACHE STRING "URL to boost archive")
-  if(BOOST_URL STREQUAL BOOST_URL_DEFAULT)
-    set(BOOST_MD5 ee8112e48088b05c248d68329cd5d908)
+macro(SetupDownloadUrl name url md5)
+  set(${name}_URL_DEFAULT "${url}")
+  set(${name}_URL ${${name}_URL_DEFAULT} CACHE STRING "URL to get ${name} archive")
+  if(${name}_URL STREQUAL ${name}_URL_DEFAULT)
+    set(${name}_MD5 ${md5} CACHE STRING "Md5 for ${name} archive")
   else()
-    unset(BOOST_MD5)
+    unset(${name}_MD5)
   endif()
+endmacro()
+
+if(WIN32)
+  SetupDownloadUrl(BOOST "http://downloads.sourceforge.net/project/boost/boost/1.53.0/boost_1_53_0.zip" c618e030fd4882e4dbacf54baf824544)
+  SetupDownloadUrl(CEF_BIN "https://s3-us-west-2.amazonaws.com/lecs.desura.lindenlab.com/cef_bin.zip" c9c0379579d9d26557ca8f4b42f937f2)
+  SetupDownloadUrl(DESURA_EXTRA_BIN "https://s3-us-west-2.amazonaws.com/lecs.desura.lindenlab.com/desura_extra_bin.zip" fdb2a4dd704a90e5174c64d3eaf8392b) 
 endif()
 
-set(BREAKPAD_URL_DEFAULT "http://sourceforge.net/projects/desurium/files/breakpad-850-r1.zip/download")
-set(BREAKPAD_URL ${BREAKPAD_URL_DEFAULT}
-    CACHE STRING "URL to breakpad")
-if(BREAKPAD_URL STREQUAL BREAKPAD_URL_DEFAULT)
-  set(BREAKPAD_MD5 b0061a854df1a0d285edc74c5ac37c42)
-else()
-  unset(BREAKPAD_MD5)
-endif()
-
-
-set(CEF_URL_DEFAULT "http://sourceforge.net/projects/desurium/files/cef-291.tar.gz/download")
-set(CEF_URL ${CEF_URL_DEFAULT}
-    CACHE STRING "URL to cef, has to be revision 291")
-if(CEF_URL STREQUAL CEF_URL_DEFAULT)
-  set(CEF_MD5 97e925e33f2d48cd50172247dbe40f30)
-else()
-  unset(CEF_MD5)
-endif()
-
-set(CHROMIUM_URL_DEFAULT "http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2")
-set(CHROMIUM_URL ${CHROMIUM_URL_DEFAULT}
-    CACHE STRING "URL to chromium, has to be 15.0.876.0")
-if(CHROMIUM_URL STREQUAL CHROMIUM_URL_DEFAULT)
-  set(CHROMIUM_MD5 22c8e1db4d1c4b474c600dffbb5fdd0c)
-else()
-  unset(CHROMIUM_MD5)
-endif()
+SetupDownloadUrl(BREAKPAD "http://sourceforge.net/projects/desurium/files/breakpad-850-r1.zip/download" b0061a854df1a0d285edc74c5ac37c42)
+SetupDownloadUrl(CEF "http://sourceforge.net/projects/desurium/files/cef-291.tar.gz/download" 97e925e33f2d48cd50172247dbe40f30)
+SetupDownloadUrl(CHROMIUM "http://commondatastorage.googleapis.com/chromium-browser-official/chromium-15.0.876.0.tar.bz2" 22c8e1db4d1c4b474c600dffbb5fdd0c)
 
 if(WIN32 OR NOT CURL_FOUND)
-  set(CURL_URL_DEFAULT http://curl.haxx.se/download/curl-7.32.0.tar.bz2)
-  set(CURL_URL ${CURL_URL_DEFAULT}
-      CACHE STRING "URL to curl archive")
-  if(CURL_URL STREQUAL CURL_URL_DEFAULT)
-    set(CURL_MD5 30d04b0a8c43c6770039d1bf033dfe79)
-  else()
-    unset(CURL_MD5)
-  endif()
+  SetupDownloadUrl(CURL "http://curl.haxx.se/download/curl-7.32.0.tar.bz2" 30d04b0a8c43c6770039d1bf033dfe79)
 endif()
 
-set(DEPOT_TOOLS_URL_DEFAULT "http://sourceforge.net/projects/desurium/files/depot_tools-r1.zip/download")
-set(DEPOT_TOOLS_URL ${DEPOT_TOOLS_URL_DEFAULT}
-    CACHE STRING "URL to depot_tools")
-if(DEPOT_TOOLS_URL STREQUAL DEPOT_TOOLS_URL_DEFAULT)
-  set(DEPOT_TOOLS_MD5 a27266b8d2388c4dc51645d1159dd0de)
-else()
-  unset(DEPOT_TOOLS_MD5)
-endif()
-
-set(V8_URL_DEFAULT https://commondatastorage.googleapis.com/chromium-browser-official/v8-3.18.5.14.tar.bz2)
-set(V8_URL ${V8_URL_DEFAULT}
-    CACHE STRING "URL to v8 archive")
-if(V8_URL STREQUAL V8_URL_DEFAULT)
-  set(V8_MD5 657802ea63c89190fd510ee1a2a719bf)
-else()
-  unset(V8_MD5)
-endif()
-
-set(WXWIDGET_URL_DEFAULT http://garr.dl.sourceforge.net/project/wxwindows/2.9.3/wxWidgets-2.9.3.tar.bz2)
-set(WXWIDGET_URL ${WXWIDGET_URL_DEFAULT}
-    CACHE STRING "URL to wxWidget 2.9.3 archive")
-if(WXWIDGET_URL STREQUAL WXWIDGET_URL_DEFAULT)
-  set(WXWIDGET_MD5 6b6003713289ea4d3cd9b49c5db5b721)
-else()
-  unset(WXWIDGET_MD5)
-endif()
+SetupDownloadUrl(DEPOT_TOOLS "http://sourceforge.net/projects/desurium/files/depot_tools-r1.zip/download" a27266b8d2388c4dc51645d1159dd0de)
+SetupDownloadUrl(GTEST "https://googletest.googlecode.com/files/gtest-1.7.0.zip" 2d6ec8ccdf5c46b05ba54a9fd1d130d7)
+SetupDownloadUrl(WXWIDGET "http://garr.dl.sourceforge.net/project/wxwindows/2.9.3/wxWidgets-2.9.3.tar.bz2" 6b6003713289ea4d3cd9b49c5db5b721)
+SetupDownloadUrl(V8 "https://commondatastorage.googleapis.com/chromium-browser-official/v8-3.18.5.14.tar.bz2" 657802ea63c89190fd510ee1a2a719bf)
 
 ###############################################################################
 # build some externel projects
@@ -320,8 +255,16 @@ if(NOT BUILD_ONLY_CEF)
     include(BuildCURL)  
   endif()
 
+  if(NOT GTEST_FOUND AND WITH_GTEST)
+    include(BuildGTest)
+  endif()
+
   if(NOT V8_FOUND)
     include(Buildv8)
+  endif()
+  
+  if(WIN32)
+    include(BuildDesuraExtraBin)
   endif()
 endif()
 
@@ -354,6 +297,11 @@ if(NOT BUILD_ONLY_CEF)
   if(WITH_FLASH AND NOT WIN32)
     add_subdirectory(third_party/npwrapper)
   endif()
+
+  if(WIN32)
+    add_subdirectory(third_party/desura_extra)
+  endif()
+
   ###############################################################################
   # build desura
   ###############################################################################

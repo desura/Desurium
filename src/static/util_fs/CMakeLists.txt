@@ -19,4 +19,8 @@ target_link_libraries(util_fs
   ${Boost_SYSTEM_LIBRARY}
 )
 
+if(WIN32)
+  SetSharedRuntime(util_fs)
+endif()
+
 SET_PROPERTY(TARGET util_fs                PROPERTY FOLDER "Static")

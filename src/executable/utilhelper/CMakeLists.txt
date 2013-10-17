@@ -1,5 +1,6 @@
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/RES
+  ${UTIL_BOOTLOADER_INCLUDE_DIRS}
 )
 
 configure_file(RES/repair.rc ${RC_DIR}/repair.rc @ONLY)
@@ -17,12 +18,10 @@ add_definitions(
 				
 add_executable(utilhelper WIN32 ${Sources})
 target_link_libraries(utilhelper
-  mdump
-  util_bootloader
+  mdump_s
+  util_bootloader_s
+  Comctl32
 )
 
-install(TARGETS utilhelper
-        DESTINATION "${BIN_INSTALL_DIR}")
-
-CopyTargetFiles(utilhelper)
-SET_PROPERTY(TARGET utilhelper                PROPERTY FOLDER "Executable")
+install_executable(utilhelper)
+SetStaticRuntime(utilhelper)

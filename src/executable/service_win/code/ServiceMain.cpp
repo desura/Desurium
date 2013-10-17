@@ -74,9 +74,9 @@ bool CGCServiceApp::start(int argc, char** argv)
 	DeleteFile("desura_service_old.exe");
 	DeleteFile("desura_old.exe");
 
-#if !defined(DEBUG) && defined(DESURA_OFFICAL_BUILD)
+#if !defined(DEBUG) && defined(DESURA_OFFICIAL_BUILD)
 	char message[255] = {0};
-	if (ValidateCert(L".\\servicecore.dll", message, 255) != ERROR_SUCCESS)
+	if (ValidateCert(L".\\bin\\servicecore.dll", message, 255) != ERROR_SUCCESS)
 	{
 		log("Failed cert check on servicecore.dll: ");
 		log(message);

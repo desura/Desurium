@@ -20,4 +20,8 @@ target_link_libraries(scriptengine
     ${V8_LIBRARIES}
 )
 
+if(WIN32)
+  SetSharedRuntime(scriptengine)
+endif()
+
 SET_PROPERTY(TARGET scriptengine                PROPERTY FOLDER "Static")

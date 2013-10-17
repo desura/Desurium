@@ -55,12 +55,10 @@ set(V8_INCLUDE_DIR ${V8_INSTALL_DIR}/include)
 if(WIN32)
   if(DEBUG_V8)
     set(V8_LIBRARIES "${V8_INSTALL_DIR}/build/Debug/lib/v8.lib")
-    install(FILES "${V8_INSTALL_DIR}/build/Debug/v8.dll"
-            DESTINATION ${LIB_INSTALL_DIR})
+    install_external_library(v8 "${V8_INSTALL_DIR}/build/Debug/v8.dll")
   else()
     set(V8_LIBRARIES "${V8_INSTALL_DIR}/build/Release/lib/v8.lib")
-    install(FILES "${V8_INSTALL_DIR}/build/Release/v8.dll"
-            DESTINATION ${LIB_INSTALL_DIR})
+    install_external_library(v8 "${V8_INSTALL_DIR}/build/Release/v8.dll")
   endif()
 else()
   if(DEBUG_V8)
@@ -68,9 +66,5 @@ else()
   else()
     set(V8_LIBRARIES "${V8_INSTALL_DIR}/out/out/Release/lib.target/libv8.so")
   endif()
-  install(FILES ${V8_LIBRARIES}
-          DESTINATION ${LIB_INSTALL_DIR})
+  install_external_library(v8 "${V8_LIBRARIES}")
 endif()
-
-
-SET_PROPERTY(TARGET v8                PROPERTY FOLDER "ThirdParty")

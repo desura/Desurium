@@ -67,7 +67,7 @@ AboutMainPage::AboutMainPage(wxWindow* parent) : gcPanel(parent, wxID_ANY)
 	}
 
 	int offsetY = 0;
-#ifdef DESURA_OFFICAL_BUILD
+#ifdef DESURA_OFFICIAL_BUILD
 	gcWString copy("\u00A9 {0} Desura Pty Ltd. All rights reserved. \nDesura is a trademark of Desura Pty Ltd.", reduced[2]);
 	offsetY = 50;
 #else

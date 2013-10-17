@@ -9,16 +9,14 @@ if(WIN32 AND NOT MINGW)
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
   )
-  
-  message(STATUS "${DEBUG}")
-  
+
   if(DEBUG) 
     ExternalProject_Add_Step(
       wxWidget-2-9
       custom_build
       DEPENDEES configure
       DEPENDERS build
-      COMMAND nmake /nologo -f makefile.vc BUILD=debug MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=dynamic
+      COMMAND ${NMAKE_EXECUTABLE} /nologo -f makefile.vc BUILD=debug MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=dynamic
       WORKING_DIRECTORY <SOURCE_DIR>/build/msw
     )
   else()
@@ -27,7 +25,7 @@ if(WIN32 AND NOT MINGW)
       custom_build
       DEPENDEES configure
       DEPENDERS build
-      COMMAND nmake /nologo -f makefile.vc BUILD=release MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=dynamic
+      COMMAND ${NMAKE_EXECUTABLE} /nologo -f makefile.vc BUILD=release MONOLITHIC=1 VENDOR=desura DEBUG_INFO=1 SHARED=1 RUNTIME_LIBS=dynamic
       WORKING_DIRECTORY <SOURCE_DIR>/build/msw
     )
   endif()
@@ -43,13 +41,11 @@ if(WIN32 AND NOT MINGW)
   if(DEBUG)
     set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include ${wxWidgets_INSTALL_DIR}/include/msvc)
     set(wxWidgets_LIBRARIES ${wxWidgets_LIBRARY_DIRS}/wxmsw29ud.lib)
-    install(FILES ${wxWidgets_LIBRARY_DIRS}/wxmsw293ud_vc_desura.dll
-            DESTINATION ${LIB_INSTALL_DIR})
+    install_external_library(wxWidget-2-9 "${wxWidgets_LIBRARY_DIRS}/wxmsw293ud_vc_desura.dll")
   else()
     set(wxWidgets_INCLUDE_DIRS ${wxWidgets_INSTALL_DIR}/include ${wxWidgets_INSTALL_DIR}/include/msvc)
     set(wxWidgets_LIBRARIES ${wxWidgets_LIBRARY_DIRS}/wxmsw29u.lib)
-    install(FILES ${wxWidgets_LIBRARY_DIRS}/wxmsw293u_vc_desura.dll
-            DESTINATION ${LIB_INSTALL_DIR})
+    install_external_library(wxWidget-2-9 "${wxWidgets_LIBRARY_DIRS}/wxmsw293u_vc_desura.dll")
   endif()
   
 else()
@@ -61,7 +57,7 @@ else()
   else()
     set(WX_SETUP_INCLUDE_SUB "gtk2-unicode-2.9-desura")
     set(WX_SETUP_INCLUDE_SUB_DEBUG ${WX_SETUP_INCLUDE_SUB})
-	set(WX_LIB_NAME "libwx_gtk2u_desura-2.9.so.3.0.0")
+	set(WX_LIB_NAME "libwx_gtk2u_desura-2.9.so.3")
 	set(WX_LIB_NAME_DEBUG ${WX_LIB_NAME})
   endif()
 
@@ -80,7 +76,7 @@ else()
     BUILD_IN_SOURCE 1
     CONFIGURE_COMMAND ./configure
         --enable-shared --enable-unicode ${CONFIGURE_DEBUG}
-        --enable-monolithic --with-flavour=desura --enable-threads --with-opengl=no --disable-palette
+        --enable-monolithic --with-flavour=desura --enable-threads --with-opengl=no --disable-palette2
         --disable-joystick --disable-mediactrl --prefix=${wxWidgets_INSTALL_DIR} --enable-permissive
   )
   
@@ -88,18 +84,14 @@ else()
   if(DEBUG_EXTERNAL)
     set(wxWidgets_INCLUDE_DIRS  ${wxWidgets_INSTALL_DIR}/include/wx-2.9-desura ${wxWidgets_LIBRARY_DIRS}/wx/include/${WX_SETUP_INCLUDE_SUB_DEBUG})
     set(wxWidgets_LIBRARIES "${wxWidgets_LIBRARY_DIRS}/${WX_LIB_NAME_DEBUG}")
-    install(FILES ${wxWidgets_LIBRARY_DIRS}/${WX_LIB_NAME}
-            RENAME libwx_gtk2u_desura-2.9.so.3
-            DESTINATION ${LIB_INSTALL_DIR})
+    install_external_library(wxWidget-2-9 ${wxWidgets_LIBRARY_DIRS}/${WX_LIB_NAME})
   else()
     set(wxWidgets_INCLUDE_DIRS  ${wxWidgets_INSTALL_DIR}/include/wx-2.9-desura ${wxWidgets_LIBRARY_DIRS}/wx/include/${WX_SETUP_INCLUDE_SUB})
     set(wxWidgets_LIBRARIES "${wxWidgets_LIBRARY_DIRS}/${WX_LIB_NAME}")
-    install(FILES ${wxWidgets_LIBRARY_DIRS}/${WX_LIB_NAME}
-            RENAME libwx_gtk2u_desura-2.9.so.3
-            DESTINATION ${LIB_INSTALL_DIR})
+    install_external_library(wxWidget-2-9 ${wxWidgets_LIBRARY_DIRS}/${WX_LIB_NAME})
   endif()
   set(wxWidgets_BIN_DIR ${wxWidgets_INSTALL_DIR}/bin)
   set(wxWidgets_CONFIG_EXECUTABLE ${wxWidgets_BIN_DIR}/wx-config)
+  set_property(TARGET wxWidget-2-9 PROPERTY FOLDER "ThirdParty")
 endif()
 
-SET_PROPERTY(TARGET wxWidget-2-9                PROPERTY FOLDER "ThirdParty")

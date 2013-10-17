@@ -131,6 +131,10 @@ else()
   file(GLOB PlattformSources)
 endif()
 
+if(WITH_GTEST)
+  file(GLOB Gtest_Sources code/gcUnitTestPage.cpp)
+endif()
+
 add_definitions(-DUI_HIDE_MODS -DENABLE_SEARCH)
 if(WIN32)
   add_definitions(-D_WINDOWS
@@ -148,7 +152,7 @@ if(WIN32)
   use_unicode_here()
 endif()
 
-add_library(uicore SHARED ${Sources} ${PlattformSources} ${BROWSER_PIPE_SPOURCES})
+add_library(uicore SHARED ${Sources} ${PlattformSources} ${Gtest_Sources} ${BROWSER_PIPE_SPOURCES})
 
 target_link_libraries(uicore
     gcJSBase
@@ -170,7 +174,9 @@ target_link_libraries(uicore
     ${WINDOWS_LIBRARIES}
 )
 
-install(TARGETS uicore
-        DESTINATION "${LIB_INSTALL_DIR}")
-CopyTargetFiles(uicore)
-SET_PROPERTY(TARGET uicore                PROPERTY FOLDER "Shared")
+if(WIN32)
+  SetSharedRuntime(uicore)
+endif()
+
+LinkWithGTest(uicore)
+install_library(uicore)
