@@ -1,4 +1,4 @@
-///////////// Copyright © 2010 Desura Pty Ltd. All rights reserved.  /////////////
+///////////// Copyright 2010 Desura Pty Ltd. All rights reserved.  /////////////
 //
 //   Project     : uicore
 //   File        : gcJSBase.cpp

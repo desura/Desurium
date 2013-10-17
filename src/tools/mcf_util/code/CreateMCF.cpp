@@ -1,4 +1,4 @@
-///////////// Copyright © 2010 DesuraNet. All rights reserved. /////////////
+///////////// Copyright 2010 DesuraNet. All rights reserved. /////////////
 //
 //   Project     : mcf_util
 //   File        : CreateMCF.cpp
