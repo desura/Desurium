@@ -72,14 +72,14 @@ bool File::operator!=(const File &other) const
 
 Path::Path()
 {
-#ifdef NIX
+#if defined NIX || MACOS
 	m_absolutePath = false;
 #endif
 }
 
 Path::Path(std::wstring path, std::wstring file, bool lastIsFolder)
 {
-#ifdef NIX
+#if defined NIX || MACOS
 	m_absolutePath = (path.size() > 0 && path[0] == L'/');
 #endif
 
@@ -91,7 +91,7 @@ Path::Path(std::wstring path, std::wstring file, bool lastIsFolder)
 
 Path::Path(std::string path, std::string file, bool lastIsFolder)
 {
-#ifdef NIX
+#if defined NIX || MACOS
 	m_absolutePath = (path.size() > 0 && path[0] == '/');
 #endif
 
@@ -104,7 +104,7 @@ Path::Path(std::string path, std::string file, bool lastIsFolder)
 Path::Path(const Path& path)
 :	m_File(path.getFile()),
 	m_vPath(path.m_vPath)
-#ifdef NIX
+#if defined NIX || MACOS
 	,m_absolutePath((path.getFullPath().size() > 0 && path.getFullPath()[0] == '/'))
 #endif
 {}
@@ -127,7 +127,7 @@ std::string Path::getFolderPath() const
 
 	std::string out;
 
-#ifdef NIX
+#if defined NIX || MACOS
 	if (m_absolutePath && m_vPath.size() > 0)
 		out += GetDirSeperator();
 #endif
@@ -257,7 +257,7 @@ Path& Path::operator +=(const Path &rhs)
 
 Path& Path::operator =(const Path &rhs)
 {
-#ifdef NIX
+#if defined NIX || MACOS
 	m_absolutePath = rhs.m_absolutePath;
 #endif
 	m_vPath = rhs.m_vPath;

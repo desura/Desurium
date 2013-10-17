@@ -53,7 +53,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 inline bool gcLaunchDefaultBrowser(const gcString& url)
 {
-#ifdef WIN32
+#if defined WIN32 || defined MACOS
 	return wxLaunchDefaultBrowser(url);
 #else
 	return UTIL::LIN::launchProcessXDG(url.c_str());

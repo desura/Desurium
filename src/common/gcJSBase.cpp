@@ -209,7 +209,7 @@ DesuraJSBaseNonTemplate::DesuraJSBaseNonTemplate(const char* name, const char* b
 DesuraJSBaseNonTemplate::~DesuraJSBaseNonTemplate()
 {
 	for (size_t x=0; x<m_mDelegateList.size(); x++)
-		safe_delete(m_mDelegateList[x].second);
+		safe_delete(m_mDelegateList[x]);
 }
 
 const char* DesuraJSBaseNonTemplate::getName()
@@ -246,15 +246,15 @@ JSObjHandle DesuraJSBaseNonTemplate::execute(ChromiumDLL::JavaScriptFunctionArgs
 			return NULL;
 
 		uint32 id = UTIL::MISC::RSHash_CSTR(args->function, strlen(args->function));
-		uint32 index = find(id);
+		JSDelegateI* delegate = m_mDelegateList[id];
 
-		if (index == UINT_MAX)
+		if (!delegate)
 			throw gcException(ERR_INVALID, "Function not found");
 
 		if (!preExecuteValidation(args->function, id, args->object, args->argc, args->argv))
 			return NULL;
 
-		return m_mDelegateList[index].second->operator()(args->factory, args->context, args->object, args->argc, args->argv);
+		return delegate->operator()(args->factory, args->context, args->object, args->argc, args->argv);
 	}
 	catch(std::exception &e)
 	{
@@ -265,57 +265,13 @@ JSObjHandle DesuraJSBaseNonTemplate::execute(ChromiumDLL::JavaScriptFunctionArgs
 void DesuraJSBaseNonTemplate::registerFunction(const char* name, JSDelegateI *delegate)
 {
 	uint32 id = UTIL::MISC::RSHash_CSTR(name);
-	uint32 index = find(id);
+	JSDelegateI* oldDelegate = m_mDelegateList[id];
 
-	if (index != UINT_MAX)
+	if (oldDelegate)
 	{
-		safe_delete(m_mDelegateList[index].second);
-		m_mDelegateList.erase(m_mDelegateList.begin()+index);
+		safe_delete(oldDelegate);
+		m_mDelegateList.erase(id);
 	}
 
-	m_mDelegateList.push_back(std::pair<uint32, JSDelegateI*>(id, delegate));
-
-	std::sort(m_mDelegateList.begin(), m_mDelegateList.end(), [](std::pair<uint32, JSDelegateI*> a, std::pair<uint32, JSDelegateI*> b){
-		return a.first <= b.first;
-	});
-}
-
-
-uint32 DesuraJSBaseNonTemplate::find(uint32 hash)
-{
-	if (m_mDelegateList.empty())
-		return -1;
-
-	return find(hash, 0, m_mDelegateList.size()-1);
-}
-
-uint32 DesuraJSBaseNonTemplate::find(uint32 hash, uint32 f, uint32 l)
-{
-	if (l == 0 && f == 0 && m_mDelegateList[0].first == hash)
-		return 0;
-
-	if (l==f)
-		return -1;
-
-	uint32 midIndex = (l-f)/2;
-
-	if (midIndex == 0)
-	{
-		if (m_mDelegateList[f].first == hash)
-			return f;
-		else if (m_mDelegateList[l].first == hash)
-			return l;
-		else
-			return -1;
-	}
-
-	midIndex += f;
-	uint32 midHash = m_mDelegateList[midIndex].first;
-
-	if (midHash == hash)
-		return midIndex;
-	else if (hash > midHash )
-		return find(hash, midIndex, l);
-	else
-		return find(hash, f, midIndex);
+	m_mDelegateList[id] = delegate;
 }

@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 #include "Common.h"
 #include "UMcfFile_utils.h"
 
-#ifdef NIX
+#if defined NIX || MACOS
 
 #include <sys/types.h>
 #include <sys/stat.h>

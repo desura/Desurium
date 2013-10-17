@@ -152,7 +152,7 @@ void UMcfFile::genXml(tinyxml2::XMLElement *element, tinyxml2::XMLDocument& doc)
 
 bool UMcfFile::checkFile(const wchar_t* dir)
 {
-#ifdef NIX
+#if defined NIX || MACOS
 	gcString path("{0}/{1}/{2}", dir, m_szPath, m_szName);
 
 	struct stat stFileInfo;

@@ -15,8 +15,8 @@ if [ ! -f "$PATCH_BAK" ]; then
 	cp "$1" "$PATCH_BAK"
 fi
 
-# first we try to merge the given patch
-patch -p0 -N --merge --dry-run -i "$1"
+# first we try to apply the given patch
+patch -p0 -N --dry-run -i "$1"
 TRY_PATCH_STATUS=$?
 echo "=== fake patch step returns with $TRY_PATCH_STATUS ==="
 
@@ -41,7 +41,7 @@ if [ $TRY_PATCH_STATUS = "1" ]; then
 # everything was okay in the test run, we will apply this patch
 elif [ $TRY_PATCH_STATUS = "0" ]; then
 	echo "=== test succeeded. Apply patch ==="
-	patch -p0 -N --merge -i "$1"
+	patch -p0 -N -i "$1"
 # if everything goes wrong, we print a message
 else
 	echo "=== patch step failed, please remove all files from this subproject ===" >&2

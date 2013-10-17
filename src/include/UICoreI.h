@@ -63,6 +63,7 @@ public:
 	//!
 	virtual bool initWxWidgets(int argc, char** argv)=0;
 	
+#ifdef NIX
 	//! Check to see if any other instances are running
 	//!
 	//! @return true if no other instances are running
@@ -76,6 +77,7 @@ public:
 	//! Disables single instance check and stops it been deleted in this process
 	//!
 	virtual void disableSingleInstanceLock()=0;
+#endif
 #endif
 
 	//! Closes the main window causing the end of the application

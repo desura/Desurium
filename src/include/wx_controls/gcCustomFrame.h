@@ -48,12 +48,10 @@ public:
 		SetIcon(wxIcon(wxICON(IDI_ICONNORMAL)));
 		m_FrameIcon = wxIcon("IDI_ICONNORMAL",wxBITMAP_TYPE_ICO_RESOURCE,16,16);
 #else
+		m_uiTitleHeight = 0;
 		gcWString path(L"{0}/desura.png", UTIL::OS::getDataPath());
 		wxIcon i(path, wxBITMAP_TYPE_PNG);
 		SetIcon(i);
-#endif
-
-#ifdef NIX
 		wxSize s = this->GetSize() - this->GetClientSize();
 		m_uiTitleHeight = s.GetHeight();
 

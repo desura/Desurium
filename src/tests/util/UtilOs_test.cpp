@@ -7,12 +7,12 @@
 
 #include "Common.h"
 #include "util/UtilString.h"
-#include "util/UtilLinux.h"
+#include "util/UtilOs.h"
 #include <iostream>
 
 using namespace boost;
 using namespace boost::unit_test;
-using namespace UTIL::LIN;
+using namespace UTIL::OS;
 
 BOOST_AUTO_TEST_CASE (Util_Lin_String_Output)
 {

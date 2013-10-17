@@ -96,7 +96,7 @@ public:
 
 	virtual void invalidateTools(std::vector<DesuraId> &list);
 
-#ifdef NIX
+#if defined NIX || defined MACOS
 	virtual void symLinkTools(std::vector<DesuraId> &list, const char* path);
 	virtual int hasNonInstallableTool(std::vector<DesuraId> &list);
 #endif

@@ -31,24 +31,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 bool CheckSunJava()
 {
-	std::string res = UTIL::LIN::getCmdStdout("which java");
+	std::string res = UTIL::OS::getCmdStdout("which java");
 	
 	if (res.size() == 0)
 		return false;
 		
-	res = UTIL::LIN::getCmdStdout("java -version 2>&1 | grep \"HotSpot\"");
+	res = UTIL::OS::getCmdStdout("java -version 2>&1 | grep \"HotSpot\"");
 	return (res.size() != 0);
 }
 
 bool CheckJava()
 {
-	std::string res = UTIL::LIN::getCmdStdout("which java");
+	std::string res = UTIL::OS::getCmdStdout("which java");
 	return (res.size() != 0);
 }
 
 bool CheckMono()
 {
-	std::string res = UTIL::LIN::getCmdStdout("which mono");
+	std::string res = UTIL::OS::getCmdStdout("which mono");
 	return (res.size() != 0);	
 }
 
@@ -95,7 +95,7 @@ void ToolManager::onSpecialCheck(WCSpecialInfo &info)
 		bool is64 = (out[0] == "64");
 
 		gcString cmd("findlib.sh {0} {1}", out[1], is64?"64":"32");
-		std::string res = UTIL::LIN::getCmdStdout(cmd.c_str(), 2);
+		std::string res = UTIL::OS::getCmdStdout(cmd.c_str(), 2);
 
 		if (res.size() == 0 || !UTIL::FS::isValidFile(res.c_str()))
 		{

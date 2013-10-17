@@ -101,7 +101,7 @@ public:
 	virtual bool createDesktopShortcut();
 	virtual bool createMenuEntry();
 
-#ifdef NIX
+#if defined NIX || defined MACOS
 	virtual void installLaunchScripts();
 #endif
 

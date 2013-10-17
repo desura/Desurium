@@ -35,7 +35,7 @@ typedef void* (*FactoryFn)(const char*);
 class SharedObjectLoader
 {
 public:
-#ifdef NIX
+#if defined NIX || MACOS
 	typedef void* SOHANDLE;
 #else
 	typedef HINSTANCE SOHANDLE;
@@ -68,7 +68,7 @@ public:
 
 		m_bHasFailed = false;
 
-#ifdef NIX
+#if defined NIX || MACOS
 		m_hHandle = dlopen((UTIL::OS::getRuntimeLibPath() + module).c_str(), RTLD_NOW);
 
 		if (!m_hHandle)
@@ -85,7 +85,7 @@ public:
 		if (!m_hHandle)
 			return;
 
-#ifdef NIX
+#if defined NIX || MACOS
 		if (dlclose(m_hHandle) != 0)
 			printf("%s:%d - Error unloading library: '%s'\n", __FILE__, __LINE__, dlerror());
 #else
@@ -100,7 +100,7 @@ public:
 	{
 		if (!m_hHandle)
 			return NULL;
-#ifdef NIX
+#if defined NIX || MACOS
 		char* error;
 		T fun = (T)dlsym(m_hHandle, functionName);
 		if ((error = dlerror()) != NULL)

@@ -64,7 +64,7 @@ LRESULT CALLBACK CallWndProc(int nCode,WPARAM wParam, LPARAM lParam)
 #endif
 
 
-#ifndef WIN32
+#ifdef NIX
 
 #include <gtk/gtk.h>
 
@@ -230,7 +230,7 @@ public:
 		m_iExitCode = exitCode;
 	}
 
-#ifndef WIN32
+#ifdef NIX
 	bool singleInstantCheck(const char* args)
 	{
 		std::string path = UTIL::STRING::toStr(UTIL::OS::getCachePath());

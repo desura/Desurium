@@ -52,8 +52,13 @@ else()
   if(MINGW)
     set(WX_SETUP_INCLUDE_SUB "msw-unicode-2.9-desura")
     set(WX_SETUP_INCLUDE_SUB_DEBUG "msw-unicode-debug-2.9-desura")
-	set(WX_LIB_NAME "libwx_mswu_desura-2.9.dll.a")
-	set(WX_LIB_NAME_DEBUG "libwx_mswu_desura-2.9.dll.a")
+    set(WX_LIB_NAME "libwx_mswu_desura-2.9.dll.a")
+    set(WX_LIB_NAME_DEBUG "libwx_mswu_desura-2.9.dll.a")
+  elseif(APPLE)
+    set(WX_SETUP_INCLUDE_SUB "osx_cocoa-unicode-2.9-desura")
+    set(WX_SETUP_INCLUDE_SUB_DEBUG "osx_cocoa-unicode-debug-2.9-desura")
+    set(WX_LIB_NAME "libwx_osx_cocoau_desura-2.9.3.0.0.dylib")
+    set(WX_LIB_NAME_DEBUG "libwx_osx_cocoau_desura-2.9.3.0.0.dylib")
   else()
     set(WX_SETUP_INCLUDE_SUB "gtk2-unicode-2.9-desura")
     set(WX_SETUP_INCLUDE_SUB_DEBUG ${WX_SETUP_INCLUDE_SUB})
@@ -67,6 +72,11 @@ else()
     set(WX_PATCH_COMMAND "${PATCH_SCRIPT_PATH}" "${CMAKE_SOURCE_DIR}/cmake/patches/wxWidgets.patch")
   endif()
 
+  if(APPLE)
+    set(ADDITIONAL_FLAGS --disable-webkit --disable-webview-webkit
+      --with-macosx-version-min=10.7 --with-osx_cocoa CPPFLAGS=-stdlib=libc++ CXXFLAGS=-stdlib=libc++ LDFLAGS=-stdlib=libc++ CC=clang CXX=clang++)
+  endif()
+
   ExternalProject_Add(
     wxWidget-2-9
     URL ${WXWIDGET_URL}
@@ -75,9 +85,10 @@ else()
     ${WX_PATCH_COMMAND}
     BUILD_IN_SOURCE 1
     CONFIGURE_COMMAND ./configure
-        --enable-shared --enable-unicode ${CONFIGURE_DEBUG}
+        --enable-shared --enable-unicode ${CONFIGURE_DEBUG} --disable-webview
         --enable-monolithic --with-flavour=desura --enable-threads --with-opengl=no --disable-palette2
         --disable-joystick --disable-mediactrl --prefix=${wxWidgets_INSTALL_DIR} --enable-permissive
+        ${ADDITIONAL_FLAGS}
   )
   
   set(wxWidgets_LIBRARY_DIRS ${wxWidgets_INSTALL_DIR}/lib)
@@ -94,4 +105,3 @@ else()
   set(wxWidgets_CONFIG_EXECUTABLE ${wxWidgets_BIN_DIR}/wx-config)
   set_property(TARGET wxWidget-2-9 PROPERTY FOLDER "ThirdParty")
 endif()
-
