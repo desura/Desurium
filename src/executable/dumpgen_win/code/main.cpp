@@ -1,4 +1,4 @@
-///////////// Copyright © 2008 Mark Chandler. All rights reserved. /////////////
+///////////// Copyright 2008 Mark Chandler. All rights reserved. /////////////
 //
 //   Project     : desura
 //   File        : main.cpp
