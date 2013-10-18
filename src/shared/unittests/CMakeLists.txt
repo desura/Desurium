@@ -24,4 +24,4 @@ target_link_libraries(unittest
 )
 
 link_with_gtest(unittest)
-desurium_install_library(unittest "Shared")
+install_library(unittest "Shared")
