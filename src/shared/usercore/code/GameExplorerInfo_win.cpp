@@ -323,7 +323,12 @@ void GameExplorerInfo::translateIco(HANDLE handle, const char* icoPath)
 {
 	char* buff = NULL;
 	uint32 size = UTIL::FS::readWholeFile(icoPath, &buff);
-
+	
+	if (size == 0)
+	{
+		safe_delete(buff);
+		return;
+	}
 
 	// Change the icon group
 	ICONDIR* ig = (ICONDIR*)(buff);
