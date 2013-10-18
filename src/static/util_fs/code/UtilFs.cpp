@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "Common.h"
 #include "util/UtilFs.h"
+#include "util/UtilMisc.h"
 #include "boost/filesystem.hpp"
 
 #include <string>
@@ -47,10 +48,6 @@ static BoostFSCrashFix gs_BoostFSFix;
 
 namespace UTIL
 {
-namespace MISC
-{
-	unsigned long CRC32(const unsigned char byte, unsigned long dwCrc32);
-}
 
 namespace FS
 {
