@@ -1,4 +1,6 @@
 if(WIN32 AND NOT MINGW)
+  include("${CMAKE_ROOT}/Modules/FindNMake.cmake")
+
   ExternalProject_Add(
     wxWidget-2-9
     URL ${WXWIDGET_URL}
