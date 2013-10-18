@@ -37,28 +37,25 @@ public:
 	virtual void reset()=0;
 };
 
-//! MCFServerCon is used to download mcf content from mcf servers
-//!
-class MCFServerCon
+class MCFServerConI
 {
 public:
-	MCFServerCon();
-	~MCFServerCon();
+	virtual ~MCFServerConI(){}
 
 	//! Connect to mcf server
 	//!
 	//! @param host Sever to connect to in form of name:port
 	//! @param fileAuth File authentication cookie
 	//!
-	void connect(const char* host, MCFCore::Misc::GetFile_s* fileAuth);
+	virtual void connect(const char* host, MCFCore::Misc::GetFile_s* fileAuth) = 0;
 
-	//! Disconnect from server. Gets called in the deconstuctor automattically
+	//! Disconnect from server. Gets called in the destructor automatically
 	//!
-	void disconnect();
+	virtual void disconnect() = 0;
 
 	//! Set download provider name
 	//!
-	void setDPInformation(const char* name);
+	virtual void setDPInformation(const char* name) = 0;
 
 	//! Downloads a range from the selected file
 	//!
@@ -66,7 +63,7 @@ public:
 	//! @param size Size of the range to download
 	//! @param buff Static buffer to store result into. If null it will create its own buffer
 	//!
-	void downloadRange(uint64 offset, uint32 size, OutBufferI* buff);
+	virtual void downloadRange(uint64 offset, uint32 size, OutBufferI* buff) = 0;
 
 
 	//! Download progress event
@@ -75,11 +72,33 @@ public:
 
 	//! Pause the download. This will cause downloadRange to return early
 	//!
-	void onPause();
+	virtual void onPause() = 0;
 
 	//! Is the client connected to the server
 	//!
-	bool isConnected(){return m_bConnected;}
+	virtual bool isConnected() = 0;
+};
+
+//! MCFServerCon is used to download mcf content from mcf servers
+//!
+class MCFServerCon : public MCFServerConI
+{
+public:
+	MCFServerCon();
+	~MCFServerCon();
+
+	void connect(const char* host, MCFCore::Misc::GetFile_s* fileAuth) override;
+	void disconnect() override;
+
+	void setDPInformation(const char* name) override;
+	void downloadRange(uint64 offset, uint32 size, OutBufferI* buff) override;
+
+	void onPause() override;
+
+	bool isConnected() override
+	{
+		return m_bConnected;
+	}
 
 protected:
 	void doDownloadRange(uint64 offset, uint32 size);
