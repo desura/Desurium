@@ -833,3 +833,25 @@ bool MCF::fixMD5AndCRC()
 
 
 }
+
+
+#ifdef WITH_GTEST
+
+#include <gtest/gtest.h>
+
+namespace UnitTest
+{
+	TEST(MCFSave, TimeConversion_NoT)
+	{
+		int64 llTime = MCFCore::ConvertTimeStringToInt("20130910080654");
+		ASSERT_EQ(20130910080654, llTime);
+	}
+
+	TEST(MCFSave, TimeConversion_WithT)
+	{
+		int64 llTime = MCFCore::ConvertTimeStringToInt("20130910T080654");
+		ASSERT_EQ(20130910080654, llTime);
+	}
+}
+
+#endif

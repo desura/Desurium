@@ -44,4 +44,5 @@ if(WIN32)
   SetSharedRuntime(mcfcore)
 endif()
 
+LinkWithGTest(mcfcore)
 install_library(mcfcore)

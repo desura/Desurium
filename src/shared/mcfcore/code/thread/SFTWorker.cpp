@@ -315,3 +315,23 @@ bool SFTWorker::bzErrorCheck(int32 bzStatus)
 
 }
 }
+
+
+#ifdef WITH_GTEST
+
+#include <gtest/gtest.h>
+
+namespace UnitTest
+{
+	TEST(SFTWorker, ParseTimeStamp)
+	{
+		ptime e(boost::gregorian::date(2013, 9, 10), time_duration(8, 6, 54));
+
+		gcString strTimeStamp("20130910080654");
+		ptime p = MCFCore::Thread::parseTimeStamp(strTimeStamp);
+
+		ASSERT_EQ(e, p);
+	}
+}
+
+#endif
