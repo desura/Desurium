@@ -14,9 +14,9 @@ set(CMAKE_INSTALL_PREFIX ${DEFAULT_INSTALL_DIR}
     CACHE STRING "Desura Install Prefix")
 
 if(WIN32)
-  set(BINDIR "")
-  set(RUNTIME_LIBDIR "bin")
-  set(DATADIR "data")
+  set(BINDIR "${CMAKE_BUILD_TYPE}_Out")
+  set(RUNTIME_LIBDIR "${BINDIR}\\bin")
+  set(DATADIR "${BINDIR}\\data")
 else()
   set(BINDIR ""
       CACHE STRING "Desura Bin Install Dir")

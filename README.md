@@ -83,11 +83,11 @@ Build Desura on Windows
 Download and install:
 
  * Svn http://www.sliksvn.com/en/download or http://tortoisesvn.net/downloads.html
- * Msvc 2012 or higher
+ * Msvc 2013 or higher (as C++11 features are in use)
  * Python 2.7 http://www.python.org/getit/
  * CMake 2.8 http://www.cmake.org/
  * Patch either from msysGit or git bash
- * Windows DirectX 9 SDK for the CEF build https://www.microsoft.com/en-us/download/details.aspx?id=6812
+ * (Optional) Windows DirectX 9 SDK for the CEF build https://www.microsoft.com/en-us/download/details.aspx?id=6812
 
 Note: Make sure you add svn and python to your environment PATH
 
@@ -108,9 +108,9 @@ Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a f
 	
 * Set BUILD_ALL as startup project
 * In properties for BUILD_ALL set debugging options:
- * Command to source code dir + "\build_out\desura.exe"
- * Working Directory to source code dir + "\build_out"
-* Build ThirdParty folder first (race condition some times if you dont
+ * Command to source code dir + "\build_vis\Debug_Out\desura.exe"
+ * Working Directory to source code dir + "\build_vis\Debug_Out"
+* Build ThirdParty folder first (race condition some times if you dont)
 * Build BUILD_ALL
  
 Should be able to run and debug Desura now.

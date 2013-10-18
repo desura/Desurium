@@ -21,4 +21,4 @@ target_link_libraries(dumpgen
 )
 SetStaticRuntime(dumpgen)
 
-install_tool(dumpgen)
+install_executable(dumpgen)

@@ -301,10 +301,6 @@ if(NOT BUILD_ONLY_CEF)
     add_subdirectory(third_party/npwrapper)
   endif()
 
-  if(WIN32)
-    add_subdirectory(third_party/desura_extra)
-  endif()
-
   ###############################################################################
   # build desura
   ###############################################################################

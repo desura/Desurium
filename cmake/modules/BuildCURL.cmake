@@ -70,6 +70,8 @@ if(WIN32 AND NOT MINGW)
     source_dir
   )
   
+  set_property(TARGET curl_s PROPERTY FOLDER "ThirdParty")
+  
   if(DEBUG)
     set(CURL_INSTALL_DIR_S ${source_dir}/builds/libcurl-vc-x86-debug-static-sspi-winssl)
   else()
