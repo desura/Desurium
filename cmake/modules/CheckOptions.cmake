@@ -6,7 +6,7 @@ option(BUILD_ONLY_CEF "build only cef, this will disable desurium building" OFF)
 
 if(NOT BUILD_ONLY_CEF)
   option(BUILD_TESTS "Build various unit tests." ON)
-  option(WITH_GTEST "Add GTest support" OFF)
+  option(WITH_GTEST "Add GTest support" ON)
   if(BUILD_TESTS OR WITH_GTEST)
     include(CTest)
     enable_testing()
