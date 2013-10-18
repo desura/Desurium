@@ -10,6 +10,7 @@ if(WIN32)
 #  add_linker_flags(/NOD:LIBCMT)
 endif()
 
+setup_precompiled_header(Common.h ${COMMON_INCLUDE_DIRS}/Common.cpp Sources)
 add_library(scriptcore SHARED ${Sources})
 target_link_libraries(scriptcore
     gcJSBase
