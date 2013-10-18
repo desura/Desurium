@@ -275,7 +275,6 @@ public:
 #else
 		m_hUnitTest.load("unittest.so");
 #endif
-#endif
 
 		testing::InitGoogleTest(&argc, argv);
 		return RUN_ALL_TESTS();
