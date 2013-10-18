@@ -13,6 +13,7 @@ ExternalProject_Get_Property(
 )
 
 install_external_library(desura_extra_bin
+  "${source_dir}/Desura_Uninstaller.exe"
   "${source_dir}/Blank_GDF.dll"
   "${source_dir}/courgette_desura.dll"
   "${source_dir}/dbghelp-desura.dll"

@@ -9,5 +9,4 @@
 #define COMPANY_NAME	"Desura Net Pty Ltd"
 #define EXE_PREFIX		"desura_"
 
-#define DESURA_OFFICAL_BUILD
 #endif

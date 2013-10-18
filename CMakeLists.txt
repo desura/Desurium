@@ -221,7 +221,7 @@ endmacro()
 if(WIN32)
   SetupDownloadUrl(BOOST "boost_1_53_0.zip" c618e030fd4882e4dbacf54baf824544)
   SetupDownloadUrl(CEF_BIN "cef_bin.zip" c9c0379579d9d26557ca8f4b42f937f2)
-  SetupDownloadUrl(DESURA_EXTRA_BIN "desura_extra_bin.zip" fdb2a4dd704a90e5174c64d3eaf8392b) 
+  SetupDownloadUrl(DESURA_EXTRA_BIN "desura_extra_bin_v2.zip" acc8750cce91f23b20e1310686dac101) 
 endif()
 
 SetupDownloadUrl(BREAKPAD "breakpad-850-r1.zip" b0061a854df1a0d285edc74c5ac37c42)
