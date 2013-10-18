@@ -178,5 +178,5 @@ if(WIN32)
   SetSharedRuntime(uicore)
 endif()
 
-LinkWithGTest(uicore)
+link_with_gtest(uicore)
 install_library(uicore)
