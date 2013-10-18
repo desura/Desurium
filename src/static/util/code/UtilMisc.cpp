@@ -431,7 +431,7 @@ std::string hashFile(FHANDLE file, uint64 size)
 
 
 //crc table from http://www.codeproject.com/KB/recipes/crc32.aspx
-const unsigned long ulTable[256] =
+const uint32 ulTable[256] =
 {
 	0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
 	0x076DC419, 0x706AF48F, 0xE963A535, 0x9E6495A3,
@@ -504,17 +504,17 @@ const unsigned long ulTable[256] =
 
 
 
-unsigned long CRC32(const unsigned char byte, unsigned long dwCrc32)
+uint32 CRC32(const unsigned char byte, uint32 dwCrc32)
 {
 	return ((dwCrc32) >> 8) ^ ulTable[(byte) ^ ((dwCrc32) & 0x000000FF)];
 }
 
-unsigned long CRC32(const unsigned char* str, uint32 len)
+uint32 CRC32(const unsigned char* str, uint64 len)
 {
-	unsigned long ulCRC = 0xFFFFFFFF; //Initilaize the CRC.
+	uint32 ulCRC = 0xFFFFFFFF; //Initilaize the CRC.
 
-	for (uint32 x=0; x<len; x++)
-		ulCRC = ((ulCRC) >> 8) ^ ulTable[(str[x]) ^ ((ulCRC) & 0x000000FF)];
+	for (uint64 x=0; x<len; x++)
+		ulCRC = CRC32(str[x], ulCRC);
 
 	return ~ulCRC; //Finalize the CRC and return.;
 }
