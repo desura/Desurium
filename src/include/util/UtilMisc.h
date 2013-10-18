@@ -184,7 +184,7 @@ namespace MISC
 	//! @param dwCrc32 last byte hash
 	//! @return hash
 	//!
-	unsigned long CRC32(const unsigned char byte, unsigned long dwCrc32);
+	uint32 CRC32(const unsigned char byte, uint32 dwCrc32);
 
 	//! Hash a buffer using crc32
 	//!
@@ -192,7 +192,7 @@ namespace MISC
 	//! @param len Buffer length
 	//! @return hash
 	//!
-	unsigned long CRC32(const unsigned char* buff, uint32 len);
+	uint32 CRC32(const unsigned char* buff, uint64 len);
 
 #ifdef WIN32
 	//! Converts an image to an ico file
