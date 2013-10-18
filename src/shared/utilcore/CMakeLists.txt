@@ -44,6 +44,7 @@ else()
                         code/BrowserTest.cpp)
 endif()
 
+setup_precompiled_header(Common.h ${COMMON_INCLUDE_DIRS}/Common.cpp Sources)
 add_library(utilcore SHARED ${Sources} ${PLATTFORM_SOURCES})
 target_link_libraries(utilcore
 	managers

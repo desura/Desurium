@@ -152,7 +152,10 @@ if(WIN32)
   use_unicode_here()
 endif()
 
-add_library(uicore SHARED ${Sources} ${PlattformSources} ${Gtest_Sources} ${BROWSER_PIPE_SPOURCES})
+set(AllSources ${Sources} ${PlattformSources} ${Gtest_Sources} ${BROWSER_PIPE_SPOURCES})
+
+setup_precompiled_header(Common.h ${COMMON_INCLUDE_DIRS}/Common.cpp AllSources)
+add_library(uicore SHARED ${AllSources})
 
 target_link_libraries(uicore
     gcJSBase
