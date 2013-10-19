@@ -52,6 +52,7 @@ namespace UserCore
 {
 
 User::User()
+	: m_bAltProvider(false)
 {
 	m_bLocked = false;
 	m_pWaitCond = new ::Thread::WaitCondition();
@@ -124,6 +125,14 @@ void User::unlockDelete()
 
 void User::init(const char* appDataPath)
 {
+	init(appDataPath, NULL);
+}
+
+void User::init(const char* appDataPath, const char* szProviderUrl)
+{
+	m_bAltProvider = (szProviderUrl && gcString("desura.com") != szProviderUrl);
+
+
 	UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(appDataPath));
 
 	m_szAppDataPath = appDataPath;
@@ -132,7 +141,7 @@ void User::init(const char* appDataPath)
 	m_pThreadPool->blockTasks();
 
 	m_pWebCore = (WebCore::WebCoreI*)WebCore::FactoryBuilder(WEBCORE);
-	m_pWebCore->init(appDataPath);
+	m_pWebCore->init(appDataPath, szProviderUrl);
 
 	m_pBannerDownloadManager = new BDManager(this);
 	m_pCDKeyManager = new CDKeyManager(this);

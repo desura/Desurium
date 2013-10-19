@@ -138,8 +138,13 @@ public:
 	virtual wxWindow* getTopLevelWindow()=0;
 
 	virtual void newAccountLogin(const char* username, const char* cookie)=0;
-
-	virtual void showUnitTest(){}
+	virtual void newAccountLoginError(const char* szErrorMessage)=0;
+	
+	virtual void showUnitTest()=0;
+	
+	//Changes the server url provider. Set to null to reset
+	virtual void setProvider(const char* szProvider)=0;
+	virtual const char* getProvider() const=0;
 };
 
 

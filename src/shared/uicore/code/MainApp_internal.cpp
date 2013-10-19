@@ -204,7 +204,7 @@ void MainApp::showDevPage(DesuraId id)
 	if (!item)
 		return;
 
-	gcString url("http://www.desura.com/{0}/publish/{1}", id.getTypeString(), item->getShortName());
+	gcString url("{0}/{1}/publish/{2}", GetWebCore()->getUrl(WebCore::Root), id.getTypeString(), item->getShortName());
 	loadUrl(url.c_str(), DEVELOPMENT);
 }
 

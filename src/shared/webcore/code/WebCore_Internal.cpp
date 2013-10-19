@@ -34,14 +34,23 @@ tinyxml2::XMLNode* WebCoreClass::postToServer(std::string url, std::string resou
 {
 	gcString httpOut;
 
+	if (m_bDebuggingOut)
+	{
+		if (url.find('?') == std::string::npos)
+			url += "?XDEBUG_SESSION_START=xdebug";
+		else
+			url += "&XDEBUG_SESSION_START=xdebug";
+	}
+
 	{
 		HttpHandle hh(url.c_str(), useHTTPS);
 
 		if (useHTTPS)
 		{
 			hh->setUserAgent(getUserAgent());
-			hh->setCertFile(
-				UTIL::STRING::toStr(UTIL::OS::getDataPath(L"ca-bundle.crt")).c_str());
+
+			if (m_bValidateCert)
+				hh->setCertFile(UTIL::STRING::toStr(UTIL::OS::getDataPath(L"ca-bundle.crt")).c_str());
 		}
 		else
 		{

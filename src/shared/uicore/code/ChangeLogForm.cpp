@@ -82,7 +82,7 @@ void ChangeLogForm::setInfo(UserCore::Item::ItemInfoI* item)
 	gcWString type = gcWString(m_uiItemId.getTypeString());
 	gcWString shortName(item->getShortName());
 
-	gcWString url(L"http://www.desura.com/{0}/{1}/changelog", type, shortName);
+	gcWString url(L"{0}/{1}/{2}/changelog", GetWebCore()->getUrl(WebCore::Root), type, shortName);
 
 	if (item->getCurrentBranch())
 		url += gcWString(L"/{0}", item->getCurrentBranch()->getBranchId());
@@ -101,7 +101,7 @@ void ChangeLogForm::setInfo(uint32 version)
 
 	SetTitle(Managers::GetString(L"#CL_TITLE"));
 
-	gcWString wUrl(L"http://www.desura.com/app/changelog/{0}", version);
+	gcWString wUrl(L"{0}/{1}", GetWebCore()->getUrl(WebCore::AppChangeLog), version);
 	m_ieBrowser->loadUrl(wUrl);
 
 #ifdef NIX

@@ -81,6 +81,7 @@ protected:
 	void updateLink(UserCore::Item::ItemInfoI* item, gcString args);
 
 	void login(gcString username, gcString loginCookie);
+	void loginError(gcString error);
 };
 
 

@@ -70,6 +70,7 @@ public:
 	WebCoreClass();
 	~WebCoreClass();
 
+	virtual void init(const char* appDataPath, const char* szProviderUrl) override;
 	virtual void init(const char* appDataPath);
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Getters
@@ -163,6 +164,7 @@ private:
 	gcString m_szAppDataPath;
 
 	bool m_bDebuggingOut;
+	bool m_bValidateCert;
 
 	ImageCache m_ImageCache;
 };

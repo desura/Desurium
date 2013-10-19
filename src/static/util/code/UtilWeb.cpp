@@ -397,6 +397,8 @@ void HttpHInternal::setUp(bool setRange)
 
 	if (m_szCertFile != "")
 		curl_easy_setopt(m_pCurlHandle, CURLOPT_CAINFO, m_szCertFile.c_str());
+	else
+		curl_easy_setopt(m_pCurlHandle, CURLOPT_SSL_VERIFYPEER, 0);
 
 	memset(m_szErrBuff, 0, CURL_ERROR_SIZE);
 	curl_easy_setopt(m_pCurlHandle, CURLOPT_ERRORBUFFER , m_szErrBuff );
