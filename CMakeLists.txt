@@ -305,5 +305,4 @@ if(NOT BUILD_ONLY_CEF)
   # build desura
   ###############################################################################
   add_subdirectory(src)
-  add_subdirectory(build_out)
 endif()
