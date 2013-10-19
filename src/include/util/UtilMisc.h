@@ -212,7 +212,6 @@ namespace MISC
 	//!
 	bool convertToPng(const std::string &imgPath, const std::string &icoPath, size_t thumbnailSize = 0);
 
-	void unloadImgLib();
 	bool loadImgLib();
 #endif
 

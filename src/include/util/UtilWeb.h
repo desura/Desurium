@@ -159,6 +159,12 @@ public:
 		m_pWC = newHttpHandle(url, useSsl);
 	}
 
+	HttpHandle(HttpHandle &handle)
+	{
+		m_pWC = handle.m_pWC;
+		handle.m_pWC = NULL;
+	}
+
 	~HttpHandle()
 	{
 		if (m_pWC)
@@ -173,8 +179,22 @@ public:
 		return m_pWC;
 	}
 
+	HttpHandle& operator=(const HttpHandle &handle)
+	{
+		if (this == &handle)
+			return *this;
+
+		if (m_pWC)
+			m_pWC->del();
+
+		m_pWC = handle.m_pWC;
+		handle.m_pWC = NULL;
+
+		return *this;
+	}
+
 private:
-	HttpHandleI* m_pWC;
+	mutable HttpHandleI* m_pWC;
 };
 
 

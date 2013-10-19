@@ -65,6 +65,10 @@ typedef BOOL				(__stdcall *FreeImage_SaveFn)					(FREE_IMAGE_FORMAT fif, FIBITM
 typedef void				(__stdcall *FreeImage_UnloadFn)					(FIBITMAP *dib);
 typedef FIBITMAP*			(__stdcall *FreeImage_MakeThumbnailFn)			(FIBITMAP *dib, int dst_width, bool convert);
 
+
+static QuickMutex g_FreeImageMutex;
+static SharedObjectLoader g_ImgLib;
+
 FreeImage_GetFileTypeFn			FreeImage_GetFileType;
 FreeImage_GetFIFFromFilenameFn	FreeImage_GetFIFFromFilename;
 FreeImage_FIFSupportsReadingFn	FreeImage_FIFSupportsReading;
@@ -75,7 +79,6 @@ FreeImage_MakeThumbnailFn		FreeImage_MakeThumbnail;
 
 FIBITMAP* GenericLoader(const char* lpszPathName, int flag) 
 {
-
 	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
 
 	// check the file signature and deduce its format
@@ -95,8 +98,7 @@ FIBITMAP* GenericLoader(const char* lpszPathName, int flag)
 }
 
 
-SharedObjectLoader g_ImgLib;
-bool g_bImgLibLoaded = false;
+
 
 
 namespace UTIL
@@ -104,26 +106,21 @@ namespace UTIL
 namespace MISC
 {
 
-void unloadImgLib()
-{
-	FreeImage_GetFileType			= NULL;
-	FreeImage_GetFIFFromFilename	= NULL;
-	FreeImage_FIFSupportsReading	= NULL;
-	FreeImage_Save					= NULL;
-	FreeImage_Load					= NULL;
-	FreeImage_Unload				= NULL;
-
-	g_ImgLib = SharedObjectLoader();
-	g_bImgLibLoaded = false;
-}
-
 bool loadImgLib()
 {
-	if (g_bImgLibLoaded)
-		return true;
+	g_FreeImageMutex.lock();
 
+	if (FreeImage_Unload)
+	{
+		g_FreeImageMutex.unlock();
+		return true;
+	}
+		
 	if (!g_ImgLib.load("FreeImage.dll"))
+	{
+		g_FreeImageMutex.unlock();
 		return false;
+	}
 
 	FreeImage_Unload				= g_ImgLib.getFunction<FreeImage_UnloadFn>("_FreeImage_Unload@4");
 	FreeImage_GetFileType			= g_ImgLib.getFunction<FreeImage_GetFileTypeFn>("_FreeImage_GetFileType@8");
@@ -135,55 +132,41 @@ bool loadImgLib()
 
 	if (g_ImgLib.hasFailed())
 	{
-		unloadImgLib();
+		FreeImage_Unload = NULL;
+		g_FreeImageMutex.unlock();
 		return false;
 	}
 
-	g_bImgLibLoaded = true;
+	g_FreeImageMutex.unlock();
 	return true;
 }
 
 
 bool convertToIco(const std::string &imgPath, const std::string &icoPath)
 {
-	bool shouldUnloadImgLib = !g_bImgLibLoaded;
-
 	if (!loadImgLib())
 		return false;
 
 	FIBITMAP* img = GenericLoader(imgPath.c_str(), 0);
 
 	if (!img)
-	{
-		if (shouldUnloadImgLib)
-			unloadImgLib();
 		return false;
-	}
 
 	bool res = FreeImage_Save((FREE_IMAGE_FORMAT)1, img, icoPath.c_str(), 0)?true:false;
 	FreeImage_Unload(img);
-
-	if (shouldUnloadImgLib)
-		unloadImgLib();
 
 	return res;
 }
 
 bool convertToPng(const std::string &imgPath, const std::string &icoPath, size_t thumbnailSize)
 {
-	bool shouldUnloadImgLib = !g_bImgLibLoaded;
-
 	if (!loadImgLib())
 		return false;
 
 	FIBITMAP* img = GenericLoader(imgPath.c_str(), 0);
 
 	if (!img)
-	{
-		if (shouldUnloadImgLib)
-			unloadImgLib();
 		return false;
-	}
 
 	if (thumbnailSize != 0)
 	{
@@ -198,10 +181,6 @@ bool convertToPng(const std::string &imgPath, const std::string &icoPath, size_t
 
 	bool res = FreeImage_Save((FREE_IMAGE_FORMAT)13, img, icoPath.c_str(), 0)?true:false;
 	FreeImage_Unload(img);
-
-	if (shouldUnloadImgLib)
-		unloadImgLib();
-
 	return res;
 }
 
