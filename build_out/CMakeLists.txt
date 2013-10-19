@@ -54,8 +54,7 @@ install_data_directories("themes/default/images" ${IMG}/html)
 ###############################################################################
 
 set(APP ${IMG}/app)
-file(GLOB IMAGES ${APP}/*.png)
-file(GLOB IMAGES ${APP}/*.gif)
+file(GLOB IMAGES ${APP}/*.png ${APP}/*.gif)
 
 install_data_files("themes/default/images/app" ${IMAGES})
 
