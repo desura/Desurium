@@ -1,4 +1,3 @@
-#define BOOST_TEST_MODULE gcBuff_test
 #include <gtest/gtest.h>
 
 #include "Common.h"

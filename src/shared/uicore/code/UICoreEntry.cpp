@@ -97,14 +97,14 @@ public:
 		m_bExitCodeSet = false;
 		m_iExitCode = 0;
 
-#ifdef DEBUG
-#ifdef WITH_GTEST
+#if defined(DEBUG) && defined(WITH_GTEST)
+
 #ifdef WIN32
 		m_hUnitTest.load("unittest.dll");
 #else
 		m_hUnitTest.load("unittest.so");
 #endif
-#endif
+
 #endif
 	}
 
