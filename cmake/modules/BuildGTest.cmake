@@ -17,7 +17,6 @@ ExternalProject_Get_Property(
 )
 
 
-
 set(GTEST_INCLUDE_DIRS "${source_dir}/include")
 if(WIN32)
 
