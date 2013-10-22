@@ -37,6 +37,16 @@ public:
 	MCFBranch branch;
 };
 
+namespace UnitTest
+{
+	class MCFManagerFixture;
+}
+
+namespace sqlite3x
+{
+	class sqlite3_connection;
+}
+
 namespace UserCore
 {
 
@@ -52,6 +62,8 @@ public:
 	MCFBuild build;
 	MCFBranch branch;
 };
+
+class MigrateInfo;
 
 class MCFManager
 {
@@ -73,7 +85,11 @@ public:
 
 	gcString getMcfSavePath();
 
+	void init();
+
 protected:
+	friend class UnitTest::MCFManagerFixture;
+
 	void properDelMcfBackup(DesuraId gid, DesuraId mid);
 
 	void scanForMcf();
@@ -88,9 +104,12 @@ protected:
 
 	void migrateOldFiles();
 
+	void getListOfBadMcfPaths(const gcString &szItemDb, std::vector<MigrateInfo> &delList, std::vector<MigrateInfo> &updateList);
+	void getListOfBadMcfPaths(sqlite3x::sqlite3_connection &db, std::vector<MigrateInfo> &delList, std::vector<MigrateInfo> &updateList);
+
 private:
-	gcString m_szAppDataPath;
-	gcString m_szMCFSavePath;
+	const gcString m_szAppDataPath;
+	const gcString m_szMCFSavePath;
 };
 
 

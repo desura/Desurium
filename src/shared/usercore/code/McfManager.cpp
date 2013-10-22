@@ -75,6 +75,7 @@ MCFManager* g_pMCFManager = NULL;
 void InitMCFManager(const char* appDataPath, const char* mcfDataPath)
 {
 	g_pMCFManager = new MCFManager(appDataPath, mcfDataPath);
+	g_pMCFManager->init();
 }
 
 void DelMCFManager()
@@ -92,11 +93,14 @@ MCFManager* GetMCFManager()
 
 
 MCFManager::MCFManager(const char* appDataPath, const char* mcfDataPath)
+	: m_szAppDataPath(appDataPath)
+	, m_szMCFSavePath(mcfDataPath)
 {
-	createMcfDbTables(appDataPath);
-	m_szAppDataPath = appDataPath;
-	m_szMCFSavePath = mcfDataPath;
+}
 
+void MCFManager::init()
+{
+	createMcfDbTables(m_szAppDataPath.c_str());
 	migrateOldFiles();
 }
 
@@ -107,20 +111,25 @@ public:
 	MCFBuild build;
 	MCFBranch branch;
 	gcString path;
+	gcString newPath;
 };
 
-void MCFManager::migrateOldFiles()
+void MCFManager::getListOfBadMcfPaths(const gcString &szItemDb, std::vector<MigrateInfo> &delList, std::vector<MigrateInfo> &updateList)
 {
-	gcString szItemDb = getMcfDb(m_szAppDataPath.c_str());
-	std::string res;
-
-	std::vector<MigrateInfo> delList;
-	std::vector<MigrateInfo> updateList;
-
 	try
 	{
 		sqlite3x::sqlite3_connection db(szItemDb.c_str());
+		getListOfBadMcfPaths(db, delList, updateList);
+	}
+	catch (std::exception &)
+	{
+	}
+}
 
+void MCFManager::getListOfBadMcfPaths(sqlite3x::sqlite3_connection &db, std::vector<MigrateInfo> &delList, std::vector<MigrateInfo> &updateList)
+{
+	try
+	{
 		sqlite3x::sqlite3_command cmd(db, "SELECT * FROM mcfitem");
 		sqlite3x::sqlite3_reader reader = cmd.executereader();
 
@@ -128,14 +137,21 @@ void MCFManager::migrateOldFiles()
 		{
 			gcString path = reader.getstring(2);
 
-			if (path.find(m_szAppDataPath) != std::string::npos)
+			if (path.find(m_szAppDataPath) != 0)
 			{
 				MigrateInfo mi;
 
 				mi.id = DesuraId(reader.getint64(0));
 				mi.build = MCFBuild::BuildFromInt(reader.getint(1));
 				mi.branch = MCFBranch::BranchFromInt(reader.getint(3));
+
+				gcString newPath = generatePath(mi.id, mi.branch, mi.build, false);
+
+				if (newPath == path)
+					continue;
+
 				mi.path = path;
+				mi.newPath = newPath;
 
 				uint32 flags = reader.getint(4);
 
@@ -149,6 +165,18 @@ void MCFManager::migrateOldFiles()
 	catch (std::exception &)
 	{
 	}
+}
+
+void MCFManager::migrateOldFiles()
+{
+	gcString szItemDb = getMcfDb(m_szAppDataPath.c_str());
+	std::string res;
+
+	std::vector<MigrateInfo> delList;
+	std::vector<MigrateInfo> updateList;
+
+	getListOfBadMcfPaths(szItemDb, delList, updateList);
+
 
 	for (size_t x=0; x<delList.size(); x++)
 	{
@@ -158,9 +186,9 @@ void MCFManager::migrateOldFiles()
 
 	for (size_t x=0; x<updateList.size(); x++)
 	{
-		gcString newPath = generatePath(updateList[x].id, updateList[x].branch, updateList[x].build, false);
+		gcString newPath = updateList[x].newPath;
 
-		UTIL::FS::recMakeFolder(newPath.c_str());
+		UTIL::FS::recMakeFolder(UTIL::FS::PathWithFile(newPath));
 		UTIL::FS::moveFile(updateList[x].path.c_str(), newPath.c_str());
 
 		delMcfPath(updateList[x].id, updateList[x].branch, updateList[x].build);
@@ -515,21 +543,12 @@ void MCFManager::getMCFFiles(std::vector<mcfInfo*> &validFiles, DesuraId id)
 	}
 }
 
-
 gcString MCFManager::generatePath(DesuraId id, MCFBranch branch, MCFBuild build, bool isUnAuthed)
 {
-#ifdef WIN32
-	gcString fileName("{2}b{0}_m{1}.mcf", branch, build, DIRS_STR);
-#else
 	gcString fileName("b{0}_m{1}.mcf", branch, build);
-#endif
 
 	if (isUnAuthed)
-#ifdef WIN32
-		fileName = gcString("{2}b{0}_m{1}_unauthed.mcf", branch, build, DIRS_STR);
-#else
 		fileName = gcString("b{0}_m{1}_unauthed.mcf", branch, build);
-#endif
 
 	return gcString("{0}{1}{2}", m_szMCFSavePath, DIRS_STR, id.getFolderPathExtension(fileName.c_str()));
 }
@@ -608,3 +627,97 @@ gcString MCFManager::getMcfSavePath()
 }
 
 }
+
+#ifdef WITH_GTEST
+
+#include <gtest/gtest.h>
+
+namespace UnitTest
+{
+	class MCFManagerFixture : public ::testing::Test
+	{
+	public:
+		MCFManagerFixture()
+			: m_MCFManager("appdata", "mcfroot")
+		{
+		}
+
+		gcString generatePath(DesuraId id, MCFBranch branch, MCFBuild build, bool isUnAuthed)
+		{
+			return m_MCFManager.generatePath(id, branch, build, isUnAuthed);
+		}
+
+		void getListOfBadMcfPaths(sqlite3x::sqlite3_connection &db, std::vector<UserCore::MigrateInfo> &delList, std::vector<UserCore::MigrateInfo> &updateList)
+		{
+			m_MCFManager.getListOfBadMcfPaths(db, delList, updateList);
+		}
+
+		UserCore::MCFManager m_MCFManager;
+	};
+
+	TEST_F(MCFManagerFixture, generatePath_authed)
+	{
+		DesuraId id("1", "games");
+		gcString strPath = generatePath(id, MCFBranch::BranchFromInt(2), MCFBuild::BuildFromInt(3), false);
+
+#ifdef WIN32
+		ASSERT_STREQ("mcfroot\\games\\1\\b2_m3.mcf", strPath.c_str());
+#else
+		ASSERT_STREQ("mcfroot/games/1/b2_m3.mcf", strPath.c_str());
+#endif
+	}
+
+	TEST_F(MCFManagerFixture, generatePath_unauthed)
+	{
+		DesuraId id("1", "games");
+		gcString strPath = generatePath(id, MCFBranch::BranchFromInt(2), MCFBuild::BuildFromInt(3), true);
+
+#ifdef WIN32
+		ASSERT_STREQ("mcfroot\\games\\1\\b2_m3_unauthed.mcf", strPath.c_str());
+#else
+		ASSERT_STREQ("mcfroot/games/1/b2_m3_unauthed.mcf", strPath.c_str());
+#endif
+	}
+
+	TEST_F(MCFManagerFixture, getListOfBadMcfPaths)
+	{
+		sqlite3x::sqlite3_connection db;
+
+		auto insertItem = [&db](DesuraId id, gcString strPath, bool bUnAuthed) -> void 
+		{
+			try
+			{
+				sqlite3x::sqlite3_command cmd(db, "INSERT INTO mcfitem VALUES (?,?,?,?,?);");
+				cmd.bind(1, (long long int)id.toInt64());
+				cmd.bind(2, 0);
+				cmd.bind(3, strPath);
+				cmd.bind(4, bUnAuthed ? FLAG_UNAUTHED:0);
+
+				cmd.executenonquery();
+			}
+			catch (std::exception &)
+			{
+			}
+		};
+
+		insertItem(DesuraId("1", "games"), "mcfroot//test1.mcf", true);
+		insertItem(DesuraId("2", "games"), "abcd//test2.mcf", false);
+		insertItem(DesuraId("3", "games"), "appdata//test3.mcf", false);
+		insertItem(DesuraId("4", "games"), "mcfroot//test4.mcf", false);
+
+		std::vector<UserCore::MigrateInfo> delList;
+		std::vector<UserCore::MigrateInfo> updateList;
+
+		getListOfBadMcfPaths(db, delList, updateList);
+
+		ASSERT_EQ(1, delList.size());
+		ASSERT_EQ(DesuraId("1", "games"), delList[0].id);
+
+		ASSERT_EQ(2, updateList.size());
+		ASSERT_EQ(DesuraId("2", "games"), updateList[0].id);
+		ASSERT_EQ(DesuraId("3", "games"), updateList[1].id);
+	}
+}
+
+
+#endif
