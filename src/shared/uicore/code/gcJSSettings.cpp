@@ -172,22 +172,12 @@ std::vector<MapElementI*> DesuraJSSettings::getLanguages()
 	return ret;
 }
 
+extern int GetSteamUsers(std::vector<gcString> &vUsers);
+
 std::vector<gcString> DesuraJSSettings::getSteamNames()
 {
 	std::vector<gcString> ret;
-
-	gcString searchPath("{0}{1}steamapps{1}", UTIL::OS::getConfigValue(STEAMPATH), DIRS_STR);
-
-	std::vector<UTIL::FS::Path> fileList;
-	UTIL::FS::getAllFolders(UTIL::FS::Path(searchPath, "", false), fileList);
-
-	for (size_t x=0; x<fileList.size(); x++)
-	{
-		if (fileList[x].getLastFolder() == "common" || fileList[x].getLastFolder() == "SourceMods" || fileList[x].getLastFolder() == "media")
-			continue;
-
-		ret.push_back(fileList[x].getLastFolder());
-	}
+	GetSteamUsers(ret);
 
 	if (ret.size() == 0)
 		ret.push_back(NOSTEAM);
