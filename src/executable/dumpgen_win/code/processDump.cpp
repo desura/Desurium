@@ -98,7 +98,7 @@ void ProcessDump(const char* m_lpCmdLine)
 //	BootLoaderUtil::WaitForDebugger();
 //#endif
 
-	BootLoaderUtil::CMDArgs args(m_lpCmdLine);
+	UTIL::MISC::CMDArgs args(m_lpCmdLine);
 
 	volatile bool uploadComplete = true;
 	char file[255] = {0};

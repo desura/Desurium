@@ -107,7 +107,7 @@ protected:
 	void restartAsAdmin(int needupdate);
 	void preReadImages();
 
-	bool preLaunchCheck(BootLoaderUtil::CMDArgs &args);
+	bool preLaunchCheck(UTIL::MISC::CMDArgs &args);
 
 private:
 	SharedObjectLoader m_hUICore;
@@ -157,7 +157,7 @@ BootLoader::~BootLoader()
 
 void BootLoader::InitInstance()
 {
-	BootLoaderUtil::CMDArgs args(m_lpCmdLine);
+	UTIL::MISC::CMDArgs args(m_lpCmdLine);
 	
 	if (args.hasArg("waitfordebugger"))
 		BootLoaderUtil::WaitForDebugger();
@@ -184,7 +184,7 @@ void BootLoader::InitInstance()
 	m_pUICore->initWxWidgets(m_hInstance, m_nCmdShow, args.getArgc(), const_cast<char**>(args.getArgv()));
 }
 
-bool BootLoader::preLaunchCheck(BootLoaderUtil::CMDArgs &args)
+bool BootLoader::preLaunchCheck(UTIL::MISC::CMDArgs &args)
 {
 #ifdef DESURA_OFFICAL_BUILD
 	CheckForBadUninstaller();

@@ -306,6 +306,32 @@ namespace MISC
 	private:
 		BufferData* m_pData;
 	};
+
+	class CMDArgInternal;
+
+	void ConvertToArgs(const char* args, std::vector<char*> &argv);
+
+	class CMDArgs
+	{
+	public:
+		CMDArgs(const char* args);
+		~CMDArgs();
+
+		void addValue(const char* name, const char* value = NULL);
+
+		bool hasArg(const char* name);
+		bool hasValue(const char* name);
+
+		const char** getArgv();
+		int getArgc();
+
+		int getInt(const char* name);
+		void getString(const char* name, char* buff, size_t buffSize);
+
+	private:
+		void process();
+		CMDArgInternal* m_pInternal;
+	};
 }
 }
 

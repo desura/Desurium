@@ -12,6 +12,7 @@ file(GLOB
 add_executable(toolhelper WIN32 ${Sources})
 target_link_libraries(toolhelper
   mdump_s
+  util_s
   util_bootloader_s
   Comctl32
 )

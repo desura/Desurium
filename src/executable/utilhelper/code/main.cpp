@@ -76,7 +76,7 @@ BootLoader::~BootLoader()
 
 void BootLoader::InitInstance()
 {
-	BootLoaderUtil::CMDArgs args(m_lpCmdLine);
+	UTIL::MISC::CMDArgs args(m_lpCmdLine);
 
 	if (BootLoaderUtil::GetOSId() == WINDOWS_PRE2000)
 	{
