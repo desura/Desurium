@@ -80,9 +80,4 @@ else()
   endif()
 endif()
 
-if(WITH_ARES)
-  list(APPEND CURL_LIBRARIES ${CARES_LIBRARIES})
-endif()
-
-
 SET_PROPERTY(TARGET curl                PROPERTY FOLDER "ThirdParty")
