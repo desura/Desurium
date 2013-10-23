@@ -26,8 +26,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 using namespace testing;
 
+#ifdef DEBUG
 CVar g_bAssertOnFailure("unittest_assertonfailure", "true");
 CVar g_bRunOnStartup("unittest_runonstartup", "true");
+#else
+CVar g_bAssertOnFailure("unittest_assertonfailure", "false");
+CVar g_bRunOnStartup("unittest_runonstartup", "false");
+#endif
+
 CVar g_strUnitTestFilter("unittest_filter", "*");
 
 class gcUnitTestWatcher : public EmptyTestEventListener
@@ -102,9 +108,19 @@ static gcUnitTestWatcher* SetupTestWatcher()
 
 	TestEventListeners& listeners = UnitTest::GetInstance()->listeners();
 	listeners.Append(pWatcher);
+	
+#ifdef WIN32
+	UTIL::MISC::CMDArgs args(GetCommandLineA());
+#else
+	char* szCmdLine = NULL;
+	UTIL::FS::readWholeFile("/proc/self/cmdline", &szCmdLine);
 
-	int argc = 0;
-	InitGoogleTest(&argc, (char**)NULL);
+	UTIL::MISC::CMDArgs args(szCmdLine);
+	safe_delete(szCmdLine);
+#endif
+
+	int argc = args.getArgc();
+	InitGoogleTest(&argc, const_cast<char**>(args.getArgv()));
 
 	return pWatcher;
 }
