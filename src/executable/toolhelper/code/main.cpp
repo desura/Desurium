@@ -83,7 +83,7 @@ void BootLoader::InitInstance()
 	if (!m_pUICore)
 		return;
 
-	BootLoaderUtil::CMDArgs args(m_lpCmdLine);
+	UTIL::MISC::CMDArgs args(m_lpCmdLine);
 	args.addValue("-toolhelper");
 
 	m_pUICore->initWxWidgets(m_hInstance, m_nCmdShow, args.getArgc(), const_cast<char**>(args.getArgv()));

@@ -19,6 +19,7 @@ add_definitions(
 add_executable(utilhelper WIN32 ${Sources})
 target_link_libraries(utilhelper
   mdump_s
+  util_s
   util_bootloader_s
   Comctl32
 )
