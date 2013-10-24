@@ -752,7 +752,11 @@ bool BranchInstallInfo::processUpdateXml(tinyxml2::XMLNode* branch)
 		{
 			uint32 build = -1;
 			XML::GetChild("build", build, mcfEl);
-			m_NextBuild = MCFBuild::BuildFromInt(build);
+
+			if (m_INBuild == 0 || build > m_INBuild)
+				m_NextBuild = MCFBuild::BuildFromInt(build);
+			else
+				m_NextBuild = m_INBuild;
 		}
 	}					
 
