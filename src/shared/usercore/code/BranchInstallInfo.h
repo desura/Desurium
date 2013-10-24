@@ -39,6 +39,7 @@ namespace UserCore
 namespace Item
 {
 
+class BranchItemInfoI;
 class ItemInfo;
 
 class ExeInfo : public Misc::ExeInfoI
@@ -101,7 +102,7 @@ public:
 class BranchInstallInfo
 {
 public:
-	BranchInstallInfo(uint32 biId, ItemInfo *itemInfo);
+	BranchInstallInfo(uint32 biId, BranchItemInfoI *itemInfo);
 	~BranchInstallInfo();
 
 
@@ -208,7 +209,7 @@ private:
 
 	uint32 m_BiId;
 
-	ItemInfo* m_pItem;
+	BranchItemInfoI* m_pItem;
 };
 
 

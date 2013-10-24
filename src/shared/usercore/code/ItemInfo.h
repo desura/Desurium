@@ -43,7 +43,15 @@ namespace Item
 class BranchInfo;
 class BranchInstallInfo;
 
-class ItemInfo : public ItemInfoI
+
+class BranchItemInfoI
+{
+public:
+	virtual DesuraId getId()=0;
+	virtual uint32 getStatus()=0;
+};
+
+class ItemInfo : public ItemInfoI, public BranchItemInfoI
 {
 public:
 	//! Constuctor

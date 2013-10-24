@@ -48,14 +48,13 @@ namespace Item
 {
 
 
-BranchInstallInfo::BranchInstallInfo(uint32 biId, ItemInfo *itemInfo)
+BranchInstallInfo::BranchInstallInfo(uint32 biId, BranchItemInfoI *itemInfo)
+	: m_BiId(biId)
+	, m_pItem(itemInfo)
+	, m_ItemId(itemInfo->getId())
+	, m_uiInstallSize(0)
+	, m_uiDownloadSize(0)
 {
-	m_uiInstallSize = 0;
-	m_uiDownloadSize = 0;
-
-	m_BiId = biId;
-	m_ItemId = itemInfo->getId();
-	m_pItem = itemInfo;
 }
 
 BranchInstallInfo::~BranchInstallInfo()
