@@ -117,11 +117,19 @@ static gcUnitTestWatcher* SetupTestWatcher()
 #ifdef WIN32
 	UTIL::MISC::CMDArgs args(GetCommandLineA());
 #else
-	char* szCmdLine = NULL;
-	UTIL::FS::readWholeFile("/proc/self/cmdline", &szCmdLine);
+	char szCmdLine[255] = {0};
 
+	FILE* fh = fopen("/proc/self/cmdline", "r");
+	int nRead = fread(szCmdLine, 1, 255, fh);
+
+	for (int x = 0; x < nRead; ++x)
+	{
+		if (szCmdLine[x] == '\0')
+			szCmdLine[x] = ' ';
+	}
+
+	fclose(fh);
 	UTIL::MISC::CMDArgs args(szCmdLine);
-	safe_delete(szCmdLine);
 #endif
 
 	int argc = args.getArgc();

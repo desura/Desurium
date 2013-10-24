@@ -5,7 +5,6 @@ compiler:
 env:
   - CFLAGS=--coverage CXXFLAGS=--coverage
 before_install:
-  - ls -la /proc/self/
   - sudo apt-get update
   - sudo apt-get install gcc-multilib libnotify-dev libv8-dev libboost1.48-dev libboost-date-time1.48-dev libboost-filesystem1.48-dev libboost-thread1.48-dev libboost-system1.48-dev libboost-test1.48-dev libgtest-dev
   - wget "http://ppa.launchpad.net/fransschreuder1/usbpicprog-stable/ubuntu/pool/main/w/wxwidgets2.9/libwxgtk2.9-dev_2.9.3-1_amd64.deb"
