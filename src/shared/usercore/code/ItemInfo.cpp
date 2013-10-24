@@ -506,7 +506,8 @@ void ItemInfo::loadXmlData(uint32 platform, tinyxml2::XMLNode *xmlNode, uint16 s
 
 	//the only time settings should be present if the xml came from the api
 	tinyxml2::XMLElement* setNode = xmlNode->FirstChildElement("settings");
-	if (setNode && !isInstalled() && pWildCard)
+
+	if (setNode && pWildCard)
 		processSettings(platform, setNode, pWildCard, reset);
 
 	gcString installCheckFile;
@@ -666,9 +667,6 @@ void ItemInfo::processInfo(tinyxml2::XMLNode* xmlEl)
 
 void ItemInfo::processSettings(uint32 platform, tinyxml2::XMLNode* setNode, WildcardManager* pWildCard, bool reset)
 {
-	//if (platform == -1)
-	//	int a=1;
-
 	bool hasBroughtItem = false;
 
 	for (size_t x=0; x<m_vBranchList.size(); x++)
@@ -1250,9 +1248,7 @@ void ItemInfo::setLinkInfo(const char* exe, const char* args)
 
 	UserCore::Item::BranchInfo* bi = m_vBranchList[0];
 
-	bii->setPath(path.getFolderPath().c_str());
-	bii->setInsCheck(exe);
-	bii->setLinkInfo(exe, args);
+	bii->setLinkInfo(path.getFolderPath().c_str(), exe, args);
 	bi->setLinkInfo(getName());
 
 	m_iStatus = STATUS_LINK|STATUS_NONDOWNLOADABLE|STATUS_READY|STATUS_ONCOMPUTER|STATUS_INSTALLED;

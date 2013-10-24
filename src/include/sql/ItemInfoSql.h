@@ -115,6 +115,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 												");"
 
 
+#define COUNT_INSTALLINFOEX "select count(*) from sqlite_master where name='installinfoex';"
+#define CREATE_INSTALLINFOEX "create table installinfoex(itemid INTEGER, "				\
+												"biid INTEGER,"							\
+												"installcheck TEXT,"					\
+												"PRIMARY KEY (itemid, biid, installcheck)"	\
+												");"
+
+
 #define ITEMINFO_DB "iteminfo_d.sqlite"
 
 inline gcString getItemInfoDb(const char* appDataPath)
@@ -160,6 +168,9 @@ inline void createItemInfoDbTables(const char* appDataPath)
 
 	if (db.executeint(COUNT_INSTALLINFO) == 0)
 		db.executenonquery(CREATE_INSTALLINFO);
+
+	if (db.executeint(COUNT_INSTALLINFOEX) == 0)
+		db.executenonquery(CREATE_INSTALLINFOEX);
 }
 
 #endif //DESURA_CIP_H
