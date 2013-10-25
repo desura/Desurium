@@ -129,4 +129,28 @@ Index: src/win32-math.cc
 +#endif  // _MSC_VER < 1800
  
  #endif  // _MSC_VER
+Index: src/preparser.cc
+===================================================================
+--- src/preparser.cc	(revision 1)
++++ src/preparser.cc	(working copy)
+@@ -43,6 +43,9 @@
+ #include "utils.h"
+ 
+ #ifdef _MSC_VER
++
++#if (_MSC_VER < 1800)
++
+ namespace std {
+ 
+ // Usually defined in math.h, but not in MSVC.
+@@ -50,6 +53,9 @@
+ int isfinite(double value);
+ 
+ }  // namespace std
++
++#endif  // _MSC_VER < 1800
++
+ #endif
+ 
+ namespace v8 {
  
