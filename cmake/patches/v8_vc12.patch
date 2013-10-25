@@ -1,0 +1,132 @@
+Index: build/gyp/pylib/gyp/MSVSVersion.py
+===================================================================
+--- build/gyp/pylib/gyp/MSVSVersion.py	(revision 1)
++++ build/gyp/pylib/gyp/MSVSVersion.py	(working copy)
+@@ -83,8 +83,15 @@
+       # vcvars32, which it can only find if VS??COMNTOOLS is set, which it
+       # isn't always.
+       if target_arch == 'x86':
++        if self.short_name == '2013' and (
++            os.environ.get('PROCESSOR_ARCHITECTURE') == 'AMD64' or
++            os.environ.get('PROCESSOR_ARCHITEW6432') == 'AMD64'):
++          # VS2013 non-Express has a x64-x86 cross that we want to prefer.
++          return [os.path.normpath(
++             os.path.join(self.path, 'VC/vcvarsall.bat')), 'amd64_x86']
++        # Otherwise, the standard x86 compiler.
+         return [os.path.normpath(
+-          os.path.join(self.path, 'Common7/Tools/vsvars32.bat'))]
++          os.path.join(self.path, 'Common7/Tools/vsvars32.bat'))]
+       else:
+         assert target_arch == 'x64'
+         arg = 'x86_amd64'
+@@ -197,6 +204,24 @@
+   if path:
+     path = os.path.normpath(path)
+   versions = {
++      '2013': VisualStudioVersion('2013',
++                                  'Visual Studio 2013',
++                                  solution_version='13.00',
++                                  project_version='12.0',
++                                  flat_sln=False,
++                                  uses_vcxproj=True,
++                                  path=path,
++                                  sdk_based=sdk_based,
++                                  default_toolset='v120'),
++      '2013e': VisualStudioVersion('2013e',
++                                  'Visual Studio 2013',
++                                  solution_version='13.00',
++                                  project_version='12.0',
++                                  flat_sln=True,
++                                  uses_vcxproj=True,
++                                  path=path,
++                                  sdk_based=sdk_based,
++                                  default_toolset='v120'),
+       '2012': VisualStudioVersion('2012',
+                                   'Visual Studio 2012',
+                                   solution_version='12.00',
+@@ -288,10 +313,11 @@
+       2008(e) - Visual Studio 2008 (9)
+       2010(e) - Visual Studio 2010 (10)
+       2012(e) - Visual Studio 2012 (11)
++         2013(e) - Visual Studio 2013 (12)
+     Where (e) is e for express editions of MSVS and blank otherwise.
+   """
+   version_to_year = {
+-      '8.0': '2005', '9.0': '2008', '10.0': '2010', '11.0': '2012'}
++      '8.0': '2005', '9.0': '2008', '10.0': '2010', '11.0': '2012', '12.0': '2013'}
+   versions = []
+   for version in versions_to_check:
+     # Old method of searching for which VS version is installed
+@@ -354,6 +380,8 @@
+     '2010e': ('10.0',),
+     '2012': ('11.0',),
+     '2012e': ('11.0',),
++    '2013': ('12.0',),
++    '2013e': ('12.0',),
+   }
+   version = str(version)
+   versions = _DetectVisualStudioVersions(version_map[version], 'e' in version)
+Index: src/platform.h
+===================================================================
+--- src/platform.h	(revision 1)
++++ src/platform.h	(working copy)
+@@ -73,6 +73,8 @@
+
+ int strncasecmp(const char* s1, const char* s2, int n);
+
++// Visual C++ 2013 and higher implement this function.
++#if (_MSC_VER < 1800)
+ inline int lrint(double flt) {
+   int intgr;
+ #if defined(V8_TARGET_ARCH_IA32)
+@@ -90,6 +92,7 @@
+   return intgr;
+ }
+
++#endif  // _MSC_VER < 1800
+
+ #endif  // _MSC_VER
+
+Index: src/win32-math.h
+===================================================================
+--- src/win32-math.h	(revision 1)
++++ src/win32-math.h	(working copy)
+@@ -37,6 +37,8 @@
+ #error Wrong environment, expected MSVC.
+ #endif  // _MSC_VER
+
++// MSVC 2013+ provides implementations of all standard math functions.
++#if (_MSC_VER < 1800)
+ enum {
+   FP_NAN,
+   FP_INFINITE,
+@@ -57,5 +59,7 @@
+ int signbit(double x);
+
+ }  // namespace std
++
++#endif  // _MSC_VER < 1800
+
+ #endif  // V8_WIN32_MATH_H_
+Index: src/win32-math.cc
+===================================================================
+--- src/win32-math.cc	(revision 1)
++++ src/win32-math.cc	(working copy)
+@@ -31,6 +31,8 @@
+ // (http://www.opengroup.org/onlinepubs/000095399/)
+ #ifdef _MSC_VER
+ 
++#if (_MSC_VER < 1800)
++
+ #undef V8_WIN32_LEAN_AND_MEAN
+ #define V8_WIN32_HEADERS_FULL
+ #include "win32-headers.h"
+@@ -103,5 +105,7 @@
+ }
+ 
+ }  // namespace std
++
++#endif  // _MSC_VER < 1800
+ 
+ #endif  // _MSC_VER
+ 

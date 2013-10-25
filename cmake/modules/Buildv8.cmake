@@ -4,6 +4,17 @@ else()
   set(EXTRA_OPTS "-Dv8_target_arch=ia32")
 endif()
 
+if (WIN32 AND NOT MINGW)
+  if (MSVC10)
+    set(V8_MSVS_VERSION 2010)
+  elseif (MSVC11)
+    set(V8_MSVS_VERSION 2012)
+  elseif (MSVC12)
+	set(V8_MSVS_VERSION 2013)
+	set(V8_PATCH_COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_PATCH_DIR}/v8_vc12.patch)
+  endif()
+endif()
+
 if(UNIX)
   set(ENV{CFLAGS.host} "$ENV{CFLAGS}")
   set(ENV{CXXFLAGS.host} "$ENV{CXXFLAGS}")
@@ -14,7 +25,7 @@ else()
   if(NOT SUBVERSION_FOUND)
     find_package(Subversion REQUIRED)
   endif()
-  set(V8_CONFIGURE_CMD ${PYTHON_EXECUTABLE} <SOURCE_DIR>/build/gyp_v8 -Dcomponent=shared_library -f msvs -Dtarget_arch=ia32)
+  set(V8_CONFIGURE_CMD ${PYTHON_EXECUTABLE} <SOURCE_DIR>/build/gyp_v8 -Dcomponent=shared_library -f msvs -G msvs_version=${V8_MSVS_VERSION} -Dtarget_arch=ia32)
   if(DEBUG_V8)
     set(V8_BUILD_CMD msbuild <SOURCE_DIR>/tools/gyp/v8.sln /m /p:Platform=Win32 /p:Configuration=Debug)
   else()
@@ -28,6 +39,7 @@ ExternalProject_Add(
   URL_MD5 ${V8_MD5}
   CONFIGURE_COMMAND ${V8_CONFIGURE_CMD}
   BUILD_COMMAND ${V8_BUILD_CMD}
+  PATCH_COMMAND ${V8_PATCH_COMMAND}
   BUILD_IN_SOURCE 1
   INSTALL_COMMAND ""
 )
@@ -42,6 +54,7 @@ ExternalProject_Add_Step(
   DEPENDEES download
   WORKING_DIRECTORY <SOURCE_DIR>
 )
+
 endif()
 
 ExternalProject_Get_Property(
