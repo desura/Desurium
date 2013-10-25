@@ -2,6 +2,7 @@ if(MINGW)
   set(CONFIGURE_COMMAND "./bootstrap.sh")
   set(BJAM_BINARY "./bjam.exe")
   set(BOOST_EXTRA_BUILD_OPTS "--with-toolset=mingw")
+  set(BOOST_PATCH_COMMAND "")
 else()
   set(CONFIGURE_COMMAND "bootstrap.bat")
   set(BJAM_BINARY "b2.exe")
@@ -14,10 +15,14 @@ set(BOOST_BJAM_LIBS ${BOOST_BJAM_LIBS_STATIC} --with-date_time --with-test)
 if (WIN32 AND NOT MINGW)
   if (MSVC10)
     set(TOOLSET_MSVC_VER --toolset=msvc-10.0)
+	set(BOOST_EXTRA_BUILD_OPTS vc10)
   elseif (MSVC11)
     set(TOOLSET_MSVC_VER --toolset=msvc-11.0)
+	set(BOOST_EXTRA_BUILD_OPTS vc11)
   elseif (MSVC12)
     set(TOOLSET_MSVC_VER --toolset=msvc-12.0)
+	set(BOOST_EXTRA_BUILD_OPTS vc12)
+	set(BOOST_PATCH_COMMAND ${PATCH_SCRIPT_PATH} ${CMAKE_PATCH_DIR}/boost_vc12.patch)
   endif()
 endif()
 
@@ -28,6 +33,7 @@ if(DEBUG)
     URL_MD5 ${BOOST_MD5}
     UPDATE_COMMAND ""
     BUILD_IN_SOURCE 1
+	PATCH_COMMAND ${BOOST_PATCH_COMMAND}
     CONFIGURE_COMMAND ${CONFIGURE_COMMAND} ${BOOST_EXTRA_BUILD_OPTS}
     BUILD_COMMAND ${BJAM_BINARY} ${BOOST_BJAM_LIBS} --layout=tagged variant=debug link=static
                     threading=multi runtime-link=shared ${TOOLSET_MSVC_VER}
@@ -41,6 +47,7 @@ else()
     URL_MD5 ${BOOST_MD5}
     UPDATE_COMMAND ""
     BUILD_IN_SOURCE 1
+	PATCH_COMMAND ${BOOST_PATCH_COMMAND}
     CONFIGURE_COMMAND ${CONFIGURE_COMMAND} ${BOOST_EXTRA_BUILD_OPTS}
     BUILD_COMMAND ${BJAM_BINARY} ${BOOST_BJAM_LIBS} --layout=tagged variant=release link=static
                     threading=multi runtime-link=shared ${TOOLSET_MSVC_VER}
