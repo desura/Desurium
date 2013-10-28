@@ -129,5 +129,5 @@ if(WIN32)
   SetSharedRuntime(usercore)
 endif()
 
-LinkWithGTest(usercore)
+link_with_gtest(usercore)
 install_library(usercore)

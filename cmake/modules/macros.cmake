@@ -264,7 +264,7 @@ function(install_data_directories target_path)
   endforeach()
 endfunction()
 
-macro(LinkWithGTest target)
+macro(link_with_gtest target)
   if(WITH_GTEST)
     if(MSVC11)
       add_definitions(-D_VARIADIC_MAX=10)
