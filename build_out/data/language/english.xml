@@ -250,7 +250,7 @@
 
 		<str name="#IF_COMPLETEPREORDER">Pre Load Complete</str>
 
-		<str name="#IF_PRELOADLAUNCH">{0} has been {2} and cannot be launched at this time. It will be available to play in {1} days.</str>
+		<str name="#IF_PRELOADLAUNCH">{0} has been {2} and cannot be launched at this time. It will be available to play in {1} {4} on {3}.</str>
 		<str name="#IF_PRELOADLAUNCH_TITLE">{0}</str>
 		<str name="#IF_PRELOADLAUNCH_PREORDERED">preordered</str>
 		<str name="#IF_PRELOADLAUNCH_PRELOADED">preloaded</str>

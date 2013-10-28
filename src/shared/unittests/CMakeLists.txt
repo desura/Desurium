@@ -5,6 +5,7 @@ include_directories(
 
 file(GLOB Sources code/util/gcBuff_test.cpp
                   code/util/MD5_test.cpp
+                  code/util/util_misc.cpp
                   code/util_fs/util_fs_copyFile.cpp
                   code/util_fs/util_fs_copyFolder.cpp
                   code/util_fs/util_fs_getAllFiles.cpp
