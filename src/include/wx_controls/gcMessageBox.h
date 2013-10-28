@@ -87,6 +87,8 @@ protected:
 	wxSizer *CreateButtonSizer(long flags);
 	wxSizer *CreateSeparatedButtonSizer(long flags);
 
+	void onChar(wxKeyEvent& event);
+
 private:
 	wxBoxSizer* m_bsButtonSizer;
 
