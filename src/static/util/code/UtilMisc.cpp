@@ -355,31 +355,97 @@ bool isValidEmail(const char* email)
 	return true;
 }
 
-void getTimeDiffFromNow(const char* dateTime, uint32 &days, uint32 &hours, bool dtIsUTC)
+// Boost gets sad if input dateTime strings are not valid ISO 8601 format so try to fix them
+const std::string fixDateTimeString(const char* dateTime)
+{
+	std::string date_str(dateTime);
+
+	// if date portion is too short, give up and return empty string
+	if ( date_str.length() < 8 )
+		return std::string();
+
+	if ( date_str.find("T") == std::string::npos )
+	{
+		// grab time portion if it exists
+		std::string time_part = date_str.substr(8);
+
+		// if string does not contain 'T', add it in the right place
+		date_str = date_str.substr(0,8);
+		date_str += "T";
+
+		// add back in the time 
+		date_str += time_part;
+	}
+
+	// the length of a correctly formatted string
+	const unsigned int correct_length = std::string("20130101T123456").length();
+
+	// pad with '0's as required
+	while( date_str.length() < correct_length )
+	{
+		date_str += "0";
+	};
+
+	return date_str;
+}
+
+const std::string getNowAsDateTime()
+{
+	bpt::ptime now(bpt::second_clock::local_time());
+
+	return bpt::to_iso_string(now);
+}
+
+const std::string dateTimeToDisplay(const char* dateTime)
+{
+	std::string date_time_str = fixDateTimeString(dateTime);
+	bpt::ptime dt(bpt::from_iso_string(date_time_str));
+
+	// ostringstream owns the facet - no need to delete
+	bpt::time_facet *facet = new bpt::time_facet("%x");
+	std::ostringstream codec("");
+	codec.imbue(std::locale(codec.getloc(), facet));
+	codec << dt;
+	return codec.str();
+}
+
+void getTimeDiff(const char* dateTimeFirst, const char* dateTimeLast, uint32 &days, uint32 &hours, bool dtIsUTC)
 {
 	days = 0;
 	hours = 0;
 
-	if (!dateTime)
+	if ( ! dateTimeFirst || ! dateTimeLast )
 		return;
+
+	std::string date_str_first = fixDateTimeString(dateTimeFirst);
+	std::string date_str_last = fixDateTimeString(dateTimeLast);
 
 	try
 	{
-		bpt::ptime t(bpt::from_iso_string(dateTime));
-		bpt::ptime now(bpt::second_clock::universal_time());
-
-		t = boost::date_time::local_adjustor<bpt::ptime, 0, bpt::no_dst>::utc_to_local(t);
+		// convert first date/time to Boost UTC
+		bpt::ptime tt_first(bpt::from_iso_string(date_str_first));
+		tt_first = boost::date_time::local_adjustor<bpt::ptime, 0, bpt::no_dst>::utc_to_local(tt_first);
 
 		if (dtIsUTC)
-			t = boost::date_time::c_local_adjustor<bpt::ptime>::utc_to_local(t);
+			tt_first = boost::date_time::c_local_adjustor<bpt::ptime>::utc_to_local(tt_first);
 
-		bpt::time_duration diff = t - now;
+		// convert second date/time to Boost UTC
+		bpt::ptime tt_last(bpt::from_iso_string(date_str_last));
+		tt_last = boost::date_time::local_adjustor<bpt::ptime, 0, bpt::no_dst>::utc_to_local(tt_last);
 
+		if (dtIsUTC)
+			tt_last = boost::date_time::c_local_adjustor<bpt::ptime>::utc_to_local(tt_last);
+
+		// pimp off boost for difference
+		bpt::time_duration diff = tt_last - tt_first;
+
+		// TODO - we might want to return this as negative values and use in calling func
 		if (diff.is_negative())
 			return;
 
-		days = diff.hours()/24;
-		hours = diff.hours() - days*24;
+		// get days and hours
+		days = diff.hours() / 24;
+		hours = diff.hours() - days * 24;
 	}
 	catch (...)
 	{
@@ -387,7 +453,15 @@ void getTimeDiffFromNow(const char* dateTime, uint32 &days, uint32 &hours, bool 
 	}
 }
 
+void getTimeDiffFromNow(const char* dateTime, uint32 &days, uint32 &hours, bool dtIsUTC)
+{
+	days = 0;
+	hours = 0;
 
+	std::string now_str = getNowAsDateTime();
+
+	return getTimeDiff(now_str.c_str(), dateTime, days, hours, dtIsUTC);
+}
 
 uint32 RSHash_CSTR(const char* buff, size_t size)
 {
