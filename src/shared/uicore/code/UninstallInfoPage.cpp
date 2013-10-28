@@ -77,7 +77,7 @@ UninstallInfoPage::UninstallInfoPage(wxWindow* parent) : BaseInstallPage(parent)
 
 	this->SetSizer( fgSizer2 );
 	this->Layout();
-	this->setParentSize(-1, 240);
+	this->setParentSize(-1, 200);
 }
 
 UninstallInfoPage::~UninstallInfoPage()
