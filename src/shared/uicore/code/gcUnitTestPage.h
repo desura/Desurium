@@ -63,6 +63,7 @@ private:
 	wxStaticText* m_staticText1;
 	wxTextCtrl* m_textCtrl1;
 	wxButton* m_butRun;
+	wxListCtrl* m_lcStats;
 	wxListCtrl* m_lcUnitTests;
 	wxButton* m_butClose;
 
@@ -76,6 +77,10 @@ private:
 
 	bool m_bShouldClose;
 	Event<uint32> showEvent;
+
+	int m_nPassed;
+	int m_nFailed;
+	uint64 m_nRunTime;
 };
 
 
