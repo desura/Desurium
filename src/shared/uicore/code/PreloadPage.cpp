@@ -58,6 +58,11 @@ PreloadPage::PreloadPage(wxWindow* parent, const char* action, const char* id) :
 	this->setParentSize(-1, 120);
 }
 
+void PreloadPage::onError(gcException &e)
+{
+	this->GetParent()->Close();
+}
+
 }
 }
 }
