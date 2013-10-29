@@ -598,6 +598,7 @@ void MCFManager::validateMcf(const char* mcf)
 
 	DesuraId id = mcfHead->getDesuraId();
 	MCFBuild build = mcfHead->getBuild();
+	MCFBranch branch = mcfHead->getBranch();
 
 	bool isPatch = strstr(mcf, "patch")?true:false;
 	bool isUnAuthed = strstr(mcf, "unauth")?true:false;
