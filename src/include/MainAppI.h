@@ -140,6 +140,7 @@ public:
 	virtual void newAccountLogin(const char* username, const char* cookie)=0;
 
 	virtual void showUnitTest(){}
+	virtual void newAccountLoginError(const char* szErrorMessage)=0;
 };
 
 

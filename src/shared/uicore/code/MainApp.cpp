@@ -808,3 +808,9 @@ void MainApp::showUnitTest()
 	m_UnitTestForm->postShowEvent();
 #endif
 }
+
+void MainApp::newAccountLoginError(const char* szErrorMessage)
+{
+	if (!m_bLoggedIn && m_iMode != MODE_OFFLINE && m_wxLoginForm)
+		m_wxLoginForm->newAccountLoginError(szErrorMessage);
+}

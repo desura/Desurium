@@ -83,6 +83,7 @@ DesuraJSBinding::DesuraJSBinding() : DesuraJSBase<DesuraJSBinding>("app", "nativ
 	REG_SIMPLE_JS_OBJ_VOIDFUNCTION( updateLink, DesuraJSBinding );
 
 	REG_SIMPLE_JS_VOIDFUNCTION( login, DesuraJSBinding );
+	REG_SIMPLE_JS_VOIDFUNCTION( loginError, DesuraJSBinding );
 }
 
 DesuraJSBinding::~DesuraJSBinding()
@@ -521,4 +522,9 @@ void DesuraJSBinding::updateLink(UserCore::Item::ItemInfoI* item, gcString args)
 void DesuraJSBinding::login(gcString username, gcString loginCookie)
 {
 	g_pMainApp->newAccountLogin(username.c_str(), loginCookie.c_str());
+}
+
+void DesuraJSBinding::loginError(gcString error)
+{
+	g_pMainApp->newAccountLoginError(error.c_str());
 }

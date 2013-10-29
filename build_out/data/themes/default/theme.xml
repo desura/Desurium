@@ -282,6 +282,11 @@
 		
 		<image name="test_good">test_good.png</image>
 		<image name="test_bad">test_bad.png</image>		
+		
+		<image name="login_twitter">login_twitter.png</image>
+		<image name="login_steam">login_steam.png</image>
+		<image name="login_facebook">login_facebook.png</image>
+		<image name="login_google">login_google.png</image>
 	</images>
 	
 	<!-- sprites are lots of images stored together as one image -->
