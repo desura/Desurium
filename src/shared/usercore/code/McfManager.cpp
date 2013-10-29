@@ -137,7 +137,7 @@ void MCFManager::getListOfBadMcfPaths(sqlite3x::sqlite3_connection &db, std::vec
 		{
 			gcString path = reader.getstring(2);
 
-			if (path.find(m_szAppDataPath) != 0)
+			if (path.find(m_szAppDataPath) != std::string::npos)
 			{
 				MigrateInfo mi;
 
@@ -612,7 +612,8 @@ void MCFManager::validateMcf(const char* mcf)
 		cmd.bind(1, (long long int)id.toInt64());
 		cmd.bind(2, (int)build);
 		cmd.bind(3, UTIL::OS::getRelativePath(mcf));
-		cmd.bind(4, (int)flags);
+		cmd.bind(4, (int)branch);
+		cmd.bind(5, (int)flags);
 
 		cmd.executenonquery();
 	}
@@ -681,7 +682,8 @@ namespace UnitTest
 
 	TEST_F(MCFManagerFixture, getListOfBadMcfPaths)
 	{
-		sqlite3x::sqlite3_connection db;
+		sqlite3x::sqlite3_connection db(":memory:");
+		db.executenonquery(CREATE_MCFITEM);
 
 		auto insertItem = [&db](DesuraId id, gcString strPath, bool bUnAuthed) -> void 
 		{
@@ -690,8 +692,9 @@ namespace UnitTest
 				sqlite3x::sqlite3_command cmd(db, "INSERT INTO mcfitem VALUES (?,?,?,?,?);");
 				cmd.bind(1, (long long int)id.toInt64());
 				cmd.bind(2, 0);
-				cmd.bind(3, strPath);
-				cmd.bind(4, bUnAuthed ? FLAG_UNAUTHED:0);
+				cmd.bind(3, UTIL::FS::PathWithFile(strPath).getFullPath());
+				cmd.bind(4, 0);
+				cmd.bind(5, bUnAuthed ? FLAG_UNAUTHED : 0);
 
 				cmd.executenonquery();
 			}
@@ -700,10 +703,10 @@ namespace UnitTest
 			}
 		};
 
-		insertItem(DesuraId("1", "games"), "mcfroot//test1.mcf", true);
-		insertItem(DesuraId("2", "games"), "abcd//test2.mcf", false);
-		insertItem(DesuraId("3", "games"), "appdata//test3.mcf", false);
-		insertItem(DesuraId("4", "games"), "mcfroot//test4.mcf", false);
+		insertItem(DesuraId("51", "games"), "appdata\\test1.mcf", true);
+		insertItem(DesuraId("62", "games"), "appdata\\test2.mcf", false);
+		insertItem(DesuraId("73", "games"), "appdata\\test3.mcf", false);
+		insertItem(DesuraId("84", "games"), "mcfroot\\test4.mcf", false);
 
 		std::vector<UserCore::MigrateInfo> delList;
 		std::vector<UserCore::MigrateInfo> updateList;
@@ -711,11 +714,11 @@ namespace UnitTest
 		getListOfBadMcfPaths(db, delList, updateList);
 
 		ASSERT_EQ(1, delList.size());
-		ASSERT_EQ(DesuraId("1", "games"), delList[0].id);
+		ASSERT_EQ(DesuraId("51", "games"), delList[0].id);
 
 		ASSERT_EQ(2, updateList.size());
-		ASSERT_EQ(DesuraId("2", "games"), updateList[0].id);
-		ASSERT_EQ(DesuraId("3", "games"), updateList[1].id);
+		ASSERT_EQ(DesuraId("62", "games"), updateList[0].id);
+		ASSERT_EQ(DesuraId("73", "games"), updateList[1].id);
 	}
 }
 
