@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 class UploadProgPage : public BasePage 
 {
 public:
-	UploadProgPage( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 400,100 ), long style = wxTAB_TRAVERSAL );
+	UploadProgPage(wxWindow* parent);
 	~UploadProgPage();
 
 	void dispose();
@@ -72,6 +72,8 @@ private:
 	uint32 m_uiUploadHash;
 
 	bool m_bDone;
+
+	uint64 m_llTotalUpload;
 
 	DECLARE_EVENT_TABLE();
 };
