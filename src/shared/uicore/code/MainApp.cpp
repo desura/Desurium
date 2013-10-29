@@ -131,6 +131,8 @@ const char* g_szSafeList[] =
 	"paypal.com",
 	".google.com",
 	"google.com",
+	".lindenlab.com",
+	"lindenlab.com",
 	NULL,
 };
 
