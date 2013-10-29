@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 class SteamUserDialog : public gcDialog 
 {
 public:
-	SteamUserDialog( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Select Steam Account"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(250,190) , long style = wxCAPTION|wxSTAY_ON_TOP|wxTAB_TRAVERSAL );
+	SteamUserDialog(wxWindow* parent);
 	~SteamUserDialog();
 
 	const char* getSteamUser(){return m_szSteamUser.c_str();}

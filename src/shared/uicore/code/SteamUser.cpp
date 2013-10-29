@@ -26,46 +26,83 @@ END_EVENT_TABLE()
 #define STEAMPATH "HKEY_CURRENT_USER\\Software\\Valve\\Steam\\SteamPath"
 #define NOSTEAM "Steam Not Installed"
 
-int GetSteamUsers(wxChoice *cbBox)
+const char* g_szIgnoredFolders[] =
 {
-	if (!cbBox)
-		return 0;
+	"common",
+	"sourcemods",
+	"media",
+	"downloading",
+	NULL
+};
 
-	cbBox->Clear();
+int GetSteamUsers(std::vector<gcString> &vUsers)
+{
 	std::string steampath = UTIL::OS::getConfigValue(STEAMPATH);
 
 	if (steampath.size() == 0)
-	{
-		cbBox->Append(wxT(NOSTEAM));
 		return 0;
-	}
 
 	gcString searchPath("{0}\\steamapps\\", steampath);
 
 	std::vector<UTIL::FS::Path> fileList;
 	UTIL::FS::getAllFolders(UTIL::FS::Path(searchPath, "", false), fileList);
 
-	if (fileList.empty())
-	{
-		cbBox->Append(wxT(NOSTEAM));
-		return 0;
-	}
-
 	int num = 0;
 
-	for (size_t x=0; x<fileList.size(); x++)
+	for (size_t x = 0; x < fileList.size(); x++)
 	{
-		if (fileList[x].getLastFolder() == "common" || fileList[x].getLastFolder() == "SourceMods" || fileList[x].getLastFolder() == "media")
+		gcString strFolder(fileList[x].getLastFolder());
+		std::transform(strFolder.begin(), strFolder.end(), strFolder.begin(), ::tolower);
+
+		int y = 0;
+
+		while (g_szIgnoredFolders[y])
+		{
+			if (strFolder == g_szIgnoredFolders[y])
+				break;
+
+			++y;
+		}
+
+		if (g_szIgnoredFolders[y])
 			continue;
 
-		cbBox->Append(fileList[x].getLastFolder());
+		vUsers.push_back(fileList[x].getLastFolder());
 		num++;
 	}
 
 	return num;
 }
 
-SteamUserDialog::SteamUserDialog( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : gcDialog( parent, id, title, pos, size, style )
+
+int GetSteamUsers(wxChoice *cbBox)
+{
+	if (!cbBox)
+		return 0;
+
+	cbBox->Clear();
+
+	std::vector<gcString> vUsers;
+	int nCount = GetSteamUsers(vUsers);
+
+	if (nCount == 0)
+	{
+		cbBox->Append(wxT(NOSTEAM));
+		return 0;
+	}
+	else
+	{
+		std::for_each(vUsers.begin(), vUsers.end(), [cbBox](gcString &path) -> void {
+			cbBox->Append(path);
+		});
+	}
+
+	return nCount;
+}
+
+
+SteamUserDialog::SteamUserDialog(wxWindow* parent) 
+	: gcDialog(parent, wxID_ANY, wxT("Select Steam Account"), wxDefaultPosition, wxSize(300, 250), wxCAPTION | wxSTAY_ON_TOP | wxTAB_TRAVERSAL)
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 
