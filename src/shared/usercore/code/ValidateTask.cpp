@@ -561,7 +561,17 @@ void ValidateTask::onError(gcException &e)
 	UserCore::Item::ItemInfo* pItem = getItemInfo();
 
 	if (pItem)
-		pItem->delSFlag(UserCore::Item::ItemInfoI::STATUS_DOWNLOADING);
+	{
+		if (m_bUpdating)
+		{
+			pItem->delSFlag(UserCore::Item::ItemInfoI::STATUS_UPDATING);
+			pItem->addSFlag(UserCore::Item::ItemInfoI::STATUS_READY);
+		}
+		else
+		{
+			pItem->delSFlag(UserCore::Item::ItemInfoI::STATUS_DOWNLOADING);
+		}
+	}
 }
 
 void ValidateTask::onStop()
