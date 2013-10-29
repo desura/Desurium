@@ -40,8 +40,9 @@ tinyxml2::XMLNode* WebCoreClass::postToServer(std::string url, std::string resou
 		if (useHTTPS)
 		{
 			hh->setUserAgent(getUserAgent());
-			hh->setCertFile(
-				UTIL::STRING::toStr(UTIL::OS::getDataPath(L"ca-bundle.crt")).c_str());
+
+			if (m_bValidateCert)
+				hh->setCertFile(UTIL::STRING::toStr(UTIL::OS::getDataPath(L"ca-bundle.crt")).c_str());
 		}
 		else
 		{

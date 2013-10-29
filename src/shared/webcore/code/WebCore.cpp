@@ -43,6 +43,7 @@ namespace WebCore
 extern gcString genUserAgent();
 
 WebCoreClass::WebCoreClass()
+	: m_bValidateCert(true)
 {
 	m_bUserAuth = false;
 	m_uiUserId = 0;
@@ -84,6 +85,8 @@ void WebCoreClass::setUrlDomain(const char* domain)
 {
 	g_szRootDomain = domain;
 	m_szMCFDownloadUrl = gcString("http://api.") + g_szRootDomain + "/api/itemdownloadurl";
+
+	m_bValidateCert = g_szRootDomain == "desura.com";
 }
 
 const char* WebCoreClass::getMCFDownloadUrl()
