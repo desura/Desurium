@@ -63,12 +63,13 @@ bool validateUsernameChange(const CVar* cvar, const char* newValue)
 class LoginThread : public Thread::BaseThread
 {
 public:
-	LoginThread(const char* username, const char* password, LoginForm* caller) : BaseThread( "Login Thread")
+	LoginThread(const char* username, const char* password, bool bAltProvider, LoginForm* caller) 
+		: BaseThread( "Login Thread")
+		, m_szUsername(username)
+		, m_szPassword(password)
+		, m_pCaller(caller)
+		, m_bAltProvider(bAltProvider)
 	{
-		m_szUsername = username;
-		m_szPassword = password;
-
-		m_pCaller = caller;
 	}
 
 	~LoginThread()
@@ -81,6 +82,16 @@ protected:
 	{
 		try
 		{
+			if (m_bAltProvider)
+			{
+				gcString strProv = gc_login_stage_url.getString();
+				g_pMainApp->setProvider(strProv.c_str());
+			}	
+			else
+			{
+				g_pMainApp->setProvider(NULL);
+			}
+
 			g_pMainApp->logIn(m_szUsername.c_str(), m_szPassword.c_str());
 
 			if (m_pCaller)
@@ -95,6 +106,7 @@ protected:
 
 	gcString m_szUsername;
 	gcString m_szPassword;
+	bool m_bAltProvider;
 
 private:
 	LoginForm* m_pCaller;
@@ -143,6 +155,8 @@ static CVar gc_allow_wm_positioning("gc_allow_wm_positioning", "true");
 LoginForm::LoginForm(wxWindow* parent) 
 	: gcFrame(parent, wxID_ANY, Managers::GetString(L"#LF_TITLE"), wxDefaultPosition, wxSize(420,246), wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxWANTS_CHARS|wxMINIMIZE_BOX, true)
 {
+	m_comboProvider = NULL;
+
 	m_bAutoLogin = false;
 	m_pNewAccount = NULL;
 
@@ -161,6 +175,23 @@ LoginForm::LoginForm(wxWindow* parent)
 	m_tbUsername = new gcTextCtrl(this, wxID_ANY, Managers::GetString(L"#LF_USER"), wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER|wxWANTS_CHARS);
 	m_tbPassword = new gcTextCtrl(this, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER|wxWANTS_CHARS|wxTE_PASSWORD);
 	m_tbPasswordDisp = new gcTextCtrl(this, wxID_ANY, Managers::GetString(L"#LF_PASS"));
+
+	gcString strStagingUrl(gc_login_stage_url.getString());
+	gcString strStagingLast(gc_login_stage_last.getString());
+
+	if (strStagingUrl.size() > 0)
+	{
+		wxArrayString choices;
+		choices.Add("Prod");
+		choices.Add("Test");
+
+		m_comboProvider = new gcChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, choices);
+
+		if (strStagingLast == "Test")
+			m_comboProvider->SetSelection(1);
+		else
+			m_comboProvider->SetSelection(0);
+	}
 
 	m_cbRemPass = new gcCheckBox(this, wxID_ANY, Managers::GetString(L"#LF_AUTO"));
 	m_cbRemPass->SetToolTip(Managers::GetString(L"#LF_AUTO_TOOLTIP"));
@@ -271,7 +302,21 @@ LoginForm::LoginForm(wxWindow* parent)
 	fgSizer6->AddGrowableCol( 0 );
 	fgSizer6->SetFlexibleDirection( wxBOTH );
 	fgSizer6->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-	fgSizer6->Add( m_tbUsername, 0, wxEXPAND|wxLEFT, 5 );
+
+	if (m_comboProvider)
+	{
+		wxFlexGridSizer* fgSizer10 = new wxFlexGridSizer(1, 2, 0, 0);
+		fgSizer10->AddGrowableCol(0);
+		fgSizer10->Add(m_tbUsername, 0, wxEXPAND, 5);
+		fgSizer10->Add(m_comboProvider, 0, wxLEFT, 5);
+
+		fgSizer6->Add(fgSizer10, 0, wxEXPAND | wxLEFT, 5);
+	}
+	else
+	{
+		fgSizer6->Add(m_tbUsername, 0, wxEXPAND | wxLEFT, 5);
+	}
+
 	fgSizer6->Add( m_tbPassword, 0, wxEXPAND|wxTOP|wxLEFT, 5 );
 	fgSizer6->Add( m_tbPasswordDisp, 0, wxEXPAND|wxTOP|wxLEFT, 5 );
 	fgSizer6->Add( fgSizer4, 1, wxEXPAND, 5 );
@@ -726,6 +771,9 @@ void LoginForm::doLogin(gcString user, gcString pass)
 		return;
 	}
 
+	if (m_comboProvider)
+		m_comboProvider->Disable();
+
 	m_butTwitter->Disable();
 	m_butSteam->Disable();
 	m_butFacebook->Disable();
@@ -765,10 +813,15 @@ void LoginForm::onStartLogin(std::pair<gcString, gcString> &l)
 	gcString user = l.first;
 	gcString pass = l.second;
 
+	bool bAltProvider = false;
+
+	if (m_comboProvider)
 	{
+		int nSelection = m_comboProvider->GetSelection();
+		bAltProvider = nSelection != 0;
 	}
-	m_pLogThread = new LoginThread(user.c_str(), pass.c_str(), this);
 		
+	m_pLogThread = new LoginThread(user.c_str(), pass.c_str(), bAltProvider, this);
 	m_pLogThread->start();
 }
 
@@ -782,10 +835,14 @@ void LoginForm::onLogin()
 	if (gc_saveusername.getBool())
 	{
 		wxString dastr = m_tbUsername->GetValue();
-		gc_lastusername.setValue((const char*)dastr.c_str());
+		gc_lastusername.setValue(dastr.ToUTF8());
 	}
 
 	SaveCVars();
+	
+	if (m_comboProvider)
+		gc_login_stage_last.setValue(m_comboProvider->GetStringSelection().ToUTF8());
+
 	Show(false);
 
 	MainApp* temp = dynamic_cast<MainApp*>(GetParent());
@@ -802,6 +859,9 @@ void LoginForm::onLoginError(gcException &e)
 		gcErrorBox(this, "#LF_ERRTITLE", "#LF_ERROR", e);
 	else
 		Msg(gcString("Auto login failed: {0}\n", e));
+
+	if (m_comboProvider)
+		m_comboProvider->Enable();
 
 	m_butTwitter->Enable();
 	m_butSteam->Enable();
@@ -979,6 +1039,8 @@ void LoginForm::onAltLogin(const char* szProvider)
 
 	gcString strApiUrl;
 
+	if (m_comboProvider && m_comboProvider->GetSelection() != 0)
+		strApiUrl = gc_login_stage_url.getString();
 
 	AltLoginDialog naf(this, szProvider, strApiUrl.c_str());
 

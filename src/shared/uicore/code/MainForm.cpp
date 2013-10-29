@@ -86,10 +86,11 @@ extern CVar gc_noloadtab;
 static CVar gc_allow_wm_positioning("gc_allow_wm_positioning", "true");
 #endif
 
+MainForm::MainForm(wxWindow* parent, bool offline, const char* szProvider) 
 #ifdef NIX64
-MainForm::MainForm(wxWindow* parent, bool offline) : gcFrame(parent, wxID_ANY, PRODUCT_NAME_CATW(L" 64"), wxDefaultPosition, wxSize(990, 690), wxDEFAULT_FRAME_STYLE, true )
+	: gcFrame(parent, wxID_ANY, PRODUCT_NAME_CATW(L" 64"), wxDefaultPosition, wxSize(990, 690), wxDEFAULT_FRAME_STYLE, true )
 #else
-MainForm::MainForm(wxWindow* parent, bool offline) : gcFrame(parent, wxID_ANY, wxT(PRODUCT_NAME), wxDefaultPosition, wxSize(990, 690), wxDEFAULT_FRAME_STYLE, true )
+	: gcFrame(parent, wxID_ANY, wxT(PRODUCT_NAME), wxDefaultPosition, wxSize(990, 690), wxDEFAULT_FRAME_STYLE, true )
 #endif
 {
 	Bind(wxEVT_COMMAND_MENU_SELECTED, &MainForm::onMenuSelect, this);
@@ -101,7 +102,7 @@ MainForm::MainForm(wxWindow* parent, bool offline) : gcFrame(parent, wxID_ANY, w
 	m_iMode = MODE_UNINT;
 	m_wxAboutForm = NULL;	
 
-	m_pDesuraControl = new DesuraControl(this, offline);
+	m_pDesuraControl = new DesuraControl(this, offline, szProvider);
 
 	wxBoxSizer *fgSizer1 = new wxBoxSizer(wxVERTICAL);
 	fgSizer1->Add( m_pDesuraControl, 1, wxEXPAND, 5 );

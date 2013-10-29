@@ -53,7 +53,7 @@ class FrameButtons;
 class DesuraControl : public gcPanel 
 {
 public:
-	DesuraControl(gcFrame* parent, bool offline);
+	DesuraControl(gcFrame* parent, bool offline, const char* szProvider);
 	~DesuraControl();
 
 	void addPage(baseTabPage *page, const char* tabName);

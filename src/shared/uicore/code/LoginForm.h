@@ -64,6 +64,8 @@ protected:
 	gcImageControl* m_imgLogo;
 	gcImageControl* m_imgAvatar;
 
+	gcChoice* m_comboProvider;
+
 	gcImageButton *m_butTwitter;
 	gcImageButton *m_butSteam;
 	gcImageButton *m_butFacebook;

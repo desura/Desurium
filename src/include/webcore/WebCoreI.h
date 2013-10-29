@@ -273,6 +273,13 @@ public:
 
 
 	virtual gcString getUrl(WebCoreUrl id)=0;
+
+	//! Init webcore
+	//!
+	//! @param appDataPath Path to save webcore cache db at
+	//! @param szProviderUrl Url to use for server communication
+	//!
+	virtual void init(const char* appDataPath, const char* szProviderUrl)=0;
 };
 
 }

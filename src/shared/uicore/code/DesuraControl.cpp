@@ -59,7 +59,8 @@ END_EVENT_TABLE()
 
 ///////////////////////////////////////////////////////////////////////////
 
-DesuraControl::DesuraControl(gcFrame* parent, bool offline) : gcPanel(parent)
+DesuraControl::DesuraControl(gcFrame* parent, bool offline, const char* szProvider) 
+	: gcPanel(parent)
 {
 	m_iIndex = -1;
 	m_bDownloadingUpdate = false;
@@ -163,13 +164,32 @@ DesuraControl::DesuraControl(gcFrame* parent, bool offline) : gcPanel(parent)
 	fgSizer1->Add( fgSizer2, 1, wxEXPAND, 5 );
 
 	wxFlexGridSizer* fgSizer5;
-	fgSizer5 = new wxFlexGridSizer( 2, 1, 0, 0 );
+	fgSizer5 = new wxFlexGridSizer( 3, 1, 0, 0 );
 	fgSizer5->AddGrowableCol( 0 );
-	fgSizer5->AddGrowableRow( 1 );
+	
 	fgSizer5->SetFlexibleDirection( wxBOTH );
 	fgSizer5->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 
 	fgSizer5->Add( fgSizer1, 1, wxEXPAND, 5 );
+
+	if (gcString(szProvider).size() > 0)
+	{
+		gcString strProv("Warning: Staging Environment {0}. Client Updates Disabled", szProvider);
+		wxStaticText *pText = new wxStaticText(this, wxID_ANY, strProv, wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE);
+
+		pText->SetForegroundColour(*wxBLACK);
+		pText->SetBackgroundColour(wxColour(255, 128, 64));
+		pText->SetFont(wxFont(16, 70, 90, 90, false, wxEmptyString));
+
+		fgSizer5->Add(pText, 1, wxEXPAND | wxALIGN_CENTER_VERTICAL | wxALIGN_CENTER_VERTICAL | wxTOP | wxBOTTOM, 10);
+
+		fgSizer5->AddGrowableRow(2);
+	}
+	else
+	{
+		fgSizer5->AddGrowableRow(1);
+	}
+
 	fgSizer5->Add( m_sizerContent, 1, wxEXPAND, 5 );
 	
 	this->SetSizer( fgSizer5 );

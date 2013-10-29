@@ -44,16 +44,10 @@ extern gcString genUserAgent();
 
 WebCoreClass::WebCoreClass()
 	: m_bValidateCert(true)
+	, m_bUserAuth(false)
+	, m_uiUserId(0)
 {
-	m_bUserAuth = false;
-	m_uiUserId = 0;
 	m_szUserAgent = genUserAgent();
-
-#ifdef DEBUG
-	setUrlDomain("desura.com");
-#else
-	setUrlDomain("desura.com");
-#endif
 
 #ifdef DEBUG
 	m_bDebuggingOut = true;
@@ -74,6 +68,18 @@ void WebCoreClass::enableDebugging(bool state)
 
 void WebCoreClass::init(const char* appDataPath)
 {
+	init(appDataPath, NULL);
+}
+
+void WebCoreClass::init(const char* appDataPath, const char* szProviderUrl)
+{
+	gcString strProvUrl(szProviderUrl);
+
+	if (strProvUrl.size() == 0)
+		setUrlDomain("desura.com");
+	else
+		setUrlDomain(strProvUrl.c_str());
+
 	m_szAppDataPath = appDataPath;
 	createWebCoreDbTables(appDataPath);
 

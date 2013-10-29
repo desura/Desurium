@@ -88,6 +88,7 @@ public:
 	User();
 	~User();
 
+	virtual void init(const char* appDataPath, const char* szProviderUrl) override;
 	virtual void init(const char* appDataPath);
 	virtual const char* getAppDataPath();
 	virtual const char* getMcfCachePath();
@@ -175,6 +176,8 @@ public:
 	virtual void updateBinaryRegKey(const char* key, const char* value, size_t size);
 
 	virtual void runInstallScript(const char* file, const char* installPath, const char* function);
+
+	bool isAltProvider();
 
 	//! Parses news xml
 	//!
@@ -327,6 +330,8 @@ private:
 #ifdef WIN32
 	HWND m_WinHandle;
 #endif
+
+	bool m_bAltProvider;
 
 	friend class ItemManager;
 };
@@ -538,6 +543,11 @@ inline HWND User::getMainWindowHandle()
 inline BDManager* User::getBDManager()
 {
 	return m_pBannerDownloadManager;
+}
+
+inline bool User::isAltProvider()
+{
+	return m_bAltProvider;
 }
 
 }

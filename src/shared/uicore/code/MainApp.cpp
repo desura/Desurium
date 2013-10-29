@@ -102,7 +102,7 @@ public:
 		m_pUser = user;
 	}
 	
-	virtual void run()
+	void run()
 	{
 		safe_delete(m_pUser);	
 	}
@@ -134,9 +134,19 @@ const char* g_szSafeList[] =
 	NULL,
 };
 
-bool isSafeUrl(const char* url)
+static bool isSafeUrl(const wxString &server, const wxString &safeUrl)
 {
+	if (safeUrl.size()==0)
+		return false;
 
+	if (safeUrl[0] == '.')
+		return server.Contains(safeUrl);
+
+	return server == safeUrl;
+}
+
+static bool isSafeUrl(const char* url, MainAppI* pMainApp)
+{
 	if (!url)
 		return false;
 
@@ -154,21 +164,29 @@ bool isSafeUrl(const char* url)
 
 	while (g_szSafeList[x])
 	{
-		if (g_szSafeList[x][0] == '.')
-		{
-			if (server.Contains(wxString(g_szSafeList[x])))
-				return true;
-		}
-		else
-		{
-			if (server == wxString(g_szSafeList[x]))
-				return true;
-		}
+		if (isSafeUrl(server, wxString(g_szSafeList[x])))
+			return true;
 
 		x++;
 	}
 	
+	if (pMainApp && pMainApp->getProvider())
+	{
+		wxString cusProvider(pMainApp->getProvider());
+
+		if (isSafeUrl(server, cusProvider))
+			return true;
+
+		cusProvider = "." + cusProvider;
+		return isSafeUrl(server, cusProvider);
+	}
+
 	return false;
+}
+
+bool isSafeUrl(const char* url)
+{
+	return isSafeUrl(url, g_pMainApp);
 }
 
 extern CVar gc_autostart;
@@ -350,7 +368,7 @@ void MainApp::logIn(const char* user, const char* pass)
 	gcString path = UTIL::OS::getAppDataPath();
 
 	g_pUserHandle = (UserCore::UserI*)UserCore::FactoryBuilderUC(USERCORE);
-	g_pUserHandle->init(path.c_str());
+	g_pUserHandle->init(path.c_str(), m_strServiceProvider.c_str());
 
 
 	try
@@ -650,12 +668,7 @@ void MainApp::showMainForm(bool raise, bool show)
 	}
 
 	if (!m_wxMainForm)
-	{
-		if (m_iMode == MODE_OFFLINE)
-			m_wxMainForm = new MainForm(this, true);
-		else
-			m_wxMainForm = new MainForm(this);
-	}
+		m_wxMainForm = new MainForm(this, m_iMode == MODE_OFFLINE, m_strServiceProvider.c_str());
 
 	if (m_wxMainForm->IsIconized())
 	{
@@ -748,7 +761,7 @@ void MainApp::onGiftUpdate(std::vector<UserCore::Misc::NewsItem*>& itemList)
 		m_vGiftItems.push_back(new UserCore::Misc::NewsItem(itemList[x]));
 	}
 
-	size_t count = 0;
+	size_t count =0;
 
 	for (size_t x=0; x<itemList.size(); x++)
 	{
@@ -814,3 +827,111 @@ void MainApp::newAccountLoginError(const char* szErrorMessage)
 	if (!m_bLoggedIn && m_iMode != MODE_OFFLINE && m_wxLoginForm)
 		m_wxLoginForm->newAccountLoginError(szErrorMessage);
 }
+
+void MainApp::setProvider(const char* szProvider)
+{
+	m_strServiceProvider = szProvider;
+}
+
+const char* MainApp::getProvider() const
+{
+	return m_strServiceProvider.c_str();
+}
+
+#ifdef WITH_GTEST
+
+#include <gtest/gtest.h>
+
+namespace UnitTest
+{
+	class StubMainApp : public MainAppI
+	{
+	public:
+		void showPage(PAGE page){}
+		void showNews(){}
+		void showPlay(){}
+		void showMainWindow(bool raise = false){}
+
+		void handleInternalLink(const char* link){}
+		void handleInternalLink(DesuraId id, uint8 action, std::vector<std::string> args = std::vector<std::string>()){}
+
+		//this closes and destroys a sub form
+		void closeForm(int32 id){}
+
+		void logIn(const char* user, const char* pass){}
+		void logOut(bool bShowLogin = true, bool autoLogin = false){}
+		void onLoginAccepted(bool saveLoginInfo = false, bool autologin = false){}
+
+		bool isOffline(){ return false; }
+		bool isLoggedIn(){ return false; }
+
+		void processWildCards(WCSpecialInfo &info, wxWindow* parent = NULL){}
+
+		void loadUrl(const char* url, PAGE page){}
+
+		gcFrame* getMainWindow(){return NULL;}
+
+		void disableQuietMode(){}
+		bool isQuietMode(){return false;}
+
+		bool Destroy(){ return false; }
+
+		EventV* getLoginEvent(){ return NULL; }
+
+		wxWindow* getTopLevelWindow(){ return NULL; }
+
+		void newAccountLogin(const char* username, const char* cookie){}
+
+		void showUnitTest(){}
+
+		//Changes the server url provider. Set to null to reset
+		void setProvider(const char* szProvider)
+		{
+			m_szProvider = szProvider;
+		}
+
+		const char* getProvider() const
+		{
+			return m_szProvider;
+		}
+
+		void newAccountLoginError(const char* szErrorMessage){}
+
+		const char* m_szProvider;
+	};
+
+	TEST(MainApp, SafeUrlNormal)
+	{
+		ASSERT_TRUE(isSafeUrl("http://desura.com", NULL));
+		ASSERT_TRUE(isSafeUrl("http://www.desura.com", NULL));
+		ASSERT_TRUE(isSafeUrl("http://api.desura.com", NULL));
+
+		ASSERT_TRUE(isSafeUrl("http://google.com", NULL));
+		ASSERT_TRUE(isSafeUrl("http://www.google.com", NULL));
+		ASSERT_TRUE(isSafeUrl("http://stuff.google.com", NULL));
+
+		ASSERT_TRUE(isSafeUrl("http://paypal.com", NULL));
+		ASSERT_TRUE(isSafeUrl("http://www.paypal.com", NULL));
+		ASSERT_TRUE(isSafeUrl("http://stuff.paypal.com", NULL));
+
+		ASSERT_TRUE(isSafeUrl("http://lindenlab.com", NULL));
+		ASSERT_TRUE(isSafeUrl("http://www.lindenlab.com", NULL));
+		ASSERT_TRUE(isSafeUrl("http://stuff.lindenlab.com", NULL));
+
+		ASSERT_FALSE(isSafeUrl("http://desura.blah.com", NULL));
+		ASSERT_FALSE(isSafeUrl("http://www.desura.blah.com", NULL));
+		ASSERT_FALSE(isSafeUrl("http://api.desura.blah.com", NULL));
+	}
+
+	TEST(MainApp, SafeUrlStaging)
+	{
+		StubMainApp a;
+		a.setProvider("desura.blah.com");
+
+		ASSERT_TRUE(isSafeUrl("http://desura.blah.com", &a));
+		ASSERT_TRUE(isSafeUrl("http://www.desura.blah.com", &a));
+		ASSERT_TRUE(isSafeUrl("http://api.desura.blah.com", &a));
+	}
+}
+
+#endif
