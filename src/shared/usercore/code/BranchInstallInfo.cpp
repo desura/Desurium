@@ -107,10 +107,8 @@ void BranchInstallInfo::saveDb(sqlite3x::sqlite3_connection* db)
 
 	cmd.executenonquery();
 
-	for (size_t x=0; x<m_vExeList.size(); x++)
+	for (auto ei : m_vExeList)
 	{
-		ExeInfo *ei = m_vExeList[x];
-
 		sqlite3x::sqlite3_command cmd(*db, "REPLACE INTO exe VALUES (?,?,?,?,?,?,?);");
 
 		cmd.bind(1, (long long int)m_ItemId.toInt64());
@@ -183,11 +181,11 @@ void BranchInstallInfo::loadDb(sqlite3x::sqlite3_connection* db)
 
 		if (!isValidFile(m_szInsCheck))
 		{
-			for (size_t x=0; x<m_vInstallChecks.size(); ++x)
+			for (auto file : m_vInstallChecks)
 			{
-				if (isValidFile(m_vInstallChecks[x]))
+				if (isValidFile(file))
 				{
-					m_szInsCheck = m_vInstallChecks[x];
+					m_szInsCheck = file;
 					break;
 				}
 			}
@@ -211,11 +209,11 @@ void BranchInstallInfo::loadDb(sqlite3x::sqlite3_connection* db)
 
 			ExeInfo *ei = NULL;
 
-			for (size_t x=0; x<m_vExeList.size(); x++)
+			for (auto exe : m_vExeList)
 			{
-				if (m_vExeList[x]->m_szName == name)
+				if (exe->m_szName == name)
 				{
-					ei = m_vExeList[x];
+					ei = exe;
 					break;
 				}
 			}
@@ -449,30 +447,27 @@ UserCore::Item::Misc::ExeInfoI* BranchInstallInfo::getActiveExe()
 {
 	UserCore::Item::Misc::ExeInfoI* ei = NULL;
 
-	for (size_t x=0; x<m_vExeList.size(); x++)
+	for (auto exe : m_vExeList)
 	{
-		if (m_szActiveExe == m_vExeList[x]->getName())
+		if (m_szActiveExe == exe->getName())
 		{
-			ei = m_vExeList[x];
+			ei = exe;
 			break;
 		}
 	}
 
 	if (!ei)
 	{
-		uint32 index = 0;
 		uint32 rank = -1;
 
-		for (size_t x=0; x<m_vExeList.size(); x++)
+		for (auto exe : m_vExeList)
 		{
-			if (m_vExeList[x]->m_uiRank > rank)
+			if (exe->m_uiRank > rank)
 			{
-				index = x;
-				rank = m_vExeList[x]->m_uiRank;
+				ei = exe;
+				rank = exe->m_uiRank;
 			}
 		}
-
-		ei = m_vExeList[index];
 	}
 
 	return ei;
@@ -496,10 +491,10 @@ void BranchInstallInfo::setActiveExe(const char* name)
 
 void BranchInstallInfo::getExeList(std::vector<UserCore::Item::Misc::ExeInfoI*> &list)
 {
-	for (size_t x=0; x<m_vExeList.size(); x++)
+	for (auto exe : m_vExeList)
 	{
-		if (isValidFile(m_vExeList[x]->getExe()))
-			list.push_back(m_vExeList[x]);
+		if (isValidFile(exe->getExe()))
+			list.push_back(exe);
 	}
 
 	if (list.size() == 0 && m_vExeList.size() > 0)
@@ -514,21 +509,21 @@ void BranchInstallInfo::getExeList(std::vector<UserCore::Item::Misc::ExeInfoI*> 
 uint32 BranchInstallInfo::getExeCount(bool setActive)
 {
 	uint32 count = 0;
-	uint32 first = -1;
+	ExeInfo *ei = NULL;
 
-	for (size_t x=0; x<m_vExeList.size(); x++)
+	for (auto exe : m_vExeList)
 	{
-		if (isValidFile(m_vExeList[x]->getExe()))
+		if (isValidFile(exe->getExe()))
 		{
 			count++;
 
-			if (first == UINT_MAX)
-				first = x;
+			if (!ei)
+				ei = exe;
 		}
 	}
 
-	if (setActive && count == 1 && first != UINT_MAX)
-		setActiveExe(m_vExeList[first]->getName());
+	if (setActive && count == 1 && ei)
+		setActiveExe(ei->getName());
 
 	//should always have 1 exe
 	if (count == 0)
@@ -607,10 +602,8 @@ void BranchInstallInfo::launchExeHack()
 
 		if (steamPath.size() > 0)
 		{
-			for (size_t x=0; x<m_vExeList.size(); x++)
+			for (auto ei : m_vExeList)
 			{
-				ExeInfo* ei = m_vExeList[x];
-
 				if (ei->m_szExe.find(steamPath) != std::string::npos)
 				{
 					ei->m_szExe = gcString("{0}\\steam.exe", steamPath);
@@ -651,11 +644,11 @@ void BranchInstallInfo::processExes(tinyxml2::XMLNode* setNode, WildcardManager*
 
 		ExeInfo* ei = NULL;
 
-		for (size_t x=0; x<m_vExeList.size(); x++)
+		for (auto exe : m_vExeList)
 		{
-			if (m_vExeList[x]->m_szName == name)
+			if (exe->m_szName == name)
 			{
-				ei = m_vExeList[x];
+				ei = exe;
 				break;
 			}
 		}
