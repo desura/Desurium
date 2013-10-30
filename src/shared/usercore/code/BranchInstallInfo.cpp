@@ -802,6 +802,11 @@ namespace UnitTest
 	class StubBranchItemInfo : public BranchItemInfoI
 	{
 	public:
+		StubBranchItemInfo()
+			: m_nStatus(0)
+		{
+		}
+
 		DesuraId getId() override
 		{
 			return DesuraId("1", "games");
@@ -812,7 +817,7 @@ namespace UnitTest
 			return m_nStatus;
 		}
 
-		uint32 m_nStatus = 0;
+		uint32 m_nStatus;
 	};
 
 	class TestBranchInstallInfo : public BranchInstallInfo

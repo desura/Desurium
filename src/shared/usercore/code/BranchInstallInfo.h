@@ -32,6 +32,11 @@ namespace sqlite3x
 	class sqlite3_connection;
 }
 
+namespace UnitTest
+{
+	class BranchInstallInfoFixture;
+}
+
 class WildcardManager;
 
 namespace UserCore
@@ -168,6 +173,8 @@ public:
 	void setLinkInfo(const char* exe, const char* args);
 
 protected:
+	friend class UnitTest::BranchInstallInfoFixture;
+
 	void launchExeHack();
 	void processExes(tinyxml2::XMLNode* setNode, WildcardManager* pWildCard, bool useCip);
 
