@@ -159,7 +159,7 @@ void UploadMCFForm::showProg(uint32 hash, uint32 start)
 
 	cleanUpPages();
 
-	UploadProgPage *pPage = new UploadProgPage( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	UploadProgPage *pPage = new UploadProgPage(this);
 	pPage->setInfo(m_uiInternId, hash, start);
 
 	m_pPage = pPage;

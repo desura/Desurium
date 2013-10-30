@@ -84,7 +84,7 @@ Download and install:
 
  * Svn http://www.sliksvn.com/en/download or http://tortoisesvn.net/downloads.html
  * Msvc 2013 or higher (as C++11 features are in use)
- * Python 2.7 http://www.python.org/getit/
+ * Python 2.7 x86 http://www.python.org/getit/
  * CMake 2.8 http://www.cmake.org/
  * Patch either from msysGit or git bash
  * (Optional) Windows DirectX 9 SDK for the CEF build https://www.microsoft.com/en-us/download/details.aspx?id=6812

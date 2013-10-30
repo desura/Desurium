@@ -37,6 +37,8 @@ class PreloadPage : public BaseInstallPage
 public:
 	PreloadPage(wxWindow* parent, const char* action, const char* id);
 	virtual void init(){};
+
+	void onError(gcException &e) override;
 };
 
 }

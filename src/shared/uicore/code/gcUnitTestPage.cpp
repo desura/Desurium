@@ -146,6 +146,10 @@ gcUnitTestForm::gcUnitTestForm(wxWindow* parent)
 	, m_ImageList(16, 16)
 	, m_bShouldClose(false)
 {
+	m_nPassed = 0;
+	m_nFailed = 0;
+	m_nRunTime = 0;
+
 	showEvent += guiDelegate(this, &gcUnitTestForm::onShow);
 
 	Bind(wxEVT_COMMAND_BUTTON_CLICKED, &gcUnitTestForm::onButtonClicked, this);
@@ -153,12 +157,7 @@ gcUnitTestForm::gcUnitTestForm(wxWindow* parent)
 
 	this->SetSizeHints(wxDefaultSize, wxDefaultSize);
 
-	wxFlexGridSizer* fgSizer1;
-	fgSizer1 = new wxFlexGridSizer(4, 1, 0, 0);
-	fgSizer1->AddGrowableCol(0);
-	fgSizer1->AddGrowableRow(2);
-	fgSizer1->SetFlexibleDirection(wxBOTH);
-	fgSizer1->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
+
 
 	wxBoxSizer* bSizer2;
 	bSizer2 = new wxBoxSizer(wxHORIZONTAL);
@@ -171,27 +170,38 @@ gcUnitTestForm::gcUnitTestForm(wxWindow* parent)
 	m_cbRunOnStartup->SetValue(true);
 	bSizer2->Add(m_cbRunOnStartup, 0, wxALL, 5);
 
-	fgSizer1->Add(bSizer2, 1, wxEXPAND, 5);
+	
+
+
+
+	m_staticText1 = new wxStaticText(this, wxID_ANY, wxT("Filter:"), wxDefaultPosition, wxDefaultSize, 0);
+	m_staticText1->Wrap(-1);
+	m_textCtrl1 = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
+	m_butRun = new wxButton(this, wxID_ANY, wxT("Run"), wxDefaultPosition, wxDefaultSize, 0);
+	m_lcStats = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxSize(-1, 25), wxLC_REPORT | wxLC_SORT_ASCENDING|wxLC_NO_HEADER);
+	m_lcUnitTests = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxLC_SORT_ASCENDING);
+	m_butClose = new wxButton(this, wxID_ANY, wxT("Close"), wxDefaultPosition, wxDefaultSize, 0);
+
 
 	wxBoxSizer* bSizer1;
 	bSizer1 = new wxBoxSizer(wxHORIZONTAL);
 
-	m_staticText1 = new wxStaticText(this, wxID_ANY, wxT("Filter:"), wxDefaultPosition, wxDefaultSize, 0);
-	m_staticText1->Wrap(-1);
 	bSizer1->Add(m_staticText1, 0, wxALIGN_CENTER_VERTICAL | wxTOP | wxBOTTOM | wxLEFT, 5);
-
-	m_textCtrl1 = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
 	bSizer1->Add(m_textCtrl1, 1, wxEXPAND | wxALL, 5);
-
-	m_butRun = new wxButton(this, wxID_ANY, wxT("Run"), wxDefaultPosition, wxDefaultSize, 0);
 	bSizer1->Add(m_butRun, 0, wxTOP | wxBOTTOM | wxRIGHT, 5);
 
+
+	wxFlexGridSizer* fgSizer1;
+	fgSizer1 = new wxFlexGridSizer(5, 1, 0, 0);
+	fgSizer1->AddGrowableCol(0);
+	fgSizer1->AddGrowableRow(3);
+	fgSizer1->SetFlexibleDirection(wxBOTH);
+	fgSizer1->SetNonFlexibleGrowMode(wxFLEX_GROWMODE_SPECIFIED);
+
+	fgSizer1->Add(bSizer2, 1, wxEXPAND, 5);
 	fgSizer1->Add(bSizer1, 1, wxEXPAND, 5);
-
-	m_lcUnitTests = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxLC_SORT_ASCENDING);
+	fgSizer1->Add(m_lcStats, 1, wxEXPAND | wxBOTTOM | wxRIGHT | wxLEFT, 5);
 	fgSizer1->Add(m_lcUnitTests, 1, wxEXPAND | wxBOTTOM | wxRIGHT | wxLEFT, 5);
-
-	m_butClose = new wxButton(this, wxID_ANY, wxT("Close"), wxDefaultPosition, wxDefaultSize, 0);
 	fgSizer1->Add(m_butClose, 0, wxALIGN_RIGHT | wxBOTTOM | wxRIGHT | wxLEFT, 5);
 
 	this->SetSizer(fgSizer1);
@@ -214,6 +224,10 @@ gcUnitTestForm::gcUnitTestForm(wxWindow* parent)
 
 	m_ImageList.Add(wxBitmap(m_icoTestBad.getImg()->Scale(16, 16)));
 	m_ImageList.Add(wxBitmap(m_icoTestGood.getImg()->Scale(16, 16)));
+
+	m_lcStats->SetImageList(&m_ImageList, wxIMAGE_LIST_NORMAL);
+	m_lcStats->SetImageList(&m_ImageList, wxIMAGE_LIST_SMALL);
+
 
 	m_lcUnitTests->SetImageList(&m_ImageList, wxIMAGE_LIST_NORMAL);
 	m_lcUnitTests->SetImageList(&m_ImageList, wxIMAGE_LIST_SMALL);
@@ -277,7 +291,28 @@ void gcUnitTestForm::onStart()
 	m_lcUnitTests->InsertColumn(1, "Test Name", 0, 375);
 	m_lcUnitTests->InsertColumn(2, "Run Time");
 
+
+	m_lcStats->ClearAll();
+
+	m_lcStats->InsertColumn(0, "PI", 0, 25);
+	m_lcStats->InsertColumn(1, "P");
+	m_lcStats->InsertColumn(2, "FI", 0, 25);
+	m_lcStats->InsertColumn(3, "F");
+	m_lcStats->InsertColumn(4, "T");
+
+	m_lcStats->InsertItem(-1, "");
+
+	m_lcStats->SetItem(0, 0, "", 1);
+	m_lcStats->SetItem(0, 1, "0");
+	m_lcStats->SetItem(0, 2, "", 0);
+	m_lcStats->SetItem(0, 3, "0");
+	m_lcStats->SetItem(0, 4, "0");
+
 	m_mTestIndex.clear();
+
+	m_nPassed = 0;
+	m_nFailed = 0;
+	m_nRunTime = 0;
 }
 
 void gcUnitTestForm::onEnd()
@@ -294,11 +329,22 @@ void gcUnitTestForm::onTestStart(gcString &strTest)
 void gcUnitTestForm::onTestResult(std::pair<gcString, bool> &result)
 {
 	m_lcUnitTests->SetItem(m_mTestIndex[result.first], 0, "", result.second);
+
+	if (result.second)
+		m_nPassed++;
+	else
+		m_nFailed++;
+
+	m_lcStats->SetItem(0, 1, gcString("{0}", m_nPassed));
+	m_lcStats->SetItem(0, 3, gcString("{0}", m_nFailed));
 }
 
 void gcUnitTestForm::onTestEnd(std::pair<gcString, uint64> &time)
 {
 	m_lcUnitTests->SetItem(m_mTestIndex[time.first], 2, gcString("{0}", time.second));
+
+	m_nRunTime += time.second;
+	m_lcStats->SetItem(0, 4, gcString("{0} ms", m_nRunTime));
 }
 
 void gcUnitTestForm::OnRunOnStartupClicked(wxCommandEvent& event)

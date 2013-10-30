@@ -162,7 +162,7 @@ std::wstring getCachePath(std::wstring extra)
 	
 	return UTIL::STRING::toWStr(cachePath) + extra;
 #else
-	return getAppDataPath(std::wstring(L"cache/") + extra);
+	return getAppDataPath(std::wstring(L"cache\\") + extra);
 #endif
 }
 

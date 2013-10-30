@@ -34,8 +34,9 @@ BEGIN_EVENT_TABLE( UploadProgPage, BasePage )
 	EVT_CHECKBOX( wxID_ANY, UploadProgPage::onChecked )
 END_EVENT_TABLE()
 
-
-UploadProgPage::UploadProgPage( wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style ) : BasePage( parent, id, pos, size, style )
+UploadProgPage::UploadProgPage(wxWindow* parent) 
+	: BasePage(parent, wxID_ANY, wxDefaultPosition, wxSize( 400,100 ), wxTAB_TRAVERSAL)
+	, m_llTotalUpload(0)
 {
 	wxFlexGridSizer* fgSizer1;
 	fgSizer1 = new wxFlexGridSizer( 5, 1, 0, 0 );
@@ -225,6 +226,12 @@ void UploadProgPage::onComplete(uint32& status)
 	if (temp)
 		temp->setTrueClose();
 
+	std::string done = UTIL::MISC::niceSizeStr(m_llTotalUpload, true);
+	std::string total = UTIL::MISC::niceSizeStr(m_llTotalUpload);
+	m_pbProgress->setCaption(gcString("{0} of {1}", done, total));
+	m_pbProgress->setProgress(100);
+	m_pbProgress->setMileStone();
+
 	m_staticText3->SetLabel(Managers::GetString(L"#UDF_COMPLETE"));
 	m_labTimeLeft->SetLabel(wxT(""));
 
@@ -268,6 +275,8 @@ void UploadProgPage::onProgress(UserCore::Misc::UploadInfo& info)
 #endif
 		return;
 	}
+
+	m_llTotalUpload = info.totalAmmount;
 
 	std::string done = UTIL::MISC::niceSizeStr(info.doneAmmount, true);
 	std::string total = UTIL::MISC::niceSizeStr(info.totalAmmount);
