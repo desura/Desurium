@@ -313,14 +313,14 @@ void BranchInstallInfo::UpdateInstallCheckList(const std::vector<InsCheck> &vIns
 		}
 		catch (...)
 		{
-			return;
+			continue;
 		}
 
 		if (strPath.find(m_szPath) != 0)
-			return;
+			continue;
 
 		if (std::find(begin(m_vInstallChecks), end(m_vInstallChecks), check.check) != m_vInstallChecks.end())
-			return;
+			continue;
 
 		m_vInstallChecks.push_back(check.check);
 	}
