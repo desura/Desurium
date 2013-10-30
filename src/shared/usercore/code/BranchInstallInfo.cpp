@@ -875,11 +875,13 @@ namespace UnitTest
 
 		void setInstallInfo(const gcString &strPath, const gcString &strCheck, const gcString &strPrim)
 		{
-			m_BranchInstallInfo.m_szPath = strPath;
-			m_BranchInstallInfo.m_szInsCheck = strCheck;
-			m_BranchInstallInfo.m_szInsPrim = strPrim;
+			auto strNormCheck = UTIL::FS::PathWithFile(strCheck).getFullPath();
 
-			m_BranchInstallInfo.m_vInstallChecks.push_back(strCheck);
+			m_BranchInstallInfo.m_szPath = UTIL::FS::Path(strPath, "", false).getFullPath();
+			m_BranchInstallInfo.m_szInsCheck = strNormCheck;
+			m_BranchInstallInfo.m_szInsPrim = UTIL::FS::Path(strPrim, "", false).getFullPath();
+
+			m_BranchInstallInfo.m_vInstallChecks.push_back(strNormCheck);
 		}
 
 		void checkInstallInfo(const gcString &strPath, const gcString &strCheck, const gcString &strPrim, int nValidFileCount = -1)
