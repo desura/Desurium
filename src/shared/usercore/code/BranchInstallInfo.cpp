@@ -126,7 +126,7 @@ void BranchInstallInfo::saveDb(sqlite3x::sqlite3_connection* db)
 
 	if (isInstalled())
 	{
-		std::for_each(begin(m_vInstallChecks), end(m_vInstallChecks), [db, this](gcString &check)
+		for (gcString &check : m_vInstallChecks)
 		{
 			sqlite3x::sqlite3_command cmd(*db, "REPLACE INTO installinfoex VALUES (?,?,?);");
 
@@ -135,7 +135,7 @@ void BranchInstallInfo::saveDb(sqlite3x::sqlite3_connection* db)
 			cmd.bind(3, check);
 
 			cmd.executenonquery();
-		});
+		}
 	}
 	else
 	{
@@ -305,7 +305,7 @@ void BranchInstallInfo::UpdateInstallCheckList(const std::vector<InsCheck> &vIns
 {
 	VERIFY_OR_RETURN(!!pWildCard, );
 
-	std::for_each(begin(vInsChecks), end(vInsChecks), [this, pWildCard](const InsCheck &check)
+	for (const InsCheck &check : vInsChecks)
 	{
 		gcString strPath;
 
@@ -325,7 +325,7 @@ void BranchInstallInfo::UpdateInstallCheckList(const std::vector<InsCheck> &vIns
 			return;
 
 		m_vInstallChecks.push_back(check.check);
-	});
+	}
 }
 
 ProcessResult BranchInstallInfo::processSettings(tinyxml2::XMLNode* setNode, WildcardManager* pWildCard, bool reset, bool hasBroughtItem, const char* cipPath)
@@ -834,7 +834,17 @@ namespace UnitTest
 
 		bool isValidFile(const gcString &strFile) override
 		{
-			return std::find(m_vValidFiles.begin(), m_vValidFiles.end(), strFile) != m_vValidFiles.end();
+			UTIL::FS::Path a(UTIL::FS::PathWithFile(strFile));
+
+			for (auto &strFileIt : m_vValidFiles)
+			{
+				UTIL::FS::Path b(UTIL::FS::PathWithFile(strFileIt));
+				
+				if (a == b)
+					return true;
+			}
+
+			return false;
 		}
 
 		std::vector<gcString> m_vValidFiles;
@@ -881,9 +891,9 @@ namespace UnitTest
 
 		void checkInstallInfo(const gcString &strPath, const gcString &strCheck, const gcString &strPrim, int nValidFileCount = -1)
 		{
-			ASSERT_EQ(strPath, m_BranchInstallInfo.m_szPath);
-			ASSERT_EQ(strCheck, m_BranchInstallInfo.m_szInsCheck);
-			ASSERT_EQ(strPrim, m_BranchInstallInfo.m_szInsPrim);
+			ASSERT_PATHEQ(strPath, m_BranchInstallInfo.m_szPath);
+			ASSERT_FILEEQ(strCheck, m_BranchInstallInfo.m_szInsCheck);
+			ASSERT_PATHEQ(strPrim, m_BranchInstallInfo.m_szInsPrim);
 
 			if (m_BranchInstallInfo.isInstalled())
 			{
@@ -981,7 +991,7 @@ namespace UnitTest
 		auto res = processSettings(doc.RootElement(), &wildcard, false, false, NULL);
 
 		ASSERT_TRUE(res.found);
-		ASSERT_STREQ("path_a\\check_a.txt", res.insCheck.c_str());
+		ASSERT_FILEEQ("path_a\\check_a.txt", res.insCheck.c_str());
 
 		checkInstallInfo("path_a", "path_a\\check_a.txt", "insprim");
 	}
@@ -999,7 +1009,7 @@ namespace UnitTest
 		auto res = processSettings(doc.RootElement(), &wildcard, false, false, NULL);
 
 		ASSERT_TRUE(res.found);
-		ASSERT_STREQ("path_a\\check_a.txt", res.insCheck.c_str());
+		ASSERT_FILEEQ("path_a\\check_a.txt", res.insCheck.c_str());
 
 		checkInstallInfo("path_a", "path_a\\check_a.txt", "insprim");
 	}
@@ -1017,7 +1027,7 @@ namespace UnitTest
 		auto res = processSettings(doc.RootElement(), &wildcard, false, false, NULL);
 
 		ASSERT_TRUE(res.found);
-		ASSERT_STREQ("path_b\\check_b.txt", res.insCheck.c_str());
+		ASSERT_FILEEQ("path_b\\check_b.txt", res.insCheck.c_str());
 
 		//as we are not installed can freely change the path here
 		checkInstallInfo("path_b", "path_b\\check_b.txt", "insprim");
@@ -1039,7 +1049,7 @@ namespace UnitTest
 		auto res = processSettings(doc.RootElement(), &wildcard, false, false, NULL);
 
 		ASSERT_TRUE(res.found);
-		ASSERT_STREQ("path_a\\check_b.txt", res.insCheck.c_str());
+		ASSERT_FILEEQ("path_a\\check_b.txt", res.insCheck.c_str());
 
 		checkInstallInfo("path_a", "path_a\\check_b.txt", "insprim", 3);
 	}
@@ -1053,7 +1063,7 @@ namespace UnitTest
 		gcString strPath("C:\\abc\\def\\check.txt");
 		
 		ASSERT_TRUE(updateInstallCheck(strPath, "C:\\abc"));
-		ASSERT_STREQ("D:\\test\\def\\check.txt", strPath.c_str());
+		ASSERT_FILEEQ("D:\\test\\def\\check.txt", strPath.c_str());
 	}
 
 	TEST_F(BranchInstallInfoFixture, updateInstallCheck_DiffPaths_SameDrive)
@@ -1064,7 +1074,7 @@ namespace UnitTest
 		gcString strPath("C:\\abc\\def\\check.txt");
 		
 		ASSERT_FALSE(updateInstallCheck(strPath, "C:\\123"));
-		ASSERT_STREQ("C:\\abc\\def\\check.txt", strPath.c_str());
+		ASSERT_FILEEQ("C:\\abc\\def\\check.txt", strPath.c_str());
 	}
 
 	TEST_F(BranchInstallInfoFixture, updateInstallCheck_SamePaths_DiffDrive)
@@ -1075,7 +1085,7 @@ namespace UnitTest
 		gcString strPath("C:\\abc\\def\\check.txt");
 		
 		ASSERT_FALSE(updateInstallCheck(strPath, "D:\\abc"));
-		ASSERT_STREQ("C:\\abc\\def\\check.txt", strPath.c_str());
+		ASSERT_FILEEQ("C:\\abc\\def\\check.txt", strPath.c_str());
 	}
 
 
@@ -1098,11 +1108,11 @@ namespace UnitTest
 
 		ASSERT_EQ(2, vInsChecks.size());
 
-		ASSERT_STREQ("alpha\\bravo\\a.txt", vInsChecks[0].check.c_str());
-		ASSERT_STREQ("%WILDCARD_A%\\%WILDCARD_B%", vInsChecks[0].path.c_str());
+		ASSERT_FILEEQ("alpha\\bravo\\a.txt", vInsChecks[0].check.c_str());
+		ASSERT_PATHEQ("%WILDCARD_A%\\%WILDCARD_B%", vInsChecks[0].path.c_str());
 
-		ASSERT_STREQ("relativepath\\b.txt", vInsChecks[1].check.c_str());
-		ASSERT_STREQ("relativepath", vInsChecks[1].path.c_str());
+		ASSERT_FILEEQ("relativepath\\b.txt", vInsChecks[1].check.c_str());
+		ASSERT_PATHEQ("relativepath", vInsChecks[1].path.c_str());
 	}
 }
 
