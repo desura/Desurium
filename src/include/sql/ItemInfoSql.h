@@ -114,7 +114,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 												"PRIMARY KEY (itemid, biid)"			\
 												");"
 
-
+//As InstallInfo is keyed of itemid, biid (i.e. can only have one row per branch/item) and want to support backwards compatibility 
+//added a new table to hold all the install checks
 #define COUNT_INSTALLINFOEX "select count(*) from sqlite_master where name='installinfoex';"
 #define CREATE_INSTALLINFOEX "create table installinfoex(itemid INTEGER, "				\
 												"biid INTEGER,"							\
