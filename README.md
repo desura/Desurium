@@ -115,6 +115,24 @@ Open a 32bit cmd.exe with env vars set up by vc or other scripts (so we have a f
  
 Should be able to run and debug Desura now.
 
+Build Desura on Mac OS X
+=====================
+
+Download and install:
+
+ * XCode (app store)
+ * XCode command line tools (app store)
+ * CMake 2.8 http://www.cmake.org/
+
+Note: We have had issues with old versions of libcurl and cmake. Please download and install latest version of curl if you run into hash mismatches on cmake downloads. (Download source, run "./configure --prefix=/usr" then "make" then "sudo make install")
+
+Compiling
+------------
+
+Open Terminal in Desurium source directory and run:
+    ./build_desura.sh compile_desurium
+ 
+ 
 Special notes for advanced users
 =====================
 
