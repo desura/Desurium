@@ -37,7 +37,7 @@ Required dependencies:
  * GCC (4.6 or later, multilib support for 32 bit compatibility on 64 bit systems)
  * cmake (2.8.5 or later)
  * PkgConfig (for building DEB and RPM packages)
- * Boost (date_time, filesystem, thread system, test_exec_monitor, unit_test_framework)
+ * Boost (date_time, filesystem, thread, system, test_exec_monitor, unit_test_framework)
  * Freetype
  * GTK2
  * libX11 (with libXt)
