@@ -234,7 +234,13 @@ void CreateProgPage::onError(gcException& e)
 		par->setProgressState(gcFrame::P_ERROR);
 
 	gcErrorBox(this, "#CF_ERRTITLE", "#CF_ERROR", e);
-	Close();
+
+	CreateMCFForm* temp = dynamic_cast<CreateMCFForm*>(GetParent());
+
+	if (temp)
+		temp->cancelPrompt();
+
+	GetParent()->Close();
 }
 
 void CreateProgPage::onProgress(MCFCore::Misc::ProgressInfo& info)
