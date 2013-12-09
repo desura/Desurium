@@ -1,4 +1,4 @@
-/*
+﻿/*
 Desura is the leading indie game distribution platform
 Copyright (C) 2011 Mark Chandler (Desura Net Pty Ltd)
 
@@ -445,18 +445,25 @@ void getAllFiles(Path path, std::vector<Path> &outList, std::vector<std::string>
 			Path subPath(path);
 			subPath += File(gcString(filePath));
 
+			bool bValidFile = UTIL::FS::isValidFile(subPath);
+
 			if (!extsFilter)
 			{
+				if (!bValidFile)
+					throw gcException(ERR_INVALID, gcString("Failed to convert filename to usable UTF8 string. ({0})", subPath.getFullPath()));
+
 				outList.push_back(subPath);
 			}
 			else
 			{
-				std::vector<std::string> extList = *extsFilter;
+				auto ext = subPath.getFile().getFileExt();
 
-				for (size_t x=0; x<extList.size(); x++)
+				if (std::find(begin(*extsFilter), end(*extsFilter), ext) != end(*extsFilter))
 				{
-					if (Safe::stricmp(extList[x].c_str(), subPath.getFile().getFileExt().c_str()) ==0)
-						outList.push_back(subPath);
+					if (!bValidFile)
+						throw gcException(ERR_INVALID, gcString("Failed to convert filename to usable UTF8 string. ({0})", subPath.getFullPath()));
+
+					outList.push_back(subPath);
 				}
 			}
 		}
