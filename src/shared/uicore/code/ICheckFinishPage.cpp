@@ -62,7 +62,7 @@ ICheckFinishPage::ICheckFinishPage(wxWindow* parent) : BaseInstallPage(parent)
 	this->SetSizer( fgSizer3 );
 	this->Layout();
 
-	setParentSize(-1, 120);
+	setParentSize(-1, 165);
 }
 
 ICheckFinishPage::~ICheckFinishPage()
