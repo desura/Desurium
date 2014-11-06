@@ -1,10 +1,15 @@
 Update
 ==================
 
-Desurium has been forked and relicensed under LGPL v2.1 and thus is currently not being actively developed by Desura or Lindenlab. This repository has been left under the Gpl v3 license and is still free to be used by all under the terms of the license.
+Desurium had been forked and relicensed under LGPL v2.1 and thus the Desirum repository was currently not being actively developed by Desura or Lindenlab. 
 
-Please see the new repository/wiki/issues at https://github.com/lindenlab/desura-app for future continuation of Desura
+This repository has been left under the GPL v3 license and is still free to be used by all under the terms of the license.
 
+On November 1, 2014, Bad Juju Games acquired Desura from LindenLab, and is investigating options for the client, including (but not limited to) returning to a full GPL v3 license. 
+
+If you would like the most up-to-date LGPL codebase, please visit https://github.com/desura/desura-app
+
+We hope to update the community on the officially supported client in the near future. 
 
 
 
