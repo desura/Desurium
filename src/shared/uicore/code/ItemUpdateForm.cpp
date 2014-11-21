@@ -108,7 +108,7 @@ void UpdateInfoForm::setInfo(DesuraId id, bool launch)
 
 	SetLabel(gcWString(L"{0} {1}", Managers::GetString(L"#UI_TITLE"), item->getName()));
 
-	m_ieBrowser->loadUrl(gcWString(L"http://www.desura.com/{0}/{1}/changelog", id.getTypeString(), item->getShortName()));
+	m_ieBrowser->loadUrl(gcWString(L"{0}/{1}/{2}/changelog", GetWebCore()->getUrl(WebCore::Root), id.getTypeString(), item->getShortName()));
 }
 
 void UpdateInfoForm::onButtonPressed(wxCommandEvent& event)

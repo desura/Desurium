@@ -88,7 +88,7 @@ void ComplexPrompt::onButtonClick(wxCommandEvent& event)
 {
 	if (event.GetId() == m_butMoreInfo->GetId())
 	{
-		gcLaunchDefaultBrowser("http://www.desura.com/groups/desura/tutorials/complex-mod-installing");
+		gcLaunchDefaultBrowser(GetWebCore()->getUrl(WebCore::ComplexModTutorial));
 	}
 	else if (event.GetId() == m_butOk->GetId())
 	{

@@ -86,14 +86,14 @@ class InternalLink;
 class TaskBarIcon;
 class gcUnitTestForm;
 
-class MainApp :  public MainAppI
+class MainApp :  public MainAppI, public MainAppProviderI
 {
 public:
 	MainApp();
 	virtual ~MainApp();
 
 	void run();
-	//wx Function overide
+	//wx Function override
 	void Init(int argc, wxCmdLineArgsArray &argv);
 	void showMainWindow(bool raise = false);
 
@@ -130,7 +130,10 @@ public:
 	virtual EventV* getLoginEvent();
 
 
-	virtual void newAccountLogin(const char* username, const char* cookie);
+	void newAccountLogin(const char* username, const char* cookie) override;
+	void newAccountLoginError(const char* szErrorMessage) override;
+
+	const char* getProvider() const override;
 
 	void showUnitTest();
 
@@ -174,6 +177,8 @@ protected:
 
 	void showConsole();
 
+	void setProvider(const char* szProvider) override;
+
 	Event<std::pair<bool,bool>> onLoginAcceptedEvent;
 	EventV onLoginEvent;
 
@@ -194,6 +199,7 @@ private:
 	bool m_bLoggedIn;
 	uint8 m_iMode;
 
+	gcString m_strServiceProvider;
 	gcString m_szDesuraCache;
 
 #ifdef WITH_GTEST

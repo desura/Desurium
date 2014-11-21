@@ -771,5 +771,7 @@
 
 		<str name="#BH_CRASH">Browser has died. (Click to reload)</str>
 		<str name="#BH_NO_LOAD">Failed to load browser library. Please check console for error message.</str>
+		
+		<str name="#ALTLOGIN_TITLE">Alternative Login</str>
 	</strings>
 </lang>

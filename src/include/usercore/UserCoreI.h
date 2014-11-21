@@ -442,9 +442,10 @@ public:
 
 	virtual void runInstallScript(const char* file, const char* installPath, const char* function)=0;
 
-
 	//! Logs in with out starting all the extra stuff
 	virtual void logInTool(const char* user, const char* pass)=0;
+	
+	virtual void init(const char* appDataPath, const char* szProviderUrl)=0;
 };
 
 

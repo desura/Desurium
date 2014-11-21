@@ -39,6 +39,11 @@ CVar g_strUnitTestFilter("unittest_filter", "*");
 class gcUnitTestWatcher : public EmptyTestEventListener
 {
 public:
+	gcUnitTestWatcher()
+		: m_bDisableAssertOnFailure(false)
+	{
+	}
+
 	void OnTestIterationStart(const UnitTest& unit_test, int iteration)
 	{
 		onStartEvent();
@@ -57,7 +62,7 @@ public:
 
 	void OnTestPartResult(const TestPartResult& test_part_result)
 	{
-		if (test_part_result.failed() && g_bAssertOnFailure.getBool())
+		if (!m_bDisableAssertOnFailure && test_part_result.failed() && g_bAssertOnFailure.getBool())
 			wxASSERT(FALSE);
 	}
 
@@ -70,6 +75,11 @@ public:
 		onTestEndEnd(end);
 	}
 
+	void disableAssertOnFailure()
+	{
+		m_bDisableAssertOnFailure = true;
+	}
+
 	gcString m_szLastTest;
 
 	EventV onStartEvent;
@@ -78,6 +88,8 @@ public:
 	Event<gcString> onTestStartEvent;
 	Event<std::pair<gcString,bool>> onTestResultEvent;
 	Event<std::pair<gcString,uint64>> onTestEndEnd;
+
+	bool m_bDisableAssertOnFailure;
 };
 
 class CUnitTestThread : public Thread::BaseThread
@@ -134,6 +146,9 @@ static gcUnitTestWatcher* SetupTestWatcher()
 
 	int argc = args.getArgc();
 	InitGoogleTest(&argc, const_cast<char**>(args.getArgv()));
+
+	if (args.hasArg("unittests"))
+		pWatcher->disableAssertOnFailure();
 
 	return pWatcher;
 }
