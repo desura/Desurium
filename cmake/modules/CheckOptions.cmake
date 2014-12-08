@@ -38,7 +38,6 @@ if(NOT BUILD_ONLY_CEF)
   ###############################################################################
 
   if(UNIX)
-    option(WITH_ARES "build cURL with c-ares support" ON)
     option(DEBUG_EXTERNAL "build external libs with debug support" OFF)
     option(INSTALL_DESKTOP_FILE "install the generated desktop file to /usr/share/applications/" OFF)
     option(FORCE_BUNDLED_WXGTK "force building of bundled wxGTK" ON)
@@ -56,12 +55,6 @@ if(NOT BUILD_ONLY_CEF)
   ###############################################################################
   # check set options, print warnings, what ever
   ###############################################################################
-
-  if(NOT WITH_ARES)
-    message("WW building Desura without c-ares is not supported.")
-    message("WW Make sure, that your system installed cURL has ares support.")
-    message("WW Ignore this if you are aware of what you do. See #189 for further information.")
-  endif()
 
   option(WITH_FLASH "enable flash support" ON)
 endif()

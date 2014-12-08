@@ -1,13 +1,6 @@
 # TODO: create args for manipulting curl build
 # eg: WITH_IDN, IPV6, ...
 
-if(WITH_ARES)
-  find_package(cares REQUIRED)
-  set(BUILD_WITH_ARES --enable-ares)
-else()
-  set(BUILD_WITH_ARES --disable-ares)
-endif()
-
 if(DEBUG)
   set(CURL_DEBUG yes)
 else()
@@ -94,7 +87,7 @@ else()
         --disable-tftp --disable-file --without-libidn --without-gnutls
         --without-nss --without-cyassl --with-ssl --without-axtls
         --without-libssh2 --enable-hidden-symbols --enable-cookies --without-sspi
-        --disable-manual --enable-optimize=-O2 ${BUILD_WITH_ARES} ${CONFIGURE_DEBUG}
+        --disable-manual --enable-optimize=-O2 --disable-ares ${CONFIGURE_DEBUG}
         --prefix=${CURL_INSTALL_DIR}
   )
 endif()
@@ -125,8 +118,4 @@ else()
   else()
     list(APPEND CURL_LIBRARIES "rt")
   endif()
-endif()
-
-if(WITH_ARES)
-  list(APPEND CURL_LIBRARIES ${CARES_LIBRARIES})
 endif()
