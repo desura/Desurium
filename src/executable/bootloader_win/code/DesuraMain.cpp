@@ -462,7 +462,16 @@ void BootLoader::preReadImages()
 
 void BootLoader::loadUICore()
 {
-	if (!BootLoaderUtil::SetDllDir(".\\bin"))
+	// construct a full path based on current dir instead of relying on .\\bin.
+	// https://trello.com/c/KNyD8OWU - todo: investigate wide string usage on non-english platforms
+	// as a possible root cause of this (unrepro'able) bug
+	std::wstring workingDir(UTIL::OS::getCurrentDir());
+	std::wstring binDir(L".\\bin");
+	std::wstring fullPath = workingDir + binDir;
+
+	std::string fullPathNarrow = UTIL::STRING::toStr(fullPath);
+
+	if (!BootLoaderUtil::SetDllDir(fullPathNarrow.c_str()))
 	{
 		::MessageBox(NULL, "Failed to set the DLL path to the bin folder.", PRODUCT_NAME ": ERROR!",  MB_OK);
 		exit(-100);			
