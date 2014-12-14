@@ -93,6 +93,26 @@ public:
 	//!
 	void constructPath(const char* path, char **res, bool fixPath = true);
 
+	gcString constructPath(const char* path, bool fixPath = true)
+	{
+		gcString ret;
+		char *szPathOut = NULL;
+
+		try
+		{
+			constructPath(path, &szPathOut, fixPath);
+			ret = szPathOut;
+			safe_delete(szPathOut);
+		}
+		catch (...)
+		{
+			safe_delete(szPathOut);
+			throw;
+		}
+
+		return ret;
+	}
+
 	//! this parses an xml feed.
 	uint8 parseXML(tinyxml2::XMLNode* node);
 

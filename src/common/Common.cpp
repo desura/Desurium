@@ -23,3 +23,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "Common.h"
 
+bool CheckVerify(bool bCon, const char* szFunction, const char* szCheck)
+{
+	if (bCon)
+		return true;
+
+	gcString strOut("VERIFY HIT IN {0}: {1}", szFunction, szCheck);
+	Warning(strOut.c_str()); 
+	PAUSE_DEBUGGER();
+
+	return false;
+}

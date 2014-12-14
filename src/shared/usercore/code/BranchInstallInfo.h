@@ -25,9 +25,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #include "usercore/ItemInfoI.h"
 
+class InsCheck;
+
 namespace sqlite3x
 {
 	class sqlite3_connection;
+}
+
+namespace UnitTest
+{
+	class BranchInstallInfoFixture;
 }
 
 class WildcardManager;
@@ -37,6 +44,7 @@ namespace UserCore
 namespace Item
 {
 
+class BranchItemInfoI;
 class ItemInfo;
 
 class ExeInfo : public Misc::ExeInfoI
@@ -99,7 +107,7 @@ public:
 class BranchInstallInfo
 {
 public:
-	BranchInstallInfo(uint32 biId, ItemInfo *itemInfo);
+	BranchInstallInfo(uint32 biId, BranchItemInfoI *itemInfo);
 	~BranchInstallInfo();
 
 
@@ -128,23 +136,7 @@ public:
 	ProcessResult processSettings(tinyxml2::XMLNode* setNode, WildcardManager* pWildCard, bool reset, bool hasBroughtItem, const char* cipPath);
 
 
-	//! Sets the item install path
-	//!
-	//! @param path Install path
-	//!
-	void setPath(const char *path);
-
-	//! Sets the item install check
-	//!
-	//! @param path Install check
-	//!
-	void setInsCheck(const char *path);
-
-	//! Sets the item primary install path
-	//!
-	//! @param path Primary install path
-	//!
-	void setInsPrimary(const char* path);
+	void setLinkInfo(const char* szPath, const char* szExe, const char* szArgs);
 
 	uint32 getExeCount(bool setActive);
 	void setActiveExe(const char* name);
@@ -181,8 +173,25 @@ public:
 	void setLinkInfo(const char* exe, const char* args);
 
 protected:
+	friend class UnitTest::BranchInstallInfoFixture;
+
 	void launchExeHack();
 	void processExes(tinyxml2::XMLNode* setNode, WildcardManager* pWildCard, bool useCip);
+
+	virtual bool isValidFile(const gcString &strFile);
+
+	void setPath(const char *path);
+	void setInsCheck(const char *path);
+	void setInsPrimary(const char* path);
+
+	bool isInstalled();
+
+
+	void extractInstallChecks(tinyxml2::XMLNode* icsNode, WildcardManager* pWildCard, std::vector<InsCheck> &vInsChecks);
+
+	//Used for install items to convert install check to path relative to the dir the item is installed to
+	bool updateInstallCheck(gcString &strCheckRes, const gcString &strPath);
+	void UpdateInstallCheckList(const std::vector<InsCheck> &vInsChecks, WildcardManager* pWildCard);
 
 private:
 	gcString m_szPath;
@@ -191,7 +200,9 @@ private:
 	gcString m_szInsVersion;
 
 	gcString m_szActiveExe;
+
 	std::vector<ExeInfo*> m_vExeList;
+	std::vector<gcString> m_vInstallChecks;
 
 	MCFBuild m_NextBuild;	//next build
 	MCFBuild m_INBuild;		//installed build
@@ -205,7 +216,7 @@ private:
 
 	uint32 m_BiId;
 
-	ItemInfo* m_pItem;
+	BranchItemInfoI* m_pItem;
 };
 
 

@@ -58,7 +58,7 @@ public:
 	void OnTestPartResult(const TestPartResult& test_part_result)
 	{
 		if (test_part_result.failed() && g_bAssertOnFailure.getBool())
-			wxASSERT(FALSE);
+			PAUSE_DEBUGGER();
 	}
 
 	void OnTestEnd(const TestInfo& test_info)

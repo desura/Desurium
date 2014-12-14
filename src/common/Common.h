@@ -844,5 +844,25 @@ T Clamp(T val, T minVal, T maxVal)
 	#if !__has_feature(cxx_override_control)
 		#define override
 	#endif
+
 #endif
 
+bool CheckVerify(bool bCon, const char* szFunction, const char* szCheck);
+#define VERIFY_OR_RETURN( con, ret ) {if (!CheckVerify(con, __FUNCTION__, #con)) return ret;}
+
+
+#ifdef WITH_GTEST
+
+#define ASSERT_PATHEQ( a, b ) { \
+		UTIL::FS::Path pathA(a, "", false); \
+		UTIL::FS::Path pathB(b, "", false); \
+		ASSERT_STREQ(pathA.getFullPath().c_str(), pathB.getFullPath().c_str()); \
+	}
+
+#define ASSERT_FILEEQ( a, b ) { \
+		UTIL::FS::Path pathA(a, "", true); \
+		UTIL::FS::Path pathB(b, "", true); \
+		ASSERT_STREQ(pathA.getFullPath().c_str(), pathB.getFullPath().c_str()); \
+	}
+
+#endif

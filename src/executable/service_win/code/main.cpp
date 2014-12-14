@@ -27,6 +27,12 @@ SERVICE_STATUS_HANDLE g_hStatus;
 
 CGCServiceApp g_ServiceApp;
 
+class Color;
+void LogMsg(int type, std::string msg, Color *col)
+{
+
+}
+
 void SetCrashSettings(const wchar_t* user, bool upload)
 {
 	g_ServiceApp.setCrashSettings(user, upload);
