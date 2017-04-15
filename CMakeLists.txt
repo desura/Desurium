@@ -40,7 +40,7 @@
 #   FORCE_BUNDLED_WXGTK  		ON: bundle wxGTK 2.9.3
 #                   ON			OFF: use system wxGTK (has to be 2.9.x, work stable on 2.9.3)
 #   DEBUG_EXTERNAL  OFF                 same as DEBUG, but for externap deps
-#   WITH_ARES       ON                  build CURL with ares support (c-ares REQUIRED)
+#   WITH_ARES       OFF                 build CURL with ares support (c-ares REQUIRED)
 #   DIR_TYPE        SINGLE              how should game data be stored?
 #                                       SINGLE:   in a single dir in $HOME
 #                                       XDG:      like the official xdg specification
