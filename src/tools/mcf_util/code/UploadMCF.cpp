@@ -400,7 +400,7 @@ public:
 		printf("%s\n", std::string(wc->getData(), wc->getDataSize()).c_str());
 
 		tinyxml2::XMLDocument doc;
-		doc.Parse(const_cast<char*>(wc->getData()), wc->getDataSize());
+		doc.Parse(const_cast<char*>(wc->getData()));
 
 		try
 		{
